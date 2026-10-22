@@ -1,0 +1,71 @@
+{
+  "name": "twitch-chat-translator",
+  "version": "3.3.0",
+  "private": true,
+  "description": "Free live chat translator for Kick: read any stream's chat in your language and reply in the channel's. No account, no setup.",
+  "license": "MIT",
+  "author": "Pkkls",
+  "homepage": "https://github.com/Pkkls/kick-chat-translator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pkkls/kick-chat-translator.git"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b --noEmit && vite build && tsx scripts/bundle-content.ts && tsx scripts/check-strip.ts",
+    "build:firefox": "cross-env BROWSER=firefox vite build && tsx scripts/bundle-content.ts && tsx scripts/check-strip.ts",
+    "build:metrics": "cross-env KT_METRICS=1 npm run build",
+    "build:dev": "cross-env KT_DEV=1 npm run build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,html,json}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage",
+    "icons": "tsx scripts/generate-icons.ts",
+    "pack": "tsx scripts/pack.ts",
+    "metrics": "npm run build:metrics && node test/e2e/metrics-offline.mjs && npm run build",
+    "pack:firefox": "cross-env BROWSER=firefox tsx scripts/pack.ts",
+    "package:all": "npm run build && npm run pack && npm run build:firefox && npm run pack:firefox && npm run build",
+    "release:check": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "stores:selftest": "node scripts/stores/cws-selftest.mjs && node scripts/stores/amo-selftest.mjs",
+    "stores:payloads": "node scripts/stores/payloads.mjs",
+    "stores:preflight": "node scripts/stores/preflight.mjs",
+    "stores:verify": "node scripts/stores/verify.mjs",
+    "stores:rank": "node scripts/stores/rank.mjs"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^3.0.0",
+    "@eslint/js": "^10.0.1",
+    "@preact/preset-vite": "^2.10.6",
+    "@types/chrome": "^0.3.5",
+    "@types/node": "^22.7.4",
+    "@vitest/coverage-v8": "^4.1.11",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "happy-dom": "^20.14.6",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.13",
+    "tsx": "^4.19.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^8.3.4",
+    "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "franc-min": "^6.2.0",
+    "idb-keyval": "^6.3.0",
+    "preact": "^10.24.2",
+    "zod": "^4.6.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,9 @@
+Tính năng gõ bằng biểu tượng cảm xúc hiện đã hoạt động bình thường. Tab hoàn thành các biểu tượng cảm xúc và @đề cập của Kick và 7TV thay vì chèn bản dịch, các biểu tượng cảm xúc vẫn ở trong tin nhắn của bạn khi nó được dịch và bản xem trước không còn bao gồm danh sách của Kick hoặc bộ chọn biểu tượng cảm xúc.
+
+Bản dịch chính xác hơn: tên thương hiệu và tên người (iPhone, YouTube, LeBron) không còn bị loại bỏ trước khi dịch và các @đề cập vẫn ở trong tin nhắn đã dịch.
+
+Các bộ lọc đã được làm lại: các bot Kick thực sự bị bỏ qua và bạn có thể thêm các bộ lọc của riêng mình, "Ẩn tin nhắn có chứa" giờ đây cũng ẩn những gì đã có trên màn hình và danh sách có thể được nhập lại.
+
+Tiện ích mở rộng nhẹ hơn trên mọi trang Kick và trên Chrome, công cụ trên thiết bị sẽ được cung cấp lại khi ngôn ngữ đích ở chế độ Tự động.
+
+Mới và tùy chọn: số liệu thống kê sử dụng hàng ngày ẩn danh, tắt trừ khi bạn đồng ý. Chúng không bao giờ chứa tin nhắn, tên hoặc kênh của bạn.

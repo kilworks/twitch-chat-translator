@@ -1,0 +1,9 @@
+Typen met emotes werkt nu naar behoren. Tab voltooit de emotes en @mentions van Kick en 7TV in plaats van de vertaling in te voegen, emotes blijven in je bericht wanneer het vertaald is, en het voorbeeld dekt niet langer de lijsten van Kick of de emotekiezer.
+
+Vertalingen zijn nauwkeuriger: merk- en persoonsnamen (iPhone, YouTube, LeBron) worden niet langer verwijderd voordat ze worden vertaald, en @vermeldingen blijven in vertaalde berichten.
+
+De filters zijn herwerkt: de echte Kick-bots worden genegeerd en je kunt je eigen bots toevoegen, "Verberg berichten met" verbergt nu ook wat al op het scherm staat, en de lijsten kunnen opnieuw worden ingetypt.
+
+De extensie is op elke Kick-pagina lichter en in Chrome wordt de on-device-engine opnieuw aangeboden wanneer de doeltaal op Auto staat.
+
+Nieuw en optioneel: anonieme dagelijkse gebruiksstatistieken, uitgeschakeld tenzij u ja zegt. Ze bevatten nooit uw berichten, namen of kanalen.

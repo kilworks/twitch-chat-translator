@@ -1,3 +1,37 @@
+node_modules/
+dist/
+release/
+coverage/
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.zip
+*.tsbuildinfo
+.env
+.env.local
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+graft/
+
+# Working notes stay out of the repository.
+scratchpad/*
+
+# The gates, harnesses (test/e2e) and audits (test/audits) are tracked: a fresh
+# clone must be able to run them. What the harnesses write next to themselves,
+# screenshots, HTML dumps, bundles and browser profiles, stays out: it came to
+# 272 MB against 422 KB of scripts.
+test/e2e/*
+!test/e2e/*.mjs
+
+# Local Claude Code tooling. The graft shims bake an absolute npm-cache path
+# from the machine that generated them, and none of it is project source.
+#
+# The skills are the exception, for the same reason the harness scripts above
+# are tracked: a skill is the checklist a fresh clone needs, and ignoring it
+# leaves it on exactly one machine.
+.claude/*
+!.claude/skills/
 .recon-ext/
 .recon-profile/
 node_modules/

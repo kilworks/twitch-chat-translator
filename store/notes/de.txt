@@ -1,0 +1,9 @@
+Das Tippen mit Emotes funktioniert jetzt ordnungsgemäß. Tab vervollständigt die Emotes und @Erwähnungen von Kick und 7TV, anstatt die Übersetzung einzufügen. Emotes bleiben in Ihrer Nachricht, wenn sie übersetzt wird, und die Vorschau deckt nicht mehr Kicks Listen oder die Emote-Auswahl ab.
+
+Übersetzungen sind genauer: Marken- und Personennamen (iPhone, YouTube, LeBron) werden vor der Übersetzung nicht mehr gelöscht und @Erwähnungen bleiben in übersetzten Nachrichten.
+
+Filter wurden überarbeitet: Die echten Kick-Bots werden ignoriert und Sie können Ihre eigenen hinzufügen. „Nachrichten ausblenden mit“ blendet jetzt auch aus, was bereits auf dem Bildschirm ist, und die Listen können erneut eingegeben werden.
+
+Die Erweiterung ist auf jeder Kick-Seite leichter, und in Chrome wird die Übersetzung auf dem Gerät wieder angeboten, wenn die Zielsprache auf „Auto“ steht.
+
+Neu und optional: Anonyme tägliche Nutzungsstatistik, deaktiviert, sofern Sie nicht „Ja“ sagen. Sie enthalten niemals Ihre Nachrichten, Namen oder Kanäle.

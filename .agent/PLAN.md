@@ -111,16 +111,23 @@ they test, L last.
 
 ### [P00] Skeleton: copy, rename, build green identical to Kick
 
-- [ ] Copy the Kick tree at the HEAD recorded in START.txt into this repository (file copy, never
+- [x] Copy the Kick tree at the HEAD recorded in START.txt into this repository (file copy, never
       a write into the Kick checkout), drop `.git`, keep history out. Measure: file count equal to
       `git ls-files | wc -l` in Kick, minus `.agent/` which is regenerated.
-- [ ] Rename package, extension name and gecko id (`kick-translator@pkkls.dev` becomes a new id).
+      Done 2026-10-22 from a scratch clone at 184bfc9: 675 tracked, 7 under `.agent/`, 668 copied.
+      `PROMPT.md` and `state.mjs` copied too because two tests read PROMPT.md (P15 adapts them).
+- [x] Rename package, extension name and gecko id (`kick-translator@pkkls.dev` becomes a new id).
       The 23 npm scripts of INVENTORY `npmScripts` run unchanged.
-- [ ] `npm run release:check` green before any Twitch change: the baseline every later diff is
+      `twitch-chat-translator`, `twitch-translator@pkkls.dev`, short name and action title; 23/23
+      scripts identical to Kick's; `build:firefox` exit 0. Store names and URLs wait on K03/K04.
+- [x] `npm run release:check` green before any Twitch change: the baseline every later diff is
       measured against. Record test count (87 unit files) and gate count.
-- [ ] Keep Kick fixes flowing: `scripts/upstream-diff.mjs` lists commits in the Kick repository
+      Baseline: exit 0, 87/87 files, 1679/1679 tests; `run-gates.mjs` 42/42 offline gates green.
+- [x] Keep Kick fixes flowing: `scripts/upstream-diff.mjs` lists commits in the Kick repository
       after the recorded HEAD that touch platform-independent files (P09 rows of PARITY.json)
       and prints a patch to apply here. Read only on the Kick side.
+      Clones into a temp dir, git runs only there. 51 files watched. Witness: base = recorded HEAD,
+      0 commits; base = HEAD~15, 18 commits and a 1203-line patch.
 
 ### [P01] Platform layer
 

@@ -1,0 +1,9 @@
+Tipkanje s čustvi zdaj deluje pravilno. Zavihek dopolni čustva in @omembe Kicka in 7TV, namesto da bi vstavil prevod, čustva ostanejo v vašem sporočilu, ko je prevedeno, predogled pa ne zajema več Kickovih seznamov ali izbirnika čustev.
+
+Prevodi so natančnejši: imena blagovnih znamk in oseb (iPhone, YouTube, LeBron) pred prevajanjem niso več izpuščena, @omembe pa ostanejo v prevedenih sporočilih.
+
+Filtri so bili predelani: pravi Kick boti so prezrti in lahko dodate svoje, "Skrij sporočila, ki vsebujejo" zdaj tudi skrije, kar je že na zaslonu, in sezname je mogoče znova vnesti.
+
+Razširitev je lažja na vsaki strani Kick, v Chromu pa je mehanizem v napravi znova na voljo, ko je ciljni jezik nastavljen na Auto.
+
+Novo in neobvezno: anonimna dnevna statistika uporabe, izklopljena, razen če rečete da. Nikoli ne vsebujejo vaših sporočil, imen ali kanalov.

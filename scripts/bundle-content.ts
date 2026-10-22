@@ -1,0 +1,143 @@
+/**
+ * Post-build step: re-bundle the content script as a single self-contained
+ * **classic IIFE** and point the manifest directly at it.
+ *
+ * Why this exists
+ * ---------------
+ * @crxjs emits content scripts as an ESM *loader* stub whose whole body is
+ *   import(chrome.runtime.getURL('assets/index.ts-<hash>.js'))
+ * i.e. the real code is fetched at runtime via a dynamic import of a
+ * web-accessible resource. That dynamic import races the service worker /
+ * browser resource gating and can **silently reject** — most visibly on Brave.
+ * When it loses the race the content script never runs, no error reaches the
+ * page console, and the user sees "the extension didn't launch, I have to press
+ * F5 a few times until it does". (Reproduced: 6/6 cold reloads on Brave never
+ * injected, while a classic content script — 7TV — loaded every time.)
+ *
+ * A self-contained IIFE injected directly by the manifest has no dynamic
+ * import and runs deterministically at document_idle, exactly like a classic
+ * content script. We reuse Vite's lib mode so Vite-only syntax the content
+ * tree relies on (e.g. `import css from './inject.css?inline'`) keeps working.
+ */
+import { build } from 'vite';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { readFileSync, writeFileSync, existsSync, statSync, readdirSync, rmSync } from 'node:fs';
+
+const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '..');
+const ASSETS_DIR = resolve(root, 'dist/assets');
+const MANIFEST = resolve(root, 'dist/manifest.json');
+const OUT_NAME = 'content.js';
+const MANIFEST_REF = `assets/${OUT_NAME}`;
+
+async function bundleContent(): Promise<void> {
+  await build({
+    configFile: false,
+    root,
+    // This pass outputs into dist/assets, so the default publicDir copy would
+    // put a second copy of everything in public/ under assets/ and ship it. That
+    // was a few duplicated icons before; with _locales/ in there it is now
+    // duplicated store metadata inside the package.
+    publicDir: false,
+    resolve: { alias: { '~': resolve(root, 'src') } },
+    define: {
+      'process.env.NODE_ENV': '"production"',
+      // `configFile: false` above means vite.config.ts is never read, so the
+      // constant that strips shared/metrics.ts does not exist in this pass and
+      // has to be repeated. Without it the ternary never folds and the live sink
+      // ships inside content.js, which is what check-strip caught the first time
+      // this ran. Keep the two definitions in step.
+      __KT_METRICS__: JSON.stringify(process.env.KT_METRICS === '1'),
+      __KT_DEV__: JSON.stringify(process.env.KT_DEV === '1'),
+      __KT_BUILD__: JSON.stringify(new Date().toISOString()),
+    },
+    logLevel: 'warn',
+    build: {
+      outDir: ASSETS_DIR,
+      emptyOutDir: false, // keep the rest of the crxjs build
+      target: 'es2022',
+      minify: 'esbuild',
+      cssCodeSplit: false,
+      lib: {
+        entry: resolve(root, 'src/content/index.ts'),
+        formats: ['iife'],
+        name: 'KickChatTranslator',
+        fileName: () => OUT_NAME,
+      },
+      // One file, no code-split and no dynamic import: Vite 8 builds an iife
+      // library that way on its own, and reports `inlineDynamicImports` as ignored.
+    },
+  });
+}
+
+/** Returns the scripts the manifest pointed at before, for `dropOrphans`. */
+function patchManifest(): string[] {
+  const mf = JSON.parse(readFileSync(MANIFEST, 'utf8')) as {
+    content_scripts?: Array<{ js?: string[] }>;
+    web_accessible_resources?: unknown[];
+  };
+  const cs = mf.content_scripts?.[0];
+  if (!cs) throw new Error('[bundle-content] manifest has no content_scripts to patch');
+  const before = (cs.js ?? []).filter((f) => f !== MANIFEST_REF);
+  cs.js = [MANIFEST_REF];
+  // @crxjs exposes the ESM chunks its loader would have fetched at runtime.
+  // Repointing content_scripts at the self-contained bundle above is exactly
+  // what stops them being fetched, so what is left is four chunk URLs any
+  // script on a kick.com page can request to confirm the extension is
+  // installed. The source manifest declares nothing web-accessible either.
+  delete mf.web_accessible_resources;
+  writeFileSync(MANIFEST, `${JSON.stringify(mf, null, 2)}\n`);
+  return before;
+}
+
+/**
+ * Delete the crxjs loader and the content chunk it imported, which nothing
+ * loads once the manifest points at content.js.
+ *
+ * They were still written to dist/ and zipped: 173 KB of a second, unused copy
+ * of the whole content script in every package sent to the stores. A chunk is
+ * only removed when no other file in dist/ names it, so one the popup or the
+ * options page shares with the content tree stays.
+ */
+function dropOrphans(loaders: string[]): void {
+  const dist = resolve(ASSETS_DIR, '..');
+  const files = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? files(resolve(dir, e.name)) : [resolve(dir, e.name)],
+    );
+  for (const loader of loaders) {
+    const path = resolve(dist, loader);
+    if (!existsSync(path)) continue;
+    const chunks = [
+      ...readFileSync(path, 'utf8').matchAll(/getURL\(\s*["'](assets\/[^"']+)["']/g),
+    ].map((m) => m[1]!);
+    rmSync(path);
+    for (const chunk of chunks) {
+      const name = chunk.split('/').pop()!;
+      const chunkPath = resolve(dist, chunk);
+      const named = files(dist).some(
+        (f) =>
+          f !== chunkPath &&
+          /\.(js|html|json|css)$/.test(f) &&
+          readFileSync(f, 'utf8').includes(name),
+      );
+      if (!named && existsSync(chunkPath)) rmSync(chunkPath);
+    }
+  }
+}
+
+function assertClassic(file: string): void {
+  const src = readFileSync(file, 'utf8');
+  // An IIFE bundle must not contain a runtime dynamic import of the real chunk.
+  if (/\bimport\s*\(/.test(src)) {
+    throw new Error('[bundle-content] output still contains a dynamic import() — not classic');
+  }
+}
+
+await bundleContent();
+const out = resolve(ASSETS_DIR, OUT_NAME);
+if (!existsSync(out)) throw new Error('[bundle-content] content bundle was not emitted');
+assertClassic(out);
+dropOrphans(patchManifest());
+const kb = (statSync(out).size / 1024).toFixed(1);
+console.info(`[bundle-content] ${MANIFEST_REF} (${kb} KB, classic IIFE) — manifest repointed`);

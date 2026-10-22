@@ -1,0 +1,9 @@
+Psaní pomocí emocí nyní funguje správně. Tab doplní Kickovy a 7TV emoce a @zmínky místo vložení překladu, emoce zůstanou ve vaší zprávě, když je přeložena, a náhled již nepokrývá Kickovy seznamy ani výběr emocí.
+
+Překlady jsou přesnější: jména značek a lidí (iPhone, YouTube, LeBron) se již před překladem nevynechávají a @zmínky zůstávají v přeložených zprávách.
+
+Filtry byly přepracovány: skuteční Kick boti jsou ignorováni a můžete přidat své vlastní, „Skrýt zprávy obsahující“ nyní také skryje to, co je již na obrazovce, a seznamy lze znovu zadat.
+
+Rozšíření je na každé stránce Kick světlejší a v prohlížeči Chrome se engine na zařízení znovu nabízí, když je cílový jazyk nastaven na Auto.
+
+Nové a volitelné: anonymní denní statistiky využití, pokud neřeknete ano, jsou vypnuté. Nikdy neobsahují vaše zprávy, jména nebo kanály.

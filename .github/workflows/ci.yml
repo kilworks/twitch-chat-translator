@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main, v2-rewrite]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  test:
+    name: typecheck + lint + test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+      - name: Store clients against fake stores
+        run: node scripts/stores/cws-selftest.mjs && node scripts/stores/amo-selftest.mjs
+
+  build:
+    name: build (chrome + firefox)
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build           # chromium → dist/
+      - run: npm run pack            # → release/…-chromium.zip
+      - run: npm run build:firefox   # rebuild dist/ as the Firefox bundle
+      - run: npm run pack:firefox    # → release/…-firefox.zip
+      # The store texts, checked on every change rather than on release day:
+      # field limits and permissions, then dashes, accents and versions.
+      - run: python3 test/audits/audit_fiche.py
+      - run: node scripts/stores/payloads.mjs "$RUNNER_TEMP/stores"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extension-bundles
+          path: |
+            dist/
+            release/
+          retention-days: 14
+
+  # The 41 offline browser gates: the built extension loaded in Chromium, with
+  # every network call routed to a fake. They were run by hand only, and bugs
+  # shipped in the gap. `--headless` passes Chromium's own headless mode, the
+  # one that still loads an MV3 extension and starts its service worker.
+  browser-gates:
+    name: browser gates (Playwright, headless)
+    runs-on: ubuntu-latest
+    needs: test
+    env:
+      # Pinned, and not to whatever happens to be current: Playwright 1.56 does
+      # not route requests made by the service worker, so every gate that fakes
+      # a translation engine reached the real one and failed. 1.62.1 is the
+      # version the gates are run with by hand.
+      PLAYWRIGHT_VERSION: 1.62.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      # Playwright is not a dependency of the project (see test/e2e/playwright.mjs):
+      # a copy outside the checkout, found through UX_KIT.
+      - name: Install Playwright outside the repository
+        run: |
+          npm install --prefix "$RUNNER_TEMP/uxkit" --no-save --no-audit --no-fund "playwright@$PLAYWRIGHT_VERSION"
+          echo "UX_KIT=$RUNNER_TEMP/uxkit" >> "$GITHUB_ENV"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ms-playwright-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+      - run: $UX_KIT/node_modules/.bin/playwright install --with-deps chromium
+      - run: node test/e2e/run-gates.mjs --headless

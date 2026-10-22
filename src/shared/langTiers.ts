@@ -1,0 +1,67 @@
+/**
+ * Translation-quality routing tiers — derived from a typological + MT-engine study
+ * (see docs/translation-quality.md).
+ *
+ * Key finding: a machine translator outputs the WRONG grammatical person ("I" instead
+ * of "he") when a language drops the subject AND lacks the verb morphology to recover
+ * it — the East/South-East-Asian isolating languages, Vietnamese's kinship-pronoun
+ * system, and Arabic. Romance/Slavic are also pro-drop but the conjugation encodes the
+ * person, so MT recovers it correctly. For the truly ambiguous set, NO engine can
+ * recover a referent the language leaves implicit — unless we feed it the surrounding
+ * conversation. So those sources get extra context (DeepL's `context` parameter).
+ */
+
+const baseLang = (code: string): string => code.toLowerCase().split('-')[0] ?? code.toLowerCase();
+
+/**
+ * Source languages where a dropped subject systematically yields the wrong person.
+ * Translating FROM these, we feed more prior chat lines so the engine can infer who
+ * is meant. (Tier-1 "wrong-person" set from the study.)
+ */
+// 'yue' is listed in full because `baseLang` cannot reach it: it splits on the
+// hyphen, and Cantonese has no hyphen and no base code to fall back to. It is
+// isolating and pro-drop for the same reason the rest of the Chinese family is,
+// so it belongs in the same tier; it just cannot inherit it.
+const CONTEXT_CRITICAL = new Set(['ja', 'ko', 'zh', 'zh-tw', 'yue', 'vi', 'th', 'ar']);
+
+export function isContextCritical(code: string | undefined): boolean {
+  if (!code) return false;
+  const c = code.toLowerCase();
+  return CONTEXT_CRITICAL.has(c) || CONTEXT_CRITICAL.has(baseLang(c));
+}
+
+/**
+ * Languages where DeepL measurably beats Google for short informal text (the European
+ * pairs) — worth spending the limited DeepL Free budget. For Asian/Indic/RTL languages
+ * Google is as good or better (or DeepL doesn't support them), so they can stay on the
+ * free engine. Exposed for future budget-aware provider routing.
+ */
+export const DEEPL_PREMIUM = new Set([
+  'de', 'fr', 'es', 'pt', 'pt-br', 'it', 'nl', 'pl', 'sv', 'cs', 'sk', 'ro',
+  'ru', 'uk', 'fi', 'hu', 'bg', 'el', 'sl', 'et', 'lt', 'lv', 'da', 'tr',
+]);
+
+export function isDeeplPremium(code: string | undefined): boolean {
+  if (!code) return false;
+  const c = code.toLowerCase();
+  return DEEPL_PREMIUM.has(c) || DEEPL_PREMIUM.has(baseLang(c));
+}
+
+/**
+ * Budget-aware provider ordering. When smart routing is on and the target is NOT a
+ * language DeepL measurably wins at (`isDeeplPremium`), demote DeepL to the end of
+ * the chain so the free engines spend first and the limited DeepL quota is conserved
+ * for the European pairs where it actually helps. DeepL stays in the chain as a last
+ * resort (never dropped) so no target becomes untranslatable. A no-op when routing is
+ * off, the target is premium, or DeepL is absent / already last.
+ */
+export function routeForBudget<T extends string>(
+  order: readonly T[],
+  targetLang: string | undefined,
+  smartRouting: boolean,
+): T[] {
+  if (!smartRouting || isDeeplPremium(targetLang)) return [...order];
+  const i = order.indexOf('deepl' as T);
+  if (i === -1 || i === order.length - 1) return [...order];
+  return [...order.filter((id) => id !== ('deepl' as T)), 'deepl' as T];
+}

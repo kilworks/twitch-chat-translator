@@ -1,0 +1,1 @@
+Free live chat translator for Kick: every message is translated into your language as it arrives, and your replies go out in the channel's language. No account, no setup. Works on live streams and VODs.

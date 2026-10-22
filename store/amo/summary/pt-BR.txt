@@ -1,0 +1,1 @@
+Tradutor de chat ao vivo gratuito para a Kick: cada mensagem é traduzida para o seu idioma conforme chega, e suas respostas saem no idioma do canal. Sem conta, sem configurar nada. Funciona em lives e VODs.

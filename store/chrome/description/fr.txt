@@ -1,0 +1,35 @@
+Kick Chat Translator est un traducteur de chat en direct gratuit pour Kick. Lis le chat de n'importe quel stream dans ta langue, et réponds dans celle de la chaîne, directement dans le chat.
+
+Tu regardes un stream en turc, en espagnol, en russe ou en arabe et tu ne suis pas le chat ? Installe l'extension, ouvre le stream, et chaque message affiche sa traduction juste en dessous, au fil de l'arrivée. Pas de compte, pas de clé API, rien à configurer.
+
+COMMENT ÇA MARCHE
+
+1. Ouvre n'importe quel stream Kick. Une barre verte en haut du chat indique que le traducteur est actif.
+2. Chaque nouveau message reçoit sa traduction en dessous, dans la langue de ton navigateur.
+3. Écris ta réponse dans ta langue. Un aperçu la montre dans la langue de la chaîne : appuie sur Tab ou clique dessus, puis envoie.
+
+La langue de la chaîne est lue depuis Kick, et les deux langues se changent dans les réglages. Marche sur les lives comme sur les replays VOD, garde les emotes 7TV telles quelles, et se met en pause seule dans les onglets en arrière-plan.
+
+CE QUE TU OBTIENS
+
+• 43 langues, écriture de droite à gauche comprise (arabe, hébreu, persan), avec les variantes régionales gardées distinctes (portugais du Brésil, chinois traditionnel).
+• Gratuit dès l'installation avec Google Traduction, sans clé et sans compte.
+• De meilleures langues européennes avec ta propre clé API DeepL. DeepL reçoit les lignes récentes du chat comme contexte, donc la formulation colle à la conversation.
+• Traduction en local dans Chrome et Edge 138+ quand ton ordinateur le permet : hors ligne, illimitée, et le chat ne quitte jamais ta machine.
+• Secours automatique : quand un moteur échoue, MyMemory ou Lingva prend le relais. L'ordre, c'est toi qui le choisis.
+• Quatre styles d'affichage : sous le message, sur la même ligne, en petit italique après lui, ou seulement au survol. Le mode survol ne traduit rien tant que tu ne pointes pas un message, ce qui divise l'usage par dix environ sur un chat rapide.
+• Filtres : ignorer les bots, masquer des utilisateurs ou des chaînes, cacher les lignes qui contiennent un mot de ton choix (pratique contre le spam de !commandes), ou ne traduire que les langues que tu veux.
+• Emotes, mentions, liens et murs d'emoji sont retirés avant tout envoi, donc rien n'est dépensé pour traduire "kkkkkk".
+• À ton goût : taille du texte, interligne, police, couleur d'accent, chat sombre ou clair, une langue de lecture retenue par chaîne, raccourcis clavier.
+• Interface dans les mêmes 43 langues, de droite à gauche comprises, choisie dans un menu qui affiche chaque drapeau.
+
+CONFIDENTIALITÉ
+
+Pas de compte, pas de serveur à moi, et pas d'analytics sauf si tu acceptes un comptage quotidien anonyme des moteurs utilisés, des erreurs et de la vitesse, jamais tes messages, pseudos ou chaînes. Le texte du chat va uniquement au moteur de traduction que tu as choisi. Avec Google, MyMemory ou Lingva, c'est le texte de chaque message et rien d'autre. Avec DeepL, les dernières lignes du chat partent aussi comme contexte, avec le pseudo de leurs auteurs, pour que la traduction colle à la conversation. La chaîne que tu regardes n'est jamais envoyée, et avec la traduction en local rien ne quitte ton ordinateur.
+
+Les permissions, en clair : le stockage pour tes réglages et son cache de traductions ; l'accès à kick.com pour afficher les traductions dans le chat ; l'accès aux moteurs qu'elle peut appeler (Google, DeepL, MyMemory et Lingva) ; un minuteur de réveil pour que le traducteur reste prêt pendant que tu regardes ; et le droit de recharger son propre script dans les onglets Kick déjà ouverts quand tu l'installes ou la mets à jour, pour qu'ils continuent de traduire sans actualiser. Elle lit aussi la page des versions GitHub pour te signaler qu'une version plus récente existe, sans rien envoyer avec cette requête.
+
+GRATUIT ET OPEN SOURCE
+
+Licence MIT, code intégralement public : github.com/Pkkls/kick-chat-translator
+Les signalements de bugs et les demandes de langues y sont les bienvenus, et ce qui a changé dans chaque version se trouve sur la page des versions.

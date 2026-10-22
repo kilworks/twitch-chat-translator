@@ -1,0 +1,71 @@
+/**
+ * What the public sees, compared with the repository: the version each store
+ * serves, and every listing text in every language.
+ *
+ *   node scripts/stores/verify.mjs
+ *
+ * Chrome: the public detail page, fetched once per language, carries the
+ * version, the name (the manifest's extName), the short description (the manifest's extDescription) and the whole
+ * detailed description. AMO: the public API. No key needed for either.
+ *
+ * Exits 1 on any difference. Between a submission and its approval that is the
+ * expected answer: the stores still serve the previous release.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { LISTINGS, apiLocale, chromeCode } from './languages.mjs';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const VERSION = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
+const ITEM = 'nkkjmbkmacbdkboijmnhjnblcaiclhni';
+const SLUG = 'kick-chat-translator';
+const store = (rel) => fs.readFileSync(path.join(ROOT, 'store', rel), 'utf8').trim();
+const catalog = (dir) => JSON.parse(fs.readFileSync(path.join(ROOT, 'public/_locales', dir, 'messages.json'), 'utf8'));
+const locale = (dir) => catalog(dir).extDescription.message;
+
+const plain = (s) =>
+  (s ?? '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+    .replace(/\\n/g, '\n').replace(/\\u003c/g, '<').replace(/\\u003e/g, '>').replace(/\\u0026/g, '&').replace(/\\"/g, '"');
+const squash = (s) => plain(s).replace(/\s+/g, ' ').trim();
+
+let differences = 0;
+const row = (ok, what, detail = '') => {
+  if (!ok) differences++;
+  console.log(`${ok ? 'ok  ' : 'DIFF'} ${what}${detail ? ' | ' + detail : ''}`);
+};
+
+for (const [lang, { dir }] of Object.entries(LISTINGS)) {
+  const hl = chromeCode(lang);
+  const url = `https://chromewebstore.google.com/detail/${SLUG}/${ITEM}?hl=${hl}`;
+  const r = await fetch(url, { headers: { 'Accept-Language': hl, 'User-Agent': 'Mozilla/5.0' } });
+  const html = await r.text();
+  const page = squash(html);
+  const served = [...new Set([...html.matchAll(/"(\d+\.\d+\.\d+)"/g)].map((m) => m[1]))][0] ?? '?';
+  const name = squash(html.match(/<title>([^<]*) - [^<]*<\/title>/)?.[1]);
+  const blurb = squash(html.match(/<meta name="description" content="([^"]*)"/)?.[1]);
+  const paras = store(`chrome/description/${lang}.txt`).split(/\n\s*\n/).map(squash).filter((p) => p.length >= 30);
+  const found = paras.filter((p) => page.includes(p)).length;
+  row(served === VERSION, `chrome ${lang.padEnd(5)} version`, `servie ${served}, depot ${VERSION}`);
+  row(name === catalog(dir).extName.message, `chrome ${lang.padEnd(5)} nom`, name === catalog(dir).extName.message ? '' : `servi "${name}"`);
+  row(blurb === squash(locale(dir)), `chrome ${lang.padEnd(5)} resume`, blurb === squash(locale(dir)) ? '' : `servi "${blurb.slice(0, 50)}"`);
+  row(found === paras.length, `chrome ${lang.padEnd(5)} description`, `${found}/${paras.length} paragraphes`);
+}
+
+// AMO: the public API returns every translation when no lang is asked for.
+const a = await (await fetch(`https://addons.mozilla.org/api/v5/addons/addon/${SLUG}/`)).json();
+row(a.current_version?.version === VERSION, 'amo   version', `servie ${a.current_version?.version}, depot ${VERSION}`);
+for (const [lang, { dir, amo }] of Object.entries(LISTINGS)) {
+  if (!amo.length) continue;
+  const loc = apiLocale(amo[0]);
+  row(a.name?.[loc] === catalog(dir).extName.message, `amo   ${lang.padEnd(5)} nom`);
+  row(squash(a.summary?.[loc]).replace(/‌/g, '') === squash(store(`amo/summary/${lang}.txt`)).replace(/‌/g, ''), `amo   ${lang.padEnd(5)} resume`);
+  // AMO renders '1.' lines as a list and drops Persian's zero-width non-joiner.
+  const flat = (t) => plain(t).replace(/^\d+\.\s+/gm, '').replace(/[\s‌]+/g, '');
+  row(flat(a.description?.[loc]) === flat(store(`amo/description/${lang}.txt`)), `amo   ${lang.padEnd(5)} description`);
+}
+
+console.log(differences ? `\n${differences} difference(s) entre les stores et le depot` : '\nles stores servent exactement le depot');
+process.exit(differences ? 1 : 0);

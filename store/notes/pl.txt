@@ -1,0 +1,9 @@
+Pisanie za pomocą emotikonów działa teraz poprawnie. Zakładka uzupełnia emotki i @wzmianki Kick'a i 7TV zamiast wstawiać tłumaczenie, emotikony pozostają w Twojej wiadomości po jej przetłumaczeniu, a podgląd nie obejmuje już list Kick'a ani selektora emotek.
+
+Tłumaczenia są dokładniejsze: nazwy marek i osób (iPhone, YouTube, LeBron) nie są już usuwane przed tłumaczeniem, a @wzmianki pozostają w przetłumaczonych wiadomościach.
+
+Filtry zostały przerobione: prawdziwe boty wyrzucające są ignorowane i możesz dodawać własne, opcja „Ukryj wiadomości zawierające” ukrywa teraz także to, co jest już na ekranie, a listy można wpisywać ponownie.
+
+Rozszerzenie jest lżejsze na każdej stronie Kick, a w przeglądarce Chrome silnik na urządzeniu jest ponownie oferowany, gdy język docelowy jest ustawiony na Auto.
+
+Nowość i opcjonalna: anonimowe dzienne statystyki użytkowania, wyłączone, chyba że się zgodzisz. Nigdy nie zawierają Twoich wiadomości, nazw ani kanałów.

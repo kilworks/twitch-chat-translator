@@ -1,0 +1,9 @@
+Tastarea cu emoții funcționează corect acum. Tab completează emotele și @mentiunile lui Kick și 7TV în loc să insereze traducerea, emoțiile rămân în mesajul dvs. când este tradus, iar previzualizarea nu mai acoperă listele lui Kick sau selectorul de emoții.
+
+Traducerile sunt mai precise: numele mărcilor și ale persoanelor (iPhone, YouTube, LeBron) nu mai sunt eliminate înainte de traducere, iar @mențiunile rămân în mesajele traduse.
+
+Filtrele au fost reproiectate: boții Kick adevărați sunt ignorați și îi puteți adăuga pe ai dvs., „Ascundeți mesajele care conțin” acum ascunde și ceea ce este deja pe ecran, iar listele pot fi introduse din nou.
+
+Extensia este mai ușoară pe fiecare pagină Kick, iar pe Chrome motorul de pe dispozitiv este oferit din nou atunci când limba țintă este pe Auto.
+
+Nou și opțional: statistici anonime de utilizare zilnică, dezactivate dacă nu spui da. Nu conțin niciodată mesajele, numele sau canalele dvs.

@@ -1,0 +1,9 @@
+Att skriva med emotes fungerar korrekt nu. Tab slutför Kicks och 7TV:s emotes och @omnämnanden istället för att infoga översättningen, emotes stannar i ditt meddelande när det översätts, och förhandsvisningen täcker inte längre Kicks listor eller emoteväljaren.
+
+Översättningar är mer exakta: varumärken och personers namn (iPhone, YouTube, LeBron) tas inte längre bort före översättning, och @omnämnanden stannar kvar i översatta meddelanden.
+
+Filtren omarbetades: de riktiga Kick-botarna ignoreras och du kan lägga till dina egna, "Dölj meddelanden som innehåller" döljer nu också det som redan finns på skärmen, och listorna kan skrivas in igen.
+
+Tillägget är lättare på varje Kick-sida, och på Chrome erbjuds motorn på enheten igen när målspråket är på Auto.
+
+Nytt och valfritt: anonym daglig användningsstatistik, avstängd om du inte säger ja. De innehåller aldrig dina meddelanden, namn eller kanaler.

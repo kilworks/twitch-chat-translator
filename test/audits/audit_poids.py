@@ -1,0 +1,154 @@
+# -*- coding: utf-8 -*-
+"""Poids du script injecte dans chaque page Kick.
+
+`assets/content.js` est le seul content_script du manifeste. Chaque page kick.com
+le telecharge, l'analyse et l'execute, que le lecteur ouvre une liste de langues
+ou non, et `inject.css` y est inline par `?inline`. C'est le seul cout que
+l'extension impose a tout le monde tout le temps.
+
+Mesure prise dans les archives publiees, pas dans un souvenir :
+
+    2.7.0   199.5 Ko
+    2.8.0   199.4 Ko   -0.1 %
+    2.8.1   199.4 Ko    0.0 %
+    2.9.0   224.3 Ko  +12.5 %   <- les drapeaux dessines et le panneau partage
+    2.9.1   223.4 Ko   -0.4 %
+    2.9.2   223.1 Ko   -0.2 %
+
+Douze et demi pour cent en une version, et personne ne l'a vu pendant trois
+jours parce que rien ne regardait. Ce fichier ne dit pas qu'un poids est trop
+grand : il dit de combien il a bouge depuis une reference qu'on a choisie, pour
+que la prochaine hausse soit une decision et pas un accident.
+
+La reference vit ici, en clair, et pas dans un JSON a cote : `scratchpad/` ne
+suit que `*.mjs` et `audit_*.py`, donc un fichier de donnees y serait ignore par
+git et la reference ne survivrait pas a une machine. La changer est un diff
+lisible dans un fichier suivi, avec sa raison a cote.
+"""
+import io
+import json
+import os
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
+CIBLE = 'dist/assets/content.js'
+MANIFESTE = 'dist/manifest.json'
+
+# Reference : 2.9.2, la derniere version publiee au moment ou cette porte a ete
+# ecrite. Un instantane, pas un ideal. La marge laisse passer le bruit d'un
+# build a l'autre sans laisser passer une fonctionnalite.
+# Reference relevee le 2026-08-31, de 228_460 a 233217, soit +4757 octets et
+# +2,08 %, ce que la porte avait signale en rougissant. La hausse est voulue et
+# se decompose, chaque module mesure minifie et isolement :
+#
+#     table des rires        3791 o   44 formes, 22 marquant une langue
+#     filtre de martelement   424 o   15/15, 0 faux positif
+#     detection arabizi       227 o   12/12, 0 faux positif
+#     ---------------------------------
+#     total attribue         4442 o
+#
+# Les ~315 octets restants sont les correctifs produit de 2.9.3 et 2.9.4 : la
+# rangee recyclee retraduite, la langue source d'un lot melange, l'hebreu et le
+# malais enfin detectes.
+#
+# La marge est de nouveau pleine, et la facon de la racheter est identifiee, pas
+# devinee : les donnees de franc pesent 98 Ko dans ce fichier, et
+# `tinyld.light.browser` en pese 68, sous licence MIT. Trente kilo-octets de
+# rendus, soit treize pour cent du bundle, si l'experience de justesse tourne en
+# sa faveur. Elle n'a pas encore tourne.
+#
+# Reference relevee le 2026-09-24, de 233_217 a 248_199, soit +14_982 octets et
+# +6,42 %. La hausse est voulue et elle a ete SEPAREE plutot que devinee : le
+# meme build, avec le seul `langDetect.ts` de master a la place du courant,
+# pese 233_727 octets. Le partage est donc net :
+#
+#     regles de detection    14_472 o   la branche feat/lang-matrix
+#     cantonais hors detecteur  510 o   langue offerte, drapeau, niveau de
+#                                       contexte, garde de translitteration,
+#                                       codes chez deux fournisseurs
+#     ---------------------------------
+#     total                  14_982 o
+#
+# Ce que les 14_472 octets achetent, mesure sur les 5040 lignes de Tatoeba :
+# le chemin qui donne la langue source au moteur passe de 1262 lignes justes et
+# 90 fausses a 3698 justes et TROIS fausses. Plus aucune des 43 langues ne
+# marque zero, contre vingt-six au depart. Quatorze octets et demi par ligne
+# gagnee, et la colonne qui coute cher divisee par trente.
+#
+# En gzip -9, qui est ce que le reseau transporte, l'ecart n'est pas le meme :
+# 91_484 octets avant les lettres exclusives, 96_635 aujourd'hui, soit +5151.
+# Une table de regex se compresse bien.
+#
+# ---------------------------------------------------------------------------
+# Reference relevee le 2026-09-25, de 248_199 a 254_174, soit +5975 octets et
+# +2,41 %. Separee en deux plutot que devinee, chaque tranche etant le meme
+# build sans l'autre :
+#
+#     248_199 -> 252_900   +4701 o   la reprise du selecteur de langues
+#     252_900 -> 254_174   +1274 o   la lisibilite de la ligne traduite
+#
+# LA PREMIERE TRANCHE AURAIT DU ETRE RELEVEE DANS SON PROPRE COMMIT et ne l'a
+# pas ete : 252_900 tenait sous 248_199 majore de la marge de 2 %, donc la
+# porte est restee verte et n'a rien eu a dire. Une marge est faite pour
+# absorber le bruit d'un build, pas pour encaisser une hausse voulue. Ce qu'elle
+# achete : la selection portee par trois marqueurs au lieu d'un fond mesure a
+# 1.21:1, les drapeaux eteints au repos, les colonnes derivees de la largeur, et
+# 33 lignes de blocs clairs morts rendues.
+#
+# La seconde achete les trois reglages de lisibilite de la ligne traduite, les
+# deux echelles typographiques et les quatre faces. Les 72 chaines traduites qui
+# vont avec ne pesent RIEN ici : verifie en construisant les deux fois, les
+# catalogues ne sont pas dans le script injecte. En gzip, ce que le reseau
+# transporte, la seconde tranche vaut +343 octets.
+# Relevee le 2026-09-25 : le sens des deux barres et les drapeaux dessines sur
+# les badges, plus la touche Tab. Le detail est dans les messages de commit.
+# Relevee le 2026-10-10, de 258_743 a 264_259, en deux tranches :
+#
+#     258_743 -> 263_302   +4559 o   master apres #20 et #21, entrees sous la
+#                                    marge et non relevees, donc non separees
+#     263_302 -> 264_259    +957 o   la table d'abreviations du chat anglais
+#                                    (abbreviations.ts), +559 o en gzip
+#
+# La seconde achete ngl, idc, lmk, goat et vingt-neuf autres ecrits en toutes
+# lettres avant traduction : Google en laissait 952 sur 1386 tels quels dans les
+# 42 langues. La table ne se reduit pas sans retirer des entrees mesurees utiles.
+#
+#     264_259 -> 370_248  +105_989 o   les textes du chat dans 33 langues de plus
+#                                      (42 au lieu de 9), +29_316 o en gzip
+#
+# L'interface parle desormais toutes les langues vers lesquelles l'extension
+# traduit. Le catalogue du chat est compile dans le script injecte (msg.ts dit
+# pourquoi : chrome.i18n ne suit pas le reglage uiLang), environ 3 Ko par langue.
+REFERENCE_OCTETS = 370248
+MARGE = 0.02
+
+if not os.path.exists(CIBLE):
+    print(f'{CIBLE} absent. Lancer `npm run build` avant.')
+    sys.exit(2)
+
+# Le build metriques embarque des compteurs que la release n'a pas : le mesurer
+# comparerait deux choses differentes et rapporterait une hausse qui ne sera
+# jamais livree.
+source = io.open(CIBLE, encoding='utf-8', errors='replace').read()
+if 'kt.metrics.v1' in source:
+    print('dist/ porte les metriques : ce build ne part pas en release, poids non compare.')
+    sys.exit(0)
+
+octets = os.path.getsize(CIBLE)
+version = json.load(io.open(MANIFESTE, encoding='utf-8'))['version'] if os.path.exists(MANIFESTE) else '?'
+ecart = octets - REFERENCE_OCTETS
+pourcent = 100.0 * ecart / REFERENCE_OCTETS
+
+print(f'{CIBLE}  {octets / 1024:.1f} Ko   (manifeste {version})')
+print(f'reference             {REFERENCE_OCTETS / 1024:.1f} Ko')
+print(f'ecart                 {ecart / 1024:+.1f} Ko  {pourcent:+.2f} %   marge {MARGE * 100:.0f} %')
+
+if pourcent > MARGE * 100:
+    print()
+    print(f'Le script injecte a grossi de {pourcent:.2f} % au-dela de la marge.')
+    print('Soit la hausse est voulue, et REFERENCE_OCTETS se met a jour dans le')
+    print("meme commit avec ce qui l'explique, soit elle ne l'est pas.")
+    sys.exit(1)
+
+sys.exit(0)

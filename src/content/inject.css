@@ -1,0 +1,1550 @@
+/* The token source, shared with the popup and the options page. Vite inlines
+   this when injector.ts pulls the file in with `?inline`, so what lands in the
+   page is still one self-contained stylesheet. */
+@import '../shared/theme.css';
+/* Les 43 drapeaux, partages avec la page d'options. */
+@import '../shared/flags.css';
+
+/* Logical edges throughout, not physical ones. Arabic is one of the ten
+   interface languages and one people chat in, and mirrored the green rule
+   marking a translation used to land at the far END of the line while the
+   provider tag lost its gap entirely and printed as "deeplbonjour a tous". The
+   chip section of this file already argues the point; the chat lines predate
+   it. */
+.kt-translation {
+  display: block;
+  /* Les trois marges du bloc, pilotees ensemble par data-kt-density. Les replis
+     sont les valeurs que la regle portait en dur, donc 'normal' ne bouge rien. */
+  margin-top: var(--kt-tr-gap, 2px);
+  padding-block: var(--kt-tr-pad-b, 2px);
+  padding-inline: var(--kt-tr-pad-i, 8px) 6px;
+  background: rgb(var(--kt-green-rgb) / 0.06);
+  border-inline-start: 2px solid rgb(var(--kt-green-rgb) / 0.55);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: 4px;
+  border-end-end-radius: 4px;
+  /* Les trois reglages du lecteur entrent ici, chacun avec un repli egal a la
+     valeur d'origine : un profil qui n'en porte aucun rend exactement ce qu'il
+     rendait. L'echelle MULTIPLIE la taille que Kick donne a la ligne, elle ne
+     la remplace pas, donc un lecteur qui a deja grossi le chat de Kick garde
+     son choix et celui-ci s'y ajoute. */
+  font-size: calc(var(--kt-fc-xl) * var(--kt-tr-scale, 1));
+  color: var(--kt-text-2);
+  line-height: var(--kt-tr-leading, 1.35);
+  font-family: var(--kt-tr-font, inherit);
+}
+
+.kt-translation-inline {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: baseline;
+  margin-inline-start: 6px;
+  padding: 1px 5px;
+  background: rgb(var(--kt-green-rgb) / 0.12);
+  border-inline-start: 2px solid rgb(var(--kt-green-rgb) / 0.55);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: 4px;
+  border-end-end-radius: 4px;
+  font-size: calc(var(--kt-fc-lg) * var(--kt-tr-scale, 1));
+  font-family: var(--kt-tr-font, inherit);
+  color: var(--kt-text-2);
+}
+
+/* Source-language badge on a translated chat line: a slot holding the drawn
+   flag (a .kt-flag child, sized in flags.css) or, for a language without one,
+   its two letters. The font size stays on the slot because the flag is sized
+   in em against it. */
+.kt-src-flag {
+  display: inline-block;
+  font-size: var(--kt-fc-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-inline-end: 5px;
+  text-transform: uppercase;
+  vertical-align: -0.12em;
+}
+/* The pill belongs to the two letters only: behind a flag it hid the flag. */
+.kt-src-flag:not(:has(> .kt-flag)) {
+  opacity: 0.65;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: rgb(var(--kt-text-rgb) / 0.06);
+  vertical-align: middle;
+}
+
+.kt-provider {
+  font-size: var(--kt-fc-xs);
+  /* .4 flattened to 3.78:1. .55 gives 6.26 and still reads as secondary. */
+  opacity: 0.55;
+  margin-inline-start: 6px;
+  font-family: var(--kt-font-mono-chat);
+}
+
+.kt-loading {
+  /* Same as the provider badge: .4 was 3.78:1. */
+  opacity: 0.55;
+  font-size: var(--kt-fc-md);
+  margin-inline-start: 4px;
+  font-style: italic;
+}
+
+.kt-error {
+  display: inline;
+  margin-inline-start: 6px;
+  font-size: var(--kt-fc-sm);
+  /* An error message you cannot read is worse than none: at .7 opacity this
+     measured 3.19:1, and it only ever appears when something has gone wrong.
+     Full colour gives 5.53 on the chat ground. */
+  color: var(--kt-danger);
+  font-style: italic;
+}
+
+/* Re-translate button — hidden until the translation block is hovered. */
+.kt-retry {
+  /* La commande la plus repetee du produit : elle est sur chaque ligne traduite.
+   * Mesuree a 10 par 15 dans le build livre, la ou WCAG 2.5.8 demande 24 par 24,
+   * et c'est exactement le defaut du chevron de la puce de langue, un 10 par 6
+   * dans un 45 par 24.
+   *
+   * La boite grandit, la ligne non : les marges negatives rendent la hauteur
+   * ajoutee, sinon chaque message du chat grandirait de neuf pixels et la
+   * densite mesuree par `chat-live`, quatorze messages la ou il y en avait huit,
+   * repartirait en arriere. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 24px;
+  min-block-size: 24px;
+  margin-block: -6px;
+  vertical-align: middle;
+  margin-inline-start: 6px;
+  font-size: var(--kt-fc-lg);
+  cursor: pointer;
+  opacity: 0;
+  color: rgb(var(--kt-green-ink-rgb) / 0.9);
+  transition: opacity 0.15s;
+  user-select: none;
+}
+.kt-translation:hover .kt-retry,
+.kt-translation-inline:hover .kt-retry,
+.kt-translation-replace:hover .kt-retry,
+.kt-error:hover .kt-retry,
+/* Focus reveals it too, or tabbing to it lands on nothing visible. */
+.kt-retry:focus-visible {
+  opacity: 0.7;
+}
+.kt-retry:focus-visible {
+  outline: 2px solid var(--kt-green);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Where the pointer cannot hover, hiding it behind hover hides it forever:
+   measured on a touch viewport, `(hover: hover)` is false and the control sat
+   at zero opacity with no way to reach it. */
+@media (hover: none) {
+  .kt-retry {
+    opacity: 0.7;
+  }
+}
+.kt-retry:hover {
+  opacity: 1 !important;
+}
+
+/* #8 Click-to-copy: cursor hint */
+.kt-translation,
+.kt-translation-inline,
+.kt-translation-replace {
+  /* One place decides wrapping for all three styles.
+     A single unbreakable token - a spam run, a long URL, a wall of CJK - took
+     our translation to 530px inside a 356px column and scrolled the chat
+     sideways by 121px in `inline` and 186 in `replace`; `below` was the only
+     one carrying a break rule of its own.
+
+     `anywhere` rather than `break-word`: on the inline-block pill, break-word
+     leaves the min-content width alone and 6px of overflow survived, measured.
+     Rather than `break-all`, which would also chop words that fit. */
+  overflow-wrap: anywhere;
+  cursor: copy;
+}
+
+/* #2 Hover-to-translate: a marker, not a label.
+
+   This was a green "Hover to translate" on its own line under every message.
+   Measured against an untouched row in a real browser: 31.4px became 50.6px,
+   +61%, and a 420px window went from 13 messages to 8. The style that exists
+   to spend less was the most expensive one on screen, and it charged that on
+   every line nobody had asked to translate.
+
+   The row is the hover target now. What is left carries no text and no box: it
+   is how the "already dealt with" sweep recognises the line, and a sweep's
+   bookkeeping has no business taking up space in the chat. */
+.kt-hover-armed {
+  display: none;
+}
+
+/* #32 "Keep original text visible" off, widened by the #35 measurement.
+   Hiding stays tied to the translation being present, so a line the virtual
+   scroller recycled without one shows its own text again with nothing to undo.
+   Keying on the element that HOLDS the translation, rather than on a sibling of
+   the text, also reaches a reply, where Kick wraps the message one level deeper
+   than a plain line. The quoted parent of a reply carries no font-normal span,
+   so it stays readable.
+
+   The words go, the emotes stay. This was `display: none` on the whole span,
+   and selectors.ts says in its own words what that costs: Kick renders custom
+   emotes as `<img alt="emoteName">` INSIDE those spans, so hiding the span took
+   the emotes with it. Measured across the three shapes Kick and 7TV produce, an
+   emote-only span, a mixed one, and a 7TV token: the image was gone in all
+   three. That is the wrong half to remove. A viewer reading a chat in a
+   language they do not speak has the emotes and the username left, and words
+   are the part the translation already replaced.
+
+   Zeroing the type collapses the text runs to nothing while leaving replaced
+   elements their own boxes, and it costs no density: 12 messages in the window
+   either way, at the same 33.9px, measured before and after.
+
+   The image gets a font-size back because Kick sizes some emotes in em, and an
+   em against a zero font-size is zero. 1rem rather than the row's own size,
+   which CSS cannot reach once it has been overridden: an em-sized emote
+   therefore renders 27px here against 24px with the original showing. Named
+   rather than hidden, because 3px of drift on emotes that are sized in em is
+   the price of them existing at all, and the px-sized ones do not move.
+
+   Every one of these rules sits under a class or attribute on the root, and
+   that is about cost, not meaning. A `:has()` rule on a bare div is
+   live on every div of Kick's page, so the browser re-checks it on each
+   mutation anywhere in the chat: measured on the offline chat at 20 messages a
+   second, the unscoped replace rule alone took style recalculation from 66 ms
+   to 249 ms per 10 s, with no line in the replace style on screen. Scoped to
+   the attribute applyDisplayStyle sets, it costs nothing until it can match. */
+.kt-hide-original div:has(> .kt-translation) :is(span.font-normal, .seventv-text-token),
+.kt-hide-original div:has(> .kt-translation-inline) :is(span.font-normal, .seventv-text-token),
+html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is(span.font-normal, .seventv-text-token) {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: 0;
+  word-spacing: 0;
+}
+.kt-hide-original div:has(> .kt-translation) :is(span.font-normal, .seventv-text-token) :is(img, svg, video),
+.kt-hide-original div:has(> .kt-translation-inline) :is(span.font-normal, .seventv-text-token) :is(img, svg, video),
+html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is(span.font-normal, .seventv-text-token) :is(img, svg, video) {
+  font-size: 1rem;
+  line-height: normal;
+}
+
+/* #36 The inline style keeps a gap on its left to stand off the message. Once
+   the message is hidden there is nothing to stand off, and the gap reads as a
+   stray indent. `replace` never carries that gap: it is not standing beside
+   anything. */
+.kt-hide-original .kt-translation-inline {
+  margin-inline-start: 0;
+}
+
+/* ─── When the original is hidden, the translation IS the message ──────────
+   Two things were wrong once "keep original" was off.
+
+   Contrast and size: the only text of the message rendered at .78 opacity
+   (11.16:1) and 0.9em — quieter and smaller than the username above it, with
+   nothing left for it to be quieter THAN. Full white is 19.67:1 at 1em.
+
+   Height, which is the one that mattered: `.kt-translation` is display:block,
+   so hiding the original left the username alone on its own line and the
+   translation on a second one. Measured, the row got TALLER — 41.7px against
+   39.98px — while claiming to save space. Going inline puts the translation
+   where the message was, and the row is one line again.
+
+   The tinted background and the rule go with it: this is body text now, and a
+   highlight only makes sense next to something it stands off. The language
+   badge already says the line came from us.
+
+   `replace` joins this list without the `.kt-hide-original` ancestor on
+   purpose: it is the same situation reached by a different door, and its whole
+   contract is that the line's only text is ours. Sharing the declarations
+   rather than copying them is what stops the two from drifting apart. */
+.kt-hide-original .kt-translation,
+.kt-hide-original .kt-translation-inline,
+.kt-translation-replace {
+  display: inline;
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  border-inline-start: 0;
+  border-radius: 0;
+  /* L'echelle vaut ici aussi, sur la taille pleine. Pas d'interligne : dans
+     ces trois cas le texte est DANS la ligne de Kick, et l'interligne d'une
+     ligne de chat appartient a Kick. Le reglage ne vaut donc que pour le mode
+     below, seul a avoir un bloc a lui. */
+  font-size: calc(1em * var(--kt-tr-scale, 1));
+  font-family: var(--kt-tr-font, inherit);
+  font-style: normal;
+  color: var(--kt-text);
+}
+html[data-kt-scheme='light'].kt-hide-original .kt-translation,
+html[data-kt-scheme='light'].kt-hide-original .kt-translation-inline,
+html[data-kt-scheme='light'] .kt-translation-replace {
+  color: var(--kt-text);
+}
+
+/* #7 Toast notification */
+.kt-toast {
+  position: fixed;
+  bottom: 20px;
+  inset-inline-end: 20px;
+  padding: 8px 16px;
+  background: var(--kt-veil-strong);
+  border: 1px solid rgb(var(--kt-green-rgb) / 0.3);
+  border-radius: 8px;
+  font-size: var(--kt-fs-md);
+  color: var(--kt-text);
+  z-index: 10000;
+  pointer-events: none;
+  animation: kt-fade 3s ease-out forwards;
+}
+@keyframes kt-fade {
+  0%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ─── Floating bar at top of #channel-chatroom ───────────────────────── */
+
+.kt-float {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--kt-veil);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgb(var(--kt-green-rgb) / 0.2);
+  font-family: var(--kt-font-ui);
+  font-size: var(--kt-fs-md);
+  color: var(--kt-text-2);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  z-index: 50;
+  transition: background 0.15s;
+}
+.kt-float:hover {
+  background: var(--kt-veil-hover);
+}
+
+.kt-float-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--kt-off);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+/* Grey to brand green says on or off on its own. The halo this used to
+   carry was a shadow, and Kick draws none. */
+.kt-float[data-enabled='true'] .kt-float-dot {
+  background: var(--kt-green);
+}
+
+/* Kick's chat panel is about 340px wide and the bar has to fit inside it.
+   Order of what gives when it does not: the label first, then the language
+   menu. The gear and the pause button never give, because the gear is the only
+   way to the options page from Kick and losing it locks the user out. */
+.kt-float-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.kt-float-opts {
+  /* Never gives, and never shrinks to nothing: this is the only route to the
+     options page from a Kick page. */
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--kt-edge);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--kt-text-2);
+  font-size: var(--kt-fs-lg);
+  cursor: pointer;
+  line-height: 1;
+}
+.kt-float-opts:hover {
+  border-color: rgb(var(--kt-green-rgb) / 0.4);
+  color: var(--kt-green);
+}
+
+/* #58 The two settings people reach for most, on the bar instead of a page. */
+.kt-float-lang-host {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.kt-float-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  /* 24px is WCAG 2.5.8's minimum target, and the height the rest of the bar
+     already uses. */
+  height: 24px;
+  min-width: 0;
+  max-width: 96px;
+  /* Same surface, stroke and text as the chip in the message box, so the two
+     language controls read as one control in two places rather than as two
+     unrelated widgets. The stroke matters beyond looks: the old
+     rgba(255,255,255,.15) flattened to #34373C, which is 1.62:1 against the
+     bar, well under the 3:1 WCAG 1.4.11 asks of a control's boundary.
+     var(--kt-edge) measures 3.04 there and 3.08 on the chat ground, so one value
+     covers both surfaces. */
+  background: var(--kt-surface);
+  border: 1px solid var(--kt-edge);
+  border-radius: 4px;
+  padding: 0 6px;
+  color: var(--kt-text);
+  font-size: var(--kt-fs-sm);
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.kt-float-lang-tag {
+  font-family: var(--kt-font-mono);
+  font-size: var(--kt-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.kt-float-lang:focus-visible {
+  outline: 2px solid var(--kt-green);
+  outline-offset: 2px;
+}
+
+.kt-float-lang[aria-expanded='true'] {
+  border-color: var(--kt-green-edge);
+  background: var(--kt-hover);
+}
+/* The rows of that list take their colours from the options, and nothing else
+   reaches them. Named here so the list is readable whatever the page around it
+   is doing. */
+.kt-float-lang:hover {
+  border-color: rgb(var(--kt-green-rgb) / 0.4);
+}
+
+/* Les deux boutons de la barre, a la taille que la main demande.
+ *
+ * Mesures sur le build livre, a dix largeurs de 340 a 1500 : la pause faisait
+ * 26 par 18 et l'engrenage 25 par 19, parce qu'un padding de 2px sur une ligne
+ * de 12 ne fait pas plus de boite que ca. WCAG 2.5.8 demande 24 par 24, et
+ * c'est exactement le defaut corrige sur le chevron de la puce de langue, qui
+ * etait un 10 par 6 dans un 45 par 24. Les boutons de la barre, eux, n'avaient
+ * jamais ete mesures. La barre fait 37px de haut, donc 24 y tient sans la
+ * deplacer. */
+.kt-float-power,
+.kt-float-opts {
+  min-inline-size: 24px;
+  min-block-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kt-float-power {
+  /* Never gives. See the ordering note on .kt-float-label. */
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--kt-edge);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--kt-text-2);
+  font-size: var(--kt-fs-md);
+  line-height: 1;
+  cursor: pointer;
+}
+.kt-float-power:hover {
+  border-color: rgb(var(--kt-green-rgb) / 0.4);
+  color: var(--kt-green);
+}
+
+.kt-float-local {
+  background: rgb(var(--kt-green-rgb) / 0.12);
+  border: 1px solid rgb(var(--kt-green-rgb) / 0.35);
+  border-radius: 4px;
+  padding: 2px 8px;
+  color: var(--kt-green);
+  font-size: var(--kt-fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.kt-float-local:hover {
+  background: rgb(var(--kt-green-rgb) / 0.2);
+}
+.kt-float-local[data-state='downloading'] {
+  cursor: progress;
+  opacity: 0.8;
+}
+.kt-float-local[data-state='ready'] {
+  background: transparent;
+  border-color: rgb(var(--kt-green-rgb) / 0.25);
+  cursor: default;
+}
+
+.kt-float-count {
+  font-size: var(--kt-fs-sm);
+  font-variant-numeric: tabular-nums;
+  color: rgb(var(--kt-green-ink-rgb) / 0.8);
+  font-weight: 600;
+}
+
+/* ─── Compose preview: floating translation of what you're typing ─────── */
+
+.kt-compose {
+  position: fixed;
+  z-index: 9999;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 100vw;
+  padding: 8px 10px;
+  /* Brought onto the direction the chip section writes down, measured off
+     Kick's own pages: no drop shadow anywhere, 4 and 8px radii, one 0.15s
+     duration, whole-pixel type. This panel predates that measurement and had
+     kept an 11px radius, 0.16s, 13.5px type and two drop shadows, over a site
+     that draws none of it.
+
+     The shadow was not decoration, though: it was the only thing separating the
+     panel from the chat. Measured, the green hairline at 0.18 alpha came to
+     1.46:1 on the dark ground and 1.31 on the light one, against the 3:1 WCAG
+     1.4.11 asks of a control's own boundary, and this panel is a control -- a
+     click inserts the translation. So the separation moves to an opaque aplat
+     and a real hairline, which is what .kt-chip-menu already does. */
+  background: var(--kt-surface);
+  border: 1px solid var(--kt-edge);
+  border-radius: 8px;
+  font-family: var(--kt-font-ui);
+  font-size: var(--kt-fs-lg);
+  line-height: 1.4;
+  color: var(--kt-text);
+  cursor: pointer;
+  user-select: none;
+  /* GPU-only transition — no layout, no reflow on the input. */
+  opacity: 0;
+  transform: translateY(5px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    border-color 0.15s ease;
+  will-change: opacity, transform;
+}
+.kt-compose[data-state='ready'],
+.kt-compose[data-state='loading'] {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+/* Hover says "this is clickable" by taking the brand colour, the way the chip
+   does. It used to deepen a drop shadow instead, which is not a thing Kick
+   draws. */
+.kt-compose:hover {
+  border-color: var(--kt-green-edge);
+}
+
+/* Small language tag — quiet, just enough to know the output language. */
+.kt-compose-target {
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: 4px;
+  color: var(--kt-green);
+  font-size: var(--kt-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+/* La pastille ne va qu'aux deux lettres : derriere un drapeau, elle le masquait. */
+.kt-compose-target:not(:has(> .kt-flag)) {
+  padding: 2px 6px;
+  background: rgb(var(--kt-green-rgb) / 0.13);
+}
+
+/* The translation — the hero. Shows in full (grows the chip upward); scrolls only
+   if the message is genuinely huge (compose is capped at 500 chars anyway). */
+.kt-compose-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 500;
+  word-break: break-word;
+  white-space: normal;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+.kt-compose[data-state='loading'] .kt-compose-text {
+  opacity: 0.45;
+  animation: kt-compose-pulse 0.9s ease-in-out infinite;
+}
+
+/* Insert cue (the whole panel is clickable). Brightens on hover.
+
+   Quietened with a colour, not with opacity. At 0.5 it measured 4.05:1 on the
+   dark ground and 1.22 on the light one, against the 4.5 WCAG 1.4.3 asks, and
+   the kit's contrast script reported neither: it reads the declared colour and
+   drops the element's opacity, so it saw a passing 13:1 in the dark and only
+   caught the light theme by accident. Two other elements in this file, the
+   provider tag and the loading ellipsis, were dimmed the same way and fixed the
+   same way. */
+.kt-compose-insert {
+  flex-shrink: 0;
+  margin-top: 3px;
+  font-size: var(--kt-fs-lg);
+  line-height: 1;
+  color: rgb(var(--kt-green-rgb) / 0.85);
+  transition: color 0.15s ease;
+}
+.kt-compose:hover .kt-compose-insert {
+  color: var(--kt-green-ink);
+}
+.kt-compose[data-throttled='true'] .kt-compose-insert {
+  opacity: 0.25;
+}
+
+@keyframes kt-compose-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Light theme.
+   Keyed on the stamp applyChatScheme() writes after measuring the chat's real
+   background, not on prefers-color-scheme: Kick owns its theme, and the OS
+   setting was handing a light desktop the light palette on Kick's dark chat. */
+html[data-kt-scheme='light'] .kt-translation {
+  color: var(--kt-text-2);
+  background: rgb(var(--kt-text-rgb) / 0.05);
+  border-inline-start-color: rgb(var(--kt-green-ink-rgb) / 0.6);
+}
+html[data-kt-scheme='light'] .kt-translation-inline {
+  color: var(--kt-text-2);
+  background: rgb(var(--kt-green-ink-rgb) / 0.12);
+  border-inline-start-color: rgb(var(--kt-green-ink-rgb) / 0.6);
+}
+html[data-kt-scheme='light'] .kt-src-flag {
+  color: var(--kt-muted);
+}
+html[data-kt-scheme='light'] .kt-retry {
+  color: rgb(var(--kt-green-ink-rgb) / 0.9);
+}
+html[data-kt-scheme='light'] .kt-float {
+  background: var(--kt-veil);
+  color: var(--kt-text-2);
+  border-bottom-color: rgb(var(--kt-green-ink-rgb) / 0.3);
+}
+
+/* rgba(0,0,0,.15) flattens to 1.42:1 against the light bar, where WCAG
+     1.4.11 asks 3:1 of a control's boundary. #8D8D8E measures 3.11 on the bar,
+     3.02 on the chip surface and 3.32 on white, so one value covers every
+     light ground these controls sit on. */
+html[data-kt-scheme='light'] .kt-float-opts,
+html[data-kt-scheme='light'] .kt-float-lang,
+html[data-kt-scheme='light'] .kt-float-power {
+  border-color: var(--kt-edge);
+  color: var(--kt-text);
+}
+
+/* Our option text turns dark here, so the list has to turn light with it.
+     Freezing the scheme would just break the readability the other way round. */
+html[data-kt-scheme='light'] .kt-float-lang {
+  background: var(--kt-sunken);
+  color: var(--kt-text);
+}
+
+html[data-kt-scheme='light'] .kt-float-lang:focus-visible {
+  outline-color: var(--kt-green-edge);
+}
+html[data-kt-scheme='light'] .kt-compose {
+  background: var(--kt-surface);
+  color: var(--kt-text);
+  /* Same reasoning as the dark ground, other direction: the panel sits on
+     Kick's light surface and its edge has to reach 3:1 without a shadow to
+     lean on. */
+  border-color: var(--kt-edge);
+}
+/* The brand green is unreadable on a light ground: measured 1.29:1 for the
+   badge and 1.22 for the cue, where the chip section already records 1.25 for
+   green as text. #2A810C is the variant that section measured at 4.50. */
+html[data-kt-scheme='light'] .kt-compose-target:not(:has(> .kt-flag)) {
+  background: rgb(var(--kt-green-ink-rgb) / 0.13);
+}
+html[data-kt-scheme='light'] .kt-compose-target {
+  /* var(--kt-green-ink) is the 4.50 figure against the plain light surface; the badge sits
+     on its own green tint, which lifts the ground and brought it back to 4.31.
+     Darkened until the tint is paid for. */
+  color: var(--kt-green-ink);
+}
+html[data-kt-scheme='light'] .kt-compose-insert {
+  color: var(--kt-green-ink);
+}
+
+/* ─── Language chip, inside Kick's message box ────────────────────────────
+   Values come from Kick's own pages (about.kick.com, 4 pages, computed
+   styles): no drop shadows anywhere, 4/8px radii, a single 0.15s duration,
+   neutral greys, and the brand green kept for the active state only.
+
+   Contrast, measured on those colours with alpha flattened:
+     text on chip        #FFFFFF on #171A1C   17.49:1
+     dimmed code         #9FA6AD on #171A1C    7.10:1
+     resting outline     #5E5E5F on #0B0B0C    3.04:1   (WCAG 1.4.11)
+     pinned outline      #358B1A on #0B0B0C    4.55:1
+   The outline is the one place this departs from Kick, which draws no
+   borders at all: an aplat cannot reach 3:1 for a control without wrecking
+   the palette. Controls only — never sections. */
+.kt-chip-host {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  /* The chip heads the action bar's right cluster, so the gap belongs after it,
+     between the chip and the gear — not before, where it would push the whole
+     cluster off its own edge. */
+  margin-inline-end: 6px;
+}
+
+.kt-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 24px is WCAG 2.5.8's minimum target; the padding takes the width past it. */
+  height: 24px;
+  min-width: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: 1px solid var(--kt-edge);
+  background: var(--kt-surface);
+  color: var(--kt-text);
+  font-family: var(--kt-font-mono);
+  font-size: var(--kt-fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.kt-chip:hover {
+  border-color: var(--kt-green-edge);
+  background: var(--kt-hover);
+}
+.kt-chip:focus-visible {
+  outline: 2px solid var(--kt-green);
+  outline-offset: 2px;
+}
+
+/* The only thing on screen saying a list exists. Everything that opened it
+   before was invisible: a 400ms press, or the Down arrow.
+
+   A region of the chip button, not a button of its own. Measured first: the
+   action bar keeps 108px of slack on a 340px panel, 68 at 300 and 28 at 260,
+   and a separate target owes 24px under WCAG 2.5.8 before its gap. This costs
+   12 and fits at every width. */
+.kt-chip-caret {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: 5px;
+  /* Half the chip's own padding back, so the caret sits inside the box rather
+     than against its edge. */
+  margin-inline-end: -3px;
+  color: var(--kt-muted);
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+.kt-chip-caret svg {
+  display: block;
+  width: 10px;
+  height: 6px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.kt-chip:hover .kt-chip-caret,
+.kt-chip[aria-expanded='true'] .kt-chip-caret {
+  color: var(--kt-text);
+}
+.kt-chip[aria-expanded='true'] .kt-chip-caret {
+  transform: rotate(180deg);
+}
+.kt-chip[data-mode='auto'] {
+  border-style: dashed;
+  color: var(--kt-muted);
+}
+.kt-chip[data-mode='pinned'] {
+  border-color: var(--kt-green-edge);
+  background: var(--kt-green-bed);
+  color: var(--kt-text);
+}
+.kt-chip[data-mode='off'] {
+  border-style: dotted;
+  background: transparent;
+  color: var(--kt-muted);
+  cursor: default;
+}
+/* Waiting state. The pulse runs on the BORDER, never on the label: fading text
+   in and out drops its contrast by construction — measured 7.10:1 at rest,
+   2.22:1 at the 0.4 opacity this used to reach, and staying above AA would
+   need a 0.88 floor, i.e. an animation nobody can see. A border is held to
+   3:1, not 4.5, and both ends of this one clear it. */
+.kt-chip[data-mode='loading'] {
+  color: var(--kt-muted);
+  animation: kt-chip-wait 1s ease-in-out infinite;
+}
+@keyframes kt-chip-wait {
+  50% {
+    border-color: var(--kt-green-edge);
+  }
+}
+.kt-chip[data-mode='error'] {
+  border-color: var(--kt-danger);
+  background: var(--kt-danger-bed);
+  color: var(--kt-danger-ink);
+}
+
+/* The list opens upward: below the message box there is the send button and,
+   on mobile, the on-screen keyboard. */
+.kt-chip-menu {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  /* Logical, not physical: in an Arabic interface the message box mirrors, and
+     a menu pinned to the physical right would hang off the wrong edge. */
+  inset-inline-end: 0;
+  z-index: 2147483000;
+  /* Three columns of flag plus name. Wider than the 340px chat column on
+     purpose: this is a popup over the page, and the width buys back three times
+     the height. Clamped to the window so it can never be the thing that pushes
+     the layout sideways. */
+  width: min(408px, calc(100vw - 16px));
+  min-width: 202px;
+  /* Never taller than the window it opens in. Seen live: a fixed 320px still
+     ran off the top of a short viewport, because 320px is not a promise the
+     window makes. placeMenu() narrows this further when it goes fixed. */
+  max-height: min(320px, 60vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+  border-radius: 8px;
+  /* No drop shadow: Kick has none on any surface, menus included. The list
+     separates from the page by its own aplat plus a hairline. */
+  outline: 1px solid var(--kt-edge);
+  background: var(--kt-surface);
+}
+.kt-chip-menu[hidden] {
+  display: none;
+}
+/* Escape hatch for a clipping ancestor: viewport coordinates, set by
+   placeMenu(). Kick owns the message box and nothing stops it carrying
+   overflow:hidden, which would slice the list in half. */
+.kt-chip-menu-fixed {
+  position: fixed;
+  bottom: auto;
+  inset-inline-end: auto;
+  /* placeMenu() writes viewport coordinates here, which are physical by
+     definition — the logical property above must not fight them. */
+  right: auto;
+}
+.kt-chip-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--kt-text);
+  font-family: inherit;
+  font-size: var(--kt-fs-md);
+  text-align: start;
+  cursor: pointer;
+}
+.kt-chip-row:hover {
+  background: var(--kt-hover);
+}
+/* --kt-green-ink et non --kt-green : theme.css le resout sur la verte de la
+   marque en sombre et sur la verte foncee en clair, donc un seul jeton porte
+   les deux themes et le bloc clair qui doublait cette regle a disparu. */
+.kt-chip-row:focus-visible {
+  outline: 2px solid var(--kt-green-ink);
+  outline-offset: -2px;
+}
+/* MEME ETAT, MEME DEFAUT QUE DANS LE PANNEAU DE LA BARRE, plus un porteur
+ * mort. La selection ne tenait qu'a --kt-green-bed, mesure a 1.21:1 contre la
+ * surface quand le survol est a 1.87. Le second porteur qui suivait,
+ * `.kt-chip-iso { color }`, coloriait les deux lettres ISO ; le commentaire de
+ * .kt-chip-iso dit lui-meme que ce creneau "holds a 16x12 flag now", et une
+ * couleur de texte sur un conteneur qui ne porte plus de texte ne peint rien.
+ * La regle etait donc sans effet depuis que les lettres sont parties, et c'est
+ * pour ca que la langue en cours ne se voyait pas sur la capture.
+ * Le mot et le rail la remplacent, comme dans le panneau. */
+.kt-chip-row[aria-selected='true'] {
+  background: var(--kt-green-bed);
+  color: var(--kt-green-ink);
+}
+.kt-chip-row[aria-selected='true']::before {
+  content: '';
+  position: absolute;
+  inset-block: 4px;
+  inset-inline-start: 0;
+  inline-size: 3px;
+  background: var(--kt-green-ink);
+}
+.kt-chip-iso {
+  flex-shrink: 0;
+  /* 34px was a slot for two letters. It holds a 16x12 flag now, and in a tile a
+     third of the old width every pixel spent here is a pixel off the name. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  white-space: nowrap;
+  font-family: var(--kt-font-mono);
+  font-size: var(--kt-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: var(--kt-muted);
+}
+.kt-chip-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kt-chip-sep {
+  height: 1px;
+  margin: 4px 2px;
+  background: var(--kt-divider);
+}
+
+/* Motion, off.
+   The named-selector version of this covered the chip and nothing else: the
+   toast fade, the compose panel's loading pulse, the retry reveal, the bar and
+   its dot, and the insert button all kept moving. Seven of the eleven animating
+   rules, including both `animation`s, which are the ones the query exists for.
+
+   The popup and the options page use a blanket `*` for this. That is not
+   available here: this stylesheet is injected into Kick's page, and stopping
+   every transition on it would be reaching into someone else's document. So the
+   blanket is scoped to what we inject, which is every class we own. */
+@media (prefers-reduced-motion: reduce) {
+  [class^='kt-'],
+  [class*=' kt-'],
+  [class^='kt-']::before,
+  [class*=' kt-']::before,
+  [class^='kt-']::after,
+  [class*=' kt-']::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Light theme. Kick publishes no light palette, so this mirrors the dark one
+   while keeping its neutrality. The green is the only role that changes:
+   #53FC18 as text scores 1.25 and as a hairline 1.37 on this surface, both
+   unusable, so it stays an aplat and two darkened variants take text and
+   stroke. Measured: #35A10F 3.05:1, #2A810C 4.50:1. */
+html[data-kt-scheme='light'] .kt-chip {
+  border-color: var(--kt-edge);
+  background: var(--kt-sunken);
+  color: var(--kt-text);
+}
+html[data-kt-scheme='light'] .kt-chip:hover .kt-chip-caret,
+html[data-kt-scheme='light'] .kt-chip[aria-expanded='true'] .kt-chip-caret {
+  color: var(--kt-text);
+}
+html[data-kt-scheme='light'] .kt-chip:focus-visible {
+  outline-color: var(--kt-green-edge);
+}
+html[data-kt-scheme='light'] .kt-chip[data-mode='auto'],
+html[data-kt-scheme='light'] .kt-chip[data-mode='off'],
+html[data-kt-scheme='light'] .kt-chip[data-mode='loading'] {
+  color: var(--kt-muted);
+}
+html[data-kt-scheme='light'] .kt-chip[data-mode='loading'] {
+  animation-name: kt-chip-wait-light;
+}
+@keyframes kt-chip-wait-light {
+  50% {
+    border-color: var(--kt-green-edge);
+  }
+}
+/* Les blocs clairs du menu sont partis d'ici sans qu'un pixel bouge. Deux
+   redeclaraient mot pour mot ce que la regle sombre pose deja (--kt-edge,
+   --kt-surface), puisque ce sont les triplets de theme.css qui basculent et
+   non ces regles. Un troisieme peignait .kt-chip-iso, qui ne porte plus de
+   texte. Les deux derniers repassaient l'anneau de focus en --kt-green-edge :
+   les regles de base prennent --kt-green-ink, qui vaut la verte de la marque
+   en sombre et 6.18:1 en clair, contre les 3.40 de --kt-green-edge. */
+
+/* Filter box. 42 languages do not fit a list at screen height, so the list is
+   not meant to be walked: two keystrokes reach any of them and the scrollbar
+   stops being the way through. */
+.kt-chip-search {
+  inline-size: 100%;
+  margin-block-end: 4px;
+  padding: 6px 9px;
+  border: 1px solid var(--kt-edge);
+  border-radius: 4px;
+  background: var(--kt-sunken);
+  color: var(--kt-text);
+  font-family: inherit;
+  font-size: var(--kt-fs-md);
+}
+.kt-chip-search::placeholder {
+  color: var(--kt-muted);
+}
+.kt-chip-search:focus-visible {
+  outline: 2px solid var(--kt-green-ink);
+  outline-offset: -1px;
+}
+.kt-chip-row[hidden],
+.kt-chip-sep[hidden],
+.kt-chip-empty[hidden] {
+  display: none;
+}
+.kt-chip-empty {
+  padding: 10px 9px;
+  color: var(--kt-muted);
+  font-size: var(--kt-fs-md);
+}
+
+
+/* The options live in their own listbox: a listbox may only hold options, so
+   the filter field and the empty-state notice sit outside it.
+
+   A grid, not a column. One language per line put 43 rows and 894px on a 950px
+   window, measured on a live channel: the list ran the whole height of the
+   screen. The column count comes from JS (--kt-chip-cols, set in langChip.ts)
+   so the arrow keys and the grid cannot disagree about it. */
+.kt-chip-list {
+  display: grid;
+  grid-template-columns: repeat(var(--kt-chip-cols, 3), minmax(0, 1fr));
+  /* 2 et non 1 : a 1px les coins arrondis de deux rangees voisines se touchent
+     et l'arrondi lit comme un defaut de rendu plutot que comme une forme. */
+  gap: 2px;
+}
+
+/* Two entries are not tiles: the auto row is a mode rather than a language and
+   keeps its full label, and the rule between the favourites and the rest only
+   means anything across the whole width. */
+.kt-chip-row[data-group='auto'],
+.kt-chip-sep {
+  grid-column: 1 / -1;
+}
+
+/* ── Language selector, shared by the chip and the float bar ────────
+ * Source of truth for both. Kept verbatim from the harness under
+ * test/e2e/, where the gates and the screenshots live.
+ */
+
+
+
+/* Selecteur de langue de la barre du chat.
+ *
+ * Remplace un <select> natif de 43 options qui couvrait 845 des 890px du
+ * panneau de chat, soit 95%, et qu'aucun CSS ne peut borner ni styler.
+ *
+ * La DA n'est pas inventee : fond #171a1c, filet #6c6c6d, rayons 8 et 4,
+ * vert #53fc18, survol #42474d, actif #1c2e1c, ISO en JetBrains Mono 10px,
+ * transitions 0.15s, zero ombre. Tout releve dans inject.css.
+ *
+ * Les valeurs vivent en variables scopees au composant : le theme clair n'est
+ * alors qu'un jeu de valeurs, pas une deuxieme feuille de regles a garder
+ * d'accord avec la premiere.
+ */
+
+/* Le modele de boite de nos propres elements, pose par nous.
+ *
+ * Une seule declaration `box-sizing` existait dans cette feuille, sur un
+ * element positionne. Tout le reste heritait de la page : Kick embarque le
+ * reset de Tailwind, donc `border-box` s'appliquait et la geometrie tombait
+ * juste, par chance et pas par construction. Mesure sur une page sans ce reset,
+ * la liste de langues debordait de 18px, exactement deux fois le
+ * `padding-inline: 9px` d'une rangee posee en `inline-size: 100%`, ce qui
+ * poussait la troisieme colonne hors du cadre et ajoutait un ascenseur
+ * horizontal. Un projet qui asserte des pixels ne peut pas laisser son modele de
+ * boite a la feuille de quelqu'un d'autre. */
+[class^='kt-'],
+[class*=' kt-'] {
+  box-sizing: border-box;
+}
+
+.kt-lang-panel {
+  --kt-lp-surface: var(--kt-surface);
+  --kt-lp-sunken: var(--kt-sunken);
+  /* UN SEUL NOM POUR LA FRONTIERE, parce que trois en ont cause un bug.
+   * `hairline`, `edge` et `faint` resolvaient tous sur --kt-edge sauf un :
+   * --kt-lp-edge portait --kt-line, le separateur discret, et c'est lui que
+   * prenaient le champ de filtre et les tuiles epinglees. Mesure : 1.80:1 en
+   * sombre, 1.42:1 en clair, contre la barre de 3 que l'en-tete de theme.css
+   * pose pour la frontiere d'un controle. Les deux themes passent a 3.62 et
+   * 3.10. Le meme jeton tient le contour du panneau, a 3.75 et 5.78 contre la
+   * page, donc les trois noms se replient sur celui-ci. */
+  --kt-lp-edge: var(--kt-edge);
+  --kt-lp-sep: var(--kt-divider);
+  --kt-lp-text: var(--kt-text);
+  --kt-lp-muted: var(--kt-muted);
+  --kt-lp-hover: var(--kt-hover);
+  /* green-ink, pas green : theme.css le resout sur la verte de la marque en
+   * sombre et sur la verte foncee en clair. Un seul jeton couvre les deux, ce
+   * qui rend mort le bloc html[data-kt-scheme='light'] qui suivait ici. */
+  --kt-lp-accent: var(--kt-green-ink);
+  --kt-lp-accent-edge: var(--kt-green-edge);
+  --kt-lp-accent-bed: var(--kt-green-bed);
+
+  display: flex;
+  flex-direction: column;
+  /* Un panneau qui ne peut pas retrecir est un defaut : plafonner, pas figer.
+   * 236px pour une colonne unique montraient 6 rangees sur 40, mesure en direct
+   * sur une chaine : 1200px de liste dans un panneau de 281. Trois colonnes et
+   * la meme largeur que le menu de la puce, pour que les deux listes des memes
+   * 42 langues cessent d'avoir deux allures. */
+  inline-size: 100%;
+  /* Le plafond vient de la colonne de chat, pas de la fenetre : placeLangMenu
+   * ecrit --kt-lp-max-w apres l'avoir mesuree. 408 reste la valeur par defaut,
+   * pour un panneau pose avant toute mesure.
+   * Mesure sur le banc bar-panel du depot : 408px de panneau dans une colonne
+   * de 340, soit 68px qui pendaient hors du chat des deux cotes. Un calque plus
+   * large que ce qu'il couvre ne lit pas comme un calque. */
+  max-inline-size: min(var(--kt-lp-max-w, 408px), calc(100vw - 16px));
+  padding: 4px;
+  border-radius: 8px;
+  outline: 1px solid var(--kt-lp-edge);
+  background: var(--kt-lp-surface);
+  /* La seule ombre portee de la feuille, et la regle de la maison dit qu'il n'y
+   * en a pas. L'exception est nommee dans test/audits/audit_da.py avec sa raison,
+   * la voici : toutes les autres surfaces sont dans le flux, celle-ci en couvre
+   * une. Un aplat opaque sans elevation n'annonce pas qu'il est pose sur le
+   * chat, il annonce que le chat n'est plus la, ce qui est exactement ce qui a
+   * ete rapporte. Le filet seul ne porte pas cette distinction sur un fond
+   * presque noir. */
+  box-shadow: var(--kt-shadow-panel);
+}
+
+/* ── Le filtre ─────────────────────────────────────────────────────── */
+/* 42 langues ne tiennent dans aucune fenetre a hauteur d'ecran, donc la liste
+ * n'est pas faite pour etre parcourue : deux frappes doivent atteindre
+ * n'importe laquelle. Le champ est en tete parce que c'est le geste par defaut,
+ * pas un recours. */
+.kt-lang-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.kt-lang-search .kt-lang-ico {
+  position: absolute;
+  inset-inline-start: 9px;
+  inline-size: 13px;
+  block-size: 13px;
+  color: var(--kt-lp-edge);
+  pointer-events: none;
+  transition: color 0.15s ease;
+}
+
+.kt-lang-search input {
+  inline-size: 100%;
+  block-size: 30px;
+  padding-block: 0;
+  /* 32 = les 8 de marge d'une rangee + les 16 du drapeau + les 8 de gouttiere :
+   * le texte tape se pose sur la meme verticale que les noms de langues. */
+  padding-inline: 32px 8px;
+  border: 1px solid var(--kt-lp-edge);
+  border-radius: 4px;
+  background: var(--kt-lp-sunken);
+  color: var(--kt-lp-text);
+  font: inherit;
+  font-size: var(--kt-fs-md);
+  transition: border-color 0.15s ease;
+}
+
+.kt-lang-search input::placeholder {
+  color: var(--kt-lp-muted);
+}
+
+.kt-lang-search input:focus {
+  outline: none;
+  border-color: var(--kt-lp-accent-edge);
+}
+
+.kt-lang-search input:focus-visible {
+  outline: 2px solid var(--kt-lp-accent);
+  outline-offset: -1px;
+}
+
+.kt-lang-search:focus-within .kt-lang-ico {
+  color: var(--kt-lp-muted);
+}
+
+/* ── Les epinglees ─────────────────────────────────────────────────── */
+/* Le cas reel : quelqu'un qui diffuse en anglais sans etre natif et bascule
+ * entre trois ou quatre langues en direct, pendant que le chat defile. Ces
+ * quatre-la se prennent a la couleur du drapeau, sans lire et sans defiler.
+ * Pas de titre de section au-dessus : quatre pastilles au-dessus d'un filet
+ * se lisent sans qu'on les nomme, et le nom du groupe est porte par
+ * aria-label pour qui ne voit pas la composition. */
+.kt-lang-favs {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.kt-lang-fav {
+  flex: 1 1 0;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  /* Bien au-dela des 24px de WCAG 2.5.8 : la cible est visee en direct. */
+  block-size: 44px;
+  padding: 0;
+  border: 1px solid var(--kt-lp-edge);
+  border-radius: 4px;
+  background: var(--kt-lp-sunken);
+  color: var(--kt-lp-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+/* Le drapeau seul, agrandi : le code a 9px qui l'accompagnait ne se lisait pas
+   et repetait ce que le nom accessible de la tuile dit deja. */
+.kt-lang-fav .kt-flag {
+  inline-size: 28px;
+  block-size: 21px;
+}
+
+.kt-lang-fav:hover {
+  border-color: var(--kt-lp-accent-edge);
+  background: var(--kt-lp-hover);
+  color: var(--kt-lp-text);
+}
+
+.kt-lang-fav:focus-visible {
+  outline: 2px solid var(--kt-lp-accent);
+  outline-offset: 1px;
+}
+
+.kt-lang-fav[aria-selected='true'] {
+  border-color: var(--kt-lp-accent-edge);
+  background: var(--kt-lp-accent-bed);
+  color: var(--kt-lp-accent);
+}
+
+/* Anchoring. The chip sits at the bottom of the chat and opens upward, the
+ * float bar sits at the top and opens downward; placeLangMenu switches to
+ * viewport coordinates when a clipping ancestor would cut the panel off. */
+.kt-lang-panel {
+  position: absolute;
+  z-index: 2147483000;
+  bottom: calc(100% + 6px);
+  /* Logical, not physical: in an Arabic interface the bar mirrors, and a panel
+   * pinned to the physical right would hang off the wrong edge. */
+  inset-inline-end: 0;
+}
+
+.kt-lang-panel-below {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+
+.kt-lang-panel-fixed {
+  position: fixed;
+  bottom: auto;
+  top: auto;
+  inset-inline-end: auto;
+  /* placeLangMenu writes viewport coordinates, physical by definition: the
+   * logical property above must not fight them. */
+  right: auto;
+}
+
+/* La rangee auto est un mode, pas une langue, et le filet ne veut dire quelque
+   chose que sur toute la largeur : ni l'un ni l'autre n'est une tuile. */
+.kt-lang-row[data-code='auto'],
+.kt-lang-sep {
+  grid-column: 1 / -1;
+}
+
+.kt-lang-sep {
+  block-size: 1px;
+  margin: 2px 2px 4px;
+  background: var(--kt-lp-sep);
+}
+
+/* ── La liste ──────────────────────────────────────────────────────── */
+/* DEMI-RANGEE, ET C'EST L'INVERSE DE CE QUI ETAIT ECRIT ICI. La regle
+ * precedente bornait en rangees entieres au motif qu'une rangee coupee en deux
+ * "annonce mal qu'il y a une suite". C'est le contraire : une derniere rangee
+ * entiere posee sur un bord net est exactement ce que produit une liste qui
+ * s'arrete, donc elle annonce une fin. La demi-rangee qui depasse est le seul
+ * signal de defilement qui ne coute ni script ni degrade, et qui reste vrai
+ * quel que soit le nombre de langues filtrees.
+ * Le pas est de 32 : 30 de rangee et 2 de gouttiere. 304 en montre neuf et
+ * demie. */
+.kt-lang-list {
+  display: grid;
+  grid-template-columns: repeat(var(--kt-lp-cols, 3), minmax(0, 1fr));
+  /* 1px laissait les coins arrondis de deux rangees voisines se toucher, ce qui
+   * lit comme un defaut de rendu plutot que comme une forme. */
+  gap: 2px;
+  max-block-size: 304px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--kt-lp-edge) transparent;
+}
+
+.kt-lang-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  inline-size: 100%;
+  /* PT-BR et ZH-TW avaient casse l'uniformite des rangees du menu de la puce :
+   * hauteur fixe, et le nom passe en ellipse plutot que de pousser. */
+  block-size: 30px;
+  padding-inline: 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--kt-lp-text);
+  font: inherit;
+  font-size: var(--kt-fs-md);
+  text-align: start;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.kt-lang-row:hover {
+  background: var(--kt-lp-hover);
+}
+
+.kt-lang-row:focus-visible {
+  outline: 2px solid var(--kt-lp-accent);
+  outline-offset: -2px;
+}
+
+/* LA SELECTION ETAIT L'ETAT LE PLUS FAIBLE DU PANNEAU, et c'est le seul qui
+ * repond a la question posee : je traduis vers quoi. Elle ne portait qu'un
+ * fond, mesure a 1.21:1 contre la surface, quand le survol est a 1.87 : les
+ * deux etats etaient indistinguables, et l'anneau de focus a 12.74 etait de
+ * loin l'element le plus vif d'un panneau dont il n'est qu'un etat passager.
+ * Trois porteurs plutot qu'un, comme 1.4.11 le demande : le fond, le mot en
+ * vert (10.50:1 sur ce fond), et le rail, qui est la partie non textuelle.
+ * Le drapeau reprend sa saturation pleine plus bas, ce qui en fait un
+ * quatrieme. */
+.kt-lang-row[aria-selected='true'] {
+  background: var(--kt-lp-accent-bed);
+  color: var(--kt-lp-accent);
+}
+
+/* Un pseudo-element et non un box-shadow inset : l'ombre n'a pas de forme
+ * logique, et dans une interface arabe le rail doit passer a droite avec le
+ * reste. Retrait vertical de 4 pour rester en dehors des coins arrondis. */
+.kt-lang-row[aria-selected='true']::before {
+  content: '';
+  position: absolute;
+  inset-block: 4px;
+  inset-inline-start: 0;
+  inline-size: 3px;
+  background: var(--kt-lp-accent);
+}
+
+.kt-lang-name {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Le liseré des drapeaux vient de flags.css, calibre pour une surface sombre :
+ * en clair, un drapeau a fond blanc (JP, FI) flotte sans bord. */
+/* Le menu de la puce y est aussi : le liseré lui manquait, et un drapeau a
+ * fond blanc (JP, FI) y flottait sans bord exactement comme dans le panneau. */
+html[data-kt-scheme='light'] .kt-lang-panel .kt-flag,
+html[data-kt-scheme='light'] .kt-chip-menu .kt-flag {
+  box-shadow: inset 0 0 0 1px rgb(var(--kt-text-rgb) / 0.18);
+}
+
+/* LA COULEUR REDEVIENT UN SIGNAL. Quarante-trois drapeaux satures en grille de
+ * trois font un mur ou plus rien ne ressort, et dans une liste faite pour etre
+ * lue par nom, c'est le drapeau qui pesait le plus lourd. Au repos ils sont a
+ * demi desatures ; la saturation pleine revient la ou elle dit quelque chose :
+ * sous le pointeur, sous le clavier, et sur la langue en cours.
+ * Une seule regle repare donc deux choses, le mur et la selection, a qui elle
+ * donne son quatrieme porteur. Rien n'est cache : la desaturation ne change
+ * aucune forme, seulement l'intensite, et le nom reste le porteur principal. */
+.kt-lang-panel .kt-flag,
+.kt-chip-menu .kt-flag {
+  filter: saturate(0.5);
+  transition: filter 0.15s ease;
+}
+
+.kt-lang-row:hover .kt-flag,
+.kt-lang-row:focus-visible .kt-flag,
+.kt-lang-row[aria-selected='true'] .kt-flag,
+.kt-lang-fav:hover .kt-flag,
+.kt-lang-fav:focus-visible .kt-flag,
+.kt-lang-fav[aria-selected='true'] .kt-flag,
+.kt-chip-row:hover .kt-flag,
+.kt-chip-row:focus-visible .kt-flag,
+.kt-chip-row[aria-selected='true'] .kt-flag {
+  filter: none;
+}
+
+/* Le menu de la puce n'avait pas de bloc reduced-motion parce qu'il n'avait
+ * aucune transition ; il en a une maintenant. */
+@media (prefers-reduced-motion: reduce) {
+  .kt-chip-menu .kt-flag {
+    transition: none;
+  }
+}
+
+/* Le globe de la detection automatique, au gabarit d'un drapeau pour que la
+ * colonne reste alignee. */
+.kt-lang-globe {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  inline-size: 16px;
+  block-size: 12px;
+  color: var(--kt-lp-muted);
+}
+
+.kt-lang-globe .kt-lang-ico {
+  inline-size: 13px;
+  block-size: 13px;
+}
+
+/* L'epingle. Pas un <button> : un bouton imbrique dans une option de listbox
+ * est invalide, et 42 epingles focalisables ajouteraient 42 arrets de
+ * tabulation a une barre qui en compte quatre. Souris sur l'icone, clavier par
+ * la touche P sur l'option courante. */
+/* HORS DU FLUX : elle y coutait 17 % de chaque colonne en etant invisible.
+ * A opacity 0 mais flex-shrink 0, elle prenait ses 15px plus les 8px de
+ * gouttiere sur les 43 rangees, en permanence. Le budget de texte d'une
+ * colonne a 408px passait a (408-8-4)/3 - 8 - 8 - 16 - 8 - 23 = 68px, soit
+ * onze caracteres a 12px : c'est la raison mesuree pour laquelle "Chinese
+ * (Taiwan)" s'affichait "Chinese (...", indecidable a cote de "Chinese".
+ * Rendue au nom, la meme colonne en tient quinze.
+ * Le centrage vertical vient de align-items du parent, qui gouverne la
+ * position statique d'un enfant absolu dans un conteneur flex.
+ * ponytail: sur les deux noms qui depassent encore quinze caracteres, l'etoile
+ * se pose sur les points de suspension pendant le survol. Si ca gene, le
+ * correctif est un fond sur l'etoile a la couleur de l'etat de la rangee. */
+.kt-lang-star {
+  position: absolute;
+  inset-inline-end: 6px;
+  inline-size: 15px;
+  block-size: 15px;
+  color: var(--kt-lp-edge);
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.kt-lang-row:hover .kt-lang-star,
+.kt-lang-row:focus-visible .kt-lang-star {
+  opacity: 1;
+}
+
+.kt-lang-star:hover {
+  color: var(--kt-lp-text);
+}
+
+.kt-lang-star[data-on='true'] {
+  opacity: 1;
+  color: var(--kt-lp-accent);
+  fill: currentColor;
+}
+
+.kt-lang-list:focus-visible {
+  outline: 2px solid var(--kt-lp-accent);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+/* Une rangee posee en display:flex ignore l'attribut hidden : la regle UA
+ * [hidden]{display:none} perd contre une regle de classe. Sans ceci, filtrer
+ * ne cache rien. */
+.kt-lang-row[hidden],
+.kt-lang-fav[hidden],
+.kt-lang-sep[hidden],
+.kt-lang-empty[hidden],
+.kt-lang-panel[hidden] {
+  display: none;
+}
+
+.kt-lang-empty {
+  padding: 16px 9px 18px;
+  color: var(--kt-lp-muted);
+  font-size: var(--kt-fs-md);
+  text-align: center;
+}
+
+/* ── Icones ────────────────────────────────────────────────────────── */
+.kt-lang-ico {
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .kt-lang-panel *,
+  .kt-lang-panel {
+    transition: none !important;
+  }
+}
+
+/* ── La densite du bloc traduit ────────────────────────────────────────
+   Trois crans. 'normal' n'a pas de bloc : c'est l'absence d'attribut, et les
+   replis de la regle. Un chat qui defile vite se lit mieux serre, un chat lent
+   se lit mieux aere, et aucun des deux n'est le bon reglage pour l'autre. */
+html[data-kt-density='compact'] .kt-translation {
+  --kt-tr-gap: 1px;
+  --kt-tr-pad-b: 0px;
+  --kt-tr-pad-i: 6px;
+}
+
+html[data-kt-density='roomy'] .kt-translation {
+  --kt-tr-gap: 4px;
+  --kt-tr-pad-b: 5px;
+  --kt-tr-pad-i: 10px;
+}

@@ -1,0 +1,9 @@
+İfadelerle yazmak artık düzgün çalışıyor. Sekme, çeviriyi eklemek yerine Kick'in ve 7TV'nin ifadelerini ve @bahsetmelerini tamamlar, ifadeler çevrildiğinde mesajınızda kalır ve önizleme artık Kick'in listelerini veya ifade seçiciyi kapsamaz.
+
+Çeviriler daha doğru: marka ve kişi adları (iPhone, YouTube, LeBron) artık çeviriden önce atlanmıyor ve @bahisler çevrilmiş mesajlarda kalıyor.
+
+Filtreler yeniden düzenlendi: gerçek Kick botları göz ardı edildi ve siz kendi filtrenizi ekleyebilirsiniz, "İçeren mesajları gizle" seçeneği artık ekranda görünenleri de gizler ve listeler yeniden yazılabilir.
+
+Uzantı her Kick sayfasında daha hafiftir ve Chrome'da, hedef dil Otomatik olduğunda cihaz içi motor yeniden sunulur.
+
+Yeni ve isteğe bağlı: anonim günlük kullanım istatistikleri, siz evet demediğiniz sürece kapalı. Hiçbir zaman mesajlarınızı, adlarınızı veya kanallarınızı içermezler.
