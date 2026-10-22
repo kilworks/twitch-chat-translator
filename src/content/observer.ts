@@ -5,10 +5,13 @@ import {
   extractUsername,
   findAllRows,
   findChatContainer,
+  isDeletedRow,
   isShown,
   matchesMessageRow,
   pickInjectionTarget,
 } from './selectors';
+import { removeAllArtifacts } from './injector';
+import { DELETED_SELECTOR } from './platform/twitch';
 import { rootLogger } from '~/shared/logger';
 import { createMetrics } from '~/shared/metrics';
 
@@ -103,7 +106,7 @@ export class ChatObserver {
 
     // Virtual scrollers recycle DOM nodes: when a row is reused its inner content
     // is REPLACED (a childList mutation on the subtree), so childList+subtree is
-    // sufficient. We deliberately do NOT watch characterData/attributes — on a
+    // sufficient. We deliberately do NOT watch characterData/attributes, on a
     // fast chat those fire constantly and would thrash the callback for no gain.
     this.listObserver = new MutationObserver((mutations) => {
       const candidates = new Set<Element>();
@@ -122,12 +125,15 @@ export class ChatObserver {
         // the line and no provider call. Re-processing a row whose text has not
         // changed costs nothing, since `process` returns on the id it already
         // carries, which is what keeps our own insertions from looping.
+        // 7TV marks a deleted line with a class and changes nothing else, so class
+        // changes are watched too, and only the deletion mark makes a row a candidate.
+        if (mut.type === 'attributes' && !(mut.target instanceof Element && mut.target.matches(DELETED_SELECTOR))) continue;
         const row = enclosingMessageRow(mut.target);
         if (row) candidates.add(row);
       }
       for (const row of candidates) this.process(row);
     });
-    this.listObserver.observe(container, { childList: true, subtree: true });
+    this.listObserver.observe(container, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
 
     // Detect re-mount of the container (channel switch) at the document level.
     //
@@ -160,6 +166,13 @@ export class ChatObserver {
 
   private process(row: Element): void {
     if (__KT_METRICS__) metrics.count('dom.row.seen');
+    // Deleted by a moderator, a timeout or a ban: the translation goes too, and the row is
+    // never translated again.
+    if (isDeletedRow(row)) {
+      removeAllArtifacts(pickInjectionTarget(row));
+      row.setAttribute(PROCESSED_MARK, `${INSTANCE}:deleted`);
+      return;
+    }
     const text = extractMessageText(row);
     if (!text) {
       // A row the observer matched but whose text selector returned nothing. A

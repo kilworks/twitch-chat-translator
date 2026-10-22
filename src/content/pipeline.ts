@@ -6,10 +6,11 @@ import { rootLogger } from '~/shared/logger';
 import { send } from '~/shared/messages';
 import { applyUserGlossary, isSlangOnly } from '~/shared/glossary';
 import { createMetrics } from '~/shared/metrics';
-import { mentionsOf, parseKickContent } from './emoteParser';
+import { mentionsOf, parseChatContent } from './emoteParser';
 import { countUsage } from './usage';
 import { spellOutAbbreviations } from './abbreviations';
-import { extractMessageText, findAllRows } from './selectors';
+import { CHAT_PANEL_SELECTOR, extractMessageText, findAllRows, isDeletedRow, pickInjectionTarget } from './selectors';
+import { ROW_SELECTOR } from './platform';
 import { confidentLanguage, detectLanguage } from './langDetect';
 import { resolveBrowserLang } from '~/shared/languages';
 import { isContextCritical } from '~/shared/langTiers';
@@ -150,11 +151,11 @@ export class TranslationPipeline {
   }
 
   /**
-   * Reading target — resolves the 'auto' sentinel to the user's browser language.
+   * Reading target, resolves the 'auto' sentinel to the user's browser language.
    *
    * ⚠️ Read from `this.settings.targetLang`, NEVER `this.effTarget`. Referencing the
    * getter from inside itself is infinite recursion (`RangeError: Maximum call stack`).
-   * That exact typo shipped in v2.1.0–v2.2.0 and silently broke ALL incoming translation
+   * That exact typo shipped in v2.1.0 to v2.2.0 and silently broke ALL incoming translation
    * (`prepare()` threw on every message; the rejection was swallowed by the observer's
    * `void onDomMessage(...)`). See pipeline.test.ts + docs/postmortem-2026-06-03-efftarget-recursion.md.
    */
@@ -171,7 +172,7 @@ export class TranslationPipeline {
     // An empty reason means "skipped, but there is nothing worth telling this
     // line about": the two gates below are about the whole tab, not the message.
     if (!this.settings.enabled) return '';
-    // Live visibility gate — read document.hidden each message so a backgrounded
+    // Live visibility gate, read document.hidden each message so a backgrounded
     // tab never translates (no quota burn), with no stuck-paused state.
     if (this.settings.pauseWhenHidden && typeof document !== 'undefined' && document.hidden) {
       return '';
@@ -180,7 +181,7 @@ export class TranslationPipeline {
     if (dropped) return DROP_REASON[dropped] ?? dropped;
 
     // Per-user dedup: if this user just sent the exact same message, skip it.
-    // Common in chat spam — saves a provider call + avoids duplicate translations.
+    // Common in chat spam, saves a provider call + avoids duplicate translations.
     // Only the DOM path takes part. It is the only path that displays, so letting
     // the websocket warm pass claim the slot first would suppress the display of a
     // message nobody has seen yet.
@@ -190,7 +191,7 @@ export class TranslationPipeline {
       if (dedupKey) this.userDedup.set(dedupKey, rawText);
     }
 
-    const { realText } = parseKickContent(rawText);
+    const { realText } = parseChatContent(rawText);
     if (realText.length < this.settings.minTextLength) {
       return `it is shorter than your ${this.settings.minTextLength} character minimum`;
     }
@@ -406,7 +407,7 @@ export class TranslationPipeline {
       return;
     }
     if (!outcome.ok) {
-      // #7 — Toast on notable failures (max 1 per 30s to avoid spam).
+      // #7, Toast on notable failures (max 1 per 30s to avoid spam).
       const code = outcome.error.code;
       // Budget saturation is a fact about the channel, not about this line: on a
       // fast chat every message over the cap would carry its own red marker and
@@ -603,7 +604,7 @@ export class TranslationPipeline {
   /** Track provider switches to notify the user. */
   private lastProvider: string | undefined;
 
-  /** #7 — Rate-limited toast: max 1 every 30s. */
+  /** #7, Rate-limited toast: max 1 every 30s. */
   private lastToastMs = 0;
   private maybeToast(msg: string): void {
     if (Date.now() - this.lastToastMs < 30_000) return;
@@ -613,15 +614,17 @@ export class TranslationPipeline {
 
   /** Virtual-scroll guard: row reused for a newer message while we awaited. */
   private rowRecycled(msg: IncomingDomMessage): boolean {
-    return !msg.rowElement.isConnected || extractMessageText(msg.rowElement) !== msg.text;
+    // A row deleted while its translation was on the way: 7TV keeps the words on screen,
+    // so the text check alone would let the translation land.
+    return !msg.rowElement.isConnected || extractMessageText(msg.rowElement) !== msg.text || isDeletedRow(msg.rowElement);
   }
 
   /** Scan visible rows for one that still holds the given text (recycled-row rescue). */
   private findRowWithText(text: string): { row: Element; target: Element } | undefined {
-    const rows = document.querySelectorAll('#channel-chatroom div[data-index]');
+    const rows = document.querySelectorAll(`:is(${CHAT_PANEL_SELECTOR}) :is(${ROW_SELECTOR})`);
     for (const row of rows) {
       if (extractMessageText(row) === text && !row.querySelector(HANDLED_SELECTOR)) {
-        const target = row.querySelector('div.w-full.min-w-0.shrink-0') ?? row.querySelector('div.group') ?? row.firstElementChild ?? row;
+        const target = pickInjectionTarget(row);
         return { row, target };
       }
     }

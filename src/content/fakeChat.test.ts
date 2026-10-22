@@ -3,11 +3,12 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { extractMessageText, extractUsername, findChatContainer, pickInjectionTarget } from './selectors';
 import { confidentLanguage } from './langDetect';
+import { nativeChat, nativeRow, seventvChat, seventvRow } from './twitchFixtures';
 
 /**
  * Does the synthetic chat produce rows this extension can actually read?
  *
- * scripts/kick-fake-chat.js exists because Kick has next to no Hong Kong
+ * scripts/twitch-fake-chat.js exists because there are next to no Hong Kong
  * channels, so the only way to watch the Cantonese path run on a page is to
  * write the page. Its failure mode is silent and expensive: a row that looks
  * right in the console, sits in the chat, and is skipped by the observer because
@@ -21,7 +22,7 @@ import { confidentLanguage } from './langDetect';
 
 // From the project root, not from import.meta.url: under happy-dom that URL is
 // an http: one and readFileSync refuses it.
-const script = readFileSync(resolve(process.cwd(), 'scripts/kick-fake-chat.js'), 'utf8');
+const script = readFileSync(resolve(process.cwd(), 'scripts/twitch-fake-chat.js'), 'utf8');
 
 interface FakeChat {
   burst: () => void;
@@ -40,28 +41,20 @@ function loadFakeChat(): FakeChat {
   return api;
 }
 
+const ROWS = '.chat-line__message, .seventv-message';
+
 beforeEach(() => {
   // One real-shaped row, because findChatContainer only accepts a container that
   // already holds one. That is deliberate in the extension and it applies here.
-  document.body.innerHTML = `
-    <div id="channel-chatroom">
-      <div class="no-scrollbar">
-        <div data-index="0">
-          <div class="group"><div class="w-full min-w-0 shrink-0">
-            <button class="inline font-bold" style="color:#fff">someone</button>
-            <span class="font-normal">hello</span>
-          </div></div>
-        </div>
-      </div>
-    </div>`;
+  document.body.innerHTML = nativeChat(nativeRow('hello', 'someone'));
 });
 
 describe('the synthetic Cantonese chat', () => {
   it('appends rows the observer will find', () => {
     const fake = loadFakeChat();
-    const before = document.querySelectorAll('div[data-index]').length;
+    const before = document.querySelectorAll(ROWS).length;
     fake.burst();
-    const after = document.querySelectorAll('div[data-index]').length;
+    const after = document.querySelectorAll(ROWS).length;
     expect(after - before).toBe(fake.corpus.length);
   });
 
@@ -70,30 +63,40 @@ describe('the synthetic Cantonese chat', () => {
     fake.send('佢哋去咗邊度呀');
     const container = findChatContainer(document);
     expect(container).not.toBeNull();
-    const row = Array.from(container!.querySelectorAll('div[data-index]')).at(-1)!;
+    const row = Array.from(container!.querySelectorAll(ROWS)).at(-1)!;
 
     expect(extractMessageText(row)).toBe('佢哋去咗邊度呀');
     expect(extractUsername(row)).toBeTruthy();
-    // Not the row itself: the translation has to land inside the bubble.
+    // Not the row itself: the translation has to land inside the message container.
     expect(pickInjectionTarget(row)).not.toBe(row);
-    expect(pickInjectionTarget(row).className).toContain('shrink-0');
+    expect(pickInjectionTarget(row).className).toContain('chat-line__message-container');
   });
 
-  it('never reuses a data-index, which the observer dedupes on', () => {
+  it('builds 7TV rows when 7TV holds the list', () => {
+    document.body.innerHTML = seventvChat(seventvRow('hello', 'someone'));
+    const fake = loadFakeChat();
+    fake.send('佢哋去咗邊度呀');
+    const row = Array.from(findChatContainer(document)!.querySelectorAll(ROWS)).at(-1)!;
+    expect(row.classList.contains('seventv-message')).toBe(true);
+    expect(extractMessageText(row)).toBe('佢哋去咗邊度呀');
+    expect(extractUsername(row)).toBeTruthy();
+    expect(pickInjectionTarget(row).className).toContain('seventv-chat-message-container');
+  });
+
+  it('appends a new node per line, as Twitch does', () => {
     const fake = loadFakeChat();
     fake.burst();
-    const indices = Array.from(document.querySelectorAll('div[data-index]')).map((r) =>
-      r.getAttribute('data-index'),
-    );
-    expect(new Set(indices).size).toBe(indices.length);
+    const rows = Array.from(document.querySelectorAll(ROWS));
+    expect(new Set(rows).size).toBe(rows.length);
+    expect(rows.length).toBe(fake.corpus.length + 1);
   });
 
   it('cleans up after itself, leaving the page as it was', () => {
     const fake = loadFakeChat();
-    const before = document.querySelectorAll('div[data-index]').length;
+    const before = document.querySelectorAll(ROWS).length;
     fake.burst();
     fake.clear();
-    expect(document.querySelectorAll('div[data-index]').length).toBe(before);
+    expect(document.querySelectorAll(ROWS).length).toBe(before);
   });
 
   // The corpus is only worth streaming if the detector answers on it the way the

@@ -1,46 +1,29 @@
 /**
- * Kick chat DOM selectors as of 2026.
+ * Chat DOM access, built on the platform layer (`./platform`). The function names are the
+ * ones the Kick code used, so observer, pipeline and injector did not have to change; what
+ * they find is Twitch's three DOM families, described in `platform/twitch.ts`.
  *
- * Modern Kick uses a virtualised list (react-virtuoso style) where each chat row
- * is an `<div data-index="N">` positioned absolutely. `data-index` is RECYCLED
- * by the virtualiser — it is not a stable message ID.
- *
- * 7TV (a popular emote extension) wraps text tokens in `span.seventv-text-token`
- * and adds the class `seventv-chat-observer` to the scroll container.
+ * Twitch never recycles a row node (RECON markers: `reusedNodes` 0 in 80/80 cells), unlike
+ * Kick's virtualiser, so a row element is its message for as long as it lives.
  */
+import {
+  CHAT_PANEL_SELECTOR as PANEL,
+  COMPOSE_SELECTORS as COMPOSERS,
+  DELETED_SELECTOR,
+  INJECTION_TARGETS,
+  LIST_SELECTORS,
+  ROW_SELECTOR,
+  TEXT_SELECTOR,
+  USERNAME_ATTRS,
+  USERNAME_SELECTORS,
+} from './platform';
 
 export const SELECTORS = {
-  containers: [
-    '#channel-chatroom .no-scrollbar',
-    '#channel-chatroom [class*="virtuoso"]',
-    '#channel-chatroom',
-    // Legacy fallbacks
-    '#chatroom-messages',
-    '[data-chat-id]',
-    '[data-testid="chat-messages"]',
-  ],
-  messageRows: ['div[data-index]'],
+  containers: LIST_SELECTORS,
+  messageRows: [ROW_SELECTOR],
 } as const;
 
-export const NON_CHAT_TEXT_CLASSES = ['text-neutral']; // timestamp
-
-/**
- * Candidate selectors for Kick's chat *composer* (the box you type into), ordered
- * most-specific first. Verified live (2026): Kick renders a Lexical editor —
- * `div.editor-input[role="textbox"][contenteditable="true"][data-testid="chat-input"]`.
- * The first and `[data-testid="chat-input"]` selectors both match it; the rest cover
- * legacy/mobile textarea layouts. If Kick renames things the feature simply doesn't
- * mount (graceful no-op).
- */
-export const COMPOSE_SELECTORS = [
-  '#channel-chatroom div[contenteditable="true"]',
-  '#channel-chatroom [role="textbox"][contenteditable="true"]',
-  '#channel-chatroom textarea',
-  '[data-testid="chat-input"]',
-  '[data-testid="message-input"]',
-  'div[contenteditable="true"][data-editor]',
-  '[contenteditable="true"][role="textbox"]',
-] as const;
+export const COMPOSE_SELECTORS = COMPOSERS;
 
 /** Find the chat composer element, or null when not present (e.g. not on a channel page). */
 export function findComposer(root: ParentNode = document): HTMLElement | null {
@@ -61,20 +44,11 @@ export function pickFirst(root: ParentNode, list: readonly string[]): Element | 
 }
 
 /**
- * The chat container: the first candidate that actually holds message rows.
+ * The chat list: the first candidate that actually holds message rows.
  *
- * Matching a container selector is not enough. On current Kick three elements
- * match `#channel-chatroom .no-scrollbar` and only the second one is the message
- * list, so taking the first match binds the observer to an element that never
- * receives a message and nothing is ever translated.
- *
- * Returns null while no candidate holds a row yet (chat still empty), so the
- * caller keeps polling rather than binding to the wrong element for good.
- *
- * A list on screen wins over one that is not. After a channel switch Kick keeps
- * the previous chat as a hidden copy, rows included, while the new list is still
- * empty: taking the first list with rows bound the observer to that copy, and
- * nothing was translated until a reload. Measured live, 0 of 13 new lines.
+ * Returns null while no candidate holds a row yet (chat still empty), so the caller keeps
+ * polling rather than binding to the wrong element for good. A list on screen wins over
+ * one that is not: 7TV leaves Twitch's own list in the page when it takes over.
  */
 export function findChatContainer(root: ParentNode = document): Element | null {
   let hidden: Element | null = null;
@@ -86,7 +60,7 @@ export function findChatContainer(root: ParentNode = document): Element | null {
       continue; // invalid selector, ignore
     }
     for (const el of nodes) {
-      if (!el.querySelector(SELECTORS.messageRows[0])) continue;
+      if (!el.querySelector(ROW_SELECTOR)) continue;
       if (isShown(el)) return el;
       hidden ??= el;
     }
@@ -97,11 +71,8 @@ export function findChatContainer(root: ParentNode = document): Element | null {
 /**
  * Laid out on screen: `display: none` on it or any ancestor leaves no box.
  *
- * `checkVisibility` answers the same question from computed style alone.
- * `getClientRects` needs geometry, so asked while a fast chat keeps the page
- * dirty it forces a full layout on the spot, and the two watchers that ask
- * twice a second each did exactly that for as long as the tab was open.
- * Browsers without it (Firefox before 106) keep the box count.
+ * `checkVisibility` answers from computed style alone; `getClientRects` forces layout on
+ * a dirty page. Browsers without it (Firefox before 106) keep the box count.
  */
 export function isShown(el: Element): boolean {
   const v = el as Element & { checkVisibility?: () => boolean };
@@ -109,38 +80,23 @@ export function isShown(el: Element): boolean {
   return el.getClientRects().length > 0;
 }
 
-/**
- * The message row a mutation happened inside, if any.
- *
- * A virtual scroller reusing a row replaces its CONTENTS: the added nodes are
- * the new message's spans, and the row itself is only the mutation target.
- * Collecting candidates from added nodes and their descendants therefore never
- * reaches the row, and the new message is never translated. Nothing was left on
- * the line either, because nothing decided anything about it.
- */
+/** The message row a mutation happened inside, if any. */
 export function enclosingMessageRow(node: Node): Element | undefined {
   const el = node instanceof Element ? node : node.parentElement;
-  return el?.closest('div[data-index]') ?? undefined;
+  return el?.closest(ROW_SELECTOR) ?? undefined;
 }
 
 export function findAllRows(container: ParentNode): Element[] {
-  return Array.from(container.querySelectorAll('div[data-index]'));
+  return Array.from(container.querySelectorAll(ROW_SELECTOR));
 }
 
 /**
- * The chat panel Kick is actually showing.
- *
- * Measured live: the page can hold two elements with id `channel-chatroom`. React
- * streaming leaves the server-rendered copy inside a suspense placeholder that it
- * hides with `display: none`, and that copy comes first in document order, so a
- * plain `querySelector('#channel-chatroom')` picks the dead one. The live panel is
- * the one holding message rows; when the chat is still empty, the one with a box.
+ * The chat panel on screen: the one holding rows, else the one with a box, else the first.
  */
 export function findChatPanel(root: ParentNode = document): Element | null {
   const panels = Array.from(root.querySelectorAll(CHAT_PANEL_SELECTOR));
-  const hasRows = (p: Element) => p.querySelector(SELECTORS.messageRows[0]) !== null;
+  const hasRows = (p: Element) => p.querySelector(ROW_SELECTOR) !== null;
   return (
-    // The hidden copy Kick keeps after a channel switch has rows too.
     panels.find((p) => hasRows(p) && isShown(p)) ??
     panels.find(hasRows) ??
     panels.find((p) => p.getBoundingClientRect().height > 0) ??
@@ -149,88 +105,78 @@ export function findChatPanel(root: ParentNode = document): Element | null {
   );
 }
 
-export const CHAT_PANEL_SELECTOR = '#channel-chatroom';
+export const CHAT_PANEL_SELECTOR = PANEL;
+
+/** A row whose message was deleted by a moderator, a timeout or a ban. */
+export function isDeletedRow(row: Element): boolean {
+  return row.matches(DELETED_SELECTOR) || row.querySelector(DELETED_SELECTOR) !== null;
+}
 
 export function matchesMessageRow(el: Element): boolean {
-  return el instanceof HTMLElement && el.hasAttribute('data-index');
+  return el instanceof HTMLElement && el.matches(ROW_SELECTOR);
 }
 
 /**
- * Extract just the message body (text only — no timestamp, no username, no separator),
- * preferring 7TV-tokenised text when present to avoid the native+7TV duplicate text bug.
+ * The message body as text: fragments, mentions and links, without the username, badges,
+ * timestamp, separator or emote images. Nothing inside our own artifacts is read.
  */
 export function extractMessageText(row: Element): string {
-  const sevenTv = row.querySelectorAll<HTMLElement>('span.seventv-text-token');
-  if (sevenTv.length > 0) {
-    return joinTexts(Array.from(sevenTv));
-  }
-  // Native Kick: text spans have class "font-normal" but NOT "font-bold" (which is username/separator)
-  const native = Array.from(row.querySelectorAll<HTMLElement>('span.font-normal')).filter(
-    (s) => !s.classList.contains('font-bold'),
+  const parts = Array.from(row.querySelectorAll<HTMLElement>(TEXT_SELECTOR)).filter(
+    // A class token starting with kt- is ours; Twitch's hashed classes never start so.
+    (el) => !el.closest('[class^="kt-"], [class*=" kt-"]') && !el.parentElement?.closest(TEXT_SELECTOR),
   );
-  return joinTexts(native);
-}
-
-function joinTexts(els: HTMLElement[]): string {
-  return els
-    .map((e) => {
-      // Skip elements that are just emote image alt-text containers.
-      // Kick renders custom emotes as <img alt="emoteName"> inside text spans.
-      if (e.children.length === 1 && e.children[0] instanceof HTMLImageElement) return '';
-      // Filter out <img> alt text from mixed content spans.
-      const text = Array.from(e.childNodes)
-        .filter((n) => n.nodeType === Node.TEXT_NODE)
-        .map((n) => n.textContent ?? '')
-        .join('');
-      return text || (e.textContent ?? '');
-    })
+  return parts
+    .map((e) => e.textContent ?? '')
     .join(' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
-/** Best-effort username extraction (lowercased). */
+/** The author, lowercased: the login when the row carries it, else the display name. */
 export function extractUsername(row: Element): string | undefined {
-  // Kick wraps the username in a button with title=<user> on hover-tooltipped variants
-  const btn = row.querySelector('button[title]');
-  const fromTitle = btn?.getAttribute('title');
-  if (fromTitle) return fromTitle.trim().toLowerCase();
-  // Otherwise: the styled (colored) bold span is the username
-  const styled = row.querySelector('span.inline-flex.font-bold[style*="color"]');
-  if (styled?.textContent) return styled.textContent.trim().toLowerCase();
-  const anyBold = row.querySelector('button span.font-bold, button span[style*="color"]');
-  if (anyBold?.textContent) return anyBold.textContent.trim().toLowerCase();
-  // Current Kick (checked against live chat, 2026-08): the name is the button's
-  // own text with no inner span —
-  // <button class="inline font-bold" style="color:…">name</button>.
-  const nameButton = row.querySelector('button.font-bold');
-  return nameButton?.textContent?.trim().toLowerCase() ?? undefined;
+  for (const attr of USERNAME_ATTRS) {
+    const holder = row.hasAttribute(attr) ? row : row.querySelector(`[${attr}]`);
+    const v = holder?.getAttribute(attr)?.trim();
+    if (v) return v.toLowerCase();
+  }
+  for (const sel of USERNAME_SELECTORS) {
+    const t = row.querySelector(sel)?.textContent?.trim();
+    if (t) return t.toLowerCase();
+  }
+  return undefined;
 }
 
-/**
- * Pick the deepest container we should append our translation to,
- * so it stays inside the message bubble (rounded-lg padding) rather than
- * sitting outside the message row.
- */
+/** Where a translation goes: inside the message's own container, or the row itself. */
 export function pickInjectionTarget(row: Element): Element {
-  return (
-    row.querySelector('div.w-full.min-w-0.shrink-0') ??
-    row.querySelector('div.group') ??
-    (row.firstElementChild as Element | null) ??
-    row
-  );
+  for (const sel of INJECTION_TARGETS) {
+    const t = row.querySelector(sel);
+    if (t) return t;
+  }
+  return row;
 }
 
+const rowSerial = new WeakMap<Element, number>();
+let nextSerial = 0;
+
 /**
- * Build a stable-enough ID for the row. `data-index` alone is reused by the
- * virtualiser, so we combine it with a hash of (username + text prefix).
+ * An id for the row. 7TV rows carry `msg-id`, the IRC message id (118/118 matched,
+ * RECON/7tv/idmatch). Native rows carry none, but a Twitch row node is never reused, so the
+ * node itself is the identity: a serial per node, plus a hash of author and text so a row
+ * whose text changes (a deletion) is seen again.
  */
 export function buildSyntheticId(row: Element, username: string, text: string): string {
-  const idx = row.getAttribute('data-index') ?? 'x';
   const seed = `${username}::${text}`;
   let h = 0;
   for (let i = 0; i < seed.length; i++) {
     h = (h * 31 + seed.charCodeAt(i)) | 0;
   }
-  return `r${idx}_h${(h >>> 0).toString(36)}`;
+  const hash = (h >>> 0).toString(36);
+  const msgId = row.getAttribute('msg-id') ?? row.querySelector('[msg-id]')?.getAttribute('msg-id');
+  if (msgId) return `m${msgId}_h${hash}`;
+  let serial = rowSerial.get(row);
+  if (serial === undefined) {
+    serial = nextSerial++;
+    rowSerial.set(row, serial);
+  }
+  return `n${serial}_h${hash}`;
 }

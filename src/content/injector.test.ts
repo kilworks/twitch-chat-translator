@@ -132,12 +132,12 @@ describe('injector artifacts', () => {
       expect(soleRule(injectCss, `.${cls}`)).toMatch(/background:\s*rgb\(var\(--kt-green-rgb\)/);
     });
 
-    // ...and that the token is still Kick's own green, read from the art
+    // ...and that the token is the mark the art direction names, read from the
     // direction the repository states rather than from this stylesheet.
-    it('builds that wash from the green the art direction names', () => {
+    it('builds that wash from the mark the art direction names', () => {
       const theme = readFileSync('src/shared/theme.css', 'utf8');
-      expect(theme).toMatch(/--kt-green-rgb:\s*83 252 24/);
-      expect(readFileSync('.agent/PROMPT.md', 'utf8')).toContain('#53FC18');
+      expect(theme).toMatch(/--kt-green-rgb:\s*169 112 255/);
+      expect(readFileSync('.agent/PROMPT.md', 'utf8')).toContain('#A970FF');
     });
 
     // Control on the rule above. `replace` must own no pill rule at all: it
@@ -608,7 +608,7 @@ describe('injector artifacts', () => {
     // `~` throws, a relative `>` silently matches nothing), so no test here can
     // exercise the selector against a row. The shapes it has to cover were
     // measured in a browser instead, see the round 16 journal entry.
-    it('hides Kick text only on lines that carry a translation', () => {
+    it('hides the original text only on lines that carry a translation', () => {
       const rule = /\.kt-hide-original[^{]*\{[^}]*\}/.exec(injectCss)?.[0] ?? '';
       // Zeroed rather than `display: none`, which took the emotes with it: Kick
       // renders them as images INSIDE these same spans. Measured in a browser
@@ -623,11 +623,10 @@ describe('injector artifacts', () => {
         expect(rule).toContain(`div:has(> .${cls})`);
       }
       expect(rule).not.toContain('~ .kt-translation');
-      // Two renderings of the same original have to go: the span Kick writes,
-      // and the container a chat emote extension puts beside it and shows
-      // instead, after hiding Kick's own.
-      expect(rule).toContain('span.font-normal');
-      expect(rule).toContain('.seventv-text-token');
+      // Both renderings of the original have to go: Twitch's own fragments
+      // (natively, with BTTV and FFZ) and 7TV's tokens, which replace them.
+      expect(rule).toContain('[data-a-target="chat-message-text"]');
+      expect(rule).toContain('.text-token');
     });
 
     /**
@@ -659,7 +658,7 @@ describe('injector artifacts', () => {
     });
 
     // `replace` hides the original whether or not "keep original" is on, so its
-    // rule must NOT be gated on that class — that gate is exactly what made the
+    // rule must NOT be gated on that class, that gate is exactly what made the
     // style a duplicate of `inline` for everyone who never went looking for the
     // toggle.
     it('hides the original for replace without waiting for the toggle', () => {
@@ -709,32 +708,32 @@ describe('injector artifacts', () => {
 });
 
 /**
- * Every rule that reaches Kick's own message text has to name 7TV's token span
- * as well as Kick's. 7TV replaces `span.font-normal` with
- * `span.seventv-text-token`, so a selector that only knows the former silently
- * stops working for everyone running it — measured in a browser: the original
- * stayed visible next to its translation while the native path hid it.
+ * Every rule that reaches Twitch's own message text has to name 7TV's token span
+ * as well. 7TV replaces the `[data-a-target="chat-message-text"]` fragments with
+ * `.text-token` spans (RECON/7tv/live), so a selector that only knows the former
+ * silently stops working for everyone running 7TV: on Kick the original stayed
+ * visible next to its translation while the native path hid it.
  */
 describe('7TV', () => {
-  it('hides the original for 7TV as well as for native Kick', () => {
+  it('hides the original for 7TV as well as for native Twitch', () => {
     // Filtered on what the rule REACHES, not on the class that gates it. The
     // filter used to require `.kt-hide-original`, and the replace style's own
     // hide rule carries no such ancestor, so widening it is what keeps that
     // rule inside this check instead of silently outside it.
     const rules = injectCss
       .split('\n')
-      .filter((l) => l.includes('font-normal') && l.includes('div:has('));
+      .filter((l) => l.includes('chat-message-text') && l.includes('div:has('));
     expect(rules.length, 'no rule reaches the message text').toBeGreaterThan(0);
     for (const rule of rules) {
-      expect(rule, `this rule ignores 7TV: ${rule.trim()}`).toContain('seventv-text-token');
+      expect(rule, `this rule ignores 7TV: ${rule.trim()}`).toContain('.text-token');
     }
   });
 
   // Control: the check must fail on a selector that forgot 7TV, or it proves
   // nothing about the ones that remember it.
-  it('rejects a rule that names only Kick own class', () => {
-    const bad = '.kt-hide-original div:has(> .kt-translation) span.font-normal {';
-    expect(bad.includes('seventv-text-token')).toBe(false);
+  it('rejects a rule that names only Twitch own fragment', () => {
+    const bad = '.kt-hide-original div:has(> .kt-translation) [data-a-target="chat-message-text"] {';
+    expect(bad.includes('.text-token')).toBe(false);
   });
 });
 
@@ -771,7 +770,7 @@ describe('floating bar, width discipline', () => {
   });
 
   // Control: a second provider must replace the first in the tooltip, not
-  // append to it — otherwise the title grows without bound over a session.
+  // append to it, otherwise the title grows without bound over a session.
   it('replaces the provider rather than appending to it', () => {
     const bar = mountBarInto(document.body);
     updateActiveProvider('google');
@@ -936,5 +935,14 @@ describe('hover to translate', () => {
     vi.advanceTimersByTime(500);
     expect(fired, 'the previous message translated itself onto a recycled row').toHaveLength(0);
     expect(second).toHaveLength(1);
+  });
+});
+
+// P19: the on-device model button measured 77x21 on Twitch, under WCAG 2.5.8's 24px.
+describe('the on-device model button', () => {
+  it('is never shorter than a 24px target', () => {
+    const rule = /\n\.kt-float-local \{[^}]*\}/.exec(injectCss)?.[0] ?? '';
+    expect(rule, 'no .kt-float-local rule found').not.toBe('');
+    expect(rule).toMatch(/min-height:\s*24px/);
   });
 });

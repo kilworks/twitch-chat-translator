@@ -1,186 +1,242 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  buildSyntheticId,
   findChatPanel,
   extractMessageText,
   extractUsername,
   findAllRows,
   findChatContainer,
+  findComposer,
   isShown,
   matchesMessageRow,
   pickFirst,
   pickInjectionTarget,
   SELECTORS,
 } from './selectors';
+import { detectExtensions } from './platform';
+import {
+  ffzNoticeLine,
+  ffzRow,
+  nativeChat,
+  nativeMeRow,
+  nativeEmote,
+  nativeRow,
+  replayChat,
+  SEVENTV_WELCOME,
+  seventvChat,
+  seventvEmote,
+  seventvRow,
+  seventvVodRow,
+  vodRow,
+} from './twitchFixtures';
 
-/**
- * Markup copied from live kick.com chat (2026-08). The badges are <img>/<svg>
- * inside <div>s, the name is a <button> carrying its own text, the separator and
- * the timestamp are bold/semibold spans, and only the message body is font-normal.
- */
-function liveRow(body: string, name = '8Iackmamba'): Element {
-  const host = document.createElement('div');
-  host.innerHTML = `
-    <div data-index="63" class="absolute inset-x-0 top-0">
-      <div class="group relative px-2 lg:px-3">
-        <div class="w-full min-w-0 shrink-0 rounded-lg px-2 break-words">
-          <span class="text-neutral pr-1 font-semibold">04:16 AM</span>
-          <div class="inline-flex min-w-0 flex-nowrap items-baseline rounded cursor-pointer">
-            <div class="flex items-center gap-1 self-center pr-1">
-              <div class="inline-flex shrink-0 items-center">
-                <div data-state="closed"><img alt="Level 39" src="badge.png"></div>
-              </div>
-            </div>
-            <button class="inline font-bold" data-prevent-expand="true" style="color: rgb(255, 255, 255);">${name}</button>
-          </div>
-          <span class="inline-flex font-bold" aria-hidden="true">:&nbsp;</span>
-          <span class="leading-[1.55] font-normal">${body}</span>
-        </div>
-      </div>
-    </div>`;
-  document.body.appendChild(host);
-  return host.querySelector('div[data-index]')!;
+/** Mount markup and return the first row it holds. */
+function mount(html: string): Element {
+  document.body.innerHTML = html;
+  return findAllRows(document.body)[0]!;
 }
 
 afterEach(() => {
   document.body.innerHTML = '';
 });
 
-describe('extractUsername on the live Kick layout', () => {
-  // Regression: every earlier strategy looked for a title attribute or a span
-  // inside the button. Kick now puts the name straight on the button, so all of
-  // them returned undefined and the user blacklist silently stopped matching.
-  it('reads the name from the button itself', () => {
-    expect(extractUsername(liveRow('hola amigos'))).toBe('8iackmamba');
+describe('extractUsername, per DOM family', () => {
+  it('reads the login natively and with BTTV', () => {
+    expect(extractUsername(mount(nativeChat(nativeRow('hola', 'Viewer_One'))))).toBe('viewer_one');
   });
 
-  it('still reads a title attribute when one is present', () => {
-    const host = document.createElement('div');
-    host.innerHTML = `<div data-index="1"><button title="OldStyle">x</button></div>`;
-    document.body.appendChild(host);
-    expect(extractUsername(host.querySelector('div[data-index]')!)).toBe('oldstyle');
+  it('reads the login FFZ puts on the row', () => {
+    expect(extractUsername(mount(nativeChat(ffzRow('hola', 'Viewer_Two'))))).toBe('viewer_two');
   });
 
-  it('still reads a styled bold span when one is present', () => {
-    const host = document.createElement('div');
-    host.innerHTML = `<div data-index="1"><span class="inline-flex font-bold" style="color: rgb(1,2,3)">Legacy</span></div>`;
-    document.body.appendChild(host);
-    expect(extractUsername(host.querySelector('div[data-index]')!)).toBe('legacy');
+  it('reads the 7TV username', () => {
+    expect(extractUsername(mount(seventvChat(seventvRow('hola', 'Viewer_Three'))))).toBe('viewer_three');
+  });
+
+  it('reads replay rows, native and 7TV', () => {
+    expect(extractUsername(mount(replayChat(vodRow('hola', 'Viewer_Four'))))).toBe('viewer_four');
+    expect(extractUsername(mount(replayChat(seventvVodRow('hola', 'Viewer_Five'))))).toBe('viewer_five');
   });
 
   it('returns undefined when there is no name at all', () => {
-    const host = document.createElement('div');
-    host.innerHTML = `<div data-index="1"><span class="font-normal">just text</span></div>`;
-    document.body.appendChild(host);
-    expect(extractUsername(host.querySelector('div[data-index]')!)).toBeUndefined();
+    expect(extractUsername(mount(seventvChat(SEVENTV_WELCOME)))).toBeUndefined();
   });
 });
 
-describe('extractMessageText on the live Kick layout', () => {
-  it('takes the body without the timestamp, the name or the separator', () => {
-    expect(extractMessageText(liveRow('hola amigos'))).toBe('hola amigos');
+describe('extractMessageText, per DOM family', () => {
+  it('takes the body without the badges, the name or the separator', () => {
+    expect(extractMessageText(mount(nativeChat(nativeRow('hola amigos'))))).toBe('hola amigos');
+    expect(extractMessageText(mount(nativeChat(ffzRow('hola amigos'))))).toBe('hola amigos');
+    expect(extractMessageText(mount(seventvChat(seventvRow('hola amigos'))))).toBe('hola amigos');
   });
 
-  it('treats an emote-only message as empty rather than as its alt text', () => {
-    const row = liveRow(
-      '<span class="relative" data-emote-name="Flowie"><img alt="Flowie" src="e.png"></span>',
+  it('leaves the timestamp of a replay row out', () => {
+    expect(extractMessageText(mount(replayChat(vodRow('hola amigos', 'v', '1:23'))))).toBe('hola amigos');
+    expect(extractMessageText(mount(replayChat(seventvVodRow('hola amigos'))))).toBe('hola amigos');
+  });
+
+  it('keeps emotes out: a native emote is an image between two fragments', () => {
+    const row = mount(
+      nativeChat(nativeRow('hola ', 'v', `${nativeEmote('Kappa')}<span class="text-fragment" data-a-target="chat-message-text"> amigos</span>`)),
     );
-    expect(extractMessageText(row)).toBe('');
+    expect(extractMessageText(row)).toBe('hola amigos');
   });
 
-  it('prefers 7TV tokens when that extension is present', () => {
-    const host = document.createElement('div');
-    host.innerHTML = `<div data-index="1">
-      <span class="font-normal">duplicated native text</span>
-      <span class="seventv-text-token">hello</span>
-      <span class="seventv-text-token">there</span>
-    </div>`;
-    document.body.appendChild(host);
-    expect(extractMessageText(host.querySelector('div[data-index]')!)).toBe('hello there');
+  it('keeps 7TV emotes out', () => {
+    document.body.innerHTML = seventvChat(seventvRow('hola'));
+    document.querySelector('.seventv-chat-message-body')!.insertAdjacentHTML('beforeend', seventvEmote('KEKW'));
+    expect(extractMessageText(findAllRows(document.body)[0]!)).toBe('hola');
+  });
+
+  it('treats the 7TV welcome line as empty', () => {
+    expect(extractMessageText(mount(seventvChat(SEVENTV_WELCOME)))).toBe('');
+  });
+
+  // A reply quotes its parent above the body (RECON/<config>/live, "Replying to"). Translating
+  // the quote would translate someone else's message on this line.
+  it('reads the body of a reply, not the quoted parent', () => {
+    const native = nativeRow('my answer').replace(
+      '<div class="Layout-sc-1xcs6mc-0 glFavL chat-line__message-container"><div class="Layout-sc-1xcs6mc-0"></div>',
+      '<div class="Layout-sc-1xcs6mc-0 glFavL chat-line__message-container"><div class="Layout-sc-1xcs6mc-0"><div class="Layout-sc-1xcs6mc-0 jGtuXC"><div class="Layout-sc-1xcs6mc-0 brOIRu"><p title="the parent" class="CoreText-sc-1txzju1-0 OLUUU">Replying to <span dir="auto">@someone</span>: <span dir="auto">the parent</span></p></div></div></div>',
+    );
+    expect(extractMessageText(mount(nativeChat(native)))).toBe('my answer');
+    const sevenReply = seventvRow('my answer').replace(
+      'tabindex="0">',
+      'tabindex="0"><div class="seventv-reply-part"><div class="seventv-reply-message-part">Replying to @someone: the parent</div></div>',
+    );
+    expect(extractMessageText(mount(seventvChat(sevenReply)))).toBe('my answer');
+  });
+
+  // PLAN P18: lines Twitch or an extension wraps in a notice. Only what the viewer wrote is read.
+  it('reads a first message inside an FFZ notice line, without the notice text', () => {
+    document.body.innerHTML = nativeChat(ffzNoticeLine('база'));
+    const rows = findAllRows(document.body);
+    expect(rows).toHaveLength(1);
+    expect(extractMessageText(rows[0]!)).toBe('база');
+    expect(extractUsername(rows[0]!)).toBe('viewer_six');
+  });
+
+  it('reads a /me line, set in italics', () => {
+    expect(extractMessageText(mount(nativeChat(nativeMeRow('salut tout le monde'))))).toBe('salut tout le monde');
+  });
+
+  it('never reads our own translation back', () => {
+    const row = mount(nativeChat(nativeRow('hola')));
+    pickInjectionTarget(row).insertAdjacentHTML(
+      'beforeend',
+      '<div class="kt-translation"><span data-a-target="chat-message-text">hello</span></div>',
+    );
+    expect(extractMessageText(row)).toBe('hola');
   });
 });
 
 describe('row and container selectors', () => {
-  it('finds the row and its injection target', () => {
-    const row = liveRow('hola');
+  it('finds the row and its injection target inside the message', () => {
+    const row = mount(nativeChat(nativeRow('hola')));
     expect(matchesMessageRow(row)).toBe(true);
     expect(findAllRows(document.body)).toHaveLength(1);
-    expect(pickInjectionTarget(row).className).toContain('w-full');
+    expect(pickInjectionTarget(row).classList.contains('chat-line__message-container')).toBe(true);
   });
 
-  it('picks the first container selector that matches', () => {
-    const host = document.createElement('div');
-    host.innerHTML = `<div id="channel-chatroom"><div class="no-scrollbar"></div></div>`;
-    document.body.appendChild(host);
-    expect(pickFirst(document, SELECTORS.containers)?.className).toBe('no-scrollbar');
+  it('injects inside the 7TV message container', () => {
+    const row = mount(seventvChat(seventvRow('hola')));
+    expect(pickInjectionTarget(row).classList.contains('seventv-chat-message-container')).toBe(true);
+  });
+
+  it('injects into the FFZ and replay rows themselves', () => {
+    const ffz = mount(nativeChat(ffzRow('hola')));
+    expect(pickInjectionTarget(ffz)).toBe(ffz);
+    const vod = mount(replayChat(vodRow('hola')));
+    expect(pickInjectionTarget(vod)).toBe(vod);
+  });
+
+  it('lists 7TV first, so its list wins when both are present', () => {
+    document.body.innerHTML = nativeChat(nativeRow('a')) + seventvChat(seventvRow('b'));
+    expect(pickFirst(document, SELECTORS.containers)?.tagName).toBe('MAIN');
+  });
+
+  it('finds the Slate composer', () => {
+    document.body.innerHTML = nativeChat('');
+    expect(findComposer()?.hasAttribute('data-slate-editor')).toBe(true);
   });
 });
 
 describe('findChatContainer', () => {
-  // Reproduces the live Kick structure: several elements match the container
-  // selector and only one of them is the message list.
-  function threeCandidates(): void {
-    const host = document.createElement('div');
-    host.innerHTML = `
-      <div id="channel-chatroom">
-        <div class="no-scrollbar" data-which="empty-top"></div>
-        <div class="no-scrollbar" data-which="messages">
-          <div data-index="0"><span class="font-normal">hola</span></div>
-          <div data-index="1"><span class="font-normal">que tal</span></div>
-        </div>
-        <div class="no-scrollbar" data-which="empty-bottom"></div>
-      </div>`;
-    document.body.appendChild(host);
-  }
-
-  it('picks the candidate that actually holds message rows', () => {
-    threeCandidates();
-    const found = findChatContainer(document);
-    expect(found?.getAttribute('data-which')).toBe('messages');
-    expect(found?.querySelectorAll('div[data-index]')).toHaveLength(2);
-  });
-
-  it('does not settle for the first match when it holds no rows', () => {
-    threeCandidates();
-    // This is exactly what the old first-match behaviour returned.
-    expect(document.querySelector('#channel-chatroom .no-scrollbar')?.getAttribute('data-which')).toBe('empty-top');
-    expect(findChatContainer(document)?.getAttribute('data-which')).not.toBe('empty-top');
+  it('finds the list of each family', () => {
+    document.body.innerHTML = nativeChat(nativeRow('a'));
+    expect(findChatContainer(document)?.getAttribute('role')).toBe('log');
+    document.body.innerHTML = seventvChat(seventvRow('a'));
+    expect(findChatContainer(document)?.classList.contains('seventv-chat-list')).toBe(true);
+    document.body.innerHTML = replayChat(vodRow('a'));
+    expect(findChatContainer(document)?.tagName).toBe('UL');
   });
 
   // Chat not rendered yet: returning null keeps the caller polling instead of
   // binding to an element that will never receive a message.
   it('returns null while no candidate holds a row', () => {
-    const host = document.createElement('div');
-    host.innerHTML = `<div id="channel-chatroom"><div class="no-scrollbar"></div></div>`;
-    document.body.appendChild(host);
+    document.body.innerHTML = nativeChat('');
     expect(findChatContainer(document)).toBeNull();
+  });
+
+  it('prefers the list on screen over a hidden one holding rows', () => {
+    document.body.innerHTML = `<div style="display:none">${nativeChat(nativeRow('old'))}</div>${seventvChat(seventvRow('new'))}`;
+    expect(findChatContainer(document)?.tagName).toBe('MAIN');
   });
 });
 
-// Measured on kick.com/ryu7z: the page held two elements with id
-// channel-chatroom. React streaming had left the server-rendered copy inside a
-// suspense placeholder (div#S:0, display none) holding no messages, and it came
-// first in document order, so querySelector picked the dead one. The floating bar
-// was mounted in there, invisible, while the panel on screen had none.
 describe('findChatPanel', () => {
-  it('skips the hidden copy and takes the panel holding the messages', () => {
-    document.body.innerHTML = `
-      <div id="S:0" style="display:none">
-        <div id="channel-chatroom" data-which="dead"></div>
-      </div>
-      <div id="channel-chatroom" data-which="live">
-        <div data-index="0">hello</div>
-      </div>`;
-    expect(findChatPanel(document)?.getAttribute('data-which')).toBe('live');
+  it('skips a hidden copy and takes the panel holding the messages', () => {
+    document.body.innerHTML = `<div style="display:none"><div class="chat-room__content" data-which="dead"></div></div>${nativeChat(nativeRow('hello'))}`;
+    expect(findChatPanel(document)?.querySelector('[role="log"]')).not.toBeNull();
   });
 
   it('still finds the only panel when the chat has no messages yet', () => {
-    document.body.innerHTML = `<div id="channel-chatroom" data-which="only"></div>`;
-    expect(findChatPanel(document)?.getAttribute('data-which')).toBe('only');
+    document.body.innerHTML = nativeChat('');
+    expect(findChatPanel(document)?.classList.contains('chat-room__content')).toBe(true);
+  });
+
+  it('finds the replay panel', () => {
+    document.body.innerHTML = replayChat(vodRow('a'));
+    expect(findChatPanel(document)?.classList.contains('video-chat')).toBe(true);
   });
 
   it('returns null when there is no chat panel at all', () => {
     document.body.innerHTML = '<div></div>';
     expect(findChatPanel(document)).toBeNull();
+  });
+});
+
+describe('buildSyntheticId', () => {
+  it('uses the 7TV message id', () => {
+    const row = mount(seventvChat(seventvRow('hola', 'v', 'abc-123')));
+    expect(buildSyntheticId(row, 'v', 'hola')).toMatch(/^mabc-123_h/);
+  });
+
+  // Twitch never reuses a row node, so the same words twice from the same person are two
+  // messages: both must be translated, not the second dropped as already seen.
+  it('tells apart two native rows with the same author and text', () => {
+    document.body.innerHTML = nativeChat(nativeRow('LUL') + nativeRow('LUL'));
+    const [a, b] = findAllRows(document.body);
+    expect(buildSyntheticId(a!, 'viewer_one', 'LUL')).not.toBe(buildSyntheticId(b!, 'viewer_one', 'LUL'));
+    expect(buildSyntheticId(a!, 'viewer_one', 'LUL')).toBe(buildSyntheticId(a!, 'viewer_one', 'LUL'));
+  });
+
+  it('changes when the text of the same row changes', () => {
+    const row = mount(nativeChat(nativeRow('a')));
+    expect(buildSyntheticId(row, 'u', 'a')).not.toBe(buildSyntheticId(row, 'u', '<message deleted>'));
+  });
+});
+
+describe('detectExtensions', () => {
+  it('sees each extension by its own trace', () => {
+    document.body.innerHTML = nativeChat(nativeRow('a'));
+    expect(detectExtensions()).toEqual({ seventv: false, bttv: false, ffz: false });
+    document.body.innerHTML = seventvChat(seventvRow('a'));
+    expect(detectExtensions().seventv).toBe(true);
+    document.body.innerHTML = nativeChat(ffzRow('a'));
+    expect(detectExtensions().ffz).toBe(true);
+    document.body.innerHTML = `<link rel="stylesheet" href="chrome-extension://x/betterttv.css">${nativeChat(nativeRow('a'))}`;
+    expect(detectExtensions().bttv).toBe(true);
   });
 });
 
@@ -207,5 +263,20 @@ describe('isShown', () => {
     const rects = vi.spyOn(el, 'getClientRects').mockReturnValue([{}] as unknown as DOMRectList);
     expect(isShown(el)).toBe(true);
     expect(rects).toHaveBeenCalledTimes(1);
+  });
+});
+
+// Chrome gives a content script's isolated world `customElements === null`. Calling `.get`
+// on it threw at startup and nothing was ever mounted on a live page.
+describe('detectExtensions in an isolated world', () => {
+  it('survives a null customElements', () => {
+    const real = globalThis.customElements;
+    Object.defineProperty(globalThis, 'customElements', { value: null, configurable: true });
+    try {
+      document.body.innerHTML = nativeChat(nativeRow('a'));
+      expect(detectExtensions().seventv).toBe(false);
+    } finally {
+      Object.defineProperty(globalThis, 'customElements', { value: real, configurable: true });
+    }
   });
 });

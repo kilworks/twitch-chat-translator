@@ -27,15 +27,17 @@ import { ComposeController } from './compose';
 import { setUsageEnabled } from './usage';
 import { localChipState } from './localChip';
 import {
+  CHAT_PANEL_SELECTOR,
   SELECTORS,
   findChatPanel,
   findComposer,
   pickFirst,
   pickInjectionTarget,
 } from './selectors';
-import { extractChannelSlug, fetchChannelLangIso } from './kickApi';
+import { fetchChannelLangIso, fetchRoomId } from './twitchApi';
+import { setChannelEmotes } from './emoteParser';
 import { localEngine } from './localEngine';
-import { logPlatform, refresh7TV } from './platform';
+import { channelFromPath as extractChannelSlug, logPlatform, refresh7TV, ROW_SELECTOR } from './platform';
 import { resolveBrowserLang, withFavorite } from '~/shared/languages';
 import { memoriserLangueChaine } from '~/shared/channelLang';
 import { PAUSED_CHANNELS_MAX, ROUTE_POLL_MS } from '~/shared/constants';
@@ -82,7 +84,7 @@ if (__KT_DEV__) {
 }
 /** Le nom de la copie du script qui tient la page. */
 const ATTR_INSTANCE = 'data-kt-instance';
-// One-shot guard so the "Kick DOM changed" warning toast shows at most once per page.
+// One-shot guard so the "Twitch DOM changed" warning toast shows at most once per page.
 let domWarned = false;
 
 async function main(): Promise<void> {
@@ -313,21 +315,21 @@ async function main(): Promise<void> {
   }
 
   // If the chat panel is present but neither the message list nor the composer can
-  // be found after a grace period, Kick almost certainly changed its DOM — surface
+  // be found after a grace period, Kick almost certainly changed its DOM, surface
   // it once instead of failing silently (so the user knows to update the extension).
   function scheduleHealthCheck(slug: string): void {
     setTimeout(() => {
       if (currentSlug !== slug) return; // navigated away
-      if (!document.querySelector('#channel-chatroom')) return; // no chat view at all
+      if (!findChatPanel()) return; // no chat view at all
       const containerFound = pickFirst(document, SELECTORS.containers) !== null;
       const composerFound = findComposer() !== null;
       if (!containerFound && !composerFound && !domWarned) {
         domWarned = true;
-        log.warn('chat container & composer not found — Kick DOM likely changed');
+        log.warn('chat container & composer not found, Twitch DOM likely changed');
         showToast(
           localised(
             'toastChatNotFound',
-            'Kick Chat Translator: chat not found. An update may be needed.',
+            'Twitch Chat Translator: chat not found. An update may be needed.',
           ),
         );
       }
@@ -379,6 +381,17 @@ async function main(): Promise<void> {
     // Auto-detect the channel's chat language (Kick API) → the compose target in
     // 'auto' mode, so the user writes in the channel's language with no setup.
     void fetchChannelLangIso(slug).then((lang) => compose.setChannelLang(lang));
+
+    // The channel's emote names, so a viewer without 7TV, BTTV or FFZ does not get them
+    // translated as words. The previous channel's list goes first: until the new one
+    // arrives the name heuristics stand in.
+    setChannelEmotes([]);
+    void fetchRoomId(slug)
+      .then((roomId) => send({ type: 'emotes.get', roomId }))
+      .then((r) => {
+        if (r.type === 'emotes' && currentSlug === slug) setChannelEmotes(r.names);
+      })
+      .catch(() => undefined);
   }
 
   // Compose preview is independent of the incoming-translation master switch, so
@@ -443,7 +456,7 @@ async function main(): Promise<void> {
    */
   function retryUntranslated(root: ParentNode, why: string): void {
     let retried = 0;
-    for (const row of root.querySelectorAll<HTMLElement>('div[data-index][data-kt-id]')) {
+    for (const row of root.querySelectorAll<HTMLElement>(`:is(${ROW_SELECTOR})[data-kt-id]`)) {
       if (row.style.display === 'none') continue;
       if (row.querySelector(HANDLED_SELECTOR)) continue;
       if (pickInjectionTarget(row).hasAttribute('title')) continue;
@@ -476,7 +489,7 @@ async function main(): Promise<void> {
     'scroll',
     (e) => {
       const list = e.target instanceof Element ? e.target : null;
-      if (!list?.closest('#channel-chatroom')) return;
+      if (!list?.closest(CHAT_PANEL_SELECTOR)) return;
       if (scrollTimer) clearTimeout(scrollTimer);
       scrollTimer = setTimeout(() => {
         if (estOrphelin() || !vueLocale().enabled) return;
@@ -488,7 +501,7 @@ async function main(): Promise<void> {
 
   // Note: the "pause when hidden" quota guard lives in the pipeline, which reads
   // document.hidden live per message. The observer stays running (cheap when the
-  // tab is hidden since translation bails immediately) — this avoids any
+  // tab is hidden since translation bails immediately), this avoids any
   // stuck-paused state from missed visibilitychange events.
 
   /**
@@ -533,7 +546,7 @@ async function main(): Promise<void> {
    * line from memory and reaches no engine.
    */
   function retranslateHandledRows(): void {
-    const rows = document.querySelectorAll('div[data-index][data-kt-id]');
+    const rows = document.querySelectorAll(`:is(${ROW_SELECTOR})[data-kt-id]`);
     for (const row of rows) {
       removeAllArtifacts(pickInjectionTarget(row));
       row.removeAttribute('data-kt-id');
@@ -597,5 +610,5 @@ async function main(): Promise<void> {
 }
 
 void main().catch((err: unknown) => {
-  console.error('[KickTranslator] init error', err);
+  console.error('[TwitchTranslator] init error', err);
 });

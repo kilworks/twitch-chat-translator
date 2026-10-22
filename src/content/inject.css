@@ -101,7 +101,7 @@
   font-style: italic;
 }
 
-/* Re-translate button — hidden until the translation block is hovered. */
+/* Re-translate button, hidden until the translation block is hovered. */
 .kt-retry {
   /* La commande la plus repetee du produit : elle est sur chaque ligne traduite.
    * Mesuree a 10 par 15 dans le build livre, la ou WCAG 2.5.8 demande 24 par 24,
@@ -190,8 +190,9 @@
    scroller recycled without one shows its own text again with nothing to undo.
    Keying on the element that HOLDS the translation, rather than on a sibling of
    the text, also reaches a reply, where Kick wraps the message one level deeper
-   than a plain line. The quoted parent of a reply carries no font-normal span,
-   so it stays readable.
+   than a plain line. On Twitch the quoted parent of a reply is a plain
+   paragraph (native, FFZ) or `.seventv-reply-message-part` (7TV), outside the
+   text fragments, so it stays readable.
 
    The words go, the emotes stay. This was `display: none` on the whole span,
    and selectors.ts says in its own words what that costs: Kick renders custom
@@ -220,17 +221,17 @@
    second, the unscoped replace rule alone took style recalculation from 66 ms
    to 249 ms per 10 s, with no line in the replace style on screen. Scoped to
    the attribute applyDisplayStyle sets, it costs nothing until it can match. */
-.kt-hide-original div:has(> .kt-translation) :is(span.font-normal, .seventv-text-token),
-.kt-hide-original div:has(> .kt-translation-inline) :is(span.font-normal, .seventv-text-token),
-html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is(span.font-normal, .seventv-text-token) {
+.kt-hide-original div:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
+.kt-hide-original div:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
+html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) {
   font-size: 0;
   line-height: 0;
   letter-spacing: 0;
   word-spacing: 0;
 }
-.kt-hide-original div:has(> .kt-translation) :is(span.font-normal, .seventv-text-token) :is(img, svg, video),
-.kt-hide-original div:has(> .kt-translation-inline) :is(span.font-normal, .seventv-text-token) :is(img, svg, video),
-html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is(span.font-normal, .seventv-text-token) :is(img, svg, video) {
+.kt-hide-original div:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
+.kt-hide-original div:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
+html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video) {
   font-size: 1rem;
   line-height: normal;
 }
@@ -247,13 +248,13 @@ html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is(span.font
    Two things were wrong once "keep original" was off.
 
    Contrast and size: the only text of the message rendered at .78 opacity
-   (11.16:1) and 0.9em — quieter and smaller than the username above it, with
+   (11.16:1) and 0.9em, quieter and smaller than the username above it, with
    nothing left for it to be quieter THAN. Full white is 19.67:1 at 1em.
 
    Height, which is the one that mattered: `.kt-translation` is display:block,
    so hiding the original left the username alone on its own line and the
-   translation on a second one. Measured, the row got TALLER — 41.7px against
-   39.98px — while claiming to save space. Going inline puts the translation
+   translation on a second one. Measured, the row got TALLER, 41.7px against
+   39.98px, while claiming to save space. Going inline puts the translation
    where the message was, and the row is one line again.
 
    The tinted background and the rule go with it: this is body text now, and a
@@ -486,6 +487,9 @@ html[data-kt-scheme='light'] .kt-translation-replace {
   cursor: pointer;
   line-height: 1.4;
   white-space: nowrap;
+  /* WCAG 2.5.8's 24px minimum target, like the rest of the bar. Measured on
+     Twitch at 77x21 before (RECON/a11y, then again signed in, RECON/k01). */
+  min-height: 24px;
 }
 .kt-float-local:hover {
   background: rgb(var(--kt-green-rgb) / 0.2);
@@ -539,7 +543,7 @@ html[data-kt-scheme='light'] .kt-translation-replace {
   color: var(--kt-text);
   cursor: pointer;
   user-select: none;
-  /* GPU-only transition — no layout, no reflow on the input. */
+  /* GPU-only transition, no layout, no reflow on the input. */
   opacity: 0;
   transform: translateY(5px);
   visibility: hidden;
@@ -564,7 +568,7 @@ html[data-kt-scheme='light'] .kt-translation-replace {
   border-color: var(--kt-green-edge);
 }
 
-/* Small language tag — quiet, just enough to know the output language. */
+/* Small language tag, quiet, just enough to know the output language. */
 .kt-compose-target {
   flex-shrink: 0;
   margin-top: 2px;
@@ -581,7 +585,7 @@ html[data-kt-scheme='light'] .kt-translation-replace {
   background: rgb(var(--kt-green-rgb) / 0.13);
 }
 
-/* The translation — the hero. Shows in full (grows the chip upward); scrolls only
+/* The translation, the hero. Shows in full (grows the chip upward); scrolls only
    if the message is genuinely huge (compose is capped at 500 chars anyway). */
 .kt-compose-text {
   flex: 1 1 auto;
@@ -605,16 +609,16 @@ html[data-kt-scheme='light'] .kt-translation-replace {
    drops the element's opacity, so it saw a passing 13:1 in the dark and only
    caught the light theme by accident. Two other elements in this file, the
    provider tag and the loading ellipsis, were dimmed the same way and fixed the
-   same way. */
+   same way.
+
+   On Twitch the mark is purple and has less headroom: the 0.85 alpha left the
+   arrow at 4.27:1 on the panel (compose-live gate, then scratchpad/composite.py),
+   so it is now the opaque word colour, 5.44:1, and no longer dims. */
 .kt-compose-insert {
   flex-shrink: 0;
   margin-top: 3px;
   font-size: var(--kt-fs-lg);
   line-height: 1;
-  color: rgb(var(--kt-green-rgb) / 0.85);
-  transition: color 0.15s ease;
-}
-.kt-compose:hover .kt-compose-insert {
   color: var(--kt-green-ink);
 }
 .kt-compose[data-throttled='true'] .kt-compose-insert {
@@ -714,14 +718,14 @@ html[data-kt-scheme='light'] .kt-compose-insert {
      pinned outline      #358B1A on #0B0B0C    4.55:1
    The outline is the one place this departs from Kick, which draws no
    borders at all: an aplat cannot reach 3:1 for a control without wrecking
-   the palette. Controls only — never sections. */
+   the palette. Controls only, never sections. */
 .kt-chip-host {
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   /* The chip heads the action bar's right cluster, so the gap belongs after it,
-     between the chip and the gear — not before, where it would push the whole
+     between the chip and the gear, not before, where it would push the whole
      cluster off its own edge. */
   margin-inline-end: 6px;
 }
@@ -810,7 +814,7 @@ html[data-kt-scheme='light'] .kt-compose-insert {
   cursor: default;
 }
 /* Waiting state. The pulse runs on the BORDER, never on the label: fading text
-   in and out drops its contrast by construction — measured 7.10:1 at rest,
+   in and out drops its contrast by construction, measured 7.10:1 at rest,
    2.22:1 at the 0.4 opacity this used to reach, and staying above AA would
    need a 0.88 floor, i.e. an animation nobody can see. A border is held to
    3:1, not 4.5, and both ends of this one clear it. */
@@ -868,7 +872,7 @@ html[data-kt-scheme='light'] .kt-compose-insert {
   bottom: auto;
   inset-inline-end: auto;
   /* placeMenu() writes viewport coordinates here, which are physical by
-     definition — the logical property above must not fight them. */
+     definition, the logical property above must not fight them. */
   right: auto;
 }
 .kt-chip-row {

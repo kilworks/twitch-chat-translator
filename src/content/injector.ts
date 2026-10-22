@@ -9,7 +9,8 @@ import {
   focusLangMenu,
   placeLangMenu,
 } from './langMenu';
-import { findChatPanel } from './selectors';
+import { CHAT_PANEL_SELECTOR, findChatPanel } from './selectors';
+import { THEME_DARK_SELECTOR, THEME_LIGHT_SELECTOR } from './platform/twitch';
 import { msg } from './msg';
 
 const STYLE_ID = 'kt-inject-style';
@@ -41,9 +42,9 @@ const ARTIFACT_CLASSES = [
  */
 export const HANDLED_SELECTOR = ARTIFACT_CLASSES.map((c) => `.${c}`).join(', ');
 
-/** #7 — Show a temporary toast at bottom-right (auto-fades after 3s). */
+/** #7, Show a temporary toast at bottom-right (auto-fades after 3s). */
 export function showToast(message: string): void {
-  // Don't spam toasts — max 1 visible at a time.
+  // Don't spam toasts, max 1 visible at a time.
   const existing = document.querySelector('.kt-toast');
   if (existing) existing.remove();
   const el = document.createElement('div');
@@ -53,7 +54,7 @@ export function showToast(message: string): void {
   setTimeout(() => el.remove(), 3200);
 }
 
-/** #8 — Copy translation text to clipboard on click. */
+/** #8, Copy translation text to clipboard on click. */
 function attachCopyHandler(el: HTMLElement, text: string): void {
   el.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -76,7 +77,7 @@ function attachCopyHandler(el: HTMLElement, text: string): void {
 const HOVER_DWELL_MS = 180;
 
 /**
- * #2 — Arm a line to translate itself when the pointer rests on it.
+ * #2, Arm a line to translate itself when the pointer rests on it.
  *
  * This used to append a green "Hover to translate" under every message, and
  * that is what it cost, measured in a real browser against an untouched row:
@@ -138,7 +139,7 @@ export function ensureStyles(): void {
  *
  * The injected UI used to switch on `prefers-color-scheme`, which is the OS
  * setting and has nothing to do with Kick: a user on a light desktop reading a
- * dark chat got the light palette — `rgba(20,25,35,.88)` text — on Kick's dark
+ * dark chat got the light palette, `rgba(20,25,35,.88)` text, on Kick's dark
  * ground, which is unreadable. Kick owns its own theme, so the ground is what
  * gets asked.
  *
@@ -152,13 +153,24 @@ export function applyChatScheme(
   force: 'auto' | 'dark' | 'light' = 'auto',
 ): 'light' | 'dark' {
   // Le forcage court-circuite la mesure, il ne la corrige pas : un lecteur qui
-  // fige le theme le veut fige, y compris quand Kick change le sien sous lui.
+  // fige le theme le veut fige, y compris quand Twitch change le sien sous lui.
   const scheme =
     force !== 'auto'
       ? force
-      : (detectScheme(root) ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+      : (twitchScheme() ?? detectScheme(root) ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
   document.documentElement.setAttribute('data-kt-scheme', scheme);
   return scheme;
+}
+
+/**
+ * Twitch names the chat's theme on the chat section itself (PLAN.md fact 13:
+ * `chat-theme-dark` or `chat-theme-light`). A direct signal beats a colour guess;
+ * the guess stays for pages that carry no such section.
+ */
+function twitchScheme(): 'light' | 'dark' | null {
+  if (document.querySelector(THEME_LIGHT_SELECTOR)) return 'light';
+  if (document.querySelector(THEME_DARK_SELECTOR)) return 'dark';
+  return null;
 }
 
 /** First opaque background walking up from `el`, as a light/dark verdict. */
@@ -166,7 +178,7 @@ function detectScheme(el: Element | null): 'light' | 'dark' | null {
   for (let n: Element | null = el; n; n = n.parentElement) {
     const rgba = parseRgb(getComputedStyle(n).backgroundColor);
     // Anything translucent lets the ground below show through, so it does not
-    // decide on its own — keep climbing until something actually paints.
+    // decide on its own, keep climbing until something actually paints.
     if (rgba && rgba[3] >= 0.9) return luminance(rgba) > 0.4 ? 'light' : 'dark';
   }
   return null;
@@ -187,7 +199,7 @@ function luminance([r, g, b]: [number, number, number, number]): number {
 }
 
 /**
- * `showOriginal` off — hide Kick's own message text and leave only ours.
+ * `showOriginal` off, hide Kick's own message text and leave only ours.
  *
  * One class on the document root, then a CSS rule that only bites on lines
  * already carrying a translation. Nothing is written per row, so the virtual
@@ -330,7 +342,7 @@ export function inject(
   // `replace` used to be compact inline under another name: same span, same
   // place, italic instead of upright, and the original left standing right
   // beside it. Measured, it rendered the same 9 messages at the same 44.1px as
-  // `inline` — a fourth entry in the picker that changed nothing. It now takes
+  // `inline`, a fourth entry in the picker that changed nothing. It now takes
   // the message's place: the stylesheet hides the line's own text tokens
   // whenever this class is present, so the setting no longer needs a second
   // opinion from `showOriginal`.
@@ -348,7 +360,7 @@ export function inject(
   el.className = replace ? TRANS_REPLACE_CLASS : inline ? TRANS_INLINE_CLASS : TRANS_CLASS;
   el.appendChild(withBadges(result.translatedText, flag, provider, result.detectedLang));
   if (onRetry) el.appendChild(makeRetry(onRetry));
-  // #8 — Click-to-copy translation.
+  // #8, Click-to-copy translation.
   attachCopyHandler(el as HTMLElement, result.translatedText);
   targetEl.appendChild(el);
 }
@@ -480,7 +492,7 @@ export type LocalChipState =
   | { kind: 'ready' };
 
 export function mountFloatingBar(container: Element, settings: Settings, h: FloatingBarHandlers): void {
-  const host = container.closest('#channel-chatroom') ?? container;
+  const host = container.closest(CHAT_PANEL_SELECTOR) ?? container;
   if (host.querySelector(`#${FLOAT_ID}`)) return;
 
   const bar = document.createElement('div');
@@ -627,7 +639,7 @@ export function mountFloatingBar(container: Element, settings: Settings, h: Floa
   localChip.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    h.onEnableLocal(); // user gesture — allows model download
+    h.onEnableLocal(); // user gesture, allows model download
   });
   bar.appendChild(localChip);
 

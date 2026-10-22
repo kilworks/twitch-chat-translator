@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ChatObserver } from './observer';
+import { nativeChat, nativeRow, seventvChat, seventvRow } from './twitchFixtures';
 
 interface Recorded {
   disconnected: boolean;
@@ -32,15 +33,9 @@ class RecordingObserver {
 beforeEach(() => {
   created.length = 0;
   vi.stubGlobal('MutationObserver', RecordingObserver);
-  // Mirrors live Kick: several elements match the container selector and only one
-  // is the message list. The decoy comes first, as it does in the real page.
-  document.body.innerHTML =
-    '<div id="channel-chatroom">' +
-    '<div class="no-scrollbar" data-which="decoy"></div>' +
-    '<div class="no-scrollbar" data-which="messages">' +
-    '<div data-index="0"><button class="font-bold" style="color: rgb(1,2,3)">bob</button>' +
-    '<span class="font-normal">hola amigos</span></div>' +
-    '</div></div>';
+  // An empty 7TV list first, as when 7TV has mounted and not received a line yet, then the
+  // native list holding the message: only the one with rows is bound.
+  document.body.innerHTML = seventvChat('') + nativeChat(nativeRow('hola amigos', 'bob'));
 });
 
 afterEach(() => {
@@ -48,35 +43,55 @@ afterEach(() => {
   document.body.innerHTML = '';
 });
 
-describe('a recycled row', () => {
-  // Kick reuses chat rows: the virtual scroller replaces a row's CONTENTS and
-  // leaves the row element in place. The row is then the mutation TARGET and
-  // never an added node, so collecting candidates from added nodes and their
-  // descendants walks straight past it.
-  //
-  // Measured with the extension loaded before this was written: eight recycled
-  // rows kept no translation, carried no reason, and produced no provider call.
-  it('is delivered when its contents are replaced', () => {
+describe('a row whose contents change in place', () => {
+  // Twitch never recycles a row node, but a row's text can still be replaced where it
+  // stands (a deleted message). The row is then the mutation TARGET and never an added
+  // node, so collecting candidates from added nodes alone walks straight past it.
+  it('is delivered again', () => {
     const seen: string[] = [];
     const obs = new ChatObserver((m) => seen.push(m.text));
     obs.start();
     seen.length = 0;
 
-    const liste = document.querySelector('[data-which="messages"]')!;
-    const row = liste.querySelector('div[data-index="0"]')!;
-    row.innerHTML =
-      '<button class="font-bold" style="color: rgb(1,2,3)">ana</button>' +
-      '<span class="font-normal">otro mensaje distinto</span>';
+    const liste = document.querySelector('[role="log"]')!;
+    const row = liste.querySelector('.chat-line__message')!;
+    const body = row.querySelector('[data-a-target="chat-message-text"]')!;
+    body.textContent = 'otro mensaje distinto';
 
     const rec = created.find((r) => r.target === liste);
     expect(rec?.cb).toBeTypeOf('function');
     rec!.cb!(
-      [{ type: 'childList', target: row, addedNodes: [...row.childNodes] } as unknown as MutationRecord],
+      [{ type: 'childList', target: body, addedNodes: [...body.childNodes] } as unknown as MutationRecord],
       {} as MutationObserver,
     );
 
     expect(seen).toContain('otro mensaje distinto');
     obs.stop();
+  });
+});
+
+describe('a new line', () => {
+  it('is delivered when Twitch appends it, in both families', () => {
+    for (const [chat, row] of [
+      [nativeChat, nativeRow],
+      [seventvChat, seventvRow],
+    ] as const) {
+      document.body.innerHTML = chat(row('premier'));
+      const seen: string[] = [];
+      const obs = new ChatObserver((m) => seen.push(m.text));
+      obs.start();
+      const liste = document.querySelector('[role="log"], main.seventv-chat-list')!;
+      const holder = document.createElement('div');
+      holder.innerHTML = row('deuxieme', 'ana', 'id-2');
+      const added = holder.firstElementChild!;
+      liste.appendChild(added);
+      created.find((r) => r.target === liste)!.cb!(
+        [{ type: 'childList', target: liste, addedNodes: [added] } as unknown as MutationRecord],
+        {} as MutationObserver,
+      );
+      obs.stop();
+      expect(seen).toEqual(['premier', 'deuxieme']);
+    }
   });
 });
 
@@ -124,5 +139,57 @@ describe('ChatObserver lifecycle', () => {
 
     // At most the two an attached observer legitimately holds.
     expect(live.length).toBeLessThanOrEqual(2);
+  });
+});
+
+// RECON native/theater, 7tv/mobile: a moderator's deletion (or a timeout, or a ban) replaces
+// the body with a placeholder natively and adds a `deleted` class with 7TV. A translation
+// left behind would keep the moderated words on screen in another language.
+describe('a deleted message', () => {
+  const fire = (liste: Element, rec: Partial<MutationRecord>) =>
+    created.find((r) => r.target === liste)!.cb!([rec as MutationRecord], {} as MutationObserver);
+
+  it('loses its translation when Twitch puts the placeholder in', () => {
+    document.body.innerHTML = nativeChat(nativeRow('palabras feas', 'bob'));
+    const obs = new ChatObserver(() => undefined);
+    obs.start();
+    const liste = document.querySelector('[role="log"]')!;
+    const container = liste.querySelector('.chat-line__message-container')!;
+    container.insertAdjacentHTML('beforeend', '<div class="kt-translation">ugly words</div>');
+    const body = liste.querySelector('[data-a-target="chat-line-message-body"]')!;
+    const placeholder = document.createElement('span');
+    placeholder.setAttribute('data-a-target', 'chat-deleted-message-placeholder');
+    placeholder.textContent = 'message deleted by a moderator.';
+    body.replaceWith(placeholder);
+    fire(liste, { type: 'childList', target: placeholder.parentElement!, addedNodes: [placeholder] as unknown as NodeList });
+    obs.stop();
+    expect(liste.querySelector('.kt-translation')).toBeNull();
+  });
+
+  it('loses its translation when 7TV marks the line deleted', () => {
+    document.body.innerHTML = seventvChat(seventvRow('palabras feas', 'bob'));
+    const obs = new ChatObserver(() => undefined);
+    obs.start();
+    const liste = document.querySelector('main.seventv-chat-list')!;
+    liste.querySelector('.seventv-chat-message-container')!.insertAdjacentHTML('beforeend', '<div class="kt-translation">ugly words</div>');
+    const msg = liste.querySelector('.seventv-user-message')!;
+    msg.classList.add('deleted');
+    fire(liste, { type: 'attributes', target: msg, attributeName: 'class', addedNodes: [] as unknown as NodeList });
+    obs.stop();
+    expect(liste.querySelector('.kt-translation')).toBeNull();
+  });
+
+  it('is never sent for translation', () => {
+    document.body.innerHTML = nativeChat(
+      nativeRow('x').replace(
+        '<span class="text-fragment" data-a-target="chat-message-text">x</span>',
+        '<span data-a-target="chat-deleted-message-placeholder">message deleted by a moderator.</span>',
+      ),
+    );
+    const seen: string[] = [];
+    const obs = new ChatObserver((m) => seen.push(m.text));
+    obs.start();
+    obs.stop();
+    expect(seen).toEqual([]);
   });
 });

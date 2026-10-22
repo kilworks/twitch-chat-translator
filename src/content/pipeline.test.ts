@@ -31,7 +31,7 @@ const wsMsg = (text: string) => ({ id: '1', text, channel: 'chan', username: 'us
 /** onDomMessage does not await the translate path, so let it settle before asserting. */
 const flush = () => new Promise((resolve) => setTimeout(resolve, 0));
 
-describe('TranslationPipeline — effTarget (regression)', () => {
+describe('TranslationPipeline: effTarget (regression)', () => {
   beforeEach(() => {
     sendMock.mockReset();
     sendMock.mockResolvedValue({ type: 'translate.result', payload: { ok: false, error: { code: 'x', message: 'x' } } });
@@ -56,7 +56,7 @@ describe('TranslationPipeline — effTarget (regression)', () => {
   });
 });
 
-describe('TranslationPipeline — minTextLength', () => {
+describe('TranslationPipeline: minTextLength', () => {
   const SHORT_JP = 'おはよう';
 
   beforeEach(() => {
@@ -84,11 +84,11 @@ describe('TranslationPipeline — minTextLength', () => {
 });
 
 /**
- * The websocket path only warms the cache — it never injects. The DOM path is the
+ * The websocket path only warms the cache, it never injects. The DOM path is the
  * only one that puts a translation on screen. So anything the warm path does to
  * shared state must not be able to suppress the display path.
  */
-describe('TranslationPipeline — websocket warm vs DOM display', () => {
+describe('TranslationPipeline: websocket warm vs DOM display', () => {
   const domMsg = (text: string, username = 'user') => {
     const rowElement = document.createElement('div');
     const injectionTarget = document.createElement('div');
@@ -210,9 +210,10 @@ describe('TranslationPipeline, the last decisions are kept for the Debug tab', (
    *  recycled-row guard bails out before a translation is ever recorded. */
   const liveMsg = (text: string) => {
     const rowElement = document.createElement('div');
+    rowElement.className = 'chat-line__message';
     const injectionTarget = document.createElement('div');
     const span = document.createElement('span');
-    span.className = 'font-normal';
+    span.setAttribute('data-a-target', 'chat-message-text');
     span.textContent = text;
     injectionTarget.appendChild(span);
     rowElement.appendChild(injectionTarget);
@@ -316,7 +317,7 @@ describe('TranslationPipeline, a spent channel budget is reported once', () => {
 // a source language franc had guessed wrong. Forcing that `sl` made Google hand
 // back the original text for 4 of the 11 Turkish lines probed, which the injector
 // then dropped in silence, and mistranslated most of the rest.
-describe('TranslationPipeline — source language handed to the engine', () => {
+describe('TranslationPipeline: source language handed to the engine', () => {
   const domMsg = (text: string) => {
     const rowElement = document.createElement('div');
     const injectionTarget = document.createElement('div');
@@ -366,7 +367,7 @@ describe('TranslationPipeline — source language handed to the engine', () => {
  * them for English readers: 10 of 1085 foreign lines of the chat corpora.
  * A letter English does not write vetoes the skip.
  */
-describe('TranslationPipeline — the English skip', () => {
+describe('TranslationPipeline: the English skip', () => {
   beforeEach(() => {
     sendMock.mockReset();
     sendMock.mockResolvedValue({ type: 'translate.result', payload: { ok: false, error: { code: 'x', message: 'x' } } });
@@ -391,7 +392,7 @@ describe('TranslationPipeline — the English skip', () => {
  * Google leaves "ngl" and "lmk" as they are and reads "idc" as "I don't know".
  * An English line going to a reader in another language is spelled out first.
  */
-describe('TranslationPipeline — English chat abbreviations', () => {
+describe('TranslationPipeline: English chat abbreviations', () => {
   beforeEach(() => {
     sendMock.mockReset();
     sendMock.mockResolvedValue({ type: 'translate.result', payload: { ok: false, error: { code: 'x', message: 'x' } } });

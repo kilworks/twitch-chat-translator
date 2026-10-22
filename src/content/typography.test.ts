@@ -180,7 +180,7 @@ describe('accents', () => {
   const BLANC = [255, 255, 255];
   const PAGE = [244, 244, 245];
   // 'kick' n'a pas de bloc : c'est l'absence d'attribut, donc :root.
-  const ACCENTS = ['cyan', 'violet', 'amber'];
+  const ACCENTS = ['cyan', 'green', 'amber'];
 
   it('gives every accent the schema offers a block in both schemes', () => {
     const manquants: string[] = [];
@@ -218,8 +218,8 @@ describe('accents', () => {
   });
 
   it('writes the accent as an attribute, and clears it for Kick', () => {
-    applyAccent('violet');
-    expect(document.documentElement.getAttribute('data-kt-accent')).toBe('violet');
+    applyAccent('green');
+    expect(document.documentElement.getAttribute('data-kt-accent')).toBe('green');
     applyAccent('kick');
     expect(document.documentElement.getAttribute('data-kt-accent')).toBeNull();
   });

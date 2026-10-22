@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defaultSettings } from '~/shared/settings';
+import { nativeChat, nativeRow } from './twitchFixtures';
 
 /**
  * Deux copies vivantes du script de contenu dans la meme page.
@@ -32,7 +33,7 @@ vi.mock('~/shared/settingsClient', () => ({
   patchSettings: () => Promise.resolve(defaultSettings()),
   watchSettings: () => () => undefined,
 }));
-vi.mock('./kickApi', async (orig) => ({
+vi.mock('./twitchApi', async (orig) => ({
   ...(await orig<object>()),
   fetchChannelLangIso: () => Promise.resolve(undefined),
 }));
@@ -51,10 +52,7 @@ vi.mock('./pipeline', () => ({
   },
 }));
 
-const rangee = (texte: string, i: number): string =>
-  `<div data-index="${i}"><div class="w-full min-w-0 shrink-0">` +
-  `<button class="font-bold" style="color: rgb(1,2,3)">pseudo${i}</button>` +
-  `<span class="font-normal">${texte}</span></div></div>`;
+const rangee = (texte: string, i: number): string => nativeRow(texte, `pseudo${i}`);
 
 const attendre = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
 
@@ -75,16 +73,16 @@ describe('deux copies vivantes du script dans un onglet', () => {
     vi.stubGlobal('chrome', {
       runtime: { id: 'kt', onMessage: { addListener: () => undefined }, getURL: (p: string) => p },
     });
-    history.replaceState(null, '', '/kt-un');
+    history.replaceState(null, '', '/kt_un');
     document.body.innerHTML =
-      '<div id="channel-chatroom"><div class="no-scrollbar">' + rangee('hola amigo que tal', 0) + '</div></div>';
+      nativeChat(rangee('hola amigo que tal', 0));
 
     await injecter('auto');
     await injecter('onInstalled');
     recues.length = 0;
 
     document
-      .querySelector('#channel-chatroom .no-scrollbar')!
+      .querySelector('[role="log"]')!
       .insertAdjacentHTML('beforeend', rangee('seguimos aqui despues de actualizar', 1));
     await attendre(100);
 
@@ -98,9 +96,9 @@ describe('deux copies vivantes du script dans un onglet', () => {
       runtime: { id: 'kt', onMessage: { addListener: () => undefined }, getURL: (p: string) => p },
     });
     const erreurs = vi.spyOn(console, 'error').mockImplementation(() => undefined);
-    history.replaceState(null, '', '/kt-un');
+    history.replaceState(null, '', '/kt_un');
     document.body.innerHTML =
-      '<div id="channel-chatroom"><div class="no-scrollbar">' + rangee('hola amigo que tal', 0) + '</div></div>';
+      nativeChat(rangee('hola amigo que tal', 0));
 
     retenir = true;
     await injecter('auto');
@@ -111,7 +109,7 @@ describe('deux copies vivantes du script dans un onglet', () => {
     recues.length = 0;
 
     document
-      .querySelector('#channel-chatroom .no-scrollbar')!
+      .querySelector('[role="log"]')!
       .insertAdjacentHTML('beforeend', rangee('seguimos aqui despues de actualizar', 1));
     await attendre(100);
 
