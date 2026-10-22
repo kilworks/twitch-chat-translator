@@ -28,9 +28,9 @@ function showOnIcon(updateAvailable: boolean): void {
   if (!action) return;
   void action.setBadgeText({ text: updateAvailable ? '↑' : '' }).catch(() => undefined);
   if (!updateAvailable) return;
-  void action.setBadgeBackgroundColor({ color: '#53FC18' }).catch(() => undefined);
-  // White on Kick's green is 1.37:1. setBadgeTextColor exists from Chrome 110.
-  void action.setBadgeTextColor?.({ color: '#000000' })?.catch(() => undefined);
+  void action.setBadgeBackgroundColor({ color: '#9146FF' }).catch(() => undefined);
+  // White on #9146FF is 4.64:1, black 4.11:1. setBadgeTextColor exists from Chrome 110.
+  void action.setBadgeTextColor?.({ color: '#FFFFFF' })?.catch(() => undefined);
 }
 
 function onAlarm(alarm: chrome.alarms.Alarm): void {

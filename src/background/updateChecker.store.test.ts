@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CHROME_STORE_ID, CHROME_STORE_URL, FIREFOX_ADDON_ID } from '~/shared/constants';
+import { CHROME_STORE_ID, CHROME_STORE_URL, FIREFOX_ADDON_ID, GITHUB_LATEST_RELEASE_API } from '~/shared/constants';
 import { getUpdateStatus, installUpdateCheck } from './updateChecker';
 
 /**
@@ -13,7 +13,7 @@ import { getUpdateStatus, installUpdateCheck } from './updateChecker';
  *
  * The id is what tells the two apart, and it costs no permission.
  */
-function chromeStub({ id, latest }: { id: string; latest: string | null }) {
+function chromeStub({ id, latest }: { id: string | null; latest: string | null }) {
   const fetched = vi.fn(async () => ({
     ok: true,
     json: async () => ({ tag_name: latest }),
@@ -32,18 +32,6 @@ afterEach(() => {
 });
 
 describe('update notice by install source', () => {
-  it('says nothing to a store install, even when a newer release exists', async () => {
-    chromeStub({ id: CHROME_STORE_ID, latest: 'v9.9.9' });
-    const status = await getUpdateStatus(true);
-    expect(status.updateAvailable).toBe(false);
-    expect(status.current).toBe('2.8.0');
-  });
-
-  it('does not even ask GitHub from a store install', async () => {
-    const fetched = chromeStub({ id: CHROME_STORE_ID, latest: 'v9.9.9' });
-    await getUpdateStatus(true);
-    expect(fetched).not.toHaveBeenCalled();
-  });
 
   // An AMO copy updates itself just the same. It used to fall through to the
   // zip branch, because only the Chrome id was recognised, and sent Firefox
@@ -84,11 +72,15 @@ describe('update notice by install source', () => {
     expect((await getUpdateStatus(true)).updateAvailable).toBe(true);
   });
 
-  // The id is a real one, copied from the listing URL. A typo here would silence
-  // nobody and nothing would ever fail.
-  it('carries the id the listing actually has', () => {
-    expect(CHROME_STORE_ID).toMatch(/^[a-p]{32}$/);
-    expect(CHROME_STORE_URL).toBe(`https://chromewebstore.google.com/detail/kick-chat-translator/${CHROME_STORE_ID}`);
+  // The tree came from the Kick build with Kick's listing id and repository: every update
+  // notice would have pointed at the other product. Until this product's listing exists there
+  // is no store id, and the notice sends a zip install to this product's own releases.
+  it("never points at the Kick extension's listing or repository", () => {
+    expect(CHROME_STORE_ID === null || /^[a-p]{32}$/.test(CHROME_STORE_ID)).toBe(true);
+    expect(CHROME_STORE_ID).not.toBe('nkkjmbkmacbdkboijmnhjnblcaiclhni');
+    expect(CHROME_STORE_URL).not.toMatch(/kick/i);
+    expect(GITHUB_LATEST_RELEASE_API).not.toMatch(/kick/i);
+    if (CHROME_STORE_ID === null) expect(CHROME_STORE_URL).toMatch(/^https:\/\/github\.com\/.+\/releases\/latest$/);
   });
 
   // Same failure mode for Firefox: an id that drifts from the manifest's would
@@ -105,7 +97,7 @@ describe('update notice by install source', () => {
  * popup, and it follows every check: set when a newer release exists, cleared
  * otherwise, never on a store copy.
  */
-function iconStub({ id, latest, alarm }: { id: string; latest: string | null; alarm?: object }) {
+function iconStub({ id, latest, alarm }: { id: string | null; latest: string | null; alarm?: object }) {
   const ok = () => Promise.resolve();
   const icon = { setBadgeText: vi.fn(ok), setBadgeBackgroundColor: vi.fn(ok), setBadgeTextColor: vi.fn(ok) };
   const listeners: unknown[] = [];
@@ -130,19 +122,19 @@ function iconStub({ id, latest, alarm }: { id: string; latest: string | null; al
 describe('update badge on the toolbar icon', () => {
   const ZIP = 'igdnhalokbeabohdmncbmogjakkgcheb';
 
-  it('shows an arrow, readable on the green, when a newer release exists', async () => {
+  it('shows an arrow, readable on the purple, when a newer release exists', async () => {
     const { icon } = iconStub({ id: ZIP, latest: 'v9.9.9' });
     await getUpdateStatus(true);
     expect(icon.setBadgeText).toHaveBeenLastCalledWith({ text: '↑' });
-    expect(icon.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: '#53FC18' });
-    expect(icon.setBadgeTextColor).toHaveBeenCalledWith({ color: '#000000' });
+    expect(icon.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: '#9146FF' });
+    expect(icon.setBadgeTextColor).toHaveBeenCalledWith({ color: '#FFFFFF' });
   });
 
   it('clears it once the copy is current, and on a store copy', async () => {
     const zip = iconStub({ id: ZIP, latest: 'v2.8.0' });
     await getUpdateStatus(true);
     expect(zip.icon.setBadgeText).toHaveBeenLastCalledWith({ text: '' });
-    const store = iconStub({ id: CHROME_STORE_ID, latest: 'v9.9.9' });
+    const store = iconStub({ id: FIREFOX_ADDON_ID, latest: 'v9.9.9' });
     await getUpdateStatus(true);
     expect(store.icon.setBadgeText).toHaveBeenLastCalledWith({ text: '' });
   });
