@@ -1,6 +1,6 @@
 {
  "date": "2026-10-22",
- "at": "2026-10-22T21:14:26.747Z",
+ "at": "2026-10-22T21:52:06.820Z",
  "target": "ja",
  "cells": [
   {
@@ -8,63 +8,16 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 17,
-     "adds": 3
-    }
-   ],
-   "targetSet": true,
-   "channel": "ch17",
-   "mounted": true,
-   "bar": true,
-   "barInPanel": true,
-   "rows": 34,
-   "marked": 33,
-   "translations": 17,
-   "outsideRows": 0,
-   "rowsWithTwo": 0,
-   "families": [
-    "replay"
-   ],
-   "errors": 0,
-   "scheme": "dark",
-   "chatTheme": null,
-   "minContrast": 11.06,
-   "sample": [
-    "WHAT A QLITO⟳",
-    "HAHAHAHAHAHAHAHA⟳",
-    "HAHAHAHAHAHAHAHAHAHA⟳"
-   ],
-   "stillAttached10s": 17,
-   "after10s": {
-    "onScreen": 17,
-    "missing": 0
-   },
-   "latencyMs": {
-    "n": 0,
-    "p50": null,
-    "p90": null
-   },
-   "pass": true
-  },
-  {
-   "config": "7tv",
-   "surface": "clip",
-   "tried": [
-    {
-     "ch": 17,
-     "skip": "no url"
-    },
-    {
-     "ch": 22,
+     "ch": 34,
      "adds": 0
     },
     {
-     "ch": 30,
-     "adds": 119
+     "ch": 10,
+     "adds": 103
     }
    ],
    "targetSet": true,
-   "channel": "ch30",
+   "channel": "ch10",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
@@ -85,10 +38,27 @@
     "チェドゥ⟳",
     "くそ⟳"
    ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     23
+    ],
+    [
+     "Not translated: it is only chat slang",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
    "stillAttached10s": 25,
    "after10s": {
     "onScreen": 25,
-    "missing": 0
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
    },
    "latencyMs": {
     "n": 0,
@@ -98,123 +68,26 @@
    "pass": true
   },
   {
-   "config": "bttv",
+   "config": "7tv",
    "surface": "clip",
    "tried": [
     {
-     "ch": 17,
-     "skip": "no url"
-    },
-    {
-     "ch": 22,
+     "ch": 34,
      "adds": 0
     },
     {
-     "ch": 30,
-     "skip": "no url"
-    },
-    {
-     "ch": 31,
-     "adds": 0
+     "ch": 10,
+     "adds": 104
     }
    ],
    "targetSet": true,
-   "pass": false,
-   "why": "no chat with traffic found"
-  },
-  {
-   "config": "ffz",
-   "surface": "clip",
-   "tried": [
-    {
-     "ch": 17,
-     "adds": 3
-    }
-   ],
-   "targetSet": true,
-   "channel": "ch17",
+   "channel": "ch10",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 34,
-   "marked": 33,
-   "translations": 17,
-   "outsideRows": 0,
-   "rowsWithTwo": 0,
-   "families": [
-    "replay"
-   ],
-   "errors": 0,
-   "scheme": "dark",
-   "chatTheme": null,
-   "minContrast": 11.06,
-   "sample": [
-    "WHAT A QLITO⟳",
-    "HAHAHAHAHAHAHAHA⟳",
-    "HAHAHAHAHAHAHAHAHAHA⟳"
-   ],
-   "stillAttached10s": 17,
-   "after10s": {
-    "onScreen": 17,
-    "missing": 0
-   },
-   "latencyMs": {
-    "n": 0,
-    "p50": null,
-    "p90": null
-   },
-   "pass": true
-  },
-  {
-   "config": "7tv+bttv",
-   "surface": "clip",
-   "tried": [
-    {
-     "ch": 17,
-     "skip": "no url"
-    },
-    {
-     "ch": 22,
-     "skip": "no url"
-    },
-    {
-     "ch": 30,
-     "skip": "no url"
-    },
-    {
-     "ch": 31,
-     "adds": 0
-    }
-   ],
-   "targetSet": true,
-   "pass": false,
-   "why": "no chat with traffic found"
-  },
-  {
-   "config": "7tv+ffz",
-   "surface": "clip",
-   "tried": [
-    {
-     "ch": 17,
-     "skip": "no url"
-    },
-    {
-     "ch": 22,
-     "skip": "no url"
-    },
-    {
-     "ch": 30,
-     "adds": 110
-    }
-   ],
-   "targetSet": true,
-   "channel": "ch30",
-   "mounted": true,
-   "bar": true,
-   "barInPanel": true,
-   "rows": 37,
-   "marked": 34,
-   "translations": 14,
+   "rows": 56,
+   "marked": 51,
+   "translations": 25,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -229,35 +102,56 @@
     "チェドゥ⟳",
     "くそ⟳"
    ],
-   "stillAttached10s": 14,
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     23
+    ],
+    [
+     "Not translated: it is only chat slang",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 25,
    "after10s": {
-    "onScreen": 14,
-    "missing": 0
+    "onScreen": 25,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
    },
    "latencyMs": {
-    "n": 69,
-    "p50": 154,
-    "p90": 3186
+    "n": 0,
+    "p50": null,
+    "p90": null
    },
    "pass": true
   },
   {
-   "config": "bttv+ffz",
+   "config": "bttv",
    "surface": "clip",
    "tried": [
     {
-     "ch": 17,
-     "adds": 9
+     "ch": 34,
+     "adds": 0
+    },
+    {
+     "ch": 10,
+     "adds": 115
     }
    ],
    "targetSet": true,
-   "channel": "ch17",
+   "channel": "ch10",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 34,
-   "marked": 33,
-   "translations": 22,
+   "rows": 29,
+   "marked": 26,
+   "translations": 13,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -268,14 +162,287 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "なんとクリト⟳",
-    "ハハハハハハハハ⟳",
-    "ハハハハハハハハハハ⟳"
+    "あなたはクレイジーに正確に見えます、それは不気味です⟳",
+    "エミはエミに似てない⟳",
+    "TEチェダ⟳"
    ],
-   "stillAttached10s": 22,
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     10
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     2
+    ],
+    [
+     "Not translated: it is only chat slang",
+     1
+    ]
+   ],
+   "stillAttached10s": 13,
    "after10s": {
-    "onScreen": 22,
-    "missing": 0
+    "onScreen": 13,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "ffz",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 0
+    },
+    {
+     "ch": 10,
+     "adds": 104
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch10",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 56,
+   "marked": 51,
+   "translations": 25,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "うーん、すごくいいですね！⟳",
+    "チェドゥ⟳",
+    "くそ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     23
+    ],
+    [
+     "Not translated: it is only chat slang",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 25,
+   "after10s": {
+    "onScreen": 25,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 0
+    },
+    {
+     "ch": 10,
+     "adds": 115
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch10",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 56,
+   "marked": 32,
+   "translations": 25,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "うーん、すごくいいですね！⟳",
+    "チェドゥ⟳",
+    "くそ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     4
+    ],
+    [
+     "Not translated: it is only chat slang",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 25,
+   "after10s": {
+    "onScreen": 25,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 0
+    },
+    {
+     "ch": 10,
+     "adds": 104
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch10",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 56,
+   "marked": 51,
+   "translations": 25,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "うーん、すごくいいですね！⟳",
+    "チェドゥ⟳",
+    "くそ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     23
+    ],
+    [
+     "Not translated: it is only chat slang",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 25,
+   "after10s": {
+    "onScreen": 25,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 0
+    },
+    {
+     "ch": 10,
+     "adds": 115
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch10",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 29,
+   "marked": 26,
+   "translations": 14,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "完全に変身した⟳",
+    "あなたはクレイジーに正確に見えます、それは不気味です⟳",
+    "エミはエミに似てない⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     10
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     1
+    ],
+    [
+     "Not translated: it is only chat slang",
+     1
+    ]
+   ],
+   "stillAttached10s": 14,
+   "after10s": {
+    "onScreen": 14,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
    },
    "latencyMs": {
     "n": 0,
@@ -289,18 +456,22 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 17,
-     "adds": 12
+     "ch": 34,
+     "adds": 0
+    },
+    {
+     "ch": 10,
+     "adds": 114
     }
    ],
    "targetSet": true,
-   "channel": "ch17",
+   "channel": "ch10",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 34,
+   "rows": 56,
    "marked": 31,
-   "translations": 17,
+   "translations": 25,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -311,14 +482,31 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "WHAT A QLITO⟳",
-    "HAHAHAHAHAHAHAHA⟳",
-    "HAHAHAHAHAHAHAHAHAHA⟳"
+    "うーん、すごくいいですね！⟳",
+    "チェドゥ⟳",
+    "くそ⟳"
    ],
-   "stillAttached10s": 17,
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     3
+    ],
+    [
+     "Not translated: it is only chat slang",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 25,
    "after10s": {
-    "onScreen": 17,
-    "missing": 0
+    "onScreen": 25,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
    },
    "latencyMs": {
     "n": 0,
@@ -328,5 +516,5 @@
    "pass": true
   }
  ],
- "summary": "6/8 cells green"
+ "summary": "8/8 cells green"
 }

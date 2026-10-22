@@ -1,94 +1,16 @@
 {
  "date": "2026-10-22",
- "at": "2026-10-22T21:14:26.697Z",
+ "at": "2026-10-22T23:20:22.708Z",
  "cells": [
   {
-   "config": "native",
-   "channel": "ch17",
-   "chatRules": true,
-   "a": {
-    "typed": "merci pour c",
-    "preview": "Gracias por este directo, es realmente g",
-    "boxAfterTab": "Gracias por este directo, es realmente g",
-    "inserted": true,
-    "insertMs": 115
-   },
-   "b": {
-    "before": "Kap",
-    "after": "cap",
-    "completed": false,
-    "previewWas": "ready"
-   },
-   "pass": true
-  },
-  {
-   "config": "7tv",
-   "channel": "ch17",
-   "chatRules": true,
-   "a": {
-    "typed": "merci pour c",
-    "preview": "Gracias por este directo, es realmente g",
-    "boxAfterTab": "Gracias por este directo, es realmente g",
-    "inserted": true,
-    "insertMs": 147
-   },
-   "b": {
-    "before": "Kap",
-    "after": "KappaCool",
-    "completed": true,
-    "previewWas": "ready"
-   },
-   "pass": true
-  },
-  {
    "config": "bttv",
-   "channel": "ch17",
-   "chatRules": true,
+   "channel": "ch34",
    "a": {
-    "typed": "merci pour c",
-    "preview": "Gracias por este directo, es realmente g",
-    "boxAfterTab": "Gracias por este directo, es realmente g",
+    "typed": "今日はとても楽しい配信で",
+    "preview": "Today's broadcast is very enjoyable, tha",
+    "boxAfterTab": "Today's broadcast is very enjoyable, tha",
     "inserted": true,
-    "insertMs": 3971
-   },
-   "b": {
-    "before": "Kap",
-    "after": "KappaCool",
-    "completed": true,
-    "previewWas": "ready"
-   },
-   "pass": false,
-   "why": "the translation took 3971 ms to appear after Tab"
-  },
-  {
-   "config": "ffz",
-   "channel": "ch17",
-   "chatRules": true,
-   "a": {
-    "typed": "merci pour c",
-    "preview": "Gracias por este directo, es realmente g",
-    "boxAfterTab": "Gracias por este directo, es realmente g",
-    "inserted": true,
-    "insertMs": 117
-   },
-   "b": {
-    "before": "Kap",
-    "after": "cap",
-    "completed": false,
-    "previewWas": "ready"
-   },
-   "pass": true
-  },
-  {
-   "config": "7tv+bttv",
-   "channel": "ch17",
-   "chatRules": true,
-   "a": {
-    "typed": "merci pour c",
-    "preview": "Gracias por este directo, es realmente g",
-    "boxAfterTab": "Gracias por este directo, es realmente g",
-    "inserted": true,
-    "insertMs": 2065
+    "insertMs": 2994
    },
    "b": {
     "before": "Kap",
@@ -97,53 +19,8 @@
     "previewWas": "hidden"
    },
    "pass": false,
-   "why": "the translation took 2065 ms to appear after Tab"
-  },
-  {
-   "config": "7tv+ffz",
-   "channel": "ch17",
-   "chatRules": true,
-   "a": {
-    "typed": "merci pour c",
-    "preview": "Gracias por este directo, es realmente g",
-    "boxAfterTab": "Gracias por este directo, es realmente g",
-    "inserted": true,
-    "insertMs": 141
-   },
-   "b": {
-    "before": "Kap",
-    "after": "KappaCool",
-    "completed": true,
-    "previewWas": "ready"
-   },
-   "pass": true
-  },
-  {
-   "config": "bttv+ffz",
-   "channel": "ch22",
-   "chatRules": true,
-   "b": {
-    "before": "Kap",
-    "after": "KappaCool",
-    "completed": true,
-    "previewWas": "hidden"
-   },
-   "pass": false,
-   "why": "the preview never came up"
-  },
-  {
-   "config": "all",
-   "channel": "ch22",
-   "chatRules": true,
-   "b": {
-    "before": "Kap",
-    "after": "Kap",
-    "completed": false,
-    "previewWas": "hidden"
-   },
-   "pass": false,
-   "why": "the preview never came up; Tab did not let the emote completion through (\"Kap\" -> \"Kap\")"
+   "why": "the translation took 2994 ms to appear after Tab"
   }
  ],
- "summary": "4/8 cells green"
+ "summary": "0/1 cells green"
 }

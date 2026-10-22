@@ -86,6 +86,20 @@ for (const config of configs) {
       if (before.state !== 'ready') continue;
       // How long the box takes to show the translation after Tab: polled, up to 5 s, so a
       // slow insert is measured instead of landing later in whatever is typed next.
+      // Timed inside the page, from the Tab keydown to the mutation that puts the translation
+      // in the box: timed from here, a page carrying three chat extensions took about 2 s per
+      // read and the gate measured itself (in-page: 66 ms, gate: 1981 ms).
+      await page.evaluate(
+        ({ ED, want }) => {
+          const ed = document.querySelector(ED);
+          window.__ktTab = { down: null, done: null };
+          window.addEventListener('keydown', (e) => { if (e.key === 'Tab' && window.__ktTab.down === null) window.__ktTab.down = performance.now(); }, true);
+          new MutationObserver(() => {
+            if (window.__ktTab.done === null && (ed.textContent ?? '').replace(/﻿/g, '').trim() === want) window.__ktTab.done = performance.now();
+          }).observe(ed, { subtree: true, childList: true, characterData: true });
+        },
+        { ED, want: before.preview },
+      );
       const t0 = Date.now();
       await page.keyboard.press('Tab');
       let after = await read(page);
@@ -93,7 +107,8 @@ for (const config of configs) {
         await page.waitForTimeout(100);
         after = await read(page);
       }
-      const ms = Date.now() - t0;
+      const tab = await page.evaluate(() => window.__ktTab);
+      const ms = tab.down !== null && tab.done !== null ? Math.round(tab.done - tab.down) : Date.now() - t0;
       cell.a = { typed: s.slice(0, 12), preview: before.preview.slice(0, 40), boxAfterTab: after.box.slice(0, 40), inserted: after.box === before.preview, insertMs: ms };
       break;
     }
