@@ -32,16 +32,19 @@ export type RuntimeMessage =
   | { type: 'deepl.usage' }
   | { type: 'update.status'; force?: boolean }
   | { type: 'debug.decisions' }
-  /** Write a translation around the composer's emotes, see background/lexicalWrite. */
-  | { type: 'compose.write'; parts: string[] }
+  /** Write a translation into the Slate composer, see background/slateWrite. */
+  | { type: 'compose.write'; text: string }
   /** Opt-in usage counts from a page, about once a minute (shared/usage.ts). */
   | { type: 'usage.add'; counts: UsageCounts; env?: UsageEnv }
   /** The chat catalogue for one locale, kept out of the page script. */
   | { type: 'i18n.chat'; locale: string }
+  /** Emote names of a channel (7TV, BTTV, FFZ, channel and global), see background/emotes. */
+  | { type: 'emotes.get'; roomId?: string }
   | { type: 'ping' };
 
 export type RuntimeResponse =
   | { type: 'translate.result'; payload: TranslationOutcome }
+  | { type: 'emotes'; names: string[] }
   | { type: 'settings'; payload: Settings }
   | { type: 'stats'; payload: UsageStats }
   | { type: 'cache.stats'; payload: CacheStats }

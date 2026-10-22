@@ -9,7 +9,7 @@ import { defaultSettings } from '~/shared/settings';
  * the row follows the active tab and that Resume writes the right list.
  */
 const sent: unknown[] = [];
-let settings = { ...defaultSettings(), usageStatsAsked: true, pausedChannels: ['some-channel', 'other'] };
+let settings = { ...defaultSettings(), usageStatsAsked: true, pausedChannels: ['some_channel', 'other'] };
 let stats: Record<string, unknown> = {};
 const usedStats = { totalRequests: 3, totalCacheHits: 0, totalErrors: 0, byLang: {}, byProvider: {}, byChannel: {}, charsSent: 0, todayKey: 'today', history: [] };
 
@@ -49,7 +49,7 @@ const resumeButton = (root: HTMLElement) =>
 describe('popup on a paused channel', () => {
   beforeEach(() => {
     sent.length = 0;
-    settings = { ...defaultSettings(), usageStatsAsked: true, pausedChannels: ['some-channel', 'other'] };
+    settings = { ...defaultSettings(), usageStatsAsked: true, pausedChannels: ['some_channel', 'other'] };
     stats = usedStats;
   });
   afterEach(() => {
@@ -58,7 +58,7 @@ describe('popup on a paused channel', () => {
   });
 
   it('says so and resumes only that channel', async () => {
-    stubTab('https://kick.com/some-channel');
+    stubTab('https://www.twitch.tv/some_channel');
     const root = await mount();
     expect(root.textContent).toContain('Paused on this channel');
     // In place of the day's numbers, not on top of them: both together put the
@@ -73,21 +73,21 @@ describe('popup on a paused channel', () => {
   });
 
   it('stays quiet on a channel that is not paused', async () => {
-    stubTab('https://kick.com/not-paused');
+    stubTab('https://www.twitch.tv/not_paused');
     const root = await mount();
     expect(root.textContent).toContain('Target language');
     expect(resumeButton(root)).toBeUndefined();
   });
 
-  it('stays quiet off Kick, even on a path that matches a paused slug', async () => {
-    stubTab('https://example.com/some-channel');
+  it('stays quiet off Twitch, even on a path that matches a paused slug', async () => {
+    stubTab('https://example.com/some_channel');
     const root = await mount();
     expect(root.textContent).toContain('Target language');
     expect(resumeButton(root)).toBeUndefined();
   });
 });
 
-const FIRST = 'Open a Kick channel: its chat is translated as it arrives.';
+const FIRST = 'Open a Twitch channel: its chat is translated as it arrives.';
 
 describe('popup for someone who has translated nothing yet', () => {
   const fresh = { ...usedStats, totalRequests: 0, history: [] };
@@ -100,7 +100,7 @@ describe('popup for someone who has translated nothing yet', () => {
     vi.unstubAllGlobals();
   });
 
-  it('points to Kick when the tab is elsewhere, in place of the empty day', async () => {
+  it('points to Twitch when the tab is elsewhere, in place of the empty day', async () => {
     stats = fresh;
     stubTab('https://example.com/');
     const root = await mount();
@@ -108,9 +108,9 @@ describe('popup for someone who has translated nothing yet', () => {
     expect(root.textContent).not.toContain('Today');
   });
 
-  it('says nothing on Kick itself', async () => {
+  it('says nothing on Twitch itself', async () => {
     stats = fresh;
-    stubTab('https://kick.com/');
+    stubTab('https://www.twitch.tv/');
     const root = await mount();
     expect(root.textContent).not.toContain(FIRST);
   });

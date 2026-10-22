@@ -18,8 +18,8 @@ export const sv: Record<string, string> = {
     'Aktivitet',
   'About':
     'Om',
-  'Kick Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
-    'Kick Chat Translator följer chatten i realtid och översätter meddelanden som inte är på engelska (eller på målspråket) direkt under originalet. Ingen spårning, inget konto, helt öppen källkod.',
+  'Twitch Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
+    'Twitch Chat Translator följer chatten i realtid och översätter meddelanden som inte är på engelska (eller på målspråket) direkt under originalet. Ingen spårning, inget konto, helt öppen källkod.',
   'Links':
     'Länkar',
   'GitHub repository':
@@ -46,8 +46,8 @@ export const sv: Record<string, string> = {
     'Felsökning',
   'Pause when tab is hidden':
     'Pausa när fliken är dold',
-  'Background Kick tabs won\'t translate (saves DeepL quota while you\'re away).':
-    'Kick-flikar i bakgrunden översätter inte (sparar DeepL-kvot när du är borta).',
+  'Background Twitch tabs won\'t translate (saves DeepL quota while you\'re away).':
+    'Twitch-flikar i bakgrunden översätter inte (sparar DeepL-kvot när du är borta).',
   'Verbose console logs':
     'Utförliga konsolloggar',
   'Cache max entries':
@@ -92,8 +92,8 @@ export const sv: Record<string, string> = {
     'Språk för mina meddelanden',
   'Auto (the channel\'s language)':
     'Auto (kanalens språk)',
-  'Auto detects the channel\'s broadcast language from Kick. No manual picking.':
-    'Auto hämtar kanalens sändningsspråk från Kick. Inget manuellt val.',
+  'Auto detects the channel\'s broadcast language from Twitch. No manual picking.':
+    'Auto hämtar kanalens sändningsspråk från Twitch. Inget manuellt val.',
   'Below':
     'Under',
   'On a new line under the message.':
@@ -252,8 +252,8 @@ export const sv: Record<string, string> = {
     'Förhandsvisning',
   'is anyone else seeing this?':
     'är det fler som ser det här?',
-  'Whether a Kick tab keeps translating once you look away.':
-    'Om en Kick-flik fortsätter översätta när du tittar bort.',
+  'Whether a Twitch tab keeps translating once you look away.':
+    'Om en Twitch-flik fortsätter översätta när du tittar bort.',
   'Reusing past translations, and how hard the engines are pushed on a busy chat. The defaults suit most channels.':
     'Återanvändning av tidigare översättningar, och hur hårt motorerna belastas i en livlig chatt. Standardvärdena passar de flesta kanaler.',
   'one channel name per line':
@@ -274,14 +274,14 @@ export const sv: Record<string, string> = {
     'Felsökning',
   'Last decisions':
     'Senaste besluten',
-  'Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk.':
-    'Varför varje nyligt meddelande översattes eller lämnades orört. Läses från en öppen Kick-flik, sparas bara i minnet där och skrivs aldrig till disk.',
+  'Why each recent message was translated or left alone. Read from an open Twitch tab, kept in memory there, never saved to disk.':
+    'Varför varje nyligt meddelande översattes eller lämnades orört. Läses från en öppen Twitch-flik, sparas bara i minnet där och skrivs aldrig till disk.',
   'Read decisions':
     'Hämta beslut',
-  'No Kick tab is open. Open a channel, let the chat run, then read again.':
-    'Ingen Kick-flik är öppen. Öppna en kanal, låt chatten rulla en stund och hämta igen.',
-  'The open Kick tab has not loaded the extension yet. Reload the tab, then read again.':
-    'Den öppna Kick-fliken har inte läst in tillägget än. Ladda om fliken och hämta igen.',
+  'No Twitch tab is open. Open a channel, let the chat run, then read again.':
+    'Ingen Twitch-flik är öppen. Öppna en kanal, låt chatten rulla en stund och hämta igen.',
+  'The open Twitch tab has not loaded the extension yet. Reload the tab, then read again.':
+    'Den öppna Twitch-fliken har inte läst in tillägget än. Ladda om fliken och hämta igen.',
   'Nothing recorded yet. Let a chat run for a moment, then read again.':
     'Inget registrerat än. Låt chatten rulla en stund och hämta igen.',
   'Filter languages':
@@ -322,8 +322,8 @@ export const sv: Record<string, string> = {
     'Radavstånd',
   'Font':
     'Typsnitt',
-  'Kick\'s own':
-    'Kicks eget',
+  'Twitch\'s own':
+    'Twitchs eget',
   'System':
     'System',
   'Serif':
@@ -344,26 +344,25 @@ export const sv: Record<string, string> = {
     'Luftig',
   'Accent colour':
     'Accentfärg',
-  'Kick green':
-    'Kick-grön',
+  'Twitch':
+    'Twitch',
   'Cyan':
     'Cyan',
-  'Violet':
-    'Violett',
+  'Green': 'Grön',
   'Amber':
     'Bärnsten',
   'Chat theme':
     'Chattens tema',
-  'Follow Kick':
-    'Följ Kick',
+  'Follow Twitch':
+    'Följ Twitch',
   'Always dark':
     'Alltid mörkt',
   'Always light':
     'Alltid ljust',
   'Remember a reading language per channel':
     'Kom ihåg lässpråk per kanal',
-  'Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
-    'Kick Chat Translator läser chatten när meddelandena kommer och lägger en översättning under varje meddelande, på det språk du läser. Det översätter också det du skriver innan du skickar. Inget konto, ingen spårning, öppen källkod.',
+  'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
+    'Twitch Chat Translator läser chatten när meddelandena kommer och lägger en översättning under varje meddelande, på det språk du läser. Det översätter också det du skriver innan du skickar. Inget konto, ingen spårning, öppen källkod.',
   'Version':
     'Version',
   'Languages':
@@ -426,15 +425,15 @@ export const sv: Record<string, string> = {
     'Pausad på den här kanalen',
   'Resume':
     'Återuppta',
-  'Open a Kick channel: its chat is translated as it arrives.':
-    'Öppna en Kick-kanal: chatten översätts när meddelandena kommer.',
-  'Open Kick':
-    'Öppna Kick',
+  'Open a Twitch channel: its chat is translated as it arrives.':
+    'Öppna en Twitch-kanal: chatten översätts när meddelandena kommer.',
+  'Open Twitch':
+    'Öppna Twitch',
   'Free plan: 1,000,000 characters a month. Free keys end with :fx.':
     'Gratisabonnemang: 1 000 000 tecken per månad. Gratisnycklar slutar på :fx.',
   'Get a key:':
     'Skaffa en nyckel:',
-  "Help improve Kick Chat Translator?": "Vill du hjälpa till att förbättra Kick Chat Translator?",
+  "Help improve Twitch Chat Translator?": "Vill du hjälpa till att förbättra Twitch Chat Translator?",
   "Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels.": "En gång om dagen, anonyma räkningar: använda tjänster, fel, hastighet. Aldrig dina meddelanden, namn eller kanaler.",
   "No thanks": "Nej tack",
   "Share": "Dela",
@@ -444,4 +443,6 @@ export const sv: Record<string, string> = {
   "Other bots to ignore": "Andra bottar att ignorera",
   "one bot name per line": "ett bottnamn per rad",
   "Work in progress": "Arbete pågår",
+  "Also for Kick": "Även för Kick",
+  "The same translator, for Kick chat, by the same author:": "Samma översättare för Kick-chatten, från samma utvecklare:",
 };

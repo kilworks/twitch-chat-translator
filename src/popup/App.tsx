@@ -3,7 +3,7 @@ import type { Settings } from '~/shared/settings';
 import { defaultSettings } from '~/shared/settings';
 import { sortedLanguages } from '~/shared/languages';
 import { send } from '~/shared/messages';
-import { extractChannelSlug } from '~/content/kickApi';
+import { channelFromPath } from '~/content/platform/twitch';
 import { I18nProvider } from '~/shared/i18nContext';
 import { makeT, resolveUiLocale, isRtlLocale } from '~/shared/i18n';
 import type { ProviderStatus, UsageStats } from '~/shared/types';
@@ -33,10 +33,10 @@ export function App() {
   const [savedAt, setSavedAt] = useState<number | undefined>(undefined);
   // La chaine de l'onglet actif. Le bandeau met en pause par chaine ; sans ca,
   // l'interrupteur ci-dessous disait "active" sur un onglet qui ne traduisait
-  // rien. host_permissions couvre kick.com, donc l'URL est lisible sans la
+  // rien. host_permissions couvre twitch.tv, donc l'URL est lisible sans la
   // permission "tabs", qui ferait re-approuver la mise a jour a chacun.
   const [channel, setChannel] = useState<string | undefined>(undefined);
-  const [onKick, setOnKick] = useState(false);
+  const [onTwitch, setOnTwitch] = useState(false);
 
   const locale = resolveUiLocale(settings.uiLang);
   // Named for the reader and sorted with their locale's collation. Keyed on the
@@ -52,9 +52,9 @@ export function App() {
       .then(([tab]) => {
         if (!tab?.url) return;
         const url = new URL(tab.url);
-        if (!/(^|\.)kick\.com$/.test(url.hostname)) return;
-        setOnKick(true);
-        setChannel(extractChannelSlug(url.pathname));
+        if (!/(^|\.)twitch\.tv$/.test(url.hostname)) return;
+        setOnTwitch(true);
+        setChannel(channelFromPath(url.pathname));
       })
       .catch(() => undefined);
   }, []);
@@ -91,11 +91,11 @@ export function App() {
   }
 
   const pausedHere = settings.enabled && !!channel && settings.pausedChannels.includes(channel);
-  // Quelqu'un qui n'a encore rien traduit, et qui ouvre le popup ailleurs que
-  // sur Kick : des reglages ne lui disent pas quoi faire. Un historique vide
-  // distingue un nouvel installe d'un habitue un jour calme.
+  // Someone who has translated nothing yet and opens the popup away from
+  // Twitch: settings do not tell them what to do. An empty history tells a
+  // new install from a regular on a quiet day.
   const firstRun =
-    !onKick && !!stats && stats.totalRequests === 0 && !(stats.history?.length ?? 0);
+    !onTwitch && !!stats && stats.totalRequests === 0 && !(stats.history?.length ?? 0);
 
   function openOptions() {
     void chrome.runtime.openOptionsPage();
@@ -106,10 +106,10 @@ export function App() {
       <div class="flex flex-col gap-3 p-4">
         <header class="flex items-center gap-2">
           <div class="flex h-6 w-6 items-center justify-center rounded bg-kick-primary text-kick-dark font-black text-sm">
-            K
+            T
           </div>
           <div class="flex flex-col">
-            <span class="text-sm font-semibold text-kick-text">Kick Chat Translator</span>
+            <span class="text-sm font-semibold text-kick-text">Twitch Chat Translator</span>
             <span class="text-[10px] text-kick-muted">
               v{chrome.runtime.getManifest().version} · {savedAt ? t('saved') : t('ready')}
             </span>
@@ -149,7 +149,7 @@ export function App() {
         {!settings.usageStatsAsked && !pausedHere && (
           <section
             class="kt-card flex items-center gap-2 !py-2"
-            aria-label={t('Help improve Kick Chat Translator?')}
+            aria-label={t('Help improve Twitch Chat Translator?')}
           >
             <span class="text-xs text-kick-muted">
               {t('Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels.')}
@@ -167,9 +167,9 @@ export function App() {
 
         {firstRun && (
           <section class="kt-card flex items-center justify-between gap-2">
-            <span class="text-xs text-kick-text">{t('Open a Kick channel: its chat is translated as it arrives.')}</span>
-            <button class="kt-btn shrink-0" onClick={() => void chrome.tabs.create({ url: 'https://kick.com/' })}>
-              {t('Open Kick')}
+            <span class="text-xs text-kick-text">{t('Open a Twitch channel: its chat is translated as it arrives.')}</span>
+            <button class="kt-btn shrink-0" onClick={() => void chrome.tabs.create({ url: 'https://www.twitch.tv/' })}>
+              {t('Open Twitch')}
             </button>
           </section>
         )}
@@ -254,7 +254,7 @@ export function App() {
           </div>
           {settings.composeEnabled && (
             <>
-              {/* No visible label of its own — it belongs to the "translate what
+              {/* No visible label of its own, it belongs to the "translate what
                 I type" heading above, which a screen reader does not connect
                 to it. Named explicitly so it is not announced as a bare
                 combo box. */}

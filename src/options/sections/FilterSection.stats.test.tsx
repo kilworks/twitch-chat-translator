@@ -132,10 +132,10 @@ describe('FilterSection, wired to what was actually seen', () => {
     expect(onPatch).toHaveBeenCalledWith({ blockedKeywords: ['!fish', 'good game'] });
   });
 
-  it('offers the Kick bots and a field for more', () => {
+  it('offers the Twitch bots and a field for more', () => {
     const { el, onPatch } = mount(stats());
-    expect(el.textContent).toContain('BotRix');
-    expect(el.textContent).not.toMatch(/StreamElements|Nightbot/);
+    expect(el.textContent).toContain('StreamElements');
+    expect(el.textContent).not.toMatch(/BotRix|Kicklet/);
     const bots = el.querySelector<HTMLTextAreaElement>('#kt-extra-bots')!;
     bots.value = '@MyBot, other_bot';
     bots.dispatchEvent(new Event('input', { bubbles: true }));

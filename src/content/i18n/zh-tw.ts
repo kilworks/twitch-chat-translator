@@ -49,7 +49,7 @@ export const zh_tw: Record<string, string> = {
   skipSlang: '只是聊天用語',
   skipTooLong: '超過長度上限',
   toastAllDown: '所有翻譯服務都無法使用，稍後會自動重試。',
-  toastChatNotFound: 'Kick Chat Translator：找不到聊天室。可能需要更新。',
+  toastChatNotFound: 'Twitch Chat Translator：找不到聊天室。可能需要更新。',
   toastCopied: '譯文已複製，按 Ctrl+V 貼上。',
   toastQuota: '$PROVIDER$ 的額度已用完，改用下一個翻譯服務。',
   toastSwitched: '已切換到 $PROVIDER$',

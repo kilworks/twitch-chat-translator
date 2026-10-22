@@ -49,7 +49,7 @@ export const tl: Record<string, string> = {
   skipSlang: 'slang lang sa chat ito',
   skipTooLong: 'lampas ito sa limitasyon ng haba',
   toastAllDown: 'Walang gumaganang serbisyo sa pagsasalin. Susubukan ulit maya-maya.',
-  toastChatNotFound: 'Kick Chat Translator: hindi makita ang chat. Baka kailangan ng update.',
+  toastChatNotFound: 'Twitch Chat Translator: hindi makita ang chat. Baka kailangan ng update.',
   toastCopied: 'Nakopya ang salin. I-paste gamit ang Ctrl+V.',
   toastQuota: 'Naabot na ang quota ng $PROVIDER$. Lilipat sa susunod na serbisyo.',
   toastSwitched: 'Lumipat sa $PROVIDER$',

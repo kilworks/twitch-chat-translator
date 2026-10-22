@@ -49,7 +49,7 @@ export const nl: Record<string, string> = {
   skipSlang: 'het is alleen chattaal',
   skipTooLong: 'het is langer dan de toegestane lengte',
   toastAllDown: 'Alle vertaalaanbieders zijn niet bereikbaar. Er volgt zo een nieuwe poging.',
-  toastChatNotFound: 'Kick Chat Translator: chat niet gevonden. Mogelijk is een update nodig.',
+  toastChatNotFound: 'Twitch Chat Translator: chat niet gevonden. Mogelijk is een update nodig.',
   toastCopied: 'Vertaling gekopieerd. Plak hem met Ctrl+V.',
   toastQuota: 'Quotum van $PROVIDER$ bereikt. Overschakelen naar de volgende aanbieder.',
   toastSwitched: 'Overgeschakeld naar $PROVIDER$',

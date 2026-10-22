@@ -49,7 +49,7 @@ export const sk: Record<string, string> = {
   skipSlang: 'je v nej len chatový slang',
   skipTooLong: 'je dlhšia než povolený limit',
   toastAllDown: 'Žiadny poskytovateľ prekladu teraz nie je dostupný. Čoskoro to skúsime znova.',
-  toastChatNotFound: 'Kick Chat Translator: chat sa nenašiel. Možno je potrebná aktualizácia.',
+  toastChatNotFound: 'Twitch Chat Translator: chat sa nenašiel. Možno je potrebná aktualizácia.',
   toastCopied: 'Preklad skopírovaný. Vlož ho pomocou Ctrl+V.',
   toastQuota: 'Kvóta služby $PROVIDER$ je vyčerpaná. Prepíname na ďalšieho poskytovateľa.',
   toastSwitched: 'Prepnuté na $PROVIDER$',

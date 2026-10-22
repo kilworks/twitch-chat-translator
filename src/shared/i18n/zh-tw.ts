@@ -9,8 +9,8 @@ export const zh_tw: Record<string, string> = {
   'Advanced': '進階',
   'Activity': '活動',
   'About': '關於',
-  'Kick Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
-    'Kick Chat Translator 會即時讀取聊天室，把非英文（或非目標語言）的訊息直接翻譯在原文下方。不追蹤、不需要帳號，完全開放原始碼。',
+  'Twitch Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
+    'Twitch Chat Translator 會即時讀取聊天室，把非英文（或非目標語言）的訊息直接翻譯在原文下方。不追蹤、不需要帳號，完全開放原始碼。',
   'Links': '連結',
   'GitHub repository': 'GitHub 儲存庫',
   'Privacy policy': '隱私權政策',
@@ -28,8 +28,8 @@ export const zh_tw: Record<string, string> = {
   'Cache & performance': '快取與效能',
   'Debugging': '偵錯',
   'Pause when tab is hidden': '分頁在背景時暫停',
-  "Background Kick tabs won't translate (saves DeepL quota while you're away).":
-    '背景的 Kick 分頁不會翻譯（你不在時可節省 DeepL 額度）。',
+  "Background Twitch tabs won't translate (saves DeepL quota while you're away).":
+    '背景的 Twitch 分頁不會翻譯（你不在時可節省 DeepL 額度）。',
   'Verbose console logs': '詳細的主控台記錄',
   'Cache max entries': '快取項目上限',
   'Larger = more hits across sessions, more disk space.':
@@ -56,8 +56,8 @@ export const zh_tw: Record<string, string> = {
     '自動依瀏覽器偵測到的語言，把收到的聊天內容翻譯成你的語言。',
   'Write my messages in': '送出訊息使用的語言',
   "Auto (the channel's language)": '自動（頻道語言）',
-  "Auto detects the channel's broadcast language from Kick. No manual picking.":
-    '自動從 Kick 取得頻道的實況語言，不用手動選擇。',
+  "Auto detects the channel's broadcast language from Twitch. No manual picking.":
+    '自動從 Twitch 取得頻道的實況語言，不用手動選擇。',
   'Below': '下方',
   'On a new line under the message.': '顯示在訊息下方的新一行。',
   'Inline': '同行',
@@ -147,8 +147,8 @@ export const zh_tw: Record<string, string> = {
     '比這更短的訊息不會翻譯。調高這個數值，在聊天室很熱鬧時可以少用一些翻譯服務的額度。',
   'Preview': '預覽',
   'is anyone else seeing this?': '有沒有人也看到這個？',
-  'Whether a Kick tab keeps translating once you look away.':
-    '切換到其他分頁後，Kick 分頁是否繼續翻譯。',
+  'Whether a Twitch tab keeps translating once you look away.':
+    '切換到其他分頁後，Twitch 分頁是否繼續翻譯。',
   'Reusing past translations, and how hard the engines are pushed on a busy chat. The defaults suit most channels.':
     '是否重複使用先前的譯文，以及聊天室很熱鬧時引擎的負載強度。預設值適合大多數頻道。',
   'one channel name per line': '每行一個頻道名稱',
@@ -161,13 +161,13 @@ export const zh_tw: Record<string, string> = {
   'one rule per line, in the form word→replacement': '每行一條規則，格式為 詞→取代詞',
   'Debug': '偵錯',
   'Last decisions': '最近的判斷',
-  'Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk.':
-    '最近每則訊息為什麼被翻譯或被略過。內容從已開啟的 Kick 分頁讀取，只存在該分頁的記憶體中，不會寫入磁碟。',
+  'Why each recent message was translated or left alone. Read from an open Twitch tab, kept in memory there, never saved to disk.':
+    '最近每則訊息為什麼被翻譯或被略過。內容從已開啟的 Twitch 分頁讀取，只存在該分頁的記憶體中，不會寫入磁碟。',
   'Read decisions': '讀取判斷',
-  'No Kick tab is open. Open a channel, let the chat run, then read again.':
-    '沒有開啟的 Kick 分頁。請先開啟一個頻道，讓聊天室跑一會兒，再重新讀取。',
-  'The open Kick tab has not loaded the extension yet. Reload the tab, then read again.':
-    '已開啟的 Kick 分頁還沒載入擴充功能。請重新整理該分頁，再重新讀取。',
+  'No Twitch tab is open. Open a channel, let the chat run, then read again.':
+    '沒有開啟的 Twitch 分頁。請先開啟一個頻道，讓聊天室跑一會兒，再重新讀取。',
+  'The open Twitch tab has not loaded the extension yet. Reload the tab, then read again.':
+    '已開啟的 Twitch 分頁還沒載入擴充功能。請重新整理該分頁，再重新讀取。',
   'Nothing recorded yet. Let a chat run for a moment, then read again.':
     '目前還沒有任何記錄。請讓聊天室跑一會兒，再重新讀取。',
   'Filter languages': '篩選語言',
@@ -190,7 +190,7 @@ export const zh_tw: Record<string, string> = {
   'Text size': '文字大小',
   'Line spacing': '行距',
   'Font': '字型',
-  "Kick's own": 'Kick 預設',
+  "Twitch's own": 'Twitch 預設',
   'System': '系統',
   'Serif': '襯線',
   'Monospace': '等寬',
@@ -202,17 +202,17 @@ export const zh_tw: Record<string, string> = {
   'Normal': '標準',
   'Roomy': '寬鬆',
   'Accent colour': '強調色',
-  'Kick green': 'Kick 綠',
+  'Twitch': 'Twitch',
   'Cyan': '青色',
-  'Violet': '紫色',
+  'Green': '綠色',
   'Amber': '琥珀色',
   'Chat theme': '聊天室主題',
-  'Follow Kick': '跟隨 Kick',
+  'Follow Twitch': '跟隨 Twitch',
   'Always dark': '一律深色',
   'Always light': '一律淺色',
   'Remember a reading language per channel': '為每個頻道記住閱讀語言',
-  'Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
-    'Kick Chat Translator 會在聊天訊息送達時讀取，並在每則訊息下方顯示你所閱讀語言的譯文。你送出訊息之前，它也能先幫你翻譯。不需要帳號、不追蹤，開放原始碼。',
+  'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
+    'Twitch Chat Translator 會在聊天訊息送達時讀取，並在每則訊息下方顯示你所閱讀語言的譯文。你送出訊息之前，它也能先幫你翻譯。不需要帳號、不追蹤，開放原始碼。',
   'Version': '版本',
   'Languages': '語言',
   'Providers ready': '可用的翻譯服務',
@@ -254,13 +254,13 @@ export const zh_tw: Record<string, string> = {
     '「篩選」裡的允許清單就是在這些語言中進行選擇。',
   'Paused on this channel': '此頻道已暫停',
   'Resume': '繼續',
-  'Open a Kick channel: its chat is translated as it arrives.':
-    '開啟一個 Kick 頻道，聊天訊息一送達就會被翻譯。',
-  'Open Kick': '開啟 Kick',
+  'Open a Twitch channel: its chat is translated as it arrives.':
+    '開啟一個 Twitch 頻道，聊天訊息一送達就會被翻譯。',
+  'Open Twitch': '開啟 Twitch',
   'Free plan: 1,000,000 characters a month. Free keys end with :fx.':
     '免費方案每月 1,000,000 個字元。免費金鑰以 :fx 結尾。',
   'Get a key:': '取得金鑰：',
-  "Help improve Kick Chat Translator?": "協助改善 Kick Chat Translator？",
+  "Help improve Twitch Chat Translator?": "協助改善 Twitch Chat Translator？",
   "Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels.": "每天一次，只傳匿名統計：使用的引擎、錯誤、速度。絕不傳送你的訊息、名稱或頻道。",
   "No thanks": "不用了，謝謝",
   "Share": "分享",
@@ -270,4 +270,6 @@ export const zh_tw: Record<string, string> = {
   "Other bots to ignore": "其他要忽略的機器人",
   "one bot name per line": "每行一個機器人名稱",
   "Work in progress": "開發中",
+  "Also for Kick": "也有 Kick 版",
+  "The same translator, for Kick chat, by the same author:": "同一位作者、同一款翻譯工具，用於 Kick 聊天室：",
 };

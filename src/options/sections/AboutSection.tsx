@@ -3,6 +3,7 @@ import type { ProviderStatus, UsageStats } from '~/shared/types';
 import { useT } from '~/shared/i18nContext';
 import { LANGUAGES } from '~/shared/languages';
 import type { Settings } from '~/shared/settings';
+import { GITHUB_REPO, KICK_EXTENSION_URLS } from '~/shared/constants';
 import { Check } from '../components/Check';
 
 const estFirefox = (): boolean => {
@@ -75,7 +76,7 @@ export function AboutSection({
           <h2 class="kt-section mb-1">{t('About')}</h2>
           <p class="text-sm leading-relaxed text-kick-muted">
             {t(
-              'Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.',
+              'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.',
             )}
           </p>
         </div>
@@ -84,15 +85,15 @@ export function AboutSection({
             oblige a aller la chercher dans chrome://extensions au moment ou on
             veut signaler un probleme. */}
         <dl class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
-          <Fait terme={t('Version')} valeur={version || '—'} />
+          <Fait terme={t('Version')} valeur={version || '-'} />
           <Fait terme={t('Languages')} valeur={String(langues)} />
           <Fait
             terme={t('Providers ready')}
-            valeur={providers === undefined ? '—' : `${dispo.length}/${providers.length}`}
+            valeur={providers === undefined ? '-' : `${dispo.length}/${providers.length}`}
           />
           <Fait
             terme={t('Messages translated')}
-            valeur={stats ? stats.totalRequests.toLocaleString() : '—'}
+            valeur={stats ? stats.totalRequests.toLocaleString() : '-'}
           />
         </dl>
       </section>
@@ -141,23 +142,39 @@ export function AboutSection({
         </section>
       )}
 
+      {/* The same product for Kick, by the same author. Each browser gets its own store. */}
+      <section class="kt-card space-y-2">
+        <h3 class="kt-section">{t('Also for Kick')}</h3>
+        <p class="text-sm text-kick-muted">
+          {t('The same translator, for Kick chat, by the same author:')}{' '}
+          <a
+            class="kt-link-target text-kick-primary underline"
+            href={estFirefox() ? KICK_EXTENSION_URLS.firefox : KICK_EXTENSION_URLS.chrome}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Kick Chat Translator
+          </a>
+        </p>
+      </section>
+
       <section class="kt-card space-y-3">
         <h3 class="kt-section">{t('Links')}</h3>
         <ul class="space-y-2 text-sm">
           <Lien
-            href="https://github.com/Pkkls/kick-chat-translator/blob/master/CHANGELOG.md"
+            href={`https://github.com/${GITHUB_REPO}/blob/master/CHANGELOG.md`}
             label={t('What changed in this version')}
           />
           <Lien
-            href="https://github.com/Pkkls/kick-chat-translator"
+            href={`https://github.com/${GITHUB_REPO}`}
             label={t('GitHub repository')}
           />
           <Lien
-            href="https://github.com/Pkkls/kick-chat-translator/blob/master/PRIVACY.md"
+            href={`https://github.com/${GITHUB_REPO}/blob/master/PRIVACY.md`}
             label={t('Privacy policy')}
           />
           <Lien
-            href="https://github.com/Pkkls/kick-chat-translator/issues"
+            href={`https://github.com/${GITHUB_REPO}/issues`}
             label={t('Report an issue')}
           />
         </ul>

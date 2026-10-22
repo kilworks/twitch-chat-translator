@@ -49,7 +49,7 @@ export const uk: Record<string, string> = {
   skipSlang: 'у ньому лише чатовий сленг',
   skipTooLong: 'воно довше за допустиму довжину',
   toastAllDown: 'Усі сервіси перекладу недоступні. Скоро повторимо спробу.',
-  toastChatNotFound: 'Kick Chat Translator: чат не знайдено. Можливо, потрібне оновлення.',
+  toastChatNotFound: 'Twitch Chat Translator: чат не знайдено. Можливо, потрібне оновлення.',
   toastCopied: 'Переклад скопійовано. Вставте його за допомогою Ctrl+V.',
   toastQuota: 'Квоту $PROVIDER$ вичерпано. Перемикаємося на наступний сервіс.',
   toastSwitched: 'Перемкнено на $PROVIDER$',

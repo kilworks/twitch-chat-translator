@@ -49,7 +49,7 @@ export const ta: Record<string, string> = {
   skipSlang: 'அரட்டை ஸ்லாங் மட்டுமே',
   skipTooLong: 'அளவு வரம்பை மீறுகிறது',
   toastAllDown: 'எல்லா மொழிபெயர்ப்புச் சேவைகளும் இயங்கவில்லை. சிறிது நேரத்தில் மீண்டும் முயலும்.',
-  toastChatNotFound: 'Kick Chat Translator: அரட்டை கிடைக்கவில்லை. புதுப்பிப்பு தேவைப்படலாம்.',
+  toastChatNotFound: 'Twitch Chat Translator: அரட்டை கிடைக்கவில்லை. புதுப்பிப்பு தேவைப்படலாம்.',
   toastCopied: 'மொழிபெயர்ப்பு நகலெடுக்கப்பட்டது. Ctrl+V மூலம் ஒட்டவும்.',
   toastQuota: '$PROVIDER$ ஒதுக்கீடு முடிந்தது. அடுத்த சேவைக்கு மாறுகிறது.',
   toastSwitched: '$PROVIDER$-க்கு மாறியது',

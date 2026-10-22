@@ -1,6 +1,6 @@
 /* The token source, shared with the injected chat stylesheet so all three
-   surfaces read one palette. Kick's own: green #53FC18, ink #0B0B0C,
-   surface #171A1C (.agent/PROMPT.md section 3). */
+   surfaces read one palette. Twitch's: mark #A970FF, ink #0E0E10,
+   surface #18181B (.agent/PROMPT.md section 3). */
 @import '../shared/theme.css';
 /* Les memes drapeaux que le chat : la liste des langues y est la meme. */
 @import '../shared/flags.css';
@@ -91,7 +91,7 @@
 
   .kt-input { @apply w-full rounded-md border border-kick-border bg-kick-surface px-3 py-2 text-sm text-kick-text outline-none focus:border-kick-primary placeholder:text-kick-muted; }
   /* 110px is about six lines, reserved for lists that are usually empty and
-     rarely pass three entries — measured, the three of them held 330px of the
+     rarely pass three entries, measured, the three of them held 330px of the
      Filters tab between them. Four lines to start, and the textarea still
      grows by drag like any other. */
   .kt-textarea { @apply w-full min-h-[76px] resize-y rounded-md border border-kick-border bg-kick-surface px-3 py-2 text-sm text-kick-text outline-none focus:border-kick-primary placeholder:text-kick-muted font-mono leading-relaxed; border-color: var(--kt-edge); }
@@ -155,7 +155,7 @@
      accent-color gives no say in it. */
   .kt-check {
     @apply relative inline-flex cursor-pointer items-center gap-2.5 select-none;
-    /* The drawn box is 18px, but the target is the whole label — that is what
+    /* The drawn box is 18px, but the target is the whole label, that is what
        receives the click. WCAG 2.5.8 measures what activates, not what is
        painted, and 18px of height would miss the 24px floor. The automated
        target gate does not catch this: the real input is transparent, so it
@@ -201,7 +201,7 @@
     border-color: var(--kt-edge-strong);
     transform: scale(0.94);
   }
-  /* 3 · focus — the ring sits on the drawn box, since the input is invisible */
+  /* 3 · focus, the ring sits on the drawn box, since the input is invisible */
   .kt-check input:focus-visible + .kt-check-box {
     outline: 2px solid var(--kt-green);
     outline-offset: 2px;
@@ -225,7 +225,7 @@
   .kt-check input:indeterminate + .kt-check-box .dash {
     opacity: 1;
   }
-  /* 6 · disabled — exempt from contrast, but still has to read as unavailable */
+  /* 6 · disabled, exempt from contrast, but still has to read as unavailable */
   .kt-check:has(input:disabled) {
     @apply cursor-not-allowed;
   }
@@ -259,7 +259,7 @@
 
   /* ─── Select ──────────────────────────────────────────────────────────────
      appearance:none already, so the only thing the browser still draws is the
-     arrow — replaced by an inline chevron so the control matches the rest. */
+     arrow, replaced by an inline chevron so the control matches the rest. */
   .kt-select {
     border-color: var(--kt-edge);
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%239fa6ad' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");

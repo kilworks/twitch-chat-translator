@@ -56,7 +56,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
     );
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'kick-chat-translator-settings.json';
+    a.download = 'twitch-chat-translator-settings.json';
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -75,7 +75,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
       <section class="kt-card space-y-3">
         <h2 class="kt-section">{t('Connection')}</h2>
         <p class="text-[11px] text-kick-muted">
-          {t('Whether a Kick tab keeps translating once you look away.')}
+          {t('Whether a Twitch tab keeps translating once you look away.')}
         </p>
         {/* A div, not a label: Check renders its own <label>, and nesting one
             inside another is invalid and leaves the outer one naming nothing. */}
@@ -84,7 +84,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
             checked={settings.pauseWhenHidden}
             onChange={(v) => onPatch({ pauseWhenHidden: v })}
             label={t('Pause when tab is hidden')}
-            hint={t("Background Kick tabs won't translate (saves DeepL quota while you're away).")}
+            hint={t("Background Twitch tabs won't translate (saves DeepL quota while you're away).")}
             reverse
           />
         </div>

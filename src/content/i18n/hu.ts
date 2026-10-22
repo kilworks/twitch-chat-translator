@@ -49,7 +49,7 @@ export const hu: Record<string, string> = {
   skipSlang: 'csak csevegési szleng',
   skipTooLong: 'hosszabb a megengedett méretnél',
   toastAllDown: 'Egyik fordítási szolgáltató sem működik. Hamarosan újrapróbálja.',
-  toastChatNotFound: 'Kick Chat Translator: a csevegés nem található. Lehet, hogy frissítés szükséges.',
+  toastChatNotFound: 'Twitch Chat Translator: a csevegés nem található. Lehet, hogy frissítés szükséges.',
   toastCopied: 'Fordítás kimásolva. Beillesztés: Ctrl+V.',
   toastQuota: 'A(z) $PROVIDER$ kerete elfogyott. Váltás a következő szolgáltatóra.',
   toastSwitched: 'Átváltás erre: $PROVIDER$',

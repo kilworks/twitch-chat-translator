@@ -1,6 +1,6 @@
 /* The token source, shared with the injected chat stylesheet so all three
-   surfaces read one palette. Kick's own: green #53FC18, ink #0B0B0C,
-   surface #171A1C (.agent/PROMPT.md section 3). */
+   surfaces read one palette. Twitch's: mark #A970FF, ink #0E0E10,
+   surface #18181B (.agent/PROMPT.md section 3). */
 @import '../shared/theme.css';
 
 @tailwind base;
@@ -24,7 +24,7 @@
 @layer components {
   /* `border` is the card token: 1.18 on a card, 1.28 on the page. Fine for a
      panel edge, but on a select or a text field it is the control's only
-     boundary, which WCAG 1.4.11 holds to 3:1 — the same correction the options
+     boundary, which WCAG 1.4.11 holds to 3:1, the same correction the options
      page already carries. `stroke` measures 3.07 on a card. */
   .kt-select {
     @apply w-full appearance-none rounded-md border border-kick-stroke bg-kick-surface px-2 py-1.5 text-sm text-kick-text outline-none;

@@ -49,7 +49,7 @@ export const lt: Record<string, string> = {
   skipSlang: 'tai tik pokalbių slengas',
   skipTooLong: 'ji ilgesnė už leidžiamą ribą',
   toastAllDown: 'Visos vertimo paslaugos neveikia. Netrukus bandoma dar kartą.',
-  toastChatNotFound: 'Kick Chat Translator: pokalbis nerastas. Gali reikėti atnaujinimo.',
+  toastChatNotFound: 'Twitch Chat Translator: pokalbis nerastas. Gali reikėti atnaujinimo.',
   toastCopied: 'Vertimas nukopijuotas. Įklijuok jį Ctrl+V.',
   toastQuota: '$PROVIDER$ kvota išnaudota. Pereinama prie kitos paslaugos.',
   toastSwitched: 'Perjungta į $PROVIDER$',

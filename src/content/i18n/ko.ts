@@ -49,7 +49,7 @@ export const ko: Record<string, string> = {
   skipSlang: '채팅 은어뿐입니다',
   skipTooLong: '길이 제한을 넘습니다',
   toastAllDown: '모든 번역 서비스가 중단되었습니다. 잠시 후 다시 시도합니다.',
-  toastChatNotFound: 'Kick Chat Translator: 채팅을 찾을 수 없습니다. 업데이트가 필요할 수 있습니다.',
+  toastChatNotFound: 'Twitch Chat Translator: 채팅을 찾을 수 없습니다. 업데이트가 필요할 수 있습니다.',
   toastCopied: '번역을 복사했습니다. Ctrl+V로 붙여넣으세요.',
   toastQuota: '$PROVIDER$ 사용 한도에 도달했습니다. 다음 번역 서비스로 전환합니다.',
   toastSwitched: '번역 서비스 전환: $PROVIDER$',

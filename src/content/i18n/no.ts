@@ -49,7 +49,7 @@ export const no: Record<string, string> = {
   skipSlang: 'den er bare chatslang',
   skipTooLong: 'den er lengre enn størrelsesgrensen',
   toastAllDown: 'Alle oversettelsestjenester er nede. Prøver igjen straks.',
-  toastChatNotFound: 'Kick Chat Translator: fant ikke chatten. Utvidelsen kan trenge en oppdatering.',
+  toastChatNotFound: 'Twitch Chat Translator: fant ikke chatten. Utvidelsen kan trenge en oppdatering.',
   toastCopied: 'Oversettelsen er kopiert. Lim den inn med Ctrl+V.',
   toastQuota: 'Kvoten hos $PROVIDER$ er nådd. Bytter til neste tjeneste.',
   toastSwitched: 'Byttet til $PROVIDER$',

@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Kick Chat Translator : traducteur de chat",
+    "message": "Twitch Chat Translator : traducteur de chat",
     "description": "Extension and store listing name: the brand, then the query this language types. 45 character limit."
   },
   "extDescription": {
-    "message": "Traducteur de chat gratuit pour Kick : lis le chat de tout stream dans ta langue, réponds dans celle de la chaîne. Sans compte.",
+    "message": "Traducteur de chat gratuit pour Twitch : lis le chat de tout stream dans ta langue, réponds dans celle de la chaîne. Sans compte.",
     "description": "Store listing blurb and manifest description. 132 character limit."
   }
 }

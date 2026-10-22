@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Kick Chat Translator: مترجم الدردشة",
+    "message": "Twitch Chat Translator: مترجم الدردشة",
     "description": "Extension and store listing name: the brand, then the query this language types. 45 character limit."
   },
   "extDescription": {
-    "message": "مترجم الدردشة المباشرة على Kick، مجاناً: اقرأ دردشة أي بث بلغتك وردّ بلغة القناة. بلا حساب وبلا إعدادات.",
+    "message": "مترجم الدردشة المباشرة على Twitch، مجاناً: اقرأ دردشة أي بث بلغتك وردّ بلغة القناة. بلا حساب وبلا إعدادات.",
     "description": "Store listing blurb and manifest description. 132 character limit."
   }
 }

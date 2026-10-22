@@ -49,7 +49,7 @@ export const et: Record<string, string> = {
   skipSlang: 'see on ainult vestlusslängi',
   skipTooLong: 'see ületab pikkusepiiri',
   toastAllDown: 'Kõik tõlketeenused on maas. Proovitakse varsti uuesti.',
-  toastChatNotFound: 'Kick Chat Translator: vestlust ei leitud. Võib vaja minna uuendust.',
+  toastChatNotFound: 'Twitch Chat Translator: vestlust ei leitud. Võib vaja minna uuendust.',
   toastCopied: 'Tõlge kopeeritud. Kleebi see Ctrl+V-ga.',
   toastQuota: '$PROVIDER$ kvoot on täis. Lülitatakse järgmisele teenusele.',
   toastSwitched: 'Lülitati teenusele $PROVIDER$',

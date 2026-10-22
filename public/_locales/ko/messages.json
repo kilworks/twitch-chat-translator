@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Kick Chat Translator: 채팅 실시간 번역",
+    "message": "Twitch Chat Translator: 채팅 실시간 번역",
     "description": "Extension and store listing name: the brand, then the query this language types. 45 character limit."
   },
   "extDescription": {
-    "message": "Kick을 위한 무료 실시간 채팅 번역: 어떤 방송의 채팅이든 내 언어로 읽고 채널의 언어로 답장하세요. 계정도 설정도 필요 없습니다.",
+    "message": "Twitch를 위한 무료 실시간 채팅 번역: 어떤 방송의 채팅이든 내 언어로 읽고 채널의 언어로 답장하세요. 계정도 설정도 필요 없습니다.",
     "description": "Store listing blurb and manifest description. 132 character limit."
   }
 }

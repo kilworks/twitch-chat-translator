@@ -9,8 +9,8 @@ export const sk: Record<string, string> = {
   'Advanced': 'Rozšírené',
   'Activity': 'Aktivita',
   'About': 'O rozšírení',
-  'Kick Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
-    'Kick Chat Translator sleduje chat v reálnom čase a priamo pod originálom prekladá správy, ktoré nie sú po anglicky (alebo v cieľovom jazyku). Bez sledovania, bez účtu, úplne open source.',
+  'Twitch Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
+    'Twitch Chat Translator sleduje chat v reálnom čase a priamo pod originálom prekladá správy, ktoré nie sú po anglicky (alebo v cieľovom jazyku). Bez sledovania, bez účtu, úplne open source.',
   'Links': 'Odkazy',
   'GitHub repository': 'Repozitár na GitHube',
   'Privacy policy': 'Zásady ochrany osobných údajov',
@@ -28,8 +28,8 @@ export const sk: Record<string, string> = {
   'Cache & performance': 'Vyrovnávacia pamäť a výkon',
   'Debugging': 'Ladenie',
   'Pause when tab is hidden': 'Pozastaviť na skrytej karte',
-  "Background Kick tabs won't translate (saves DeepL quota while you're away).":
-    'Karty Kick na pozadí neprekladajú (šetrí kvótu DeepL, kým si preč).',
+  "Background Twitch tabs won't translate (saves DeepL quota while you're away).":
+    'Karty Twitch na pozadí neprekladajú (šetrí kvótu DeepL, kým si preč).',
   'Verbose console logs': 'Podrobné logy v konzole',
   'Cache max entries': 'Max. počet záznamov vo vyrovnávacej pamäti',
   'Larger = more hits across sessions, more disk space.':
@@ -56,8 +56,8 @@ export const sk: Record<string, string> = {
     'Automaticky zobrazuje prichádzajúci chat vo tvojom jazyku, ktorý sa zistí z prehliadača.',
   'Write my messages in': 'Moje správy prekladať do',
   "Auto (the channel's language)": 'Automaticky (jazyk kanála)',
-  "Auto detects the channel's broadcast language from Kick. No manual picking.":
-    'Automaticky zistí jazyk vysielania kanála podľa Kick. Bez ručného výberu.',
+  "Auto detects the channel's broadcast language from Twitch. No manual picking.":
+    'Automaticky zistí jazyk vysielania kanála podľa Twitch. Bez ručného výberu.',
   'Below': 'Pod správou',
   'On a new line under the message.': 'Na novom riadku pod správou.',
   'Inline': 'V riadku',
@@ -151,8 +151,8 @@ export const sk: Record<string, string> = {
     'Kratšie správy sa preskočia. Zvýšením hodnoty sa na rušných chatoch spotrebuje menej kvóty poskytovateľov.',
   'Preview': 'Ukážka',
   'is anyone else seeing this?': 'vidí to ešte niekto?',
-  'Whether a Kick tab keeps translating once you look away.':
-    'Či karta Kick prekladá ďalej, aj keď sa na ňu nepozeráš.',
+  'Whether a Twitch tab keeps translating once you look away.':
+    'Či karta Twitch prekladá ďalej, aj keď sa na ňu nepozeráš.',
   'Reusing past translations, and how hard the engines are pushed on a busy chat. The defaults suit most channels.':
     'Opätovné využitie skorších prekladov a záťaž prekladačov na rušnom chate. Predvolené hodnoty vyhovujú väčšine kanálov.',
   'one channel name per line': 'jeden názov kanála na riadok',
@@ -166,13 +166,13 @@ export const sk: Record<string, string> = {
     'jedno pravidlo na riadok v tvare slovo→náhrada',
   'Debug': 'Debug',
   'Last decisions': 'Posledné rozhodnutia',
-  'Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk.':
-    'Prečo bola každá nedávna správa preložená alebo preskočená. Číta sa z otvorenej karty Kick, drží sa tam v pamäti a nikdy sa neukladá na disk.',
+  'Why each recent message was translated or left alone. Read from an open Twitch tab, kept in memory there, never saved to disk.':
+    'Prečo bola každá nedávna správa preložená alebo preskočená. Číta sa z otvorenej karty Twitch, drží sa tam v pamäti a nikdy sa neukladá na disk.',
   'Read decisions': 'Načítať rozhodnutia',
-  'No Kick tab is open. Open a channel, let the chat run, then read again.':
-    'Nie je otvorená žiadna karta Kick. Otvor kanál, nechaj chat chvíľu bežať a potom načítaj znova.',
-  'The open Kick tab has not loaded the extension yet. Reload the tab, then read again.':
-    'Otvorená karta Kick ešte nenačítala rozšírenie. Obnov kartu a potom načítaj znova.',
+  'No Twitch tab is open. Open a channel, let the chat run, then read again.':
+    'Nie je otvorená žiadna karta Twitch. Otvor kanál, nechaj chat chvíľu bežať a potom načítaj znova.',
+  'The open Twitch tab has not loaded the extension yet. Reload the tab, then read again.':
+    'Otvorená karta Twitch ešte nenačítala rozšírenie. Obnov kartu a potom načítaj znova.',
   'Nothing recorded yet. Let a chat run for a moment, then read again.':
     'Zatiaľ nič nezaznamenané. Nechaj chat chvíľu bežať a potom načítaj znova.',
   'Filter languages': 'Filtrovať jazyky',
@@ -196,7 +196,7 @@ export const sk: Record<string, string> = {
   'Text size': 'Veľkosť textu',
   'Line spacing': 'Riadkovanie',
   'Font': 'Písmo',
-  "Kick's own": 'Predvolené z Kick',
+  "Twitch's own": 'Predvolené z Twitch',
   'System': 'Systémové',
   'Serif': 'Pätkové',
   'Monospace': 'Neproporcionálne',
@@ -208,17 +208,17 @@ export const sk: Record<string, string> = {
   'Normal': 'Normálna',
   'Roomy': 'Priestranná',
   'Accent colour': 'Farba zvýraznenia',
-  'Kick green': 'Zelená Kick',
+  'Twitch': 'Twitch',
   'Cyan': 'Azúrová',
-  'Violet': 'Fialová',
+  'Green': 'Zelená',
   'Amber': 'Jantárová',
   'Chat theme': 'Motív chatu',
-  'Follow Kick': 'Podľa Kick',
+  'Follow Twitch': 'Podľa Twitch',
   'Always dark': 'Vždy tmavý',
   'Always light': 'Vždy svetlý',
   'Remember a reading language per channel': 'Pamätať si jazyk čítania pre každý kanál osobitne',
-  'Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
-    'Kick Chat Translator číta chat, ako prichádza, a pod každú správu doplní preklad do jazyka, v ktorom čítaš. Prekladá aj to, čo píšeš, skôr než to odošleš. Bez účtu, bez sledovania, open source.',
+  'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
+    'Twitch Chat Translator číta chat, ako prichádza, a pod každú správu doplní preklad do jazyka, v ktorom čítaš. Prekladá aj to, čo píšeš, skôr než to odošleš. Bez účtu, bez sledovania, open source.',
   'Version': 'Verzia',
   'Languages': 'Jazyky',
   'Providers ready': 'Pripravení poskytovatelia',
@@ -260,13 +260,13 @@ export const sk: Record<string, string> = {
     'Medzi týmito jazykmi rozhoduje zoznam povolených vo Filtroch.',
   'Paused on this channel': 'Pozastavené na tomto kanáli',
   'Resume': 'Pokračovať',
-  'Open a Kick channel: its chat is translated as it arrives.':
-    'Otvor kanál na Kick: jeho chat sa prekladá, ako prichádza.',
-  'Open Kick': 'Otvoriť Kick',
+  'Open a Twitch channel: its chat is translated as it arrives.':
+    'Otvor kanál na Twitch: jeho chat sa prekladá, ako prichádza.',
+  'Open Twitch': 'Otvoriť Twitch',
   'Free plan: 1,000,000 characters a month. Free keys end with :fx.':
     'Plán zadarmo: 1 000 000 znakov mesačne. Kľúče zadarmo končia na :fx.',
   'Get a key:': 'Získať kľúč:',
-  "Help improve Kick Chat Translator?": "Pomôžeš vylepšiť Kick Chat Translator?",
+  "Help improve Twitch Chat Translator?": "Pomôžeš vylepšiť Twitch Chat Translator?",
   "Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels.": "Raz denne anonymné počty: použité služby, chyby, rýchlosť. Nikdy tvoje správy, mená ani kanály.",
   "No thanks": "Nie, vďaka",
   "Share": "Zdieľať",
@@ -276,4 +276,6 @@ export const sk: Record<string, string> = {
   "Other bots to ignore": "Ďalší boti na ignorovanie",
   "one bot name per line": "jedno meno bota na riadok",
   "Work in progress": "Prebiehajúca práca",
+  "Also for Kick": "Aj pre Kick",
+  "The same translator, for Kick chat, by the same author:": "Ten istý prekladač pre chat na Kicku, od rovnakého autora:",
 };

@@ -49,7 +49,7 @@ export const el: Record<string, string> = {
   skipSlang: 'περιέχει μόνο αργκό του chat',
   skipTooLong: 'ξεπερνά το όριο μεγέθους',
   toastAllDown: 'Κανένας πάροχος μετάφρασης δεν είναι διαθέσιμος. Νέα προσπάθεια σε λίγο.',
-  toastChatNotFound: 'Kick Chat Translator: η συνομιλία δεν βρέθηκε. Ίσως χρειάζεται ενημέρωση.',
+  toastChatNotFound: 'Twitch Chat Translator: η συνομιλία δεν βρέθηκε. Ίσως χρειάζεται ενημέρωση.',
   toastCopied: 'Η μετάφραση αντιγράφηκε. Επικόλλησέ τη με Ctrl+V.',
   toastQuota: 'Συμπληρώθηκε το όριο χρήσης του $PROVIDER$. Μετάβαση στον επόμενο πάροχο.',
   toastSwitched: 'Μετάβαση στο $PROVIDER$',

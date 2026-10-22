@@ -49,7 +49,7 @@ export const vi: Record<string, string> = {
   skipSlang: 'chỉ là tiếng lóng trong chat',
   skipTooLong: 'tin nhắn vượt quá giới hạn kích thước',
   toastAllDown: 'Tất cả dịch vụ dịch đang gặp sự cố. Sẽ thử lại sau ít phút.',
-  toastChatNotFound: 'Kick Chat Translator: không tìm thấy chat. Có thể cần cập nhật.',
+  toastChatNotFound: 'Twitch Chat Translator: không tìm thấy chat. Có thể cần cập nhật.',
   toastCopied: 'Đã sao chép bản dịch. Dán bằng Ctrl+V.',
   toastQuota: 'Đã hết hạn mức của $PROVIDER$. Chuyển sang dịch vụ tiếp theo.',
   toastSwitched: 'Đã chuyển sang $PROVIDER$',

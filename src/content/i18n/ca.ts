@@ -49,7 +49,7 @@ export const ca: Record<string, string> = {
   skipSlang: 'només és argot de xat',
   skipTooLong: 'supera la mida màxima',
   toastAllDown: 'Tots els serveis de traducció estan caiguts. Es tornarà a provar d\'aquí a poc.',
-  toastChatNotFound: "Kick Chat Translator: no s'ha trobat el xat. Pot ser que calgui una actualització.",
+  toastChatNotFound: "Twitch Chat Translator: no s'ha trobat el xat. Pot ser que calgui una actualització.",
   toastCopied: 'Traducció copiada. Enganxa-la amb Ctrl+V.',
   toastQuota: 'Quota de $PROVIDER$ esgotada. Es passa al servei següent.',
   toastSwitched: 'Canviat a $PROVIDER$',

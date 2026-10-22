@@ -49,7 +49,7 @@ export const ar: Record<string, string> = {
   skipSlang: 'عامية دردشة فقط',
   skipTooLong: 'تتجاوز الحد المسموح للطول',
   toastAllDown: 'جميع خدمات الترجمة متعطلة. ستُعاد المحاولة بعد قليل.',
-  toastChatNotFound: 'Kick Chat Translator: تعذّر العثور على الدردشة. قد تحتاج الإضافة إلى تحديث.',
+  toastChatNotFound: 'Twitch Chat Translator: تعذّر العثور على الدردشة. قد تحتاج الإضافة إلى تحديث.',
   toastCopied: 'تم نسخ الترجمة. الصقها بالضغط على Ctrl+V.',
   toastQuota: 'اكتملت حصة $PROVIDER$. جارٍ التحويل إلى الخدمة التالية.',
   toastSwitched: 'تم التحويل إلى $PROVIDER$',

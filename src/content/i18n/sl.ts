@@ -49,7 +49,7 @@ export const sl: Record<string, string> = {
   skipSlang: 'vsebuje samo klepetalni sleng',
   skipTooLong: 'presega omejitev dolžine',
   toastAllDown: 'Noben ponudnik prevajanja ne deluje. Kmalu bo sledil nov poskus.',
-  toastChatNotFound: 'Kick Chat Translator: klepeta ni mogoče najti. Morda je potrebna posodobitev.',
+  toastChatNotFound: 'Twitch Chat Translator: klepeta ni mogoče najti. Morda je potrebna posodobitev.',
   toastCopied: 'Prevod je kopiran. Prilepite ga s Ctrl+V.',
   toastQuota: 'Kvota ponudnika $PROVIDER$ je dosežena. Preklop na naslednjega ponudnika.',
   toastSwitched: 'Preklop na $PROVIDER$',

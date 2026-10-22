@@ -49,7 +49,7 @@ export const he: Record<string, string> = {
   skipSlang: "זה רק סלנג של צ'אט",
   skipTooLong: 'ההודעה חורגת ממגבלת הגודל',
   toastAllDown: 'כל שירותי התרגום מושבתים. ננסה שוב בעוד רגע.',
-  toastChatNotFound: "Kick Chat Translator: הצ'אט לא נמצא. ייתכן שצריך לעדכן.",
+  toastChatNotFound: "Twitch Chat Translator: הצ'אט לא נמצא. ייתכן שצריך לעדכן.",
   toastCopied: 'התרגום הועתק. הדבק אותו עם Ctrl+V.',
   toastQuota: 'המכסה של $PROVIDER$ נוצלה. עוברים לשירות הבא.',
   toastSwitched: 'עברנו ל-$PROVIDER$',

@@ -49,7 +49,7 @@ export const ms: Record<string, string> = {
   skipSlang: 'hanya bahasa slanga sembang',
   skipTooLong: 'melebihi had saiz',
   toastAllDown: 'Semua penyedia terjemahan tidak berfungsi. Mencuba semula sebentar lagi.',
-  toastChatNotFound: 'Kick Chat Translator: sembang tidak ditemui. Mungkin perlu kemas kini.',
+  toastChatNotFound: 'Twitch Chat Translator: sembang tidak ditemui. Mungkin perlu kemas kini.',
   toastCopied: 'Terjemahan disalin. Tampal dengan Ctrl+V.',
   toastQuota: 'Kuota $PROVIDER$ telah habis. Beralih ke penyedia seterusnya.',
   toastSwitched: 'Beralih ke $PROVIDER$',

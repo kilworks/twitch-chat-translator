@@ -49,7 +49,7 @@ export const lv: Record<string, string> = {
   skipSlang: 'tas ir tikai čata slengs',
   skipTooLong: 'tā ir garāka par pieļaujamo limitu',
   toastAllDown: 'Visi tulkošanas pakalpojumi nedarbojas. Drīz mēģinās vēlreiz.',
-  toastChatNotFound: 'Kick Chat Translator: čats nav atrasts. Iespējams, nepieciešams atjauninājums.',
+  toastChatNotFound: 'Twitch Chat Translator: čats nav atrasts. Iespējams, nepieciešams atjauninājums.',
   toastCopied: 'Tulkojums nokopēts. Ielīmē to ar Ctrl+V.',
   toastQuota: '$PROVIDER$ kvota sasniegta. Pāriet uz nākamo pakalpojumu.',
   toastSwitched: 'Pārslēgts uz $PROVIDER$',

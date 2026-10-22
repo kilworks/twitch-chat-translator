@@ -9,8 +9,8 @@ export const zh: Record<string, string> = {
   'Advanced': '高级',
   'Activity': '活动',
   'About': '关于',
-  'Kick Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
-    'Kick Chat Translator 实时读取聊天，把非英语（或非目标语言）的消息直接翻译在原文下方。不追踪，无需账号，完全开源。',
+  'Twitch Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
+    'Twitch Chat Translator 实时读取聊天，把非英语（或非目标语言）的消息直接翻译在原文下方。不追踪，无需账号，完全开源。',
   'Links': '链接',
   'GitHub repository': 'GitHub 仓库',
   'Privacy policy': '隐私政策',
@@ -28,8 +28,8 @@ export const zh: Record<string, string> = {
   'Cache & performance': '缓存与性能',
   'Debugging': '调试',
   'Pause when tab is hidden': '标签页在后台时暂停',
-  "Background Kick tabs won't translate (saves DeepL quota while you're away).":
-    '后台的 Kick 标签页不会翻译（你不在时可节省 DeepL 配额）。',
+  "Background Twitch tabs won't translate (saves DeepL quota while you're away).":
+    '后台的 Twitch 标签页不会翻译（你不在时可节省 DeepL 配额）。',
   'Verbose console logs': '详细的控制台日志',
   'Cache max entries': '缓存条目上限',
   'Larger = more hits across sessions, more disk space.':
@@ -56,8 +56,8 @@ export const zh: Record<string, string> = {
     '自动按浏览器检测到的语言，把收到的聊天翻译成你的语言。',
   'Write my messages in': '发送消息使用的语言',
   "Auto (the channel's language)": '自动（频道语言）',
-  "Auto detects the channel's broadcast language from Kick. No manual picking.":
-    '自动从 Kick 获取频道的直播语言，无需手动选择。',
+  "Auto detects the channel's broadcast language from Twitch. No manual picking.":
+    '自动从 Twitch 获取频道的直播语言，无需手动选择。',
   'Below': '下方',
   'On a new line under the message.': '显示在消息下方的新一行。',
   'Inline': '行内',
@@ -147,8 +147,8 @@ export const zh: Record<string, string> = {
     '比这更短的消息不翻译。调高可以在聊天很热闹时少用翻译服务的配额。',
   'Preview': '预览',
   'is anyone else seeing this?': '有没有别人也看到了这个？',
-  'Whether a Kick tab keeps translating once you look away.':
-    '切换到其他标签页后，Kick 标签页是否继续翻译。',
+  'Whether a Twitch tab keeps translating once you look away.':
+    '切换到其他标签页后，Twitch 标签页是否继续翻译。',
   'Reusing past translations, and how hard the engines are pushed on a busy chat. The defaults suit most channels.':
     '是否复用以前的译文，以及聊天很热闹时引擎的负载强度。默认值适合大多数频道。',
   'one channel name per line': '每行一个频道名',
@@ -161,13 +161,13 @@ export const zh: Record<string, string> = {
   'one rule per line, in the form word→replacement': '每行一条规则，格式为 词→替换词',
   'Debug': '调试',
   'Last decisions': '最近的判定',
-  'Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk.':
-    '最近每条消息为什么被翻译或被跳过。内容从已打开的 Kick 标签页读取，只保存在该页面的内存中，不会写入磁盘。',
+  'Why each recent message was translated or left alone. Read from an open Twitch tab, kept in memory there, never saved to disk.':
+    '最近每条消息为什么被翻译或被跳过。内容从已打开的 Twitch 标签页读取，只保存在该页面的内存中，不会写入磁盘。',
   'Read decisions': '读取判定',
-  'No Kick tab is open. Open a channel, let the chat run, then read again.':
-    '没有打开的 Kick 标签页。请先打开一个频道，等聊天滚动一会儿，再重新读取。',
-  'The open Kick tab has not loaded the extension yet. Reload the tab, then read again.':
-    '已打开的 Kick 标签页还没有加载扩展。请刷新该标签页，然后重新读取。',
+  'No Twitch tab is open. Open a channel, let the chat run, then read again.':
+    '没有打开的 Twitch 标签页。请先打开一个频道，等聊天滚动一会儿，再重新读取。',
+  'The open Twitch tab has not loaded the extension yet. Reload the tab, then read again.':
+    '已打开的 Twitch 标签页还没有加载扩展。请刷新该标签页，然后重新读取。',
   'Nothing recorded yet. Let a chat run for a moment, then read again.':
     '还没有任何记录。请让聊天滚动一会儿，再重新读取。',
   'Filter languages': '筛选语言',
@@ -190,7 +190,7 @@ export const zh: Record<string, string> = {
   'Text size': '文字大小',
   'Line spacing': '行距',
   'Font': '字体',
-  "Kick's own": 'Kick 默认',
+  "Twitch's own": 'Twitch 默认',
   'System': '系统',
   'Serif': '衬线',
   'Monospace': '等宽',
@@ -202,17 +202,17 @@ export const zh: Record<string, string> = {
   'Normal': '标准',
   'Roomy': '宽松',
   'Accent colour': '强调色',
-  'Kick green': 'Kick 绿',
+  'Twitch': 'Twitch',
   'Cyan': '青色',
-  'Violet': '紫色',
+  'Green': '绿色',
   'Amber': '琥珀色',
   'Chat theme': '聊天主题',
-  'Follow Kick': '跟随 Kick',
+  'Follow Twitch': '跟随 Twitch',
   'Always dark': '始终深色',
   'Always light': '始终浅色',
   'Remember a reading language per channel': '为每个频道记住阅读语言',
-  'Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
-    'Kick Chat Translator 会在聊天消息到达时读取，并在每条消息下方显示你所读语言的译文。你发送消息之前，它也能先帮你翻译。无需账号，不追踪，开源。',
+  'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
+    'Twitch Chat Translator 会在聊天消息到达时读取，并在每条消息下方显示你所读语言的译文。你发送消息之前，它也能先帮你翻译。无需账号，不追踪，开源。',
   'Version': '版本',
   'Languages': '语言',
   'Providers ready': '可用的翻译服务',
@@ -254,13 +254,13 @@ export const zh: Record<string, string> = {
     '“筛选”里的白名单，就是在这些语言之间做选择。',
   'Paused on this channel': '此频道已暂停',
   'Resume': '继续',
-  'Open a Kick channel: its chat is translated as it arrives.':
-    '打开一个 Kick 频道，聊天消息一到就会被翻译。',
-  'Open Kick': '打开 Kick',
+  'Open a Twitch channel: its chat is translated as it arrives.':
+    '打开一个 Twitch 频道，聊天消息一到就会被翻译。',
+  'Open Twitch': '打开 Twitch',
   'Free plan: 1,000,000 characters a month. Free keys end with :fx.':
     '免费套餐每月 1,000,000 个字符。免费密钥以 :fx 结尾。',
   'Get a key:': '获取密钥：',
-  "Help improve Kick Chat Translator?": "帮助改进 Kick Chat Translator？",
+  "Help improve Twitch Chat Translator?": "帮助改进 Twitch Chat Translator？",
   "Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels.": "每天一次，只发送匿名统计：使用的引擎、错误、速度。绝不发送你的消息、名称或频道。",
   "No thanks": "不用了，谢谢",
   "Share": "分享",
@@ -270,4 +270,6 @@ export const zh: Record<string, string> = {
   "Other bots to ignore": "其他要忽略的机器人",
   "one bot name per line": "每行一个机器人名称",
   "Work in progress": "开发中",
+  "Also for Kick": "也有 Kick 版",
+  "The same translator, for Kick chat, by the same author:": "同一作者、同一款翻译工具，用于 Kick 聊天：",
 };

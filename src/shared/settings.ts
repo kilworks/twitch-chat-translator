@@ -60,7 +60,7 @@ export const SettingsSchema = z.object({
   // libre : voir l'en-tete des blocs d'accent dans theme.css. Un lecteur qui
   // choisit son bleu prefere ne sait pas que la verte de Kick tient 1.37:1 sur
   // du blanc.
-  accent: z.enum(['kick', 'cyan', 'violet', 'amber']).default('kick'),
+  accent: z.enum(['kick', 'cyan', 'green', 'amber']).default('kick'),
   // Le theme suit celui de Kick, mesure sur le fond reel du chat. 'dark' et
   // 'light' le figent pour qui prefere l'inverse de ce que la chaine affiche.
   chatScheme: z.enum(['auto', 'dark', 'light']).default('auto'),
@@ -109,7 +109,7 @@ export const SettingsSchema = z.object({
   minTextLength: z.number().int().min(1).max(50).default(MIN_TEXT_LENGTH),
   ignoreEnglish: z.boolean().default(true),
   ignoreBots: z.boolean().default(true),
-  // Bots a channel uses beyond the built-in Kick list (constants KICK_BOTS).
+  // Bots a channel uses beyond the built-in Twitch list (shared/bots TWITCH_BOTS).
   extraBots: z.array(z.string()).default([]),
   blacklistUsers: z.array(z.string()).default([]),
   // A line containing one of these is hidden from chat, not just left untranslated.
@@ -130,7 +130,7 @@ export const SettingsSchema = z.object({
 
   // Connection strategy
   connectionMode: z.enum(['auto', 'websocket', 'dom']).default('auto'),
-  // Pause translating in tabs that aren't visible — stops background tabs from
+  // Pause translating in tabs that aren't visible, stops background tabs from
   // burning provider quota (DeepL) while you're not watching.
   pauseWhenHidden: z.boolean().default(true),
   debug: z.boolean().default(false),

@@ -49,7 +49,7 @@ export const pl: Record<string, string> = {
   skipSlang: 'to tylko czatowy slang',
   skipTooLong: 'jest dłuższa niż dozwolony limit',
   toastAllDown: 'Wszyscy dostawcy tłumaczeń są niedostępni. Za chwilę spróbuję ponownie.',
-  toastChatNotFound: 'Kick Chat Translator: nie znaleziono czatu. Może być potrzebna aktualizacja.',
+  toastChatNotFound: 'Twitch Chat Translator: nie znaleziono czatu. Może być potrzebna aktualizacja.',
   toastCopied: 'Tłumaczenie skopiowane. Wklej je za pomocą Ctrl+V.',
   toastQuota: 'Limit u dostawcy $PROVIDER$ wyczerpany. Przełączam na następnego dostawcę.',
   toastSwitched: 'Przełączono na $PROVIDER$',

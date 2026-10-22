@@ -117,7 +117,7 @@ export function DisplaySection({ settings, onPatch }: Props) {
               })
             }
           >
-            <option value="inherit">{t("Kick's own")}</option>
+            <option value="inherit">{t("Twitch's own")}</option>
             <option value="system">{t('System')}</option>
             <option value="serif">{t('Serif')}</option>
             <option value="mono">{t('Monospace')}</option>
@@ -142,9 +142,9 @@ export function DisplaySection({ settings, onPatch }: Props) {
           label={t('Accent colour')}
           value={settings.accent}
           options={[
-            ['kick', t('Kick green')],
+            ['kick', t('Twitch')],
             ['cyan', t('Cyan')],
-            ['violet', t('Violet')],
+            ['green', t('Green')],
             ['amber', t('Amber')],
           ]}
           onChange={(v) => onPatch({ accent: v as Settings['accent'] })}
@@ -162,7 +162,7 @@ export function DisplaySection({ settings, onPatch }: Props) {
           label={t('Chat theme')}
           value={settings.chatScheme}
           options={[
-            ['auto', t('Follow Kick')],
+            ['auto', t('Follow Twitch')],
             ['dark', t('Always dark')],
             ['light', t('Always light')],
           ]}
@@ -231,7 +231,7 @@ export function DisplaySection({ settings, onPatch }: Props) {
           </select>
         </div>
         <p class="text-[11px] text-kick-muted">
-          {t("Auto detects the channel's broadcast language from Kick. No manual picking.")}
+          {t("Auto detects the channel's broadcast language from Twitch. No manual picking.")}
         </p>
         <ToggleRow
           checked={settings.composeInsertMode === 'insert'}
@@ -431,7 +431,7 @@ function StyleCard({
       <div class="flex items-center gap-2">
         <span class="text-sm font-semibold">{label}</span>
         {recommended && (
-          <span class="rounded bg-kick-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-kick-primary">
+          <span class="rounded bg-kick-primary/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-kick-primary">
             {t('recommended')}
           </span>
         )}

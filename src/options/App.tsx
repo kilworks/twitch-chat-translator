@@ -96,10 +96,10 @@ export function App() {
       <div class="mx-auto max-w-3xl px-6 py-10">
         <header class="mb-6 flex items-center gap-3">
           <div class="flex h-9 w-9 items-center justify-center rounded-md bg-kick-primary text-kick-dark font-black text-xl">
-            K
+            T
           </div>
           <div>
-            <h1 class="text-2xl font-bold tracking-tight">Kick Chat Translator</h1>
+            <h1 class="text-2xl font-bold tracking-tight">Twitch Chat Translator</h1>
             <p class="text-xs text-kick-muted">
               v{chrome.runtime.getManifest().version} · {t('options & preferences')}
               {/* kil, 2026-10-16: the options say they are still being reworked
@@ -118,7 +118,7 @@ export function App() {
         {/* The APG tabs pattern, which this was missing entirely: without
             role=tab and aria-selected a screen reader announces six unrelated
             buttons and cannot say which one is showing. Roving tabindex keeps
-            the whole bar to a single tab stop — it took five before — and the
+            the whole bar to a single tab stop, it took five before, and the
             arrows move between tabs, which is where a keyboard user reaches
             for them. */}
         <nav

@@ -9,8 +9,8 @@ export const pl: Record<string, string> = {
   'Advanced': 'Zaawansowane',
   'Activity': 'Aktywność',
   'About': 'Informacje',
-  'Kick Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
-    'Kick Chat Translator śledzi czat na żywo i tłumaczy wiadomości nieangielskie (lub w innym języku niż docelowy) tuż pod oryginałem. Bez śledzenia, bez konta, w pełni open source.',
+  'Twitch Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source.':
+    'Twitch Chat Translator śledzi czat na żywo i tłumaczy wiadomości nieangielskie (lub w innym języku niż docelowy) tuż pod oryginałem. Bez śledzenia, bez konta, w pełni open source.',
   'Links': 'Linki',
   'GitHub repository': 'Repozytorium GitHub',
   'Privacy policy': 'Polityka prywatności',
@@ -28,8 +28,8 @@ export const pl: Record<string, string> = {
   'Cache & performance': 'Pamięć podręczna i wydajność',
   'Debugging': 'Debugowanie',
   'Pause when tab is hidden': 'Wstrzymaj w ukrytej karcie',
-  "Background Kick tabs won't translate (saves DeepL quota while you're away).":
-    'Karty Kick w tle nie tłumaczą (oszczędza limit DeepL pod Twoją nieobecność).',
+  "Background Twitch tabs won't translate (saves DeepL quota while you're away).":
+    'Karty Twitch w tle nie tłumaczą (oszczędza limit DeepL pod Twoją nieobecność).',
   'Verbose console logs': 'Szczegółowe logi w konsoli',
   'Cache max entries': 'Maks. liczba wpisów w pamięci',
   'Larger = more hits across sessions, more disk space.':
@@ -56,8 +56,8 @@ export const pl: Record<string, string> = {
     'Tryb automatyczny pokazuje czat w Twoim języku, wykrytym na podstawie przeglądarki.',
   'Write my messages in': 'Tłumacz moje wiadomości na',
   "Auto (the channel's language)": 'Automatycznie (język kanału)',
-  "Auto detects the channel's broadcast language from Kick. No manual picking.":
-    'Tryb automatyczny wykrywa język transmisji kanału na podstawie danych z Kick. Bez ręcznego wyboru.',
+  "Auto detects the channel's broadcast language from Twitch. No manual picking.":
+    'Tryb automatyczny wykrywa język transmisji kanału na podstawie danych z Twitch. Bez ręcznego wyboru.',
   'Below': 'Pod spodem',
   'On a new line under the message.': 'W nowym wierszu pod wiadomością.',
   'Inline': 'W linii',
@@ -151,8 +151,8 @@ export const pl: Record<string, string> = {
     'Krótsze wiadomości są pomijane. Zwiększ wartość, by zużywać mniej limitu dostawców na ruchliwych czatach.',
   'Preview': 'Podgląd',
   'is anyone else seeing this?': 'czy ktoś jeszcze to widzi?',
-  'Whether a Kick tab keeps translating once you look away.':
-    'Czy karta Kick tłumaczy dalej, gdy przełączysz się na inną.',
+  'Whether a Twitch tab keeps translating once you look away.':
+    'Czy karta Twitch tłumaczy dalej, gdy przełączysz się na inną.',
   'Reusing past translations, and how hard the engines are pushed on a busy chat. The defaults suit most channels.':
     'Ponowne użycie wcześniejszych tłumaczeń i obciążenie silników na ruchliwym czacie. Wartości domyślne pasują do większości kanałów.',
   'one channel name per line': 'jedna nazwa kanału w wierszu',
@@ -166,13 +166,13 @@ export const pl: Record<string, string> = {
     'jedna reguła w wierszu, w formie słowo→zamiennik',
   'Debug': 'Debug',
   'Last decisions': 'Ostatnie decyzje',
-  'Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk.':
-    'Dlaczego każda z ostatnich wiadomości została przetłumaczona lub pominięta. Dane są odczytywane z otwartej karty Kick, przechowywane tylko w jej pamięci i nigdy nie trafiają na dysk.',
+  'Why each recent message was translated or left alone. Read from an open Twitch tab, kept in memory there, never saved to disk.':
+    'Dlaczego każda z ostatnich wiadomości została przetłumaczona lub pominięta. Dane są odczytywane z otwartej karty Twitch, przechowywane tylko w jej pamięci i nigdy nie trafiają na dysk.',
   'Read decisions': 'Odczytaj decyzje',
-  'No Kick tab is open. Open a channel, let the chat run, then read again.':
-    'Żadna karta Kick nie jest otwarta. Otwórz kanał, poczekaj chwilę, aż ruszy czat, i odczytaj ponownie.',
-  'The open Kick tab has not loaded the extension yet. Reload the tab, then read again.':
-    'Otwarta karta Kick nie załadowała jeszcze rozszerzenia. Odśwież kartę i odczytaj ponownie.',
+  'No Twitch tab is open. Open a channel, let the chat run, then read again.':
+    'Żadna karta Twitch nie jest otwarta. Otwórz kanał, poczekaj chwilę, aż ruszy czat, i odczytaj ponownie.',
+  'The open Twitch tab has not loaded the extension yet. Reload the tab, then read again.':
+    'Otwarta karta Twitch nie załadowała jeszcze rozszerzenia. Odśwież kartę i odczytaj ponownie.',
   'Nothing recorded yet. Let a chat run for a moment, then read again.':
     'Nic jeszcze nie zapisano. Poczekaj chwilę, aż czat ruszy, i odczytaj ponownie.',
   'Filter languages': 'Filtruj języki',
@@ -196,7 +196,7 @@ export const pl: Record<string, string> = {
   'Text size': 'Rozmiar tekstu',
   'Line spacing': 'Odstęp między wierszami',
   'Font': 'Czcionka',
-  "Kick's own": 'Domyślna Kick',
+  "Twitch's own": 'Domyślna Twitch',
   'System': 'Systemowa',
   'Serif': 'Szeryfowa',
   'Monospace': 'Stałej szerokości',
@@ -208,17 +208,17 @@ export const pl: Record<string, string> = {
   'Normal': 'Normalna',
   'Roomy': 'Luźna',
   'Accent colour': 'Kolor wiodący',
-  'Kick green': 'Zielony Kick',
+  'Twitch': 'Twitch',
   'Cyan': 'Cyjan',
-  'Violet': 'Fiolet',
+  'Green': 'Zielony',
   'Amber': 'Bursztyn',
   'Chat theme': 'Motyw czatu',
-  'Follow Kick': 'Jak w Kick',
+  'Follow Twitch': 'Jak w Twitch',
   'Always dark': 'Zawsze ciemny',
   'Always light': 'Zawsze jasny',
   'Remember a reading language per channel': 'Zapamiętuj język czytania osobno dla każdego kanału',
-  'Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
-    'Kick Chat Translator czyta czat na bieżąco i pod każdą wiadomością wstawia tłumaczenie na język, w którym czytasz. Tłumaczy też to, co piszesz, zanim to wyślesz. Bez konta, bez śledzenia, open source.',
+  'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.':
+    'Twitch Chat Translator czyta czat na bieżąco i pod każdą wiadomością wstawia tłumaczenie na język, w którym czytasz. Tłumaczy też to, co piszesz, zanim to wyślesz. Bez konta, bez śledzenia, open source.',
   'Version': 'Wersja',
   'Languages': 'Języki',
   'Providers ready': 'Gotowi dostawcy',
@@ -260,13 +260,13 @@ export const pl: Record<string, string> = {
     'Spośród tych języków wybiera lista dozwolonych w Filtrach.',
   'Paused on this channel': 'Wstrzymano na tym kanale',
   'Resume': 'Wznów',
-  'Open a Kick channel: its chat is translated as it arrives.':
-    'Otwórz kanał na Kick: jego czat jest tłumaczony na bieżąco.',
-  'Open Kick': 'Otwórz Kick',
+  'Open a Twitch channel: its chat is translated as it arrives.':
+    'Otwórz kanał na Twitch: jego czat jest tłumaczony na bieżąco.',
+  'Open Twitch': 'Otwórz Twitch',
   'Free plan: 1,000,000 characters a month. Free keys end with :fx.':
     'Plan darmowy: 1 000 000 znaków miesięcznie. Darmowe klucze kończą się na :fx.',
   'Get a key:': 'Zdobądź klucz:',
-  "Help improve Kick Chat Translator?": "Pomożesz ulepszyć Kick Chat Translator?",
+  "Help improve Twitch Chat Translator?": "Pomożesz ulepszyć Twitch Chat Translator?",
   "Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels.": "Raz dziennie anonimowe liczniki: użyte silniki, błędy, szybkość. Nigdy twoje wiadomości, nazwy ani kanały.",
   "No thanks": "Nie, dzięki",
   "Share": "Udostępnij",
@@ -276,4 +276,6 @@ export const pl: Record<string, string> = {
   "Other bots to ignore": "Inne boty do ignorowania",
   "one bot name per line": "jedna nazwa bota na wiersz",
   "Work in progress": "Prace w toku",
+  "Also for Kick": "Także dla Kick",
+  "The same translator, for Kick chat, by the same author:": "Ten sam tłumacz dla czatu Kick, od tego samego autora:",
 };

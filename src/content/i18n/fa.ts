@@ -49,7 +49,7 @@ export const fa: Record<string, string> = {
   skipSlang: 'فقط اصطلاحات عامیانه چت است',
   skipTooLong: 'از حداکثر طول مجاز بیشتر است',
   toastAllDown: 'همه سرویس‌های ترجمه از کار افتاده‌اند. به‌زودی دوباره تلاش می‌شود.',
-  toastChatNotFound: 'Kick Chat Translator: چت پیدا نشد. شاید لازم باشد افزونه به‌روزرسانی شود.',
+  toastChatNotFound: 'Twitch Chat Translator: چت پیدا نشد. شاید لازم باشد افزونه به‌روزرسانی شود.',
   toastCopied: 'ترجمه کپی شد. با Ctrl+V آن را جای‌گذاری کنید.',
   toastQuota: 'سهمیه $PROVIDER$ تمام شد. به سرویس بعدی منتقل می‌شود.',
   toastSwitched: 'سرویس به $PROVIDER$ تغییر کرد',

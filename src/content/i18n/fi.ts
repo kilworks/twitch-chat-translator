@@ -49,7 +49,7 @@ export const fi: Record<string, string> = {
   skipSlang: 'se on pelkkää chat-slangia',
   skipTooLong: 'se on pituusrajaa pidempi',
   toastAllDown: 'Kaikki käännöspalvelut ovat alhaalla. Yritetään pian uudelleen.',
-  toastChatNotFound: 'Kick Chat Translator: chattia ei löytynyt. Laajennus saattaa tarvita päivityksen.',
+  toastChatNotFound: 'Twitch Chat Translator: chattia ei löytynyt. Laajennus saattaa tarvita päivityksen.',
   toastCopied: 'Käännös kopioitu. Liitä se painamalla Ctrl+V.',
   toastQuota: '$PROVIDER$: kiintiö täynnä. Siirrytään seuraavaan palveluun.',
   toastSwitched: 'Siirryttiin palveluun $PROVIDER$',

@@ -3,7 +3,7 @@ import type { Decision } from '~/shared/messages';
 import { useT } from '~/shared/i18nContext';
 
 /**
- * The calls the extension just made, pulled from an open Kick tab.
+ * The calls the extension just made, pulled from an open Twitch tab.
  *
  * The decisions are made in the content script, which is another context, so
  * this asks for them when you press the button and never subscribes. They live
@@ -29,10 +29,10 @@ export function DebugSection() {
 
   async function load(): Promise<void> {
     setNote('');
-    const tabs = await chrome.tabs.query({ url: 'https://kick.com/*' });
+    const tabs = await chrome.tabs.query({ url: ['https://www.twitch.tv/*', 'https://m.twitch.tv/*', 'https://dashboard.twitch.tv/*'] });
     if (tabs.length === 0) {
       setRows([]);
-      setNote(t('No Kick tab is open. Open a channel, let the chat run, then read again.'));
+      setNote(t('No Twitch tab is open. Open a channel, let the chat run, then read again.'));
       return;
     }
     for (const tab of tabs) {
@@ -51,7 +51,7 @@ export function DebugSection() {
     }
     setRows([]);
     setNote(
-      t('The open Kick tab has not loaded the extension yet. Reload the tab, then read again.'),
+      t('The open Twitch tab has not loaded the extension yet. Reload the tab, then read again.'),
     );
   }
 
@@ -60,7 +60,7 @@ export function DebugSection() {
       <h2 class="kt-section">{t('Last decisions')}</h2>
       <p class="text-[12px] text-kick-muted">
         {t(
-          'Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk.',
+          'Why each recent message was translated or left alone. Read from an open Twitch tab, kept in memory there, never saved to disk.',
         )}
       </p>
       <button class="kt-btn-ghost" onClick={() => void load()}>

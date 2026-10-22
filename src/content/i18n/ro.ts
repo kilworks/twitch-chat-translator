@@ -49,7 +49,7 @@ export const ro: Record<string, string> = {
   skipSlang: 'conține doar argou de chat',
   skipTooLong: 'depășește limita de lungime',
   toastAllDown: 'Niciun serviciu de traducere nu răspunde. Se reîncearcă în curând.',
-  toastChatNotFound: 'Kick Chat Translator: chatul nu a fost găsit. Poate fi nevoie de o actualizare.',
+  toastChatNotFound: 'Twitch Chat Translator: chatul nu a fost găsit. Poate fi nevoie de o actualizare.',
   toastCopied: 'Traducere copiată. Lipește-o cu Ctrl+V.',
   toastQuota: 'Cota $PROVIDER$ a fost atinsă. Se trece la următorul serviciu.',
   toastSwitched: 'S-a trecut la $PROVIDER$',

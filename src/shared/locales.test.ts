@@ -60,7 +60,7 @@ describe('store listing locales', () => {
   // language; AMO refuses names over 50 characters.
   it.each(locales)('%s names the extension after its brand, in 45 characters at most', (locale) => {
     const name = read(locale).extName?.message ?? '';
-    expect(name.startsWith('Kick Chat Translator')).toBe(true);
+    expect(name.startsWith('Twitch Chat Translator')).toBe(true);
     expect(name.length).toBeLessThanOrEqual(45);
   });
 

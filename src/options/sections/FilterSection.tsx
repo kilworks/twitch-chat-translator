@@ -6,7 +6,7 @@ import { resolveUiLocale } from '~/shared/i18n';
 import { useT } from '~/shared/i18nContext';
 import { Check } from '../components/Check';
 import { flagClass } from '~/shared/flags';
-import { KICK_BOTS } from '~/shared/constants';
+import { TWITCH_BOTS } from '~/shared/bots';
 
 interface Props {
   settings: Settings;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 /**
- * Names (channels, users, bots): no spaces in a Kick name, so space, comma and
+ * Names (channels, users, bots): no spaces in a Twitch name, so space, comma and
  * line break all separate; "@" pasted from chat is dropped; case folded.
  */
 export function toNames(v: string): string[] {
@@ -78,7 +78,7 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
         {settings.ignoreBots && (
           <div class="kt-row">
             <p class="kt-hint">
-              {t('Always ignored:')} {KICK_BOTS.join(', ')}
+              {t('Always ignored:')} {TWITCH_BOTS.join(', ')}
             </p>
             <ListField
               id="kt-extra-bots"
