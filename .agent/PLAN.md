@@ -389,8 +389,8 @@ they test, L last.
 ### [K03] Repository
 
 - [x] Create the GitHub repository (private by default) and allow the first push.
-      Done 2026-10-23 by the owner (#143): created public, push allowed. Raw recon captures with
-      viewers' handles kept out of the history first.
+      Decided 2026-10-23 by the owner (#143): public, push allowed. Created with gh and pushed
+      the same night, after raw recon captures with viewers' handles were kept out of the history.
 
 ### [K04] Store name and brand
 
