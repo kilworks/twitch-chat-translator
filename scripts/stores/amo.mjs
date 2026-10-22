@@ -4,6 +4,7 @@
  *
  *   node .claude/skills/publish-stores/amo.mjs status
  *   node .claude/skills/publish-stores/amo.mjs release <firefox.zip> <source.zip> <amo-notes.json>
+ *   node .claude/skills/publish-stores/amo.mjs create <firefox.zip> <source.zip> <amo-notes.json> <amo-listing.json>
  *   node .claude/skills/publish-stores/amo.mjs listing <amo-listing.json>
  *
  * `release` uploads the package, waits for validation, creates the version
@@ -20,7 +21,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-const SLUG = process.env.AMO_SLUG ?? 'twitch-chat-translator';
+// 'twitch-chat-translator' belongs to another developer on AMO (checked 2026-10-23).
+const SLUG = process.env.AMO_SLUG ?? 'twitch-chat-translator-by-pkkls';
 const KEY_FILE = process.env.AMO_API_KEY ?? path.join(os.homedir(), '.config', 'twitch-chat-translator', 'amo-api.json');
 const API = process.env.AMO_API ?? 'https://addons.mozilla.org/api/v5';
 
@@ -109,8 +111,11 @@ if (cmd === 'previews') {
   const a = await call('GET', `${addon}/`);
   const v = a.current_version ?? {};
   console.log(JSON.stringify({ current: v.version, file: v.file?.status, status: a.status }, null, 2));
-} else if (cmd === 'release') {
-  const [zip, source, notesFile] = args;
+} else if (cmd === 'release' || cmd === 'create') {
+  // create <firefox.zip> <source.zip> <amo-notes.json> <amo-listing.json>: the first version
+  // of an add-on that does not exist yet. AMO creates the add-on and its version in one call;
+  // the source archive and the notes go on the version afterwards, as in `release`.
+  const [zip, source, notesFile, listingFile] = args;
   const pkg = file(zip);
   const src = file(source);
   const { notes, rev } = JSON.parse(fs.readFileSync(notesFile ?? die('amo-notes.json manquant'), 'utf8'));
@@ -128,10 +133,27 @@ if (cmd === 'previews') {
   console.log(`validation : ${v.errors ?? '?'} erreur(s), ${v.warnings ?? '?'} avertissement(s), version ${up.version}`);
   if (!up.valid) die('le paquet ne passe pas la validation');
 
-  const vf = new FormData();
-  vf.set('upload', up.uuid);
-  vf.set('source', src, path.basename(source));
-  const version = await call('POST', `${addon}/versions/`, vf);
+  let version;
+  if (cmd === 'create') {
+    const { name, summary } = JSON.parse(fs.readFileSync(listingFile ?? die('amo-listing.json manquant'), 'utf8'));
+    const created = await call('POST', `${API}/addons/addon/`, {
+      slug: SLUG,
+      categories: ['social-communication'],
+      name: localised(name),
+      summary: localised(summary),
+      version: { upload: up.uuid, license: 'MIT' },
+    });
+    console.log(`add-on cree : ${created.slug}, id ${created.id}`);
+    version = created.current_version ?? created.latest_unlisted_version ?? (await call('GET', `${addon}/versions/`, undefined, true)).results?.[0];
+    const sf = new FormData();
+    sf.set('source', src, path.basename(source));
+    await call('PATCH', `${addon}/versions/${version.id}/`, sf);
+  } else {
+    const vf = new FormData();
+    vf.set('upload', up.uuid);
+    vf.set('source', src, path.basename(source));
+    version = await call('POST', `${addon}/versions/`, vf);
+  }
   await call('PATCH', `${addon}/versions/${version.id}/`, { release_notes: localised(notes), approval_notes: rev });
   const after = await call('GET', `${addon}/versions/${version.id}/`, undefined, true);
   console.log(JSON.stringify({

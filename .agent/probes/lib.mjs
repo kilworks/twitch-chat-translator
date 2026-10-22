@@ -10,7 +10,8 @@ export const { chromium, devices } = await import(pathToFileURL(path.join(KIT, '
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const RECON = path.join(ROOT, '.agent', 'RECON');
 export const EXT = path.join(ROOT, '.recon-ext');
-export const TODAY = new Date().toISOString().slice(0, 10);
+// The owner's local day (sv-SE formats as YYYY-MM-DD): a UTC date read as yesterday after 22:00.
+export const TODAY = new Date().toLocaleDateString('sv-SE');
 
 export const CONFIGS = {
   native: [],
