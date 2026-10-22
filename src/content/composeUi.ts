@@ -1,5 +1,5 @@
 /**
- * Compose preview panel — the floating box above the chat composer that shows a
+ * Compose preview panel, the floating box above the chat composer that shows a
  * live translation of what the user is typing.
  *
  * Positioned `fixed` and tracked to the composer's bounding box so it never
@@ -9,7 +9,7 @@
  */
 import { getLang } from '~/shared/languages';
 import { flagEl } from '~/shared/flags';
-import { computePanelGeom, morceauxPourEditeur } from './composeLogic';
+import { computePanelGeom } from './composeLogic';
 import { send } from '~/shared/messages';
 import { showToast } from './injector';
 import { msg } from './msg';
@@ -40,19 +40,20 @@ let ui: ComposeUi | undefined;
 /** Read the plain text currently in the composer (textarea/input value or contenteditable text). */
 export function readComposerText(el: HTMLElement): string {
   if (el instanceof HTMLTextAreaElement || el instanceof HTMLInputElement) return el.value;
+  return readEditable(el).replace(/\uFEFF/g, '');
+}
+
+function readEditable(el: HTMLElement): string {
   // innerText preserves line breaks for multi-line messages; textContent collapses them.
-  // innerText puts a blank line between Lexical's <p>: one line per paragraph,
+  // innerText puts a blank line between an editor's blocks: one line per block,
   // or a two-line message came back from Tab with an empty line inside (measured).
-  if (!el.querySelector('img[data-emote-id]')) return (el.innerText ?? el.textContent ?? '').replace(/\n\n/g, '\n');
-  // Kick's emotes are <img data-emote-id data-emote-name> nodes innerText skips, so
-  // a translation written back would drop them. Spell them as Kick's own
-  // [emote:id:name] markup instead; maskProtected keeps it through the translator.
-  // A detached clone has no layout, so innerText is gone: Lexical's <p> are the lines.
+  if (!el.querySelector('img[alt]')) return (el.innerText ?? el.textContent ?? '').replace(/\n\n/g, '\n');
+  // An emote drawn in the box is an image innerText skips, so a translation written
+  // back would drop it. On Twitch an emote IS its name, so the name is spelled out.
+  // A detached clone has no layout, so innerText is gone: the editor's blocks are the lines.
   const clone = el.cloneNode(true) as HTMLElement;
-  for (const img of clone.querySelectorAll<HTMLImageElement>('img[data-emote-id]')) {
-    img.replaceWith(`[emote:${img.dataset.emoteId}:${img.dataset.emoteName || img.alt}]`);
-  }
-  const lines = clone.querySelectorAll('p');
+  for (const img of clone.querySelectorAll<HTMLImageElement>('img[alt]')) img.replaceWith(img.alt);
+  const lines = clone.querySelectorAll(':scope > [data-slate-node="element"], :scope > p');
   return lines.length ? [...lines].map((p) => p.textContent ?? '').join('\n') : (clone.textContent ?? '');
 }
 
@@ -71,13 +72,13 @@ export function mountComposePreview(
   panel.dataset.state = 'hidden';
 
   // Read-only badge of the auto-detected output language (the channel's language).
-  // No manual picker — the target is detected, not configured.
+  // No manual picker, the target is detected, not configured.
   const targetEl = document.createElement('span');
   targetEl.className = 'kt-compose-target';
   setTargetBadge(targetEl, targetLang);
   panel.appendChild(targetEl);
 
-  // The translation — the hero of the chip, full width.
+  // The translation, the hero of the chip, full width.
   const textEl = document.createElement('span');
   textEl.className = 'kt-compose-text';
   textEl.dir = 'auto'; // render RTL languages (Arabic/Hebrew/Persian) correctly
@@ -90,7 +91,7 @@ export function mountComposePreview(
   panel.appendChild(insert);
 
   // Clicking the translation inserts it (mousedown, so the composer doesn't lose
-  // focus to a real click first — keeps the caret where the user expects).
+  // focus to a real click first, keeps the caret where the user expects).
   panel.addEventListener('mousedown', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -105,7 +106,7 @@ export function mountComposePreview(
   };
 
   // Track the composer's box so the panel stays glued to it when the input grows
-  // to multiple lines — fires only on a real size change, never on the keystroke path.
+  // to multiple lines, fires only on a real size change, never on the keystroke path.
   let resizeObs: ResizeObserver | undefined;
   if (typeof ResizeObserver !== 'undefined') {
     resizeObs = new ResizeObserver(reposition);
@@ -117,7 +118,7 @@ export function mountComposePreview(
   window.addEventListener('scroll', reposition, { passive: true, capture: true });
   window.addEventListener('resize', reposition, { passive: true });
   // The on-screen keyboard / pinch-zoom move the visual viewport without firing a
-  // window resize — track it so the panel stays put above the keyboard.
+  // window resize, track it so the panel stays put above the keyboard.
   window.visualViewport?.addEventListener('resize', reposition);
   window.visualViewport?.addEventListener('scroll', reposition);
   reposition();
@@ -157,15 +158,15 @@ function chipTopAbove(composerTop: number): number | undefined {
   return box.top < composerTop && box.bottom <= composerTop + 8 ? box.top : undefined;
 }
 
-// Kick's own popups over the composer: completion lists (`:emote`, `@user`,
-// `/command`, where Tab completes) and the emote picker, which our preview
-// covered. Always in the DOM, open = has height (measured on kick.com 2026-10-16).
-// 7TV replaces the `:emote` list with its own, which our preview covered too.
-const KICK_SUGGESTION_PANELS =
-  '#chat-emote-suggestion-panel, #chat-mention-panel, #chat-command-suggestion-panel, #chat-emotes-picker-panel, .seventv-autocomplete-list';
+// Completion popups over the composer, where Tab completes and our preview must
+// not cover. Open = has height. 7TV opens `.floating-container` on Tab
+// (RECON/<7tv configs>/compose); BTTV completes inline with no popup. Twitch's own
+// list, signed in, is `.autocomplete-match-list` for both `:emote` (314x252) and
+// `@mention` (RECON/k01/measure.json).
+const SUGGESTION_PANELS = '.autocomplete-match-list, .seventv-autocomplete-list, .floating-container';
 
-export function isKickSuggestionOpen(): boolean {
-  return [...document.querySelectorAll<HTMLElement>(KICK_SUGGESTION_PANELS)].some(
+export function isSuggestionOpen(): boolean {
+  return [...document.querySelectorAll<HTMLElement>(SUGGESTION_PANELS)].some(
     (el) => el.getBoundingClientRect().height > 0,
   );
 }
@@ -184,7 +185,7 @@ const OVERLAY_SELECTORS = [
 
 /**
  * Viewport-relative top of an overlay that opens *above* the composer, or undefined
- * when none is open — so the panel can sit above the overlay rather than under it.
+ * when none is open, so the panel can sit above the overlay rather than under it.
  */
 function findOverlayTopAbove(composer: HTMLElement, composerTop: number): number | undefined {
   for (const sel of OVERLAY_SELECTORS) {
@@ -296,16 +297,16 @@ export function unmountComposePreview(): void {
   ui = undefined;
 }
 
-// ─── Writing the translation back into Kick's composer ───────────────────────
+// ─── Writing the translation back into Twitch's composer ─────────────────────
 
 /**
  * Insert `text` into the composer, replacing its current content. Falls back to
  * the clipboard (with a toast) when the editor genuinely doesn't accept the write.
  *
- * Kick ships a Lexical contenteditable (`div.editor-input[role=textbox]`). Verified
- * live: `document.execCommand('insertText')` is silently ignored there, but a
- * synthetic `beforeinput`/insertText over a full selection is honoured and replaces
- * the content. Lexical reconciles a frame later, so success is checked async.
+ * Twitch ships a Slate contenteditable (`[data-a-target="chat-input"][data-slate-editor]`).
+ * It is written through the editor's own API in the page world; a synthetic
+ * `beforeinput`/insertText over a full selection is the fallback. The editor
+ * reconciles a frame later, so success is checked async.
  */
 export function insertIntoComposer(el: HTMLElement, text: string, mode: 'insert' | 'copy'): void {
   if (mode === 'copy') {
@@ -326,21 +327,16 @@ export function insertIntoComposer(el: HTMLElement, text: string, mode: 'insert'
     }
 
     el.focus();
-    // Emotes in the box: a select-all replace would delete them, so the page
-    // world rewrites the editor state around them (background/lexicalWrite).
-    if (el.querySelector('img[data-emote-id]')) {
-      el.dataset.ktComposer = '';
-      // No editor reachable (another layout, a browser without world MAIN): the
-      // plain replace keeps the words, the emotes as [emote:id:name] text.
-      send({ type: 'compose.write', parts: morceauxPourEditeur(text, readComposerText(el)) })
-        .then((r) => r.type === 'ack' || replaceAll(el, text))
-        .catch(() => replaceAll(el, text));
-      return;
-    }
-    replaceAll(el, text);
+    // Slate: written through the editor's own API in the page world
+    // (background/slateWrite). No editor reachable (another layout, a browser
+    // without world MAIN): the DOM replace.
+    el.dataset.ktComposer = '';
+    send({ type: 'compose.write', text })
+      .then((r) => r.type === 'ack' || replaceAll(el, text))
+      .catch(() => replaceAll(el, text));
 
     // Fall back to clipboard only if the box is genuinely unchanged after the
-    // editor has had a frame to apply — a lenient check so editor-side transforms
+    // editor has had a frame to apply, a lenient check so editor-side transforms
     // (emoji shortcodes, autolink) don't trigger a spurious "copied" toast.
     // An unchanged box only means the insert failed when the translation would
     // have changed it. When it matches what was typed there is nothing to rescue,
@@ -354,7 +350,7 @@ export function insertIntoComposer(el: HTMLElement, text: string, mode: 'insert'
 }
 
 // Rich contenteditable: select-all so the translation replaces the typed
-// source, then drive a synthetic insertText that Lexical/React will apply.
+// source, then drive a synthetic insertText the editor will apply.
 function replaceAll(el: HTMLElement, text: string): void {
   selectAllIn(el);
   el.dispatchEvent(

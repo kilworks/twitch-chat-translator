@@ -1,5 +1,5 @@
 /**
- * Compose preview controller — translates what the user types, live, before they
+ * Compose preview controller, translates what the user types, live, before they
  * send it, and shows it in a floating panel above the chat box.
  *
  * Flow per settled keystroke: debounce → cheap gates (`decideComposeAction`) →
@@ -12,12 +12,12 @@
 import type { Settings } from '~/shared/settings';
 import { withFavorite } from '~/shared/languages';
 import { rootLogger } from '~/shared/logger';
-import { refresh7TV } from './platform';
+import { detectExtensions } from './platform';
 import { countUsage } from './usage';
 import { createMetrics } from '~/shared/metrics';
 import { send } from '~/shared/messages';
 import { confidentLanguage, detectLanguage } from './langDetect';
-import { extractMessageText, findAllRows, findComposer } from './selectors';
+import { CHAT_PANEL_SELECTOR, extractMessageText, findAllRows, findComposer } from './selectors';
 import type { ChipHandlers, ChipState } from './langChip';
 import { mountLangChip, unmountLangChip, updateLangChip } from './langChip';
 import { memCache } from './memcache';
@@ -39,7 +39,7 @@ import {
   insertIntoComposer,
   isComposePreviewMounted,
   isComposePreviewVisible,
-  isKickSuggestionOpen,
+  isSuggestionOpen,
   mountComposePreview,
   readComposerText,
   setComposeTargetLang,
@@ -59,7 +59,7 @@ const metrics = createMetrics('content');
  */
 function readRecentChatContext(): string {
   try {
-    const container = document.querySelector('#channel-chatroom');
+    const container = document.querySelector(CHAT_PANEL_SELECTOR);
     if (!container) return '';
     return findAllRows(container)
       .slice(-4)
@@ -83,11 +83,11 @@ export class ComposeController {
   private guardTimer: ReturnType<typeof setTimeout> | undefined;
   private readonly seq = new Sequencer();
   private readonly limiter = new RateLimiter(COMPOSE_MAX_PER_MIN, 60_000);
-  /** Source text we last produced a preview for — drives dedup. */
+  /** Source text we last produced a preview for, drives dedup. */
   private lastSource: string | undefined;
-  /** Last translation shown — what a click inserts. */
+  /** Last translation shown, what a click inserts. */
   private lastTranslation = '';
-  /** Channel's chat language (ISO-2) from Kick's API — the auto compose target. */
+  /** Channel's chat language (ISO-2) from Kick's API, the auto compose target. */
   private channelLang: string | undefined;
   private running = false;
 
@@ -175,7 +175,7 @@ export class ComposeController {
 
   /**
    * The channel's chat language, set from Kick's API on each route change. When the
-   * target is 'auto' (the default), this becomes the compose target — so the user
+   * target is 'auto' (the default), this becomes the compose target, so the user
    * writes in whatever language the channel speaks, with zero configuration.
    */
   setChannelLang(lang: string | undefined): void {
@@ -236,10 +236,15 @@ export class ComposeController {
     composer.addEventListener('input', this.onInput);
     // Kick's Lexical composer does NOT fire a catchable `input` event on
     // delete-to-empty (it emits beforeinput/keyup only), so the preview used to
-    // stay up after you cleared the box. `keyup` fires on every key release —
-    // Backspace included, and after Enter sends — so re-evaluate there too: an
+    // stay up after you cleared the box. `keyup` fires on every key release,
+    // Backspace included, and after Enter sends, so re-evaluate there too: an
     // empty box then resolves to 'skip-empty' and the panel hides.
     composer.addEventListener('keyup', this.onInput);
+    // Twitch's Slate cancels `beforeinput` and writes the DOM itself, so no `input`
+    // follows, and text that arrives without a key (a paste from the menu, dictation,
+    // a script) left the preview hidden until the next key (measured: 10 s, then up
+    // 796 ms after the next keyup). `beforeinput` is fired before Slate cancels it.
+    composer.addEventListener('beforeinput', this.onInput);
     // Capture on window: Kick's own listener on the box runs before a bubbling
     // one, and blurred the box on Escape before we could stop it (measured).
     window.addEventListener('keydown', this.onKeydown, true);
@@ -264,6 +269,7 @@ export class ComposeController {
     unmountLangChip();
     this.composer?.removeEventListener('input', this.onInput);
     this.composer?.removeEventListener('keyup', this.onInput);
+    this.composer?.removeEventListener('beforeinput', this.onInput);
     window.removeEventListener('keydown', this.onKeydown, true);
     window.removeEventListener('click', this.onInput, true);
     this.composer = undefined;
@@ -300,11 +306,10 @@ export class ComposeController {
     if (!composer) return;
 
     const raw = readComposerText(composer);
-    // Half-typed emote/mention name: don't translate it, and don't cover Kick's list.
-    // Kick animates the list shut for ~600 ms after a typed space, and no key
-    // follows when the user stops there: look again until it is gone, or the
-    // preview stayed hidden until the next keystroke (measured).
-    if (isKickSuggestionOpen()) {
+    // Half-typed emote/mention name: don't translate it, and don't cover the list.
+    // A list can animate shut after a typed space with no key following: look
+    // again until it is gone, or the preview stays hidden until the next keystroke.
+    if (isSuggestionOpen()) {
       updateComposePreview({ kind: 'hidden' });
       // Same text after the popup closes must show again, not 'skip-unchanged'.
       this.lastSource = undefined;
@@ -413,7 +418,7 @@ export class ComposeController {
         countUsage('compose_preview');
       } else {
         // No valid translation for the current text (provider failed, or a guard
-        // rejected it) — hide rather than leave a stale result from earlier text.
+        // rejected it), hide rather than leave a stale result from earlier text.
         this.lastSource = undefined;
         updateComposePreview({ kind: 'hidden' });
       }
@@ -432,7 +437,7 @@ export class ComposeController {
     if (!this.composer || !this.lastTranslation) return;
     insertIntoComposer(this.composer, this.lastTranslation, this.settings.composeInsertMode);
     countUsage('compose_insert');
-    // The preview did its job — hide it (the synthetic insert doesn't re-fire `input`).
+    // The preview did its job, hide it (the synthetic insert doesn't re-fire `input`).
     this.dismiss();
   }
 
@@ -450,15 +455,15 @@ export class ComposeController {
   private handleKeydown(e: KeyboardEvent): void {
     if (!isComposePreviewVisible()) return;
     if (!(e.target instanceof Node) || !this.composer?.contains(e.target)) return;
-    // Tab finishes Kick's own `:emote` / `@user` completion, not ours.
-    if (e.key === 'Tab' && isKickSuggestionOpen()) return;
-    // With 7TV, Tab completes ANY word into an emote ("pepe" + Tab gives
-    // "PepePls", no list on screen, measured). So 7TV gets the key first, and
-    // only a Tab that changed nothing inserts the translation. Moving the insert
-    // to Ctrl+Enter instead was tried and is unsafe: before the preview shows,
-    // Kick takes Ctrl+Enter and SENDS the untranslated line (it happened).
-    // Re-detected each time: 7TV loads after us and has7TV() caches.
-    if (e.key === 'Tab' && !e.shiftKey && this.settings.composeInsertKey === 'tab-and-enter' && refresh7TV()) {
+    // Tab finishes an open completion list, not ours.
+    if (e.key === 'Tab' && isSuggestionOpen()) return;
+    // 7TV and BTTV complete a word into an emote on Tab ("Kap" + Tab gives
+    // "KappaCool" in 6/8 configs, RECON/<config>/compose). So they get the key
+    // first, and only a Tab that changed nothing inserts the translation. Moving
+    // the insert to Ctrl+Enter instead was unsafe on Kick, which SENT the
+    // untranslated line on it. Re-detected each time: both load after us.
+    const ext = detectExtensions();
+    if (e.key === 'Tab' && !e.shiftKey && this.settings.composeInsertKey === 'tab-and-enter' && (ext.seventv || ext.bttv)) {
       const composer = this.composer;
       const before = readComposerText(composer).trim();
       window.setTimeout(() => {

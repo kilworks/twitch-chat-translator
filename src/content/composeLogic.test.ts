@@ -11,7 +11,6 @@ import {
   unmaskProtected,
   toucheEchange,
   morceauxAutourDesEmotes,
-  morceauxPourEditeur,
   rienAEchanger,
   motsPourMoteur,
   remettreEmotes,
@@ -51,16 +50,6 @@ describe('emotes in your own message', () => {
       `hello friends how are you ${K}`,
     );
     expect(morceauxAutourDesEmotes('a b', `${P} a ${K} b`)).toEqual(['', ' a b ', '']);
-  });
-
-  it('never hands the editor its emotes back as words', () => {
-    // The editor keeps the emote nodes; what Tab inserts carries them as markup.
-    const src = `${P} bonjour tout le monde`;
-    expect(morceauxPourEditeur(remettreEmotes('hello everyone', src), src)).toEqual(['', ' hello everyone']);
-    const mid = `salut ${K} les amis`;
-    const parts = morceauxPourEditeur(remettreEmotes('hi friends', mid), mid);
-    expect(parts.join('')).not.toMatch(/\[emote:/);
-    expect(parts).toEqual(['hi friends ', '']);
   });
 
   it('sees a translation handed back unchanged as nothing to swap', () => {

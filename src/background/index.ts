@@ -12,7 +12,8 @@ import { armKeepalive, installKeepalive, listenKeepalive } from './keepalive';
 import { getUpdateStatus, installUpdateCheck } from './updateChecker';
 import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO, STORAGE_KEY_SETTINGS } from '~/shared/constants';
 import { getSemanticOverride } from '~/shared/transliterationGuard';
-import { ecrireAutourDesEmotes } from './lexicalWrite';
+import { ecrireDansSlate } from './slateWrite';
+import { emoteNamesFor } from './emotes';
 import { CHAT_MESSAGES } from '~/content/i18n';
 import { addUsage, dropUsage, installUsage, recordProviderError, recordTranslation } from './usage';
 import type { ProviderId, TranslationOutcome, TranslationRequest } from '~/shared/types';
@@ -237,6 +238,8 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
       return { type: 'ack' };
     case 'i18n.chat':
       return { type: 'i18n.chat', payload: CHAT_MESSAGES[msg.locale] };
+    case 'emotes.get':
+      return { type: 'emotes', names: await emoteNamesFor(msg.roomId) };
     case 'settings.get':
       return { type: 'settings', payload: settings };
     case 'settings.set': {
@@ -275,8 +278,8 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
       const [res] = await chrome.scripting.executeScript({
         target: { tabId, frameIds: [sender.frameId ?? 0] },
         world: 'MAIN',
-        func: ecrireAutourDesEmotes,
-        args: [msg.parts],
+        func: ecrireDansSlate,
+        args: [msg.text],
       });
       return res?.result === true ? { type: 'ack' } : { type: 'error', payload: { message: 'no editor' } };
     }

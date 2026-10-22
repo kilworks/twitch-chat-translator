@@ -2,8 +2,8 @@
  * Pure, DOM-free decision logic for the compose preview (outgoing translation).
  *
  * Kept separate from the DOM controller (`compose.ts`) and the panel UI
- * (`composeUi.ts`) so the fluidity-critical bits — what to translate, request
- * ordering, and rate limiting — are deterministic and unit-testable in isolation.
+ * (`composeUi.ts`) so the fluidity-critical bits, what to translate, request
+ * ordering, and rate limiting, are deterministic and unit-testable in isolation.
  */
 import { isNoise, isSameLanguageAsTarget } from './filters';
 import { isSlangOnly } from '~/shared/glossary';
@@ -13,9 +13,9 @@ import { EMOTE_NAME_RE } from './emoteParser';
 export const COMPOSE_DEBOUNCE_MS = 320;
 /** Don't bother translating fragments shorter than this. */
 export const COMPOSE_MIN_LEN = 2;
-/** Don't translate anything longer than this — chat lines are short; huge input is a paste. */
+/** Don't translate anything longer than this, chat lines are short; huge input is a paste. */
 export const COMPOSE_MAX_LEN = 500;
-/** Safety net against pathological typing — caps network calls per rolling minute. */
+/** Safety net against pathological typing, caps network calls per rolling minute. */
 export const COMPOSE_MAX_PER_MIN = 30;
 
 export type ComposeAction =
@@ -27,7 +27,7 @@ export type ComposeAction =
   | 'skip-same-lang'
   | 'skip-unchanged';
 
-/** True when the text is nothing but links and/or @mentions — nothing to translate. */
+/** True when the text is nothing but links and/or @mentions, nothing to translate. */
 export function isLinkOrMentionOnly(text: string): boolean {
   if (!/\S/.test(text)) return false;
   const stripped = text
@@ -76,17 +76,6 @@ export function morceauxAutourDesEmotes(traduit: string, source: string, re: Reg
   return avant.map((_, i) =>
     i === ou ? `${i > 0 ? ' ' : ''}${traduit.trim()}${i < dernier ? ' ' : ''}` : '',
   );
-}
-
-/**
- * What the editor write gets from the text Tab inserts. That text already has
- * the emotes back in as Kick markup (remettreEmotes), while the editor keeps
- * its emote nodes: passed as is, every insert typed `[emote:id:name]` out as
- * words next to the emote it stands for (measured live, compose-scenarios T2).
- */
-export function morceauxPourEditeur(insere: string, source: string): string[] {
-  const mots = insere.replace(EMOTE_TOKEN_RE, ' ').replace(/ {2,}/g, ' ').trim();
-  return morceauxAutourDesEmotes(mots, source);
 }
 
 /**
@@ -145,7 +134,7 @@ export function unmaskProtected(text: string, tokens: string[]): string {
 
 /**
  * Decide whether the currently-typed text warrants a (network) translation.
- * All cheap gates run before any request is issued — this is the first line of
+ * All cheap gates run before any request is issued, this is the first line of
  * defence for both quota and fluidity.
  *
  * @param text            current composer text (raw, untrimmed)
@@ -169,7 +158,7 @@ export function decideComposeAction(
   if (t.length > COMPOSE_MAX_LEN) return 'skip-long';
   // Don't translate when *you* type pure streaming slang/emotes or only handles/links.
   if (isNoise(t) || isLinkOrMentionOnly(t) || isSlangOnly(t)) return 'skip-noise';
-  // Only skip on a *confident* same-language detection — undefined means "let the
+  // Only skip on a *confident* same-language detection, undefined means "let the
   // provider auto-detect", which is correct for short/ambiguous input.
   if (detected && isSameLanguageAsTarget(detected, target)) return 'skip-same-lang';
   if (lastTranslated !== undefined && full === lastTranslated.trim()) return 'skip-unchanged';
@@ -178,7 +167,7 @@ export function decideComposeAction(
 
 /**
  * Monotonic request sequencer. Every in-flight translation gets an id; a response
- * is applied only when it is still the latest — stale responses (the user kept
+ * is applied only when it is still the latest, stale responses (the user kept
  * typing) are dropped so the preview never flickers to an out-of-date result.
  */
 export class Sequencer {
@@ -203,7 +192,7 @@ export interface PanelGeom {
   bottom: number;
 }
 
-/** Viewport facts the panel placement needs — passed in so the math stays pure. */
+/** Viewport facts the panel placement needs, passed in so the math stays pure. */
 export interface PanelViewport {
   innerWidth: number;
   innerHeight: number;
