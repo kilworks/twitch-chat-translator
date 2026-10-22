@@ -1,0 +1,332 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T21:14:26.747Z",
+ "target": "ja",
+ "cells": [
+  {
+   "config": "native",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 3
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 34,
+   "marked": 33,
+   "translations": 17,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "WHAT A QLITO⟳",
+    "HAHAHAHAHAHAHAHA⟳",
+    "HAHAHAHAHAHAHAHAHAHA⟳"
+   ],
+   "stillAttached10s": 17,
+   "after10s": {
+    "onScreen": 17,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "skip": "no url"
+    },
+    {
+     "ch": 22,
+     "adds": 0
+    },
+    {
+     "ch": 30,
+     "adds": 119
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch30",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 56,
+   "marked": 51,
+   "translations": 25,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "うーん、すごくいいですね！⟳",
+    "チェドゥ⟳",
+    "くそ⟳"
+   ],
+   "stillAttached10s": 25,
+   "after10s": {
+    "onScreen": 25,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "skip": "no url"
+    },
+    {
+     "ch": 22,
+     "adds": 0
+    },
+    {
+     "ch": 30,
+     "skip": "no url"
+    },
+    {
+     "ch": 31,
+     "adds": 0
+    }
+   ],
+   "targetSet": true,
+   "pass": false,
+   "why": "no chat with traffic found"
+  },
+  {
+   "config": "ffz",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 3
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 34,
+   "marked": 33,
+   "translations": 17,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "WHAT A QLITO⟳",
+    "HAHAHAHAHAHAHAHA⟳",
+    "HAHAHAHAHAHAHAHAHAHA⟳"
+   ],
+   "stillAttached10s": 17,
+   "after10s": {
+    "onScreen": 17,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "skip": "no url"
+    },
+    {
+     "ch": 22,
+     "skip": "no url"
+    },
+    {
+     "ch": 30,
+     "skip": "no url"
+    },
+    {
+     "ch": 31,
+     "adds": 0
+    }
+   ],
+   "targetSet": true,
+   "pass": false,
+   "why": "no chat with traffic found"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "skip": "no url"
+    },
+    {
+     "ch": 22,
+     "skip": "no url"
+    },
+    {
+     "ch": 30,
+     "adds": 110
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch30",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 37,
+   "marked": 34,
+   "translations": 14,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "うーん、すごくいいですね！⟳",
+    "チェドゥ⟳",
+    "くそ⟳"
+   ],
+   "stillAttached10s": 14,
+   "after10s": {
+    "onScreen": 14,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 69,
+    "p50": 154,
+    "p90": 3186
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 9
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 34,
+   "marked": 33,
+   "translations": 22,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "なんとクリト⟳",
+    "ハハハハハハハハ⟳",
+    "ハハハハハハハハハハ⟳"
+   ],
+   "stillAttached10s": 22,
+   "after10s": {
+    "onScreen": 22,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "surface": "clip",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 12
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 34,
+   "marked": 31,
+   "translations": 17,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "WHAT A QLITO⟳",
+    "HAHAHAHAHAHAHAHA⟳",
+    "HAHAHAHAHAHAHAHAHAHA⟳"
+   ],
+   "stillAttached10s": 17,
+   "after10s": {
+    "onScreen": 17,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": true
+  }
+ ],
+ "summary": "6/8 cells green"
+}

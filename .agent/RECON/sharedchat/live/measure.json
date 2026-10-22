@@ -1,0 +1,20 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T18:36:05.743Z",
+ "minutes": 10,
+ "joined": 37,
+ "privmsg": 46697,
+ "sharedForeign": 256,
+ "sharedTagged": 1296,
+ "hypeChat": 0,
+ "sharedChannels": {
+  "ch8": 28,
+  "ch26": 228
+ },
+ "hypeChannels": {},
+ "capture": {
+  "channel": "ch8",
+  "listFound": true,
+  "rowsAdded": 4
+ }
+}

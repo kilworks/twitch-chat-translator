@@ -1,0 +1,218 @@
+{
+ "date": "2026-10-22",
+ "channel": "hot[0]",
+ "rows": [
+  {
+   "key": "none",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 1,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  },
+  {
+   "key": "Alt+t",
+   "changed": [
+    "video",
+    "theatre",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1260x1000@0,0",
+    "theatre": 5,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": [
+    "video",
+    "theatre"
+   ]
+  },
+  {
+   "key": "Alt+w",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 1,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  },
+  {
+   "key": "Alt+Shift+t",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 1,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  },
+  {
+   "key": "Alt+Shift+w",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 1,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  },
+  {
+   "key": "Alt+Shift+y",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 1,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  },
+  {
+   "key": "Alt+Shift+u",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/etostark__",
+    "dialogs": 1,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  },
+  {
+   "key": "none",
+   "changed": [
+    "dialogs",
+    "paused"
+   ],
+   "before": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/<ch11>",
+    "dialogs": 0,
+    "muted": true,
+    "paused": true
+   },
+   "after": {
+    "video": "1020x574@240,243",
+    "theatre": 0,
+    "fullscreen": false,
+    "url": "/<ch11>",
+    "dialogs": 3,
+    "muted": true,
+    "paused": false
+   },
+   "beyondNoise": []
+  }
+ ]
+}

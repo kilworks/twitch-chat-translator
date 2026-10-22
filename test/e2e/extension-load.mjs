@@ -1,12 +1,12 @@
 /**
  * Charge la vraie extension construite et verifie que le script de contenu
- * s'execute sur une page qui se presente comme kick.com.
+ * s'execute sur une page qui se presente comme twitch.tv.
  *
  * Pourquoi cette porte existe. Toutes les autres portes hors-ligne montent les
  * composants a la main dans une page fabriquee : elles mesurent le dessin, la
  * geometrie et le clavier, et elles ne touchent jamais le manifeste, les
  * `content_scripts`, ni le chemin par lequel Chrome charge reellement le code.
- * Les seuls harnais qui l'exercent ouvrent le vrai kick.com, donc ils demandent
+ * Les seuls harnais qui l'exercent ouvrent le vrai twitch.tv, donc ils demandent
  * le reseau et parfois une session, et ils ne tournent pas dans la suite. Une
  * regression de chargement passait donc entierement sous les portes: c'est
  * exactement le defaut que `scripts/bundle-content.ts` a ete ecrit pour
@@ -14,8 +14,8 @@
  * une ligne dans la console.
  *
  * Comment elle evite le reseau. Le motif de `content_scripts` porte sur l'URL,
- * pas sur ce qui repond : on intercepte `https://kick.com/**` et on sert une
- * page locale. Le document garde son URL kick.com, Chrome injecte, et rien ne
+ * pas sur ce qui repond : on intercepte `https://www.twitch.tv/**` et on sert une
+ * page locale. Le document garde son URL twitch.tv, Chrome injecte, et rien ne
  * sort de la machine.
  *
  *   node test/e2e/extension-load.mjs
@@ -26,6 +26,7 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { chromium } from './playwright.mjs';
+import { CHANNEL_ONE, routeTwitch } from './twitch-dom.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 // Par defaut le repertoire de build. `KT_EXT` permet de pointer sur un paquet
@@ -43,7 +44,7 @@ const manifeste = JSON.parse(fs.readFileSync(path.join(EXT, 'manifest.json'), 'u
 // Une page pauvre exprès. On ne teste pas que la barre trouve le chat de Kick,
 // ce que font deja d'autres portes : on teste que le code arrive dans la page.
 const FIXTURE = `<!doctype html><html><head><meta charset="utf-8"><title>fixture</title></head>
-<body><div id="channel-chatroom"></div></body></html>`;
+<body><div class="chat-room__content"></div></body></html>`;
 
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'kct-load-'));
 const ctx = await chromium.launchPersistentContext(profile, {
@@ -64,26 +65,11 @@ const ctx = await chromium.launchPersistentContext(profile, {
 
 const page = ctx.pages()[0] ?? (await ctx.newPage());
 
-// Tout ce qui part vers kick.com est servi localement. Le harnais echoue si une
-// requete quelconque sort quand meme.
-const sorties = [];
-// Le glob de Playwright ne fait pas matcher `*.kick.com` sur `kick.com` : `*`
-// veut au moins un caractere avant le point, donc le document partait sur le
-// vrai site pendant que les sous-ressources, elles, etaient bien interceptees.
-// Une expression reguliere prend les deux formes.
-const KICK = /^https?:\/\/(www\.)?kick\.com\//;
+// Tout ce qui part vers twitch.tv (GQL, 7TV, BTTV, FFZ compris) est servi localement. Les
+// sous-ressources du site recoivent un 204 vide et sont comptees plus bas.
+const sorties = await routeTwitch(ctx, { page: () => FIXTURE });
 
-await ctx.route(KICK, async (route) => {
-  const url = route.request().url();
-  if (route.request().resourceType() === 'document') {
-    await route.fulfill({ status: 200, contentType: 'text/html', body: FIXTURE });
-  } else {
-    sorties.push(url);
-    await route.fulfill({ status: 204, body: '' });
-  }
-});
-
-await page.goto('https://kick.com/', { waitUntil: 'domcontentloaded' });
+await page.goto(`https://www.twitch.tv/${CHANNEL_ONE}`, { waitUntil: 'domcontentloaded' });
 // `document_idle` n'est pas un evenement qu'on peut attendre : on laisse le
 // temps que Chrome injecte, puis on regarde.
 await page.waitForTimeout(3000);
@@ -113,8 +99,8 @@ if (viseFirefox)
     'dist/ contient le build Firefox : `background.scripts` et un bloc gecko. ' +
       'Chrome ne le demarre pas. Relancer `npm run build`.',
   );
-if (!vu.url.startsWith('https://kick.com/'))
-  fails.push(`la page n a pas garde son URL kick.com : ${vu.url}`);
+if (!vu.url.startsWith('https://www.twitch.tv/'))
+  fails.push(`la page n a pas garde son URL twitch.tv : ${vu.url}`);
 if (!vu.style)
   fails.push('le script de contenu ne s est pas execute : aucun #kt-inject-style dans la page');
 
@@ -132,7 +118,7 @@ if (exposees.length)
   );
 console.log(`content script  ${vu.style ? 'injecte' : 'ABSENT'}, scheme ${vu.scheme ?? '(aucun)'}`);
 console.log(`exposees au site ${exposees.length}${exposees.length ? ' : ' + exposees.join(', ') : ''}`);
-if (sorties.length) console.log(`requetes kick.com interceptees : ${sorties.length}`);
+if (sorties.length) console.log(`requetes twitch.tv interceptees : ${sorties.length}`);
 
 if (fails.length) {
   console.error('FAIL: ' + fails.join(' ; '));

@@ -1,0 +1,52 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T18:55:06.815Z",
+ "target": "ja",
+ "cells": [
+  {
+   "config": "native",
+   "surface": "light",
+   "tried": [
+    {
+     "ch": 14,
+     "adds": 113
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch14",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 150,
+   "marked": 147,
+   "translations": 109,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "light",
+   "chatTheme": "chat-theme-light",
+   "minContrast": 1.44,
+   "sample": [
+    "AUバルデラマ⟳",
+    "ニル・オヘダ・スタイル⟳",
+    "エス・ノルビット⟳"
+   ],
+   "stillAttached10s": 66,
+   "after10s": {
+    "onScreen": 65,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 177,
+    "p50": 1206,
+    "p90": 2548
+   },
+   "pass": false,
+   "why": "translation text at 1.44:1, under 4.5"
+  }
+ ],
+ "summary": "0/2 cells green"
+}

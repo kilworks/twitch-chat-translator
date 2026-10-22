@@ -1,0 +1,469 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T18:50:41.362Z",
+ "firefox": "158.0",
+ "cells": [
+  {
+   "config": "native",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 132
+    }
+   ],
+   "tabsAfterInstall": 1,
+   "tabUrls": [
+    "about:home"
+   ],
+   "channel": "ch14",
+   "seventvList": 0,
+   "nativeList": 1,
+   "nativeRows": 132,
+   "seventvRows": 0,
+   "ffzRows": 0,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 131,
+   "translations": 83,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     17
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     14
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     11
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     3
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "errors": 0,
+   "loading": 1,
+   "visibility": "visible",
+   "sampleText": [
+    "ya va el TTS?",
+    "Acabo de llegar, que haces tan guapito c",
+    "no te vas a cortar el pelo?"
+   ],
+   "family": "native"
+  },
+  {
+   "config": "7tv",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 112
+    }
+   ],
+   "tabsAfterInstall": 1,
+   "tabUrls": [
+    "moz-extension://2a81a4ee-8a37-4edf-a8f4-7aa108432369/index.html#/onboarding/start"
+   ],
+   "channel": "ch14",
+   "seventvList": 1,
+   "nativeList": 0,
+   "nativeRows": 0,
+   "seventvRows": 112,
+   "ffzRows": 0,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 88,
+   "translations": 60,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     13
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     7
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     4
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     2
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     1
+    ]
+   ],
+   "errors": 0,
+   "loading": 1,
+   "visibility": "visible",
+   "sampleText": [
+    "eso se desbloquea a la vuelta de los san",
+    "cuzz this is for the raza ",
+    "Parece la cúpula del eptein xdddd"
+   ],
+   "family": "7tv"
+  },
+  {
+   "config": "bttv",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 149
+    }
+   ],
+   "tabsAfterInstall": 2,
+   "tabUrls": [
+    "about:home",
+    "moz-extension://29d20d18-bf2b-4a0f-9d13-64a7ea7679af/permissions_upgrade.html"
+   ],
+   "channel": "ch14",
+   "seventvList": 0,
+   "nativeList": 1,
+   "nativeRows": 149,
+   "seventvRows": 0,
+   "ffzRows": 0,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 146,
+   "translations": 90,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     21
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     19
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     8
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     4
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     2
+    ]
+   ],
+   "errors": 0,
+   "loading": 2,
+   "visibility": "visible",
+   "sampleText": [
+    "Yo sería una Sandía o un Melón pero de l",
+    "parece un coño",
+    "No habia que ser tan específico ehhh "
+   ],
+   "family": "native"
+  },
+  {
+   "config": "ffz",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 119
+    }
+   ],
+   "tabsAfterInstall": 1,
+   "tabUrls": [
+    "about:home"
+   ],
+   "channel": "ch14",
+   "seventvList": 0,
+   "nativeList": 1,
+   "nativeRows": 119,
+   "seventvRows": 0,
+   "ffzRows": 119,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 116,
+   "translations": 68,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     18
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     7
+    ],
+    [
+     "Not translated: the translation service found it was already",
+     6
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ],
+    [
+     "Not translated: it is already in your language",
+     1
+    ]
+   ],
+   "errors": 4,
+   "loading": 9,
+   "visibility": "visible",
+   "sampleText": [
+    "Si si",
+    "todo al caballo verde",
+    "deberias y a apostar todo"
+   ],
+   "family": "native"
+  },
+  {
+   "config": "7tv+bttv",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 107
+    }
+   ],
+   "tabsAfterInstall": 3,
+   "tabUrls": [
+    "about:home",
+    "moz-extension://d6d4e756-c60d-42d4-8b17-d21e1b6338d9/permissions_upgrade.html",
+    "moz-extension://d38c89a5-8994-46e7-b0c1-84ef3a63f63c/index.html#/onboarding/start"
+   ],
+   "channel": "ch14",
+   "seventvList": 1,
+   "nativeList": 0,
+   "nativeRows": 1,
+   "seventvRows": 106,
+   "ffzRows": 0,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 96,
+   "translations": 81,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     6
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     4
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     2
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     1
+    ]
+   ],
+   "errors": 0,
+   "loading": 2,
+   "visibility": "visible",
+   "sampleText": [
+    "El corte de pelo",
+    "Estas haciendo a Orslok?",
+    "pelate"
+   ],
+   "family": "7tv"
+  },
+  {
+   "config": "7tv+ffz",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 135
+    }
+   ],
+   "tabsAfterInstall": 1,
+   "tabUrls": [
+    "moz-extension://4c05597f-b887-4f9f-86de-370dffac636a/index.html#/onboarding/start"
+   ],
+   "channel": "ch14",
+   "seventvList": 1,
+   "nativeList": 0,
+   "nativeRows": 3,
+   "seventvRows": 132,
+   "ffzRows": 3,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 116,
+   "translations": 83,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     21
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     4
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     4
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     1
+    ]
+   ],
+   "errors": 0,
+   "loading": 2,
+   "visibility": "visible",
+   "sampleText": [
+    "y entra ",
+    "y los  caballos?",
+    "Donde me corto"
+   ],
+   "family": "7tv"
+  },
+  {
+   "config": "bttv+ffz",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 151
+    }
+   ],
+   "tabsAfterInstall": 2,
+   "tabUrls": [
+    "about:home",
+    "moz-extension://00ae859e-ad2d-4960-b31c-36889b56cc4b/permissions_upgrade.html"
+   ],
+   "channel": "ch14",
+   "seventvList": 0,
+   "nativeList": 1,
+   "nativeRows": 151,
+   "seventvRows": 0,
+   "ffzRows": 151,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 147,
+   "translations": 82,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     19
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     15
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     10
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     8
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     6
+    ]
+   ],
+   "errors": 0,
+   "loading": 7,
+   "visibility": "visible",
+   "sampleText": [
+    "JAJAJJAJJAJAJ",
+    "BOBOBO",
+    "valderrama"
+   ],
+   "family": "native"
+  },
+  {
+   "config": "all",
+   "tried": [
+    {
+     "ch": 14,
+     "rows": 171
+    }
+   ],
+   "tabsAfterInstall": 3,
+   "tabUrls": [
+    "about:home",
+    "moz-extension://41499950-b703-4212-8fd3-af6b5af40119/permissions_upgrade.html",
+    "moz-extension://6d683124-ae1e-45e1-9a03-3d60f92798ee/index.html#/onboarding/start"
+   ],
+   "channel": "ch14",
+   "seventvList": 1,
+   "nativeList": 0,
+   "nativeRows": 1,
+   "seventvRows": 170,
+   "ffzRows": 1,
+   "composerSlate": 1,
+   "ktMounted": true,
+   "bar": 1,
+   "marked": 155,
+   "translations": 90,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "reasons": [
+    [
+     "Not translated: the translation service found it was already",
+     38
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     10
+    ],
+    [
+     "Not translated: the translation came back the same as the or",
+     9
+    ],
+    [
+     "Not translated: it looks like English and you asked to skip ",
+     3
+    ],
+    [
+     "Not translated: it is only chat slang",
+     1
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     1
+    ]
+   ],
+   "errors": 0,
+   "loading": 2,
+   "visibility": "visible",
+   "sampleText": [
+    "pareces un chupachu de limon",
+    "El casco de la moto integrao",
+    "y ese afro de virgo"
+   ],
+   "family": "7tv"
+  }
+ ]
+}

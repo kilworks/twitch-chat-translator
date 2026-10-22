@@ -1,11 +1,11 @@
 /**
- * Un onglet Kick ouvert pendant une mise a jour de l'extension.
+ * Un onglet Twitch ouvert pendant une mise a jour de l'extension.
  *
  * Chrome coupe l'ancien script de contenu a chaque mise a jour : il reste dans
  * la page, mais tout appel a `chrome.runtime` y leve "Extension context
  * invalidated". Et le nouveau script n'est injecte que dans les pages chargees
  * ensuite. Avec des milliers d'installations, chaque version publiee casse donc
- * tous les onglets Kick ouverts a ce moment, jusqu'a un rechargement que rien
+ * tous les onglets Twitch ouverts a ce moment, jusqu'a un rechargement que rien
  * ne demande.
  *
  * La sonde simule la mise a jour par `chrome.runtime.reload()` depuis le
@@ -19,6 +19,7 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { chromium } from './playwright.mjs';
+import { nativeRow, routeTwitch, twitchPage } from './twitch-dom.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const EXT = process.env.KT_EXT ?? path.resolve(HERE, '../../dist');
@@ -29,19 +30,13 @@ if (!fs.existsSync(path.join(EXT, 'manifest.json'))) {
 }
 
 const TRADUIT = 'ZZTRADUCTIONZZ';
-const KICK = /^https?:\/\/(www\.)?kick\.com\//;
+const LISTE = '[data-test-selector="chat-scrollable-area__message-container"]';
+const TEXTE_RANGEE = '[data-a-target="chat-message-text"]';
+const COMPOSEUR = '[data-a-target="chat-input"][data-slate-editor]';
 
-const rangee = (texte, i) =>
-  `<div data-index="${i}"><div class="w-full min-w-0 shrink-0">` +
-  `<button class="font-bold" style="color: rgb(1,2,3)">pseudo${i}</button>` +
-  `<span class="font-normal">${texte}</span></div></div>`;
+const rangee = (texte, i) => nativeRow(texte, `pseudo${i}`);
 
-const FIXTURE = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>chat</title></head>
-<body><div id="channel-chatroom">
-  <div class="no-scrollbar" data-which="decoy"></div>
-  <div class="no-scrollbar" data-which="messages" style="height:600px;overflow:auto">${rangee('hola amigo que tal', 0)}</div>
-  <div contenteditable="true" role="textbox" data-testid="chat-input" class="editor-input" style="min-height:38px"></div>
-</div></body></html>`;
+const FIXTURE = twitchPage(rangee('hola amigo que tal', 0));
 
 // `KT_EXT_AVANT` pointe sur un paquet deja publie, decompresse. La sonde le
 // charge, puis met le build courant a sa place avant de recharger : c'est une
@@ -77,25 +72,10 @@ await ctx.route('**://translate.googleapis.com/**', async (route) => {
   const segments = lignes.map((l, k) => [`${TRADUIT}:${l}` + (k < lignes.length - 1 ? SAUT : ''), l, null, null, 10]);
   await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify([segments, null, 'es']) });
 });
-await ctx.route(KICK, async (route) => {
-  const r = route.request();
-  if (r.resourceType() === 'document') {
-    await route.fulfill({ status: 200, contentType: 'text/html', body: FIXTURE });
-    return;
-  }
-  if (r.url().includes('/api/')) {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ chatroom: { id: 1 }, livestream: { lang_iso: 'es' } }),
-    });
-    return;
-  }
-  await route.fulfill({ status: 204, body: '' });
-});
+await routeTwitch(ctx, { page: () => FIXTURE, langIso: 'es' });
 
 const page = ctx.pages()[0] ?? (await ctx.newPage());
-await page.goto('https://kick.com/kt-un', { waitUntil: 'domcontentloaded' });
+await page.goto('https://www.twitch.tv/kt_un', { waitUntil: 'domcontentloaded' });
 await page.bringToFront();
 // L'etat d'avant doit etre l'etat monte, pas un instantane du montage. Attendre
 // la premiere traduction ne suffit pas : la pastille et le panneau de saisie
@@ -104,7 +84,7 @@ await page.bringToFront();
 // de #14, 3 lancements sur 4). Le plancher de 4 s est celui d'origine.
 const montee = Date.now();
 await page
-  .waitForSelector('#channel-chatroom div[data-index] :is(.kt-translation, .kt-translation-inline, .kt-translation-replace)', { timeout: 20000 })
+  .waitForSelector('.chat-line__message :is(.kt-translation, .kt-translation-inline, .kt-translation-replace)', { timeout: 20000 })
   .catch(() => undefined);
 await page
   .waitForFunction(
@@ -122,9 +102,9 @@ const SEL_TR = '.kt-translation, .kt-translation-inline, .kt-translation-replace
 
 async function etat(texte) {
   return page.evaluate(
-    ({ sel, texte }) => {
-      const rangees = [...document.querySelectorAll('#channel-chatroom div[data-index]')];
-      const cible = rangees.find((r) => (r.querySelector('.font-normal')?.textContent ?? '') === texte);
+    ({ sel, texte, selTexte }) => {
+      const rangees = [...document.querySelectorAll('.chat-line__message')];
+      const cible = rangees.find((r) => (r.querySelector(selTexte)?.textContent ?? '') === texte);
       return {
         traduite: !!cible?.querySelector(sel),
         traductions: cible ? cible.querySelectorAll(sel).length : 0,
@@ -136,7 +116,7 @@ async function etat(texte) {
         composes: document.querySelectorAll('[id="kt-compose-bar"]').length,
       };
     },
-    { sel: SEL_TR, texte },
+    { sel: SEL_TR, texte, selTexte: TEXTE_RANGEE },
   );
 }
 
@@ -151,12 +131,12 @@ async function etat(texte) {
  * nouveau script et `onInstalled` l'injecte une seconde fois.
  */
 async function copies(texte) {
-  return page.evaluate((texte) => {
-    const r = [...document.querySelectorAll('#channel-chatroom div[data-index]')].find(
-      (x) => (x.querySelector('.font-normal')?.textContent ?? '') === texte,
+  return page.evaluate(({ texte, selTexte }) => {
+    const r = [...document.querySelectorAll('.chat-line__message')].find(
+      (x) => (x.querySelector(selTexte)?.textContent ?? '') === texte,
     );
     return new Set((r?.__ktMarques ?? []).map((m) => m.split(':')[0])).size;
-  }, texte);
+  }, { texte, selTexte: TEXTE_RANGEE });
 }
 
 async function poser(texte, index) {
@@ -171,9 +151,8 @@ async function poser(texte, index) {
     window.__ktEcoute.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['data-kt-id'] });
   });
   await page.evaluate(
-    ({ html }) =>
-      document.querySelector('#channel-chatroom [data-which="messages"]').insertAdjacentHTML('beforeend', html),
-    { html: rangee(texte, index) },
+    ({ html, liste }) => document.querySelector(liste).insertAdjacentHTML('beforeend', html),
+    { html: rangee(texte, index), liste: LISTE },
   );
   await page.waitForTimeout(8000);
   return { ...(await etat(texte)), copies: await copies(texte) };
@@ -182,7 +161,7 @@ async function poser(texte, index) {
 const avant = await etat('hola amigo que tal');
 const diagMuette = await page.evaluate(() => ({
   vis: document.visibilityState,
-  marque: document.querySelector('#channel-chatroom div[data-index]')?.getAttribute('data-kt-id') ?? null,
+  marque: document.querySelector('.chat-line__message')?.getAttribute('data-kt-id') ?? null,
   instance: document.documentElement.getAttribute('data-kt-instance'),
   bar: !!document.querySelector('#kt-floating-bar'),
 }));
@@ -194,11 +173,11 @@ const diagMuette = await page.evaluate(() => ({
  * voit pas d'insertion, la sonde ne mesure rien.
  */
 async function ecrire(texte) {
-  await page.evaluate(() => {
-    const el = document.querySelector('[data-testid="chat-input"]');
+  await page.evaluate((sel) => {
+    const el = document.querySelector(sel);
     el.textContent = '';
     el.focus();
-  });
+  }, COMPOSEUR);
   await page.keyboard.type(texte, { delay: 25 });
   // Le meme delai que la porte translate-compose : l'apercu attend la frappe
   // finie puis un aller-retour au moteur.
@@ -207,12 +186,12 @@ async function ecrire(texte) {
     const p = document.querySelector('.kt-compose');
     return p ? !p.hasAttribute('hidden') && (p.textContent ?? '').length > 0 : false;
   });
-  const entreeBloquee = await page.evaluate(() => {
-    const el = document.querySelector('[data-testid="chat-input"]');
+  const entreeBloquee = await page.evaluate((sel) => {
+    const el = document.querySelector(sel);
     const ev = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true });
     el.dispatchEvent(ev);
     return ev.defaultPrevented;
-  });
+  }, COMPOSEUR);
   return {
     apercu,
     entreeBloquee,
@@ -266,7 +245,7 @@ const sw2 = ctx.serviceWorkers().at(-1);
 const diag = {
   workers: ctx.serviceWorkers().length,
   bandeauAncien: await page.evaluate(() => !!document.querySelector('#kt-floating-bar[data-sonde]')),
-  onglets: sw2 ? await sw2.evaluate(() => chrome.tabs.query({ url: ['https://kick.com/*'] }).then((t) => t.map((x) => x.url))).catch((e) => String(e)) : null,
+  onglets: sw2 ? await sw2.evaluate(() => chrome.tabs.query({ url: ['https://www.twitch.tv/*'] }).then((t) => t.map((x) => x.url))).catch((e) => String(e)) : null,
 };
 console.log('DIAG', JSON.stringify(diag));
 
@@ -310,13 +289,13 @@ if (!avant.traduite) {
 
 const ligne = (nom, e) =>
   `  ${nom.padEnd(28)} traduite ${e.traduite ? 'OUI' : 'NON'} (${e.traductions} sur la ligne, ${e.copies ?? '-'} copie)   bandeaux ${e.bandeaux}   pastilles ${e.pastilles}   menus ${e.menus}   composes ${e.composes}`;
-console.log(`\n## Un onglet Kick ouvert pendant une mise a jour\n`);
+console.log(`\n## Un onglet Twitch ouvert pendant une mise a jour\n`);
 console.log(ligne('avant la mise a jour', avant));
 console.log(ligne('message apres la mise a jour', apres));
 
 // Le controle positif est l'apercu, pas l'insertion : sur cette fixture, Tab ne
 // remplace pas le texte meme avant toute mise a jour, et aucune porte ne mesure
-// l'insertion hors de kick.com. Elle reste a observer sur le vrai site.
+// l'insertion hors de twitch.tv. Elle reste a observer sur le vrai site.
 if (!saisieAvant.apercu) {
   console.error('SONDE MUETTE: avant la mise a jour, aucun apercu de composition, la saisie ne mesure rien.');
   process.exit(2);

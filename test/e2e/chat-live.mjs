@@ -5,7 +5,7 @@
  * The hand-written chat harness had the same disease as the chip one: it was a
  * copy of the stylesheet and the markup as they stood on the day it was typed,
  * so it kept describing an inject() that had since changed. Nothing is retyped
- * here — the CSS is read from disk and every line is built by inject() itself.
+ * here, the CSS is read from disk and every line is built by inject() itself.
  *
  * Reports measured density, which is the number that mattered: the chat was
  * showing eight messages in the space that now holds fourteen.
@@ -18,6 +18,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { chromium } from './playwright.mjs';
 import { feuille } from './feuille.mjs';
+import { nativeRow } from './twitch-dom.mjs';
+
+// The layout Twitch's own CSS gives a native row (name and text on one line, no badge or
+// reply icon in the way); the unstyled markup stacks its divs and measures nothing real.
+const LAYOUT_RANGEE = `
+  .chat-line__message-container>div,.chat-line__message-container>div>div,.chat-line__message-container>div>div>div,.chat-line__username-container,.chat-line__username-container div{display:inline}
+  .chat-badge,.chat-line__icons{display:none}`;
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '../..');
@@ -49,6 +56,9 @@ const LINES = [
   ['eighth', '진짜 대박이다', 'ko', 'this is seriously amazing'],
 ];
 
+// Each line as a native Twitch row (RECON/native/live), the markup the product reads.
+const HTML_LIGNES = LINES.map(([who, said]) => nativeRow(said, who));
+
 const PAGE = (scheme) => `<!doctype html>
 <html lang="en" data-kt-scheme="${scheme}">
 <head><meta charset="utf-8"><title>chat, live</title>
@@ -70,8 +80,8 @@ const PAGE = (scheme) => `<!doctype html>
   .col > h2 { margin:0 0 8px; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
               color:var(--dim); font-weight:600; }
   .chat { block-size:420px; overflow:hidden; }
-  .row { padding:3px 4px; }
-  .font-bold { font-weight:700; color:var(--pseudo); }
+  .chat-line__message { padding:3px 4px; }${LAYOUT_RANGEE}
+  .chat-author__display-name { font-weight:700; color:var(--pseudo) !important; }
 </style></head>
 <body><div id="cols"></div><script>${js}</script></body></html>`;
 
@@ -95,7 +105,7 @@ for (const scheme of ['dark', 'light']) {
     await page.addStyleTag({ content: '*{transition:none!important;animation:none!important}' });
 
     const measured = await page.evaluate(
-      ({ lines, styles, showOriginal }) => {
+      ({ lines, htmls, styles, showOriginal }) => {
         const { inject, applyShowOriginal, armHoverTranslate, showError } = window.Injector;
         applyShowOriginal(showOriginal);
         const host = document.body;
@@ -113,28 +123,24 @@ for (const scheme of ['dark', 'light']) {
 
           // Repeat the traffic so the visible window is genuinely full.
           for (let n = 0; n < 4; n++) {
-            for (const [who, said, lang, meaning] of lines) {
-              const row = document.createElement('div');
-              row.className = 'row';
-              const name = document.createElement('span');
-              name.className = 'font-bold';
-              name.textContent = who + ': ';
-              const text = document.createElement('span');
-              text.className = 'font-normal';
-              text.textContent = said;
-              row.append(name, text);
-              chat.appendChild(row);
+            for (const [k, [who, said, lang, meaning]] of lines.entries()) {
+              const holder = document.createElement('div');
+              holder.innerHTML = htmls[k];
+              const row = holder.querySelector('.chat-line__message');
+              // The product draws into the message container (INJECTION_TARGETS), not the row.
+              const target = row.querySelector('.chat-line__message-container');
+              chat.appendChild(holder);
               if (style === 'brut') continue;
               if (style === 'erreur') {
-                showError(row, 'Translation unavailable', () => undefined);
+                showError(target, 'Translation unavailable', () => undefined);
                 continue;
               }
               if (style === 'hover') {
-                armHoverTranslate(row, () => undefined);
+                armHoverTranslate(target, () => undefined);
                 continue;
               }
               inject(
-                row,
+                target,
                 {
                   messageId: `${style}-${n}-${who}`,
                   translatedText: meaning,
@@ -152,7 +158,7 @@ for (const scheme of ['dark', 'light']) {
               );
             }
           }
-          const rows = [...chat.querySelectorAll('.row')];
+          const rows = [...chat.querySelectorAll('.chat-line__message')];
           const box = chat.getBoundingClientRect();
           const visible = rows.filter((r) => r.getBoundingClientRect().bottom <= box.bottom).length;
           const heights = rows.slice(0, 8).map((r) => +r.getBoundingClientRect().height.toFixed(1));
@@ -163,7 +169,7 @@ for (const scheme of ['dark', 'light']) {
         }
         return out;
       },
-      { lines: LINES, styles: STYLES, showOriginal },
+      { lines: LINES, htmls: HTML_LIGNES, styles: STYLES, showOriginal },
     );
 
     const name = `chat-live-${scheme}${showOriginal ? '' : '-hidden'}`;
@@ -184,8 +190,8 @@ for (const r of report) console.log(r.name, JSON.stringify(r.measured));
 // `replace` is held to a different contract, because it now hides the original
 // itself. Two things have to be true of it, and both were false when it was
 // compact-inline under another name: it must not move when `showOriginal` does
-// (it does not read that setting any more), and with the setting ON — the state
-// nearly everyone is in — it must show strictly more messages than `inline`,
+// (it does not read that setting any more), and with the setting ON, the state
+// nearly everyone is in, it must show strictly more messages than `inline`,
 // which is the whole difference between replacing the message and sitting next
 // to it. Measured before the change: replace and inline both showed 9 at 44.1px,
 // down to the tenth of a pixel.

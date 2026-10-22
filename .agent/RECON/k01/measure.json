@@ -1,0 +1,26 @@
+{
+ "date": "2026-10-22",
+ "what": "K01: a translated message sent from the signed-in Slate composer, with an emote kept, read back in the DOM",
+ "browser": "Brave, brave-devtools MCP dedicated profile, signed in to the owner's test account; extension: dist/ 3.3.0 unpacked, no other extension installed",
+ "channel": "the owner's own channel (sending allowed there, at most 5 messages; 1 used)",
+ "before": { "loginButton": false, "userMenu": true, "dialogs": 0, "passwordFields": 0, "composerText": "", "ktMounted": true, "scheme": "dark (from data-a-target=chat-theme-dark)" },
+ "typed": "bonjour tout le monde Kappa",
+ "composerWhileTyping": { "text": "bonjour tout le monde Kappa", "emoteAsImage": false, "note": "Twitch marks Kappa as span[data-a-target=chat-input-emote-preview] holding the word, no img" },
+ "preview": { "state": "ready", "text": "hello everyone Kappa" },
+ "afterTab": { "composerText": "hello everyone Kappa", "slateBlocks": 1, "emotePreview": ["Kappa"], "focusKept": true, "clipboardFallbackToast": false },
+ "sent": {
+  "rowAriaLabel": "<own login>: hello everyone Kappa",
+  "textFragments": ["hello everyone "],
+  "emotes": [{ "alt": "Kappa", "src": "https://static-cdn.jtvnw.net/emoticons/v2/25/default/dark/2.0" }],
+  "composerAfter": ""
+ },
+ "overlaysSignedIn": {
+  ":Kap": ".autocomplete-match-list 314x252 (emote rows img.emote-autocomplete-provider__image)",
+  " @goc": ".autocomplete-match-list 32 tall",
+  "kt preview while open": "hidden",
+  "action": "added to SUGGESTION_PANELS in src/content/composeUi.ts, test isSuggestionOpen (witness: removed selector, 1 red)"
+ },
+ "messagesSent": 1,
+ "screenshots": ["1-preview.png", "2-inserted.png", "3-sent.png"],
+ "seenDefect": "the language chip overlaps the top edge of the composer (P19 first entry), visible in 3-sent.png"
+}

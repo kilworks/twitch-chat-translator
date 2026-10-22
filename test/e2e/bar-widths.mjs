@@ -21,6 +21,7 @@ import os from 'node:os';
 import path from 'node:path';
 import fs from 'node:fs';
 import { chromium } from './playwright.mjs';
+import { CHANNEL_ONE, nativeRow, routeTwitch, twitchPage } from './twitch-dom.mjs';
 
 const EXT = process.env.KT_EXT ?? path.resolve('dist');
 const LARGEURS = [1500, 1280, 1024, 900, 760, 600, 480, 420, 375, 340];
@@ -30,37 +31,21 @@ const MSGS = [
   ['nubecita77', 'esa jugada ha sido increible de verdad'],
   ['tortuga_veloz', 'alguien sabe a que hora empieza el torneo'],
 ];
-const rangee = (i, [u, t]) =>
-  `<div data-index="${i}"><div class="w-full min-w-0 shrink-0">` +
-  `<button class="font-bold" style="color:#53FC18">${u}</button>` +
-  `<span class="font-normal">${t}</span></div></div>`;
-
-const PAGE = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>c</title>
-<style>*{box-sizing:border-box}html,body{margin:0;background:#0b0b0c;color:#eee;font:14px system-ui}
-#page{display:flex;height:100vh}#video{flex:1;min-width:0;background:#14181b}
-#channel-chatroom{width:340px;flex:0 0 340px;display:flex;flex-direction:column;background:#101013}
-[data-which=decoy]{flex:0 0 0;height:0;overflow:hidden}
-[data-which=messages]{flex:1;overflow:auto}
-#compose{border-top:1px solid #222;padding:8px}
-[contenteditable]{min-height:36px;border:1px solid #2a2f33;border-radius:4px;padding:8px}
-</style></head><body><div id="page"><div id="video"></div>
-<div id="channel-chatroom">
-<div class="no-scrollbar" data-which="decoy"></div>
-<div class="no-scrollbar" data-which="messages">${MSGS.map((m, i) => rangee(i, m)).join('')}</div>
-<div id="compose"><div contenteditable="true" role="textbox" data-testid="chat-input" class="editor-input"></div></div>
-</div></div></body></html>`;
+// The chat as Twitch lays it out: the video on the left, a 340px chat panel on the right.
+const PAGE = () => twitchPage(MSGS.map(([u, t]) => nativeRow(t, u)).join(''), {
+  style: `#video{position:fixed;inset:0 340px 0 0;background:#14181b}
+.chat-room{position:fixed;inset:0 0 0 auto;width:340px;background:#101013}`,
+  after: '<div id="video"></div>',
+});
 
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'kct-larg-'));
 const ctx = await chromium.launchPersistentContext(profile, {
   headless: false, viewport: { width: 1500, height: 860 },
   args: [`--disable-extensions-except=${EXT}`, `--load-extension=${EXT}`, '--window-position=-2400,-2400', '--no-first-run'],
 });
-await ctx.route(/^https?:\/\/(www\.)?kick\.com\//, async (r) => {
-  if (r.request().resourceType() === 'document') await r.fulfill({ status: 200, contentType: 'text/html', body: PAGE });
-  else await r.fulfill({ status: 204, body: '' });
-});
+await routeTwitch(ctx, { page: PAGE });
 const page = ctx.pages()[0] ?? (await ctx.newPage());
-await page.goto('https://kick.com/x', { waitUntil: 'domcontentloaded' });
+await page.goto(`https://www.twitch.tv/${CHANNEL_ONE}`, { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(5000);
 
 const echecs = [];

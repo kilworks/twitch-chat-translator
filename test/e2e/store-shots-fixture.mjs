@@ -2,7 +2,7 @@
  * Les cinq captures des stores, prises sans personne dedans.
  *
  * Pourquoi ce fichier existe a cote de `store-shots.mjs`. Celui-la suit la
- * premiere chaine en direct de /browse : les images montrent alors la marque de
+ * premiere chaine en direct du repertoire : les images montrent alors la marque de
  * quelqu'un, son flux, et les pseudos de vraies personnes qui n'ont rien demande.
  * C'est ce qui laissait les captures en attente d'une decision. Ici la page est
  * fabriquee, les pseudos sont inventes, et le moteur de traduction est repondu
@@ -32,6 +32,7 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { chromium } from './playwright.mjs';
+import { CHANNEL_ONE, nativeRow, routeTwitch, twitchPage } from './twitch-dom.mjs';
 import { LINES, PSEUDOS, ROOM_ES, SETTINGS, TYPED } from './store-shots-lines.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -75,28 +76,35 @@ const CONVERSATION = PSEUDOS.map((p, i) => [p, (LANG === 'es' ? LINES.en : ROOM_
  */
 const TRADUCTIONS = new Map([...CONVERSATION.map(([, t], i) => [t, LINES[LANG][i]]), TYPED[LANG]]);
 
-const rangee = (i, [pseudo, texte]) =>
-  `<div data-index="${i}" class="px-3 py-1">` +
-  '<div class="w-full min-w-0 shrink-0">' +
-  `<button class="font-bold" style="color:#53FC18">${pseudo}</button>` +
-  '<span style="opacity:.5">: </span>' +
-  `<span class="font-normal">${texte}</span>` +
-  '</div></div>';
+const LISTE = '[data-test-selector="chat-scrollable-area__message-container"]';
+const TEXTE_RANGEE = '[data-a-target="chat-message-text"]';
+const COMPOSEUR = '[data-a-target="chat-input"][data-slate-editor]';
+/** Les couleurs de pseudo que Twitch attribue, quelques-unes seulement. */
+const COULEURS = ['#ff7f50', '#1e90ff', '#9acd32', '#ff69b4', '#00ff7f', '#daa520', '#d2691e', '#8a2be2'];
 
-const PAGE = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>chat</title>
-<style>
+/**
+ * Une rangee native de Twitch (balisage de `twitch-dom.mjs`, coupe dans les snapshots
+ * RECON), marquee `data-kt-idx` pour qu'on la retrouve : ce n'est pas un attribut de
+ * Twitch et le produit l'ignore.
+ */
+const rangee = (i, [pseudo, texte]) =>
+  nativeRow(texte, pseudo)
+    .replace('rgb(0, 249, 41)', COULEURS[PSEUDOS.indexOf(pseudo) % COULEURS.length])
+    .replace('class="chat-line__message"', `class="chat-line__message" data-kt-idx="${i}"`);
+
+const PAGE = twitchPage(CONVERSATION.map((c, i) => rangee(i, c)).join('\n'), {
+  style: `
   :root { color-scheme: dark; }
-  html, body { margin: 0; background: #0b0b0c; color: #e8e8e8;
+  html, body { background: #0e0e10; color: #efeff1;
                font: 14px/1.5 Inter, ui-sans-serif, system-ui, sans-serif; }
-  #page { display: flex; height: 100vh; }
   /* La zone du lecteur. Volontairement abstraite : une capture de store ne doit
      pas fabriquer le flux de quelqu'un ni une marque qui n'existe pas. Un aplat
      travaille et une barre de lecture generique suffisent a situer la page. */
-  #video { flex: 1; position: relative; overflow: hidden;
+  #video { position: fixed; inset: 0 360px 0 0; overflow: hidden;
            background:
-             radial-gradient(120% 90% at 25% 20%, #1b2228 0%, transparent 60%),
-             radial-gradient(100% 80% at 80% 75%, #16201a 0%, transparent 55%),
-             linear-gradient(160deg, #14181b, #0b0d0f); }
+             radial-gradient(120% 90% at 25% 20%, #1f1a2e 0%, transparent 60%),
+             radial-gradient(100% 80% at 80% 75%, #1a1626 0%, transparent 55%),
+             linear-gradient(160deg, #15131a, #0e0e10); }
   #video::before { content: ''; position: absolute; inset: 0;
                    background-image: linear-gradient(#ffffff08 1px, transparent 1px),
                                      linear-gradient(90deg, #ffffff08 1px, transparent 1px);
@@ -104,45 +112,25 @@ const PAGE = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>
   #player { position: absolute; left: 24px; right: 24px; bottom: 22px; height: 4px;
             border-radius: 2px; background: #ffffff1f; }
   #player i { display: block; height: 100%; width: 62%; border-radius: 2px;
-              background: #53FC18; }
+              background: #9146ff; }
   #live { position: absolute; left: 24px; top: 22px; display: flex; align-items: center;
           gap: 8px; font-size: 12px; letter-spacing: .04em; color: #cfd4d8; }
-  #live b { width: 8px; height: 8px; border-radius: 50%; background: #ff4d4d; }
-  /* overflow: hidden comme sur Kick. Le panneau de langues se borne a la colonne
+  #live b { width: 8px; height: 8px; border-radius: 50%; background: #eb0400; }
+  /* overflow: hidden comme sur Twitch. Le panneau de langues se borne a la colonne
      qui rogne son ancre ; sans elle il retombait sur la boite du bouton, 80px de
      haut, et la liste debordait sur le chat de toutes les captures 02. */
-  #channel-chatroom { width: 360px; border-left: 1px solid #1f2326; display: flex;
-                      flex-direction: column; background: #101013; overflow: hidden; }
-  /* Le leurre existe pour que l'observateur choisisse le bon conteneur entre
-     deux qui repondent au meme selecteur, comme sur le vrai site. Il ne doit pas
-     prendre de place : avec "flex: 1" sur les deux, il mangeait la moitie haute
-     de la colonne et les captures montraient un chat a moitie vide. */
-  [data-which='decoy'] { flex: 0 0 0; height: 0; overflow: hidden; }
-  [data-which='messages'] { flex: 1; overflow: auto; display: flex;
-                            flex-direction: column; justify-content: flex-end; }
-  [data-which="messages"] > div { padding: 3px 10px; }
-  #compose { border-top: 1px solid #1f2326; padding: 10px; }
-  [contenteditable] { min-height: 38px; border: 1px solid #2a2f33; border-radius: 4px;
-                      padding: 8px; outline: none; }
-</style></head>
-<body>
-  <div id="page">
-    <div id="video">
-      <div id="live"><b></b>LIVE</div>
-      <div id="player"><i></i></div>
-    </div>
-    <div id="channel-chatroom">
-      <div class="no-scrollbar" data-which="decoy"></div>
-      <div class="no-scrollbar" data-which="messages">
-        ${CONVERSATION.map((c, i) => rangee(i, c)).join('\n')}
-      </div>
-      <div id="compose">
-        <div contenteditable="true" spellcheck="false" role="textbox" data-testid="chat-input" class="editor-input"></div>
-      </div>
-    </div>
-  </div>
-  <script>
-    // Comme l'editeur Lexical de Kick : un beforeinput insertText, meme
+  .chat-room { width: 360px; border-left: 1px solid #26262c; background: #18181b; overflow: hidden; }
+  /* Le chat se lit par le bas, comme un vrai salon : la liste est ancree en bas
+     de sa colonne et ce qui deborde par le haut est rogne. */
+  .chat-list--default { display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .scrollable-area { flex: none; }
+  .chat-line__message { padding: 3px 10px; }
+  .chat-input { border-top: 1px solid #26262c; padding: 10px; }
+  [data-a-target="chat-input"] { min-height: 38px; border: 1px solid #3a3a3d; border-radius: 4px;
+                      padding: 8px; outline: none; }`,
+  after: '<div id="video"><div id="live"><b></b>LIVE</div><div id="player"><i></i></div></div>',
+  head: `<script>
+    // Comme l'editeur Slate de Twitch : un beforeinput insertText, meme
     // synthetique, remplace la selection. Un contenteditable nu l'ignore, et Tab
     // retombait sur la copie dans le presse-papiers au lieu d'echanger le texte.
     document.addEventListener('beforeinput', (e) => {
@@ -153,8 +141,8 @@ const PAGE = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>
       r.insertNode(document.createTextNode(e.data));
       getSelection().collapseToEnd();
     });
-  </script>
-</body></html>`;
+  </script>`,
+});
 
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'kct-shots-'));
 const ctx = await chromium.launchPersistentContext(profile, {
@@ -173,8 +161,6 @@ const ctx = await chromium.launchPersistentContext(profile, {
     '--no-default-browser-check',
   ],
 });
-
-const KICK = /^https?:\/\/(www\.)?kick\.com\//;
 
 await ctx.route('**://translate.googleapis.com/**', async (route) => {
   const q = new URL(route.request().url()).searchParams.get('q') ?? '';
@@ -197,27 +183,14 @@ await ctx.route('**://translate.googleapis.com/**', async (route) => {
   });
 });
 
-await ctx.route(KICK, async (route) => {
-  const req = route.request();
-  if (req.resourceType() === 'document') {
-    await route.fulfill({ status: 200, contentType: 'text/html', body: PAGE });
-  } else if (req.url().includes('/api/')) {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ chatroom: { id: 1 }, livestream: { lang_iso: SALON } }),
-    });
-  } else {
-    await route.fulfill({ status: 204, body: '' });
-  }
-});
+await routeTwitch(ctx, { page: () => PAGE, langIso: SALON });
 
 const page = ctx.pages()[0] ?? (await ctx.newPage());
-await page.goto('https://kick.com/demo-channel', { waitUntil: 'domcontentloaded' });
+await page.goto(`https://www.twitch.tv/${CHANNEL_ONE}`, { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(3000);
 
 // La langue de lecture et celle de l'interface, posees avant que le salon ne
-// soit lu : le service worker n'existe qu'une fois une page kick.com ouverte.
+// soit lu : le service worker n'existe qu'une fois une page twitch.tv ouverte.
 const sw = ctx.serviceWorkers()[0] ?? (await ctx.waitForEvent('serviceworker', { timeout: 20000 }));
 const extId = await sw.evaluate(() => chrome.runtime.id);
 await sw.evaluate(
@@ -233,7 +206,7 @@ await page.waitForTimeout(9000);
 
 // Le chat se lit par le bas, comme un vrai salon.
 await page.evaluate(() => {
-  const l = document.querySelector('#channel-chatroom [data-which="messages"]');
+  const l = document.querySelector('.chat-list--default');
   if (l) l.scrollTop = l.scrollHeight;
 });
 await page.waitForTimeout(600);
@@ -316,23 +289,26 @@ async function prendreReadme(nom, selecteurs, sujet) {
 // un salon fabrique : une conversation plus courte reste une conversation, et ce
 // que l'image montre du produit ne change pas. La boucle est derivee du DOM,
 // donc elle suit une mise en page qui bouge.
-const alignement = await page.evaluate(() => {
-  const l = document.querySelector('#channel-chatroom [data-which="messages"]');
-  if (!l) return { absent: true };
+const alignement = await page.evaluate(({ liste }) => {
+  const l = document.querySelector(liste);
+  // Le cadre qui rogne est la colonne de la liste, pas la liste elle-meme.
+  const cadre = document.querySelector('.chat-list--default');
+  if (!l || !cadre) return { absent: true };
   const depassante = () => {
-    const haut = l.getBoundingClientRect().top;
-    return [...l.querySelectorAll('[data-index]')].find((r) => r.getBoundingClientRect().top < haut - 1);
+    const haut = cadre.getBoundingClientRect().top;
+    return [...l.querySelectorAll('.chat-line__message')].find((r) => r.getBoundingClientRect().top < haut - 1);
   };
   let retirees = 0;
   let r;
   // Un plafond, sinon une mise en page cassee viderait le chat en silence et
   // l'image partirait vide en passant le controle du sujet de justesse.
   while ((r = depassante()) && retirees < 5) {
-    r.remove();
+    // La rangee est un descendant d'un enveloppeur sans classe : on retire l'enveloppeur.
+    (r.parentElement?.parentElement ?? r).remove();
     retirees += 1;
   }
-  return { retirees, reste: depassante() ? 1 : 0, rangees: l.querySelectorAll('[data-index]').length };
-});
+  return { retirees, reste: depassante() ? 1 : 0, rangees: l.querySelectorAll('.chat-line__message').length };
+}, { liste: LISTE });
 await page.waitForTimeout(300);
 console.log(`alignement       ${alignement.retirees} rangee(s) retiree(s), ${alignement.rangees} restantes, ${alignement.reste} encore coupee(s)`);
 if (alignement.reste) failsAlign.push('une rangee reste coupee en haut du cadre');
@@ -349,12 +325,12 @@ await prendre(
 // la zone video vide qui occupe les trois quarts de l'image du store.
 await prendreReadme(
   'chat',
-  ['#kt-floating-bar', '#channel-chatroom [data-which="messages"]'],
+  ['#kt-floating-bar', '.chat-list--default'],
   () => document.querySelectorAll('.kt-translation, .kt-translation-inline, .kt-translation-replace').length >= 6,
 );
 
 // 02 : la grille de langues, ce que la fiche actuelle ne montre pas du tout.
-// Le bouton exact, repris de `kick-actions.mjs` : la barre est
+// Le bouton exact, repris de `kick-actions.mjs` (le nom du fichier date de Kick) : la barre est
 // `#kt-floating-bar` et son controle de langue `.kt-float-lang`. Un premier
 // essai cliquait `#kt-float button`, qui n'existe pas, et l'image sortait sur
 // un panneau ferme.
@@ -375,7 +351,7 @@ await page.keyboard.press('Escape').catch(() => undefined);
 await page.waitForTimeout(400);
 
 // 03 : l'apercu de composition, au-dessus de la boite de saisie.
-const saisie = page.locator('#channel-chatroom [contenteditable="true"]');
+const saisie = page.locator(COMPOSEUR);
 await saisie.click();
 await saisie.type(TYPED[LANG][0], { delay: 20 });
 await page.waitForTimeout(7000);
@@ -403,9 +379,9 @@ await prendreReadme(
     // L'avant-derniere rangee du chat plutot qu'une marge en pixels : le cadre
     // reste derive du DOM et il donne son contexte a l'apercu, qui seul ne
     // montrait qu'une boite de saisie coupee en haut.
-    '#channel-chatroom [data-which="messages"] > div:nth-last-child(2)',
+    `${LISTE} > div:nth-last-child(2)`,
     '.kt-compose',
-    '#channel-chatroom [contenteditable="true"]',
+    COMPOSEUR,
   ],
   () => {
     const p = document.querySelector('.kt-compose');
@@ -461,21 +437,21 @@ if (LANG === 'en' && process.argv.includes('--gif')) {
   await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(9000);
   const images = fs.mkdtempSync(path.join(os.tmpdir(), 'kct-gif-'));
-  const clip = await cadreDe(page, ['#channel-chatroom']);
+  const clip = await cadreDe(page, ['.chat-room']);
   let n = 0;
   const image = async (fois = 1) => {
     const b = await page.screenshot({ clip });
     for (let k = 0; k < fois; k++) fs.writeFileSync(path.join(images, `f${String(n++).padStart(4, '0')}.png`), b);
   };
-  await page.evaluate(() => document.querySelector('#channel-chatroom [data-which="messages"]')?.replaceChildren());
+  await page.evaluate((liste) => document.querySelector(liste)?.replaceChildren(), LISTE);
   await page.waitForTimeout(300);
   await image(2);
-  // De nouveaux index : ceux d'avant sont deja traduits, et Kick recycle ses
-  // rangees sous le meme index, que l'extension retraduit.
+  // De nouvelles rangees : Twitch ne recycle jamais un noeud, chaque message
+  // arrive dans le sien.
   for (const [i, c] of CONVERSATION.entries()) {
     await page.evaluate(
-      (html) => document.querySelector('#channel-chatroom [data-which="messages"]')?.insertAdjacentHTML('beforeend', html),
-      rangee(100 + i, c),
+      ({ html, liste }) => document.querySelector(liste)?.insertAdjacentHTML('beforeend', html),
+      { html: rangee(100 + i, c), liste: LISTE },
     );
     await page.waitForTimeout(120);
     await image();

@@ -1,0 +1,423 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T21:52:12.519Z",
+ "target": "ja",
+ "cells": [
+  {
+   "config": "native",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 21
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 35,
+   "marked": 35,
+   "translations": 5,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "スポンサー⟳",
+    "！広告⟳",
+    "スポンサー⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     3
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 0,
+    "missing": 0,
+    "trimmed": 35,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 212,
+    "p50": 1040,
+    "p90": 3125
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 22
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 49,
+   "marked": 45,
+   "translations": 45,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "スポンサーあり⟳",
+    "スポンサーは何ですか スポンサーは何ですか スポンサーは何ですか⟳",
+    "こんにちはスープ⟳"
+   ],
+   "reasons": [],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 1,
+    "missing": 0,
+    "trimmed": 49,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 267,
+    "p50": 87,
+    "p90": 721
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 21
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 55,
+   "marked": 55,
+   "translations": 15,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "ああ、神様⟳",
+    "スポンサーは何ですか⟳",
+    "AUこんにちは⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     8
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 1,
+    "missing": 0,
+    "trimmed": 55,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 126,
+    "p50": 82,
+    "p90": 2012
+   },
+   "pass": true
+  },
+  {
+   "config": "ffz",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 22
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 49,
+   "marked": 49,
+   "translations": 45,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "スポンサーあり⟳",
+    "スポンサーは何ですか スポンサーは何ですか スポンサーは何ですか⟳",
+    "こんにちはスープ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     4
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 0,
+    "missing": 0,
+    "trimmed": 49,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 223,
+    "p50": 215,
+    "p90": 2194
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 20
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 55,
+   "marked": 47,
+   "translations": 46,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "騒ぎを感じます。⟳",
+    "ああ、神様⟳",
+    "スポンサー王は何ですか⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: the translation came back the same as the original",
+     1
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 1,
+    "missing": 0,
+    "trimmed": 55,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 228,
+    "p50": 101,
+    "p90": 3033
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 22
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 42,
+   "marked": 38,
+   "translations": 30,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "スポンサーのこととオリジナルのジョークを言ったら本当に面白いでしょう⟳",
+    "サンドレスはいつ着る予定ですか、知りたいのですが⟳",
+    "今日のスポンサーは誰ですか⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: the translation came back the same as the original",
+     1
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 1,
+    "missing": 0,
+    "trimmed": 42,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 263,
+    "p50": 83,
+    "p90": 2382
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 22
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 49,
+   "marked": 49,
+   "translations": 23,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "スポンサーあり⟳",
+    "スポンサーは何ですか スポンサーは何ですか スポンサーは何ですか⟳",
+    "こんにちはスープ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     4
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     2
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 0,
+    "missing": 0,
+    "trimmed": 49,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 202,
+    "p50": 92,
+    "p90": 1682
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 22
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 53,
+   "marked": 48,
+   "translations": 41,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "スポンサーのこととオリジナルのジョークを言ったら本当に面白いでしょう⟳",
+    "サンドレスはいつ着る予定ですか、知りたいのですが⟳",
+    "今日のスポンサーは誰ですか⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: the translation came back the same as the original",
+     1
+    ]
+   ],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 2,
+    "missing": 0,
+    "trimmed": 53,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 213,
+    "p50": 126,
+    "p90": 2014
+   },
+   "pass": true
+  }
+ ],
+ "summary": "8/8 cells green"
+}

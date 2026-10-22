@@ -1,0 +1,50 @@
+name: Twitch DOM drift
+
+# Weekly: draws live channels at random, snapshots Twitch's chat in the configs
+# and surfaces the platform layer reads (native, 7TV, BTTV, FFZ; live, popout,
+# embed, VOD, clip), then asks the real selectors of src/content/selectors.ts to
+# find each family's list, rows, text and author (scripts/dom-drift.ts). Red
+# means a Twitch or 7TV update moved something the extension reads, before a
+# reader reports it. Like stores-verify.yml, nothing is published.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      UX_KIT: ${{ runner.temp }}/kit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      # The probes load Playwright from UX_KIT, outside the project's dependencies.
+      - run: npm i --prefix "$UX_KIT" playwright@1.62.1 && "$UX_KIT/node_modules/.bin/playwright" install --with-deps chromium
+      - run: node scripts/fetch-chat-exts.mjs
+      - run: node .agent/probes/pick.mjs 30
+      - run: node .agent/probes/heat.mjs
+      - name: Snapshot the cells the drift gate reads
+        run: |
+          CONFIGS=native,bttv,ffz,bttv+ffz,7tv,7tv+bttv,7tv+ffz,all SURFACES=live JOBS=4 node .agent/probes/matrix.mjs || true
+          CONFIGS=native,7tv SURFACES=popout,embed JOBS=4 node .agent/probes/matrix.mjs || true
+          CONFIGS=native,bttv,7tv,all SURFACES=vod JOBS=4 node .agent/probes/matrix.mjs || true
+          CONFIGS=native SURFACES=clip JOBS=1 node .agent/probes/matrix.mjs || true
+      # The verdict: a cell without a fresh snapshot fails here too.
+      - run: npx tsx scripts/dom-drift.ts --fresh
+      # Shared chat and hype chat, never seen yet: listen to the top of the directory and
+      # capture the DOM of the first shared-chat session (PLAN P18). Reported, not gating.
+      - run: MINUTES=15 node .agent/probes/sharedchat.mjs
+        continue-on-error: true
+      # The bot list of src/shared/bots.ts, re-measured (PLAN P06). Reported, not gating.
+      - run: node .agent/probes/bots.mjs
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recon
+          path: .agent/RECON/

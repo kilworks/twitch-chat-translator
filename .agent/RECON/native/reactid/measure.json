@@ -1,0 +1,31 @@
+{
+ "what": "IRC message id readable from React props of native rows, MAIN world",
+ "cells": [
+  {
+   "channel": "ch17",
+   "rows": 62,
+   "withId": 62,
+   "paths": {
+    "depth 2: props.message.id": 62
+   }
+  },
+  {
+   "channel": "ch22",
+   "rows": 116,
+   "withId": 116,
+   "paths": {
+    "depth 2: props.message.id": 116
+   }
+  },
+  {
+   "channel": "ch30",
+   "rows": 141,
+   "withId": 141,
+   "paths": {
+    "depth 2: props.message.id": 141
+   }
+  }
+ ],
+ "rows": 319,
+ "withId": 319
+}

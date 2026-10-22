@@ -1,0 +1,502 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T21:43:54.679Z",
+ "target": "ja",
+ "cells": [
+  {
+   "config": "native",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 20
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 82,
+   "marked": 80,
+   "translations": 49,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 9.69,
+   "sample": [
+    "ああ、ああ⟳",
+    "@<ch34> Watch Me のほうがはるかに優れています!⟳",
+    "みんな、なぜ今日は超早いの?⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     24
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     5
+    ]
+   ],
+   "stillAttached10s": 49,
+   "after10s": {
+    "onScreen": 46,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 35,
+    "p50": 966,
+    "p90": 1604
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 30
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 114,
+   "marked": 75,
+   "translations": 66,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native",
+    "7tv"
+   ],
+   "errors": 8,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "ジョーチャック⟳",
+    "ジョー・チャック⟳",
+    "ジョー・カック 7 手袋を外した⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: the translation came back the same as the original",
+     1
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 66,
+   "after10s": {
+    "onScreen": 62,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 66,
+    "p50": 673,
+    "p90": 1283
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 50
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 130,
+   "marked": 119,
+   "translations": 63,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "ゆりで⟳",
+    "シルバーのULTはレベル1で利用可能になるはずです⟳",
+    "今すぐキスしてください⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     39
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     12
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     3
+    ],
+    [
+     "Not translated: the same user just sent this",
+     1
+    ]
+   ],
+   "stillAttached10s": 63,
+   "after10s": {
+    "onScreen": 61,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 48,
+    "p50": 1008,
+    "p90": 2012
+   },
+   "pass": true
+  },
+  {
+   "config": "ffz",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 7
+    },
+    {
+     "ch": 10,
+     "adds": 35
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch10",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 107,
+   "marked": 103,
+   "translations": 52,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "アイベックス⟳",
+    "アンテロープ⟳",
+    "ゼブラ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     44
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     3
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     2
+    ],
+    [
+     "Not translated: it is only chat slang",
+     1
+    ],
+    [
+     "Not translated: the sender looks like a bot",
+     1
+    ]
+   ],
+   "stillAttached10s": 52,
+   "after10s": {
+    "onScreen": 49,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 40,
+    "p50": 750,
+    "p90": 2409
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 27
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 107,
+   "marked": 61,
+   "translations": 52,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native",
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "クリーン⟳",
+    "うーん⟳",
+    "次は私⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     8
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     2
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     1
+    ],
+    [
+     "Not translated: the sender looks like a bot",
+     1
+    ]
+   ],
+   "stillAttached10s": 52,
+   "after10s": {
+    "onScreen": 50,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 17,
+    "p50": 892,
+    "p90": 3665
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 32
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 106,
+   "marked": 74,
+   "translations": 65,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "タイトルに#広告を近日中に掲載します⟳",
+    "SO <ch34> は TNF を監視できます⟳",
+    "初期のストリームをありがとう <ch34>⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     3
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     3
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     2
+    ]
+   ],
+   "stillAttached10s": 65,
+   "after10s": {
+    "onScreen": 64,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 31,
+    "p50": 915,
+    "p90": 1631
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 12
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 67,
+   "marked": 64,
+   "translations": 49,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "ヴィンディクタ飛行に対してのみ効果があります⟳",
+    "彼はそんなことは言いませんでした⟳",
+    "ひげ⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     9
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     4
+    ],
+    [
+     "Not translated: the sender looks like a bot",
+     2
+    ]
+   ],
+   "stillAttached10s": 49,
+   "after10s": {
+    "onScreen": 43,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 56,
+    "p50": 96,
+    "p90": 1097
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "surface": "live",
+   "tried": [
+    {
+     "ch": 34,
+     "adds": 25
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch34",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 86,
+   "marked": 69,
+   "translations": 60,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "悪役⟳",
+    "EU引き換えに⟳",
+    "浴びた⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     4
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     3
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     2
+    ]
+   ],
+   "stillAttached10s": 60,
+   "after10s": {
+    "onScreen": 55,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 21,
+    "p50": 911,
+    "p90": 1874
+   },
+   "pass": true
+  }
+ ],
+ "summary": "8/8 cells green"
+}

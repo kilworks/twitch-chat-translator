@@ -141,6 +141,10 @@ for (const charge of [false, true]) {
         libelleTronque: label.scrollWidth > label.clientWidth + 1,
         engrenagePresent: Boolean(bar.querySelector('.kt-float-opts')),
         pausePresente: Boolean(bar.querySelector('.kt-float-power')),
+        // PLAN P19: the local-model button measured 21px tall on Twitch (RECON/a11y).
+        hauteurLocal: bar.querySelector('.kt-float-local')
+          ? +bar.querySelector('.kt-float-local').getBoundingClientRect().height.toFixed(1)
+          : null,
       };
     },
     { locale, dir: locale === 'ar' ? 'rtl' : 'ltr', charge },
@@ -190,6 +194,7 @@ for (const r of report) {
   }
   if (r.enfantsDehors.length) failures.push(`${tag}: hors barre -> ${r.enfantsDehors.join(', ')}`);
   if (r.surPlusieursLignes) failures.push(`${tag}: la barre passe sur deux lignes`);
+  if (r.charge && !(r.hauteurLocal >= 24)) failures.push(`${tag}: bouton du modele local ${r.hauteurLocal}px de haut, sous 24`);
   const ref = refHeight(r.charge);
   if (r.hauteurBarre > ref + 1) {
     failures.push(`${tag}: barre a ${r.hauteurBarre}px contre ${ref} pour l anglais au meme etat`);

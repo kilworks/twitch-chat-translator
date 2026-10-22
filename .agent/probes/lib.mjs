@@ -23,8 +23,9 @@ export const CONFIGS = {
   all: ['7tv', 'bttv', 'ffz'],
 };
 
-export async function launch(config, extra = {}, cell = 'main') {
-  const exts = CONFIGS[config].map((e) => path.join(EXT, e));
+export async function launch(config, extra = {}, cell = 'main', product = null) {
+  // `product`: the built extension under test, loaded beside the config's chat extensions.
+  const exts = [...CONFIGS[config].map((e) => path.join(EXT, e)), ...(product ? [product] : [])];
   const args = ['--mute-audio', '--autoplay-policy=user-gesture-required'];
   if (exts.length) args.push(`--disable-extensions-except=${exts.join(',')}`, `--load-extension=${exts.join(',')}`);
   // One profile per cell: parallel cells sharing a profile die on Chromium's profile lock.
@@ -52,11 +53,18 @@ export function drawnLogins() {
  * Replace every drawn channel login by <chN> (N = its index in the draw), and normalise en/em
  * dashes from captured third-party text to '-' so no produced file carries them.
  */
-export function redact(text, _names) {
+export function redact(text, names = []) {
   let out = text.replace(new RegExp(`[${String.fromCharCode(0x2013, 0x2014)}]`, 'g'), '-');
+  const esc = (n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   for (const [i, n] of drawnLogins().entries()) {
     if (!n || n.length < 3) continue;
-    out = out.replace(new RegExp(`(?<![a-z0-9_])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![a-z0-9_])`, 'gi'), `<ch${i}>`);
+    out = out.replace(new RegExp(`(?<![a-z0-9_])${esc(n)}(?![a-z0-9_])`, 'gi'), `<ch${i}>`);
+  }
+  // Logins a probe found on its own (outside the draw) are redacted too, as <chN> of that
+  // probe's list: a probe passing its names used to have them ignored.
+  for (const [i, n] of names.entries()) {
+    if (!n || n.length < 3) continue;
+    out = out.replace(new RegExp(`(?<![a-z0-9_])${esc(n)}(?![a-z0-9_])`, 'gi'), `<ch${i}>`);
   }
   return out;
 }

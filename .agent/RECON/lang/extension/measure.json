@@ -1,0 +1,47 @@
+{
+ "what": "channel language stored by the extension after GQL answered (kt.lastlang.<channel>)",
+ "cells": [
+  {
+   "channel": "ch0",
+   "lang": "fr"
+  },
+  {
+   "channel": "ch1",
+   "lang": "fr"
+  },
+  {
+   "channel": "ch2",
+   "lang": "fr"
+  },
+  {
+   "channel": "ch3",
+   "lang": "fr"
+  },
+  {
+   "channel": "ch4",
+   "lang": "en"
+  },
+  {
+   "channel": "ch5",
+   "lang": "de"
+  },
+  {
+   "channel": "ch6",
+   "lang": "de"
+  },
+  {
+   "channel": "ch7",
+   "lang": "fr"
+  },
+  {
+   "channel": "ch8",
+   "lang": "fr"
+  },
+  {
+   "channel": "ch9",
+   "lang": "fr"
+  }
+ ],
+ "got": 10,
+ "of": 10
+}

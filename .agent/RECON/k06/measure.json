@@ -1,0 +1,8 @@
+{
+ "date": "2026-10-22",
+ "what": "K06 fifth method: Brave headed (brave-devtools MCP profile), channel tab put behind another tab with CDP bringToFront, 60 s",
+ "channel": "ch21 of the draw (busy), extension on, target ja",
+ "baseline": { "visibility": "visible", "translations": 44, "rows": 73 },
+ "after60sBehindAnotherTab": { "visibilityNow": "visible", "transitions": ["visible (initial only)"], "rowsArrivedWhileHidden": 0, "rowsArrived": 82 },
+ "verdict": "The page never became hidden, so no line could be lost to hiding and none was. Same as the four earlier methods. A real user switching tabs by hand is still the only measurement left: K06 stays with kil."
+}

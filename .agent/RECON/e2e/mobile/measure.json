@@ -1,0 +1,352 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T21:14:26.760Z",
+ "target": "ja",
+ "cells": [
+  {
+   "config": "native",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 16
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 76,
+   "marked": 72,
+   "translations": 44,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "but you are going to be your ghostbuster⟳",
+    "JAKAKSJSJAKKAKA YOU ARE A DICK PEPE⟳",
+    "Suck my dick⟳"
+   ],
+   "stillAttached10s": 43,
+   "after10s": {
+    "onScreen": 40,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 34,
+    "p50": 483,
+    "p90": 1073
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 28
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 102,
+   "marked": 77,
+   "translations": 43,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native",
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "With the crucifix you save yourself⟳",
+    "Did that happen to you?⟳",
+    "and leave your blades longer?⟳"
+   ],
+   "stillAttached10s": 43,
+   "after10s": {
+    "onScreen": 43,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 19,
+    "p50": 452,
+    "p90": 843
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 60
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 106,
+   "marked": 105,
+   "translations": 47,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "Absolutely all the Moors of Spain get out!⟳",
+    "私のいとこは体重135キロのあなたを望んでいます⟳",
+    "！世界⟳"
+   ],
+   "stillAttached10s": 47,
+   "after10s": {
+    "onScreen": 47,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 23,
+    "p50": 931,
+    "p90": 1787
+   },
+   "pass": true
+  },
+  {
+   "config": "ffz",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 54
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 149,
+   "marked": 145,
+   "translations": 47,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "2 であるため、各ゲームは多かれ少なかれ 50 分続きます。⟳",
+    "露は何をしますか 露は何をしますか⟳",
+    "何してるの⟳"
+   ],
+   "stillAttached10s": 44,
+   "after10s": {
+    "onScreen": 44,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 53,
+    "p50": 85,
+    "p90": 2721
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 17
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 47,
+   "marked": 38,
+   "translations": 32,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "GA基金⟳",
+    "私のいとこは体重167キロのあなたを望んでいます⟳",
+    "あなたに似たハゲ男を着てください⟳"
+   ],
+   "stillAttached10s": 32,
+   "after10s": {
+    "onScreen": 30,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 26,
+    "p50": 869,
+    "p90": 3844
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 21
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 74,
+   "marked": 62,
+   "translations": 39,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "歯を直す⟳",
+    "遅くまでクソ⟳",
+    "カメラを取り上げてください⟳"
+   ],
+   "stillAttached10s": 39,
+   "after10s": {
+    "onScreen": 39,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 38,
+    "p50": 2861,
+    "p90": 5864
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 7
+    },
+    {
+     "ch": 22,
+     "adds": 16
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch22",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 64,
+   "marked": 53,
+   "translations": 28,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "ビッグ26で？道路に出ようよ、おい⟳",
+    "私的所有者⟳",
+    "彼らは何もしません（笑）⟳"
+   ],
+   "stillAttached10s": 28,
+   "after10s": {
+    "onScreen": 26,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 43,
+    "p50": 1095,
+    "p90": 11149
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "surface": "mobile",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 33
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": false,
+   "barInPanel": false,
+   "rows": 0,
+   "marked": 0,
+   "translations": 0,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": null,
+   "sample": [],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 0,
+    "missing": 0
+   },
+   "latencyMs": {
+    "n": 1,
+    "p50": 1631,
+    "p90": 1631
+   },
+   "pass": false,
+   "why": "0 translations (< 3) on 0 marked lines; floating bar not in the chat panel"
+  }
+ ],
+ "summary": "7/8 cells green"
+}

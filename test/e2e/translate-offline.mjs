@@ -7,15 +7,15 @@
  * module. Le chemin reel, du noeud ajoute au DOM jusqu'au texte traduit affiche,
  * en passant par l'observateur, le pipeline, le message vers le service worker
  * et le moteur, n'etait exerce que par des harnais live qui ouvrent le vrai
- * kick.com et demandent le reseau.
+ * twitch.tv et demandent le reseau.
  *
  * Comment celui-ci s'en passe. Comme `extension-load` : `content_scripts` filtre
- * sur l'URL et pas sur ce qui repond, donc kick.com est servi localement. Le
+ * sur l'URL et pas sur ce qui repond, donc twitch.tv est servi localement. Le
  * moteur de traduction est intercepte de la meme facon et rend une reponse
  * fabriquee, ce qui rend l'assertion exacte : on sait quel texte doit apparaitre.
  *
- * Ce qu'elle attrape, mesure et pas suppose. Casser `font-normal` dans
- * `selectors.ts` la fait rougir : la chaine complete repond a une regression
+ * Ce qu'elle attrape, mesure et pas suppose. Casser `[data-a-target="chat-message-text"]` dans
+ * `platform/twitch.ts` la fait rougir : la chaine complete repond a une regression
  * reelle du produit. Mais les tests unitaires attrapent deja celle-la, quatre
  * d'entre eux. La valeur propre de cette porte est le cablage lui-meme, ce que
  * personne d'autre n'execute : Chrome charge l'extension, le script de contenu
@@ -43,6 +43,15 @@ import { fileURLToPath } from 'node:url';
 
 import { chromium } from './playwright.mjs';
 import { poserLangueCible } from './kick-actions.mjs';
+import {
+  CHANNEL_ONE,
+  CHANNEL_TWO,
+  nativeChat,
+  nativeRow,
+  routeTwitch,
+  seventvRow,
+  twitchPage,
+} from './twitch-dom.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 // Par defaut le repertoire de build. `KT_EXT` permet de pointer sur un paquet
@@ -75,16 +84,14 @@ const SOURCE = 'hola amigo que tal';
 const BASCULE = process.argv.includes('--bascule');
 
 /**
- * Troisieme mode, `--recyclage`. Kick recycle ses rangees de chat : le
- * virtualiseur reutilise la meme valeur de `data-index` pour un autre message
- * quand on defile, ce que `selectors.ts` signale en majuscules. La panne
- * cherchee est une rangee recyclee qui garde la traduction du message
- * precedent, sous un texte auquel elle n'appartient pas.
- *
- * `live-recycle` la guette sur un vrai chat charge, echantillonne toutes les 20
- * secondes, parce qu'il faut attendre que le defilement veuille bien recycler.
- * Ici on le provoque : on reecrit le texte des memes `data-index`, ce que fait
- * exactement le virtualiseur, et la reponse est immediate et deterministe.
+ * Troisieme mode, `--recyclage`. Kick recyclait ses rangees (le virtualiseur
+ * reutilisait un `data-index` pour un autre message) ; Twitch ne le fait jamais,
+ * un noeud de rangee est son message pour toute sa vie (RECON : `reusedNodes` 0
+ * sur 80 cellules sur 80). Ce que le mode garde est ce qui en reste : une rangee
+ * dont le TEXTE est remplace sur place, sans que le noeud change, ce que Twitch
+ * fait quand un message est supprime ou edite par la moderation. La rangee doit
+ * etre traduite A NOUVEAU, une seule fois, et la traduction qu'elle porte doit
+ * etre celle du nouveau texte et pas celle de l'ancien.
  *
  * Pour que la panne soit visible, le faux moteur repond en fonction de ce qu'on
  * lui donne au lieu de rendre une constante. Une traduction perimee se lit alors
@@ -93,13 +100,14 @@ const BASCULE = process.argv.includes('--bascule');
 const RECYCLAGE = process.argv.includes('--recyclage');
 
 /**
- * Quatrieme mode, `--navigation`. Changer de chaine sur Kick est une navigation
- * d'application : l'URL change et le chat est remonte, sans rechargement. Si
+ * Quatrieme mode, `--navigation`. Changer de chaine sur Twitch est une navigation
+ * d'application : l'URL change (`pushState` vers un autre `/<login>`) et le chat
+ * est remonte, sans rechargement. Si
  * l'extension ne se raccroche pas, la traduction s'arrete pour de bon et rien ne
  * le dit.
  *
  * Le script de contenu patche `history.pushState` pour s'en apercevoir, mais il
- * vit dans un monde isole : le routeur de Kick appelle le sien dans le monde
+ * vit dans un monde isole : le routeur de Twitch appelle le sien dans le monde
  * principal, ou ce patch n'existe pas. Ce mode navigue depuis le monde
  * principal, comme le site, et voit donc ce qu'un lecteur voit.
  */
@@ -130,8 +138,8 @@ const REGLAGES = process.argv.includes('--reglages');
 
 /**
  * Septieme mode, `--seventv`. 7TV rend le chat a sa facon et le message n'est
- * plus dans les `span.font-normal` de Kick mais dans des
- * `span.seventv-text-token` ; `extractMessageText` les lit en premier. C'est un
+ * plus dans les fragments `chat-message-text` de Twitch mais dans des
+ * `span.text-token` de `.seventv-chat-message-body` ; `extractMessageText` les lit. C'est un
  * second contrat DOM complet, celui d'une extension tierce tres repandue, et
  * rien hors ligne ne l'exercait.
  *
@@ -176,17 +184,17 @@ const MAJ = process.argv.includes('--maj');
  * Dixieme mode, `--compose`. L'autre moitie du produit : on ecrit une reponse,
  * un apercu apparait dans la langue de la chaine, et Ctrl+Entree la met a la
  * place de ce qu'on a tape. La propriete qui compte n'est pas que l'apercu
- * s'affiche, c'est vers QUELLE langue il traduit : la chaine, lue chez Kick, et
+ * s'affiche, c'est vers QUELLE langue il traduit : la chaine, lue chez Twitch, et
  * pas la langue du lecteur. Se tromper la envoie un message poli dans la
  * mauvaise langue devant tout le monde.
  *
- * La fixture repond `lang_iso: es` sur l'API de Kick, donc l'apercu doit partir
+ * La fixture fait repondre `es` a GQL (`broadcastSettings.language`), donc l'apercu doit partir
  * en espagnol pendant que le chat entrant arrive en anglais.
  */
 const COMPOSE = process.argv.includes('--compose');
 
 /**
- * Onzieme mode, `--esquive`. Kick ouvre des panneaux au-dessus du compositeur,
+ * Onzieme mode, `--esquive`. Twitch ouvre des panneaux au-dessus du compositeur,
  * le selecteur d'emotes en tete, et l'apercu ne doit pas passer dessous.
  * `findOverlayTopAbove` les cherche par une liste de selecteurs avec une garde
  * de taille : au moins 40 par 40, au-dessus du compositeur, et le bas a moins de
@@ -194,9 +202,9 @@ const COMPOSE = process.argv.includes('--compose');
  *
  * Ce mode verifie le MECANISME, avec une superposition fabriquee qui repond a
  * ces criteres. Il ne dit rien de la question restee ouverte, qui est de savoir
- * si le vrai selecteur d'emotes de Kick correspond a l'un de ces selecteurs :
- * celle-la demande la page de kil, parce que Kick sert un `auth-modal` au
- * contexte Playwright. La moitie verifiable l'est donc, et l'autre reste
+ * si le vrai selecteur d'emotes de Twitch correspond a l'un de ces selecteurs :
+ * celle-la demande la page de kil, parce que Twitch demande une connexion
+ * au contexte Playwright. La moitie verifiable l'est donc, et l'autre reste
  * nommee pour ce qu'elle est.
  */
 const ESQUIVE = process.argv.includes('--esquive');
@@ -226,29 +234,26 @@ const MOT_HORS_TABLE = 'trop fort le mec';
 
 const RANGEES = 8;
 
-// Le chat de Kick reduit a son contrat, repris de `observer.test.ts` qui est
-// ce que le produit dit savoir lire : `#channel-chatroom .no-scrollbar`, un
-// leurre vide en premier comme sur le vrai site, puis des `div[data-index]`
-// avec le pseudo dans un `button.font-bold` et le texte dans un
-// `span.font-normal`.
-//
-// Le `div.w-full.min-w-0.shrink-0` autour des deux n'est pas decoratif :
-// `pickInjectionTarget` le cherche en premier, et sans lui il retombe sur le
-// premier enfant de la rangee, c'est-a-dire le bouton du pseudo. La traduction
-// atterrissait alors DANS le nom de l'utilisateur, ce que les modes precedents
-// affichaient sans le dire ("pseudo1ESZZTRADUCTIONZZ:..."), et le mode survol
-// armait ce bouton au lieu du message.
-const FIXTURE = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>chat</title></head>
-<body>
-  <div id="channel-chatroom">
-    <div class="no-scrollbar" data-which="decoy"></div>
-    <div class="no-scrollbar" data-which="messages" style="height:600px;overflow:auto">
-      <div data-index="0"><div class="w-full min-w-0 shrink-0"><button class="font-bold" style="color: rgb(1,2,3)">autre</button><span class="font-normal">buenos dias a todos</span></div></div>
-    </div>
-    <div contenteditable="true" role="textbox" data-testid="chat-input" class="editor-input"
-         style="min-height:40px;border:1px solid #333"></div>
-  </div>
-</body></html>`;
+// Le chat de Twitch reduit a son contrat : le balisage des rangees vient de
+// `twitch-dom.mjs` (copie de `src/content/twitchFixtures.ts`, coupe dans les
+// snapshots RECON). Une rangee d'amorce est presente des le depart, parce que
+// `findChatContainer` ne retient une liste qu'une fois qu'elle porte une rangee.
+// Le mode `--seventv` monte la famille 7TV (`main.seventv-chat-list`), les
+// autres la liste native.
+const FAMILLE = process.argv.includes('--seventv') ? 'seventv' : 'native';
+const LISTE =
+  FAMILLE === 'seventv'
+    ? 'main.seventv-chat-list'
+    : '[data-test-selector="chat-scrollable-area__message-container"]';
+const SEL_RANGEE = '.seventv-message, .chat-line__message';
+const SEL_SOURCE =
+  '[data-a-target="chat-message-text"], .seventv-chat-message-body > .text-token';
+
+/** Le HTML d'une rangee de la famille de la page. */
+const htmlRangee = (texte, pseudo) =>
+  FAMILLE === 'seventv' ? seventvRow(texte, pseudo) : nativeRow(texte, pseudo);
+
+const FIXTURE = twitchPage(htmlRangee('buenos dias a todos', 'pseudo0'), { family: FAMILLE });
 
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'kct-tr-'));
 const ctx = await chromium.launchPersistentContext(profile, {
@@ -266,12 +271,6 @@ const ctx = await chromium.launchPersistentContext(profile, {
 const vuParLeMoteur = [];
 /** La langue cible que le moteur a reellement recue, requete par requete. */
 const ciblesDemandees = [];
-
-// Le glob de Playwright ne fait pas matcher `*.kick.com` sur `kick.com` : `*`
-// veut au moins un caractere avant le point, donc le document partait sur le
-// vrai site pendant que les sous-ressources, elles, etaient bien interceptees.
-// Une expression reguliere prend les deux formes.
-const KICK = /^https?:\/\/(www\.)?kick\.com\//;
 
 await ctx.route('**://api.github.com/**', async (route) => {
   vuParLeMoteur.push('github');
@@ -337,28 +336,15 @@ await ctx.route('**://api.mymemory.translated.net/**', async (route) => {
   });
 });
 
-await ctx.route(KICK, async (route) => {
-  const req = route.request();
-  if (req.resourceType() === 'document') {
-    await route.fulfill({ status: 200, contentType: 'text/html', body: FIXTURE });
-    return;
-  }
-  if (req.url().includes('/api/')) {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ chatroom: { id: 1 }, livestream: { lang_iso: 'es' } }),
-    });
-    return;
-  }
-  await route.fulfill({ status: 204, body: '' });
-});
+// Twitch (document, GQL, 7TV, BTTV, FFZ) est servi localement. GQL repond `es`
+// comme langue de diffusion de la chaine, ce que le mode `--compose` verifie.
+await routeTwitch(ctx, { page: () => FIXTURE, langIso: 'es' });
 
 const page = ctx.pages()[0] ?? (await ctx.newPage());
 const console_ = [];
 page.on('console', (m) => console_.push(`${m.type()}: ${m.text().slice(0, 160)}`));
 
-await page.goto('https://kick.com/kt-fixture-channel', { waitUntil: 'domcontentloaded' });
+await page.goto(`https://www.twitch.tv/${CHANNEL_ONE}`, { waitUntil: 'domcontentloaded' });
 
 // Attente bornee, pas fixe : sous 24 portes en parallele le script de contenu
 // demarre parfois juste apres 3 s, et la porte le declarait absent a tort.
@@ -369,7 +355,7 @@ const barreMontee = await page
 if (SURVOL || OVERRIDE) {
   // Le reglage se pose la ou l'extension le lit, depuis son propre service
   // worker : c'est le seul contexte de la page qui ait `chrome.storage`. Le
-  // worker MV3 est paresseux, d'ou l'ouverture d'une page kick.com avant.
+  // worker MV3 est paresseux, d'ou l'ouverture d'une page twitch.tv avant.
   const sw = ctx.serviceWorkers()[0] ?? (await ctx.waitForEvent('serviceworker', { timeout: 20000 }));
   // La cible doit etre une ecriture non latine, sinon la table ne repond pas du
   // tout et la porte mesurerait le vide.
@@ -383,65 +369,59 @@ if (SURVOL || OVERRIDE) {
   ciblesDemandees.length = 0;
 }
 
-// Ajoute des rangees comme Kick le fait : un `div[data-index]` avec le pseudo
-// dans un `button.font-bold` et le texte dans un `span.font-normal`.
+// Ajoute des rangees comme Twitch le fait : le noeud de rangee complet, ajoute en fin de liste.
+// Chaque rangee recoit `data-kt-idx` (marque du harnais, ignoree du produit) pour
+// qu'on la retrouve par son rang, `pseudo<rang>` etant son auteur.
 //
 // Ecrire le contenu d une rangee qui en a deja detruit ce que l extension y a
 // insere. Une premiere version de ce pilote reecrivait toutes les rangees a
 // chaque tour et rapportait une traduction sur huit : la panne etait dans le
 // pilote, pas dans le produit, qui avait bien appele le moteur huit fois.
-// Poser et recycler sont donc deux gestes distincts.
+// Poser et remplacer sont donc deux gestes distincts.
 async function poserRangees(textes, depart = 1) {
-  await page.evaluate(({ liste, depart }) => {
-    const cible = document.querySelector('#channel-chatroom [data-which="messages"]');
-    for (const [k, texte] of liste.entries()) {
-      const i = depart + k;
-      if (cible.querySelector(`div[data-index="${i}"]`)) continue;
-      const ligne = document.createElement('div');
-      ligne.setAttribute('data-index', String(i));
-      ligne.innerHTML =
-        `<div class="w-full min-w-0 shrink-0">` +
-        `<button class="font-bold" style="color: rgb(1,2,3)">pseudo${i}</button>` +
-        `<span class="font-normal">${texte}</span>` +
-        `</div>`;
-      cible.appendChild(ligne);
+  const liste = textes.map((texte, k) => ({ i: depart + k, html: htmlRangee(texte, `pseudo${depart + k}`) }));
+  await page.evaluate(({ liste, sel, selRangee }) => {
+    const cible = document.querySelector(sel);
+    for (const { i, html } of liste) {
+      if (cible.querySelector(`[data-kt-idx="${i}"]`)) continue;
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      const noeud = tmp.firstElementChild;
+      (noeud.matches(selRangee) ? noeud : noeud.querySelector(selRangee)).setAttribute('data-kt-idx', String(i));
+      cible.appendChild(noeud);
     }
-  }, { liste: textes, depart });
+  }, { liste, sel: LISTE, selRangee: SEL_RANGEE });
 }
 
-// Ce que fait le virtualiseur en recyclant : la meme rangee, un autre message.
-// La rangee ne bouge pas, son contenu est remplace, et ce qui y avait ete
-// insere disparait avec.
-async function recyclerRangees(textes, depart = 1) {
-  await page.evaluate(({ liste, depart }) => {
-    const cible = document.querySelector('#channel-chatroom [data-which="messages"]');
-    for (const [k, texte] of liste.entries()) {
-      const i = depart + k;
-      const ligne = cible.querySelector(`div[data-index="${i}"]`);
-      if (!ligne) continue;
-      ligne.innerHTML =
-        `<div class="w-full min-w-0 shrink-0">` +
-        `<button class="font-bold" style="color: rgb(1,2,3)">pseudo${i}</button>` +
-        `<span class="font-normal">${texte}</span>` +
-        `</div>`;
-    }
-  }, { liste: textes, depart });
+// Le seul remplacement de texte que Twitch fasse : le noeud de rangee reste, son
+// texte change sur place (message supprime ou edite par la moderation). Ce qui
+// avait ete insere dans la rangee reste en place, a charge du produit de voir que
+// le texte n'est plus celui qu'il a traduit.
+async function remplacerTextes(textes, depart = 1) {
+  await page.evaluate(({ textes, depart, sel, selSource }) => {
+    const cible = document.querySelector(sel);
+    textes.forEach((texte, k) => {
+      const frag = cible.querySelector(`[data-kt-idx="${depart + k}"]`)?.querySelector(selSource);
+      if (frag) frag.textContent = texte;
+    });
+  }, { textes, depart, sel: LISTE, selSource: SEL_SOURCE });
 }
+
+/** Le compositeur de Twitch : Slate, `[data-a-target="chat-input"][data-slate-editor]`. */
+const COMPOSEUR = '[data-a-target="chat-input"][data-slate-editor]';
 
 const SEL_TR = '.kt-translation, .kt-translation-inline, .kt-translation-replace';
 
 /** Ce que chaque rangee porte : son texte source et ses traductions. */
 async function lireRangees() {
-  return page.evaluate((sel) => {
-    const cible = document.querySelector('#channel-chatroom [data-which="messages"]');
-    return [...cible.querySelectorAll('div[data-index]')].map((r) => ({
-      index: r.getAttribute('data-index'),
-      source:
-        r.querySelector('.font-normal')?.textContent ??
-        [...r.querySelectorAll('.seventv-text-token')].map((t) => t.textContent).join(' '),
-      traductions: [...r.querySelectorAll(sel)].map((t) => t.textContent ?? ''),
+  return page.evaluate(({ sel, selSource, selTr }) => {
+    const cible = document.querySelector(sel);
+    return [...cible.querySelectorAll('[data-kt-idx]')].map((r) => ({
+      index: r.getAttribute('data-kt-idx'),
+      source: [...r.querySelectorAll(selSource)].map((t) => t.textContent).join(' '),
+      traductions: [...r.querySelectorAll(selTr)].map((t) => t.textContent ?? ''),
     }));
-  }, SEL_TR);
+  }, { sel: LISTE, selSource: SEL_SOURCE, selTr: SEL_TR });
 }
 
 let traductionVue = null;
@@ -496,14 +476,14 @@ if (OVERRIDE) {
     )
     .catch(() => {});
 
-  // Le recyclage : memes `data-index`, autres messages.
+  // Le remplacement sur place : memes noeuds de rangee, autres messages.
   const seconds = Array.from({ length: RANGEES }, (_, i) => `adios numero ${i} dos`);
-  await recyclerRangees(seconds);
+  await remplacerTextes(seconds);
   await page.waitForTimeout(6000);
   rangees = await lireRangees();
   traductionVue = rangees.find((r) => r.traductions.length)?.traductions[0] ?? null;
 } else if (ESQUIVE) {
-  const saisie = page.locator('#channel-chatroom [contenteditable="true"]');
+  const saisie = page.locator(COMPOSEUR);
   await saisie.click();
   await saisie.type('hello everyone how is it going', { delay: 25 });
   await page.waitForTimeout(8000);
@@ -516,8 +496,8 @@ if (OVERRIDE) {
 
   // Une superposition qui satisfait la garde : plus de 40 par 40, au-dessus du
   // compositeur, et son bas colle a son haut.
-  const boite = await page.evaluate(() => {
-    const c = document.querySelector('#channel-chatroom [contenteditable="true"]');
+  const boite = await page.evaluate((sel) => {
+    const c = document.querySelector(sel);
     const r = c.getBoundingClientRect();
     const o = document.createElement('div');
     o.setAttribute('role', 'dialog');
@@ -534,7 +514,7 @@ if (OVERRIDE) {
     document.body.appendChild(o);
     const ob = o.getBoundingClientRect();
     return { haut: Math.round(ob.top), bas: Math.round(ob.bottom), compositeurHaut: Math.round(r.top) };
-  });
+  }, COMPOSEUR);
 
   // `positionPanel` se rejoue sur le viewport visuel ; un vrai redimensionnement
   // le declenche, un evenement fabrique non.
@@ -561,7 +541,7 @@ if (OVERRIDE) {
   traductionVue = 'sans objet';
 } else if (COMPOSE) {
   const ECRIT = 'hello everyone how is it going';
-  const saisie = page.locator('#channel-chatroom [contenteditable="true"]');
+  const saisie = page.locator(COMPOSEUR);
   await saisie.click();
   await saisie.type(ECRIT, { delay: 25 });
   await page.waitForTimeout(9000);
@@ -617,8 +597,14 @@ if (OVERRIDE) {
       fails0.push(`la banniere n annonce pas la version publiee : ${JSON.stringify(banniere.texte)}`);
     // Depuis 2.12.3 une copie installee a la main est envoyee sur la fiche du
     // Chrome Web Store, d'ou elle se mettra a jour seule, plutot que sur un zip.
-    if (!banniere.href.startsWith('https://chromewebstore.google.com/detail/kick-chat-translator/'))
-      fails0.push(`la banniere ne mene pas a la fiche du store : ${banniere.href}`);
+    // Ce produit n'a pas encore de fiche (PLAN K04) : sans CHROME_STORE_ID la
+    // banniere doit mener a la derniere release de CE depot, et nulle part ailleurs.
+    const constantes = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '../../src/shared/constants.ts'), 'utf8');
+    const depot = /GITHUB_REPO = '([^']+)'/.exec(constantes)[1];
+    const sansFiche = /CHROME_STORE_ID = null/.test(constantes);
+    const attendu = sansFiche ? `https://github.com/${depot}/releases/latest` : 'https://chromewebstore.google.com/detail/';
+    if (sansFiche ? banniere.href !== attendu : !banniere.href.startsWith(attendu))
+      fails0.push(`la banniere ne mene pas a ${attendu} : ${banniere.href}`);
   }
   if (!vuParLeMoteur.includes('github'))
     fails0.push('la release GitHub n a jamais ete demandee : rien ne verifie les versions');
@@ -631,7 +617,8 @@ if (OVERRIDE) {
   }));
   console.log(`badge            ${JSON.stringify(badge.texte)} sur rgba(${badge.fond.join(',')})`);
   if (badge.texte !== '↑') fails0.push(`l icone ne signale pas la mise a jour : badge ${JSON.stringify(badge.texte)}`);
-  else if (badge.fond.slice(0, 3).join(',') !== '83,252,24') fails0.push(`badge d une autre couleur que le vert : ${badge.fond}`);
+  // Le violet de Twitch (#9146FF), la couleur que `updateChecker.ts` pose.
+  else if (badge.fond.slice(0, 3).join(',') !== '145,70,255') fails0.push(`badge d une autre couleur que le violet de Twitch : ${badge.fond}`);
   // Ce mode ne juge pas la traduction.
   traductionVue = 'sans objet';
 } else if (CACHE) {
@@ -639,31 +626,21 @@ if (OVERRIDE) {
   await poserRangees([REPETE], 1);
   await page
     .waitForFunction(
-      (src) =>
-        [...document.querySelectorAll('#channel-chatroom [data-which="messages"] div[data-index]')]
+      ({ src, selSource }) =>
+        [...document.querySelectorAll('[data-kt-idx]')]
           .some(
             (r) =>
-              r.querySelector('.font-normal')?.textContent === src &&
+              r.querySelector(selSource)?.textContent === src &&
               r.querySelector('.kt-translation, .kt-translation-inline, .kt-translation-replace'),
           ),
-      REPETE,
+      { src: REPETE, selSource: SEL_SOURCE },
       { timeout: 25000 },
     )
     .catch(() => {});
   const apresPremier = vuParLeMoteur.length;
 
   // Le meme texte, un autre lecteur.
-  await page.evaluate((texte) => {
-    const cible = document.querySelector('#channel-chatroom [data-which="messages"]');
-    const ligne = document.createElement('div');
-    ligne.setAttribute('data-index', '5');
-    ligne.innerHTML =
-      '<div class="w-full min-w-0 shrink-0">' +
-      '<button class="font-bold" style="color: rgb(1,2,3)">otroquien</button>' +
-      `<span class="font-normal">${texte}</span>` +
-      '</div>';
-    cible.appendChild(ligne);
-  }, REPETE);
+  await poserRangees([REPETE], 5);
   await page.waitForTimeout(9000);
   rangees = await lireRangees();
   const apresSecond = vuParLeMoteur.length;
@@ -681,23 +658,11 @@ if (OVERRIDE) {
     fails0.push('le message repete n a recu aucune traduction : le cache a mange l affichage');
   traductionVue = repetee?.traductions[0] ?? null;
 } else if (SEVENTV) {
-  // Une rangee rendue par 7TV : le texte ne vit que dans ses jetons, il n'y a
-  // aucun `span.font-normal` a lire.
+  // Une rangee rendue par 7TV (la page est en famille 7TV) : le texte ne vit que
+  // dans `.seventv-chat-message-body > .text-token`, il n'y a aucun fragment
+  // `chat-message-text` a lire.
   const TEXTE = 'hola amigo que tal todo bien';
-  await page.evaluate((texte) => {
-    const cible = document.querySelector('#channel-chatroom [data-which="messages"]');
-    const ligne = document.createElement('div');
-    ligne.setAttribute('data-index', '7');
-    ligne.innerHTML =
-      '<div class="w-full min-w-0 shrink-0">' +
-      '<button class="font-bold" style="color: rgb(1,2,3)">alguien</button>' +
-      texte
-        .split(' ')
-        .map((mot) => `<span class="seventv-text-token">${mot}</span>`)
-        .join(' ') +
-      '</div>';
-    cible.appendChild(ligne);
-  }, TEXTE);
+  await poserRangees([TEXTE], 7);
   await page.waitForTimeout(10000);
   rangees = await lireRangees();
 
@@ -712,6 +677,11 @@ if (OVERRIDE) {
   if (double) fails0.push('le texte part en double dans une meme requete');
   const ligne7tv = rangees.find((r) => r.index === '7');
   if (!ligne7tv?.traductions.length) fails0.push('aucune traduction sous le message 7TV');
+  // Le temoin de la famille : sans lui une page restee native passerait ce mode.
+  const famille7tv = await page.evaluate(
+    () => document.querySelectorAll('main.seventv-chat-list .seventv-message').length,
+  );
+  if (famille7tv === 0) fails0.push('la page de ce mode n est pas en famille 7TV : le contrat 7TV n est pas exerce');
   traductionVue = ligne7tv?.traductions[0] ?? null;
 } else if (REGLAGES) {
   await poserRangees([SOURCE]);
@@ -721,14 +691,14 @@ if (OVERRIDE) {
   // lecture.
   await page
     .waitForFunction(
-      (src) =>
-        [...document.querySelectorAll('#channel-chatroom [data-which="messages"] div[data-index]')]
+      ({ src, selSource }) =>
+        [...document.querySelectorAll('[data-kt-idx]')]
           .some(
             (r) =>
-              r.querySelector('.font-normal')?.textContent === src &&
+              r.querySelector(selSource)?.textContent === src &&
               r.querySelector('.kt-translation, .kt-translation-inline, .kt-translation-replace'),
           ),
-      SOURCE,
+      { src: SOURCE, selSource: SEL_SOURCE },
       { timeout: 25000 },
     )
     .catch(() => {});
@@ -768,7 +738,7 @@ if (OVERRIDE) {
   const appelsAvant = vuParLeMoteur.length;
   const arme = await page.evaluate(() => document.querySelectorAll('.kt-hover-armed').length);
 
-  const ligne = page.locator('#channel-chatroom [data-which="messages"] div[data-index="1"]');
+  const ligne = page.locator('[data-kt-idx="1"]');
   await ligne.hover();
   // La garde attend HOVER_DWELL_MS avant de demander quoi que ce soit.
   await page.waitForTimeout(8000);
@@ -788,20 +758,15 @@ if (OVERRIDE) {
   await page.waitForSelector(SEL_TR, { timeout: 20000 }).catch(() => {});
   const avant = (await lireRangees()).reduce((n, r) => n + r.traductions.length, 0);
 
-  // La navigation telle que le site la fait : l'URL bouge et le chat est remonte.
-  await page.evaluate(() => {
-    history.pushState({}, '', '/kt-autre-chaine');
-    const ancien = document.querySelector('#channel-chatroom');
-    const neuf = document.createElement('div');
-    neuf.id = 'channel-chatroom';
-    neuf.innerHTML =
-      '<div class="no-scrollbar" data-which="decoy"></div>' +
-      '<div class="no-scrollbar" data-which="messages" style="height:600px;overflow:auto">' +
-      '<div data-index="0"><div class="w-full min-w-0 shrink-0">' +
-      '<button class="font-bold" style="color: rgb(1,2,3)">autre</button>' +
-      '<span class="font-normal">buenos dias a todos</span></div></div></div>';
-    ancien.replaceWith(neuf);
-  });
+  // La navigation telle que le site la fait : l'URL bouge vers un autre
+  // `/<login>`, l'ancien chat est retire et un neuf est construit.
+  await page.evaluate(({ login, html }) => {
+    history.pushState({}, '', `/${login}`);
+    const ancien = document.querySelector('section.chat-room');
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    ancien.replaceWith(tmp.firstElementChild);
+  }, { login: CHANNEL_TWO, html: nativeChat(nativeRow('buenos dias a todos', 'pseudo0')) });
   await page.waitForTimeout(4000);
 
   await poserRangees(['adios amigos hasta la proxima vez']);
@@ -850,6 +815,9 @@ if (RECYCLAGE) {
   // rangee qui en porte deux, et une traduction posee sous un texte auquel elle
   // n appartient pas.
   const portees = rangees.reduce((n, r) => n + r.traductions.length, 0);
+  // Le temoin du pilote : si le texte n'a pas ete remplace, la porte ne mesurerait rien.
+  if (rangees.length !== RANGEES || rangees.some((r) => !r.source.includes('adios')))
+    fails.push(`le remplacement sur place n a pas touche les ${RANGEES} rangees (sources : ${rangees.map((r) => r.source).join(' / ')})`);
   if (portees > rangees.length)
     fails.push(`${portees} traductions pour ${rangees.length} rangees : il en reste des anciennes`);
   for (const r of rangees) {

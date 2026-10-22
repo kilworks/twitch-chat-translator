@@ -1,24 +1,24 @@
 /**
- * A Cantonese chat, because Kick does not have one.
+ * A Cantonese chat, on demand.
  *
- * Paste this into the console of any kick.com channel page with the extension
+ * Paste this into the console of any twitch.tv channel page with the extension
  * running. It appends synthetic message rows to the live chat list, shaped the
- * way Kick shapes its own, so the extension's observer picks them up and runs
+ * way Twitch or 7TV shapes its own, so the extension's observer picks them up and runs
  * the whole real path on them: detection, source-language hint, provider chain,
  * injected translation, flag, cache.
  *
  * Why it exists: every other language in this product was measured on harvested
- * lines, with scripts/kick-chat-collector.js. Cantonese cannot be, because Kick
- * has next to no Hong Kong channels and waiting for one is not a plan. The
+ * lines, on Kick before this port. Cantonese cannot be, because there are next to no Hong Kong
+ * channels and waiting for one is not a plan. The
  * detection rule has a bench of its own in test/e2e/canto-bench.mjs;
  * what a bench cannot show is the extension actually reading a line off a page
  * and putting a translation under it. This does that.
  *
- * What it does NOT do: it does not send anything to Kick. The rows exist in your
+ * What it does NOT do: it does not send anything to Twitch. The rows exist in your
  * DOM and nowhere else, nobody in the channel sees them, and a refresh removes
  * every trace. It posts nothing, stores nothing, and transmits nothing.
  *
- *   1. open any kick.com channel page with a live chat
+ *   1. open any twitch.tv channel page with a live chat
  *   2. paste this whole file, press enter
  *   3. watch the rows arrive and the translations appear under them
  *
@@ -79,92 +79,87 @@
   const HANDLES = ['hk_test_01', 'hk_test_02', 'hk_test_03', 'canto_probe', 'yue_fixture'];
   const COLOURS = ['#53fc18', '#ff9d00', '#00d4ff', '#ff5ec7', '#ffd400'];
 
+  // The lists the extension binds to (src/content/platform/twitch.ts), 7TV first.
   const SELECTORS = [
-    '#channel-chatroom .no-scrollbar',
-    '#channel-chatroom [class*="virtuoso"]',
-    '#channel-chatroom',
-    '#chatroom-messages',
-    '[data-testid="chat-messages"]',
+    'main.seventv-chat-list',
+    '[data-test-selector="chat-scrollable-area__message-container"]',
   ];
+  const ROW = '.seventv-message, .chat-line__message';
 
-  /**
-   * The same container the extension binds to, found the same way.
-   *
-   * Matching a selector is not enough: on current Kick three elements match the
-   * first one and only the second holds the message list. The one holding rows
-   * is the live one, which is exactly what selectors.ts does.
-   */
+  /** The same list the extension binds to: the first candidate holding a row. */
   function findContainer() {
     for (const sel of SELECTORS) {
       for (const el of document.querySelectorAll(sel)) {
-        if (el.querySelector('div[data-index]')) return el;
+        if (el.querySelector(ROW)) return el;
       }
     }
     return null;
   }
 
-  function nextIndex(container) {
-    const rows = container.querySelectorAll('div[data-index]');
-    let max = -1;
-    for (const r of rows) {
-      const n = Number(r.getAttribute('data-index'));
-      if (Number.isFinite(n) && n > max) max = n;
-    }
-    return max + 1;
-  }
-
   let sent = 0;
 
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
   /**
-   * A row shaped the way the extension reads one.
+   * A row shaped the way the extension reads one, in the family the page shows.
    *
-   * extractMessageText takes span.font-normal that are not font-bold;
-   * extractUsername takes button.font-bold; pickInjectionTarget wants
-   * div.w-full.min-w-0.shrink-0 so the translation lands inside the bubble
-   * rather than beside it. Getting any of the three wrong produces a row that
-   * looks right and is silently skipped, which is the failure mode this comment
-   * exists to prevent.
+   * Native (also BTTV, FFZ): `.chat-line__message` holding `.chat-line__message-container`,
+   * the login in `data-a-user`, the text in `[data-a-target="chat-message-text"]`.
+   * 7TV: `.seventv-message[msg-id]` holding `.seventv-chat-message-container`, the text in
+   * `.seventv-chat-message-body > .text-token`. Getting either wrong produces a row that
+   * looks right and is silently skipped, which is the failure mode this comment exists to
+   * prevent.
    */
   function buildRow(container, text) {
     const handle = HANDLES[sent % HANDLES.length];
     const colour = COLOURS[sent % COLOURS.length];
     sent += 1;
-
-    const row = document.createElement('div');
-    row.setAttribute('data-index', String(nextIndex(container)));
+    let row;
+    if (container.matches('main.seventv-chat-list')) {
+      row = el('div', 'seventv-message');
+      row.setAttribute('msg-id', `kt-fake-${Date.now()}-${sent}`);
+      const box = el('div', 'seventv-chat-message-container');
+      const msg = el('span', 'seventv-user-message');
+      const user = el('div', 'seventv-chat-user');
+      user.style.color = colour;
+      user.append(el('span', 'seventv-chat-user-username', handle));
+      const body = el('span', 'seventv-chat-message-body');
+      body.append(el('span', 'text-token', text));
+      msg.append(user, el('span', '', ': '), body);
+      box.append(msg);
+      row.append(box);
+    } else {
+      row = el('div', 'chat-line__message');
+      row.setAttribute('data-a-target', 'chat-line-message');
+      row.setAttribute('data-a-user', handle);
+      const box = el('div', 'chat-line__message-container');
+      const name = el('span', 'chat-author__display-name', handle);
+      name.setAttribute('data-a-target', 'chat-message-username');
+      name.style.color = colour;
+      const body = el('span', '');
+      body.setAttribute('data-a-target', 'chat-line-message-body');
+      const frag = el('span', 'text-fragment', text);
+      frag.setAttribute('data-a-target', 'chat-message-text');
+      body.append(frag);
+      box.append(name, el('span', '', ': '), body);
+      row.append(box);
+    }
     row.setAttribute(MARK, '1');
     row.style.padding = '4px 8px';
     // A left edge so a fake line is never mistaken for a real one on a busy chat.
     row.style.borderLeft = '3px solid #8b5cf6';
-
-    const group = document.createElement('div');
-    group.className = 'group';
-    const bubble = document.createElement('div');
-    bubble.className = 'w-full min-w-0 shrink-0';
-
-    const name = document.createElement('button');
-    name.className = 'inline font-bold';
-    name.style.color = colour;
-    name.textContent = handle;
-
-    const sep = document.createElement('span');
-    sep.className = 'font-bold';
-    sep.textContent = ': ';
-
-    const body = document.createElement('span');
-    body.className = 'font-normal';
-    body.textContent = text;
-
-    bubble.append(name, sep, body);
-    group.append(bubble);
-    row.append(group);
     return row;
   }
 
   function send(text) {
     const container = findContainer();
     if (!container) {
-      console.warn('[ktFakeChat] no chat container yet — is a channel page open with chat loaded?');
+      console.warn('[ktFakeChat] no chat container yet: is a channel page open with chat loaded?');
       return false;
     }
     const row = buildRow(container, text);
@@ -212,6 +207,6 @@
   }
 
   console.log(
-    '[ktFakeChat] ready. Nothing is sent to Kick: these rows live in your DOM only and vanish on refresh.',
+    '[ktFakeChat] ready. Nothing is sent to Twitch: these rows live in your DOM only and vanish on refresh.',
   );
 })();

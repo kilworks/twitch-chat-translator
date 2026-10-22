@@ -1,0 +1,378 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T21:16:02.854Z",
+ "target": "ja",
+ "cells": [
+  {
+   "config": "native",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 38
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 143,
+   "marked": 140,
+   "translations": 54,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "twice as disgusting⟳",
+    "Pepe you are gay⟳",
+    "a double⟳"
+   ],
+   "stillAttached10s": 46,
+   "after10s": {
+    "onScreen": 47,
+    "missing": 0,
+    "trimmed": 15,
+    "repeatsAfterTrim": 1,
+    "repeatReasons": [
+     "Not translated: the same user just sent this"
+    ]
+   },
+   "latencyMs": {
+    "n": 15,
+    "p50": 401,
+    "p90": 763
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 17
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 190,
+   "marked": 156,
+   "translations": 82,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native",
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "Wow 2 sunw⟳",
+    "こんにちは、カストゥール⟳",
+    "熱くなるから⟳"
+   ],
+   "stillAttached10s": 73,
+   "after10s": {
+    "onScreen": 65,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 26,
+    "p50": 1092,
+    "p90": 1649
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 27
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 122,
+   "marked": 119,
+   "translations": 79,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 9.69,
+   "sample": [
+    "ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ⟳",
+    "やだぁぁぁぁぁぁぁ⟳",
+    "エプスタイン⟳"
+   ],
+   "stillAttached10s": 79,
+   "after10s": {
+    "onScreen": 77,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 25,
+    "p50": 2017,
+    "p90": 6006
+   },
+   "pass": true
+  },
+  {
+   "config": "ffz",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 18
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 49,
+   "marked": 48,
+   "translations": 38,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "🤗😅🤗😅🤗😅🤗😅🤗😅🤗OYE PEREIRA JUEGUEN ロケットリーグ😅🤗😅🤗😅\ud83e",
+    "フォゲタ⟳",
+    "ROパックでボリュームアップ⟳"
+   ],
+   "stillAttached10s": 38,
+   "after10s": {
+    "onScreen": 35,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 9,
+    "p50": 833,
+    "p90": 3137
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 83
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": false,
+   "barInPanel": false,
+   "rows": 0,
+   "marked": 0,
+   "translations": 0,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": null,
+   "sample": [],
+   "stillAttached10s": 0,
+   "after10s": {
+    "onScreen": 0,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 0,
+    "p50": null,
+    "p90": null
+   },
+   "pass": false,
+   "why": "0 translations (< 3) on 0 marked lines; floating bar not in the chat panel"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 7
+    },
+    {
+     "ch": 22,
+     "adds": 35
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch22",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 158,
+   "marked": 97,
+   "translations": 74,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "つまり⟳",
+    "!フォロー⟳",
+    "それはクソだ⟳"
+   ],
+   "stillAttached10s": 20,
+   "after10s": {
+    "onScreen": 19,
+    "missing": 0,
+    "trimmed": 115,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 50,
+    "p50": 286,
+    "p90": 3342
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 14
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 91,
+   "marked": 88,
+   "translations": 53,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "native"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "ZU私たちのもの⟳",
+    "美しいです⟳",
+    "ファビアナ・プッシー・ランズとは何ですか⟳"
+   ],
+   "stillAttached10s": 53,
+   "after10s": {
+    "onScreen": 53,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 14,
+    "p50": 813,
+    "p90": 1436
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "surface": "theater",
+   "tried": [
+    {
+     "ch": 17,
+     "adds": 10
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch17",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 64,
+   "marked": 56,
+   "translations": 40,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": "chat-theme-dark",
+   "minContrast": 11.06,
+   "sample": [
+    "わらを捕まえてヤギに与える⟳",
+    "ビーバー梨の木⟳",
+    "カグーと⟳"
+   ],
+   "stillAttached10s": 40,
+   "after10s": {
+    "onScreen": 38,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 28,
+    "p50": 1002,
+    "p90": 2034
+   },
+   "pass": true
+  }
+ ],
+ "summary": "7/8 cells green"
+}

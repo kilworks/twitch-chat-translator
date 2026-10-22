@@ -1,0 +1,19 @@
+{
+ "date": "2026-10-22",
+ "what": "K02: the two signed-in-only surfaces, mod view and stream manager, on the owner's own channel (broadcaster rights)",
+ "method": "brave-devtools MCP profile, extension dist/ unpacked. The channel was offline, so a synthetic native row (DOM only, nothing sent) was appended to the list and removed after the reading.",
+ "modView": {
+  "url": "www.twitch.tv/moderator/<own login>",
+  "found": { "panel .chat-room__content": 1, "native list": 1, "rows": 1, "slate composer": 1, "theme": "chat-theme-dark", "kt mounted": true, "floating bar": 1 },
+  "syntheticRow": { "text": "je pense que la partie de ce soir sera vraiment difficile pour toute la team", "marked": true, "translation": "I think tonight's game will be really difficult for the whole team", "insideMessageContainer": true },
+  "screenshot": "modview.png"
+ },
+ "streamManager": {
+  "url": "dashboard.twitch.tv/u/<own login>/stream-manager",
+  "firstReading": { "same chat DOM at top level, no iframe": true, "kt mounted": false, "why": "dashboard.twitch.tv was not in the manifest, and /u/<login> was not read as a channel" },
+  "change": "manifest matches and host_permissions add https://dashboard.twitch.tv/*; channelFromPath reads /u/<login>/...; test in twitchApi.test.ts",
+  "afterChange": { "kt mounted": true, "floating bar": true, "syntheticRow": { "text": "hoy el stream empieza mas tarde porque tengo que trabajar", "translation": "Today the stream starts later because I have to work", "insideMessageContainer": true } },
+  "screenshot": "stream-manager.png"
+ },
+ "messagesSent": 0
+}

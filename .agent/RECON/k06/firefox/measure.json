@@ -1,0 +1,23 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T19:15:27.703Z",
+ "seconds": 60,
+ "channel": "ch14",
+ "whileHidden": "hidden",
+ "transitions": [
+  "visible",
+  "hidden",
+  "visible"
+ ],
+ "visibleRows": {
+  "arrived": 98,
+  "stillOnScreen": 69,
+  "dealtWith": 65
+ },
+ "hiddenRows": {
+  "arrived": 300,
+  "stillOnScreen": 78,
+  "dealtWith": 78
+ },
+ "visibleNow": "visible"
+}

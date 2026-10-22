@@ -1,0 +1,25 @@
+{
+ "date": "2026-10-22",
+ "what": "P19, what the first run did not measure: light theme, the keyboard path through the language menu, screen-reader exposure of translations",
+ "lightTheme": {
+  "how": "test/e2e/twitch-live.mjs --surfaces light (OS in light mode, Twitch follows it signed out), native config, live channel drawn at random",
+  "result": { "chatTheme": "chat-theme-light", "ktScheme": "light", "worstTranslationContrast": 6.48, "translations": 87 },
+  "darkForComparison": { "ktScheme": "dark", "worstTranslationContrast": 11.06 },
+  "witness": "KT_WITNESS=contrast greys translations out: light 1.44:1 and dark 1.61:1, both cells red"
+ },
+ "keyboardLanguageMenu": {
+  "where": "Brave, signed in, popout chat of the owner's channel, extension dist 1.0.0",
+  "chip": { "element": "button", "aria-haspopup": "listbox", "aria-expanded": "false then true" },
+  "Enter on the chip": "menu opens, focus moves to the search combobox, 44 options",
+  "ArrowDown x2": "focus moves to the second option (role=option), roving focus",
+  "Enter on an option": "language picked (label CA), menu closed, focus back on the chip, aria-expanded false",
+  "Escape": "menu closed, focus back on the chip",
+  "note": "picking reorders the list (recent first): a script that counts arrow presses must read the row it lands on"
+ },
+ "screenReader": {
+  "native list": "[role=log], implicit aria-live polite",
+  "translations": "inside the row inside the log, no aria-hidden ancestor: announced as an addition by a screen reader following the log",
+  "7TV list": "main.seventv-chat-list carries no role=log, so nothing in a 7TV chat is announced, Twitch's lines included: 7TV's choice, not changed by this extension",
+  "not measured": "an actual screen reader reading the page (NVDA or VoiceOver run by a person)"
+ }
+}
