@@ -19,10 +19,7 @@ the same archive, verified by SHA-256 rather than assumed:
 
 {{CHECKSUMS}}
 
-The zip is written by scripts/pack.ts rather than by a platform tool, because
-PowerShell's Compress-Archive on .NET Framework writes backslash separators into
-entry names and produces an archive that is not a tree. Entry names are checked
-to contain no backslash before release.
+The zip is written by scripts/pack.ts; entry names are checked to hold no backslash.
 
 No remote code. Every line of JavaScript is inside the package: no eval, no new
 Function on fetched text, no remote script tag, no hosted module. The only

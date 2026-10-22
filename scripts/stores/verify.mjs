@@ -19,7 +19,7 @@ import { LISTINGS, apiLocale, chromeCode } from './languages.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const VERSION = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
 const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
-const SLUG = 'twitch-chat-translator-by-pkkls'; // AMO slug; the Chrome URL only needs the item id
+const SLUG = 'twitch-chat-translator-pkkls'; // AMO slug; the Chrome URL only needs the item id
 const store = (rel) => fs.readFileSync(path.join(ROOT, 'store', rel), 'utf8').trim();
 const catalog = (dir) => JSON.parse(fs.readFileSync(path.join(ROOT, 'public/_locales', dir, 'messages.json'), 'utf8'));
 const locale = (dir) => catalog(dir).extDescription.message;

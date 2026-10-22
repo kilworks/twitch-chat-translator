@@ -22,7 +22,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 // 'twitch-chat-translator' belongs to another developer on AMO (checked 2026-10-23).
-const SLUG = process.env.AMO_SLUG ?? 'twitch-chat-translator-by-pkkls';
+const SLUG = process.env.AMO_SLUG ?? 'twitch-chat-translator-pkkls';
 const KEY_FILE = process.env.AMO_API_KEY ?? path.join(os.homedir(), '.config', 'twitch-chat-translator', 'amo-api.json');
 const API = process.env.AMO_API ?? 'https://addons.mozilla.org/api/v5';
 
@@ -162,6 +162,13 @@ if (cmd === 'previews') {
     source: Boolean(after.source),
     release_notes: Object.keys(after.release_notes ?? {}).length,
   }, null, 2));
+} else if (cmd === 'notes') {
+  // notes <amo-notes.json>: release and reviewer notes on the add-on's latest version.
+  const { notes, rev } = JSON.parse(fs.readFileSync(args[0] ?? die('amo-notes.json manquant'), 'utf8'));
+  const latest = (await call('GET', `${addon}/versions/?filter=all_with_unlisted`, undefined, true)).results?.[0] ?? die('aucune version');
+  await call('PATCH', `${addon}/versions/${latest.id}/`, { release_notes: localised(notes), approval_notes: rev });
+  const after = await call('GET', `${addon}/versions/${latest.id}/`, undefined, true);
+  console.log(JSON.stringify({ version: after.version, release_notes: Object.keys(after.release_notes ?? {}).length, source: Boolean(after.source) }));
 } else if (cmd === 'listing') {
   const { name, summary, description } = JSON.parse(fs.readFileSync(args[0] ?? die('amo-listing.json manquant'), 'utf8'));
   const sent = localised(summary);
