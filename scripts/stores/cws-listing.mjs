@@ -25,7 +25,8 @@ import { LISTINGS, chromeCode } from './languages.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const PORT = Number(process.env.CWS_CDP_PORT ?? 9222);
-const PROFILE = path.join(os.homedir(), '.config', 'twitch-chat-translator', 'cws-browser');
+// CWS_PROFILE: an already signed-in dashboard profile (one publisher account serves both products).
+const PROFILE = process.env.CWS_PROFILE ?? path.join(os.homedir(), '.config', 'twitch-chat-translator', 'cws-browser');
 const PUBLISHER = 'ef2a9029-0a4d-4858-bb63-4ca619ffd657';
 const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
 // CWS_EDIT_URL points the script at a stand-in page for its own test.

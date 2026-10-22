@@ -269,9 +269,9 @@ they test, L last.
 
 ### [P10] Telemetry
 
-- [x] GA4: separate property or shared: K05. Until decided, `usageStats` stays off and opt-in.
-      Decided 2026-10-23: a new property (#144). Until the owner creates it and gives its id,
-      `usageStats` stays off and opt-in.
+- [k] GA4: separate property or shared: K05. Until decided, `usageStats` stays off and opt-in.
+      Decided 2026-10-23: a new property (#144). Waiting for the owner to create it and give its
+      measurement id: task #146. Until then `usageStats` stays off and opt-in.
 - [x] `has7tv` env flag becomes one flag per extension.
       `seventv`, `bttv`, `ffz` flags in the daily event, tests in usage.test.ts.
 
@@ -396,22 +396,28 @@ they test, L last.
 
 - [x] Choose the listing name. Store policies restrict third-party marks in names; Kick's listing
       leads with the product name and names the platform second.
-      "Twitch Chat Translator by Pkkls" (#142), set as extName in the 42 catalogues.
+      "Twitch Chat Translator by Pkkls" (#142), set as extName in the 42 catalogues; read back
+      from the packed zip, and the AMO listing holds it in 34/34 locales.
 
 ### [K05] Telemetry property
 
-- [x] GA4: new property, or the Kick one with a platform dimension.
-      Decided 2026-10-23 (#144): a new property. Creating it is on the owner's account.
+Open task for kil: #146.
+
+- [k] GA4: new property, or the Kick one with a platform dimension.
+      Decided 2026-10-23 (#144): a new property. Creating it is on the owner's account and
+      nothing can be wired before its measurement id exists.
 
 ### [K06] Hidden tab behaviour
 
-- [x] Five automated methods kept the page `visible` (second tab, CDP minimise headless, CDP
+Open task for kil: #147.
+
+- [k] Five automated methods kept the page `visible` (second tab, CDP minimise headless, CDP
       minimise headed, headed without Playwright's backgrounding flags, Brave headed behind
       another tab). Measure in a real browser: leave a channel in a background tab for 60 s, come
       back, report whether lines were lost.
-      Closed 2026-10-23: the owner declined the hand test (#145). What stands: 5 automated
-      methods, page never hidden; `pauseWhenHidden` is on by default, so a hidden tab stops
-      translating. Whether it catches up on return is not measured.
+      Not measured: 5 automated methods never hid the page, and a hand test is the owner's.
+      Declined once (#145), left open without urgency (#147). `pauseWhenHidden` is on by
+      default, so a hidden tab stops translating; whether it catches up on return is unknown.
 
 ---
 
