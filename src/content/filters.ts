@@ -1,4 +1,4 @@
-import { COMMON_BOTS } from '~/shared/constants';
+import { COMMON_BOTS } from '~/shared/bots';
 import { foldCase } from '~/shared/normalize';
 import type { Settings } from '~/shared/settings';
 
@@ -53,7 +53,7 @@ export function hasNonEnglishLetter(text: string): boolean {
 
 /**
  * Same language as the target? Compares base languages so regional variants count
- * as a match (pt ≡ pt-BR, zh ≡ zh-TW) — no point translating a message that's
+ * as a match (pt ≡ pt-BR, zh ≡ zh-TW), no point translating a message that's
  * already in the reader's language.
  */
 export function isSameLanguageAsTarget(detected: string | undefined, target: string): boolean {
@@ -135,7 +135,7 @@ export function isNoise(text: string): boolean {
   const t = text.trim();
   if (!t) return true;
 
-  // strip emoji/symbols/punct/space — if nothing meaningful remains, it's noise
+  // strip emoji/symbols/punct/space, if nothing meaningful remains, it's noise
   const stripped = [...t].filter((ch) => !EMOJI_OR_SYMBOL.test(ch)).join('');
   if (stripped.length === 0) return true;
 
