@@ -1,0 +1,73 @@
+{
+ "date": "2026-10-22",
+ "config": "bttv",
+ "channel": "ch21",
+ "editors": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$flimfe9oiyk",
+    "__reactProps$flimfe9oiyk"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "actionBar": [],
+ "afterClick": {
+  "dialogs": [],
+  "editor": {
+   "text": "﻿\n",
+   "html": "<div data-slate-node=\"element\" aria-hidden=\"true\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-zero-width=\"n\" data-slate-length=\"0\">﻿<br></span></span></span></div>"
+  }
+ },
+ "afterTyping": {
+  "added": [
+   "span.",
+   "div.Layout-sc-1xcs6mc-0",
+   "div.ScSvgWrapper-sc-wkgzod-0.cnGLHG.tw-svg"
+  ],
+  "editor": {
+   "text": "Kap",
+   "html": "<div data-slate-node=\"element\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-string=\"true\">Kap</span></span></span></div>"
+  }
+ },
+ "afterTab": {
+  "added": [
+   "div.",
+   "div.Layout-sc-1xcs6mc-0"
+  ],
+  "editor": {
+   "text": "﻿\n﻿\n\nKappaCool\n\n ",
+   "html": "<div data-slate-node=\"element\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-zero-width=\"z\" data-slate-length=\"0\">﻿</span></span></span><span data-slate-node=\"element\" data-slate-inline=\"true\" data-slate-void=\"true\" contenteditable=\"false\" aria-label=\"KappaCool\" role=\"button\" data-a-target=\"wysiwyg-chat-input-emote\" class=\"wysiwig-chat-input-emote\"><span aria-hidden=\"true\"><div class=\"chat-line__message--emote-button\" data-test-selector=\"emote-button\"><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><span data-a-target=\"emote-name\"><div class=\"Layout-sc-1xcs6mc-0 dZsmwl chat-image__container\"><img alt=\"KappaCool\" class=\"chat-image chat-line__message--emote\" src=\"https://cdn.betterttv.net/emote/560577560874de34757d2dc0/1x.webp\" srcset=\"https://cdn.betterttv.net/emote/560577560874de34757d2dc0/1x.webp 1x, https://cdn.betterttv.net/emote/560577560874de34757d2dc0/2x.webp 2x, https://cdn.betterttv.net/emote/560577560874de34757d2dc0/3x.webp 4x\"></div></span></div></div><span data-slate-spacer=\"true\" style=\"height: 0px; color: transparent; outline: none; position: absolute;\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\"><span data-slate-zero-width=\"z\" data-slate-length=\"0\">﻿</span></span></span></span></span><div class=\"Layout-sc-1xcs6mc-0 exYZWV\"><p class=\"CoreText-sc-1txzju1-0 fJYwSz\">KappaCool</p></div></span><span data-slate"
+  },
+  "focusIn": "editor"
+ },
+ "afterClear": {
+  "text": "﻿\n",
+  "html": "<div data-slate-node=\"element\" aria-hidden=\"true\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-zero-width=\"n\" data-slate-length=\"0\">﻿<br></span></span></span></div>"
+ },
+ "sentNothing": true
+}

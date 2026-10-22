@@ -1,0 +1,226 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:23:55.511Z",
+ "config": "7tv+bttv",
+ "surface": "embed",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 35
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 15000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 35,
+    "children": 50,
+    "path": "div.Layout-sc-1xcs6mc-0.kTjGSJ > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   {
+    "added": 14,
+    "children": 7,
+    "path": "style#bttv-font-size"
+   },
+   {
+    "added": 1,
+    "children": 1,
+    "path": "div.Layout-sc-1xcs6mc-0 > div.scrollable-area.community-highlight-stack__scroll-area--disable.community-highlight-stack__scroll-content--disable > div.InjectLayout-sc-1i43xsx-0.gsidia > div.ScTransitionBase-sc-hx4quq-0.hjZTbt.tw-transition > div.Layout-sc-1xcs6mc-0.community-highlight-stack__card > div.InjectLayout-sc-1i43xsx-0.iqZbWl.tw-transition-group > div.ScTransitionBase-sc-hx4quq-0.hjZTbt.tw-transition > div.Layout-sc-1xcs6mc-0.bYZMRh.community-highlight"
+   },
+   {
+    "added": 1,
+    "children": 1,
+    "path": "div#root > div.Layout-sc-1xcs6mc-0.gDepQe > div.Layout-sc-1xcs6mc-0.hIWzhZ > div.Layout-sc-1xcs6mc-0.kTjGSJ > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div.Layout-sc-1xcs6mc-0"
+   },
+   {
+    "added": 1,
+    "children": 1,
+    "path": "div.Layout-sc-1xcs6mc-0.hIWzhZ > div.Layout-sc-1xcs6mc-0.kTjGSJ > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div.Layout-sc-1xcs6mc-0 > div.Layout-sc-1xcs6mc-0.fnIdZg > div.Layout-sc-1xcs6mc-0.fnIdZg"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 50,
+  "rowTags": {
+   "div.Layout-sc-1xcs6mc-0": 50
+  },
+  "rowAttrs": {
+   "class": 50
+  },
+  "classFreq": {
+   "Layout-sc-1xcs6mc-0": 575,
+   "InjectLayout-sc-1i43xsx-0": 142,
+   "glFavL": 94,
+   "bvEAgn": 48,
+   "ScSvgWrapper-sc-wkgzod-0": 48,
+   "tw-svg": 48,
+   "chat-line__message": 47,
+   "jvJYGy": 47,
+   "chat-line__message-highlight": 47,
+   "chat-line__message-container": 47,
+   "kBZhWz": 47,
+   "chat-line__no-background": 47,
+   "iinBYO": 47,
+   "bDKKrF": 47,
+   "chat-line__username-container": 47,
+   "chat-line__username-container--hoverable": 47,
+   "chat-badge": 47,
+   "chat-line__username": 47,
+   "chat-author__display-name": 47,
+   "text-fragment": 47,
+   "ijUWNg": 47,
+   "chat-line__icons": 47,
+   "EgIcq": 47,
+   "chat-line__reply-icon": 47,
+   "chat-line__icon": 47,
+   "bohlnR": 47,
+   "ScCoreButton-sc-ocjdkq-0": 47,
+   "eBQIRH": 47,
+   "ScButtonIcon-sc-9yap0r-0": 47,
+   "jcYIUn": 47,
+   "ButtonIconFigure-sc-1emm8lf-0": 47,
+   "jgYFuA": 47,
+   "exojMs": 47,
+   "mention-fragment": 5,
+   "CoreText-sc-1txzju1-0": 2,
+   "dBRkEN": 1,
+   "chat-scrollable-area__message-container": 1,
+   "chat-line__status": 1,
+   "fJYwSz": 1,
+   "chat-author__intl-login": 1,
+   "jGtuXC": 1,
+   "jyTdkS": 1,
+   "brOIRu": 1,
+   "OLUUU": 1,
+   "chat-line__message--emote-button": 1,
+   "dZsmwl": 1,
+   "chat-image__container": 1,
+   "chat-image": 1,
+   "chat-line__message--emote": 1
+  },
+  "dataATarget": {
+   "chat-line-message": 47,
+   "chat-badge": 47,
+   "chat-message-username": 47,
+   "chat-line-message-body": 47,
+   "chat-message-text": 47,
+   "chat-message-mention": 5,
+   "chat-welcome-message": 1,
+   "emote-name": 1
+  },
+  "dataTestSelector": {
+   "message-username": 47,
+   "chat-scrollable-area__message-container": 1,
+   "message-username-canonical": 1,
+   "emote-button": 1
+  },
+  "attrNames": {
+   "data-a-target": 242,
+   "role": 142,
+   "aria-label": 94,
+   "tabindex": 94,
+   "data-a-user": 94,
+   "aria-hidden": 94,
+   "data-test-selector": 50,
+   "dir": 49,
+   "d": 49,
+   "alt": 48,
+   "src": 48,
+   "srcset": 48,
+   "width": 48,
+   "height": 48,
+   "viewBox": 48,
+   "fill-rule": 48,
+   "clip-rule": 48,
+   "focusable": 47,
+   "title": 1
+  },
+  "emoteImgs": {
+   "static-cdn.jtvnw.net": 48
+  },
+  "emoteImgClasses": {
+   "chat-badge": 47,
+   "chat-image": 1,
+   "chat-line__message--emote": 1
+  },
+  "textSamples": [
+   "tokamuro: В Армии умные ?",
+   "ldensyl: писарь это кто мочу пьет сержантов?",
+   "plombir1314: ЗАВОЗИК ГОДА ДАБАЛЬЮ",
+   "aqnosa: хахыхывхваы",
+   "flory221: а",
+   "cydimocti: @ognev__ ты завтра уезжаешь?",
+   "sqaute1: @ognev__ ничего огнев, притворись что болеешь и мб не будешь мыть писуары",
+   "feellst: Сколько он уже играет в игру?",
+   "pro_denger1: Так я не понял он соло или сквад?",
+   "speeki__: писуаром",
+   "got1ca: ссать кудато типо?",
+   "flashdays: САЛАМ САСЫЧ"
+  ],
+  "rowHtml": [
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"tokamuro: В Армии умные ?\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"tokamuro\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"tokamuro\" data-test-selector=\"message-username\" style=\"color: rgb(158, 120, 23);\">tokamuro</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">В Армии умные ?</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @tokamuro\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"ldensyl: писарь это кто мочу пьет сержантов?\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"ldensyl\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"ldensyl\" data-test-selector=\"message-username\" style=\"color: rgb(138, 43, 226);\">ldensyl</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">писарь это кто мочу пьет сержантов?</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @ldensyl\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"plombir1314: ЗАВОЗИК ГОДА ДАБАЛЬЮ\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"plombir1314\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"plombir1314\" data-test-selector=\"message-username\" style=\"color: rgb(86, 142, 144);\">plombir1314</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ЗАВОЗИК ГОДА ДАБАЛЬЮ</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @plombir1314\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"aqnosa: хахыхывхваы\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"aqnosa\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"Assassin's Creed Black Flag Resynced badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/393bfb62-dca0-4133-9a63-eb53b031b404/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/393bfb62-dca0-4133-9a63-eb53b031b404/1 1x, https://static-cdn.jtvnw.net/badges/v1/393bfb62-dca0-4133-9a63-eb53b031b404/2 2x, https://static-cdn.jtvnw.net/badges/v1/393bfb62-dca0-4133-9a63-eb53b031b404/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"aqnosa\" data-test-selector=\"message-username\" style=\"color: rgb(86, 142, 144);\">aqnosa</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">хахыхывхваы</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @aqnosa\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"flory221: а\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"flory221\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"GlitchCon 2020 badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/1d4b03b9-51ea-42c9-8f29-698e3c85be3d/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/1d4b03b9-51ea-42c9-8f29-698e3c85be3d/1 1x, https://static-cdn.jtvnw.net/badges/v1/1d4b03b9-51ea-42c9-8f29-698e3c85be3d/2 2x, https://static-cdn.jtvnw.net/badges/v1/1d4b03b9-51ea-42c9-8f29-698e3c85be3d/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"flory221\" data-test-selector=\"message-username\" style=\"color: rgb(138, 43, 226);\">flory221</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">а</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @flory221\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"cydimocti: @ognev__  ты завтра уезжаешь?\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"cydimocti\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"cydimocti\" data-test-selector=\"message-username\" style=\"color: rgb(0, 128, 0);\">cydimocti</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"mention-fragment\" data-a-target=\"chat-message-mention\">@ognev__</span><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> ты завтра уезжаешь?</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @cydimocti\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"sqaute1: @ognev__ ничего огнев, притворись что болеешь и мб не будешь мыть писуары\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"sqaute1\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"1-Month Subscriber badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/1 1x, https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/2 2x, https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"sqaute1\" data-test-selector=\"message-username\" style=\"color: rgb(0, 128, 0);\">sqaute1</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"mention-fragment\" data-a-target=\"chat-message-mention\">@ognev__</span><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> ничего огнев, притворись что болеешь и мб не будешь мыть писуары</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @sqaute1\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"feellst: Сколько он уже играет в игру?\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"feellst\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"1-Month Subscriber badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/1 1x, https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/2 2x, https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/3 4x\"></button></div><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"Pichu badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/1 1x, https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/2 2x, https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"feellst\" data-test-selector=\"message-username\" style=\"color: rgb(255, 0, 0);\">feellst</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Сколько он уже играет в игру?</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @feellst\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"pro_denger1: Так я не понял он соло или сквад?\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"pro_denger1\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"Blossom Badge Level 4 badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/b00f8ff9-aeee-4c27-b974-5513f3abc91a/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/b00f8ff9-aeee-4c27-b974-5513f3abc91a/1 1x, https://static-cdn.jtvnw.net/badges/v1/b00f8ff9-aeee-4c27-b974-5513f3abc91a/2 2x, https://static-cdn.jtvnw.net/badges/v1/b00f8ff9-aeee-4c27-b974-5513f3abc91a/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"pro_denger1\" data-test-selector=\"message-username\" style=\"color: rgb(0, 128, 0);\">pro_denger1</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Так я не понял он соло или сквад?</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @pro_denger1\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"speeki__: писуаром\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"speeki__\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"Went Outside badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/1 1x, https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/2 2x, https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"speeki__\" data-test-selector=\"message-username\" style=\"color: rgb(30, 144, 255);\">speeki__</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">писуаром</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @speeki__\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"got1ca: ссать кудато типо?\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"got1ca\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"16-Month Subscriber (1-Year Badge) badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/2cc1cfab-6af8-4b22-a6ce-91fc28b2b850/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/2cc1cfab-6af8-4b22-a6ce-91fc28b2b850/1 1x, https://static-cdn.jtvnw.net/badges/v1/2cc1cfab-6af8-4b22-a6ce-91fc28b2b850/2 2x, https://static-cdn.jtvnw.net/badges/v1/2cc1cfab-6af8-4b22-a6ce-91fc28b2b850/3 4x\"></button></div><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"Sub Gifter badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/a5ef6c17-2e5b-4d8f-9b80-2779fd722414/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/a5ef6c17-2e5b-4d8f-9b80-2779fd722414/1 1x, https://static-cdn.jtvnw.net/badges/v1/a5ef6c17-2e5b-4d8f-9b80-2779fd722414/2 2x, https://static-cdn.jtvnw.net/badges/v1/a5ef6c17-2e5b-4d8f-9b80-2779fd722414/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"got1ca\" data-test-selector=\"message-username\" style=\"color: rgb(138, 43, 226);\">got1ca</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ссать кудато типо?</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @got1ca\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"chat-line__message\" role=\"group\" aria-label=\"flashdays: САЛАМ САСЫЧ\" tabindex=\"0\" data-a-target=\"chat-line-message\" data-a-user=\"flashdays\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div class=\"Layout-sc-1xcs6mc-0 jvJYGy chat-line__message-highlight\"></div><div class=\"Layout-sc-1xcs6mc-0 glFavL chat-line__message-container\"><div class=\"Layout-sc-1xcs6mc-0\"></div><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0 kBZhWz chat-line__no-background\"><div class=\"Layout-sc-1xcs6mc-0 iinBYO\"><div class=\"Layout-sc-1xcs6mc-0 bDKKrF chat-line__username-container chat-line__username-container--hoverable\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"26-Month Subscriber (2-Year Badge) badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/1 1x, https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/2 2x, https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/3 4x\"></button></div><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><button data-a-target=\"chat-badge\"><img alt=\"Together for Good '25 - Gooder Badge badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/84a37e81-9d61-4c29-970e-64a32ec040c7/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/84a37e81-9d61-4c29-970e-64a32ec040c7/1 1x, https://static-cdn.jtvnw.net/badges/v1/84a37e81-9d61-4c29-970e-64a32ec040c7/2 2x, https://static-cdn.jtvnw.net/badges/v1/84a37e81-9d61-4c29-970e-64a32ec040c7/3 4x\"></button></div></span><span class=\"chat-line__username\" role=\"button\" tabindex=\"0\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"flashdays\" data-test-selector=\"message-username\" style=\"color: rgb(0, 207, 0);\">flashdays</span></span></span></div><span aria-hidden=\"true\">: </span><span class=\"\" data-a-target=\"chat-line-message-body\" dir=\"auto\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">САЛАМ САСЫЧ</span></span></div></div></div></div><div class=\"Layout-sc-1xcs6mc-0 ijUWNg chat-line__icons\"><div class=\"Layout-sc-1xcs6mc-0 EgIcq chat-line__reply-icon chat-line__icon\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScCoreButton-sc-ocjdkq-0 eBQIRH ScButtonIcon-sc-9yap0r-0 jcYIUn InjectLayout-sc-1i43xsx-0\" aria-label=\"Click to reply to @flashdays\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 jgYFuA\"><div class=\"ScSvgWrapper-sc-wkgzod-0 exojMs tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path fill-rule=\"evenodd\" d=\"M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z\" clip-rule=\"evenodd\"></path></svg></div></div></button></div></div></div></div></div></div></div>"
+  ],
+  "listHtmlBytes": 118690
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 2,
+  "ffz": 0
+ },
+ "background": "rgb(255, 255, 255)",
+ "composer": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$1ybkx8hqoj5",
+    "__reactProps$1ybkx8hqoj5"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

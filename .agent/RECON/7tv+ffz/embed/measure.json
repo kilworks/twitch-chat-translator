@@ -1,0 +1,219 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:25:57.726Z",
+ "config": "7tv+ffz",
+ "surface": "embed",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 75
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 15000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 75,
+    "children": 92,
+    "path": "div.Layout-sc-1xcs6mc-0.kTjGSJ > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   {
+    "added": 1,
+    "children": 1,
+    "path": "div.Layout-sc-1xcs6mc-0 > div.scrollable-area.community-highlight-stack__scroll-area--disable.community-highlight-stack__scroll-content--disable > div.InjectLayout-sc-1i43xsx-0.gsidia > div.ScTransitionBase-sc-hx4quq-0.hjZTbt.tw-transition > div.Layout-sc-1xcs6mc-0.community-highlight-stack__card > div.InjectLayout-sc-1i43xsx-0.iqZbWl.tw-transition-group > div.ScTransitionBase-sc-hx4quq-0.hjZTbt.tw-transition > div.Layout-sc-1xcs6mc-0.bYZMRh.community-highlight"
+   },
+   {
+    "added": 1,
+    "children": 1,
+    "path": "div#root > div.Layout-sc-1xcs6mc-0.gDepQe > div.Layout-sc-1xcs6mc-0.hIWzhZ > div.Layout-sc-1xcs6mc-0.kTjGSJ > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div.Layout-sc-1xcs6mc-0"
+   },
+   {
+    "added": 1,
+    "children": 1,
+    "path": "div.Layout-sc-1xcs6mc-0.hIWzhZ > div.Layout-sc-1xcs6mc-0.kTjGSJ > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div.Layout-sc-1xcs6mc-0 > div.Layout-sc-1xcs6mc-0.fnIdZg > div.Layout-sc-1xcs6mc-0.fnIdZg"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 92,
+  "rowTags": {
+   "div.Layout-sc-1xcs6mc-0": 92
+  },
+  "rowAttrs": {
+   "class": 92
+  },
+  "classFreq": {
+   "Layout-sc-1xcs6mc-0": 190,
+   "ffz-tooltip": 127,
+   "ffz-badge": 105,
+   "text-fragment": 94,
+   "chat-line__message": 91,
+   "chat-line__message--badges": 91,
+   "chat-line__username": 91,
+   "notranslate": 91,
+   "chat-author__display-name": 91,
+   "message": 91,
+   "ffz--pointer-events": 26,
+   "ffz--inline": 22,
+   "chat-image": 22,
+   "chat-line__message--emote": 22,
+   "twitch-emote": 22,
+   "chat-line__message-mention": 4,
+   "tw-c-text-base": 4,
+   "CoreText-sc-1txzju1-0": 3,
+   "ffz--fix-reply-line": 2,
+   "jGtuXC": 2,
+   "ScSvgWrapper-sc-wkgzod-0": 2,
+   "jyTdkS": 2,
+   "tw-svg": 2,
+   "brOIRu": 2,
+   "OLUUU": 2,
+   "ffz--ftc-line": 2,
+   "ffz-custom-color": 2,
+   "ffz--ftc-bg": 2,
+   "ffz-notice-line": 2,
+   "user-notice-line": 2,
+   "tw-pd-y-05": 2,
+   "tw-c-text-alt-2": 2,
+   "ffz-i-first-time-chatter": 2,
+   "tw-mg-r-05": 2,
+   "tw-strong": 2,
+   "chat-line--inline": 2,
+   "dBRkEN": 1,
+   "chat-scrollable-area__message-container": 1,
+   "chat-line__status": 1,
+   "fJYwSz": 1,
+   "chat-author__intl-login": 1
+  },
+  "dataATarget": {
+   "chat-message-text": 94,
+   "chat-welcome-message": 1
+  },
+  "dataTestSelector": {
+   "emote-button": 22,
+   "chat-scrollable-area__message-container": 1
+  },
+  "attrNames": {
+   "data-provider": 127,
+   "data-tooltip-type": 127,
+   "data-badge": 105,
+   "data-badge-idx": 105,
+   "data-version": 103,
+   "data-a-target": 95,
+   "data-room-id": 93,
+   "data-room": 93,
+   "data-user-id": 93,
+   "data-user": 93,
+   "role": 92,
+   "aria-hidden": 91,
+   "data-test-selector": 23,
+   "src": 22,
+   "srcset": 22,
+   "alt": 22,
+   "data-id": 22,
+   "d": 4,
+   "dir": 4,
+   "data-login": 4,
+   "width": 2,
+   "height": 2,
+   "viewBox": 2,
+   "fill-rule": 2,
+   "clip-rule": 2,
+   "title": 2,
+   "data-replaced": 2
+  },
+  "emoteImgs": {
+   "//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0": 17,
+   "//static-cdn.jtvnw.net/emoticons/v2/emotesv2_dbe98129822d47f4b0240a424cace387/default/dark/1.0": 2,
+   "//static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/1.0": 1,
+   "//static-cdn.jtvnw.net/emoticons/v2/emotesv2_09c4f9be25b042f7b6b5c31e47accb21/default/dark/1.0": 1,
+   "//static-cdn.jtvnw.net/emoticons/v2/emotesv2_db3cd788399347a8b2ebfb8a85f5badb/default/dark/1.0": 1
+  },
+  "emoteImgClasses": {
+   "chat-image": 22,
+   "chat-line__message--emote": 22,
+   "ffz--pointer-events": 22,
+   "ffz-tooltip": 22,
+   "twitch-emote": 22
+  },
+  "textSamples": [
+   "slamermr: XAAAXAXAXA",
+   "devxword: ВХАХАХХАХА",
+   "otravleni: ",
+   "mrpopa777: XAAXXAXAXAXAXA",
+   "final3510: ГО КЛЕШКУ",
+   "ep1p_: Хвхахахах",
+   "matilda__93: ",
+   "HOCO4KU_POISONIKI: ЫУАХЗШАУЫШШЗШАУЫЫУЗЫУЗХ/У\\",
+   "Arwinon21: хахахахахахах",
+   "v1zzzyy134: я знаю,что огнев издевается специально, но не могу это доказать",
+   "hom1x1deg: )",
+   "xsenod: аххаха"
+  ],
+  "rowHtml": [
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"941108669\" data-user=\"slamermr\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"6\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"bingbonglove\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(138, 43, 226);\"><span class=\"chat-author__display-name\">slamermr</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">XAAAXAXAXA</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"974305767\" data-user=\"devxword\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"low\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(64, 107, 108);\"><span class=\"chat-author__display-name\">devxword</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ВХАХАХХАХА</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1028116601\" data-user=\"otravleni\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"killer-inn\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(195, 9, 102);\"><span class=\"chat-author__display-name\">otravleni</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><div class=\"ffz--inline\" data-test-selector=\"emote-button\"><img class=\"chat-image chat-line__message--emote ffz--pointer-events ffz-tooltip twitch-emote\" src=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0\" srcset=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0 1x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/2.0 2x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/3.0 4x\" alt=\"SUBprise\" data-tooltip-type=\"emote\" data-provider=\"twitch\" data-id=\"emotesv2_fcbeed664f7c47d6ba3b57691275ef51\"></div><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> </span><div class=\"ffz--inline\" data-test-selector=\"emote-button\"><img class=\"chat-image chat-line__message--emote ffz--pointer-events ffz-tooltip twitch-emote\" src=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0\" srcset=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0 1x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/2.0 2x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/3.0 4x\" alt=\"SUBprise\" data-tooltip-type=\"emote\" data-provider=\"twitch\" data-id=\"emotesv2_fcbeed664f7c47d6ba3b57691275ef51\"></div><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> </span><div class=\"ffz--inline\" data-test-selector=\"emote-button\"><img class=\"chat-image chat-line__message--emote ffz--pointer-events ffz-tooltip twitch-emote\" src=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0\" srcset=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0 1x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/2.0 2x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/3.0 4x\" alt=\"SUBprise\" data-tooltip-type=\"emote\" data-provider=\"twitch\" data-id=\"emotesv2_fcbeed664f7c47d6ba3b57691275ef51\"></div></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1223009167\" data-user=\"mrpopa777\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"ewc-2026-silver\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(64, 107, 108);\"><span class=\"chat-author__display-name\">mrpopa777</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">XAAXXAXAXAXAXA</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1445014499\" data-user=\"final3510\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(183, 53, 5);\"><span class=\"chat-author__display-name\">final3510</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ГО КЛЕШКУ</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1376801139\" data-user=\"ep1p_\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"campaign-89132304-c47ea5d8-8839-49e6-b2c4-e0ced8076899-mw\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(64, 107, 108);\"><span class=\"chat-author__display-name\">ep1p_</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Хвхахахах</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1438061998\" data-user=\"matilda__93\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"6\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"sub-gifter\" data-version=\"50\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(126, 96, 19);\"><span class=\"chat-author__display-name\">matilda__93</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><div class=\"ffz--inline\" data-test-selector=\"emote-button\"><img class=\"chat-image chat-line__message--emote ffz--pointer-events ffz-tooltip twitch-emote\" src=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0\" srcset=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0 1x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/2.0 2x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/3.0 4x\" alt=\"SUBprise\" data-tooltip-type=\"emote\" data-provider=\"twitch\" data-id=\"emotesv2_fcbeed664f7c47d6ba3b57691275ef51\"></div><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> </span><div class=\"ffz--inline\" data-test-selector=\"emote-button\"><img class=\"chat-image chat-line__message--emote ffz--pointer-events ffz-tooltip twitch-emote\" src=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0\" srcset=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0 1x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/2.0 2x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/3.0 4x\" alt=\"SUBprise\" data-tooltip-type=\"emote\" data-provider=\"twitch\" data-id=\"emotesv2_fcbeed664f7c47d6ba3b57691275ef51\"></div><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> </span><div class=\"ffz--inline\" data-test-selector=\"emote-button\"><img class=\"chat-image chat-line__message--emote ffz--pointer-events ffz-tooltip twitch-emote\" src=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0\" srcset=\"//static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/1.0 1x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/2.0 2x, //static-cdn.jtvnw.net/emoticons/v2/emotesv2_fcbeed664f7c47d6ba3b57691275ef51/default/dark/3.0 4x\" alt=\"SUBprise\" data-tooltip-type=\"emote\" data-provider=\"twitch\" data-id=\"emotesv2_fcbeed664f7c47d6ba3b57691275ef51\"></div></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1238247543\" data-user=\"hoco4ku_poisoniki\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"6\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"campaign-89132304-c47ea5d8-8839-49e6-b2c4-e0ced8076899-mw\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(202, 1, 1);\"><span class=\"chat-author__display-name\">HOCO4KU_POISONIKI</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ЫУАХЗШАУЫШШЗШАУЫЫУЗЫУЗХ/У\\</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1212826729\" data-user=\"arwinon21\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"3\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"pikachu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(126, 96, 19);\"><span class=\"chat-author__display-name\">Arwinon21</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">хахахахахахах</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1345801487\" data-user=\"v1zzzyy134\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"3\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"subtember-2026\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(138, 43, 226);\"><span class=\"chat-author__display-name\">v1zzzyy134</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">я знаю,что огнев издевается специально, но не могу это доказать</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1000753525\" data-user=\"hom1x1deg\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"moderator\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"blossom-badge\" data-version=\"4\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(0, 0, 0);\"><span class=\"chat-author__display-name\">hom1x1deg</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">)</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1356427522\" data-user=\"xsenod\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(138, 43, 226);\"><span class=\"chat-author__display-name\">xsenod</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">аххаха</span></span></div></div></div>"
+  ],
+  "listHtmlBytes": 85445
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 0,
+  "ffz": 166
+ },
+ "background": "rgb(255, 255, 255)",
+ "composer": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$bdt7pxiaqii",
+    "__reactProps$bdt7pxiaqii"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

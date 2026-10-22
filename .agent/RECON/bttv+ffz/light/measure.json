@@ -1,0 +1,182 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:29:17.638Z",
+ "config": "bttv+ffz",
+ "surface": "light",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 56
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 15000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 56,
+    "children": 74,
+    "path": "div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-light\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 74,
+  "rowTags": {
+   "div.Layout-sc-1xcs6mc-0": 74
+  },
+  "rowAttrs": {
+   "class": 74
+  },
+  "classFreq": {
+   "Layout-sc-1xcs6mc-0": 154,
+   "ffz-tooltip": 82,
+   "ffz-badge": 82,
+   "chat-line__message": 73,
+   "chat-line__message--badges": 73,
+   "chat-line__username": 73,
+   "notranslate": 73,
+   "chat-author__display-name": 73,
+   "message": 73,
+   "text-fragment": 73,
+   "CoreText-sc-1txzju1-0": 3,
+   "tw-c-text-base": 2,
+   "ffz--fix-reply-line": 2,
+   "jGtuXC": 2,
+   "ScSvgWrapper-sc-wkgzod-0": 2,
+   "jyTdkS": 2,
+   "tw-svg": 2,
+   "brOIRu": 2,
+   "OLUUU": 2,
+   "dBRkEN": 1,
+   "chat-scrollable-area__message-container": 1,
+   "chat-line__status": 1,
+   "fJYwSz": 1,
+   "ffz--ftc-line": 1,
+   "ffz-custom-color": 1,
+   "ffz--ftc-bg": 1,
+   "ffz-notice-line": 1,
+   "user-notice-line": 1,
+   "tw-pd-y-05": 1,
+   "tw-c-text-alt-2": 1,
+   "ffz-i-first-time-chatter": 1,
+   "tw-mg-r-05": 1,
+   "tw-strong": 1,
+   "chat-line--inline": 1,
+   "chat-line__message-mention": 1,
+   "ffz--pointer-events": 1
+  },
+  "dataATarget": {
+   "chat-message-text": 73,
+   "chat-welcome-message": 1
+  },
+  "dataTestSelector": {
+   "chat-scrollable-area__message-container": 1
+  },
+  "attrNames": {
+   "data-provider": 82,
+   "data-badge": 82,
+   "data-tooltip-type": 82,
+   "data-badge-idx": 82,
+   "data-version": 81,
+   "role": 74,
+   "data-a-target": 74,
+   "data-room-id": 74,
+   "data-room": 74,
+   "data-user-id": 74,
+   "data-user": 74,
+   "aria-hidden": 73,
+   "d": 4,
+   "dir": 4,
+   "width": 2,
+   "height": 2,
+   "viewBox": 2,
+   "fill-rule": 2,
+   "clip-rule": 2,
+   "title": 2,
+   "data-test-selector": 1,
+   "data-replaced": 1,
+   "data-login": 1
+  },
+  "emoteImgs": {},
+  "emoteImgClasses": {},
+  "textSamples": [
+   "fodi_ll: все зависло",
+   "hard4ore: ААХАХХАХАХАХАХА",
+   "PACCBET_3ABET: эта игра сырая с 2017 года, в нее невозможно играть если че",
+   "kepxve: игра не грузит",
+   "rukag0p: пизда игре",
+   "s1eepperr: ИГРА ВСЯ ЛЕГЛА",
+   "mertyper: пизда",
+   "eLLeoTidk: игра упала, лобби не работает",
+   "1Feeze: как всегда разьеб стрим",
+   "esquizee: игра ф",
+   "yado_moi: гг игре",
+   "dflte: кароче огнев виноват"
+  ],
+  "rowHtml": [
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1384588789\" data-user=\"fodi_ll\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"rematch-nations-cup\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(202, 1, 1);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 0, 0);\">fodi_ll</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">все зависло</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"876085048\" data-user=\"hard4ore\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"ewc-2026-diamond\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(2, 98, 193);\"><span class=\"chat-author__display-name\" style=\"color: rgb(30, 144, 255);\">hard4ore</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ААХАХХАХАХАХАХА</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"254599392\" data-user=\"paccbet_3abet\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"touch-grass\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(202, 1, 1);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 0, 0);\">PACCBET_3ABET</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">эта игра сырая с 2017 года, в нее невозможно играть если че</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1103304249\" data-user=\"kepxve\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"legendus\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(202, 1, 1);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 0, 0);\">kepxve</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">игра не грузит</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"601415911\" data-user=\"rukag0p\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"18\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"campaign-89132304-c47ea5d8-8839-49e6-b2c4-e0ced8076899-sub\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(126, 96, 19);\"><span class=\"chat-author__display-name\" style=\"color: rgb(158, 120, 23);\">rukag0p</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">пизда игре</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"786348340\" data-user=\"s1eepperr\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"3\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"subtember-2025\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(138, 43, 226);\"><span class=\"chat-author__display-name\" style=\"color: rgb(138, 43, 226);\">s1eepperr</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ИГРА ВСЯ ЛЕГЛА</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1101542109\" data-user=\"mertyper\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"two-point-pickle\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(39, 112, 72);\"><span class=\"chat-author__display-name\" style=\"color: rgb(46, 139, 87);\">mertyper</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">пизда</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1486423104\" data-user=\"elleotidk\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"charmander\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(126, 96, 19);\"><span class=\"chat-author__display-name\" style=\"color: rgb(158, 120, 23);\">eLLeoTidk</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">игра упала, лобби не работает</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"745104021\" data-user=\"1feeze\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"ewc-2026-silver\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(82, 109, 27);\"><span class=\"chat-author__display-name\" style=\"color: rgb(112, 150, 37);\">1Feeze</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">как всегда разьеб стрим</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1105912515\" data-user=\"esquizee\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(195, 9, 102);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 37, 146);\">esquizee</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">игра ф</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"821033093\" data-user=\"yado_moi\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"0\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"campaign-89132304-c47ea5d8-8839-49e6-b2c4-e0ced8076899-mw\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(202, 1, 1);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 0, 0);\">yado_moi</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">гг игре</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"804609800\" data-user=\"dflte\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"3\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(99, 99, 99);\"><span class=\"chat-author__display-name\" style=\"color: rgb(122, 122, 122);\">dflte</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">кароче огнев виноват</span></span></div></div></div>"
+  ],
+  "listHtmlBytes": 58557
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 6,
+  "ffz": 123
+ },
+ "background": "rgb(255, 255, 255)",
+ "composer": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$2jxgxcrphud",
+    "__reactProps$2jxgxcrphud"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

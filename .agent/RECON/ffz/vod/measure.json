@@ -1,0 +1,168 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:22:01.786Z",
+ "config": "ffz",
+ "surface": "vod",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 16
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 20000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 16,
+    "children": 26,
+    "path": "div.Layout-sc-1xcs6mc-0.hIWzhZ.chat-shell.chat-shell__expanded > div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.gUhpt > div.Layout-sc-1xcs6mc-0.iGiUbs.video-chat > div.Layout-sc-1xcs6mc-0.lgTWNO > div.video-chat__message-list-wrapper > div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 26,
+  "rowTags": {
+   "li.InjectLayout-sc-1i43xsx-0.iUNIaK": 26
+  },
+  "rowAttrs": {
+   "class": 26
+  },
+  "classFreq": {
+   "tw-flex": 78,
+   "tw-full-width": 78,
+   "tw-align-items-start": 52,
+   "tw-flex-nowrap": 52,
+   "InjectLayout-sc-1i43xsx-0": 27,
+   "iUNIaK": 26,
+   "tw-pd-l-05": 26,
+   "tw-pd-y-05": 26,
+   "vod-message": 26,
+   "tw-align-right": 26,
+   "tw-flex-shrink-0": 26,
+   "vod-message__header": 26,
+   "tw-mg-r-05": 26,
+   "tw-inline-flex": 26,
+   "tw-relative": 26,
+   "ffz-il-tooltip__container": 26,
+   "tw-block": 26,
+   "ffz-interactable": 26,
+   "ffz-interactable--hover-enabled": 26,
+   "ffz-interactable--default": 26,
+   "tw-interactive": 26,
+   "tw-pd-x-05": 26,
+   "ffz-font-size-7": 26,
+   "ffz-il-tooltip": 26,
+   "ffz-il-tooltip--align-left": 26,
+   "ffz-il-tooltip--up": 26,
+   "tw-c-text-base": 26,
+   "tw-flex-grow-1": 26,
+   "chat-line__message--badges": 26,
+   "video-chat__message-author": 26,
+   "notranslate": 26,
+   "chat-author__display-name": 26,
+   "tw-inline": 26,
+   "video-chat__message": 26,
+   "message": 26,
+   "text-fragment": 25,
+   "ffz-tooltip": 24,
+   "ffz-badge": 23,
+   "ffz--pointer-events": 3,
+   "chat-line__message-mention": 2,
+   "gDoJZA": 1,
+   "ffz--inline": 1,
+   "chat-image": 1,
+   "chat-line__message--emote": 1,
+   "ffz-emoji": 1
+  },
+  "dataATarget": {
+   "chat-message-text": 25
+  },
+  "dataTestSelector": {
+   "message-layout": 26,
+   "message-timestamp": 26,
+   "comment-author-selector": 26,
+   "comment-message-selector": 26,
+   "emote-button": 1
+  },
+  "attrNames": {
+   "data-test-selector": 105,
+   "role": 26,
+   "data-room-id": 26,
+   "data-room": 26,
+   "data-user-id": 26,
+   "data-user": 26,
+   "href": 26,
+   "rel": 26,
+   "target": 26,
+   "data-a-target": 25,
+   "data-provider": 24,
+   "data-tooltip-type": 24,
+   "data-badge": 23,
+   "data-badge-idx": 23,
+   "data-version": 22,
+   "data-login": 2,
+   "data-replaced": 1,
+   "src": 1,
+   "srcset": 1,
+   "alt": 1,
+   "data-code": 1
+  },
+  "emoteImgs": {
+   "cdn2.frankerfacez.com": 1
+  },
+  "emoteImgClasses": {
+   "chat-image": 1,
+   "chat-line__message--emote": 1,
+   "ffz--pointer-events": 1,
+   "ffz-tooltip": 1,
+   "ffz-emoji": 1
+  },
+  "textSamples": [
+   "0:20 mercedes1337w: ку",
+   "0:23 kisyrr: ку сос",
+   "0:24 deluxe_qq: WWW",
+   "0:24 v1russ198: ку",
+   "0:25 tiveseda_1: первый",
+   "0:25 mdaini: ку бедыч",
+   "0:26 Coffee_MayZz: вот что меня за язык тянул",
+   "0:28 sertitochka: ку",
+   "0:28 trysiki_loly_holly: кууу",
+   "0:32 chortqq: 1",
+   "0:33 semidark_vovanchik: Ку Глебас",
+   "0:34 tohatahan: Еу"
+  ],
+  "rowHtml": [
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:20</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"959592653\" data-user=\"mercedes1337w\"><span class=\"chat-line__message--badges\"></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/mercedes1337w\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(30, 144, 255);\"><span class=\"chat-author__display-name\">mercedes1337w</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ку</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:23</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"761409006\" data-user=\"kisyrr\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/kisyrr\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(254, 25, 25);\"><span class=\"chat-author__display-name\">kisyrr</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ку сос</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:24</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1274603953\" data-user=\"deluxe_qq\"><span class=\"chat-line__message--badges\"></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/deluxe_qq\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(30, 144, 255);\"><span class=\"chat-author__display-name\">deluxe_qq</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">WWW</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:24</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1521944442\" data-user=\"v1russ198\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"0\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"ewc-2026-diamond\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/v1russ198\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(0, 255, 127);\"><span class=\"chat-author__display-name\">v1russ198</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ку</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:25</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1541800316\" data-user=\"tiveseda_1\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/tiveseda_1\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(254, 25, 25);\"><span class=\"chat-author__display-name\">tiveseda_1</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">первый</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:25</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"780199893\" data-user=\"mdaini\"><span class=\"chat-line__message--badges\"></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/mdaini\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(0, 255, 127);\"><span class=\"chat-author__display-name\">mdaini</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ку бедыч</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:26</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1124115066\" data-user=\"coffee_mayzz\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"big-walk\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/coffee_mayzz\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(255, 255, 255);\"><span class=\"chat-author__display-name\">Coffee_MayZz</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">вот что меня за язык тянул</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:28</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1548776825\" data-user=\"sertitochka\"><span class=\"chat-line__message--badges\"></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/sertitochka\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(255, 105, 180);\"><span class=\"chat-author__display-name\">sertitochka</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ку</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:28</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1148850259\" data-user=\"trysiki_loly_holly\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"mouseathon\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/trysiki_loly_holly\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(255, 105, 180);\"><span class=\"chat-author__display-name\">trysiki_loly_holly</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">кууу</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:32</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1401984986\" data-user=\"chortqq\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"ewc-2026-diamond\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/chortqq\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(30, 144, 255);\"><span class=\"chat-author__display-name\">chortqq</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">1</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:33</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"988117275\" data-user=\"semidark_vovanchik\"><span class=\"chat-line__message--badges\"></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/semidark_vovanchik\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(11, 149, 11);\"><span class=\"chat-author__display-name\">semidark_vovanchik</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Ку Глебас</span></span></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div data-test-selector=\"message-layout\" class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-full-width tw-pd-l-05 tw-pd-y-05 vod-message\"><div data-test-selector=\"message-timestamp\" class=\"tw-align-right tw-flex tw-flex-shrink-0 vod-message__header\"><div class=\"tw-mg-r-05\"><div class=\"tw-inline-flex tw-relative ffz-il-tooltip__container\"><button class=\"tw-block tw-full-width ffz-interactable ffz-interactable--hover-enabled ffz-interactable--default tw-interactive\"><div class=\"tw-pd-x-05\"><p class=\"ffz-font-size-7\">0:34</p></div></button><div class=\"ffz-il-tooltip ffz-il-tooltip--align-left ffz-il-tooltip--up\" role=\"tooltip\">Jump to Video</div></div></div></div><div class=\"tw-full-width\"><div class=\"tw-align-items-start tw-flex tw-flex-nowrap tw-c-text-base\"><div class=\"tw-flex-grow-1\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1020727274\" data-user=\"tohatahan\"><span class=\"chat-line__message--badges\"></span><a class=\"video-chat__message-author notranslate \" data-test-selector=\"comment-author-selector\" href=\"/tohatahan\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(154, 205, 50);\"><span class=\"chat-author__display-name\">tohatahan</span></a><div data-test-selector=\"comment-message-selector\" class=\"tw-inline video-chat__message\"><span>: </span><span class=\"message \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Еу</span></span></div></div></div></div></div></li>"
+  ],
+  "listHtmlBytes": 42738
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 0,
+  "ffz": 159
+ },
+ "background": "rgb(24, 24, 27)",
+ "composer": [],
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

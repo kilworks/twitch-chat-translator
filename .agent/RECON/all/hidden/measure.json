@@ -1,0 +1,192 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:38:26.984Z",
+ "config": "all",
+ "surface": "hidden",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 15
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 15000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 15,
+    "children": 18,
+    "path": "section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > seventv-container.seventv-chat-list > div.scrollable-container.seventv-chat-scroller > div.scrollable-contents > div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   {
+    "added": 1,
+    "children": 2,
+    "path": "div.Layout-sc-1xcs6mc-0.hIWzhZ.chat-shell.chat-shell__expanded > div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > seventv-container.seventv-chat-list > div.scrollable-container.seventv-chat-scroller"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 18,
+  "rowTags": {
+   "div.seventv-message": 18
+  },
+  "rowAttrs": {
+   "data-v-85115af9=": 18,
+   "msg-id": 18,
+   "class": 18
+  },
+  "classFreq": {
+   "seventv-button": 34,
+   "seventv-message": 18,
+   "seventv-chat-user": 18,
+   "seventv-chat-badge": 18,
+   "seventv-chat-user-username": 18,
+   "seventv-user-message": 17,
+   "seventv-chat-message-body": 17,
+   "text-token": 17,
+   "seventv-chat-message-buttons": 17,
+   "seventv-chat-message-container": 16,
+   "seventv-chat-message-background": 16,
+   "seventv-chat-user-badge-list": 15,
+   "seventv-reply-part": 2,
+   "seventv-chat-reply-icon": 2,
+   "seventv-reply-message-part": 2,
+   "bold": 2,
+   "seventv-chat-list": 1,
+   "seventv-welcome-message": 1,
+   "seventv-viewer-milestone-container": 1,
+   "seventv-highlight": 1,
+   "milestone-part": 1,
+   "milestone-icon": 1,
+   "milestone-text": 1,
+   "milestone-header": 1,
+   "viewer-name": 1,
+   "milestone-points": 1,
+   "message-part": 1,
+   "mention-token": 1
+  },
+  "dataATarget": {},
+  "dataTestSelector": {},
+  "attrNames": {
+   "data-v-9493ee21": 106,
+   "data-v-b7afb063": 85,
+   "data-v-85115af9": 72,
+   "data-v-12f1f826": 69,
+   "d": 47,
+   "data-v-7a7ddc21": 40,
+   "fill": 38,
+   "width": 38,
+   "height": 38,
+   "viewBox": 38,
+   "data-v-64a9e06f": 36,
+   "msg-id": 35,
+   "xmlns": 32,
+   "msg": 19,
+   "srcset": 18,
+   "alt": 18,
+   "state": 17,
+   "data-highlight-style": 17,
+   "tabindex": 16,
+   "data-v-94121df6": 13,
+   "version": 6,
+   "fill-rule": 6,
+   "clip-rule": 6,
+   "x": 5,
+   "y": 5,
+   "data-v-39ca32ed": 1,
+   "type": 1,
+   "data-v-20ced684": 1
+  },
+  "emoteImgs": {
+   "": 18
+  },
+  "emoteImgClasses": {},
+  "textSamples": [
+   "fynt1kcc: rust legacy ааъъхахаххаха",
+   "KikiYOP: -999",
+   "bogdan69r: в камень стреляет",
+   "trava429: Переключи глеб вид",
+   "lipton1514: @Som1Lye как дела?",
+   "Replying to @buur123buur123: Снайпер roman111_0: РАСИХРОН",
+   "iideymosii: что",
+   "lesnaya_schkola: Хорро ш",
+   "miketalxd: лол",
+   "sannya_200: @САВЕЛИЙ ТЫ ТУТ?",
+   "BOEHKOMAT___OMCK: актеры",
+   "sqaute1: красавчик витямба"
+  ],
+  "rowHtml": [
+   "<div data-v-85115af9=\"\" msg-id=\"ca122f66-56f7-4fcb-932b-82120359de66\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"ca122f66-56f7-4fcb-932b-82120359de66\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(153, 153, 255);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/1 1x, https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/2 2x, https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/3 4x\" alt=\"13\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(120, 120, 255);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">fynt1kcc</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">rust legacy  ааъъхахаххаха</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"b548ef9e-452d-4a4a-a12f-f5a799950eb8\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"b548ef9e-452d-4a4a-a12f-f5a799950eb8\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(163, 89, 232);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/4149750c-9582-4515-9e22-da7d5437643b/1 1x, https://static-cdn.jtvnw.net/badges/v1/4149750c-9582-4515-9e22-da7d5437643b/2 2x, https://static-cdn.jtvnw.net/badges/v1/4149750c-9582-4515-9e22-da7d5437643b/3 4x\" alt=\"SUBtember 2024\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(170, 100, 234);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">KikiYOP</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">-999</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"115a78f5-6fd6-4341-92cb-6719e80cc24b\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"115a78f5-6fd6-4341-92cb-6719e80cc24b\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(0, 255, 127);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/e2ba99f4-6079-44d1-8c07-4ca6b58de61f/1 1x, https://static-cdn.jtvnw.net/badges/v1/e2ba99f4-6079-44d1-8c07-4ca6b58de61f/2 2x, https://static-cdn.jtvnw.net/badges/v1/e2ba99f4-6079-44d1-8c07-4ca6b58de61f/3 4x\" alt=\"Gone Bananas Badge\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(0, 255, 127);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">bogdan69r</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">в камень стреляет</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"b1ed59eb-4f26-4606-9eac-f2d4c7ef4206\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"b1ed59eb-4f26-4606-9eac-f2d4c7ef4206\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(0, 179, 0);\"><!----><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(0, 231, 0);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">trava429</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">Переключи глеб вид</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"514cca14-62db-440e-89d3-5dcb10d56769\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"514cca14-62db-440e-89d3-5dcb10d56769\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(0, 255, 127);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/1 1x, https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/2 2x, https://static-cdn.jtvnw.net/badges/v1/544b6594-e11e-4230-8d42-d81c84002524/3 4x\" alt=\"Went Outside\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(0, 255, 127);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">lipton1514</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-20ced684=\"\" data-v-12f1f826=\"\" class=\"mention-token\"><div data-v-9493ee21=\"\" class=\"seventv-chat-user\"><!----><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\"><span data-v-9493ee21=\"\"><span data-v-9493ee21=\"\">@</span><span data-v-9493ee21=\"\">Som1Lye</span><!----></span></span></div><!----></span><span data-v-12f1f826=\"\" class=\"text-token\"> как дела?</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"8c5ff072-6316-402b-a6be-ccb0c2aba4d8\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><div data-v-7a7ddc21=\"\" class=\"seventv-reply-part\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-reply-icon\"><svg data-v-7a7ddc21=\"\" fill=\"currenColor\" width=\"1em\" height=\"1em\" version=\"1.1\" viewBox=\"0 0 16 16\" x=\"0px\" y=\"0px\"><g><path d=\"M5 6H7V8H5V6Z\"></path><path d=\"M9 6H11V8H9V6Z\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 14L10 12H13C13.5523 12 14 11.5523 14 11V3C14 2.44772 13.5523 2 13 2H3C2.44772 2 2 2.44772 2 3V11C2 11.5523 2.44772 12 3 12H6L8 14ZM6.82843 10H4V4H12V10H9.17157L8 11.1716L6.82843 10Z\"></path></g></svg></div><div data-v-7a7ddc21=\"\" class=\"seventv-reply-message-part\">Replying to @buur123buur123: Снайпер</div></div><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"8c5ff072-6316-402b-a6be-ccb0c2aba4d8\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(224, 92, 92);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/1 1x, https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/2 2x, https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/3 4x\" alt=\"13\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(224, 91, 91);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">roman111_0</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">РАСИХРОН</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" fill=\"currenColor\" width=\"1em\" height=\"1em\" version=\"1.1\" viewBox=\"0 0 16 16\" x=\"0px\" y=\"0px\"><g><path d=\"M5 6H7V8H5V6Z\"></path><path d=\"M9 6H11V8H9V6Z\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 14L10 12H13C13.5523 12 14 11.5523 14 11V3C14 2.44772 13.5523 2 13 2H3C2.44772 2 2 2.44772 2 3V11C2 11.5523 2.44772 12 3 12H6L8 14ZM6.82843 10H4V4H12V10H9.17157L8 11.1716L6.82843 10Z\"></path></g></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"b92f4003-307e-48ab-9879-709c02926fe5\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"b92f4003-307e-48ab-9879-709c02926fe5\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(163, 89, 232);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/1 1x, https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/2 2x, https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/3 4x\" alt=\"Pichu\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(170, 100, 234);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">iideymosii</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">что</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"d5215d93-415a-42e7-b023-7647b05b6179\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"d5215d93-415a-42e7-b023-7647b05b6179\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(154, 205, 50);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/d4ce33ab-2f9c-417b-ac02-b9b48a831c3d/1 1x, https://static-cdn.jtvnw.net/badges/v1/d4ce33ab-2f9c-417b-ac02-b9b48a831c3d/2 2x, https://static-cdn.jtvnw.net/badges/v1/d4ce33ab-2f9c-417b-ac02-b9b48a831c3d/3 4x\" alt=\"2-Month Subscriber\"></div><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/1 1x, https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/2 2x, https://static-cdn.jtvnw.net/badges/v1/2ad2fd02-787f-4064-953a-fc9e2e559fb6/3 4x\" alt=\"13\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(154, 205, 50);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">lesnaya_schkola</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">Хорро ш</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"aaca5723-8239-45b6-9e63-37bfa6a11e5b\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"aaca5723-8239-45b6-9e63-37bfa6a11e5b\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(255, 0, 0);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/1 1x, https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/2 2x, https://static-cdn.jtvnw.net/badges/v1/11981610-741f-4df6-99da-a7c8230ecae2/3 4x\" alt=\"2-Year Subscriber\"></div><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/e349e84d-1d91-4086-afda-e0c946717878/1 1x, https://static-cdn.jtvnw.net/badges/v1/e349e84d-1d91-4086-afda-e0c946717878/2 2x, https://static-cdn.jtvnw.net/badges/v1/e349e84d-1d91-4086-afda-e0c946717878/3 4x\" alt=\"Blue Creeper Boss\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(255, 88, 88);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">miketalxd</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">лол</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"415974e4-3ede-4a58-b38c-fd07b82fb7c1\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"415974e4-3ede-4a58-b38c-fd07b82fb7c1\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(0, 179, 0);\"><!----><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(0, 231, 0);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">sannya_200</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">@САВЕЛИЙ ТЫ ТУТ?</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"cc38a87f-a5d1-4d6e-a20b-593a0dc59adc\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"cc38a87f-a5d1-4d6e-a20b-593a0dc59adc\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(0, 255, 127);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/1 1x, https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/2 2x, https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/3 4x\" alt=\"GLHF Pledge\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(0, 255, 127);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">BOEHKOMAT___OMCK</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">актеры</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>",
+   "<div data-v-85115af9=\"\" msg-id=\"a5fd9fc4-3fcc-4c7f-8275-2812b7ac950b\" class=\"seventv-message\"><span data-v-85115af9=\"\" msg=\"[object Object]\"><div data-v-7a7ddc21=\"\" data-v-85115af9=\"\" class=\"seventv-chat-message-container\"><div data-v-7a7ddc21=\"\" class=\"seventv-chat-message-background\" tabindex=\"0\"><!----><span data-v-12f1f826=\"\" data-v-85115af9=\"\" class=\"seventv-user-message\" msg-id=\"a5fd9fc4-3fcc-4c7f-8275-2812b7ac950b\" state=\"IDLE\" data-highlight-style=\"0\"><!----><!----><!----><div data-v-9493ee21=\"\" class=\"seventv-chat-user\" style=\"color: rgb(0, 179, 0);\"><span data-v-9493ee21=\"\" class=\"seventv-chat-user-badge-list\"><!----><div data-v-64a9e06f=\"\" data-v-9493ee21=\"\" class=\"seventv-chat-badge\"><img data-v-64a9e06f=\"\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/1 1x, https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/2 2x, https://static-cdn.jtvnw.net/badges/v1/d8840076-edd5-4e9f-835e-e2dc6e2f72ec/3 4x\" alt=\"Subscriber\"></div></span><span data-v-9493ee21=\"\" class=\"seventv-chat-user-username\" style=\"color: rgb(0, 231, 0);\"><span data-v-9493ee21=\"\"><!----><span data-v-9493ee21=\"\">sqaute1</span><!----></span></span></div><!----><span data-v-12f1f826=\"\">: </span><span data-v-12f1f826=\"\" class=\"seventv-chat-message-body\"><span data-v-12f1f826=\"\" class=\"text-token\">красавчик витямба</span></span><!----><!----><!----><div data-v-b7afb063=\"\" class=\"seventv-chat-message-buttons\"><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z\"></path></svg></div><!----><div data-v-b7afb063=\"\" class=\"seventv-button\"><svg data-v-b7afb063=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\"><path d=\"M0 208L192 384h32V288h80c61.9 0 112 50.1 112 112c0 48-32 80-32 80s128-48 128-176c0-97.2-78.8-176-176-176H224V32H192L0 208z\"></path></svg></div></div><!----><!----></span></div></div></span></div>"
+  ],
+  "listHtmlBytes": 44658
+ },
+ "markers": {
+  "seventv": 239,
+  "bttv": 6,
+  "ffz": 36
+ },
+ "background": "rgb(24, 24, 27)",
+ "composer": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$07gi18gslh4a",
+    "__reactProps$07gi18gslh4a"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "hidden": {
+  "hiddenState": "visible",
+  "transitions": [],
+  "rowsBefore": 18,
+  "rowsWhileHidden": 21,
+  "rowsEndHidden": 76,
+  "after": 81,
+  "resumedList": true
+ },
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

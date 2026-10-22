@@ -1,0 +1,74 @@
+{
+ "date": "2026-10-22",
+ "config": "7tv+ffz",
+ "channel": "ch21",
+ "editors": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$33om797guhh",
+    "__reactProps$33om797guhh"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "actionBar": [],
+ "afterClick": {
+  "dialogs": [],
+  "editor": {
+   "text": "﻿\n",
+   "html": "<div data-slate-node=\"element\" aria-hidden=\"true\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-zero-width=\"n\" data-slate-length=\"0\">﻿<br></span></span></span></div>"
+  }
+ },
+ "afterTyping": {
+  "added": [
+   "span.",
+   "div.seventv-message",
+   "div.ScSvgWrapper-sc-wkgzod-0.cnGLHG.tw-svg",
+   "div.seventv-chat-message-rich-embed"
+  ],
+  "editor": {
+   "text": "Kap",
+   "html": "<div data-slate-node=\"element\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-string=\"true\">Kap</span></span></span></div>"
+  }
+ },
+ "afterTab": {
+  "added": [
+   "div.floating-container",
+   "div.seventv-message"
+  ],
+  "editor": {
+   "text": "KappaCool ",
+   "html": "<div data-slate-node=\"element\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-string=\"true\">KappaCool </span></span></span></div>"
+  },
+  "focusIn": "editor"
+ },
+ "afterClear": {
+  "text": "﻿\n",
+  "html": "<div data-slate-node=\"element\" aria-hidden=\"true\"><span data-slate-node=\"text\"><span data-slate-leaf=\"true\" class=\"LYbEO ScTransitionBase-sc-hx4quq-0 tw-transition\" data-a-target=\"chat-input-text\" dir=\"auto\" aria-hidden=\"false\"><span data-slate-zero-width=\"n\" data-slate-length=\"0\">﻿<br></span></span></span></div>"
+ },
+ "sentNothing": true
+}

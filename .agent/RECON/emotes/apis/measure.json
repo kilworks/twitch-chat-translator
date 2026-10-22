@@ -1,0 +1,433 @@
+{
+ "date": "2026-10-22",
+ "rooms": 12,
+ "global": {
+  "7tv": {
+   "provider": "7tv",
+   "status": 200,
+   "ms": 925,
+   "bytes": 112718,
+   "emotes": 45,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  "bttv": {
+   "provider": "bttv",
+   "status": 200,
+   "ms": 182,
+   "bytes": 9485,
+   "emotes": 65,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  "ffz": {
+   "provider": "ffz",
+   "status": 200,
+   "ms": 166,
+   "bytes": 20431,
+   "emotes": 23,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  }
+ },
+ "channel": [
+  {
+   "ch": "ch21",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 163,
+   "bytes": 644,
+   "emotes": 0,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch21",
+   "provider": "bttv",
+   "status": 404,
+   "ms": 127,
+   "bytes": 28,
+   "emotes": 0,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch21",
+   "provider": "ffz",
+   "status": 404,
+   "ms": 156,
+   "bytes": 59,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch4",
+   "provider": "7tv",
+   "status": 404,
+   "ms": 103,
+   "bytes": 66,
+   "emotes": 0,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch4",
+   "provider": "bttv",
+   "status": 404,
+   "ms": 132,
+   "bytes": 28,
+   "emotes": 0,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch4",
+   "provider": "ffz",
+   "status": 404,
+   "ms": 112,
+   "bytes": 59,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch31",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 860,
+   "bytes": 2308263,
+   "emotes": 974,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch31",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 182,
+   "bytes": 23594,
+   "emotes": 153,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch31",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 115,
+   "bytes": 15657,
+   "emotes": 30,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch35",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 621,
+   "bytes": 1742659,
+   "emotes": 736,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch35",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 136,
+   "bytes": 2909,
+   "emotes": 14,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch35",
+   "provider": "ffz",
+   "status": 404,
+   "ms": 127,
+   "bytes": 59,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch18",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 748,
+   "bytes": 2244480,
+   "emotes": 934,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch18",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 137,
+   "bytes": 986,
+   "emotes": 5,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch18",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 140,
+   "bytes": 1013,
+   "emotes": 1,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch15",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 1709,
+   "bytes": 2318272,
+   "emotes": 980,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch15",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 154,
+   "bytes": 9712,
+   "emotes": 48,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch15",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 113,
+   "bytes": 25998,
+   "emotes": 50,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch27",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 530,
+   "bytes": 617431,
+   "emotes": 260,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch27",
+   "provider": "bttv",
+   "status": 404,
+   "ms": 126,
+   "bytes": 28,
+   "emotes": 0,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch27",
+   "provider": "ffz",
+   "status": 404,
+   "ms": 120,
+   "bytes": 59,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch3",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 715,
+   "bytes": 2322969,
+   "emotes": 1000,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch3",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 152,
+   "bytes": 9635,
+   "emotes": 49,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch3",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 131,
+   "bytes": 12674,
+   "emotes": 24,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch6",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 1130,
+   "bytes": 1561672,
+   "emotes": 655,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch6",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 135,
+   "bytes": 2706,
+   "emotes": 13,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch6",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 109,
+   "bytes": 363,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch38",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 590,
+   "bytes": 2261449,
+   "emotes": 940,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch38",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 164,
+   "bytes": 6079,
+   "emotes": 44,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch38",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 124,
+   "bytes": 864,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch24",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 1467,
+   "bytes": 2295664,
+   "emotes": 959,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch24",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 146,
+   "bytes": 7338,
+   "emotes": 50,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch24",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 114,
+   "bytes": 22883,
+   "emotes": 44,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  },
+  {
+   "ch": "ch12",
+   "provider": "7tv",
+   "status": 200,
+   "ms": 630,
+   "bytes": 1373332,
+   "emotes": 579,
+   "acao": "chrome-extension://kt-probe",
+   "cache": null
+  },
+  {
+   "ch": "ch12",
+   "provider": "bttv",
+   "status": 200,
+   "ms": 136,
+   "bytes": 3143,
+   "emotes": 15,
+   "acao": "chrome-extension://kt-probe",
+   "cache": "max-age=300, stale-while-revalidate=600"
+  },
+  {
+   "ch": "ch12",
+   "provider": "ffz",
+   "status": 200,
+   "ms": 122,
+   "bytes": 342,
+   "emotes": 0,
+   "acao": "*",
+   "cache": "private,must-revalidate,stale-if-error=60"
+  }
+ ],
+ "summary": {
+  "7tv": {
+   "ok200": 11,
+   "notFound": 1,
+   "of": 12,
+   "msP50": 715,
+   "msMax": 1709,
+   "maxBytes": 2322969,
+   "maxEmotes": 1000,
+   "acao": [
+    "chrome-extension://kt-probe"
+   ]
+  },
+  "bttv": {
+   "ok200": 9,
+   "notFound": 3,
+   "of": 12,
+   "msP50": 137,
+   "msMax": 182,
+   "maxBytes": 23594,
+   "maxEmotes": 153,
+   "acao": [
+    "chrome-extension://kt-probe"
+   ]
+  },
+  "ffz": {
+   "ok200": 8,
+   "notFound": 4,
+   "of": 12,
+   "msP50": 122,
+   "msMax": 156,
+   "maxBytes": 25998,
+   "maxEmotes": 50,
+   "acao": [
+    "*"
+   ]
+  }
+ }
+}

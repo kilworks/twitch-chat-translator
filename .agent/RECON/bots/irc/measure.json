@@ -1,0 +1,66 @@
+{
+ "date": "2026-10-22",
+ "minutes": 5,
+ "channelsJoined": 16,
+ "privmsg": 6832,
+ "botAuthors": [
+  {
+   "login": "streamelements",
+   "messages": 54,
+   "channels": 5,
+   "known": true
+  },
+  {
+   "login": "fossabot",
+   "messages": 81,
+   "channels": 3,
+   "known": true
+  },
+  {
+   "login": "moobot",
+   "messages": 3,
+   "channels": 2,
+   "known": true
+  },
+  {
+   "login": "streamlabs",
+   "messages": 12,
+   "channels": 1,
+   "known": true
+  },
+  {
+   "login": "nightbot",
+   "messages": 3,
+   "channels": 1,
+   "known": true
+  },
+  {
+   "login": "bausenbot",
+   "messages": 2,
+   "channels": 1,
+   "known": false
+  }
+ ],
+ "knownChecked": [
+  "nightbot",
+  "streamelements",
+  "moobot",
+  "fossabot",
+  "streamlabs",
+  "sery_bot",
+  "wizebot",
+  "botrixoficial",
+  "kicklet",
+  "soundalerts",
+  "pokemoncommunitygame",
+  "commanderroot",
+  "deepbot",
+  "phantombot",
+  "coebot",
+  "ankhbot",
+  "vivbot",
+  "own3d",
+  "blerp",
+  "sery_bot"
+ ]
+}

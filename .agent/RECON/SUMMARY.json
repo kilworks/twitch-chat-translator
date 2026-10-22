@@ -1,0 +1,2692 @@
+{
+ "date": "2026-10-22",
+ "cells": 88,
+ "chat": 80,
+ "ok": 8,
+ "notChat": 0,
+ "noList": 0,
+ "missing": 0,
+ "grid": {
+  "native": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 100,
+    "rows": 116,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-message-text",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 96,
+    "rows": 110,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 92,
+    "rows": 105,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-username",
+     "chat-message-text",
+     "chat-badge",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 68,
+    "rows": 43,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-username",
+     "chat-message-text",
+     "chat-badge",
+     "emote-name",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 108,
+    "rows": 141,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 107,
+    "rows": 141,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 43,
+    "rows": 53,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "3/3 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 2,
+      "children": 3,
+      "path": "div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 34,
+    "rows": 42,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 42,
+     "rowsWhileHidden": 46,
+     "rowsEndHidden": 81,
+     "after": 87,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 52,
+    "rows": 66,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "Kap",
+    "tabFocus": "BUTTON",
+    "cleared": true
+   }
+  },
+  "7tv": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 18,
+    "rows": 27,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 350,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 19,
+    "rows": 33,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 426,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 93,
+    "rows": 99,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-badge",
+     "chat-message-text",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "div.InjectLayout-sc-1i43xsx-0.iUNIaK.seventv-chat-vod-message-patched",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-vod-message-patched",
+     "seventv-chat-vod-message-wrapper",
+     "seventv-chat-vod-message-timestamp",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 323,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 235,
+    "rows": 46,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text",
+     "chat-message-username",
+     "chat-badge",
+     "emote-name",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 14,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 58,
+    "rows": 82,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1094,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 50,
+    "rows": 64,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 814,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 113,
+    "rows": 134,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1667,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 25,
+      "children": 43,
+      "path": "section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > seventv-container.seventv-chat-list > div.scrollable-container.seventv-chat-scroller > div.scrollable-contents > div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 8,
+    "rows": 13,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-chat-list"
+    ],
+    "markers": {
+     "seventv": 177,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 13,
+     "rowsWhileHidden": 14,
+     "rowsEndHidden": 45,
+     "after": 55,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 120,
+    "rows": 153,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1875,
+     "bttv": 0,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "KappaCool",
+    "tabFocus": "editor",
+    "cleared": true
+   }
+  },
+  "bttv": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 69,
+    "rows": 104,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-badge",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 22,
+    "rows": 36,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-badge",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 26,
+    "rows": 34,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-badge",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 27,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-username",
+     "chat-message-text",
+     "chat-badge",
+     "chat-message-mention"
+    ],
+    "extClasses": [
+     "bttv-emote",
+     "bttv-emoji",
+     "bttv-emoji-emo-😳",
+     "bttv-emote-image"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 8,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 250,
+    "rows": 40,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text",
+     "chat-message-username",
+     "chat-badge",
+     "emote-name"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 72,
+    "rows": 88,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-badge",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 65,
+    "rows": 78,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-badge",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 18,
+    "rows": 27,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-line-message",
+     "chat-badge",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "19/19 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 16,
+      "children": 18,
+      "path": "div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 18,
+    "rows": 27,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-line-message",
+     "chat-badge",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 27,
+     "rowsWhileHidden": 36,
+     "rowsEndHidden": 67,
+     "after": 72,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 30,
+    "rows": 39,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-line-message",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-badge",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "KappaCool",
+    "tabFocus": "editor",
+    "cleared": true
+   }
+  },
+  "ffz": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 30,
+    "rows": 41,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--fix-reply-line",
+     "ffz--chat-card",
+     "ffz-accent-card",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable",
+     "ffz-interactable--default",
+     "ffz-card-rich",
+     "ffz--rich-header",
+     "ffz--header-image"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 88
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 52,
+    "rows": 60,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--inline",
+     "ffz--pointer-events",
+     "ffz--chat-card",
+     "ffz-accent-card",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable",
+     "ffz-interactable--default",
+     "ffz-card-rich",
+     "ffz--rich-header",
+     "ffz--header-image"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 99
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 102,
+    "rows": 111,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline",
+     "ffz-emoji",
+     "ffz--fix-reply-line",
+     "ffz--watch-streak-line",
+     "ffz-notice-line",
+     "ffz-i-watch-streak",
+     "ffz--points-icon"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 170
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text"
+    ],
+    "extClasses": [
+     "ffz-il-tooltip__container",
+     "ffz-interactable",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable--default",
+     "ffz-font-size-7",
+     "ffz-il-tooltip",
+     "ffz-il-tooltip--align-left",
+     "ffz-il-tooltip--up",
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 159
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 177,
+    "rows": 60,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text"
+    ],
+    "extClasses": [
+     "ffz-il-tooltip__container",
+     "ffz-interactable",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable--default",
+     "ffz-font-size-7",
+     "ffz-il-tooltip",
+     "ffz-il-tooltip--align-left",
+     "ffz-il-tooltip--up",
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 263
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 91,
+    "rows": 117,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--chat-card",
+     "ffz-accent-card",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable",
+     "ffz-interactable--default",
+     "ffz-card-rich",
+     "ffz--rich-header",
+     "ffz--header-image",
+     "ffz--header-aspect"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 279
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 61,
+    "rows": 105,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline",
+     "ffz--chat-card",
+     "ffz-accent-card",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable",
+     "ffz-interactable--default",
+     "ffz-card-rich",
+     "ffz--rich-header",
+     "ffz--header-image"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 209
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 37,
+    "rows": 50,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--chat-card",
+     "ffz--header-image",
+     "ffz-accent-card",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable",
+     "ffz-interactable--default",
+     "ffz-card-rich",
+     "ffz--rich-header",
+     "ffz--header-aspect"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 120
+    },
+    "injection": "10/10 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 6,
+      "children": 10,
+      "path": "div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 20,
+    "rows": 29,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--pointer-events",
+     "ffz--watch-streak-line",
+     "ffz-notice-line",
+     "ffz-i-watch-streak",
+     "ffz--points-icon"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 72
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 29,
+     "rowsWhileHidden": 34,
+     "rowsEndHidden": 65,
+     "after": 70,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 48,
+    "rows": 57,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--chat-card",
+     "ffz-accent-card",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable",
+     "ffz-interactable--default",
+     "ffz-card-rich",
+     "ffz--rich-header",
+     "ffz--header-image",
+     "ffz--header-aspect"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 148
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "Kap",
+    "tabFocus": "BUTTON",
+    "cleared": true
+   }
+  },
+  "7tv+bttv": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 48,
+    "rows": 66,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-chat-message-rich-embed"
+    ],
+    "markers": {
+     "seventv": 852,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 48,
+    "rows": 91,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1142,
+     "bttv": 2,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 35,
+    "rows": 50,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-line-message",
+     "chat-badge",
+     "chat-message-username",
+     "chat-line-message-body",
+     "chat-message-text",
+     "chat-message-mention"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 27,
+    "reused": 0,
+    "rowSignature": "div.InjectLayout-sc-1i43xsx-0.iUNIaK.seventv-chat-vod-message-patched",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-vod-message-patched",
+     "seventv-chat-vod-message-wrapper",
+     "seventv-chat-vod-message-timestamp",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 335,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 213,
+    "rows": 30,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text",
+     "chat-message-username",
+     "emote-name",
+     "chat-badge"
+    ],
+    "extClasses": [],
+    "markers": {
+     "seventv": 14,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 42,
+    "rows": 48,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 613,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 52,
+    "rows": 68,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-badge",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 824,
+     "bttv": 2,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 23,
+    "rows": 30,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 376,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "13/13 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 8,
+      "children": 13,
+      "path": "section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > seventv-container.seventv-chat-list > div.scrollable-container.seventv-chat-scroller > div.scrollable-contents > div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 12,
+    "rows": 25,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 346,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 25,
+     "rowsWhileHidden": 29,
+     "rowsEndHidden": 57,
+     "after": 58,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 23,
+    "rows": 30,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 387,
+     "bttv": 6,
+     "ffz": 0
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "KappaCool",
+    "tabFocus": "editor",
+    "cleared": true
+   }
+  },
+  "7tv+ffz": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 78,
+    "rows": 87,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1110,
+     "bttv": 0,
+     "ffz": 36
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 62,
+    "rows": 91,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1132,
+     "bttv": 0,
+     "ffz": 7
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 75,
+    "rows": 92,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline",
+     "ffz--fix-reply-line",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 0,
+     "ffz": 166
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "div.InjectLayout-sc-1i43xsx-0.iUNIaK.seventv-chat-vod-message-patched",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-vod-message-patched",
+     "seventv-chat-vod-message-wrapper",
+     "seventv-chat-vod-message-timestamp",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 324,
+     "bttv": 0,
+     "ffz": 28
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 213,
+    "rows": 40,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-il-tooltip__container",
+     "ffz-interactable",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable--default",
+     "ffz-font-size-7",
+     "ffz-il-tooltip",
+     "ffz-il-tooltip--align-left",
+     "ffz-il-tooltip--up",
+     "ffz-badge",
+     "ffz--inline",
+     "ffz--pointer-events"
+    ],
+    "markers": {
+     "seventv": 14,
+     "bttv": 0,
+     "ffz": 263
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 22,
+    "rows": 39,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 518,
+     "bttv": 0,
+     "ffz": 45
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 17,
+    "rows": 30,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 399,
+     "bttv": 0,
+     "ffz": 15
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 49,
+    "rows": 67,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 855,
+     "bttv": 0,
+     "ffz": 41
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 17,
+      "children": 28,
+      "path": "section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > seventv-container.seventv-chat-list > div.scrollable-container.seventv-chat-scroller > div.scrollable-contents > div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 12,
+    "rows": 22,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 288,
+     "bttv": 0,
+     "ffz": 36
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 22,
+     "rowsWhileHidden": 28,
+     "rowsEndHidden": 49,
+     "after": 54,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 105,
+    "rows": 128,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 1568,
+     "bttv": 0,
+     "ffz": 44
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "KappaCool",
+    "tabFocus": "editor",
+    "cleared": true
+   }
+  },
+  "bttv+ffz": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 93,
+    "rows": 127,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline",
+     "ffz-emoji",
+     "ffz--fix-reply-line",
+     "ffz--gif-embed-wrapper",
+     "ffz--gif-embed",
+     "ffz--gif-embed__image",
+     "ffz--gif-report-overlay",
+     "ffz--gif-report-btn",
+     "ffz-i-flag"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 206
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 15,
+    "rows": 19,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--pointer-events",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 26
+    },
+    "injection": "19/19 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 17,
+    "rows": 22,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--fix-reply-line",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 32
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text"
+    ],
+    "extClasses": [
+     "ffz-il-tooltip__container",
+     "ffz-interactable",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable--default",
+     "ffz-font-size-7",
+     "ffz-il-tooltip",
+     "ffz-il-tooltip--align-left",
+     "ffz-il-tooltip--up",
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 159
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 205,
+    "rows": 46,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-il-tooltip__container",
+     "ffz-interactable",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable--default",
+     "ffz-font-size-7",
+     "ffz-il-tooltip",
+     "ffz-il-tooltip--align-left",
+     "ffz-il-tooltip--up",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 284
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 33,
+    "rows": 51,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter",
+     "ffz--pointer-events"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 83
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 33,
+    "rows": 52,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter",
+     "ffz--pointer-events"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 54
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 47,
+    "rows": 57,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--pointer-events",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 106
+    },
+    "injection": "4/4 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 2,
+      "children": 4,
+      "path": "div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.hgQCxi.chat-scrollable-area__message-container"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 14,
+    "rows": 15,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--watch-streak-line",
+     "ffz-notice-line",
+     "ffz-i-watch-streak",
+     "ffz--points-icon",
+     "ffz--pointer-events"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 58
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 15,
+     "rowsWhileHidden": 18,
+     "rowsEndHidden": 72,
+     "after": 80,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 56,
+    "rows": 74,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--fix-reply-line",
+     "ffz--ftc-line",
+     "ffz-custom-color",
+     "ffz--ftc-bg",
+     "ffz-notice-line",
+     "ffz-i-first-time-chatter",
+     "ffz--pointer-events"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 6,
+     "ffz": 123
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "KappaCool",
+    "tabFocus": "editor",
+    "cleared": true
+   }
+  },
+  "all": {
+   "live": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 49,
+    "rows": 71,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 874,
+     "bttv": 6,
+     "ffz": 38
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "popout": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 25,
+    "rows": 37,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 480,
+     "bttv": 2,
+     "ffz": 16
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "embed": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 25,
+    "rows": 34,
+    "reused": 0,
+    "rowSignature": "div.Layout-sc-1xcs6mc-0",
+    "topTargets": [
+     "chat-message-text",
+     "chat-welcome-message"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--fix-reply-line",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 0,
+     "bttv": 2,
+     "ffz": 59
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   },
+   "vod": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 16,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "div.InjectLayout-sc-1i43xsx-0.iUNIaK.seventv-chat-vod-message-patched",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-vod-message-patched",
+     "seventv-chat-vod-message-wrapper",
+     "seventv-chat-vod-message-timestamp",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-badge",
+     "seventv-chat-user-badge-list",
+     "seventv-emote-box"
+    ],
+    "markers": {
+     "seventv": 324,
+     "bttv": 6,
+     "ffz": 28
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "clip": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 205,
+    "rows": 46,
+    "reused": 0,
+    "rowSignature": "li.InjectLayout-sc-1i43xsx-0.iUNIaK",
+    "topTargets": [
+     "chat-message-text"
+    ],
+    "extClasses": [
+     "ffz-tooltip",
+     "ffz-il-tooltip__container",
+     "ffz-interactable",
+     "ffz-interactable--hover-enabled",
+     "ffz-interactable--default",
+     "ffz-font-size-7",
+     "ffz-il-tooltip",
+     "ffz-il-tooltip--align-left",
+     "ffz-il-tooltip--up",
+     "ffz-badge",
+     "ffz--pointer-events",
+     "ffz--inline"
+    ],
+    "markers": {
+     "seventv": 14,
+     "bttv": 6,
+     "ffz": 284
+    },
+    "injection": "0/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": false,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   "theater": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 21,
+    "rows": 26,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-chat-list"
+    ],
+    "markers": {
+     "seventv": 343,
+     "bttv": 6,
+     "ffz": 37
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "mobile": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 20,
+    "rows": 28,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-chat-list"
+    ],
+    "markers": {
+     "seventv": 364,
+     "bttv": 2,
+     "ffz": 8
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "spa": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 19,
+    "rows": 27,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 364,
+     "bttv": 6,
+     "ffz": 42
+    },
+    "injection": "14/14 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "spa": {
+     "from": "ch21",
+     "to": "ch22",
+     "sameDocument": true,
+     "oldListConnected": false,
+     "newListIsOld": false,
+     "newList": {
+      "added": 7,
+      "children": 14,
+      "path": "section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > seventv-container.seventv-chat-list > div.scrollable-container.seventv-chat-scroller > div.scrollable-contents > div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+     }
+    }
+   },
+   "hidden": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 15,
+    "rows": 18,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-message",
+     "seventv-chat-user",
+     "seventv-chat-badge",
+     "seventv-chat-user-username",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 239,
+     "bttv": 6,
+     "ffz": 36
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(24, 24, 27)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list",
+    "hidden": {
+     "hiddenState": "visible",
+     "transitions": [],
+     "rowsBefore": 18,
+     "rowsWhileHidden": 21,
+     "rowsEndHidden": 76,
+     "after": 81,
+     "resumedList": true
+    }
+   },
+   "light": {
+    "status": "chat",
+    "date": "2026-10-22",
+    "adds": 10,
+    "rows": 20,
+    "reused": 0,
+    "rowSignature": "div.seventv-message",
+    "topTargets": [],
+    "extClasses": [
+     "seventv-button",
+     "seventv-chat-badge",
+     "seventv-chat-user",
+     "seventv-chat-user-username",
+     "seventv-message",
+     "seventv-chat-message-container",
+     "seventv-chat-message-background",
+     "seventv-user-message",
+     "seventv-chat-message-body",
+     "seventv-chat-message-buttons",
+     "seventv-chat-user-badge-list",
+     "seventv-reply-part"
+    ],
+    "markers": {
+     "seventv": 282,
+     "bttv": 6,
+     "ffz": 37
+    },
+    "injection": "20/20 kept, 0 rerendered, 0 dup",
+    "composerSlate": true,
+    "background": "rgb(255, 255, 255)",
+    "listPathTail": "div#seventv-message-container.seventv-message-container > main.seventv-chat-list"
+   },
+   "compose": {
+    "status": "ok",
+    "slate": true,
+    "tabResult": "KappaCool",
+    "tabFocus": "editor",
+    "cleared": true
+   }
+  }
+ }
+}

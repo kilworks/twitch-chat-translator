@@ -1,0 +1,4221 @@
+{
+ "source": "kick-chat-translator",
+ "total": 1332,
+ "categories": {
+  "settings": [
+   {
+    "id": "enabled",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "pausedChannels",
+    "spec": "z.array(z.string()).max(PAUSED_CHANNELS_MAX).default([]),"
+   },
+   {
+    "id": "targetLang",
+    "spec": "langSetting,"
+   },
+   {
+    "id": "displayStyle",
+    "spec": "z.enum(['below', 'inline', 'replace', 'hover']).default('below'),"
+   },
+   {
+    "id": "showOriginal",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "showSourceBadge",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "showProviderBadge",
+    "spec": "z.boolean().default(false),"
+   },
+   {
+    "id": "showFloatingBar",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "translatedFontScale",
+    "spec": "z.number().min(0.8).max(1.4).default(1),"
+   },
+   {
+    "id": "translatedLineHeight",
+    "spec": "z.number().min(1.2).max(2).default(1.35),"
+   },
+   {
+    "id": "translatedFont",
+    "spec": "z.enum(['inherit', 'system', 'serif', 'mono', 'readable']).default('inherit'),"
+   },
+   {
+    "id": "translatedDensity",
+    "spec": "z.enum(['compact', 'normal', 'roomy']).default('normal'),"
+   },
+   {
+    "id": "accent",
+    "spec": "z.enum(['kick', 'cyan', 'violet', 'amber']).default('kick'),"
+   },
+   {
+    "id": "chatScheme",
+    "spec": "z.enum(['auto', 'dark', 'light']).default('auto'),"
+   },
+   {
+    "id": "rememberChannelLang",
+    "spec": "z.boolean().default(false),"
+   },
+   {
+    "id": "channelLangs",
+    "spec": "z.record(z.string(), z.string()).default({}),"
+   },
+   {
+    "id": "engineMode",
+    "spec": "z.enum(['local-first', 'cloud-first', 'local-only']).default('local-first'),"
+   },
+   {
+    "id": "localEnabled",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "providerOrder",
+    "spec": "ProviderOrderSchema.default(['google', 'mymemory', 'lingva']),"
+   },
+   {
+    "id": "deeplApiKey",
+    "spec": "z.string().default(''),"
+   },
+   {
+    "id": "deeplPlan",
+    "spec": "z.enum(['free', 'pro']).default('free'),"
+   },
+   {
+    "id": "deeplBudgetPct",
+    "spec": "z.number().int().min(0).max(100).default(0),"
+   },
+   {
+    "id": "deeplSmartRouting",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "lingvaInstance",
+    "spec": "z.string().url().or(z.literal('')).default(''),"
+   },
+   {
+    "id": "myMemoryEmail",
+    "spec": "z.string().email().or(z.literal('')).default(''),"
+   },
+   {
+    "id": "minTextLength",
+    "spec": "z.number().int().min(1).max(50).default(MIN_TEXT_LENGTH),"
+   },
+   {
+    "id": "ignoreEnglish",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "ignoreBots",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "extraBots",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "blacklistUsers",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "blockedKeywords",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "blacklistChannels",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "whitelistChannels",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "sourceLangAllowlist",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "glossary",
+    "spec": "z.array(z.string()).default([]),"
+   },
+   {
+    "id": "cacheMaxEntries",
+    "spec": "z.number().int().positive().max(50_000).default(15_000),"
+   },
+   {
+    "id": "cacheTtlHours",
+    "spec": "z.number().int().positive().max(720).default(72),"
+   },
+   {
+    "id": "concurrency",
+    "spec": "z.number().int().min(1).max(16).default(4),"
+   },
+   {
+    "id": "perChannelBudgetPerMin",
+    "spec": "z.number().int().min(10).max(2000).default(200),"
+   },
+   {
+    "id": "connectionMode",
+    "spec": "z.enum(['auto', 'websocket', 'dom']).default('auto'),"
+   },
+   {
+    "id": "pauseWhenHidden",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "debug",
+    "spec": "z.boolean().default(false),"
+   },
+   {
+    "id": "popupShowsStats",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "usageStats",
+    "spec": "z.boolean().default(false),"
+   },
+   {
+    "id": "usageStatsAsked",
+    "spec": "z.boolean().default(false),"
+   },
+   {
+    "id": "uiLang",
+    "spec": "z"
+   },
+   {
+    "id": "composeEnabled",
+    "spec": "z.boolean().default(true),"
+   },
+   {
+    "id": "composeTargetLang",
+    "spec": "langSetting,"
+   },
+   {
+    "id": "composeInsertMode",
+    "spec": "z.enum(['insert', 'copy']).default('insert'),"
+   },
+   {
+    "id": "composeInsertKey",
+    "spec": "z.enum(['tab-and-enter', 'ctrl-enter']).default('tab-and-enter'),"
+   },
+   {
+    "id": "favoriteLangs",
+    "spec": "z"
+   },
+   {
+    "id": "showComposerChip",
+    "spec": "z.boolean().default(true),"
+   }
+  ],
+  "storageKeys": [
+   {
+    "id": "kt.deeplKey.v1"
+   },
+   {
+    "id": "kt.keepalive"
+   },
+   {
+    "id": "kt.lastAlarm"
+   },
+   {
+    "id": "kt.lastlang."
+   },
+   {
+    "id": "kt.metrics.v1"
+   },
+   {
+    "id": "kt.settings.v2"
+   },
+   {
+    "id": "kt.stats.v1"
+   },
+   {
+    "id": "kt.update"
+   },
+   {
+    "id": "kt.update.v1"
+   },
+   {
+    "id": "kt.usage.cid"
+   },
+   {
+    "id": "kt.usage.v1"
+   }
+  ],
+  "messages": [
+   {
+    "id": "translate"
+   },
+   {
+    "id": "settings.get"
+   },
+   {
+    "id": "settings.set"
+   },
+   {
+    "id": "settings.reset"
+   },
+   {
+    "id": "stats.get"
+   },
+   {
+    "id": "stats.reset"
+   },
+   {
+    "id": "providers.status"
+   },
+   {
+    "id": "cache.clear"
+   },
+   {
+    "id": "cache.stats"
+   },
+   {
+    "id": "open.options"
+   },
+   {
+    "id": "stats.local"
+   },
+   {
+    "id": "deepl.usage"
+   },
+   {
+    "id": "update.status"
+   },
+   {
+    "id": "debug.decisions"
+   },
+   {
+    "id": "compose.write"
+   },
+   {
+    "id": "usage.add"
+   },
+   {
+    "id": "i18n.chat"
+   },
+   {
+    "id": "ping"
+   },
+   {
+    "id": "translate.result"
+   },
+   {
+    "id": "settings"
+   },
+   {
+    "id": "stats"
+   },
+   {
+    "id": "providers"
+   },
+   {
+    "id": "update.info"
+   },
+   {
+    "id": "ack"
+   },
+   {
+    "id": "error"
+   }
+  ],
+  "dropReasons": [
+   {
+    "id": "bot"
+   },
+   {
+    "id": "user_blacklisted"
+   },
+   {
+    "id": "channel_blacklisted"
+   },
+   {
+    "id": "channel_not_whitelisted"
+   },
+   {
+    "id": "lang_unknown"
+   },
+   {
+    "id": "lang_not_allowed"
+   }
+  ],
+  "skipReasons": [
+   {
+    "id": "skipDuplicate"
+   },
+   {
+    "id": "skipTooLong"
+   },
+   {
+    "id": "skipNoise"
+   },
+   {
+    "id": "skipSlang"
+   },
+   {
+    "id": "skipEnglish"
+   },
+   {
+    "id": "skipSameLang"
+   },
+   {
+    "id": "skipNoModel"
+   },
+   {
+    "id": "skipSame"
+   },
+   {
+    "id": "skipGlossary"
+   },
+   {
+    "id": "skipDetected"
+   }
+  ],
+  "composeOutcomes": [
+   {
+    "id": "translate"
+   },
+   {
+    "id": "skip-empty"
+   },
+   {
+    "id": "skip-short"
+   },
+   {
+    "id": "skip-long"
+   },
+   {
+    "id": "skip-noise"
+   },
+   {
+    "id": "skip-same-lang"
+   },
+   {
+    "id": "skip-unchanged"
+   }
+  ],
+  "exports": [
+   {
+    "id": "src/background/cache.ts#warmTargets"
+   },
+   {
+    "id": "src/background/cache.ts#TranslationCache"
+   },
+   {
+    "id": "src/background/coalescer.ts#CoalescerDeps"
+   },
+   {
+    "id": "src/background/coalescer.ts#TranslationCoalescer"
+   },
+   {
+    "id": "src/background/keepalive.ts#listenKeepalive"
+   },
+   {
+    "id": "src/background/keepalive.ts#armKeepalive"
+   },
+   {
+    "id": "src/background/keepalive.ts#installKeepalive"
+   },
+   {
+    "id": "src/background/lexicalWrite.ts#ecrireAutourDesEmotes"
+   },
+   {
+    "id": "src/background/queue.ts#ConcurrencyQueue"
+   },
+   {
+    "id": "src/background/queue.ts#TokenBucket"
+   },
+   {
+    "id": "src/background/stats.ts#archiveDay"
+   },
+   {
+    "id": "src/background/stats.ts#StatsTracker"
+   },
+   {
+    "id": "src/background/translator/deepl.ts#deeplProvider"
+   },
+   {
+    "id": "src/background/translator/google.ts#googleProvider"
+   },
+   {
+    "id": "src/background/translator/index.ts#setDeeplUsagePct"
+   },
+   {
+    "id": "src/background/translator/index.ts#translateGroup"
+   },
+   {
+    "id": "src/background/translator/index.ts#translateWithFallback"
+   },
+   {
+    "id": "src/background/translator/index.ts#getProviderStatus"
+   },
+   {
+    "id": "src/background/translator/index.ts#anyProviderReady"
+   },
+   {
+    "id": "src/background/translator/lingva.ts#LINGVA_DEFAULT"
+   },
+   {
+    "id": "src/background/translator/lingva.ts#lingvaProvider"
+   },
+   {
+    "id": "src/background/translator/mymemory.ts#toMyMemoryCode"
+   },
+   {
+    "id": "src/background/translator/mymemory.ts#myMemoryProvider"
+   },
+   {
+    "id": "src/background/translator/types.ts#ProviderResult"
+   },
+   {
+    "id": "src/background/translator/types.ts#ProviderContext"
+   },
+   {
+    "id": "src/background/translator/types.ts#TranslationProvider"
+   },
+   {
+    "id": "src/background/translator/types.ts#ProviderError"
+   },
+   {
+    "id": "src/background/updateChecker.ts#installUpdateCheck"
+   },
+   {
+    "id": "src/background/updateChecker.ts#getUpdateStatus"
+   },
+   {
+    "id": "src/background/usage.ts#Day"
+   },
+   {
+    "id": "src/background/usage.ts#usageAllowed"
+   },
+   {
+    "id": "src/background/usage.ts#addUsage"
+   },
+   {
+    "id": "src/background/usage.ts#recordTranslation"
+   },
+   {
+    "id": "src/background/usage.ts#recordProviderError"
+   },
+   {
+    "id": "src/background/usage.ts#buildEvent"
+   },
+   {
+    "id": "src/background/usage.ts#installUsage"
+   },
+   {
+    "id": "src/background/usage.ts#dropUsage"
+   },
+   {
+    "id": "src/content/abbreviations.ts#spellOutAbbreviations"
+   },
+   {
+    "id": "src/content/compose.ts#ComposeController"
+   },
+   {
+    "id": "src/content/composeLogic.ts#COMPOSE_DEBOUNCE_MS"
+   },
+   {
+    "id": "src/content/composeLogic.ts#COMPOSE_MIN_LEN"
+   },
+   {
+    "id": "src/content/composeLogic.ts#COMPOSE_MAX_LEN"
+   },
+   {
+    "id": "src/content/composeLogic.ts#COMPOSE_MAX_PER_MIN"
+   },
+   {
+    "id": "src/content/composeLogic.ts#ComposeAction"
+   },
+   {
+    "id": "src/content/composeLogic.ts#isLinkOrMentionOnly"
+   },
+   {
+    "id": "src/content/composeLogic.ts#motsPourMoteur"
+   },
+   {
+    "id": "src/content/composeLogic.ts#morceauxAutourDesEmotes"
+   },
+   {
+    "id": "src/content/composeLogic.ts#morceauxPourEditeur"
+   },
+   {
+    "id": "src/content/composeLogic.ts#remettreEmotes"
+   },
+   {
+    "id": "src/content/composeLogic.ts#rienAEchanger"
+   },
+   {
+    "id": "src/content/composeLogic.ts#sansEmotes"
+   },
+   {
+    "id": "src/content/composeLogic.ts#maskProtected"
+   },
+   {
+    "id": "src/content/composeLogic.ts#unmaskProtected"
+   },
+   {
+    "id": "src/content/composeLogic.ts#decideComposeAction"
+   },
+   {
+    "id": "src/content/composeLogic.ts#Sequencer"
+   },
+   {
+    "id": "src/content/composeLogic.ts#PanelGeom"
+   },
+   {
+    "id": "src/content/composeLogic.ts#PanelViewport"
+   },
+   {
+    "id": "src/content/composeLogic.ts#COMPOSE_PANEL_GAP"
+   },
+   {
+    "id": "src/content/composeLogic.ts#COMPOSE_PANEL_TOP_MARGIN"
+   },
+   {
+    "id": "src/content/composeLogic.ts#computePanelGeom"
+   },
+   {
+    "id": "src/content/composeLogic.ts#RateLimiter"
+   },
+   {
+    "id": "src/content/composeLogic.ts#toucheEchange"
+   },
+   {
+    "id": "src/content/composeUi.ts#ComposeUiState"
+   },
+   {
+    "id": "src/content/composeUi.ts#ComposeUiHandlers"
+   },
+   {
+    "id": "src/content/composeUi.ts#readComposerText"
+   },
+   {
+    "id": "src/content/composeUi.ts#mountComposePreview"
+   },
+   {
+    "id": "src/content/composeUi.ts#isKickSuggestionOpen"
+   },
+   {
+    "id": "src/content/composeUi.ts#updateComposePreview"
+   },
+   {
+    "id": "src/content/composeUi.ts#setComposeInsertKey"
+   },
+   {
+    "id": "src/content/composeUi.ts#setComposeTargetLang"
+   },
+   {
+    "id": "src/content/composeUi.ts#isComposePreviewMounted"
+   },
+   {
+    "id": "src/content/composeUi.ts#isComposePreviewVisible"
+   },
+   {
+    "id": "src/content/composeUi.ts#setComposeThrottle"
+   },
+   {
+    "id": "src/content/composeUi.ts#unmountComposePreview"
+   },
+   {
+    "id": "src/content/composeUi.ts#insertIntoComposer"
+   },
+   {
+    "id": "src/content/emoteParser.ts#EMOTE_NAME_RE"
+   },
+   {
+    "id": "src/content/emoteParser.ts#ParsedContent"
+   },
+   {
+    "id": "src/content/emoteParser.ts#parseKickContent"
+   },
+   {
+    "id": "src/content/emoteParser.ts#mentionsOf"
+   },
+   {
+    "id": "src/content/filters.ts#MessageMeta"
+   },
+   {
+    "id": "src/content/filters.ts#shouldDropByUserOrChannel"
+   },
+   {
+    "id": "src/content/filters.ts#hasBlockedKeyword"
+   },
+   {
+    "id": "src/content/filters.ts#shouldDropBySourceLang"
+   },
+   {
+    "id": "src/content/filters.ts#hasNonEnglishLetter"
+   },
+   {
+    "id": "src/content/filters.ts#isSameLanguageAsTarget"
+   },
+   {
+    "id": "src/content/filters.ts#isKeyboardSmash"
+   },
+   {
+    "id": "src/content/filters.ts#isNoise"
+   },
+   {
+    "id": "src/content/filters.ts#normalizeElongation"
+   },
+   {
+    "id": "src/content/injector.ts#HANDLED_SELECTOR"
+   },
+   {
+    "id": "src/content/injector.ts#showToast"
+   },
+   {
+    "id": "src/content/injector.ts#armHoverTranslate"
+   },
+   {
+    "id": "src/content/injector.ts#ensureStyles"
+   },
+   {
+    "id": "src/content/injector.ts#applyChatScheme"
+   },
+   {
+    "id": "src/content/injector.ts#applyShowOriginal"
+   },
+   {
+    "id": "src/content/injector.ts#applyDisplayStyle"
+   },
+   {
+    "id": "src/content/injector.ts#applyTypography"
+   },
+   {
+    "id": "src/content/injector.ts#applyAccent"
+   },
+   {
+    "id": "src/content/injector.ts#markSkipped"
+   },
+   {
+    "id": "src/content/injector.ts#removeAllArtifacts"
+   },
+   {
+    "id": "src/content/injector.ts#showLoading"
+   },
+   {
+    "id": "src/content/injector.ts#showError"
+   },
+   {
+    "id": "src/content/injector.ts#inject"
+   },
+   {
+    "id": "src/content/injector.ts#FloatingBarHandlers"
+   },
+   {
+    "id": "src/content/injector.ts#LocalChipState"
+   },
+   {
+    "id": "src/content/injector.ts#mountFloatingBar"
+   },
+   {
+    "id": "src/content/injector.ts#updateFloatingBar"
+   },
+   {
+    "id": "src/content/injector.ts#showThrottleIndicator"
+   },
+   {
+    "id": "src/content/injector.ts#updateActiveProvider"
+   },
+   {
+    "id": "src/content/injector.ts#incrementFloatingCount"
+   },
+   {
+    "id": "src/content/injector.ts#updateLocalChip"
+   },
+   {
+    "id": "src/content/injector.ts#unmountFloatingBar"
+   },
+   {
+    "id": "src/content/kickApi.ts#extractChannelSlug"
+   },
+   {
+    "id": "src/content/kickApi.ts#ChannelMeta"
+   },
+   {
+    "id": "src/content/kickApi.ts#fetchChatroomId"
+   },
+   {
+    "id": "src/content/kickApi.ts#fetchChannelLangIso"
+   },
+   {
+    "id": "src/content/langChatArabePersan.ts#LANG_CHAT_AR_FA"
+   },
+   {
+    "id": "src/content/langChatCorpus.ts#LANG_CHAT"
+   },
+   {
+    "id": "src/content/langChatCorpus2.ts#LANG_CHAT2"
+   },
+   {
+    "id": "src/content/langChatCorpus3.ts#LANG_CHAT3"
+   },
+   {
+    "id": "src/content/langChatDixCorpus.ts#LANG_CHAT_DIX"
+   },
+   {
+    "id": "src/content/langChatNonLatin.ts#LANG_CHAT_NL"
+   },
+   {
+    "id": "src/content/langChatPaireCorpus.ts#LANG_CHAT_PAIRE"
+   },
+   {
+    "id": "src/content/langChatPaireReglageCorpus.ts#LANG_CHAT_PAIRE_REGLAGE"
+   },
+   {
+    "id": "src/content/langChip.ts#ChipMode"
+   },
+   {
+    "id": "src/content/langChip.ts#ChipState"
+   },
+   {
+    "id": "src/content/langChip.ts#ChipHandlers"
+   },
+   {
+    "id": "src/content/langChip.ts#findComposerRow"
+   },
+   {
+    "id": "src/content/langChip.ts#MENU_COLS"
+   },
+   {
+    "id": "src/content/langChip.ts#matchesQuery"
+   },
+   {
+    "id": "src/content/langChip.ts#localName"
+   },
+   {
+    "id": "src/content/langChip.ts#isClipped"
+   },
+   {
+    "id": "src/content/langChip.ts#isLangChipMounted"
+   },
+   {
+    "id": "src/content/langChip.ts#mountLangChip"
+   },
+   {
+    "id": "src/content/langChip.ts#updateLangChip"
+   },
+   {
+    "id": "src/content/langChip.ts#unmountLangChip"
+   },
+   {
+    "id": "src/content/langCorpus.ts#LANG_CORPUS"
+   },
+   {
+    "id": "src/content/langDetect.ts#confidentLanguage"
+   },
+   {
+    "id": "src/content/langDetect.ts#detectLanguage"
+   },
+   {
+    "id": "src/content/langDetect.ts#isLikelyEnglish"
+   },
+   {
+    "id": "src/content/langMatrix.ts#Band"
+   },
+   {
+    "id": "src/content/langMatrix.ts#bandOf"
+   },
+   {
+    "id": "src/content/langMatrix.ts#Cell"
+   },
+   {
+    "id": "src/content/langMatrix.ts#Run"
+   },
+   {
+    "id": "src/content/langMatrix.ts#runMatrix"
+   },
+   {
+    "id": "src/content/langMatrix.ts#confidentRun"
+   },
+   {
+    "id": "src/content/langMatrix.ts#detectRun"
+   },
+   {
+    "id": "src/content/langMatrix.ts#silentlyDeleted"
+   },
+   {
+    "id": "src/content/langMatrix.ts#report"
+   },
+   {
+    "id": "src/content/langMenu.ts#PANEL_COLS"
+   },
+   {
+    "id": "src/content/langMenu.ts#MIN_COL_W"
+   },
+   {
+    "id": "src/content/langMenu.ts#colsFor"
+   },
+   {
+    "id": "src/content/langMenu.ts#LangMenuState"
+   },
+   {
+    "id": "src/content/langMenu.ts#LangMenuHandlers"
+   },
+   {
+    "id": "src/content/langMenu.ts#matchesQuery"
+   },
+   {
+    "id": "src/content/langMenu.ts#localName"
+   },
+   {
+    "id": "src/content/langMenu.ts#isClipped"
+   },
+   {
+    "id": "src/content/langMenu.ts#makeLangMenu"
+   },
+   {
+    "id": "src/content/langMenu.ts#fillLangMenu"
+   },
+   {
+    "id": "src/content/langMenu.ts#focusLangMenu"
+   },
+   {
+    "id": "src/content/langMenu.ts#PANEL_MAX_W"
+   },
+   {
+    "id": "src/content/langMenu.ts#PANEL_MIN_W"
+   },
+   {
+    "id": "src/content/langMenu.ts#PANEL_COLUMN_SHARE"
+   },
+   {
+    "id": "src/content/langMenu.ts#PanelGeometryInput"
+   },
+   {
+    "id": "src/content/langMenu.ts#PanelGeometry"
+   },
+   {
+    "id": "src/content/langMenu.ts#panelGeometry"
+   },
+   {
+    "id": "src/content/langMenu.ts#placeLangMenu"
+   },
+   {
+    "id": "src/content/langMixedCorpus.ts#LANG_MIXED"
+   },
+   {
+    "id": "src/content/localChip.ts#ChipEngine"
+   },
+   {
+    "id": "src/content/localChip.ts#localChipState"
+   },
+   {
+    "id": "src/content/localEngine.ts#PairState"
+   },
+   {
+    "id": "src/content/localEngine.ts#localEngine"
+   },
+   {
+    "id": "src/content/memcache.ts#MemEntry"
+   },
+   {
+    "id": "src/content/memcache.ts#memCache"
+   },
+   {
+    "id": "src/content/metricsBridge.ts#mountMetricsBridge"
+   },
+   {
+    "id": "src/content/msg.ts#setContentLocale"
+   },
+   {
+    "id": "src/content/msg.ts#setChatTable"
+   },
+   {
+    "id": "src/content/msg.ts#msg"
+   },
+   {
+    "id": "src/content/observer.ts#DomMessage"
+   },
+   {
+    "id": "src/content/observer.ts#INSTANCE"
+   },
+   {
+    "id": "src/content/observer.ts#ChatObserver"
+   },
+   {
+    "id": "src/content/pipeline.ts#IncomingDomMessage"
+   },
+   {
+    "id": "src/content/pipeline.ts#IncomingWsMessage"
+   },
+   {
+    "id": "src/content/pipeline.ts#TranslationPipeline"
+   },
+   {
+    "id": "src/content/platform.ts#has7TV"
+   },
+   {
+    "id": "src/content/platform.ts#refresh7TV"
+   },
+   {
+    "id": "src/content/platform.ts#logPlatform"
+   },
+   {
+    "id": "src/content/selectors.ts#SELECTORS"
+   },
+   {
+    "id": "src/content/selectors.ts#NON_CHAT_TEXT_CLASSES"
+   },
+   {
+    "id": "src/content/selectors.ts#COMPOSE_SELECTORS"
+   },
+   {
+    "id": "src/content/selectors.ts#findComposer"
+   },
+   {
+    "id": "src/content/selectors.ts#pickFirst"
+   },
+   {
+    "id": "src/content/selectors.ts#findChatContainer"
+   },
+   {
+    "id": "src/content/selectors.ts#isShown"
+   },
+   {
+    "id": "src/content/selectors.ts#enclosingMessageRow"
+   },
+   {
+    "id": "src/content/selectors.ts#findAllRows"
+   },
+   {
+    "id": "src/content/selectors.ts#findChatPanel"
+   },
+   {
+    "id": "src/content/selectors.ts#CHAT_PANEL_SELECTOR"
+   },
+   {
+    "id": "src/content/selectors.ts#matchesMessageRow"
+   },
+   {
+    "id": "src/content/selectors.ts#extractMessageText"
+   },
+   {
+    "id": "src/content/selectors.ts#extractUsername"
+   },
+   {
+    "id": "src/content/selectors.ts#pickInjectionTarget"
+   },
+   {
+    "id": "src/content/selectors.ts#buildSyntheticId"
+   },
+   {
+    "id": "src/content/usage.ts#setUsageEnabled"
+   },
+   {
+    "id": "src/content/usage.ts#countUsage"
+   },
+   {
+    "id": "src/shared/arabizi.ts#isArabizi"
+   },
+   {
+    "id": "src/shared/channelLang.ts#memoriserLangueChaine"
+   },
+   {
+    "id": "src/shared/constants.ts#EXT_NAME"
+   },
+   {
+    "id": "src/shared/constants.ts#EXT_PREFIX"
+   },
+   {
+    "id": "src/shared/constants.ts#KICK_API_BASE"
+   },
+   {
+    "id": "src/shared/constants.ts#KICK_CHANNEL_API"
+   },
+   {
+    "id": "src/shared/constants.ts#PROVIDER_ENDPOINTS"
+   },
+   {
+    "id": "src/shared/constants.ts#LINGVA_POOL"
+   },
+   {
+    "id": "src/shared/constants.ts#GOOGLE_MULTI_ENDPOINT"
+   },
+   {
+    "id": "src/shared/constants.ts#GOOGLE_CLIENTS"
+   },
+   {
+    "id": "src/shared/constants.ts#ROUTE_POLL_MS"
+   },
+   {
+    "id": "src/shared/constants.ts#DEEPL_BATCH_MAX"
+   },
+   {
+    "id": "src/shared/constants.ts#BATCH_WINDOW_MS"
+   },
+   {
+    "id": "src/shared/constants.ts#MIN_BATCH_WINDOW_MS"
+   },
+   {
+    "id": "src/shared/constants.ts#MAX_BATCH_WINDOW_MS"
+   },
+   {
+    "id": "src/shared/constants.ts#BATCH_MAX_ITEMS"
+   },
+   {
+    "id": "src/shared/constants.ts#DEEPL_USAGE_FREE"
+   },
+   {
+    "id": "src/shared/constants.ts#DEEPL_USAGE_PRO"
+   },
+   {
+    "id": "src/shared/constants.ts#MYMEMORY_CONTACT"
+   },
+   {
+    "id": "src/shared/constants.ts#CACHE_DB"
+   },
+   {
+    "id": "src/shared/constants.ts#CACHE_STORE"
+   },
+   {
+    "id": "src/shared/constants.ts#STATS_DB"
+   },
+   {
+    "id": "src/shared/constants.ts#MIN_TEXT_LENGTH"
+   },
+   {
+    "id": "src/shared/constants.ts#MAX_TEXT_LENGTH"
+   },
+   {
+    "id": "src/shared/constants.ts#DEFAULT_CACHE_MAX"
+   },
+   {
+    "id": "src/shared/constants.ts#DEFAULT_CACHE_TTL_HOURS"
+   },
+   {
+    "id": "src/shared/constants.ts#DEFAULT_CONCURRENCY"
+   },
+   {
+    "id": "src/shared/constants.ts#KEEPALIVE_INTERVAL_SEC"
+   },
+   {
+    "id": "src/shared/constants.ts#STORAGE_KEY_SETTINGS"
+   },
+   {
+    "id": "src/shared/constants.ts#STORAGE_KEY_DEEPL_KEY"
+   },
+   {
+    "id": "src/shared/constants.ts#STORAGE_KEY_STATS"
+   },
+   {
+    "id": "src/shared/constants.ts#STORAGE_KEY_UPDATE"
+   },
+   {
+    "id": "src/shared/constants.ts#STORAGE_KEY_USAGE"
+   },
+   {
+    "id": "src/shared/constants.ts#GA_MEASUREMENT_ID"
+   },
+   {
+    "id": "src/shared/constants.ts#GA_API_SECRET"
+   },
+   {
+    "id": "src/shared/constants.ts#GA_ENDPOINT"
+   },
+   {
+    "id": "src/shared/constants.ts#GITHUB_REPO"
+   },
+   {
+    "id": "src/shared/constants.ts#CHROME_STORE_ID"
+   },
+   {
+    "id": "src/shared/constants.ts#FIREFOX_ADDON_ID"
+   },
+   {
+    "id": "src/shared/constants.ts#CHROME_STORE_URL"
+   },
+   {
+    "id": "src/shared/constants.ts#GITHUB_LATEST_RELEASE_API"
+   },
+   {
+    "id": "src/shared/constants.ts#UPDATE_CHECK_TTL_MS"
+   },
+   {
+    "id": "src/shared/constants.ts#KICK_BOTS"
+   },
+   {
+    "id": "src/shared/constants.ts#COMMON_BOTS"
+   },
+   {
+    "id": "src/shared/constants.ts#FAVORITE_LANGS_MAX"
+   },
+   {
+    "id": "src/shared/constants.ts#CHANNEL_LANG_MAX"
+   },
+   {
+    "id": "src/shared/constants.ts#PAUSED_CHANNELS_MAX"
+   },
+   {
+    "id": "src/shared/decode.ts#decodeHtmlEntities"
+   },
+   {
+    "id": "src/shared/flags.ts#FLAG_BY_LANG"
+   },
+   {
+    "id": "src/shared/flags.ts#flagClass"
+   },
+   {
+    "id": "src/shared/flags.ts#flagEl"
+   },
+   {
+    "id": "src/shared/glossary.ts#SLANG"
+   },
+   {
+    "id": "src/shared/glossary.ts#isSlangOnly"
+   },
+   {
+    "id": "src/shared/glossary.ts#applyUserGlossary"
+   },
+   {
+    "id": "src/shared/i18n.messages.ts#UiCatalog"
+   },
+   {
+    "id": "src/shared/i18n.messages.ts#UI_MESSAGES"
+   },
+   {
+    "id": "src/shared/i18n.ts#UI_LOCALES"
+   },
+   {
+    "id": "src/shared/i18n.ts#UiLocale"
+   },
+   {
+    "id": "src/shared/i18n.ts#UI_LOCALE_NAMES"
+   },
+   {
+    "id": "src/shared/i18n.ts#isRtlLocale"
+   },
+   {
+    "id": "src/shared/i18n.ts#detectUiLocale"
+   },
+   {
+    "id": "src/shared/i18n.ts#resolveUiLocale"
+   },
+   {
+    "id": "src/shared/i18n.ts#TFunc"
+   },
+   {
+    "id": "src/shared/i18n.ts#makeT"
+   },
+   {
+    "id": "src/shared/i18nContext.tsx#I18nProvider"
+   },
+   {
+    "id": "src/shared/i18nContext.tsx#useT"
+   },
+   {
+    "id": "src/shared/langTiers.ts#isContextCritical"
+   },
+   {
+    "id": "src/shared/langTiers.ts#DEEPL_PREMIUM"
+   },
+   {
+    "id": "src/shared/langTiers.ts#isDeeplPremium"
+   },
+   {
+    "id": "src/shared/langTiers.ts#routeForBudget"
+   },
+   {
+    "id": "src/shared/languages.ts#LangInfo"
+   },
+   {
+    "id": "src/shared/languages.ts#LANGUAGES"
+   },
+   {
+    "id": "src/shared/languages.ts#AUTO"
+   },
+   {
+    "id": "src/shared/languages.ts#francToIso2"
+   },
+   {
+    "id": "src/shared/languages.ts#getLang"
+   },
+   {
+    "id": "src/shared/languages.ts#normalizeLang"
+   },
+   {
+    "id": "src/shared/languages.ts#isRtl"
+   },
+   {
+    "id": "src/shared/languages.ts#isSupportedLang"
+   },
+   {
+    "id": "src/shared/languages.ts#resolveBrowserLang"
+   },
+   {
+    "id": "src/shared/languages.ts#resolveTargetLang"
+   },
+   {
+    "id": "src/shared/languages.ts#withFavorite"
+   },
+   {
+    "id": "src/shared/languages.ts#setUiLocale"
+   },
+   {
+    "id": "src/shared/languages.ts#uiLocale"
+   },
+   {
+    "id": "src/shared/languages.ts#localLangName"
+   },
+   {
+    "id": "src/shared/languages.ts#sortedLanguages"
+   },
+   {
+    "id": "src/shared/laughter.ts#isLaughter"
+   },
+   {
+    "id": "src/shared/laughter.ts#laughterLanguage"
+   },
+   {
+    "id": "src/shared/laughter.ts#LAUGHTER_NOTES"
+   },
+   {
+    "id": "src/shared/laughter.ts#LAUGHTER_FORMS"
+   },
+   {
+    "id": "src/shared/logger.ts#Logger"
+   },
+   {
+    "id": "src/shared/logger.ts#rootLogger"
+   },
+   {
+    "id": "src/shared/messages.ts#Decision"
+   },
+   {
+    "id": "src/shared/messages.ts#RuntimeMessage"
+   },
+   {
+    "id": "src/shared/messages.ts#RuntimeResponse"
+   },
+   {
+    "id": "src/shared/messages.ts#send"
+   },
+   {
+    "id": "src/shared/messages.ts#onMessage"
+   },
+   {
+    "id": "src/shared/metrics.ts#METRICS_MARKER"
+   },
+   {
+    "id": "src/shared/metrics.ts#MetricsScope"
+   },
+   {
+    "id": "src/shared/metrics.ts#TimingSummary"
+   },
+   {
+    "id": "src/shared/metrics.ts#MetricsSnapshot"
+   },
+   {
+    "id": "src/shared/metrics.ts#Metrics"
+   },
+   {
+    "id": "src/shared/metrics.ts#summarize"
+   },
+   {
+    "id": "src/shared/metrics.ts#createMetrics"
+   },
+   {
+    "id": "src/shared/metrics.ts#readAllMetrics"
+   },
+   {
+    "id": "src/shared/normalize.ts#foldCase"
+   },
+   {
+    "id": "src/shared/normalize.ts#normalizeForKey"
+   },
+   {
+    "id": "src/shared/normalize.ts#cacheKey"
+   },
+   {
+    "id": "src/shared/romanised.ts#romanisedLanguage"
+   },
+   {
+    "id": "src/shared/romanised.ts#ROMANISED_MARKERS"
+   },
+   {
+    "id": "src/shared/romanised.ts#ROMANISED_WEAK_MARKERS"
+   },
+   {
+    "id": "src/shared/settings.ts#ProviderOrderSchema"
+   },
+   {
+    "id": "src/shared/settings.ts#CloudProviderId"
+   },
+   {
+    "id": "src/shared/settings.ts#SettingsSchema"
+   },
+   {
+    "id": "src/shared/settings.ts#Settings"
+   },
+   {
+    "id": "src/shared/settings.ts#defaultSettings"
+   },
+   {
+    "id": "src/shared/settings.ts#loadSettings"
+   },
+   {
+    "id": "src/shared/settings.ts#saveSettings"
+   },
+   {
+    "id": "src/shared/settings.ts#resetSettings"
+   },
+   {
+    "id": "src/shared/settings.ts#exportSettings"
+   },
+   {
+    "id": "src/shared/settings.ts#parseSettingsJson"
+   },
+   {
+    "id": "src/shared/settings.ts#importSettings"
+   },
+   {
+    "id": "src/shared/settings.ts#watchSettings"
+   },
+   {
+    "id": "src/shared/settingsClient.ts#fetchSettings"
+   },
+   {
+    "id": "src/shared/settingsClient.ts#patchSettings"
+   },
+   {
+    "id": "src/shared/settingsClient.ts#watchSettings"
+   },
+   {
+    "id": "src/shared/transliterationGuard.ts#isTransliteration"
+   },
+   {
+    "id": "src/shared/transliterationGuard.ts#getSemanticOverride"
+   },
+   {
+    "id": "src/shared/transliterationGuard.ts#enhanceContextForShortInput"
+   },
+   {
+    "id": "src/shared/types.ts#ProviderId"
+   },
+   {
+    "id": "src/shared/types.ts#TextToken"
+   },
+   {
+    "id": "src/shared/types.ts#TranslationRequest"
+   },
+   {
+    "id": "src/shared/types.ts#TranslationResult"
+   },
+   {
+    "id": "src/shared/types.ts#TranslationOutcome"
+   },
+   {
+    "id": "src/shared/types.ts#ProviderStatus"
+   },
+   {
+    "id": "src/shared/types.ts#DayStat"
+   },
+   {
+    "id": "src/shared/types.ts#CacheStats"
+   },
+   {
+    "id": "src/shared/types.ts#UsageStats"
+   },
+   {
+    "id": "src/shared/uiLocaleMatch.ts#matchUiLocale"
+   },
+   {
+    "id": "src/shared/usage.ts#USAGE_COUNTERS"
+   },
+   {
+    "id": "src/shared/usage.ts#UsageCounter"
+   },
+   {
+    "id": "src/shared/usage.ts#UsageCounts"
+   },
+   {
+    "id": "src/shared/usage.ts#UsageEnv"
+   },
+   {
+    "id": "src/shared/usage.ts#addCounts"
+   },
+   {
+    "id": "src/shared/usage.ts#percentile"
+   },
+   {
+    "id": "src/shared/version.ts#UpdateStatus"
+   },
+   {
+    "id": "src/shared/version.ts#parseVersion"
+   },
+   {
+    "id": "src/shared/version.ts#isNewerVersion"
+   }
+  ],
+  "unitTests": [
+   {
+    "id": "src/background/cache.test.ts"
+   },
+   {
+    "id": "src/background/coalescer.test.ts"
+   },
+   {
+    "id": "src/background/keepalive.test.ts"
+   },
+   {
+    "id": "src/background/queue.test.ts"
+   },
+   {
+    "id": "src/background/stats.test.ts"
+   },
+   {
+    "id": "src/background/translator/deepl.test.ts"
+   },
+   {
+    "id": "src/background/translator/google.test.ts"
+   },
+   {
+    "id": "src/background/translator/index.test.ts"
+   },
+   {
+    "id": "src/background/translator/lingva.test.ts"
+   },
+   {
+    "id": "src/background/translator/mymemory.test.ts"
+   },
+   {
+    "id": "src/background/updateChecker.store.test.ts"
+   },
+   {
+    "id": "src/background/usage.test.ts"
+   },
+   {
+    "id": "src/content/abbreviations.test.ts"
+   },
+   {
+    "id": "src/content/chatStyles.test.ts"
+   },
+   {
+    "id": "src/content/composeHint.test.ts"
+   },
+   {
+    "id": "src/content/composeLogic.test.ts"
+   },
+   {
+    "id": "src/content/composeUi.test.ts"
+   },
+   {
+    "id": "src/content/emoteParser.test.ts"
+   },
+   {
+    "id": "src/content/fakeChat.test.ts"
+   },
+   {
+    "id": "src/content/filters.test.ts"
+   },
+   {
+    "id": "src/content/i18n/codes.test.ts"
+   },
+   {
+    "id": "src/content/i18n.accents.test.ts"
+   },
+   {
+    "id": "src/content/index.relais.test.ts"
+   },
+   {
+    "id": "src/content/injector.test.ts"
+   },
+   {
+    "id": "src/content/kickApi.test.ts"
+   },
+   {
+    "id": "src/content/langChat.test.ts"
+   },
+   {
+    "id": "src/content/langChat2.test.ts"
+   },
+   {
+    "id": "src/content/langChat3.test.ts"
+   },
+   {
+    "id": "src/content/langChatArabePersan.test.ts"
+   },
+   {
+    "id": "src/content/langChatNonLatin.test.ts"
+   },
+   {
+    "id": "src/content/langChatPaire.test.ts"
+   },
+   {
+    "id": "src/content/langChip.focus.test.ts"
+   },
+   {
+    "id": "src/content/langChip.harness.test.ts"
+   },
+   {
+    "id": "src/content/langChip.i18n.test.ts"
+   },
+   {
+    "id": "src/content/langChip.test.ts"
+   },
+   {
+    "id": "src/content/langDetect.dix.test.ts"
+   },
+   {
+    "id": "src/content/langDetect.latin.test.ts"
+   },
+   {
+    "id": "src/content/langDetect.test.ts"
+   },
+   {
+    "id": "src/content/langDetect.yue.test.ts"
+   },
+   {
+    "id": "src/content/langMatrix.test.ts"
+   },
+   {
+    "id": "src/content/langMixed.test.ts"
+   },
+   {
+    "id": "src/content/langPanelGeometry.test.ts"
+   },
+   {
+    "id": "src/content/localChip.test.ts"
+   },
+   {
+    "id": "src/content/localEngine.test.ts"
+   },
+   {
+    "id": "src/content/memcache.test.ts"
+   },
+   {
+    "id": "src/content/msg.coverage.test.ts"
+   },
+   {
+    "id": "src/content/normalizeElongation.test.ts"
+   },
+   {
+    "id": "src/content/nozod.test.ts"
+   },
+   {
+    "id": "src/content/observer.test.ts"
+   },
+   {
+    "id": "src/content/pipeline.local.test.ts"
+   },
+   {
+    "id": "src/content/pipeline.test.ts"
+   },
+   {
+    "id": "src/content/rerender.test.ts"
+   },
+   {
+    "id": "src/content/retry.test.ts"
+   },
+   {
+    "id": "src/content/scheme.test.ts"
+   },
+   {
+    "id": "src/content/selectors.test.ts"
+   },
+   {
+    "id": "src/content/typography.test.ts"
+   },
+   {
+    "id": "src/options/App.tabs.test.tsx"
+   },
+   {
+    "id": "src/options/components/Check.test.tsx"
+   },
+   {
+    "id": "src/options/sections/DisplaySection.test.tsx"
+   },
+   {
+    "id": "src/options/sections/FilterSection.stats.test.tsx"
+   },
+   {
+    "id": "src/options/sections/FilterSection.test.tsx"
+   },
+   {
+    "id": "src/options/sections/UsageTrend.test.tsx"
+   },
+   {
+    "id": "src/popup/App.paused.test.tsx"
+   },
+   {
+    "id": "src/popup/components/StatsBar.test.tsx"
+   },
+   {
+    "id": "src/popup/components/Toggle.test.tsx"
+   },
+   {
+    "id": "src/shared/arabizi.test.ts"
+   },
+   {
+    "id": "src/shared/channelLang.test.ts"
+   },
+   {
+    "id": "src/shared/decode.test.ts"
+   },
+   {
+    "id": "src/shared/flags.test.ts"
+   },
+   {
+    "id": "src/shared/glossary.test.ts"
+   },
+   {
+    "id": "src/shared/i18n.coverage.test.ts"
+   },
+   {
+    "id": "src/shared/i18n.test.ts"
+   },
+   {
+    "id": "src/shared/i18n.version.test.ts"
+   },
+   {
+    "id": "src/shared/langNames.test.ts"
+   },
+   {
+    "id": "src/shared/langTiers.test.ts"
+   },
+   {
+    "id": "src/shared/languages.test.ts"
+   },
+   {
+    "id": "src/shared/laughter.test.ts"
+   },
+   {
+    "id": "src/shared/locales.test.ts"
+   },
+   {
+    "id": "src/shared/metrics.persist.test.ts"
+   },
+   {
+    "id": "src/shared/metrics.test.ts"
+   },
+   {
+    "id": "src/shared/romanised.test.ts"
+   },
+   {
+    "id": "src/shared/settings.storage.test.ts"
+   },
+   {
+    "id": "src/shared/settings.test.ts"
+   },
+   {
+    "id": "src/shared/settingsClient.test.ts"
+   },
+   {
+    "id": "src/shared/theme.test.ts"
+   },
+   {
+    "id": "src/shared/transliterationGuard.test.ts"
+   },
+   {
+    "id": "src/shared/version.test.ts"
+   }
+  ],
+  "e2eGates": [
+   {
+    "id": "test/e2e/a11y.mjs"
+   },
+   {
+    "id": "test/e2e/anglais-essai.mjs"
+   },
+   {
+    "id": "test/e2e/arabe-candidats.mjs"
+   },
+   {
+    "id": "test/e2e/arabe-preuve.mjs"
+   },
+   {
+    "id": "test/e2e/bar-live.mjs"
+   },
+   {
+    "id": "test/e2e/bar-panel-live.mjs"
+   },
+   {
+    "id": "test/e2e/bar-panel-mesure.mjs"
+   },
+   {
+    "id": "test/e2e/bar-select.mjs"
+   },
+   {
+    "id": "test/e2e/bar-widths.mjs"
+   },
+   {
+    "id": "test/e2e/boundaries.mjs"
+   },
+   {
+    "id": "test/e2e/build-lang-corpus.mjs"
+   },
+   {
+    "id": "test/e2e/canto-bench.mjs"
+   },
+   {
+    "id": "test/e2e/canto-candidats.mjs"
+   },
+   {
+    "id": "test/e2e/charge-chat.mjs"
+   },
+   {
+    "id": "test/e2e/chat-live.mjs"
+   },
+   {
+    "id": "test/e2e/chip-live.mjs"
+   },
+   {
+    "id": "test/e2e/collision-clavier.mjs"
+   },
+   {
+    "id": "test/e2e/compose-kick-live.mjs"
+   },
+   {
+    "id": "test/e2e/compose-live.mjs"
+   },
+   {
+    "id": "test/e2e/compose-scenarios.mjs"
+   },
+   {
+    "id": "test/e2e/da-surfaces.mjs"
+   },
+   {
+    "id": "test/e2e/emote-survival.mjs"
+   },
+   {
+    "id": "test/e2e/extension-load.mjs"
+   },
+   {
+    "id": "test/e2e/feuille.mjs"
+   },
+   {
+    "id": "test/e2e/flag-render.mjs"
+   },
+   {
+    "id": "test/e2e/flag-surfaces.mjs"
+   },
+   {
+    "id": "test/e2e/flags-preview.mjs"
+   },
+   {
+    "id": "test/e2e/headless-probe.mjs"
+   },
+   {
+    "id": "test/e2e/kick-actions.mjs"
+   },
+   {
+    "id": "test/e2e/kick-dom-recon.mjs"
+   },
+   {
+    "id": "test/e2e/lang-matrix.mjs"
+   },
+   {
+    "id": "test/e2e/lang-menu-live.mjs"
+   },
+   {
+    "id": "test/e2e/lang-panel-measure.mjs"
+   },
+   {
+    "id": "test/e2e/lang-panel-shoot.mjs"
+   },
+   {
+    "id": "test/e2e/lang-screen.mjs"
+   },
+   {
+    "id": "test/e2e/langue-candidats.mjs"
+   },
+   {
+    "id": "test/e2e/latency.mjs"
+   },
+   {
+    "id": "test/e2e/lexique-ablation.mjs"
+   },
+   {
+    "id": "test/e2e/live-fallback.mjs"
+   },
+   {
+    "id": "test/e2e/live-kick.mjs"
+   },
+   {
+    "id": "test/e2e/live-nav.mjs"
+   },
+   {
+    "id": "test/e2e/live-profile.mjs"
+   },
+   {
+    "id": "test/e2e/live-recycle.mjs"
+   },
+   {
+    "id": "test/e2e/long-content.mjs"
+   },
+   {
+    "id": "test/e2e/measure-popup.mjs"
+   },
+   {
+    "id": "test/e2e/metrics-offline.mjs"
+   },
+   {
+    "id": "test/e2e/mise-a-jour.mjs"
+   },
+   {
+    "id": "test/e2e/mot-ablation.mjs"
+   },
+   {
+    "id": "test/e2e/names.mjs"
+   },
+   {
+    "id": "test/e2e/nav-course.mjs"
+   },
+   {
+    "id": "test/e2e/nav-monde.mjs"
+   },
+   {
+    "id": "test/e2e/nav-recon.mjs"
+   },
+   {
+    "id": "test/e2e/nav-routeur.mjs"
+   },
+   {
+    "id": "test/e2e/paire-declencheur.mjs"
+   },
+   {
+    "id": "test/e2e/paire-sequences.mjs"
+   },
+   {
+    "id": "test/e2e/playwright.mjs"
+   },
+   {
+    "id": "test/e2e/poids-notes.mjs"
+   },
+   {
+    "id": "test/e2e/porte-ablation.mjs"
+   },
+   {
+    "id": "test/e2e/porte-candidats.mjs"
+   },
+   {
+    "id": "test/e2e/porte-diagnostic.mjs"
+   },
+   {
+    "id": "test/e2e/porte-diff.mjs"
+   },
+   {
+    "id": "test/e2e/porte-mots-candidats.mjs"
+   },
+   {
+    "id": "test/e2e/porte-partagee-diagnostic.mjs"
+   },
+   {
+    "id": "test/e2e/probe-row-space.mjs"
+   },
+   {
+    "id": "test/e2e/readme-rendu.mjs"
+   },
+   {
+    "id": "test/e2e/reduced-motion.mjs"
+   },
+   {
+    "id": "test/e2e/rtl-live.mjs"
+   },
+   {
+    "id": "test/e2e/rtl-surfaces.mjs"
+   },
+   {
+    "id": "test/e2e/run-gates.mjs"
+   },
+   {
+    "id": "test/e2e/run-live.mjs"
+   },
+   {
+    "id": "test/e2e/session-check.mjs"
+   },
+   {
+    "id": "test/e2e/shlyokavitsa-bout-en-bout.mjs"
+   },
+   {
+    "id": "test/e2e/shlyokavitsa.mjs"
+   },
+   {
+    "id": "test/e2e/snapshot.mjs"
+   },
+   {
+    "id": "test/e2e/store-shots-fixture.mjs"
+   },
+   {
+    "id": "test/e2e/store-shots-lines.mjs"
+   },
+   {
+    "id": "test/e2e/store-shots.mjs"
+   },
+   {
+    "id": "test/e2e/translate-offline.mjs"
+   },
+   {
+    "id": "test/e2e/translit-grille.mjs"
+   },
+   {
+    "id": "test/e2e/translit-horsdico.mjs"
+   },
+   {
+    "id": "test/e2e/translit-reel.mjs"
+   },
+   {
+    "id": "test/e2e/translit-source.mjs"
+   },
+   {
+    "id": "test/e2e/unanimite.mjs"
+   },
+   {
+    "id": "test/e2e/variante.mjs"
+   }
+  ],
+  "audits": [
+   {
+    "id": "test/audits/audit_content_strings.py"
+   },
+   {
+    "id": "test/audits/audit_da.py"
+   },
+   {
+    "id": "test/audits/audit_fiche.py"
+   },
+   {
+    "id": "test/audits/audit_i18n.py"
+   },
+   {
+    "id": "test/audits/audit_poids.py"
+   },
+   {
+    "id": "test/audits/audit_rtl.py"
+   },
+   {
+    "id": "test/audits/audit_selecteurs.py"
+   },
+   {
+    "id": "test/audits/audit_surfaces_rtl.py"
+   }
+  ],
+  "npmScripts": [
+   {
+    "id": "dev",
+    "cmd": "vite"
+   },
+   {
+    "id": "build",
+    "cmd": "tsc -b --noEmit && vite build && tsx scripts/bundle-content.ts && tsx scripts/check-strip.ts"
+   },
+   {
+    "id": "build:firefox",
+    "cmd": "cross-env BROWSER=firefox vite build && tsx scripts/bundle-content.ts && tsx scripts/check-strip.ts"
+   },
+   {
+    "id": "build:metrics",
+    "cmd": "cross-env KT_METRICS=1 npm run build"
+   },
+   {
+    "id": "build:dev",
+    "cmd": "cross-env KT_DEV=1 npm run build"
+   },
+   {
+    "id": "preview",
+    "cmd": "vite preview"
+   },
+   {
+    "id": "typecheck",
+    "cmd": "tsc -b --noEmit"
+   },
+   {
+    "id": "lint",
+    "cmd": "eslint . --max-warnings 0"
+   },
+   {
+    "id": "format",
+    "cmd": "prettier --write \"src/**/*.{ts,tsx,css,html,json}\""
+   },
+   {
+    "id": "test",
+    "cmd": "vitest run"
+   },
+   {
+    "id": "test:watch",
+    "cmd": "vitest"
+   },
+   {
+    "id": "test:cov",
+    "cmd": "vitest run --coverage"
+   },
+   {
+    "id": "icons",
+    "cmd": "tsx scripts/generate-icons.ts"
+   },
+   {
+    "id": "pack",
+    "cmd": "tsx scripts/pack.ts"
+   },
+   {
+    "id": "metrics",
+    "cmd": "npm run build:metrics && node test/e2e/metrics-offline.mjs && npm run build"
+   },
+   {
+    "id": "pack:firefox",
+    "cmd": "cross-env BROWSER=firefox tsx scripts/pack.ts"
+   },
+   {
+    "id": "package:all",
+    "cmd": "npm run build && npm run pack && npm run build:firefox && npm run pack:firefox && npm run build"
+   },
+   {
+    "id": "release:check",
+    "cmd": "npm run typecheck && npm run lint && npm run test && npm run build"
+   },
+   {
+    "id": "stores:selftest",
+    "cmd": "node scripts/stores/cws-selftest.mjs && node scripts/stores/amo-selftest.mjs"
+   },
+   {
+    "id": "stores:payloads",
+    "cmd": "node scripts/stores/payloads.mjs"
+   },
+   {
+    "id": "stores:preflight",
+    "cmd": "node scripts/stores/preflight.mjs"
+   },
+   {
+    "id": "stores:verify",
+    "cmd": "node scripts/stores/verify.mjs"
+   },
+   {
+    "id": "stores:rank",
+    "cmd": "node scripts/stores/rank.mjs"
+   }
+  ],
+  "workflows": [
+   {
+    "id": ".github/workflows/ci.yml"
+   },
+   {
+    "id": ".github/workflows/release.yml"
+   },
+   {
+    "id": ".github/workflows/stores-verify.yml"
+   }
+  ],
+  "skills": [
+   {
+    "id": ".claude/skills/add-language/SKILL.md"
+   },
+   {
+    "id": ".claude/skills/ga-usage-stats/SKILL.md"
+   },
+   {
+    "id": ".claude/skills/publish-stores/SKILL.md"
+   },
+   {
+    "id": ".claude/skills/store-seo/SKILL.md"
+   }
+  ],
+  "scripts": [
+   {
+    "id": "scripts/bundle-content.ts"
+   },
+   {
+    "id": "scripts/check-strip.ts"
+   },
+   {
+    "id": "scripts/generate-icons.ts"
+   },
+   {
+    "id": "scripts/i18n-add.mjs"
+   },
+   {
+    "id": "scripts/i18n-check.mjs"
+   },
+   {
+    "id": "scripts/kick-chat-collector.js"
+   },
+   {
+    "id": "scripts/kick-fake-chat.js"
+   },
+   {
+    "id": "scripts/kick-switch-check.js"
+   },
+   {
+    "id": "scripts/lexicon/collect-kick-7tv.js"
+   },
+   {
+    "id": "scripts/pack.ts"
+   },
+   {
+    "id": "scripts/stores/amo-selftest.mjs"
+   },
+   {
+    "id": "scripts/stores/amo.mjs"
+   },
+   {
+    "id": "scripts/stores/cws-listing.mjs"
+   },
+   {
+    "id": "scripts/stores/cws-selftest.mjs"
+   },
+   {
+    "id": "scripts/stores/cws.mjs"
+   },
+   {
+    "id": "scripts/stores/languages.mjs"
+   },
+   {
+    "id": "scripts/stores/notes-draft.mjs"
+   },
+   {
+    "id": "scripts/stores/payloads.mjs"
+   },
+   {
+    "id": "scripts/stores/preflight.mjs"
+   },
+   {
+    "id": "scripts/stores/rank.mjs"
+   },
+   {
+    "id": "scripts/stores/verify.mjs"
+   }
+  ],
+  "agentFiles": [
+   {
+    "id": ".agent/ETAT.json"
+   },
+   {
+    "id": ".agent/PLAN.md"
+   },
+   {
+    "id": ".agent/PROMPT.md"
+   },
+   {
+    "id": ".agent/state.mjs"
+   }
+  ],
+  "uiLocales": [
+   {
+    "id": "en"
+   },
+   {
+    "id": "fr"
+   },
+   {
+    "id": "es"
+   },
+   {
+    "id": "pt"
+   },
+   {
+    "id": "pt-pt"
+   },
+   {
+    "id": "de"
+   },
+   {
+    "id": "it"
+   },
+   {
+    "id": "nl"
+   },
+   {
+    "id": "pl"
+   },
+   {
+    "id": "sv"
+   },
+   {
+    "id": "no"
+   },
+   {
+    "id": "da"
+   },
+   {
+    "id": "fi"
+   },
+   {
+    "id": "cs"
+   },
+   {
+    "id": "sk"
+   },
+   {
+    "id": "sl"
+   },
+   {
+    "id": "hu"
+   },
+   {
+    "id": "ro"
+   },
+   {
+    "id": "ca"
+   },
+   {
+    "id": "et"
+   },
+   {
+    "id": "lt"
+   },
+   {
+    "id": "lv"
+   },
+   {
+    "id": "tr"
+   },
+   {
+    "id": "vi"
+   },
+   {
+    "id": "id"
+   },
+   {
+    "id": "ms"
+   },
+   {
+    "id": "tl"
+   },
+   {
+    "id": "ru"
+   },
+   {
+    "id": "uk"
+   },
+   {
+    "id": "bg"
+   },
+   {
+    "id": "el"
+   },
+   {
+    "id": "ar"
+   },
+   {
+    "id": "he"
+   },
+   {
+    "id": "fa"
+   },
+   {
+    "id": "hi"
+   },
+   {
+    "id": "bn"
+   },
+   {
+    "id": "ta"
+   },
+   {
+    "id": "th"
+   },
+   {
+    "id": "ja"
+   },
+   {
+    "id": "ko"
+   },
+   {
+    "id": "zh"
+   },
+   {
+    "id": "zh-tw"
+   },
+   {
+    "id": "yue"
+   }
+  ],
+  "storeLocales": [
+   {
+    "id": "ar"
+   },
+   {
+    "id": "bg"
+   },
+   {
+    "id": "bn"
+   },
+   {
+    "id": "ca"
+   },
+   {
+    "id": "cs"
+   },
+   {
+    "id": "da"
+   },
+   {
+    "id": "de"
+   },
+   {
+    "id": "el"
+   },
+   {
+    "id": "en"
+   },
+   {
+    "id": "es"
+   },
+   {
+    "id": "et"
+   },
+   {
+    "id": "fa"
+   },
+   {
+    "id": "fi"
+   },
+   {
+    "id": "fil"
+   },
+   {
+    "id": "fr"
+   },
+   {
+    "id": "he"
+   },
+   {
+    "id": "hi"
+   },
+   {
+    "id": "hu"
+   },
+   {
+    "id": "id"
+   },
+   {
+    "id": "it"
+   },
+   {
+    "id": "ja"
+   },
+   {
+    "id": "ko"
+   },
+   {
+    "id": "lt"
+   },
+   {
+    "id": "lv"
+   },
+   {
+    "id": "ms"
+   },
+   {
+    "id": "nl"
+   },
+   {
+    "id": "no"
+   },
+   {
+    "id": "pl"
+   },
+   {
+    "id": "pt_BR"
+   },
+   {
+    "id": "pt_PT"
+   },
+   {
+    "id": "ro"
+   },
+   {
+    "id": "ru"
+   },
+   {
+    "id": "sk"
+   },
+   {
+    "id": "sl"
+   },
+   {
+    "id": "sv"
+   },
+   {
+    "id": "ta"
+   },
+   {
+    "id": "th"
+   },
+   {
+    "id": "tr"
+   },
+   {
+    "id": "uk"
+   },
+   {
+    "id": "vi"
+   },
+   {
+    "id": "zh_CN"
+   },
+   {
+    "id": "zh_TW"
+   }
+  ],
+  "sharedCatalogs": [
+   {
+    "id": "src/shared/i18n/ar.ts"
+   },
+   {
+    "id": "src/shared/i18n/bg.ts"
+   },
+   {
+    "id": "src/shared/i18n/bn.ts"
+   },
+   {
+    "id": "src/shared/i18n/ca.ts"
+   },
+   {
+    "id": "src/shared/i18n/cs.ts"
+   },
+   {
+    "id": "src/shared/i18n/da.ts"
+   },
+   {
+    "id": "src/shared/i18n/de.ts"
+   },
+   {
+    "id": "src/shared/i18n/el.ts"
+   },
+   {
+    "id": "src/shared/i18n/es.ts"
+   },
+   {
+    "id": "src/shared/i18n/et.ts"
+   },
+   {
+    "id": "src/shared/i18n/fa.ts"
+   },
+   {
+    "id": "src/shared/i18n/fi.ts"
+   },
+   {
+    "id": "src/shared/i18n/fr.ts"
+   },
+   {
+    "id": "src/shared/i18n/he.ts"
+   },
+   {
+    "id": "src/shared/i18n/hi.ts"
+   },
+   {
+    "id": "src/shared/i18n/hu.ts"
+   },
+   {
+    "id": "src/shared/i18n/id.ts"
+   },
+   {
+    "id": "src/shared/i18n/it.ts"
+   },
+   {
+    "id": "src/shared/i18n/ja.ts"
+   },
+   {
+    "id": "src/shared/i18n/ko.ts"
+   },
+   {
+    "id": "src/shared/i18n/lt.ts"
+   },
+   {
+    "id": "src/shared/i18n/lv.ts"
+   },
+   {
+    "id": "src/shared/i18n/ms.ts"
+   },
+   {
+    "id": "src/shared/i18n/nl.ts"
+   },
+   {
+    "id": "src/shared/i18n/no.ts"
+   },
+   {
+    "id": "src/shared/i18n/pl.ts"
+   },
+   {
+    "id": "src/shared/i18n/pt-pt.ts"
+   },
+   {
+    "id": "src/shared/i18n/pt.ts"
+   },
+   {
+    "id": "src/shared/i18n/ro.ts"
+   },
+   {
+    "id": "src/shared/i18n/ru.ts"
+   },
+   {
+    "id": "src/shared/i18n/sk.ts"
+   },
+   {
+    "id": "src/shared/i18n/sl.ts"
+   },
+   {
+    "id": "src/shared/i18n/sv.ts"
+   },
+   {
+    "id": "src/shared/i18n/ta.ts"
+   },
+   {
+    "id": "src/shared/i18n/th.ts"
+   },
+   {
+    "id": "src/shared/i18n/tl.ts"
+   },
+   {
+    "id": "src/shared/i18n/tr.ts"
+   },
+   {
+    "id": "src/shared/i18n/uk.ts"
+   },
+   {
+    "id": "src/shared/i18n/vi.ts"
+   },
+   {
+    "id": "src/shared/i18n/yue.ts"
+   },
+   {
+    "id": "src/shared/i18n/zh-tw.ts"
+   },
+   {
+    "id": "src/shared/i18n/zh.ts"
+   }
+  ],
+  "chatCatalogs": [
+   {
+    "id": "src/content/i18n/ar.ts"
+   },
+   {
+    "id": "src/content/i18n/bg.ts"
+   },
+   {
+    "id": "src/content/i18n/bn.ts"
+   },
+   {
+    "id": "src/content/i18n/ca.ts"
+   },
+   {
+    "id": "src/content/i18n/codes.ts"
+   },
+   {
+    "id": "src/content/i18n/cs.ts"
+   },
+   {
+    "id": "src/content/i18n/da.ts"
+   },
+   {
+    "id": "src/content/i18n/de.ts"
+   },
+   {
+    "id": "src/content/i18n/el.ts"
+   },
+   {
+    "id": "src/content/i18n/es.ts"
+   },
+   {
+    "id": "src/content/i18n/et.ts"
+   },
+   {
+    "id": "src/content/i18n/fa.ts"
+   },
+   {
+    "id": "src/content/i18n/fi.ts"
+   },
+   {
+    "id": "src/content/i18n/fr.ts"
+   },
+   {
+    "id": "src/content/i18n/he.ts"
+   },
+   {
+    "id": "src/content/i18n/hi.ts"
+   },
+   {
+    "id": "src/content/i18n/hu.ts"
+   },
+   {
+    "id": "src/content/i18n/id.ts"
+   },
+   {
+    "id": "src/content/i18n/index.ts"
+   },
+   {
+    "id": "src/content/i18n/it.ts"
+   },
+   {
+    "id": "src/content/i18n/ja.ts"
+   },
+   {
+    "id": "src/content/i18n/ko.ts"
+   },
+   {
+    "id": "src/content/i18n/lt.ts"
+   },
+   {
+    "id": "src/content/i18n/lv.ts"
+   },
+   {
+    "id": "src/content/i18n/ms.ts"
+   },
+   {
+    "id": "src/content/i18n/nl.ts"
+   },
+   {
+    "id": "src/content/i18n/no.ts"
+   },
+   {
+    "id": "src/content/i18n/pl.ts"
+   },
+   {
+    "id": "src/content/i18n/pt-pt.ts"
+   },
+   {
+    "id": "src/content/i18n/pt.ts"
+   },
+   {
+    "id": "src/content/i18n/ro.ts"
+   },
+   {
+    "id": "src/content/i18n/ru.ts"
+   },
+   {
+    "id": "src/content/i18n/sk.ts"
+   },
+   {
+    "id": "src/content/i18n/sl.ts"
+   },
+   {
+    "id": "src/content/i18n/sv.ts"
+   },
+   {
+    "id": "src/content/i18n/ta.ts"
+   },
+   {
+    "id": "src/content/i18n/th.ts"
+   },
+   {
+    "id": "src/content/i18n/tl.ts"
+   },
+   {
+    "id": "src/content/i18n/tr.ts"
+   },
+   {
+    "id": "src/content/i18n/uk.ts"
+   },
+   {
+    "id": "src/content/i18n/vi.ts"
+   },
+   {
+    "id": "src/content/i18n/yue.ts"
+   },
+   {
+    "id": "src/content/i18n/zh-tw.ts"
+   },
+   {
+    "id": "src/content/i18n/zh.ts"
+   }
+  ],
+  "i18nKeys": [
+   {
+    "id": "options & preferences"
+   },
+   {
+    "id": "saved"
+   },
+   {
+    "id": "ready"
+   },
+   {
+    "id": "Providers"
+   },
+   {
+    "id": "Display"
+   },
+   {
+    "id": "Filters"
+   },
+   {
+    "id": "Advanced"
+   },
+   {
+    "id": "Activity"
+   },
+   {
+    "id": "About"
+   },
+   {
+    "id": "Kick Chat Translator listens to chat in real time and translates non-English (or non-target-language) messages right under the original. No tracking, no account, fully open-source."
+   },
+   {
+    "id": "Links"
+   },
+   {
+    "id": "GitHub repository"
+   },
+   {
+    "id": "Privacy policy"
+   },
+   {
+    "id": "Report an issue"
+   },
+   {
+    "id": "How translation happens"
+   },
+   {
+    "id": "The extension reads each chat message from the page as it appears."
+   },
+   {
+    "id": "Each chat message is parsed; emotes and links are stripped before translation."
+   },
+   {
+    "id": "The extension picks the first available provider in your chain."
+   },
+   {
+    "id": "Translations are cached locally in IndexedDB to avoid duplicate calls."
+   },
+   {
+    "id": "Connection"
+   },
+   {
+    "id": "Cache & performance"
+   },
+   {
+    "id": "Debugging"
+   },
+   {
+    "id": "Pause when tab is hidden"
+   },
+   {
+    "id": "Background Kick tabs won't translate (saves DeepL quota while you're away)."
+   },
+   {
+    "id": "Verbose console logs"
+   },
+   {
+    "id": "Cache max entries"
+   },
+   {
+    "id": "Larger = more hits across sessions, more disk space."
+   },
+   {
+    "id": "Cache TTL (hours)"
+   },
+   {
+    "id": "After this, entries expire."
+   },
+   {
+    "id": "Concurrent translations"
+   },
+   {
+    "id": "In-flight provider requests."
+   },
+   {
+    "id": "Per-channel budget (req/min)"
+   },
+   {
+    "id": "Hard cap to avoid hammering providers on fast chats."
+   },
+   {
+    "id": "Clear translation cache"
+   },
+   {
+    "id": "Reset usage stats"
+   },
+   {
+    "id": "Reset all settings to defaults"
+   },
+   {
+    "id": "click again to confirm"
+   },
+   {
+    "id": "\"Reset all settings\" restores defaults. Use it if translations stop appearing because a filter (channel allowlist or source-language allowlist) was left active."
+   },
+   {
+    "id": "Translation target"
+   },
+   {
+    "id": "Display style"
+   },
+   {
+    "id": "Compose preview"
+   },
+   {
+    "id": "Translate everything to"
+   },
+   {
+    "id": "Auto (your browser language)"
+   },
+   {
+    "id": "Auto reads incoming chat in your own language, detected from the browser."
+   },
+   {
+    "id": "Write my messages in"
+   },
+   {
+    "id": "Auto (the channel's language)"
+   },
+   {
+    "id": "Auto detects the channel's broadcast language from Kick. No manual picking."
+   },
+   {
+    "id": "Below"
+   },
+   {
+    "id": "On a new line under the message."
+   },
+   {
+    "id": "Inline"
+   },
+   {
+    "id": "In a pill after the original text."
+   },
+   {
+    "id": "Replace"
+   },
+   {
+    "id": "Show floating bar at top of chat (toggle live)"
+   },
+   {
+    "id": "Keep original text visible"
+   },
+   {
+    "id": "Show source language badge"
+   },
+   {
+    "id": "Show which provider was used"
+   },
+   {
+    "id": "Enable compose preview"
+   },
+   {
+    "id": "Click inserts into the chat box (off = copy to clipboard instead)"
+   },
+   {
+    "id": "Translate what you type before sending. A live preview appears above the chat box; click it to drop the translation in. Uses the same engine and providers as incoming chat."
+   },
+   {
+    "id": "Engine"
+   },
+   {
+    "id": "on-device:"
+   },
+   {
+    "id": "available ✓"
+   },
+   {
+    "id": "not supported in this browser"
+   },
+   {
+    "id": "Strategy"
+   },
+   {
+    "id": "On-device first, cloud fallback (recommended)"
+   },
+   {
+    "id": "Cloud first, on-device fallback"
+   },
+   {
+    "id": "On-device only (no network, no cloud)"
+   },
+   {
+    "id": "On-device = local Chromium models: unlimited, instant, private, no rate-limit. Each language needs a one-time model download (click a flag below, or the \"Local\" chip in chat)."
+   },
+   {
+    "id": "Enable on-device translation"
+   },
+   {
+    "id": "Download models →"
+   },
+   {
+    "id": "General"
+   },
+   {
+    "id": "Source languages allowlist"
+   },
+   {
+    "id": "Channels & users"
+   },
+   {
+    "id": "Leave empty to translate every detected language. Pick specific ones to ONLY translate those (e.g. only JA + KO)."
+   },
+   {
+    "id": "Skip messages already in target language"
+   },
+   {
+    "id": "Ignore common bot accounts (StreamElements, Nightbot, …)"
+   },
+   {
+    "id": "Channel allowlist (only translate on these)"
+   },
+   {
+    "id": "Channel blocklist"
+   },
+   {
+    "id": "User blocklist"
+   },
+   {
+    "id": "Cloud fallback chain"
+   },
+   {
+    "id": "Used when on-device is off or a language pair isn't downloaded. Providers are tried in order; failing ones are temporarily skipped (exponential cooldown)."
+   },
+   {
+    "id": "ok"
+   },
+   {
+    "id": "down"
+   },
+   {
+    "id": "Google Translate (free, no key)"
+   },
+   {
+    "id": "DeepL (best quality, needs key)"
+   },
+   {
+    "id": "MyMemory (free, ~1000/day)"
+   },
+   {
+    "id": "Lingva (LibreTranslate front, configurable)"
+   },
+   {
+    "id": "API key"
+   },
+   {
+    "id": "Plan"
+   },
+   {
+    "id": "Free (api-free.deepl.com)"
+   },
+   {
+    "id": "Pro (api.deepl.com)"
+   },
+   {
+    "id": "Smart budget routing"
+   },
+   {
+    "id": "Spend DeepL only on the European languages it clearly wins at; other targets (Japanese, Arabic, Hindi…) use the free engines first, so your DeepL quota lasts much longer."
+   },
+   {
+    "id": "Lingva instance"
+   },
+   {
+    "id": "Custom URL (optional)"
+   },
+   {
+    "id": "Leave blank to use the default public instance."
+   },
+   {
+    "id": "⬆ Update available"
+   },
+   {
+    "id": "Target language"
+   },
+   {
+    "id": "Translate what I type"
+   },
+   {
+    "id": "Today"
+   },
+   {
+    "id": "Auto (your language)"
+   },
+   {
+    "id": "Below original"
+   },
+   {
+    "id": "Auto (channel language)"
+   },
+   {
+    "id": "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert."
+   },
+   {
+    "id": "order in options"
+   },
+   {
+    "id": "DeepL quota"
+   },
+   {
+    "id": "Enable"
+   },
+   {
+    "id": "Keep original"
+   },
+   {
+    "id": "Language badge"
+   },
+   {
+    "id": "Clear cache"
+   },
+   {
+    "id": "Options"
+   },
+   {
+    "id": "requests"
+   },
+   {
+    "id": "cache"
+   },
+   {
+    "id": "errors"
+   },
+   {
+    "id": "available"
+   },
+   {
+    "id": "unavailable"
+   },
+   {
+    "id": "Backup"
+   },
+   {
+    "id": "Save your configuration to a JSON file, or restore it on another browser."
+   },
+   {
+    "id": "Export settings"
+   },
+   {
+    "id": "Import settings"
+   },
+   {
+    "id": "Invalid settings file"
+   },
+   {
+    "id": "cache hit rate, last 7 days"
+   },
+   {
+    "id": "Minimum message length"
+   },
+   {
+    "id": "Shorter messages are left alone. Raise it to spend less provider quota on busy chats."
+   },
+   {
+    "id": "Preview"
+   },
+   {
+    "id": "is anyone else seeing this?"
+   },
+   {
+    "id": "Whether a Kick tab keeps translating once you look away."
+   },
+   {
+    "id": "Reusing past translations, and how hard the engines are pushed on a busy chat. The defaults suit most channels."
+   },
+   {
+    "id": "one channel name per line"
+   },
+   {
+    "id": "one username per line"
+   },
+   {
+    "id": "Hide messages containing"
+   },
+   {
+    "id": "one keyword per line, e.g. !fish"
+   },
+   {
+    "id": "Glossary"
+   },
+   {
+    "id": "Words the engines keep getting wrong for your channels. Each line replaces the left side with the right side, after translating."
+   },
+   {
+    "id": "one rule per line, in the form word→replacement"
+   },
+   {
+    "id": "Debug"
+   },
+   {
+    "id": "Last decisions"
+   },
+   {
+    "id": "Why each recent message was translated or left alone. Read from an open Kick tab, kept in memory there, never saved to disk."
+   },
+   {
+    "id": "Read decisions"
+   },
+   {
+    "id": "No Kick tab is open. Open a channel, let the chat run, then read again."
+   },
+   {
+    "id": "The open Kick tab has not loaded the extension yet. Reload the tab, then read again."
+   },
+   {
+    "id": "Nothing recorded yet. Let a chat run for a moment, then read again."
+   },
+   {
+    "id": "Filter languages"
+   },
+   {
+    "id": "No language matches"
+   },
+   {
+    "id": "Move up"
+   },
+   {
+    "id": "Move down"
+   },
+   {
+    "id": "Remove"
+   },
+   {
+    "id": "Settings sections"
+   },
+   {
+    "id": "Show the quick language button in chat"
+   },
+   {
+    "id": "Usage"
+   },
+   {
+    "id": "most translated languages"
+   },
+   {
+    "id": "Translate the chat"
+   },
+   {
+    "id": "In place of the original text. Emotes stay."
+   },
+   {
+    "id": "The Replace style always hides it."
+   },
+   {
+    "id": "On hover"
+   },
+   {
+    "id": "Only when you point at the line. Spares your quota."
+   },
+   {
+    "id": "recommended"
+   },
+   {
+    "id": "The recommended style is the most tested. The other three may still change."
+   },
+   {
+    "id": "Text size"
+   },
+   {
+    "id": "Line spacing"
+   },
+   {
+    "id": "Font"
+   },
+   {
+    "id": "Kick's own"
+   },
+   {
+    "id": "System"
+   },
+   {
+    "id": "Serif"
+   },
+   {
+    "id": "Monospace"
+   },
+   {
+    "id": "High legibility"
+   },
+   {
+    "id": "Tab swaps my message for its translation (off = Ctrl/Cmd+Enter only)"
+   },
+   {
+    "id": "Density"
+   },
+   {
+    "id": "Compact"
+   },
+   {
+    "id": "Normal"
+   },
+   {
+    "id": "Roomy"
+   },
+   {
+    "id": "Accent colour"
+   },
+   {
+    "id": "Kick green"
+   },
+   {
+    "id": "Cyan"
+   },
+   {
+    "id": "Violet"
+   },
+   {
+    "id": "Amber"
+   },
+   {
+    "id": "Chat theme"
+   },
+   {
+    "id": "Follow Kick"
+   },
+   {
+    "id": "Always dark"
+   },
+   {
+    "id": "Always light"
+   },
+   {
+    "id": "Remember a reading language per channel"
+   },
+   {
+    "id": "Kick Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source."
+   },
+   {
+    "id": "Version"
+   },
+   {
+    "id": "Languages"
+   },
+   {
+    "id": "Providers ready"
+   },
+   {
+    "id": "Messages translated"
+   },
+   {
+    "id": "How a message becomes a translation"
+   },
+   {
+    "id": "The message is read from the page, emotes and links set aside."
+   },
+   {
+    "id": "Its language is worked out on the spot, from the script and the words it uses. This answer decides everything after it."
+   },
+   {
+    "id": "Filters run: already in your language, too short, a bot, a language you did not pick."
+   },
+   {
+    "id": "The cache is asked first, so the same message is never paid for twice."
+   },
+   {
+    "id": "Otherwise the first available provider in your chain answers, or the on-device engine if you enabled it."
+   },
+   {
+    "id": "The Activity tab shows what each of these steps did for you."
+   },
+   {
+    "id": "What changed in this version"
+   },
+   {
+    "id": "Entries:"
+   },
+   {
+    "id": "Cap used:"
+   },
+   {
+    "id": "oldest kept in memory:"
+   },
+   {
+    "id": "Requests sent through this limit:"
+   },
+   {
+    "id": "never reached so far"
+   },
+   {
+    "id": "Messages held back by this cap:"
+   },
+   {
+    "id": "Maintenance"
+   },
+   {
+    "id": "Nothing picked: every language is translated."
+   },
+   {
+    "id": "picked: everything else is left alone."
+   },
+   {
+    "id": "channels you have watched"
+   },
+   {
+    "id": "Only here"
+   },
+   {
+    "id": "Never here"
+   },
+   {
+    "id": "No key yet, so DeepL is skipped and the chain moves on."
+   },
+   {
+    "id": "used this month"
+   },
+   {
+    "id": "messages translated"
+   },
+   {
+    "id": "served from cache"
+   },
+   {
+    "id": "sent to a provider"
+   },
+   {
+    "id": "languages seen in chat"
+   },
+   {
+    "id": "These are the languages the allowlist in Filters decides between."
+   },
+   {
+    "id": "Paused on this channel"
+   },
+   {
+    "id": "Resume"
+   },
+   {
+    "id": "Open a Kick channel: its chat is translated as it arrives."
+   },
+   {
+    "id": "Open Kick"
+   },
+   {
+    "id": "Free plan: 1,000,000 characters a month. Free keys end with :fx."
+   },
+   {
+    "id": "Get a key:"
+   },
+   {
+    "id": "Help improve Kick Chat Translator?"
+   },
+   {
+    "id": "Once a day, anonymous counts: engines used, errors, speed. Never your messages, names or channels."
+   },
+   {
+    "id": "No thanks"
+   },
+   {
+    "id": "Share"
+   },
+   {
+    "id": "Share anonymous usage statistics"
+   },
+   {
+    "id": "Ignore chat bots"
+   },
+   {
+    "id": "Always ignored:"
+   },
+   {
+    "id": "Other bots to ignore"
+   },
+   {
+    "id": "one bot name per line"
+   },
+   {
+    "id": "Work in progress"
+   }
+  ],
+  "manifestPermissions": [
+   {
+    "id": "storage"
+   },
+   {
+    "id": "alarms"
+   },
+   {
+    "id": "scripting"
+   }
+  ],
+  "manifestHostPermissions": [
+   {
+    "id": "https://kick.com/*"
+   },
+   {
+    "id": "https://api.github.com/*"
+   },
+   {
+    "id": "https://translate.googleapis.com/*"
+   },
+   {
+    "id": "https://api-free.deepl.com/*"
+   },
+   {
+    "id": "https://api.deepl.com/*"
+   },
+   {
+    "id": "https://api.mymemory.translated.net/*"
+   },
+   {
+    "id": "https://lingva.lunar.icu/*"
+   },
+   {
+    "id": "https://lingva.ml/*"
+   }
+  ],
+  "manifestMatches": [
+   {
+    "id": "https://kick.com/*"
+   },
+   {
+    "id": "https://www.kick.com/*"
+   }
+  ],
+  "manifestCommands": [
+   {
+    "id": "toggle-translation"
+   },
+   {
+    "id": "toggle-compose"
+   }
+  ],
+  "selectors": [
+   {
+    "id": "src/content/selectors.ts|#channel-chatroom .no-scrollbar"
+   },
+   {
+    "id": "src/content/selectors.ts|#channel-chatroom [class*=\"virtuoso\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|#channel-chatroom"
+   },
+   {
+    "id": "src/content/selectors.ts|#chatroom-messages"
+   },
+   {
+    "id": "src/content/selectors.ts|[data-chat-id]"
+   },
+   {
+    "id": "src/content/selectors.ts|[data-testid=\"chat-messages\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|div[data-index]"
+   },
+   {
+    "id": "src/content/selectors.ts|#channel-chatroom div[contenteditable=\"true\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|#channel-chatroom [role=\"textbox\"][contenteditable=\"true\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|#channel-chatroom textarea"
+   },
+   {
+    "id": "src/content/selectors.ts|[data-testid=\"chat-input\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|[data-testid=\"message-input\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|div[contenteditable=\"true\"][data-editor]"
+   },
+   {
+    "id": "src/content/selectors.ts|[contenteditable=\"true\"][role=\"textbox\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|span.seventv-text-token"
+   },
+   {
+    "id": "src/content/selectors.ts|span.font-normal"
+   },
+   {
+    "id": "src/content/selectors.ts|button[title]"
+   },
+   {
+    "id": "src/content/selectors.ts|span.inline-flex.font-bold[style*=\"color\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|button span.font-bold, button span[style*=\"color\"]"
+   },
+   {
+    "id": "src/content/selectors.ts|button.font-bold"
+   },
+   {
+    "id": "src/content/selectors.ts|div.w-full.min-w-0.shrink-0"
+   },
+   {
+    "id": "src/content/selectors.ts|div.group"
+   },
+   {
+    "id": "src/content/composeUi.ts|img[data-emote-id]"
+   },
+   {
+    "id": "src/content/composeUi.ts|).replace(/\\n\\n/g, "
+   },
+   {
+    "id": "src/content/composeUi.ts|).join("
+   },
+   {
+    "id": "src/content/composeUi.ts|) : (clone.textContent ?? "
+   },
+   {
+    "id": "src/content/composeUi.ts|div"
+   },
+   {
+    "id": "src/content/composeUi.ts|span"
+   },
+   {
+    "id": "src/content/composeUi.ts|.kt-chip"
+   },
+   {
+    "id": "src/content/composeUi.ts|#chat-emote-suggestion-panel, #chat-mention-panel, #chat-command-suggestion-panel, #chat-emotes-picker-panel, .seventv-autocomplete-list"
+   },
+   {
+    "id": "src/content/composeUi.ts|[data-testid*=\"emote\" i]"
+   },
+   {
+    "id": "src/content/composeUi.ts|[data-testid*=\"emoji\" i]"
+   },
+   {
+    "id": "src/content/composeUi.ts|[class*=\"emote-picker\" i]"
+   },
+   {
+    "id": "src/content/composeUi.ts|[class*=\"emoji-picker\" i]"
+   },
+   {
+    "id": "src/content/composeUi.ts|[role=\"dialog\"]"
+   },
+   {
+    "id": "src/content/composeUi.ts|[role=\"listbox\"]"
+   },
+   {
+    "id": "src/content/composeUi.ts|.kt-compose-insert"
+   },
+   {
+    "id": "src/content/composeUi.ts|compose.write"
+   },
+   {
+    "id": "src/content/composeUi.ts|Translation copied. Paste it with Ctrl+V."
+   },
+   {
+    "id": "src/content/platform.ts|.seventv-chat-observer, .seventv-chat-list, #seventv-message-container, seventv-container"
+   },
+   {
+    "id": "src/content/platform.ts|[class^=\"seventv\"], [class*=\" seventv-\"]"
+   },
+   {
+    "id": "src/content/langChip.ts|button"
+   },
+   {
+    "id": "src/content/langChip.ts|http://www.w3.org/2000/svg"
+   },
+   {
+    "id": "src/content/langChip.ts|span"
+   },
+   {
+    "id": "src/content/langChip.ts|M1 1.5 5 5 9 1.5"
+   },
+   {
+    "id": "src/content/langChip.ts|div"
+   },
+   {
+    "id": "src/content/langChip.ts|.kt-chip-row"
+   },
+   {
+    "id": "src/content/langChip.ts|, row.dataset.code ?? "
+   },
+   {
+    "id": "src/content/langChip.ts|.kt-chip-row:not([hidden])"
+   },
+   {
+    "id": "src/content/langChip.ts|.kt-chip-search"
+   },
+   {
+    "id": "src/content/langChip.ts|.kt-chip-tag"
+   },
+   {
+    "id": "src/content/langChip.ts|.kt-chip-flag"
+   },
+   {
+    "id": "src/content/langChip.ts|Translation unavailable. Click to pick a language."
+   },
+   {
+    "id": "src/content/langChip.ts|.kt-chip-host"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-toast"
+   },
+   {
+    "id": "src/content/injector.ts|div"
+   },
+   {
+    "id": "src/content/injector.ts|0.4"
+   },
+   {
+    "id": "src/content/injector.ts|span"
+   },
+   {
+    "id": "src/content/injector.ts|button"
+   },
+   {
+    "id": "src/content/injector.ts|#channel-chatroom"
+   },
+   {
+    "id": "src/content/injector.ts|ECRAN. Cette barre traduit le chat qu"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-lang"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-power"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-label"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-throttle"
+   },
+   {
+    "id": "src/content/injector.ts|font-size:11px;opacity:.6;margin-left:2px"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-count"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-provider"
+   },
+   {
+    "id": "src/content/injector.ts|.kt-float-local"
+   }
+  ],
+  "cssClasses": [
+   {
+    "id": "kt-chip"
+   },
+   {
+    "id": "kt-chip-caret"
+   },
+   {
+    "id": "kt-chip-empty"
+   },
+   {
+    "id": "kt-chip-host"
+   },
+   {
+    "id": "kt-chip-iso"
+   },
+   {
+    "id": "kt-chip-list"
+   },
+   {
+    "id": "kt-chip-menu"
+   },
+   {
+    "id": "kt-chip-menu-fixed"
+   },
+   {
+    "id": "kt-chip-name"
+   },
+   {
+    "id": "kt-chip-row"
+   },
+   {
+    "id": "kt-chip-search"
+   },
+   {
+    "id": "kt-chip-sep"
+   },
+   {
+    "id": "kt-compose"
+   },
+   {
+    "id": "kt-compose-insert"
+   },
+   {
+    "id": "kt-compose-target"
+   },
+   {
+    "id": "kt-compose-text"
+   },
+   {
+    "id": "kt-error"
+   },
+   {
+    "id": "kt-flag"
+   },
+   {
+    "id": "kt-float"
+   },
+   {
+    "id": "kt-float-count"
+   },
+   {
+    "id": "kt-float-dot"
+   },
+   {
+    "id": "kt-float-label"
+   },
+   {
+    "id": "kt-float-lang"
+   },
+   {
+    "id": "kt-float-lang-host"
+   },
+   {
+    "id": "kt-float-lang-tag"
+   },
+   {
+    "id": "kt-float-local"
+   },
+   {
+    "id": "kt-float-opts"
+   },
+   {
+    "id": "kt-float-power"
+   },
+   {
+    "id": "kt-hide-original"
+   },
+   {
+    "id": "kt-hover-armed"
+   },
+   {
+    "id": "kt-lang-empty"
+   },
+   {
+    "id": "kt-lang-fav"
+   },
+   {
+    "id": "kt-lang-favs"
+   },
+   {
+    "id": "kt-lang-globe"
+   },
+   {
+    "id": "kt-lang-ico"
+   },
+   {
+    "id": "kt-lang-list"
+   },
+   {
+    "id": "kt-lang-name"
+   },
+   {
+    "id": "kt-lang-panel"
+   },
+   {
+    "id": "kt-lang-panel-below"
+   },
+   {
+    "id": "kt-lang-panel-fixed"
+   },
+   {
+    "id": "kt-lang-row"
+   },
+   {
+    "id": "kt-lang-search"
+   },
+   {
+    "id": "kt-lang-sep"
+   },
+   {
+    "id": "kt-lang-star"
+   },
+   {
+    "id": "kt-loading"
+   },
+   {
+    "id": "kt-provider"
+   },
+   {
+    "id": "kt-retry"
+   },
+   {
+    "id": "kt-src-flag"
+   },
+   {
+    "id": "kt-toast"
+   },
+   {
+    "id": "kt-translation"
+   },
+   {
+    "id": "kt-translation-inline"
+   },
+   {
+    "id": "kt-translation-replace"
+   }
+  ],
+  "popupFiles": [
+   {
+    "id": "src/popup/App.tsx"
+   },
+   {
+    "id": "src/popup/components/ProviderPill.tsx"
+   },
+   {
+    "id": "src/popup/components/StatsBar.tsx"
+   },
+   {
+    "id": "src/popup/components/Toggle.tsx"
+   },
+   {
+    "id": "src/popup/main.tsx"
+   }
+  ],
+  "optionsFiles": [
+   {
+    "id": "src/options/App.tsx"
+   },
+   {
+    "id": "src/options/components/Check.tsx"
+   },
+   {
+    "id": "src/options/main.tsx"
+   },
+   {
+    "id": "src/options/sections/AboutSection.tsx"
+   },
+   {
+    "id": "src/options/sections/AdvancedSection.tsx"
+   },
+   {
+    "id": "src/options/sections/DebugSection.tsx"
+   },
+   {
+    "id": "src/options/sections/DisplaySection.tsx"
+   },
+   {
+    "id": "src/options/sections/EngineCard.tsx"
+   },
+   {
+    "id": "src/options/sections/FilterSection.tsx"
+   },
+   {
+    "id": "src/options/sections/ProviderSection.tsx"
+   },
+   {
+    "id": "src/options/sections/UsageTrend.tsx"
+   }
+  ],
+  "readmeClaims": [
+   {
+    "id": "README.md:28",
+    "text": "1. Install it and open any Kick stream. A green bar at the top of the chat says it is on."
+   },
+   {
+    "id": "README.md:29",
+    "text": "2. Every message gets its translation right underneath as it arrives, in your browser's language. Live"
+   },
+   {
+    "id": "README.md:31",
+    "text": "3. Type a reply in your own language. A preview above the chat box shows it in the channel's language:"
+   },
+   {
+    "id": "README.md:39",
+    "text": "- **43 languages**, right to left included (Arabic, Hebrew, Persian), with regional variants kept apart"
+   },
+   {
+    "id": "README.md:41",
+    "text": "- **The extension speaks them too**: settings, popup and chat bar in all 43, picked from a menu with flags"
+   },
+   {
+    "id": "README.md:42",
+    "text": "- **Free out of the box** with Google Translate. Add your own free DeepL key for better European languages;"
+   },
+   {
+    "id": "README.md:44",
+    "text": "- **On-device translation** in Chrome and Edge where the browser offers it: 22 ms instead of 1.6 s, and"
+   },
+   {
+    "id": "README.md:46",
+    "text": "- **Filters**: skip bots, mute users or channels, hide lines containing a word, translate only the"
+   },
+   {
+    "id": "README.md:48",
+    "text": "- **Made for fast chats**: 7TV emotes kept as they are, emoji spam and links stripped before anything is"
+   },
+   {
+    "id": "README.md:50",
+    "text": "- **Four display styles**: under the message, on the same line, in place of it, or only on hover"
+   },
+   {
+    "id": "README.md:51",
+    "text": "- **Pause one channel** from the chat bar without stopping the others. Switching channels or updating the"
+   },
+   {
+    "id": "README.md:53",
+    "text": "- Chrome, Brave, Edge and Firefox"
+   },
+   {
+    "id": "README.md:55",
+    "text": "| Chat, translated as it scrolls | The toolbar popup |"
+   },
+   {
+    "id": "README.md:56",
+    "text": "|---|---|"
+   },
+   {
+    "id": "README.md:57",
+    "text": "| <img src=\"screenshots/chat.png\" alt=\"Kick chat where each Spanish message carries an English translation underneath, with the extension's status bar above the"
+   },
+   {
+    "id": "README.md:59",
+    "text": "| What you type, before you send it | Pick a language, or let it pick |"
+   },
+   {
+    "id": "README.md:60",
+    "text": "|---|---|"
+   },
+   {
+    "id": "README.md:61",
+    "text": "| <img src=\"screenshots/compose.png\" alt=\"The compose box holding an English message, with a preview above it showing the Spanish version that will be sent\" wid"
+   },
+   {
+    "id": "README.md:79",
+    "text": "- Chrome, Brave, Edge (`…-chromium.zip`): open `chrome://extensions`, turn on Developer mode, click Load unpacked, pick the folder."
+   },
+   {
+    "id": "README.md:80",
+    "text": "- Firefox 121+ (`…-firefox.zip`): open `about:debugging#/runtime/this-firefox`, click Load Temporary Add-on, pick `manifest.json`."
+   },
+   {
+    "id": "README.md:93",
+    "text": "|---|---|---|"
+   },
+   {
+    "id": "README.md:94",
+    "text": "| Google | none | the default, works out of the box |"
+   },
+   {
+    "id": "README.md:95",
+    "text": "| DeepL | free | the best quality, [free key](https://www.deepl.com/pro-api) for 1 million characters a month |"
+   },
+   {
+    "id": "README.md:97",
+    "text": "| Lingva | none | fallback, on a public instance unless you point it at your own |"
+   },
+   {
+    "id": "README.md:109",
+    "text": "- **Providers**: engine order, your DeepL key, and the mode: on-device first, cloud first, or on-device only"
+   },
+   {
+    "id": "README.md:110",
+    "text": "- **Display**: target language, display style, original text and language badge, text size, line spacing,"
+   },
+   {
+    "id": "README.md:112",
+    "text": "- **Filters**: bots, users, channels, keywords, source languages, and a glossary of replacements"
+   },
+   {
+    "id": "README.md:113",
+    "text": "- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore"
+   },
+   {
+    "id": "README.md:114",
+    "text": "- **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50"
+   },
+   {
+    "id": "README.md:116",
+    "text": "- **Keyboard**: Alt+T turns chat translation on or off, Alt+W the compose preview"
+   },
+   {
+    "id": "README.md:117",
+    "text": "- The language button in the chat's action bar: one click switches between the channel's language and"
+   },
+   {
+    "id": "README.md:172",
+    "text": "- The settings, the popup and the chat bar speak all 43 languages the extension translates into, not 10, with Hebrew and Persian right to left like Arabic"
+   },
+   {
+    "id": "README.md:173",
+    "text": "- The ten languages it already spoke were rewritten to read as written in that language, not word for word from English"
+   },
+   {
+    "id": "README.md:174",
+    "text": "- The interface language menu shows each language's flag and works with the keyboard"
+   },
+   {
+    "id": "README.md:215",
+    "text": "- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker), blocks Kick's pre-roll and overlay ads"
+   },
+   {
+    "id": "README.md:216",
+    "text": "- [kick-core](https://github.com/Pkkls/kick-core), the realtime gateway client shared across these extensions"
+   },
+   {
+    "id": "README.md:217",
+    "text": "- [kickbus](https://github.com/Pkkls/kickbus), official Kick webhooks relayed to local bots over SSE"
+   },
+   {
+    "id": "README.md:218",
+    "text": "- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner), Windows app that progresses Kick drop watch-time"
+   }
+  ],
+  "privacyClaims": [
+   {
+    "id": "PRIVACY.md:7",
+    "text": "**Nothing, unless you say yes.** There is no account, no login and no server of"
+   },
+   {
+    "id": "PRIVACY.md:8",
+    "text": "ours. The extension does not collect personal data."
+   },
+   {
+    "id": "PRIVACY.md:12",
+    "text": "The extension asks once whether you want to share anonymous usage statistics."
+   },
+   {
+    "id": "PRIVACY.md:13",
+    "text": "They stay off unless you accept (Chrome and other Chromium browsers: the popup,"
+   },
+   {
+    "id": "PRIVACY.md:14",
+    "text": "or Options > About; Firefox: the optional \"technical and interaction data\""
+   },
+   {
+    "id": "PRIVACY.md:15",
+    "text": "choice in Firefox's own install prompt or add-on settings). You can turn them"
+   },
+   {
+    "id": "PRIVACY.md:16",
+    "text": "off at any time, and the day being counted is deleted when you do."
+   },
+   {
+    "id": "PRIVACY.md:18",
+    "text": "If you accept, once a day the extension sends one event to Google Analytics"
+   },
+   {
+    "id": "PRIVACY.md:19",
+    "text": "(`www.google-analytics.com`, Measurement Protocol) containing only:"
+   },
+   {
+    "id": "PRIVACY.md:21",
+    "text": "- extension version, browser name, interface language, target language and"
+   },
+   {
+    "id": "PRIVACY.md:23",
+    "text": "- whether the 7TV extension is present and whether the browser has an"
+   },
+   {
+    "id": "PRIVACY.md:25",
+    "text": "- how many translations were shown, by engine (on-device, Google, DeepL, other,"
+   },
+   {
+    "id": "PRIVACY.md:28",
+    "text": "- how many compose previews were shown, inserted and dismissed;"
+   },
+   {
+    "id": "PRIVACY.md:29",
+    "text": "- the median and 95th percentile time a cloud translation took that day;"
+   },
+   {
+    "id": "PRIVACY.md:30",
+    "text": "- a random identifier generated on install, so a day is counted once per install."
+   },
+   {
+    "id": "PRIVACY.md:32",
+    "text": "It **never** contains message text, usernames, channel names, anything you"
+   },
+   {
+    "id": "PRIVACY.md:33",
+    "text": "type, your DeepL key or your browsing history. Google Analytics does not store"
+   },
+   {
+    "id": "PRIVACY.md:34",
+    "text": "IP addresses; it derives an approximate country from the request. Firefox"
+   },
+   {
+    "id": "PRIVACY.md:35",
+    "text": "older than version 140 has no built-in consent for this, so nothing is ever"
+   },
+   {
+    "id": "PRIVACY.md:40",
+    "text": "To translate a chat message, its **text content** (after we strip emotes,"
+   },
+   {
+    "id": "PRIVACY.md:41",
+    "text": "URLs, and `@mentions`) is sent to the translation provider you configure:"
+   },
+   {
+    "id": "PRIVACY.md:44",
+    "text": "|---|---|---|"
+   },
+   {
+    "id": "PRIVACY.md:45",
+    "text": "| Google Translate | `translate.googleapis.com` | text only |"
+   },
+   {
+    "id": "PRIVACY.md:46",
+    "text": "| DeepL | `api-free.deepl.com` or `api.deepl.com` | text + the last few chat lines as context, each with its author's username + your DeepL API key |"
+   },
+   {
+    "id": "PRIVACY.md:47",
+    "text": "| MyMemory | `api.mymemory.translated.net` | text only |"
+   },
+   {
+    "id": "PRIVACY.md:48",
+    "text": "| Lingva (configurable) | `lingva.lunar.icu` (or your instance) | text only |"
+   },
+   {
+    "id": "PRIVACY.md:50",
+    "text": "Apart from that DeepL context and the optional statistics above, we never send:"
+   },
+   {
+    "id": "PRIVACY.md:51",
+    "text": "usernames, channel names, badges, timestamps, your IP (beyond what the browser"
+   },
+   {
+    "id": "PRIVACY.md:52",
+    "text": "sends to any HTTP endpoint), or any other metadata."
+   },
+   {
+    "id": "PRIVACY.md:56",
+    "text": "These pieces of data live **only** on your device, in your browser's"
+   },
+   {
+    "id": "PRIVACY.md:59",
+    "text": "- Your preferences (target language, display style, providers, filters)."
+   },
+   {
+    "id": "PRIVACY.md:60",
+    "text": "- A cache of recent translations (text + translation pair), keyed by text."
+   },
+   {
+    "id": "PRIVACY.md:61",
+    "text": "- A daily counter of how many requests you made, broken down by provider"
+   },
+   {
+    "id": "PRIVACY.md:64",
+    "text": "You can wipe everything from the extension's options page (\"Clear cache\","
+   },
+   {
+    "id": "PRIVACY.md:65",
+    "text": "\"Reset usage stats\") or by removing the extension."
+   },
+   {
+    "id": "PRIVACY.md:69",
+    "text": "Each provider has its own privacy policy. We are not affiliated with any of"
+   },
+   {
+    "id": "PRIVACY.md:72",
+    "text": "- DeepL: <https://www.deepl.com/privacy>"
+   },
+   {
+    "id": "PRIVACY.md:73",
+    "text": "- Google: <https://policies.google.com/privacy>"
+   },
+   {
+    "id": "PRIVACY.md:74",
+    "text": "- MyMemory: <https://mymemory.translated.net/doc/usagelimits.php>"
+   },
+   {
+    "id": "PRIVACY.md:75",
+    "text": "- Lingva: depends on the instance you pick (default is community-run)."
+   },
+   {
+    "id": "PRIVACY.md:79",
+    "text": "- `storage`: to save your preferences and cache."
+   },
+   {
+    "id": "PRIVACY.md:80",
+    "text": "- `alarms`: to keep the service worker alive briefly during bursts of chat."
+   },
+   {
+    "id": "PRIVACY.md:81",
+    "text": "- `scripting`: once, when the extension is installed or updated, to load its"
+   },
+   {
+    "id": "PRIVACY.md:84",
+    "text": "- `host_permissions` for kick.com and the translation provider endpoints"
+   },
+   {
+    "id": "PRIVACY.md:87",
+    "text": "We do not request the `tabs` or `<all_urls>` permission."
+   },
+   {
+    "id": "PRIVACY.md:91",
+    "text": "Open an issue at <https://github.com/Pkkls/kick-chat-translator/issues>."
+   }
+  ]
+ }
+}

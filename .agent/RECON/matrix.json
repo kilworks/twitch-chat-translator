@@ -1,0 +1,485 @@
+{
+ "date": "2026-10-22",
+ "cells": [
+  {
+   "config": "7tv+bttv",
+   "surface": "clip",
+   "code": 0,
+   "line": "7tv+bttv/clip: ok ch21 adds=213 rows=30 inj kept=0/20 -> .agent\\RECON\\7tv+bttv\\clip"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "embed",
+   "code": 0,
+   "line": "7tv+bttv/embed: ok ch21 adds=35 rows=50 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\embed"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "hidden",
+   "code": 0,
+   "line": "7tv+bttv/hidden: ok ch21 adds=23 rows=30 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\hidden"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "light",
+   "code": 0,
+   "line": "7tv+bttv/light: ok ch21 adds=23 rows=30 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\light"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "live",
+   "code": 0,
+   "line": "7tv+bttv/live: ok ch21 adds=48 rows=66 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\live"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "mobile",
+   "code": 0,
+   "line": "7tv+bttv/mobile: ok ch21 adds=52 rows=68 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\mobile"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "popout",
+   "code": 0,
+   "line": "7tv+bttv/popout: ok ch21 adds=48 rows=91 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\popout"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "spa",
+   "code": 0,
+   "line": "7tv+bttv/spa: ok ch21 adds=23 rows=30 inj kept=13/13 -> .agent\\RECON\\7tv+bttv\\spa"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "theater",
+   "code": 0,
+   "line": "7tv+bttv/theater: ok ch21 adds=42 rows=48 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\theater"
+  },
+  {
+   "config": "7tv+bttv",
+   "surface": "vod",
+   "code": 0,
+   "line": "7tv+bttv/vod: ok ch21 adds=16 rows=27 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\vod"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "clip",
+   "code": 0,
+   "line": "7tv+ffz/clip: ok ch21 adds=213 rows=40 inj kept=0/20 -> .agent\\RECON\\7tv+ffz\\clip"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "embed",
+   "code": 0,
+   "line": "7tv+ffz/embed: ok ch21 adds=75 rows=92 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\embed"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "hidden",
+   "code": 0,
+   "line": "7tv+ffz/hidden: ok ch21 adds=106 rows=117 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\hidden"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "light",
+   "code": 0,
+   "line": "7tv+ffz/light: ok ch21 adds=105 rows=128 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\light"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "live",
+   "code": 0,
+   "line": "7tv+ffz/live: ok ch21 adds=78 rows=87 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\live"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "mobile",
+   "code": 0,
+   "line": "7tv+ffz/mobile: ok ch21 adds=17 rows=30 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\mobile"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "popout",
+   "code": 0,
+   "line": "7tv+ffz/popout: ok ch21 adds=62 rows=91 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\popout"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "spa",
+   "code": 0,
+   "line": "7tv+ffz/spa: ok ch21 adds=49 rows=67 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\spa"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "theater",
+   "code": 0,
+   "line": "7tv+ffz/theater: ok ch21 adds=22 rows=39 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\theater"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "vod",
+   "code": 0,
+   "line": "7tv+ffz/vod: ok ch21 adds=16 rows=26 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\vod"
+  },
+  {
+   "config": "7tv",
+   "surface": "clip",
+   "code": 0,
+   "line": "7tv/clip: ok ch21 adds=235 rows=46 inj kept=0/20 -> .agent\\RECON\\7tv\\clip"
+  },
+  {
+   "config": "7tv",
+   "surface": "embed",
+   "code": 0,
+   "line": "7tv/embed: ok ch21 adds=93 rows=99 inj kept=20/20 -> .agent\\RECON\\7tv\\embed"
+  },
+  {
+   "config": "7tv",
+   "surface": "hidden",
+   "code": 0,
+   "line": "7tv/hidden: ok ch21 adds=157 rows=174 inj kept=20/20 -> .agent\\RECON\\7tv\\hidden"
+  },
+  {
+   "config": "7tv",
+   "surface": "light",
+   "code": 0,
+   "line": "7tv/light: ok ch21 adds=120 rows=153 inj kept=20/20 -> .agent\\RECON\\7tv\\light"
+  },
+  {
+   "config": "7tv",
+   "surface": "live",
+   "code": 0,
+   "line": "7tv/live: ok ch21 adds=18 rows=27 inj kept=20/20 -> .agent\\RECON\\7tv\\live"
+  },
+  {
+   "config": "7tv",
+   "surface": "mobile",
+   "code": 0,
+   "line": "7tv/mobile: ok ch21 adds=50 rows=64 inj kept=20/20 -> .agent\\RECON\\7tv\\mobile"
+  },
+  {
+   "config": "7tv",
+   "surface": "popout",
+   "code": 0,
+   "line": "7tv/popout: ok ch21 adds=19 rows=33 inj kept=20/20 -> .agent\\RECON\\7tv\\popout"
+  },
+  {
+   "config": "7tv",
+   "surface": "spa",
+   "code": 0,
+   "line": "7tv/spa: ok ch21 adds=113 rows=134 inj kept=20/20 -> .agent\\RECON\\7tv\\spa"
+  },
+  {
+   "config": "7tv",
+   "surface": "theater",
+   "code": 0,
+   "line": "7tv/theater: ok ch21 adds=58 rows=82 inj kept=20/20 -> .agent\\RECON\\7tv\\theater"
+  },
+  {
+   "config": "7tv",
+   "surface": "vod",
+   "code": 0,
+   "line": "7tv/vod: ok ch21 adds=16 rows=26 inj kept=20/20 -> .agent\\RECON\\7tv\\vod"
+  },
+  {
+   "config": "all",
+   "surface": "clip",
+   "code": 0,
+   "line": "all/clip: ok ch21 adds=205 rows=46 inj kept=0/20 -> .agent\\RECON\\all\\clip"
+  },
+  {
+   "config": "all",
+   "surface": "embed",
+   "code": 0,
+   "line": "all/embed: ok ch21 adds=25 rows=34 inj kept=20/20 -> .agent\\RECON\\all\\embed"
+  },
+  {
+   "config": "all",
+   "surface": "hidden",
+   "code": 0,
+   "line": "all/hidden: ok ch21 adds=22 rows=31 inj kept=20/20 -> .agent\\RECON\\all\\hidden"
+  },
+  {
+   "config": "all",
+   "surface": "light",
+   "code": 0,
+   "line": "all/light: ok ch21 adds=10 rows=20 inj kept=20/20 -> .agent\\RECON\\all\\light"
+  },
+  {
+   "config": "all",
+   "surface": "live",
+   "code": 0,
+   "line": "all/live: ok ch21 adds=49 rows=71 inj kept=20/20 -> .agent\\RECON\\all\\live"
+  },
+  {
+   "config": "all",
+   "surface": "mobile",
+   "code": 0,
+   "line": "all/mobile: ok ch21 adds=20 rows=28 inj kept=20/20 -> .agent\\RECON\\all\\mobile"
+  },
+  {
+   "config": "all",
+   "surface": "popout",
+   "code": 0,
+   "line": "all/popout: ok ch21 adds=25 rows=37 inj kept=20/20 -> .agent\\RECON\\all\\popout"
+  },
+  {
+   "config": "all",
+   "surface": "spa",
+   "code": 0,
+   "line": "all/spa: ok ch21 adds=19 rows=27 inj kept=14/14 -> .agent\\RECON\\all\\spa"
+  },
+  {
+   "config": "all",
+   "surface": "theater",
+   "code": 0,
+   "line": "all/theater: ok ch21 adds=21 rows=26 inj kept=20/20 -> .agent\\RECON\\all\\theater"
+  },
+  {
+   "config": "all",
+   "surface": "vod",
+   "code": 0,
+   "line": "all/vod: ok ch21 adds=16 rows=26 inj kept=20/20 -> .agent\\RECON\\all\\vod"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "clip",
+   "code": 0,
+   "line": "bttv+ffz/clip: ok ch21 adds=205 rows=46 inj kept=0/20 -> .agent\\RECON\\bttv+ffz\\clip"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "embed",
+   "code": 0,
+   "line": "bttv+ffz/embed: ok ch21 adds=17 rows=22 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\embed"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "hidden",
+   "code": 0,
+   "line": "bttv+ffz/hidden: ok ch21 adds=57 rows=71 inj kept=19/20 -> .agent\\RECON\\bttv+ffz\\hidden"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "light",
+   "code": 0,
+   "line": "bttv+ffz/light: ok ch21 adds=56 rows=74 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\light"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "live",
+   "code": 0,
+   "line": "bttv+ffz/live: ok ch21 adds=93 rows=127 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\live"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "mobile",
+   "code": 0,
+   "line": "bttv+ffz/mobile: ok ch21 adds=33 rows=52 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\mobile"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "popout",
+   "code": 0,
+   "line": "bttv+ffz/popout: ok ch21 adds=15 rows=19 inj kept=19/19 -> .agent\\RECON\\bttv+ffz\\popout"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "spa",
+   "code": 0,
+   "line": "bttv+ffz/spa: ok ch21 adds=47 rows=57 inj kept=4/4 -> .agent\\RECON\\bttv+ffz\\spa"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "theater",
+   "code": 0,
+   "line": "bttv+ffz/theater: ok ch21 adds=33 rows=51 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\theater"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "vod",
+   "code": 0,
+   "line": "bttv+ffz/vod: ok ch21 adds=16 rows=26 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\vod"
+  },
+  {
+   "config": "bttv",
+   "surface": "clip",
+   "code": 0,
+   "line": "bttv/clip: ok ch21 adds=250 rows=40 inj kept=0/20 -> .agent\\RECON\\bttv\\clip"
+  },
+  {
+   "config": "bttv",
+   "surface": "embed",
+   "code": 0,
+   "line": "bttv/embed: ok ch21 adds=26 rows=34 inj kept=20/20 -> .agent\\RECON\\bttv\\embed"
+  },
+  {
+   "config": "bttv",
+   "surface": "hidden",
+   "code": 0,
+   "line": "bttv/hidden: ok ch21 adds=17 rows=24 inj kept=20/20 -> .agent\\RECON\\bttv\\hidden"
+  },
+  {
+   "config": "bttv",
+   "surface": "light",
+   "code": 0,
+   "line": "bttv/light: ok ch21 adds=30 rows=39 inj kept=20/20 -> .agent\\RECON\\bttv\\light"
+  },
+  {
+   "config": "bttv",
+   "surface": "live",
+   "code": 0,
+   "line": "bttv/live: ok ch21 adds=69 rows=104 inj kept=20/20 -> .agent\\RECON\\bttv\\live"
+  },
+  {
+   "config": "bttv",
+   "surface": "mobile",
+   "code": 0,
+   "line": "bttv/mobile: ok ch21 adds=65 rows=78 inj kept=20/20 -> .agent\\RECON\\bttv\\mobile"
+  },
+  {
+   "config": "bttv",
+   "surface": "popout",
+   "code": 0,
+   "line": "bttv/popout: ok ch21 adds=22 rows=36 inj kept=20/20 -> .agent\\RECON\\bttv\\popout"
+  },
+  {
+   "config": "bttv",
+   "surface": "spa",
+   "code": 0,
+   "line": "bttv/spa: ok ch21 adds=18 rows=27 inj kept=19/19 -> .agent\\RECON\\bttv\\spa"
+  },
+  {
+   "config": "bttv",
+   "surface": "theater",
+   "code": 0,
+   "line": "bttv/theater: ok ch21 adds=72 rows=88 inj kept=20/20 -> .agent\\RECON\\bttv\\theater"
+  },
+  {
+   "config": "bttv",
+   "surface": "vod",
+   "code": 0,
+   "line": "bttv/vod: ok ch21 adds=16 rows=27 inj kept=20/20 -> .agent\\RECON\\bttv\\vod"
+  },
+  {
+   "config": "ffz",
+   "surface": "clip",
+   "code": 0,
+   "line": "ffz/clip: ok ch21 adds=177 rows=60 inj kept=0/20 -> .agent\\RECON\\ffz\\clip"
+  },
+  {
+   "config": "ffz",
+   "surface": "embed",
+   "code": 0,
+   "line": "ffz/embed: ok ch21 adds=102 rows=111 inj kept=20/20 -> .agent\\RECON\\ffz\\embed"
+  },
+  {
+   "config": "ffz",
+   "surface": "hidden",
+   "code": 0,
+   "line": "ffz/hidden: ok ch21 adds=42 rows=48 inj kept=19/20 -> .agent\\RECON\\ffz\\hidden"
+  },
+  {
+   "config": "ffz",
+   "surface": "light",
+   "code": 0,
+   "line": "ffz/light: ok ch21 adds=48 rows=57 inj kept=20/20 -> .agent\\RECON\\ffz\\light"
+  },
+  {
+   "config": "ffz",
+   "surface": "live",
+   "code": 0,
+   "line": "ffz/live: ok ch21 adds=30 rows=41 inj kept=20/20 -> .agent\\RECON\\ffz\\live"
+  },
+  {
+   "config": "ffz",
+   "surface": "mobile",
+   "code": 0,
+   "line": "ffz/mobile: ok ch21 adds=61 rows=105 inj kept=20/20 -> .agent\\RECON\\ffz\\mobile"
+  },
+  {
+   "config": "ffz",
+   "surface": "popout",
+   "code": 0,
+   "line": "ffz/popout: ok ch21 adds=52 rows=60 inj kept=20/20 -> .agent\\RECON\\ffz\\popout"
+  },
+  {
+   "config": "ffz",
+   "surface": "spa",
+   "code": 0,
+   "line": "ffz/spa: ok ch21 adds=37 rows=50 inj kept=10/10 -> .agent\\RECON\\ffz\\spa"
+  },
+  {
+   "config": "ffz",
+   "surface": "theater",
+   "code": 0,
+   "line": "ffz/theater: ok ch21 adds=91 rows=117 inj kept=20/20 -> .agent\\RECON\\ffz\\theater"
+  },
+  {
+   "config": "ffz",
+   "surface": "vod",
+   "code": 0,
+   "line": "ffz/vod: ok ch21 adds=16 rows=26 inj kept=20/20 -> .agent\\RECON\\ffz\\vod"
+  },
+  {
+   "config": "native",
+   "surface": "clip",
+   "code": 0,
+   "line": "native/clip: ok ch31 adds=68 rows=43 inj kept=20/20 -> .agent\\RECON\\native\\clip"
+  },
+  {
+   "config": "native",
+   "surface": "embed",
+   "code": 0,
+   "line": "native/embed: ok ch21 adds=92 rows=105 inj kept=20/20 -> .agent\\RECON\\native\\embed"
+  },
+  {
+   "config": "native",
+   "surface": "hidden",
+   "code": 0,
+   "line": "native/hidden: ok ch21 adds=52 rows=68 inj kept=20/20 -> .agent\\RECON\\native\\hidden"
+  },
+  {
+   "config": "native",
+   "surface": "light",
+   "code": 0,
+   "line": "native/light: ok ch21 adds=52 rows=66 inj kept=20/20 -> .agent\\RECON\\native\\light"
+  },
+  {
+   "config": "native",
+   "surface": "live",
+   "code": 0,
+   "line": "native/live: ok ch21 adds=100 rows=116 inj kept=20/20 -> .agent\\RECON\\native\\live"
+  },
+  {
+   "config": "native",
+   "surface": "mobile",
+   "code": 0,
+   "line": "native/mobile: ok ch21 adds=107 rows=141 inj kept=20/20 -> .agent\\RECON\\native\\mobile"
+  },
+  {
+   "config": "native",
+   "surface": "popout",
+   "code": 0,
+   "line": "native/popout: ok ch21 adds=96 rows=110 inj kept=20/20 -> .agent\\RECON\\native\\popout"
+  },
+  {
+   "config": "native",
+   "surface": "spa",
+   "code": 0,
+   "line": "native/spa: ok ch21 adds=43 rows=53 inj kept=3/3 -> .agent\\RECON\\native\\spa"
+  },
+  {
+   "config": "native",
+   "surface": "theater",
+   "code": 0,
+   "line": "native/theater: ok ch21 adds=108 rows=141 inj kept=20/20 -> .agent\\RECON\\native\\theater"
+  },
+  {
+   "config": "native",
+   "surface": "vod",
+   "code": 0,
+   "line": "native/vod: ok ch21 adds=16 rows=26 inj kept=20/20 -> .agent\\RECON\\native\\vod"
+  }
+ ]
+}

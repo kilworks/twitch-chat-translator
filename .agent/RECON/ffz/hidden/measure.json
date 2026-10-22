@@ -1,0 +1,193 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:36:00.690Z",
+ "config": "ffz",
+ "surface": "hidden",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 20
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 15000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 20,
+    "children": 29,
+    "path": "div.Layout-sc-1xcs6mc-0.hJtYyR > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 29,
+  "rowTags": {
+   "div.Layout-sc-1xcs6mc-0": 29
+  },
+  "rowAttrs": {
+   "class": 29
+  },
+  "classFreq": {
+   "Layout-sc-1xcs6mc-0": 70,
+   "chat-line__message": 27,
+   "chat-line__message--badges": 27,
+   "chat-line__username": 27,
+   "notranslate": 27,
+   "chat-author__display-name": 27,
+   "ffz-tooltip": 26,
+   "ffz-badge": 26,
+   "message": 26,
+   "text-fragment": 26,
+   "CoreText-sc-1txzju1-0": 6,
+   "ffz--fix-reply-line": 5,
+   "jGtuXC": 5,
+   "ScSvgWrapper-sc-wkgzod-0": 5,
+   "jyTdkS": 5,
+   "tw-svg": 5,
+   "brOIRu": 5,
+   "OLUUU": 5,
+   "chat-line__message-mention": 2,
+   "ffz--pointer-events": 2,
+   "tw-c-text-base": 2,
+   "tw-strong": 2,
+   "dBRkEN": 1,
+   "chat-scrollable-area__message-container": 1,
+   "chat-line__status": 1,
+   "fJYwSz": 1,
+   "chat-line__message--deleted": 1,
+   "ffz--watch-streak-line": 1,
+   "ffz-notice-line": 1,
+   "user-notice-line": 1,
+   "tw-pd-y-05": 1,
+   "ffz-i-watch-streak": 1,
+   "tw-mg-r-05": 1,
+   "ffz--points-icon": 1,
+   "tw-c-text-alt-2": 1,
+   "chatter-name": 1,
+   "chat-line--inline": 1
+  },
+  "dataATarget": {
+   "chat-message-text": 26,
+   "chat-welcome-message": 1
+  },
+  "dataTestSelector": {
+   "chat-scrollable-area__message-container": 1
+  },
+  "attrNames": {
+   "role": 29,
+   "data-room-id": 28,
+   "data-room": 28,
+   "data-user-id": 28,
+   "data-user": 28,
+   "data-a-target": 27,
+   "aria-hidden": 27,
+   "data-provider": 26,
+   "data-badge": 26,
+   "data-tooltip-type": 26,
+   "data-badge-idx": 26,
+   "data-version": 24,
+   "d": 10,
+   "dir": 10,
+   "width": 5,
+   "height": 5,
+   "viewBox": 5,
+   "fill-rule": 5,
+   "clip-rule": 5,
+   "title": 5,
+   "data-replaced": 2,
+   "data-login": 2,
+   "data-test-selector": 1,
+   "href": 1
+  },
+  "emoteImgs": {},
+  "emoteImgClasses": {},
+  "textSamples": [
+   "1ilham1_: В ПАБГЕ НЕ ПОШЛО ТЕПЕРЬ В ЭТО ИГРАЕМ ЗХАХАХ",
+   "obrbrpatapimo: !игра",
+   "sqr163: 1 в 1",
+   "zentrexxz: спортсмен",
+   "denchik668: Ку",
+   "twizz1ex: Реалистичнее пабга кст",
+   "yapisska: народный",
+   "",
+   "Replying to @Puffkobtw: зачем это когда есть пабг soundz67p: а почему нет",
+   "bron_nas: ку",
+   "Twast_: ТАРАРАРЯ ИСТЕ МАЗАФАКА",
+   "ggggggaq73: без рук профи"
+  ],
+  "rowHtml": [
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"951664671\" data-user=\"1ilham1_\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(154, 205, 50);\"><span class=\"chat-author__display-name\">1ilham1_</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">В ПАБГЕ НЕ ПОШЛО ТЕПЕРЬ В ЭТО ИГРАЕМ ЗХАХАХ</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1392385070\" data-user=\"obrbrpatapimo\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(166, 94, 232);\"><span class=\"chat-author__display-name\">obrbrpatapimo</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">!игра</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"185233676\" data-user=\"sqr163\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"bloom-badge\" data-version=\"4\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(255, 127, 80);\"><span class=\"chat-author__display-name\">sqr163</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">1 в 1</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1505618102\" data-user=\"zentrexxz\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"blue-creeper-boss\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(0, 255, 127);\"><span class=\"chat-author__display-name\">zentrexxz</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">спортсмен</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"633058942\" data-user=\"denchik668\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(255, 105, 180);\"><span class=\"chat-author__display-name\">denchik668</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Ку</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1324421679\" data-user=\"twizz1ex\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(30, 144, 255);\"><span class=\"chat-author__display-name\">twizz1ex</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Реалистичнее пабга кст</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"729994437\" data-user=\"yapisska\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"no_audio\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(254, 25, 25);\"><span class=\"chat-author__display-name\">yapisska</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">народный</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"944520303\" data-user=\"soundz67p\"><div class=\"ffz--fix-reply-line\"><div class=\"Layout-sc-1xcs6mc-0 jGtuXC\"><div class=\"ScSvgWrapper-sc-wkgzod-0 jyTdkS tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M9 10h2v2H9v-2Zm6 0h-2v2h2v-2Z\"></path><path fill-rule=\"evenodd\" d=\"m12 22-3-3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4l-3 3Zm-2.172-5L12 19.172 14.172 17H19V5H5v12h4.828Z\" clip-rule=\"evenodd\"></path></svg></div><div class=\"Layout-sc-1xcs6mc-0 brOIRu\"><p title=\"зачем это когда есть пабг\" class=\"CoreText-sc-1txzju1-0 OLUUU\">Replying to <span dir=\"auto\">@Puffkobtw</span>: <span dir=\"auto\">зачем это когда есть пабг</span></p></div></div></div><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(0, 255, 127);\"><span class=\"chat-author__display-name\">soundz67p</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> а почему нет</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"881852227\" data-user=\"bron_nas\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"low\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(218, 165, 32);\"><span class=\"chat-author__display-name\">bron_nas</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ку</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"252378222\" data-user=\"twast_\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"2026-bafta-games-awards\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(254, 25, 25);\"><span class=\"chat-author__display-name\">Twast_</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">ТАРАРАРЯ ИСТЕ МАЗАФАКА</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1518863437\" data-user=\"ggggggaq73\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(11, 149, 11);\"><span class=\"chat-author__display-name\">ggggggaq73</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">без рук профи</span></span></div></div></div>"
+  ],
+  "listHtmlBytes": 23703
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 0,
+  "ffz": 72
+ },
+ "background": "rgb(24, 24, 27)",
+ "composer": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$vj1tux2um88",
+    "__reactProps$vj1tux2um88"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "hidden": {
+  "hiddenState": "visible",
+  "transitions": [],
+  "rowsBefore": 29,
+  "rowsWhileHidden": 34,
+  "rowsEndHidden": 65,
+  "after": 70,
+  "resumedList": true
+ },
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

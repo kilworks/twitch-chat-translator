@@ -1,0 +1,203 @@
+{
+ "summary": {
+  "date": "2026-10-22",
+  "channels": 20,
+  "clientIdCaptured": true,
+  "gqlAnswered": 20,
+  "tagLanguagePresent": 4,
+  "bothAnswered": 4,
+  "agreeWhenBoth": 2,
+  "gqlValues": [
+   "FR",
+   "FR",
+   "JA",
+   "EN",
+   "ES",
+   "RU",
+   "RU",
+   "FR",
+   "ES",
+   "FR",
+   "FR",
+   "FR",
+   "RU",
+   "EN",
+   "FR",
+   "RU",
+   "RU",
+   "FR",
+   "RU",
+   "FR"
+  ]
+ },
+ "rows": [
+  {
+   "ch": "ch0",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 1,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch1",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 7,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch2",
+   "gql": "JA",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch3",
+   "gql": "EN",
+   "gqlErr": null,
+   "tagCount": 7,
+   "tagLangs": [
+    "English"
+   ],
+   "agree": true
+  },
+  {
+   "ch": "ch4",
+   "gql": "ES",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch5",
+   "gql": "RU",
+   "gqlErr": null,
+   "tagCount": 1,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch6",
+   "gql": "RU",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [
+    "English"
+   ],
+   "agree": false
+  },
+  {
+   "ch": "ch7",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 7,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch8",
+   "gql": "ES",
+   "gqlErr": null,
+   "tagCount": 5,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch9",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 5,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch10",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch11",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 6,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch12",
+   "gql": "RU",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch13",
+   "gql": "EN",
+   "gqlErr": null,
+   "tagCount": 10,
+   "tagLangs": [
+    "English"
+   ],
+   "agree": true
+  },
+  {
+   "ch": "ch14",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 6,
+   "tagLangs": [
+    "English"
+   ],
+   "agree": false
+  },
+  {
+   "ch": "ch15",
+   "gql": "RU",
+   "gqlErr": null,
+   "tagCount": 1,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch16",
+   "gql": "RU",
+   "gqlErr": null,
+   "tagCount": 1,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch17",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch18",
+   "gql": "RU",
+   "gqlErr": null,
+   "tagCount": 2,
+   "tagLangs": [],
+   "agree": null
+  },
+  {
+   "ch": "ch19",
+   "gql": "FR",
+   "gqlErr": null,
+   "tagCount": 7,
+   "tagLangs": [],
+   "agree": null
+  }
+ ]
+}

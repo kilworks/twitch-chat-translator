@@ -1,0 +1,186 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:16:04.648Z",
+ "config": "native",
+ "surface": "clip",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 0
+  },
+  {
+   "ch": 4,
+   "adds": 0
+  },
+  {
+   "ch": 31,
+   "adds": 68
+  }
+ ],
+ "channel": "ch31",
+ "list": {
+  "windowMs": 20000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 68,
+    "children": 43,
+    "path": "div.Layout-sc-1xcs6mc-0.hIWzhZ.chat-shell.chat-shell__expanded > div.Layout-sc-1xcs6mc-0.jSdlqB > div#clip-chat-tabs__chat-replay-panel[role=\"tabpanel\"].Layout-sc-1xcs6mc-0.gUhpt > div.Layout-sc-1xcs6mc-0.iGiUbs.video-chat > div.Layout-sc-1xcs6mc-0.lgTWNO > div.video-chat__message-list-wrapper > div.Layout-sc-1xcs6mc-0.iEuTMk > ul.InjectLayout-sc-1i43xsx-0.gDoJZA"
+   },
+   {
+    "added": 5,
+    "children": 5,
+    "path": "div.Layout-sc-1xcs6mc-0.eDiLRr.root-scrollable__wrapper > div.InjectLayout-sc-1i43xsx-0.persistent-player > div.ScAspectRatio-sc-18km980-1.jVFDMB.tw-aspect > div[data-a-target=\"video-player\"][data-test-selector=\"video-player__video-layout\"].Layout-sc-1xcs6mc-0.video-player > div[data-test-selector=\"video-player__video-container\"].Layout-sc-1xcs6mc-0.ehakif.video-player__container > div[data-a-target=\"video-ref\"].Layout-sc-1xcs6mc-0.video-ref > div.Layout-sc-1xcs6mc-0.video-player__default-player > div.Layout-sc-1xcs6mc-0.jxnAvX.video-player__overlay"
+   },
+   {
+    "added": 1,
+    "children": 5,
+    "path": "div.Layout-sc-1xcs6mc-0.hyqqEQ > main.InjectLayout-sc-1i43xsx-0.dUtJpw.twilight-main > div[data-a-target=\"root-scroller\"].scrollable-area.root-scrollable.root-scrollable__content > div.Layout-sc-1xcs6mc-0.eDiLRr.root-scrollable__wrapper > div.InjectLayout-sc-1i43xsx-0.persistent-player > div.ScAspectRatio-sc-18km980-1.jVFDMB.tw-aspect > div[data-a-target=\"video-player\"][data-test-selector=\"video-player__video-layout\"].Layout-sc-1xcs6mc-0.video-player > div[data-test-selector=\"video-player__video-container\"].Layout-sc-1xcs6mc-0.ehakif.video-player__container"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 43,
+  "rowTags": {
+   "li.InjectLayout-sc-1i43xsx-0.iUNIaK": 43
+  },
+  "rowAttrs": {
+   "class": 43
+  },
+  "classFreq": {
+   "Layout-sc-1xcs6mc-0": 437,
+   "InjectLayout-sc-1i43xsx-0": 177,
+   "ScCoreLink-sc-16kq0mq-0": 51,
+   "dKXvAZ": 51,
+   "tw-link": 51,
+   "bvEAgn": 47,
+   "iUNIaK": 43,
+   "gTtfg": 43,
+   "vod-message": 43,
+   "jylwjN": 43,
+   "vod-message__header": 43,
+   "iTpDpK": 43,
+   "bohlnR": 43,
+   "ScInteractableBase-sc-ofisyf-0": 43,
+   "ScInteractableDefault-sc-ofisyf-1": 43,
+   "bPDFbr": 43,
+   "iTnOTE": 43,
+   "tw-interactable": 43,
+   "bekVPP": 43,
+   "CoreText-sc-1txzju1-0": 43,
+   "iZVuiT": 43,
+   "YRvnc": 43,
+   "cFxJWE": 43,
+   "dmulkQ": 43,
+   "video-chat__message-author": 43,
+   "chat-author__display-name": 43,
+   "cqnpHZ": 43,
+   "video-chat__message": 43,
+   "jnPoKn": 43,
+   "iuktUJ": 43,
+   "video-chat__message-menu": 43,
+   "glFavL": 43,
+   "ScCoreButton-sc-ocjdkq-0": 43,
+   "cNBIIJ": 43,
+   "ScButtonIcon-sc-9yap0r-0": 43,
+   "hIySfo": 43,
+   "ButtonIconFigure-sc-1emm8lf-0": 43,
+   "dEsSMI": 43,
+   "ScSvgWrapper-sc-wkgzod-0": 43,
+   "cnGLHG": 43,
+   "tw-svg": 43,
+   "text-fragment": 41,
+   "chat-badge": 40,
+   "dZsmwl": 7,
+   "chat-image__container": 7,
+   "chat-image": 7,
+   "chat-line__message--emote": 7,
+   "gDoJZA": 1,
+   "mention-fragment": 1
+  },
+  "dataATarget": {
+   "chat-message-username": 43,
+   "chat-message-text": 41,
+   "chat-badge": 8,
+   "emote-name": 7,
+   "chat-message-mention": 1
+  },
+  "dataTestSelector": {
+   "message-username": 43
+  },
+  "attrNames": {
+   "data-a-target": 100,
+   "rel": 51,
+   "href": 51,
+   "target": 51,
+   "alt": 47,
+   "src": 47,
+   "srcset": 47,
+   "data-tt_content": 43,
+   "data-tt_medium": 43,
+   "data-a-user": 43,
+   "data-test-selector": 43,
+   "aria-label": 43,
+   "width": 43,
+   "height": 43,
+   "viewBox": 43,
+   "focusable": 43,
+   "aria-hidden": 43,
+   "role": 43,
+   "d": 43
+  },
+  "emoteImgs": {
+   "static-cdn.jtvnw.net": 47
+  },
+  "emoteImgClasses": {
+   "chat-badge": 40,
+   "chat-image": 7,
+   "chat-line__message--emote": 7
+  },
+  "textSamples": [
+   "0:06 minecraftbeast0:@ワイルダートザナイト i feel like you wouldnt be able to process anything thats happening in the movie and in the game so you would just be left with a weak ass headache inducing experience",
+   "0:06 carabaz_:SoyHowl",
+   "0:06 Kirage47:Soy",
+   "0:07 Eugenevds:Classic sirens",
+   "0:07 hammnoburger:so soy",
+   "0:08 siralliumcepa:KRAKEN WATER",
+   "0:08 domovolt:kek kitchen pigeon",
+   "0:08 Nolliak:SoyHowl scream to a kidgame ",
+   "0:08 SimoneX93:BirdgeArrive",
+   "0:09 pepegakun:MONKA",
+   "0:10 Little_Fart_Jr:",
+   "0:10 WabbitTwouble:gachiRoll"
+  ],
+  "rowHtml": [
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:06</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><a data-a-target=\"chat-badge\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link\" rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.twitch.tv/subs/<ch0>\"><img alt=\"3-Month Subscriber badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/af91d9fc-03d5-4e2d-b23f-d74d347430b9/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/af91d9fc-03d5-4e2d-b23f-d74d347430b9/1 1x, https://static-cdn.jtvnw.net/badges/v1/af91d9fc-03d5-4e2d-b23f-d74d347430b9/2 2x, https://static-cdn.jtvnw.net/badges/v1/af91d9fc-03d5-4e2d-b23f-d74d347430b9/3 4x\"></a></div><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"Watching without audio badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/aef2cd08-f29b-45a1-8c12-d44d7fd5e6f0/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/aef2cd08-f29b-45a1-8c12-d44d7fd5e6f0/1 1x, https://static-cdn.jtvnw.net/badges/v1/aef2cd08-f29b-45a1-8c12-d44d7fd5e6f0/2 2x, https://static-cdn.jtvnw.net/badges/v1/aef2cd08-f29b-45a1-8c12-d44d7fd5e6f0/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/minecraftbeast0\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"minecraftbeast0\" data-test-selector=\"message-username\" style=\"color: rgb(0, 255, 127);\">minecraftbeast0</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"mention-fragment\" data-a-target=\"chat-message-mention\">@ワイルダートザナイト</span><span class=\"text-fragment\" data-a-target=\"chat-message-text\"> i feel like you wouldnt be able to process anything thats happening in the movie and in the game so you would just be left with a weak ass headache inducing experience</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:06</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><a data-a-target=\"chat-badge\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link\" rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.twitch.tv/subs/<ch0>\"><img alt=\"Subscriber badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/bcc61576-5a56-491f-9832-b92faf5f3c93/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/bcc61576-5a56-491f-9832-b92faf5f3c93/1 1x, https://static-cdn.jtvnw.net/badges/v1/bcc61576-5a56-491f-9832-b92faf5f3c93/2 2x, https://static-cdn.jtvnw.net/badges/v1/bcc61576-5a56-491f-9832-b92faf5f3c93/3 4x\"></a></div><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"Wolf Medallion badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/1 1x, https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/2 2x, https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/carabaz_\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"carabaz_\" data-test-selector=\"message-username\" style=\"color: rgb(138, 43, 226);\">carabaz_</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">SoyHowl</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:06</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/kirage47\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"kirage47\" data-test-selector=\"message-username\" style=\"color: rgb(178, 34, 34);\">Kirage47</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Soy</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:07</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"Pichu badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/1 1x, https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/2 2x, https://static-cdn.jtvnw.net/badges/v1/20f214cf-36b0-4b42-8992-3b769bcb0461/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/eugenevds\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"eugenevds\" data-test-selector=\"message-username\" style=\"color: rgb(95, 158, 160);\">Eugenevds</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Classic sirens</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:07</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"Elden Ring SuperFan badge - Recluse badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/5afadc6c-933b-4ede-b318-3752bbf267a9/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/5afadc6c-933b-4ede-b318-3752bbf267a9/1 1x, https://static-cdn.jtvnw.net/badges/v1/5afadc6c-933b-4ede-b318-3752bbf267a9/2 2x, https://static-cdn.jtvnw.net/badges/v1/5afadc6c-933b-4ede-b318-3752bbf267a9/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/hammnoburger\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"hammnoburger\" data-test-selector=\"message-username\" style=\"color: rgb(255, 105, 180);\">hammnoburger</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">so soy</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:08</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/siralliumcepa\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"siralliumcepa\" data-test-selector=\"message-username\" style=\"color: rgb(0, 128, 0);\">siralliumcepa</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">KRAKEN WATER</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:08</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"TheDragonsDogma badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/f699b4ab-8952-46a1-88ff-a5515406f0a5/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/f699b4ab-8952-46a1-88ff-a5515406f0a5/1 1x, https://static-cdn.jtvnw.net/badges/v1/f699b4ab-8952-46a1-88ff-a5515406f0a5/2 2x, https://static-cdn.jtvnw.net/badges/v1/f699b4ab-8952-46a1-88ff-a5515406f0a5/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/domovolt\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"domovolt\" data-test-selector=\"message-username\" style=\"color: rgb(210, 105, 30);\">domovolt</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">kek kitchen pigeon</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:08</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"Raging Wolf Helm badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/3ff668be-59a3-4e3e-96af-e6b2908b3171/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/3ff668be-59a3-4e3e-96af-e6b2908b3171/1 1x, https://static-cdn.jtvnw.net/badges/v1/3ff668be-59a3-4e3e-96af-e6b2908b3171/2 2x, https://static-cdn.jtvnw.net/badges/v1/3ff668be-59a3-4e3e-96af-e6b2908b3171/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/nolliak\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"nolliak\" data-test-selector=\"message-username\" style=\"color: rgb(154, 205, 50);\">Nolliak</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">SoyHowl scream to a kidgame </span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><span data-a-target=\"emote-name\"><div class=\"Layout-sc-1xcs6mc-0 dZsmwl chat-image__container\"><img alt=\"LUL\" class=\"chat-image chat-line__message--emote\" src=\"https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/1.0#e=0\" srcset=\"https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/1.0#e=0 1x,https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/2.0#e=0 2x,https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/3.0#e=0 4x\"></div></span></div></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:08</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><a data-a-target=\"chat-badge\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link\" rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.anykey.org/pledge\"><img alt=\"GLHF Pledge badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/1 1x, https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/2 2x, https://static-cdn.jtvnw.net/badges/v1/3158e758-3cb4-43c5-94b3-7639810451c5/3 4x\"></a></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/simonex93\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"simonex93\" data-test-selector=\"message-username\" style=\"color: rgb(30, 144, 255);\">SimoneX93</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">BirdgeArrive</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:09</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"Wolf Medallion badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/1 1x, https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/2 2x, https://static-cdn.jtvnw.net/badges/v1/3e008d8a-4a24-4858-9e8f-74e8a3808955/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/pepegakun\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"pepegakun\" data-test-selector=\"message-username\" style=\"color: rgb(0, 128, 0);\">pepegakun</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">MONKA</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:10</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/little_fart_jr\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"little_fart_jr\" data-test-selector=\"message-username\" style=\"color: rgb(0, 128, 0);\">Little_Fart_Jr</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><span data-a-target=\"emote-name\"><div class=\"Layout-sc-1xcs6mc-0 dZsmwl chat-image__container\"><img alt=\"LUL\" class=\"chat-image chat-line__message--emote\" src=\"https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/1.0#e=0\" srcset=\"https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/1.0#e=0 1x,https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/2.0#e=0 2x,https://static-cdn.jtvnw.net/emoticons/v2/425618/default/dark/3.0#e=0 4x\"></div></span></div></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>",
+   "<li class=\"InjectLayout-sc-1i43xsx-0 iUNIaK\"><div class=\"Layout-sc-1xcs6mc-0 gTtfg vod-message\"><div class=\"Layout-sc-1xcs6mc-0 jylwjN vod-message__header\"><div class=\"Layout-sc-1xcs6mc-0 iTpDpK\"><div class=\"InjectLayout-sc-1i43xsx-0 bohlnR\"><button class=\"ScInteractableBase-sc-ofisyf-0 ScInteractableDefault-sc-ofisyf-1 bPDFbr iTnOTE tw-interactable\"><div class=\"Layout-sc-1xcs6mc-0 bekVPP\"><p class=\"CoreText-sc-1txzju1-0 iZVuiT\">0:10</p></div></button></div></div></div><div class=\"Layout-sc-1xcs6mc-0 YRvnc\"><div class=\"Layout-sc-1xcs6mc-0 cFxJWE\"><div class=\"Layout-sc-1xcs6mc-0 dmulkQ\"><span><div class=\"InjectLayout-sc-1i43xsx-0 bvEAgn\"><img alt=\"cheer 100 badge\" class=\"chat-badge\" src=\"https://static-cdn.jtvnw.net/badges/v1/7fb56897-7fcb-49d9-bd6a-a6bee3b87b5f/1\" srcset=\"https://static-cdn.jtvnw.net/badges/v1/7fb56897-7fcb-49d9-bd6a-a6bee3b87b5f/1 1x, https://static-cdn.jtvnw.net/badges/v1/7fb56897-7fcb-49d9-bd6a-a6bee3b87b5f/2 2x, https://static-cdn.jtvnw.net/badges/v1/7fb56897-7fcb-49d9-bd6a-a6bee3b87b5f/3 4x\"></div></span><a data-tt_content=\"tab_videos\" data-tt_medium=\"video-message-author\" class=\"ScCoreLink-sc-16kq0mq-0 dKXvAZ tw-link video-chat__message-author\" rel=\"noopener noreferrer\" href=\"/wabbittwouble\" target=\"_blank\"><span><span class=\"chat-author__display-name\" data-a-target=\"chat-message-username\" data-a-user=\"wabbittwouble\" data-test-selector=\"message-username\" style=\"color: rgb(218, 165, 32);\">WabbitTwouble</span></span></a><div class=\"Layout-sc-1xcs6mc-0 cqnpHZ video-chat__message\"><span class=\"InjectLayout-sc-1i43xsx-0 jnPoKn\">:</span><span class=\"\"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">gachiRoll</span></span></div></div><div class=\"Layout-sc-1xcs6mc-0 iuktUJ video-chat__message-menu\"><div class=\"Layout-sc-1xcs6mc-0 glFavL\"><div><button class=\"ScCoreButton-sc-ocjdkq-0 cNBIIJ ScButtonIcon-sc-9yap0r-0 hIySfo\" aria-label=\"Message Actions Menu\"><div class=\"ButtonIconFigure-sc-1emm8lf-0 dEsSMI\"><div class=\"ScSvgWrapper-sc-wkgzod-0 cnGLHG tw-svg\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\"><path d=\"M10 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z\"></path></svg></div></div></button></div></div></div></div></div></div></li>"
+  ],
+  "listHtmlBytes": 102966
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 0,
+  "ffz": 0
+ },
+ "background": "rgb(24, 24, 27)",
+ "composer": [],
+ "injection": {
+  "injected": 20,
+  "kept": 20,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}

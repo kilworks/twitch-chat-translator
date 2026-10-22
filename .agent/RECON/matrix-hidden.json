@@ -1,0 +1,53 @@
+{
+ "date": "2026-10-22",
+ "cells": [
+  {
+   "config": "7tv+bttv",
+   "surface": "hidden",
+   "code": 1,
+   "line": "7tv+bttv/hidden: window never became hidden | 7tv+bttv/hidden: ok ch21 adds=12 rows=25 inj kept=20/20 -> .agent\\RECON\\7tv+bttv\\hidden"
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "hidden",
+   "code": 1,
+   "line": "7tv+ffz/hidden: window never became hidden | 7tv+ffz/hidden: ok ch21 adds=12 rows=22 inj kept=20/20 -> .agent\\RECON\\7tv+ffz\\hidden"
+  },
+  {
+   "config": "7tv",
+   "surface": "hidden",
+   "code": 1,
+   "line": "7tv/hidden: window never became hidden | 7tv/hidden: ok ch21 adds=8 rows=13 inj kept=20/20 -> .agent\\RECON\\7tv\\hidden"
+  },
+  {
+   "config": "all",
+   "surface": "hidden",
+   "code": 1,
+   "line": "all/hidden: window never became hidden | all/hidden: ok ch21 adds=15 rows=18 inj kept=20/20 -> .agent\\RECON\\all\\hidden"
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "hidden",
+   "code": 1,
+   "line": "bttv+ffz/hidden: window never became hidden | bttv+ffz/hidden: ok ch21 adds=14 rows=15 inj kept=20/20 -> .agent\\RECON\\bttv+ffz\\hidden"
+  },
+  {
+   "config": "bttv",
+   "surface": "hidden",
+   "code": 1,
+   "line": "bttv/hidden: window never became hidden | bttv/hidden: ok ch21 adds=18 rows=27 inj kept=20/20 -> .agent\\RECON\\bttv\\hidden"
+  },
+  {
+   "config": "ffz",
+   "surface": "hidden",
+   "code": 1,
+   "line": "ffz/hidden: window never became hidden | ffz/hidden: ok ch21 adds=20 rows=29 inj kept=20/20 -> .agent\\RECON\\ffz\\hidden"
+  },
+  {
+   "config": "native",
+   "surface": "hidden",
+   "code": 1,
+   "line": "native/hidden: window never became hidden | native/hidden: ok ch21 adds=8 rows=13 inj kept=20/20 -> .agent\\RECON\\native\\hidden"
+  }
+ ]
+}

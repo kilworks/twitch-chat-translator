@@ -1,0 +1,38 @@
+{
+ "date": "2026-10-22",
+ "method": "skill chrome-devtools-mcp:a11y-debugging. Kick build cloned to a scratch directory, 10 selectors in src/content/selectors.ts and 2 manifest entries repointed at selectors measured in RECON/native/live, built with vite + bundle-content, installed unpacked in the chrome-devtools MCP browser, opened on a live channel drawn from the directory (logged out, dark theme).",
+ "mount": {
+  "dataKtInstance": true,
+  "floatingBar": 1,
+  "chipElements": 7,
+  "rowsHandled": 22,
+  "ktElements": 101,
+  "ktClassesSeen": ["kt-float", "kt-float-lang", "kt-float-count", "kt-float-local", "kt-float-power", "kt-float-opts", "kt-translation", "kt-src-flag", "kt-retry", "kt-chip-host", "kt-chip", "kt-chip-menu", "kt-lang-panel", "kt-compose", "kt-compose-target", "kt-compose-text", "kt-compose-insert"]
+ },
+ "lighthouse": {
+  "mode": "snapshot",
+  "accessibilityScore": 91,
+  "failedAudits": 8,
+  "failedOnKtElements": 0,
+  "failedOnTwitch": ["aria-progressbar-name", "frame-title", "heading-order", "label-content-name-mismatch", "autocomplete-valid", "svg-img-alt", "agent-accessibility-tree", "llms-txt"]
+ },
+ "consoleIssues": { "a11yIssues": 0, "errors": "7, all Twitch GraphQL unauthenticated or tracking fetch, none from the extension" },
+ "controls": {
+  "measured": 38,
+  "unnamed": 0,
+  "under24px": [{ "cls": "kt-float-local", "w": 75, "h": 21 }],
+  "focusable": "38/38"
+ },
+ "contrast": {
+  "translationText": { "probeValue": 1.37, "verdict": "probe wrong", "why": "background chain starts with rgba(83,252,24,0.06), a 6% green tint the probe treated as opaque; composited over the Twitch dark panel the text rgba(255,255,255,0.78) is about 9.9:1. Screenshot kick-build-on-twitch.png shows it readable." },
+  "retryButtons": { "probeValue": 1, "verdict": "probe wrong", "why": "opacity 0 until row hover, by design; contrast must be measured in the hovered state" },
+  "chip": 7.1,
+  "barButtons": [17.49, 19.67, 19.67]
+ },
+ "defectsToCarry": [
+  "chip overlaps the composer placeholder 'Send a message' (visible in kick-build-on-twitch.png): Kick's action-bar anchor heuristic does not exist on Twitch, the chip falls back inside the input box",
+  "kt-float-local is 21px tall, below the 24px WCAG 2.5.8 minimum",
+  "accent stays Kick green #53FC18 on Twitch purple chrome: art direction has to be redone, not ported"
+ ],
+ "notMeasured": ["light theme", "keyboard trap in the language menu on Twitch", "screen reader announcement of inserted translations inside role=log", "7TV/BTTV/FFZ configs with the probe build"]
+}

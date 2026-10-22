@@ -1,0 +1,182 @@
+{
+ "date": "2026-10-22",
+ "at": "2026-10-22T16:27:57.216Z",
+ "config": "bttv+ffz",
+ "surface": "popout",
+ "tried": [
+  {
+   "ch": 21,
+   "adds": 15
+  }
+ ],
+ "channel": "ch21",
+ "list": {
+  "windowMs": 15000,
+  "reusedNodes": 0,
+  "candidates": [
+   {
+    "added": 15,
+    "children": 19,
+    "path": "div.Layout-sc-1xcs6mc-0.kruYca > div.Layout-sc-1xcs6mc-0.jUmLZD.stream-chat > section[data-a-target=\"chat-theme-dark\"][data-test-selector=\"chat-room-component-layout\"].InjectLayout-sc-1i43xsx-0.cZjbEG.chat-room > div.Layout-sc-1xcs6mc-0.jeukXd.chat-room__content > div[aria-label=\"Chat messages\"].Layout-sc-1xcs6mc-0.glFavL.InjectLayout-sc-1i43xsx-0.chat-list--default > div.Layout-sc-1xcs6mc-0.InjectLayout-sc-1i43xsx-0.cEeCjq > div[data-a-target=\"chat-scroller\"].scrollable-area > div[role=\"log\"][data-test-selector=\"chat-scrollable-area__message-container\"].Layout-sc-1xcs6mc-0.dBRkEN.chat-scrollable-area__message-container"
+   }
+  ]
+ },
+ "describe": {
+  "found": true,
+  "rowCount": 19,
+  "rowTags": {
+   "div.Layout-sc-1xcs6mc-0": 19
+  },
+  "rowAttrs": {
+   "class": 19
+  },
+  "classFreq": {
+   "Layout-sc-1xcs6mc-0": 42,
+   "chat-line__message": 18,
+   "chat-line__message--badges": 18,
+   "chat-line__username": 18,
+   "notranslate": 18,
+   "chat-author__display-name": 18,
+   "message": 18,
+   "text-fragment": 18,
+   "ffz-tooltip": 15,
+   "ffz-badge": 15,
+   "CoreText-sc-1txzju1-0": 2,
+   "tw-c-text-base": 2,
+   "dBRkEN": 1,
+   "chat-scrollable-area__message-container": 1,
+   "chat-line__status": 1,
+   "fJYwSz": 1,
+   "ffz--fix-reply-line": 1,
+   "jGtuXC": 1,
+   "ScSvgWrapper-sc-wkgzod-0": 1,
+   "jyTdkS": 1,
+   "tw-svg": 1,
+   "brOIRu": 1,
+   "OLUUU": 1,
+   "chat-line__message-mention": 1,
+   "ffz--pointer-events": 1,
+   "ffz--ftc-line": 1,
+   "ffz-custom-color": 1,
+   "ffz--ftc-bg": 1,
+   "ffz-notice-line": 1,
+   "user-notice-line": 1,
+   "tw-pd-y-05": 1,
+   "tw-c-text-alt-2": 1,
+   "ffz-i-first-time-chatter": 1,
+   "tw-mg-r-05": 1,
+   "tw-strong": 1,
+   "chat-line--inline": 1
+  },
+  "dataATarget": {
+   "chat-message-text": 18,
+   "chat-welcome-message": 1
+  },
+  "dataTestSelector": {
+   "chat-scrollable-area__message-container": 1
+  },
+  "attrNames": {
+   "role": 19,
+   "data-a-target": 19,
+   "data-room-id": 19,
+   "data-room": 19,
+   "data-user-id": 19,
+   "data-user": 19,
+   "aria-hidden": 18,
+   "data-provider": 15,
+   "data-badge": 15,
+   "data-tooltip-type": 15,
+   "data-badge-idx": 15,
+   "data-version": 14,
+   "d": 2,
+   "dir": 2,
+   "data-test-selector": 1,
+   "width": 1,
+   "height": 1,
+   "viewBox": 1,
+   "fill-rule": 1,
+   "clip-rule": 1,
+   "title": 1,
+   "data-replaced": 1,
+   "data-login": 1
+  },
+  "emoteImgs": {},
+  "emoteImgClasses": {},
+  "textSamples": [
+   "cawdxxx: irbitka141",
+   "van3kr: сделай циферки",
+   "First Time Chatter nemifak: где ростик",
+   "qizerss: Тень",
+   "ryslan_9: Го",
+   "OpT1mUsPr1mI: Сасавот42",
+   "xrzero09: 141<ch0>пароль",
+   "nrleixs: хмм",
+   "loctrixcfx: 141<ch0>",
+   "oaoaoa68: КЛИП КАТИ МОЖНО",
+   "votANDR: сасавот42",
+   "van3kr: слелай цифры@ognev"
+  ],
+  "rowHtml": [
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"751532547\" data-user=\"cawdxxx\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"fright-fest-2025\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(34, 221, 115);\"><span class=\"chat-author__display-name\" style=\"color: rgb(34, 221, 115);\">cawdxxx</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">irbitka141</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1205431073\" data-user=\"van3kr\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(255, 105, 180);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 105, 180);\">van3kr</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">сделай циферки</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\"ffz--ftc-line ffz-custom-color ffz--ftc-bg ffz-notice-line user-notice-line tw-pd-y-05\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1450815967\" data-user=\"nemifak\"><div class=\"tw-c-text-alt-2\"><span class=\"ffz-i-first-time-chatter tw-c-text-base tw-mg-r-05\"></span><span class=\"tw-c-text-base tw-strong\">First Time Chatter</span></div><div class=\"chat-line--inline chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1450815967\" data-user=\"nemifak\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(255, 127, 80);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 127, 80);\">nemifak</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">где ростик</span></span></div></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"900747242\" data-user=\"qizerss\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(166, 94, 232);\"><span class=\"chat-author__display-name\" style=\"color: rgb(170, 100, 234);\">qizerss</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Тень</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1122184107\" data-user=\"ryslan_9\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"0\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"wholesome-direct-2026\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(255, 105, 180);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 105, 180);\">ryslan_9</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Го</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1469075089\" data-user=\"opt1muspr1mi\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(111, 111, 254);\"><span class=\"chat-author__display-name\" style=\"color: rgb(120, 120, 255);\">OpT1mUsPr1mI</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">Сасавот42</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1387958526\" data-user=\"xrzero09\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"pichu\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(111, 111, 254);\"><span class=\"chat-author__display-name\" style=\"color: rgb(120, 120, 255);\">xrzero09</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">141<ch0>пароль</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1250390082\" data-user=\"nrleixs\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"edgerunners-d\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(95, 158, 160);\"><span class=\"chat-author__display-name\" style=\"color: rgb(95, 158, 160);\">nrleixs</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">хмм</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"516490644\" data-user=\"loctrixcfx\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"campaign-89132304-c47ea5d8-8839-49e6-b2c4-e0ced8076899-mw\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(254, 25, 25);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 88, 88);\">loctrixcfx</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">141<ch0></span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"691392234\" data-user=\"oaoaoa68\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(220, 83, 83);\"><span class=\"chat-author__display-name\" style=\"color: rgb(224, 91, 91);\">oaoaoa68</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">КЛИП КАТИ МОЖНО</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1070989456\" data-user=\"votandr\"><span class=\"chat-line__message--badges\"><span data-provider=\"twitch\" data-badge=\"subscriber\" data-version=\"9\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"0\"></span><span data-provider=\"twitch\" data-badge=\"blue-creeper-boss\" data-version=\"1\" class=\"ffz-tooltip ffz-badge\" data-tooltip-type=\"badge\" data-badge-idx=\"1\"></span></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(0, 255, 127);\"><span class=\"chat-author__display-name\" style=\"color: rgb(0, 255, 127);\">votANDR</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">сасавот42</span></span></div></div></div>",
+   "<div class=\"Layout-sc-1xcs6mc-0\"><div class=\"Layout-sc-1xcs6mc-0\"><div class=\" chat-line__message\" data-room-id=\"89132304\" data-room=\"<ch0>\" data-user-id=\"1205431073\" data-user=\"van3kr\"><span class=\"chat-line__message--badges\"></span><span class=\"chat-line__username notranslate \" role=\"button\" style=\"color: rgb(255, 105, 180);\"><span class=\"chat-author__display-name\" style=\"color: rgb(255, 105, 180);\">van3kr</span></span><span aria-hidden=\"true\">: </span><span class=\"message  \"><span class=\"text-fragment\" data-a-target=\"chat-message-text\">слелай цифры@ognev</span></span></div></div></div>"
+  ],
+  "listHtmlBytes": 14605
+ },
+ "markers": {
+  "seventv": 0,
+  "bttv": 2,
+  "ffz": 26
+ },
+ "background": "rgb(24, 24, 27)",
+ "composer": [
+  {
+   "tag": "div",
+   "attrs": {
+    "role": "textbox",
+    "aria-multiline": "true",
+    "data-a-target": "chat-input",
+    "data-test-selector": "chat-input",
+    "aria-label": "Send a message",
+    "data-placeholder": "Send a message",
+    "class": "chat-wysiwyg-input__editor",
+    "tabindex": "0",
+    "spellcheck": "true",
+    "data-slate-editor": "true",
+    "data-slate-node": "value",
+    "contenteditable": "true",
+    "zindex": "-1",
+    "style": "position: relative; white-space: pre-wrap; overflow-wrap: break-word; outline: n"
+   },
+   "ownProps": [
+    "__reactFiber$2om48d6p4v7",
+    "__reactProps$2om48d6p4v7"
+   ],
+   "ancestry": [
+    "div.Layout-sc-1xcs6mc-0.glFavL",
+    "div.Layout-sc-1xcs6mc-0",
+    "div.Layout-sc-1xcs6mc-0.glFavL.chat-wysiwyg-input-box",
+    "div.Layout-sc-1xcs6mc-0.fWghNN",
+    "div.Layout-sc-1xcs6mc-0.glFavL"
+   ],
+   "visible": true
+  }
+ ],
+ "injection": {
+  "injected": 19,
+  "kept": 19,
+  "rerendered": 0,
+  "detachedRows": 0,
+  "duplicates": 0,
+  "note": "marker appended as last child of the row element"
+ }
+}
