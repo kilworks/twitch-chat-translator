@@ -69,12 +69,15 @@ observation of the running product.
 
 ## 3. Art direction
 
-Kick's, not yours. Green `#53FC18`, ink `#0B0B0C`, surface `#171A1C`, radii of 4
-and 8 and nothing else, one duration of `0.15s`, no drop shadow anywhere, no
-decorative border on a card.
+Twitch's, not yours. The purple family of Twitch's chrome (`#9146FF`), worn as
+mark `#A970FF` on the dark ink `#0E0E10` and surface `#18181B`, radii of 4 and 8
+and nothing else, one duration of `0.15s`, no drop shadow anywhere, no
+decorative border on a card. The Kick build's green `#53FC18` survives only as
+one of the reader's accent choices. Token names still say "green": that is a
+name, not a colour.
 
-A card's fill separates at 1.09:1 and its border at 1.18. Kick itself sits at
-1.13. Near-identical surfaces are the house style and structure is carried by
+A card's fill separates at 1.09:1 and its border at 1.18. The platform's own
+surfaces sit within that range. Near-identical surfaces are the house style and structure is carried by
 space; do not add borders to cards to "fix" that. But every interactive
 control's own boundary holds 3:1, and text holds 4.5:1, measured with the
 element's own opacity composited in.
@@ -96,8 +99,9 @@ summaries. Never pipe a gate into `tail`, never chain one behind `&& echo ok`:
 that is how a script that threw once reported green.
 
 The offline runner pools one worker per core and takes `--jobs`, `--only` and
-`--no-build`. The live harnesses open a browser onto kick.com and are in no
-runner; `ETAT.json` lists which harnesses no runner covers.
+`--no-build`. The live gate `node test/e2e/twitch-live.mjs` opens real Twitch
+channels drawn at random, in the 8 chat-extension configs, and writes its dated
+report to `.agent/RECON/e2e/`; `ETAT.json` lists which harnesses no runner covers.
 
 **If `test/e2e/` is not there, you are not on the machine this was
 built on.** That directory is gitignored, so a fresh clone has no gates, no
@@ -117,12 +121,15 @@ somewhere before the old assertion goes.
 - `grep` is rewritten to `rg`. Go through python for anything subtle.
 - Chrome 137+ ignores `--load-extension`. Use Playwright's bundled Chromium,
   never `channel: 'chrome'`, for anything loading the extension.
-- The MV3 service worker is lazy: open a kick.com page before reading the
+- The MV3 service worker is lazy: open a twitch.tv page before reading the
   extension id.
+- A content script's isolated world has `customElements === null` in Chrome:
+  guard it, or the script dies at startup on every page.
 - Reading a computed style during a transition returns a value that is true for
   a few milliseconds and false after. Wait for the transform to settle.
-- A persistent browser profile that carries a Kick session headed may not carry
-  it headless.
+- A persistent browser profile that carries a Twitch session headed may not
+  carry it headless. The signed-in profile belongs to the brave-devtools MCP
+  server; it cannot start while another Brave window holds that profile.
 - Truncating a command's output and reporting the truncation as a finding: pipe
   to `head` only when you have already decided the tail is irrelevant.
 
