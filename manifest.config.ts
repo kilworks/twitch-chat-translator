@@ -11,7 +11,7 @@ export default defineManifest({
   // The name and blurb both stores show in SEARCH RESULTS, served in the
   // reader's browser language from public/_locales. Organic search is where 60%
   // of new users come from, and a Turkish reader looking for "sohbet çevirici"
-  // never matches an English sentence. The name keeps the brand first, "Kick" is
+  // never matches an English sentence. The name keeps the brand first, "Twitch" is
   // the query people actually type, then adds the generic query of each
   // language, from store/keywords.json.
   //
@@ -42,10 +42,14 @@ export default defineManifest({
     : { service_worker: 'src/background/index.ts', type: 'module' },
   content_scripts: [
     {
-      matches: ['https://kick.com/*', 'https://www.kick.com/*'],
+      // m.twitch.tv shows the same chat (RECON mobile cells). all_frames for the embed:
+      // the chat of an embedded player is a www.twitch.tv iframe in 8/8 embed cells.
+      // dashboard.twitch.tv: the stream manager, where a broadcaster reads chat live,
+      // carries the same chat DOM at top level (RECON/k02).
+      matches: ['https://www.twitch.tv/*', 'https://m.twitch.tv/*', 'https://dashboard.twitch.tv/*'],
       js: ['src/content/index.ts'],
       run_at: 'document_idle',
-      all_frames: false,
+      all_frames: true,
     },
   ],
   // DEUX ET PAS QUATRE. Chrome accepte quatre raccourcis suggeres, et chacun
@@ -57,7 +61,10 @@ export default defineManifest({
   // est un raccourci que personne ne garde.
   commands: {
     'toggle-translation': {
-      suggested_key: { default: 'Alt+T' },
+      // Not Alt+T: on Twitch that is theater mode, and an extension command would take it
+      // away from every viewer (RECON/native/hotkeys: Alt+T moves the video, Alt+Shift+T
+      // and Alt+W change nothing beyond the page's own settling).
+      suggested_key: { default: 'Alt+Shift+T' },
       description: 'Turn chat translation on or off',
     },
     'toggle-compose': {
@@ -65,13 +72,21 @@ export default defineManifest({
       description: 'Turn the compose preview on or off',
     },
   },
-  // `scripting` : reinjecter le script de contenu dans les onglets Kick deja
+  // `scripting` : reinjecter le script de contenu dans les onglets Twitch deja
   // ouverts a l'installation et a chaque mise a jour. Sans lui, une mise a jour
   // laissait chaque onglet ouvert muet jusqu'a un rechargement que rien ne
-  // demandait. Pas d'avertissement de plus : l'acces a kick.com est deja accorde.
+  // demandait. Pas d'avertissement de plus : l'acces a twitch.tv est deja accorde.
   permissions: ['storage', 'alarms', 'scripting'],
   host_permissions: [
-    'https://kick.com/*',
+    'https://www.twitch.tv/*',
+    'https://m.twitch.tv/*',
+    'https://dashboard.twitch.tv/*',
+    // The channel's language and room id (src/content/twitchApi.ts).
+    'https://gql.twitch.tv/*',
+    // Emote names of the channel and global sets, so they are never translated.
+    'https://7tv.io/*',
+    'https://api.betterttv.net/*',
+    'https://api.frankerfacez.com/*',
     'https://api.github.com/*',
     'https://translate.googleapis.com/*',
     'https://api-free.deepl.com/*',
@@ -86,7 +101,7 @@ export default defineManifest({
   // `data:`. Mesure du 2026-08-30 sur le bundle construit : zero `getURL`, zero
   // `chrome-extension`, zero import dynamique, zero reference a une icone. Rien
   // n'etait donc joignable pour une raison. Ce qui restait listé donnait a
-  // n'importe quel script d'une page kick.com une URL stable a interroger pour
+  // n'importe quel script d'une page twitch.tv une URL stable a interroger pour
   // confirmer que l'extension est installee.
   ...(isFirefox && {
     browser_specific_settings: {
@@ -96,7 +111,7 @@ export default defineManifest({
         // storage.session both require it.
         strict_min_version: '121.0',
         // Required by AMO for new submissions/versions. The extension transmits chat
-        // message text (website content) to the user-selected translation provider —
+        // message text (website content) to the user-selected translation provider:
         // nothing else; no analytics, no accounts. On-device mode transmits nothing.
         // technicalAndInteraction: the opt-in daily usage statistics
         // (src/shared/usage.ts). Mozilla requires it optional, and the install
