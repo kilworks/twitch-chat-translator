@@ -3,6 +3,7 @@
     "additionalDirectories": ["C:/Users/kil/Downloads/kick-chat-translator"],
     "allow": [
       "Read(//c/Users/kil/Downloads/kick-chat-translator/**)",
+      "mcp__brave-devtools",
       "mcp__plugin_chrome-devtools-mcp_chrome-devtools",
       "mcp__playwright",
       "WebFetch(domain:twitch.tv)",

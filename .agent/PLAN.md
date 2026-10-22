@@ -266,15 +266,15 @@ they test, L last.
 
 ### [K01] Logged-in composer and a real send
 
-Open task for kil: #138 (shared with K02).
+Open task for kil: #140 (shared with K02).
 
-- [k] A Twitch test account logged into a dedicated Playwright profile (kil types the password
+- [k] A Twitch test account logged into the dedicated Brave profile of the brave-devtools MCP server (kil types the password
       once, the profile is reused), and a test channel where sending is allowed. Needed to prove
       the Slate write sends a translated message with emotes intact, and to re-measure overlays.
 
 ### [K02] Mod view and stream manager
 
-Open task for kil: #138 (shared with K01).
+Open task for kil: #140 (shared with K01).
 
 - [k] Same profile, on a channel where the account is moderator or broadcaster: these surfaces
       are not reachable logged out.
