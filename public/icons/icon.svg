@@ -1,10 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="20" fill="#0f1923"/>
-  <rect width="128" height="128" rx="20" fill="#1a2535"/>
-  <!-- Chat bubble -->
-  <path d="M24 32 h80 a8 8 0 0 1 8 8 v36 a8 8 0 0 1 -8 8 H72 l-12 12 -4-12 H32 a8 8 0 0 1 -8 -8 V40 a8 8 0 0 1 8 -8z" fill="#0f1923" stroke="#53da7e" stroke-width="3"/>
-  <!-- Translate lines -->
-  <line x1="38" y1="52" x2="90" y2="52" stroke="#53da7e" stroke-width="4" stroke-linecap="round"/>
-  <line x1="38" y1="64" x2="75" y2="64" stroke="#53da7e" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
-  <line x1="38" y1="76" x2="60" y2="76" stroke="#53da7e" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+  <!-- The mark (#A970FF) with the ink T (#0E0E10): the pair the popup and options headers use. -->
+  <rect width="128" height="128" rx="24" fill="#A970FF"/>
+  <!-- T drawn as two rectangles, so it stays crisp at 16px and needs no font. -->
+  <rect x="28" y="28" width="72" height="22" rx="4" fill="#0E0E10"/>
+  <rect x="53" y="28" width="22" height="74" rx="4" fill="#0E0E10"/>
 </svg>

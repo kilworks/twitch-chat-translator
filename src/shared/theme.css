@@ -1,10 +1,18 @@
 /**
  * The one place a colour is decided, for all three surfaces.
  *
- * Kick's art direction, not ours (.agent/PROMPT.md section 3): green #53FC18,
- * ink #0B0B0C, surface #171A1C, radii of 4 and 8 and nothing else, one duration
- * of 0.15s. Those three colours are the anchors below; everything else is
- * derived from them and says what it is derived for.
+ * Twitch's chrome, as Kick's was before the port (.agent/PROMPT.md section 3):
+ * the purple family #9146FF, ink #0E0E10, surface #18181B, radii of 4 and 8 and
+ * nothing else, one duration of 0.15s. Those three colours are the anchors below;
+ * everything else is derived from them and says what it is derived for. The
+ * token names kept the word "green" from the Kick build: renaming 52 classes and
+ * every rule for a word would buy nothing a reader sees.
+ *
+ * Measured for the port with the kit's contrast checker (scratchpad/accents2.py):
+ * mark and dark word #A970FF at 5.44:1 on the surface and 5.92:1 under ink text,
+ * where Twitch's own #9146FF holds only 4.15:1 under ink; dark edge #8A43F5 at
+ * 3.55:1; light edge #9146FF at 4.64:1 on white and 4.34:1 on the page; light
+ * word #6A1FD8 at 7.50:1 on white, 7.00:1 on the page and 6.20:1 on its bed.
  *
  * Why this file exists
  * --------------------
@@ -18,7 +26,7 @@
  * apart, and two reds per theme.
  *
  * The scheme is switched by the `data-kt-scheme` attribute the content script
- * stamps on `html`, never by a media query. Kick owns its own theme, and a
+ * stamps on `html`, never by a media query. Twitch owns its own theme, and a
  * light desktop reading a dark chat was handed the light palette on a dark
  * ground. `src/content/injector.test.ts` holds that line.
  *
@@ -34,13 +42,13 @@
  */
 
 :root {
-  /* ── Kick's three, verbatim ───────────────────────────────────────────
+  /* ── The three anchors ────────────────────────────────────────────────
      As channel triples, so Tailwind's opacity modifiers keep working on the
      popup and the options page: `bg-kick-primary/10` compiles to
      `rgb(var(--kt-green-rgb) / 0.1)`. */
-  --kt-green-rgb: 83 252 24;
-  --kt-ink-rgb: 11 11 12;
-  --kt-surface-rgb: 23 26 28;
+  --kt-green-rgb: 169 112 255;
+  --kt-ink-rgb: 14 14 16;
+  --kt-surface-rgb: 24 24 27;
 
   /* ── Surfaces ─────────────────────────────────────────────────────────
      Four steps inside 1.13:1 of each other, which is Kick's own separation.
@@ -74,9 +82,9 @@
        `green-ink`  a word. 12.74:1 on this surface, so on the dark theme it is
                     the brand green itself; the light theme has to darken it.
      `green-bed` is the tint behind a selected row. */
-  --kt-green-edge-rgb: 53 139 26;
+  --kt-green-edge-rgb: 138 67 245;
   --kt-green-ink-rgb: var(--kt-green-rgb);
-  --kt-green-bed-rgb: 28 46 28;
+  --kt-green-bed-rgb: 34 27 51;
 
   /* ── Error ────────────────────────────────────────────────────────────
      Kick publishes no error colour, so this one is ours and says so. */
@@ -182,8 +190,8 @@
  * declares it, and this is the same element as `:root`.
  */
 html[data-kt-scheme='light'] {
-  --kt-ink-rgb: 11 11 12;
-  --kt-sunken-rgb: 244 244 245;
+  --kt-ink-rgb: 14 14 16;
+  --kt-sunken-rgb: 247 247 248;
   --kt-surface-rgb: 255 255 255;
   --kt-hover-rgb: 232 232 233;
 
@@ -200,13 +208,12 @@ html[data-kt-scheme='light'] {
      the muted token at full strength instead. */
   --kt-text-2-a: 1;
 
-  /* The border keeps its own value at 3.36:1, over a bar of 3. The word gets
-     one dark green where the sheet had five doing that job (#24700a #297b0c
-     #256e0a #2a810c #1f6108): 6.18:1 on white, 5.62:1 on the page. The brand
-     green stays #53FC18 and stays a fill, because it is 1.37:1 on paper. */
-  --kt-green-edge-rgb: 53 161 15;
-  --kt-green-ink-rgb: 36 112 10;
-  --kt-green-bed-rgb: 215 245 205;
+  /* The border is Twitch's own purple, 4.64:1 on white and 4.34:1 on the page,
+     over a bar of 3. The word is one dark purple, 7.50:1 on white, 7.00:1 on
+     the page and 6.20:1 on its bed. The mark #A970FF stays a fill on paper. */
+  --kt-green-edge-rgb: 145 70 255;
+  --kt-green-ink-rgb: 106 31 216;
+  --kt-green-bed-rgb: 238 230 252;
 
   --kt-danger-rgb: 180 35 42;
   --kt-danger-bed-rgb: 251 234 235;
@@ -262,21 +269,22 @@ html[data-kt-scheme='light'][data-kt-accent='cyan'] {
   --kt-green-bed-rgb: 215 239 244;
 }
 
-html[data-kt-scheme='dark'][data-kt-accent='violet'] {
-  /* 7.25:1 sur la surface */
-  --kt-green-rgb: 190 146 252;
+/* The Kick build's own green, kept as a choice: on Twitch the default is purple,
+   so a violet accent would repeat it. Re-measured on Twitch's surfaces. */
+html[data-kt-scheme='dark'][data-kt-accent='green'] {
+  /* 12.91:1 on the surface */
+  --kt-green-rgb: 83 252 24;
   --kt-green-ink-rgb: var(--kt-green-rgb);
-  /* 3.05:1, bord de controle */
-  --kt-green-edge-rgb: 129 59 227;
-  --kt-green-bed-rgb: 31 23 43;
+  /* 4.10:1, control edge */
+  --kt-green-edge-rgb: 53 139 26;
+  --kt-green-bed-rgb: 28 46 28;
 }
-
-html[data-kt-scheme='light'][data-kt-accent='violet'] {
-  /* 5.00:1 sur blanc, 4.55:1 sur la page */
-  --kt-green-edge-rgb: 139 71 235;
-  /* 7.11:1 sur blanc, 5.18:1 sur le lit */
-  --kt-green-ink-rgb: 109 19 236;
-  --kt-green-bed-rgb: 227 215 244;
+html[data-kt-scheme='light'][data-kt-accent='green'] {
+  /* 3.36:1 on white, 3.14:1 on the page */
+  --kt-green-edge-rgb: 53 161 15;
+  /* 5.77:1 on the page, 5.25:1 on the bed */
+  --kt-green-ink-rgb: 36 112 10;
+  --kt-green-bed-rgb: 215 245 205;
 }
 
 html[data-kt-scheme='dark'][data-kt-accent='amber'] {

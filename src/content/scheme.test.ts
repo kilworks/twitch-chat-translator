@@ -49,6 +49,18 @@ describe('applyChatScheme', () => {
     expect(applyChatScheme(null)).toBe('dark');
   });
 
+  // PLAN.md fact 13: the chat section names its own theme. It wins over the ground,
+  // which can be a translucent overlay or a page we did not expect.
+  it("takes Twitch's own theme attribute over the painted ground", () => {
+    os(false);
+    const section = document.createElement('section');
+    section.setAttribute('data-a-target', 'chat-theme-light');
+    document.body.appendChild(section);
+    expect(applyChatScheme(ground('rgb(11, 11, 12)'))).toBe('light');
+    section.setAttribute('data-a-target', 'chat-theme-dark');
+    expect(applyChatScheme(ground('rgb(255, 255, 255)'))).toBe('dark');
+  });
+
   it('ignores a translucent layer and keeps climbing to what actually paints', () => {
     os(true);
     const outer = ground('rgb(11, 11, 12)');

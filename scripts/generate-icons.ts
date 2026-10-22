@@ -26,9 +26,9 @@ async function main(): Promise<void> {
 
 const DEFAULT_SVG = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect x="0" y="0" width="128" height="128" rx="22" fill="#0a0e12"/>
-  <path d="M30 30 L30 98 L48 98 L48 76 L58 76 L78 98 L100 98 L72 66 L98 30 L78 30 L58 56 L48 56 L48 30 Z" fill="#53fc18"/>
-  <circle cx="100" cy="36" r="8" fill="#53fc18"/>
+  <rect width="128" height="128" rx="24" fill="#A970FF"/>
+  <rect x="28" y="28" width="72" height="22" rx="4" fill="#0E0E10"/>
+  <rect x="53" y="28" width="22" height="74" rx="4" fill="#0E0E10"/>
 </svg>
 `;
 

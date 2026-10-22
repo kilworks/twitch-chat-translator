@@ -1,5 +1,5 @@
 /**
- * Language chip — the control in Kick's chat action bar.
+ * Language chip: the control in Twitch's chat action bar.
  *
  * Bottom right, beside the gear and the send button. That position is the
  * whole point: changing the language you write in must never mean travelling
@@ -19,6 +19,7 @@
  * is re-rendered by Kick's SPA, so the chip has to be re-mountable at any time,
  * and it must never be the reason a layout moves.
  */
+import { ACTION_BAR_SELECTOR, CHAT_PANEL_SELECTOR } from './platform/twitch';
 import { LANGUAGES, getLang, localLangName, uiLocale } from '~/shared/languages';
 import { flagEl } from '~/shared/flags';
 import { msg } from './msg';
@@ -54,7 +55,7 @@ interface Mounted {
 let ui: Mounted | undefined;
 
 /**
- * The row Kick draws around the text field — the one holding the shield, the
+ * The row Kick draws around the text field, the one holding the shield, the
  * input and the emote button.
  *
  * Walking up from the editable node rather than matching a class: Kick renames
@@ -63,6 +64,9 @@ let ui: Mounted | undefined;
  * composer's own parent, which always exists.
  */
 export function findComposerRow(composer: HTMLElement): Element {
+  // Twitch names its action bar: taken first, from the panel holding this composer.
+  const bar = (composer.closest(CHAT_PANEL_SELECTOR) ?? document).querySelector(ACTION_BAR_SELECTOR);
+  if (bar) return bar;
   return findActionCluster(composer) ?? composer.parentElement ?? composer;
 }
 
@@ -189,7 +193,7 @@ function makeChip(): HTMLButtonElement {
  * The popup. Deliberately role-less.
  *
  * A `listbox` may only contain `option` children, so putting the filter field
- * inside one is invalid — axe rejects it as a critical violation. The correct
+ * inside one is invalid, axe rejects it as a critical violation. The correct
  * shape is a combobox that owns a separate listbox, which is what this builds.
  */
 function makeMenu(): HTMLElement {
@@ -310,7 +314,7 @@ function fillMenu(menu: HTMLElement, state: ChipState, h: ChipHandlers, close: (
   sep.setAttribute('role', 'presentation');
   list.appendChild(sep);
 
-  // Sorted with the UI locale's collation, on the names actually displayed —
+  // Sorted with the UI locale's collation, on the names actually displayed,
   // a plain sort puts Čeština after Zulu in any locale that has accents.
   const rest = LANGUAGES.filter((l) => !seen.has(l.code))
     .map((l) => ({ code: l.code, name: localName(l.code, l.native) }))
@@ -388,7 +392,7 @@ export function localName(code: string, fallback: string): string {
  * The message box is Kick's, not ours, and nothing stops it carrying
  * `overflow: hidden`. An absolutely positioned list inside a clipping ancestor
  * is silently cut in half, which looks like the feature is broken rather than
- * mispositioned — so this is worth a few reads of the cascade on each open.
+ * mispositioned, so this is worth a few reads of the cascade on each open.
  */
 export function isClipped(el: Element): boolean {
   let node: Element | null = el.parentElement;
@@ -416,7 +420,7 @@ function placeMenu(chip: HTMLElement, menu: HTMLElement): void {
   // Clipping: an ancestor with overflow hidden cuts it off, which isClipped
   // detects. Leaving the viewport: the flow position is set by CSS alone, which
   // knows nothing about the window. Measured at 420x520 with the chip at y=194,
-  // the menu opened upward and its top landed at -132 — a third of the list
+  // the menu opened upward and its top landed at -132, a third of the list
   // above the top of the screen, with no way to reach it.
   //
   // So the early return has to answer both questions, not just the first.
@@ -429,7 +433,7 @@ function placeMenu(chip: HTMLElement, menu: HTMLElement): void {
   // Seen live on kick.com: this ran off the left of the chat column and over
   // the video player, and off the top of the window, because the only bound it
   // respected was the RIGHT edge. Every edge is clamped now, and the height is
-  // whatever actually fits between the chip and the edge it opens towards —
+  // whatever actually fits between the chip and the edge it opens towards,
   // not a fixed 320px the window may not have.
   const GAP = 6;
   const MARGIN = 8;

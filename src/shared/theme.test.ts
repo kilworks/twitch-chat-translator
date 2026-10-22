@@ -34,7 +34,7 @@ const uncomment = (s: string) =>
 /** Fresh each time: a shared global regex carries `lastIndex` between calls. */
 const colour = () => /#[0-9a-fA-F]{3,8}\b|rgba?\((?!var)[^)]*\)/g;
 
-describe('the art direction is Kick’s, and it is written once', () => {
+describe('the art direction is Twitch’s, and it is written once', () => {
   const theme = read(THEME);
 
   // The three anchors, read from the file that states them rather than from a
@@ -42,9 +42,9 @@ describe('the art direction is Kick’s, and it is written once', () => {
   const prompt = read('.agent/PROMPT.md');
 
   it.each([
-    ['green', '#53FC18', /--kt-green-rgb:\s*83 252 24/],
-    ['ink', '#0B0B0C', /--kt-ink-rgb:\s*11 11 12/],
-    ['surface', '#171A1C', /--kt-surface-rgb:\s*23 26 28/],
+    ['mark', '#A970FF', /--kt-green-rgb:\s*169 112 255/],
+    ['ink', '#0E0E10', /--kt-ink-rgb:\s*14 14 16/],
+    ['surface', '#18181B', /--kt-surface-rgb:\s*24 24 27/],
   ])('%s is %s in the direction, and that is what the token holds', (_name, hex, token) => {
     expect(prompt, `the direction no longer names ${hex}`).toContain(hex);
     expect(theme).toMatch(token);
