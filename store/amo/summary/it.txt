@@ -1,1 +1,1 @@
-Traduttore chat live gratuito per Twitch: ogni messaggio viene tradotto nella tua lingua appena arriva, e le tue risposte escono nella lingua del canale. Nessun account, niente da configurare. Funziona su dirette, VOD e clip.
+Traduttore chat live per Twitch, ed è gratuito: ogni messaggio viene tradotto nella tua lingua appena arriva, e le tue risposte escono nella lingua del canale. Nessun account, niente da configurare. Funziona su dirette, VOD e clip.

@@ -2,10 +2,10 @@ Første versjon, for Twitch. Oversettelsesmotoren, språkgjenkjenningen, buffere
 
 Den leser Twitch-chatten i alle tre former: Twitchs egen liste (også med BTTV og FFZ), 7TV-listen, og VOD- og klippgjenavspilling. Popout, embed, moderatorvisning, stream manager og mobil er med.
 
-Oversettelser skrives inn i Twitchs meldingsfelt med emotes beholdt som ord. Emote-navnene i kanalens 7TV-, BTTV- og FFZ-sett oversettes aldri, selv om du ikke bruker de utvidelsene.
+Oversettelser skrives inn i Twitchs meldingsfelt med emotes beholdt som ord, så Twitch tegner dem. Emote-navnene i kanalens 7TV-, BTTV- og FFZ-sett oversettes aldri, selv om du ikke bruker de utvidelsene.
 
 Kanalens språk kommer fra Twitch selv, en melding slettet av en moderator, en timeout eller en utestengelse mister oversettelsen også, og utseendet er lilla og følger Twitchs mørke eller lyse chattema.
 
 Slå oversettelsen på eller av med Alt+Shift+T, fordi Alt+T er Twitchs teatermodus. Tab setter inn oversettelsen bare når 7TV eller BTTV ikke nettopp fullførte en emote. Robotene som ignoreres er de som er målt på Twitch: StreamElements, Fossabot, Moobot, Streamlabs og Nightbot.
 
-Valgfritt: anonym daglig bruksstatistikk, av med mindre du sier ja. Den inneholder aldri meldingene, navnene eller kanalene dine.
+Valgfritt: anonym daglig bruksstatistikk, som står av til du sier ja. Den inneholder aldri meldingene, navnene eller kanalene dine.

@@ -35,3 +35,11 @@ test/e2e/*
 .recon-ext/
 .recon-profile/
 node_modules/
+
+# Raw recon captures show the handles of chat viewers on drawn channels: they stay on the
+# machine that took them (the probes regenerate them, the weekly job uploads them as an
+# artifact). Measures stay tracked. The owner's own channel (k01, k02) is kept.
+.agent/RECON/**/dom.html
+.agent/RECON/**/*.png
+!.agent/RECON/k01/*.png
+!.agent/RECON/k02/*.png

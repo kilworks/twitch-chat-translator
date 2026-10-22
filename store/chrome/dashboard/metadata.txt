@@ -1,7 +1,5 @@
-Name: Twitch Chat Translator: Live Chat Translation (45 of 45 characters, the
-  manifest's extName in English; the other listing languages carry their own, in
-  public/_locales). "Twitch Chat Translator" is provisional until the owner
-  confirms it.
+Name: Twitch Chat Translator by Pkkls (31 characters, the manifest's extName, the same in
+  every listing language; chosen by the owner on 2026-10-23).
 Category: Social & Communication
 Language: English, with the localised listings above pasted into their own
   language tab

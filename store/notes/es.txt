@@ -2,7 +2,7 @@ Primera versión, para Twitch. El motor de traducción, la detección de idioma,
 
 Lee el chat de Twitch en sus tres formas: la lista propia de Twitch (también con BTTV y FFZ), la lista de 7TV, y la repetición de VOD y clips. Se incluyen popout, embed, vista de moderador, gestor del stream y móvil.
 
-Las traducciones se escriben en la caja de mensajes de Twitch con los emotes conservados como palabras. Los nombres de emotes de los sets de 7TV, BTTV y FFZ del canal nunca se traducen, aunque no uses esas extensiones.
+Las traducciones se escriben en la caja de mensajes de Twitch y los emotes se conservan como palabras, así Twitch los dibuja. Los nombres de emotes de los sets de 7TV, BTTV y FFZ del canal nunca se traducen, aunque no uses esas extensiones.
 
 El idioma del canal viene del propio Twitch, un mensaje eliminado por un moderador, un timeout o un ban pierde también su traducción, y el aspecto es morado y sigue el tema oscuro o claro del chat de Twitch.
 
