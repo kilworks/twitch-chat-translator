@@ -4,7 +4,8 @@ Personally identifiable information: No.
 Health information: No.
 Financial and payment information: No.
 Location: No.
-Web history: No.
+Web history: No. No URL and no list of pages is collected. See the note on the
+channel's id below.
 User activity (clicks, mouse position, scroll): No.
 
 Authentication information: Yes. If, and only if, the user enters a DeepL API
@@ -12,12 +13,21 @@ key, that key is stored locally and sent to DeepL to authenticate their own
 requests. It is never sent anywhere else and never leaves the machine it was
 entered on.
 
-Personal communications: Yes. The text of chat messages is sent to the
-translation engine the user selected, for the sole purpose of translating it. It
-is not stored, not logged and not sent anywhere else. In on-device mode nothing
-is sent at all.
+Personal communications: Yes. The text of chat messages, and of the draft the
+user types while the compose preview is on, is sent to the translation engine
+the user selected, for the sole purpose of translating it. It is not stored, not
+logged and not sent anywhere else. In on-device mode no chat text is sent at
+all.
 
 Website content: Yes, the same chat text described above.
+
+The channel's id, for the free-text field if the form asks: to read the channel's
+language, the extension sends the channel's login name to Twitch's own endpoint
+(gql.twitch.tv, the one the Twitch page itself uses), and to keep emote names out
+of translations it sends the channel's numeric Twitch id to 7TV, BetterTTV and
+FrankerFaceZ. This happens in every engine mode. No URL, no history and no user
+identifier goes with it, the extension keeps the answers in memory for a few
+minutes only, and nothing links the id to a person.
 
 The three certifications all apply: the data is not sold to third parties, it is
 not used or transferred for any purpose unrelated to translating chat, and it is

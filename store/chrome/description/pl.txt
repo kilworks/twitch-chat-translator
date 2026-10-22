@@ -1,14 +1,14 @@
-Kick Chat Translator to darmowy tłumacz czatu na żywo dla Kick. Czytaj czat każdego streama w swoim języku i odpisuj w języku kanału, prosto w czacie.
+Twitch Chat Translator to darmowy tłumacz czatu na żywo dla Twitcha. Czytaj czat każdego streama w swoim języku i odpisuj w języku kanału, prosto w czacie.
 
 Oglądasz stream po turecku, hiszpańsku, rosyjsku albo arabsku i nie nadążasz za czatem? Zainstaluj, otwórz stream, a przy każdej wiadomości od razu pod nią pojawi się tłumaczenie. Bez konta, bez klucza API, bez konfiguracji.
 
 JAK TO DZIAŁA
 
-1. Otwórz dowolny stream na Kick. Zielony pasek u góry czatu pokazuje, że tłumacz działa.
+1. Otwórz dowolny stream na Twitchu. Fioletowy pasek u góry czatu pokazuje, że tłumacz działa.
 2. Każda nowa wiadomość dostaje pod spodem tłumaczenie na język twojej przeglądarki.
 3. Napisz odpowiedź w swoim języku. Podgląd pokaże ją w języku kanału: naciśnij Tab albo kliknij podgląd, potem wyślij.
 
-Język kanału jest odczytywany z samego Kick, a oba języki możesz zmienić w ustawieniach. Działa na streamach na żywo i na powtórkach VOD, zostawia emotki 7TV bez zmian i sam się wstrzymuje w kartach w tle.
+Język kanału to ten, który streamer ustawił na Twitchu, a oba języki możesz zmienić w ustawieniach. Działa na czacie na żywo, w popoucie, w osadzonym czacie, w widoku moderatora i w stream managerze, a także na powtórkach VOD i klipów, z 7TV, BTTV i FFZ albo bez nich. Sam się wstrzymuje w kartach w tle (ustawienie, domyślnie włączone).
 
 CO DOSTAJESZ
 
@@ -17,19 +17,21 @@ CO DOSTAJESZ
 • Lepsze tłumaczenia języków europejskich z własnym kluczem API DeepL. DeepL dostaje ostatnie linijki czatu jako kontekst, więc sformułowania pasują do rozmowy.
 • Tłumaczenie na urządzeniu w Chrome i Edge 138+, jeśli twój komputer to obsługuje: offline, bez limitu, a czat nigdy nie opuszcza twojego komputera.
 • Automatyczna rezerwa: gdy jeden silnik zawiedzie, przejmuje MyMemory albo Lingva. Kolejność ustalasz ty.
-• Cztery style wyświetlania: pod wiadomością, w tej samej linii, małą kursywą po niej albo tylko po najechaniu myszą. Tryb najechania nie tłumaczy niczego, dopóki nie wskażesz wiadomości, co na szybkim czacie zmniejsza zużycie mniej więcej dziesięciokrotnie.
+• Cztery style wyświetlania: pod wiadomością, w tej samej linii, zamiast niej albo tylko po najechaniu myszą. Tryb najechania nie tłumaczy niczego, dopóki nie wskażesz wiadomości, co na szybkim czacie oszczędza twój limit.
 • Filtry: pomijanie botów, wyciszanie użytkowników lub kanałów, ukrywanie linijek ze słowem, które wybierzesz (przydatne przeciw spamowi z komendami typu !command), albo tłumaczenie tylko wybranych języków.
-• Emotki, wzmianki, linki i spam emoji są usuwane, zanim cokolwiek zostanie wysłane, więc nic nie jest wydawane na tłumaczenie „kkkkkk”.
-• Dopasuj do siebie: rozmiar tekstu, odstęp między wierszami, krój pisma, kolor akcentu, ciemny lub jasny czat, język czytania zapamiętany osobno dla każdego kanału, skróty klawiszowe.
+• Nazw emotek z zestawów 7TV, BTTV i FFZ kanału nigdy się nie tłumaczy, nawet jeśli nie używasz tych rozszerzeń. @wzmianki i linki są odkładane na bok, zanim cokolwiek zostanie wysłane, a linijki złożone tylko z emoji lub śmiechu są pomijane, więc nic nie jest wydawane na tłumaczenie „kkkkkk”.
+• Wiadomość usunięta przez moderatora, albo taka, którą usuwa timeout lub ban, traci też swoje tłumaczenie.
+• Dopasuj do siebie: rozmiar tekstu, odstęp między wierszami, krój pisma, kolor akcentu, ciemny lub jasny czat (domyślnie podąża za czatem Twitcha), język czytania zapamiętany osobno dla każdego kanału, skróty klawiszowe.
 • Interfejs w tych samych 43 językach, także pisanych od prawej do lewej, wybierany z menu pokazującego każdą flagę.
 
 PRYWATNOŚĆ
 
-Bez konta, bez mojego serwera i bez analityki, chyba że zgodzisz się na codzienne anonimowe zliczanie użytych silników, błędów i szybkości, nigdy twoich wiadomości, nazw ani kanałów. Tekst czatu trafia tylko do silnika tłumaczącego, który wybierzesz. W przypadku Google, MyMemory i Lingva to tekst każdej wiadomości i nic więcej. W przypadku DeepL razem z nim idzie kilka ostatnich linijek czatu jako kontekst, wraz z nazwami osób, które je napisały, żeby tłumaczenie pasowało do rozmowy. Kanał, który oglądasz, nigdy nie jest wysyłany, a przy tłumaczeniu na urządzeniu nic nie opuszcza twojego komputera.
+Bez konta, bez mojego serwera i bez analityki, chyba że zgodzisz się na codzienne anonimowe zliczanie użytych silników, błędów i szybkości, nigdy twoich wiadomości, nazw ani kanałów. Tekst czatu trafia tylko do silnika tłumaczącego, który wybierzesz, tak samo jak twój szkic, gdy podgląd przy pisaniu jest włączony. W przypadku Google, MyMemory i Lingva to tekst i nic więcej. W przypadku DeepL razem z nim idzie kilka ostatnich linijek czatu jako kontekst, wraz z nazwami osób, które je napisały, żeby tłumaczenie pasowało do rozmowy. Kanał, który oglądasz, nigdy nie jest wysyłany do silnika, a przy tłumaczeniu na urządzeniu żaden tekst czatu nie opuszcza twojego komputera. Kanał jest wymieniony tylko w jednym miejscu: rozszerzenie pyta Twitcha o jego język oraz 7TV, BetterTTV i FrankerFaceZ o nazwy jego emotek, co mówi im id kanału i nic więcej.
 
-Uprawnienia po ludzku: pamięć na twoje ustawienia i pamięć podręczną tłumaczeń; dostęp do kick.com, żeby pokazywać tłumaczenia w czacie; dostęp do silników, które może wywoływać (Google, DeepL, MyMemory i Lingva); budzik, dzięki któremu tłumacz pozostaje gotowy, gdy oglądasz; oraz prawo do ponownego wczytania własnego skryptu w już otwartych kartach Kick przy instalacji lub aktualizacji, żeby dalej tłumaczyły bez odświeżania. Odczytuje też stronę wydań na GitHubie, żeby dać ci znać o nowszej wersji, i nie wysyła przy tym niczego.
+Uprawnienia po ludzku: pamięć na twoje ustawienia i pamięć podręczną tłumaczeń; dostęp do twitch.tv oraz do stream managera na dashboard.twitch.tv, żeby pokazywać tłumaczenia w czacie; dostęp do sprawdzania języka w Twitchu i do list emotek 7TV, BetterTTV i FrankerFaceZ, żeby nazwy emotek nigdy nie były tłumaczone; dostęp do silników, które może wywoływać (Google, DeepL, MyMemory i Lingva); budzik, dzięki któremu tłumacz pozostaje gotowy, gdy oglądasz; oraz prawo do ponownego wczytania własnego skryptu w już otwartych kartach Twitcha przy instalacji lub aktualizacji, żeby dalej tłumaczyły bez odświeżania, a także do uruchomienia jednej własnej funkcji na stronie Twitcha, która wpisuje tłumaczenie w pole wiadomości, gdy je wstawiasz. W kopii zainstalowanej ręcznie odczytuje też stronę wydań na GitHubie, żeby dać ci znać o nowszej wersji, i nie wysyła przy tym niczego.
 
 ZA DARMO I Z OTWARTYM KODEM
 
-Licencja MIT, każda linijka kodu jest publiczna: github.com/Pkkls/kick-chat-translator
+Licencja MIT, każda linijka kodu jest publiczna: github.com/kilworks/twitch-chat-translator
 Zgłoszenia błędów i prośby o nowe języki są tam mile widziane, a zmiany w każdej wersji znajdziesz na stronie wydań.
+Twitch Chat Translator to niezależny projekt, niezwiązany z Twitchem.

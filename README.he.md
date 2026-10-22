@@ -2,24 +2,19 @@
 
 <img src="public/icons/icon128.png" alt="" width="80" height="80">
 
-# Kick Chat Translator
+# Twitch Chat Translator
 
-קרא את הצ'אט של כל שידור ב-Kick בשפה שלך, והגב בשפה של הערוץ.<br>
+קרא את הצ'אט של כל שידור ב-Twitch בשפה שלך, והגב בשפה של הערוץ.<br>
 חינם, בלי חשבון, בלי שום הגדרה. 43 שפות, בצ'אט ובתוסף עצמו.
 
-**[הוסף ל-Chrome, ל-Brave או ל-Edge](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)** &nbsp;·&nbsp; **[הוסף ל-Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)**
+**[הורד את הגרסה האחרונה](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge ו-Firefox
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=Chrome%20Web%20Store&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![משתמשי Chrome](https://img.shields.io/chrome-web-store/users/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=users&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Firefox Add-on](https://img.shields.io/amo/v/kick-chat-translator?label=Firefox%20Add-on&color=53fc18)](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-[![CI](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml)
+[![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](README.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [العربية](README.ar.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Català](README.ca.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [فارسی](README.fa.md) · [বাংলা](README.bn.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
 <img src="screenshots/demo.gif" alt="הודעות צ'אט בספרדית מגיעות אחת אחרי השנייה, ומתחת לכל אחת התרגום שלה לאנגלית. אחר כך נכתבת תגובה באנגלית, מעל תיבת הצ'אט מופיעה תצוגה מקדימה בספרדית, ו-Tab מחליף אותה" width="360">
-
-[צפה בה בצ'אט אמיתי](https://www.youtube.com/watch?v=NoGJeUrwy9o)
 
 </div>
 
@@ -27,36 +22,44 @@
 
 ## איך זה עובד
 
-1. התקן אותה ופתח כל שידור ב-Kick. פס ירוק בראש הצ'אט מראה שהיא פעילה.
-2. כל הודעה מקבלת את התרגום שלה ממש מתחתיה, ברגע שהיא מגיעה, בשפת הדפדפן שלך. גם בשידורים חיים וגם
-   בהקלטות VOD.
+1. התקן אותה ופתח כל שידור ב-Twitch. פס סגול בראש הצ'אט מראה שהיא פעילה.
+2. כל הודעה מקבלת את התרגום שלה ממש מתחתיה, ברגע שהיא מגיעה, בשפת הדפדפן שלך. גם בשידורים חיים, גם
+   בהקלטות VOD וגם בקליפים.
 3. כתוב תגובה בשפה שלך. תצוגה מקדימה מעל תיבת הצ'אט מראה אותה בשפת הערוץ: לחץ על Tab או על התצוגה עצמה,
    והגרסה הזו תחליף את מה שכתבת.
 
-שפת הערוץ נקראת מ-Kick עצמה, אז אין מה להגדיר. אפשר לשנות את שתי השפות בהגדרות, ואפשר לזכור את שפת
+שפת הערוץ היא זו שהסטרימר הגדיר ב-Twitch, אז אין מה להגדיר. אפשר לשנות את שתי השפות בהגדרות, ואפשר לזכור את שפת
 הקריאה לכל ערוץ בנפרד.
+
+אם אתה מריץ גם 7TV או BTTV, הם משתמשים ב-Tab כדי להשלים אימוט. אז Tab משלים קודם את האימוט, ומכניס את התרגום
+רק כשלא היה מה להשלים. Ctrl/Cmd+Enter ולחיצה תמיד מכניסים אותו.
 
 ## מה מקבלים
 
 - **43 שפות**, כולל שפות שנכתבות מימין לשמאל (ערבית, עברית, פרסית), עם גרסאות אזוריות נפרדות
   (פורטוגזית של ברזיל ושל פורטוגל, סינית מפושטת ומסורתית, קנטונזית)
+- **בכל מקום שיש בו צ'אט**: צ'אט חי, חלון נפרד, הטמעה, תצוגת מנחה, מנהל השידור, הקלטות VOD וקליפים, ב-www.twitch.tv,
+  ב-m.twitch.tv וב-dashboard.twitch.tv, עם 7TV, BTTV ו-FFZ או בלעדיהם
 - **גם התוסף מדבר אותן**: ההגדרות, החלון הקופץ והסרגל בצ'אט בכל 43 השפות, ובוחרים אותן מתפריט עם דגלים
 - **חינם מההתחלה** עם Google Translate. הוסף מפתח DeepL חינמי משלך לתרגום טוב יותר של שפות אירופיות;
   MyMemory ו-Lingva נכנסים לתמונה כשמנוע נכשל
-- **תרגום על המכשיר** ב-Chrome וב-Edge, כשהדפדפן מציע אותו: 22 ms במקום 1.6 שניות, והטקסט לא עוזב את
+- **תרגום על המכשיר** ב-Chrome וב-Edge, כשהדפדפן מציע אותו: בלי רשת, בלי מכסה, והטקסט לא עוזב את
   המחשב שלך
 - **מסננים**: דלג על בוטים, השתק משתמשים או ערוצים, הסתר שורות שמכילות מילה מסוימת, תרגם רק את השפות
   שבחרת
-- **בנוי לצ'אטים מהירים**: אימוטים של 7TV נשארים כמו שהם, ספאם של אימוג'י וקישורים מוסרים לפני ששולחים
-  משהו, מילון לשמות שהמנועים מעוותים, מטמון תרגומים
+- **בנוי לצ'אטים מהירים**: שמות האימוטים מהסטים של הערוץ ב-7TV, ב-BTTV וב-FFZ אף פעם לא מתורגמים, גם אם אתה
+  לא מריץ את התוספים האלה, קישורים ואזכורי @ מופרדים לפני ששולחים משהו, מילון לשמות שהמנועים מעוותים,
+  מטמון תרגומים
 - **ארבעה סגנונות תצוגה**: מתחת להודעה, באותה שורה, במקומה, או רק במעבר עכבר
 - **השהה ערוץ אחד** מסרגל הצ'אט בלי לעצור את האחרים. החלפת ערוץ או עדכון התוסף משאירים את הלשוניות
   הפתוחות מתרגמות, בלי לרענן
+- **מודע לניהול**: הודעה שמנחה מחק, או שהשהיה או חסימה הסירו, מאבדת גם את התרגום שלה
+- **נראה כמו Twitch**: סגול, ועוקב אחרי ערכת הנושא הכהה או הבהירה של הצ'אט עצמו, אלא אם בחרת אחרת
 - Chrome, Brave, Edge ו-Firefox
 
 | הצ'אט, מתורגם תוך כדי גלילה | החלון הקופץ של סרגל הכלים |
 |---|---|
-| <img src="screenshots/chat.png" alt="צ'אט של Kick שבו מתחת לכל הודעה בספרדית מופיע התרגום שלה לאנגלית, עם סרגל המצב של התוסף מעל הרשימה" width="360"> | <img src="screenshots/popup.png" alt="החלון הקופץ של התוסף עם שפת היעד, מצב התצוגה, רשימת השירותים וספירת הבקשות של היום" width="360"> |
+| <img src="screenshots/chat.png" alt="צ'אט של Twitch שבו מתחת לכל הודעה בספרדית מופיע התרגום שלה לאנגלית, עם סרגל המצב של התוסף מעל הרשימה" width="360"> | <img src="screenshots/popup.png" alt="החלון הקופץ של התוסף עם שפת היעד, סגנון התצוגה, הגדרת התצוגה המקדימה של הודעה ושרשרת השירותים" width="360"> |
 
 | מה שאתה כותב, לפני השליחה | בחר שפה, או תן לתוסף לבחור |
 |---|---|
@@ -67,24 +70,13 @@
 
 ## התקנה
 
-[Chrome, Brave, Edge: Chrome Web Store](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-&nbsp;·&nbsp;
-[Firefox: Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-
-עותקים מהחנויות מתעדכנים לבד.
-
-<details>
-<summary>התקנה ידנית, מקובץ zip של גרסה</summary>
-
-הורד את קובץ ה-zip המתאים לדפדפן שלך מ-[Releases](https://github.com/Pkkls/kick-chat-translator/releases/latest) וחלץ אותו.
+הורד את קובץ ה-zip המתאים לדפדפן שלך מ-[Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) וחלץ אותו.
 
 - Chrome, Brave, Edge (`…-chromium.zip`): פתח את `chrome://extensions`, הפעל מצב מפתח, לחץ על טען פריט נעול (Load unpacked) ובחר את התיקייה.
 - Firefox 121+ (`…-firefox.zip`): פתח את `about:debugging#/runtime/this-firefox`, לחץ על טען תוסף זמני (Load Temporary Add-on) ובחר את `manifest.json`.
+  Firefox שוכח תוסף זמני כשהוא מופעל מחדש.
 
-אם הגרסה מהחנות מותקנת גם היא, כבה אותה קודם, אחרת כל הודעה תתורגם פעמיים. עותק שהותקן כך לא מתעדכן
-לבד: על הסמל שלו מופיע תג כשיוצאת גרסה חדשה יותר, והחלון הקופץ מקשר לחנות.
-
-</details>
+עותק שהותקן כך לא מתעדכן לבד: על הסמל שלו מופיע תג כשיוצאת גרסה חדשה יותר, והחלון הקופץ מקשר לגרסה האחרונה.
 
 ## מנועי תרגום
 
@@ -93,12 +85,11 @@
 | שירות | מפתח | הערה |
 |---|---|---|
 | Google | אין | ברירת המחדל, עובד מיד |
-| DeepL | חינם | האיכות הטובה ביותר, [מפתח חינמי](https://www.deepl.com/pro-api) למיליון תווים בחודש |
+| DeepL | חינם | הטוב ביותר בשפות אירופיות, [מפתח חינמי](https://www.deepl.com/pro-api) למיליון תווים בחודש |
 | MyMemory | אין | גיבוי |
 | Lingva | אין | גיבוי, על שרת ציבורי אלא אם תכוון אותו לשרת שלך |
 
-המתרגם המובנה של Chromium מהיר מכולם. נמדד בערוץ חי: 22 ms מרגע שהודעה מופיעה ועד שהתרגום שלה על המסך, לעומת
-1618 ms בשרשרת הענן, בלי רשת ובלי מכסה. Chrome ו-Edge מגרסה 138 ואילך יכולים להציע אותו, אם כי לא כל
+המתרגם המובנה של Chromium לא צריך רשת ולא צריך מכסה. Chrome ו-Edge מגרסה 138 ואילך יכולים להציע אותו, אם כי לא כל
 עותק מציע, וכל צמד שפות צריך להוריד את המודל שלו פעם אחת, בלחיצה אחת מהסרגל. ל-Firefox אין אותו. איפה
 שהוא חסר, שרשרת הענן נכנסת במקומו ושום דבר לא נשבר.
 
@@ -113,9 +104,10 @@
 - **מתקדם**: גודל המטמון ותוקפו, בקשות במקביל, הגבלה לכל ערוץ, גיבוי ושחזור
 - **פעילות**: הודעות שתורגמו, פגיעות במטמון, כל שפה שנראתה בצ'אט, ולמה כל אחת מ-50 השורות האחרונות
   תורגמה או לא
-- **מקלדת**: Alt+T מפעיל או מכבה את תרגום הצ'אט, Alt+W את התצוגה המקדימה של הודעה
-- כפתור השפה בסרגל הפעולות של הצ'אט: לחיצה אחת מחליפה בין שפת הערוץ לבחירה האחרונה שלך, לחיצה ארוכה
-  פותחת את הרשימה, והקלדת שתי אותיות מסננת אותה
+- **מקלדת**: Alt+Shift+T מפעיל או מכבה את תרגום הצ'אט (Alt+T הוא מצב התיאטרון של Twitch), Alt+W את התצוגה
+  המקדימה של הודעה. אפשר להגדיר את שניהם מחדש בקיצורי התוספים של הדפדפן
+- כפתור השפה בסרגל הפעולות של הצ'אט, מתחת לתיבת ההודעה: לחיצה אחת פותחת את רשימת השפות שאתה כותב בהן,
+  והקלדה מסננת אותה. הכפתור שבראש הצ'אט קובע את השפה שבה אתה קורא
 
 ## שפות נתמכות
 
@@ -125,20 +117,22 @@
 
 ## פרטיות
 
-אין חשבון, אין שרת שלי ואין ניתוחים אלא אם כן תצטרף לספירה אנונימית יומית שנשלחת ל-Google Analytics (מנועי שימוש, שגיאות, מהירות, אף פעם לא ההודעות, השמות או הערוצים שלך). הודעות הצ'אט הולכות לשירות התרגום שבחרת ולשום מקום אחר, ובמצב על
-המכשיר אפילו לא לשם. עותק שהותקן מחנות לא שולח שום בקשה אחרת. עותק שהותקן ידנית שואל את GitHub מה תג
+אין חשבון, אין שרת שלי ואין ניתוחים אלא אם כן תצטרף לספירה אנונימית יומית שנשלחת ל-Google Analytics (מנועי שימוש, שגיאות, מהירות, אף פעם לא ההודעות, השמות או הערוצים שלך). הודעות הצ'אט, והטיוטה שלך כשהתצוגה המקדימה של הודעה פועלת, הולכות לשירות התרגום שבחרת ולשום מקום אחר, ובמצב על
+המכשיר אפילו לא לשם. כדי לדעת מה שפת הערוץ היא שואלת את Twitch מה שפת השידור והמזהה של הערוץ, וכדי להרחיק שמות
+אימוטים מהתרגומים היא שואלת את 7TV, את BetterTTV ואת FrankerFaceZ מהם שמות האימוטים של הערוץ, וזה מגלה להם את
+המזהה של הערוץ ושום דבר אחר. עותק שהותקן מחנות לא שולח שום בקשה אחרת. עותק שהותקן ידנית שואל את GitHub מה תג
 הגרסה האחרון, לכל היותר פעם בשש שעות, כדי לדעת אם להציג את תג העדכון. [פרטים](PRIVACY.md)
 
 ## שאלות נפוצות
 
 **ההודעות לא מתורגמות.**
 פתח את הלשונית פעילות בהגדרות ולחץ על "קרא החלטות": היא מציגה את 50 השורות האחרונות ואומרת למה כל אחת
-תורגמה או לא. רוב השורות שדולגו דולגו בכוונה. בשידור חי אחד, 213 מתוך 234 היו אותו משתמש שחוזר על עצמו,
-9 היו קצרות מדי, 7 היו רק אימוג'י או צחוק, ואחת כבר הייתה בשפת הקריאה. אם הלשונית לא מציגה כלום, התוסף
+תורגמה או לא. רוב השורות שדולגו דולגו בכוונה: אותו משתמש שחוזר על עצמו, שורות קצרות מדי, רק אימוג'י או צחוק, או שורות
+שכבר בשפת הקריאה. אם הלשונית לא מציגה כלום, התוסף
 לא רואה את הצ'אט: פתח דיווח.
 
-**הפס הירוק נעלם.**
-רענן את הדף. אם זה קורה שוב, פתח [דיווח](https://github.com/Pkkls/kick-chat-translator/issues)
+**הפס הסגול נעלם.**
+רענן את הדף. אם זה קורה שוב, פתח [דיווח](https://github.com/kilworks/twitch-chat-translator/issues)
 עם שם הערוץ ומה שעשית לפני כן.
 
 **איך מקבלים תרגומים טובים יותר?**
@@ -151,32 +145,36 @@
 **אפשר להשתמש בתוסף בשפה שלי?**
 כן. הוא עוקב אחרי שפת הדפדפן שלך, והתפריט בראש ההגדרות מחליף אותה לכל אחת מ-43 השפות.
 
-**זה עובד בהקלטות VOD?**
+**זה עובד עם 7TV, BTTV ו-FFZ?**
+כן, עם כל אחד מהם או בלעדיהם. שמות האימוטים שלהם לא נכנסים לתרגומים.
+
+**זה עובד בהקלטות VOD ובקליפים?**
 כן, בדיוק כמו בשידורים חיים.
 
-**זה נשבר אחרי עדכון של Kick.**
-לפעמים Kick משנה את האופן שבו הצ'אט שלה בנוי. פתח [דיווח](https://github.com/Pkkls/kick-chat-translator/issues)
+**זה נשבר אחרי עדכון של Twitch.**
+לפעמים Twitch משנה את האופן שבו הצ'אט שלה בנוי. פתח [דיווח](https://github.com/kilworks/twitch-chat-translator/issues)
 וזה יתוקן.
 
-**זה של Kick?**
-לא. זה פרויקט עצמאי בקוד פתוח, שאין לו קשר ל-Kick.
+**זה של Twitch?**
+לא. זה פרויקט עצמאי בקוד פתוח, שאין לו קשר ל-Twitch.
 
 ## מה חדש
 
-בגרסה 3.2.0:
+בגרסה 1.0.0, הגרסה הראשונה ל-Twitch:
 
-- ההגדרות, החלון הקופץ וסרגל הצ'אט מדברים את כל 43 השפות שהתוסף מתרגם אליהן, ולא 10, כשעברית ופרסית מימין לשמאל כמו ערבית
-- עשר השפות שהוא כבר דיבר נכתבו מחדש כך שיישמעו כאילו נכתבו בשפה הזו, ולא מילה במילה מאנגלית
-- תפריט שפת הממשק מציג את הדגל של כל שפה ואפשר להשתמש בו גם מהמקלדת
+- קורא את הצ'אט של Twitch בשלוש צורותיו: הרשימה של Twitch עצמה (גם עם BTTV ו-FFZ), הרשימה של 7TV, והקלטות VOD וקליפים, בחלון נפרד, בהטמעה, בתצוגת מנחה, במנהל השידור ובנייד
+- כותב תרגומים בתיבת ההודעה עם אימוטים כמילים, ואף פעם לא מתרגם את שמות האימוטים מהסטים של הערוץ ב-7TV, ב-BTTV וב-FFZ
+- שפת הערוץ מגיעה מ-Twitch, הודעה שנמחקה מאבדת גם את התרגום שלה, והמראה סגול ועוקב אחרי הצ'אט הכהה או הבהיר של Twitch
+- Alt+Shift+T מפעיל או מכבה את התרגום, Tab מכניס את התרגום רק כש-7TV או BTTV לא השלימו עכשיו אימוט, וכפתור השפה נמצא בסרגל הפעולות מתחת לתיבת ההודעה
 
 כל גרסה, עם מה ששונה בה והמדידה שמאחוריה:
-[Releases](https://github.com/Pkkls/kick-chat-translator/releases) ו-[CHANGELOG.md](CHANGELOG.md).
+[Releases](https://github.com/kilworks/twitch-chat-translator/releases) ו-[CHANGELOG.md](CHANGELOG.md).
 
 ## פיתוח
 
 ```bash
-git clone https://github.com/Pkkls/kick-chat-translator.git
-cd kick-chat-translator
+git clone https://github.com/kilworks/twitch-chat-translator.git
+cd twitch-chat-translator
 npm ci
 npm run release:check    # typecheck, lint, בדיקות יחידה, build: הבדיקה שכל חבילה עוברת
 npm run build:firefox    # build של Firefox, באותה תיקיית dist/
@@ -187,12 +185,12 @@ npm run dev              # HMR
 ה-builds ניתנים לשחזור: אותו commit מפיק קובצי zip זהים בייט אחר בייט בכל מחשב, ונבדק על ידי בנייה של
 `git archive` של התג בתיקייה ריקה והשוואת ה-hash.
 
-מעבר לבדיקות היחידה, 42 בדיקות offline טוענות את התוסף הבנוי לדפדפן אמיתי, מפעילות אותו ובודקות מה הוא
+מעבר לבדיקות היחידה, בדיקות offline טוענות את התוסף הבנוי לדפדפן אמיתי, מפעילות אותו ובודקות מה הוא
 עושה, כשהדף ומנוע התרגום מוגשים מקומית. הן צריכות Playwright, שבכוונה אינו תלות: כוון את `UX_KIT`
 לתיקייה שה-`node_modules` שלה מכיל אותו, או הרץ `npm i -D playwright`.
 
 ```bash
-node test/e2e/run-gates.mjs --headless                  # כל ה-42, בלי חלון
+node test/e2e/run-gates.mjs --headless                  # כל בדיקות ה-offline, בלי חלון
 node test/e2e/store-shots-fixture.mjs --lang=ja         # צילומי המסך של החנות, בשפת דף אחת
 node test/e2e/store-shots-fixture.mjs --gif             # צילומי מסך של החנות באנגלית, תמונות ה-README וה-GIF הזה
 ```
@@ -206,13 +204,10 @@ Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 
 ## פרויקטים קשורים
 
-- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker), חוסם את פרסומות ה-pre-roll וההתכסות של Kick
-- [kick-core](https://github.com/Pkkls/kick-core), לקוח ה-gateway בזמן אמת שהתוספים האלה חולקים
-- [kickbus](https://github.com/Pkkls/kickbus), webhooks רשמיים של Kick שמועברים לבוטים מקומיים דרך SSE
-- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner), אפליקציית Windows שמקדמת את זמן הצפייה של דרופים ב-Kick
+- [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), אותו מתרגם לצ'אט של Kick, מאותו מחבר
 
 ## רישיון
 
-MIT. אין קשר ל-Kick.
+MIT. אין קשר ל-Twitch.
 
 </div>

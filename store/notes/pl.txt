@@ -1,9 +1,11 @@
-Pisanie za pomocą emotikonów działa teraz poprawnie. Zakładka uzupełnia emotki i @wzmianki Kick'a i 7TV zamiast wstawiać tłumaczenie, emotikony pozostają w Twojej wiadomości po jej przetłumaczeniu, a podgląd nie obejmuje już list Kick'a ani selektora emotek.
+Pierwsze wydanie dla Twitcha. Silnik tłumaczenia, wykrywanie języka, pamięć podręczna i opcje pochodzą z Kick Chat Translator, od tego samego autora. Wszystko, co czyta lub zapisuje stronę, zostało zbudowane od nowa pod Twitcha i zmierzone na kanałach na żywo.
 
-Tłumaczenia są dokładniejsze: nazwy marek i osób (iPhone, YouTube, LeBron) nie są już usuwane przed tłumaczeniem, a @wzmianki pozostają w przetłumaczonych wiadomościach.
+Czyta czat Twitcha w jego trzech postaciach: własna lista Twitcha (także z BTTV i FFZ), lista 7TV oraz powtórki VOD i klipów. Popout, osadzony czat, widok moderatora, stream manager i wersja mobilna są w zestawie.
 
-Filtry zostały przerobione: prawdziwe boty wyrzucające są ignorowane i możesz dodawać własne, opcja „Ukryj wiadomości zawierające” ukrywa teraz także to, co jest już na ekranie, a listy można wpisywać ponownie.
+Tłumaczenia są wpisywane w pole wiadomości Twitcha z emotkami zostawionymi jako słowa. Nazw emotek z zestawów 7TV, BTTV i FFZ kanału nigdy się nie tłumaczy, nawet jeśli nie używasz tych rozszerzeń.
 
-Rozszerzenie jest lżejsze na każdej stronie Kick, a w przeglądarce Chrome silnik na urządzeniu jest ponownie oferowany, gdy język docelowy jest ustawiony na Auto.
+Język kanału pochodzi od samego Twitcha, wiadomość usunięta przez moderatora, timeout lub ban traci też swoje tłumaczenie, a wygląd jest fioletowy i podąża za jasnym lub ciemnym motywem czatu Twitcha.
 
-Nowość i opcjonalna: anonimowe dzienne statystyki użytkowania, wyłączone, chyba że się zgodzisz. Nigdy nie zawierają Twoich wiadomości, nazw ani kanałów.
+Włącz lub wyłącz tłumaczenie skrótem Alt+Shift+T, bo Alt+T to tryb kinowy Twitcha. Tab wstawia tłumaczenie tylko wtedy, gdy 7TV lub BTTV nie dokończyły przed chwilą emotki. Ignorowane boty to te zmierzone na Twitchu: StreamElements, Fossabot, Moobot, Streamlabs i Nightbot.
+
+Opcjonalnie: anonimowe dzienne statystyki użytkowania, wyłączone, chyba że się zgodzisz. Nigdy nie zawierają Twoich wiadomości, nazw ani kanałów.

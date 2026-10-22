@@ -1,1 +1,1 @@
-Gratis chat oversetter for Kick: hver melding oversettes til ditt språk så snart den kommer, og svarene dine går ut på kanalens språk. Ingen konto. Fungerer på direktesendinger og VOD-er.
+Gratis chat oversetter for Twitch: hver melding oversettes til ditt språk så snart den kommer, og svarene dine går ut på kanalens språk. Ingen konto, ingenting å sette opp. Fungerer på direktesendinger, VOD-er og klipp.

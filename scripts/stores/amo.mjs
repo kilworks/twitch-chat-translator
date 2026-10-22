@@ -12,7 +12,7 @@
  * Both JSON files come from payloads.mjs.
  *
  * Reads, outside the repository:
- *   ~/.config/kick-chat-translator/amo-api.json   {"issuer": "...", "secret": "..."} (AMO_API_KEY overrides the path)
+ *   ~/.config/twitch-chat-translator/amo-api.json   {"issuer": "...", "secret": "..."} (AMO_API_KEY overrides the path)
  * The secret and the tokens are never printed.
  */
 import crypto from 'node:crypto';
@@ -20,8 +20,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-const SLUG = process.env.AMO_SLUG ?? 'kick-chat-translator';
-const KEY_FILE = process.env.AMO_API_KEY ?? path.join(os.homedir(), '.config', 'kick-chat-translator', 'amo-api.json');
+const SLUG = process.env.AMO_SLUG ?? 'twitch-chat-translator';
+const KEY_FILE = process.env.AMO_API_KEY ?? path.join(os.homedir(), '.config', 'twitch-chat-translator', 'amo-api.json');
 const API = process.env.AMO_API ?? 'https://addons.mozilla.org/api/v5';
 
 const die = (msg) => {

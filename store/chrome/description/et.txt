@@ -1,14 +1,14 @@
-Kick Chat Translator on tasuta chati tõlkija Kickile. Loe mis tahes voo chatti oma keeles ja vasta kanali keeles, otse chatis.
+Twitch Chat Translator on tasuta chati tõlkija Twitchile. Loe mis tahes voo chatti oma keeles ja vasta kanali keeles, otse chatis.
 
 Vaatad türgi, hispaania, vene või araabia keeles voogu ja chatist ei saa aru? Paigalda, ava voog ning iga sõnumi tõlge ilmub kohe selle alla, niipea kui sõnum saabub. Ei mingit kontot, ei API võtit, pole midagi seadistada.
 
 NII SEE TÖÖTAB
 
-1. Ava mis tahes Kicki voog. Chati ülaosas olev roheline riba näitab, et tõlkija on sees.
+1. Ava mis tahes Twitchi voog. Chati ülaosas olev lilla riba näitab, et tõlkija on sees.
 2. Iga uus sõnum saab oma tõlke alla, sinu brauseri keeles.
 3. Kirjuta vastus oma keeles. Eelvaade näitab seda kanali keeles: vajuta Tab või klõpsa sellel ja saada siis ära.
 
-Kanali keel loetakse otse Kickist ning mõlemat keelt saab seadetes muuta. Töötab otse-eetris ja VOD-i kordustel, jätab 7TV emote'id puutumata ning peatab end taustalehtedel.
+Kanali keel on see, mille striimer Twitchis määras, ning mõlemat keelt saab seadetes muuta. Töötab otsechatis, popoutis, manuses, moderaatorivaates ja voo halduris ning VOD-i ja klippide kordustel, 7TV, BTTV ja FFZ-ga või ilma. Peatab end taustalehtedel (seade, vaikimisi sees).
 
 MIDA SA SAAD
 
@@ -17,19 +17,21 @@ MIDA SA SAAD
 • Paremad Euroopa keeled sinu enda DeepL API võtmega. DeepL saab viimased chati read kontekstiks, et sõnastus sobiks vestlusega.
 • Seadmesisene tõlge Chrome'is ja Edge'is 138+, kui sinu arvuti seda toetab: võrguühenduseta, piiranguteta ning chat ei lahku sinu arvutist.
 • Automaatne varuvariant: kui üks mootor kukub läbi, võtab üle MyMemory või Lingva. Järjekorra valid sina.
-• Neli kuvastiili: sõnumi all, samal real, väikeses kursiivis selle järel või ainult siis, kui hiirega peale lähed. Hover-režiim ei tõlgi midagi enne, kui sõnumile osutad, mis vähendab kasutust kiires chatis umbes kümme korda.
+• Neli kuvastiili: sõnumi all, samal real, sõnumi asemel või ainult siis, kui hiirega peale lähed. Hover-režiim ei tõlgi midagi enne, kui sõnumile osutad, mis säästab sinu kvooti kiires chatis.
 • Filtrid: jäta botid vahele, vaigista kasutajaid või kanaleid, peida read, mis sisaldavad sinu valitud sõna (kasulik !command-rämpsu vastu), või tõlgi ainult soovitud keeli.
-• Emote'id, mainimised, lingid ja emoji-rämps eemaldatakse enne mis tahes saatmist, nii et "kkkkkk" tõlkimiseks ei kulu midagi.
-• Tee see enda moodi: teksti suurus, reavahe, kirjatüüp, rõhuvärv, tume või hele chat, kanalipõhiselt meelde jääv lugemiskeel, kiirklahvid.
+• Kanali 7TV, BTTV ja FFZ komplektide emotikoninimesid ei tõlgita kunagi, isegi kui sa neid laiendusi ei kasuta. @mainimised ja lingid pannakse enne mis tahes saatmist kõrvale ning read, kus on ainult emojid või naer, jäetakse vahele, nii et "kkkkkk" tõlkimiseks ei kulu midagi.
+• Sõnum, mille moderaator kustutab või mille eemaldab timeout või ban, kaotab ka oma tõlke.
+• Tee see enda moodi: teksti suurus, reavahe, kirjatüüp, rõhuvärv, tume või hele chat (vaikimisi järgib Twitchi enda oma), kanalipõhiselt meelde jääv lugemiskeel, kiirklahvid.
 • Liides samades 43 keeles, sealhulgas paremalt vasakule kirjutatavates, valitav menüüst, mis näitab iga keele lippu.
 
 PRIVAATSUS
 
-Ei mingit kontot, ei oma serverit ega analüütikat, kui sa just ei nõustu igapäevase anonüümse loendusega kasutatud teenuste, vigade ja kiiruse kohta, mitte kunagi sinu sõnumid, nimed ega kanalid. Chati tekst läheb ainult sinu valitud tõlkemootorile. Google'i, MyMemory või Lingva puhul on see iga sõnumi tekst ja mitte midagi muud. DeepL-i puhul lähevad kaasa viimased chati read kontekstina koos kirjutajate nimedega, et tõlge sobiks vestlusega. Kanalit, mida vaatad, ei saadeta kunagi ning seadmesisese tõlke puhul ei lahku sinu arvutist midagi.
+Ei mingit kontot, ei oma serverit ega analüütikat, kui sa just ei nõustu igapäevase anonüümse loendusega kasutatud teenuste, vigade ja kiiruse kohta, mitte kunagi sinu sõnumid, nimed ega kanalid. Chati tekst läheb ainult sinu valitud tõlkemootorile ning sama kehtib sinu mustandi kohta, kui sõnumi eelvaade on sees. Google'i, MyMemory või Lingva puhul on see iga sõnumi tekst ja mitte midagi muud. DeepL-i puhul lähevad kaasa viimased chati read kontekstina koos kirjutajate nimedega, et tõlge sobiks vestlusega. Kanalit, mida vaatad, ei saadeta kunagi tõlkemootorile ning seadmesisese tõlke puhul ei lahku sinu arvutist ühtegi chati teksti. Kanalit nimetatakse ainult ühes kohas: laiendus küsib Twitchilt selle keelt ning 7TV-lt, BetterTTV-lt ja FrankerFaceZ-lt selle emotikoninimesid, mis ütleb neile kanali id ja midagi muud mitte.
 
-Load lihtsate sõnadega: salvestusruum sinu seadetele ja tõlkevahemälule; juurdepääs kick.com-ile, et näidata tõlkeid chatis; juurdepääs mootoritele, mida see võib kutsuda (Google, DeepL, MyMemory ja Lingva); ärkamistaimer, et tõlkija püsiks valmis, kui vaatad; ning õigus laadida oma skript uuesti juba avatud Kicki lehtedele paigaldamisel või uuendamisel, et need tõlgiksid edasi ilma lehte värskendamata. Samuti loeb see GitHubi väljalaskelehte, et anda teada uuema versiooni olemasolust, saatmata selle päringuga midagi kaasa.
+Load lihtsate sõnadega: salvestusruum sinu seadetele ja tõlkevahemälule; juurdepääs twitch.tv-le ja voo haldurile aadressil dashboard.twitch.tv, et näidata tõlkeid chatis; juurdepääs Twitchi keelepäringule ning 7TV, BetterTTV ja FrankerFaceZ emotikoninimekirjadele, et emotikoninimesid ei tõlgitaks kunagi; juurdepääs mootoritele, mida see võib kutsuda (Google, DeepL, MyMemory ja Lingva); ärkamistaimer, et tõlkija püsiks valmis, kui vaatad; ning õigus laadida oma skript uuesti juba avatud Twitchi lehtedele paigaldamisel või uuendamisel, et need tõlgiksid edasi ilma lehte värskendamata, ja käivitada Twitchi lehel üks oma funktsioon, mis kirjutab tõlke sõnumikasti, kui selle lisad. Käsitsi paigaldatud koopias loeb see ka GitHubi väljalaskelehte, et anda teada uuema versiooni olemasolust, saatmata selle päringuga midagi kaasa.
 
 TASUTA JA AVATUD LÄHTEKOODIGA
 
-MIT-litsents, iga koodirida on avalik: github.com/Pkkls/kick-chat-translator
+MIT-litsents, iga koodirida on avalik: github.com/kilworks/twitch-chat-translator
 Veateated ja keelesoovid on seal teretulnud ning iga versiooni muudatused leiad väljalaskelehelt.
+Twitch Chat Translator on sõltumatu projekt, mis ei ole Twitchiga seotud.

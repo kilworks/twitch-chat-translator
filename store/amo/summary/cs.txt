@@ -1,1 +1,1 @@
-Bezplatný překladač chatu pro Kick v reálném čase: každá zpráva se přeloží do vašeho jazyka, jakmile dorazí, a vaše odpovědi odejdou v jazyce kanálu. Bez účtu, bez nastavování. Funguje na živých streamech i záznamech VOD.
+Bezplatný překladač chatu pro Twitch v reálném čase: každá zpráva se přeloží do vašeho jazyka, jakmile dorazí, a vaše odpovědi odejdou v jazyce kanálu. Bez účtu, bez nastavování. Funguje na streamech, záznamech VOD i klipech.

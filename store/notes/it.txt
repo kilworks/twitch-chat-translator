@@ -1,9 +1,11 @@
-La digitazione con le emoticon ora funziona correttamente. Tab completa le emote e le @menzioni di Kick e 7TV invece di inserire la traduzione, le emoticon rimangono nel messaggio quando viene tradotto e l'anteprima non copre più gli elenchi di Kick o il selettore di emote.
+Prima versione, per Twitch. Il motore di traduzione, il rilevamento della lingua, la cache e le opzioni vengono da Kick Chat Translator, dello stesso autore. Tutto ciò che legge o scrive la pagina è stato ricostruito per Twitch e misurato su canali live.
 
-Le traduzioni sono più accurate: i nomi di marchi e persone (iPhone, YouTube, LeBron) non vengono più eliminati prima della traduzione e le @menzioni rimangono nei messaggi tradotti.
+Legge la chat di Twitch nelle sue tre forme: l'elenco proprio di Twitch (anche con BTTV e FFZ), l'elenco di 7TV, e il replay di VOD e clip. Popout, embed, vista moderatore, stream manager e mobile sono inclusi.
 
-I filtri sono stati rielaborati: i veri Kick bot vengono ignorati ed è possibile aggiungerne di propri, "Nascondi messaggi contenenti" ora nasconde anche ciò che è già sullo schermo e gli elenchi possono essere digitati nuovamente.
+Le traduzioni vengono scritte nella casella dei messaggi di Twitch con le emote mantenute come parole. I nomi delle emote dei set 7TV, BTTV e FFZ del canale non vengono mai tradotti, anche se non usi quelle estensioni.
 
-L'estensione è più leggera su ogni pagina Kick e su Chrome il motore integrato sul dispositivo viene nuovamente offerto quando la lingua di destinazione è su Auto.
+La lingua del canale viene da Twitch stesso, un messaggio eliminato da un moderatore, un timeout o un ban perde anche la sua traduzione, e l'aspetto è viola e segue il tema scuro o chiaro della chat di Twitch.
 
-Nuovo e opzionale: statistiche anonime sull'utilizzo quotidiano, disattivate a meno che tu non dica sì. Non contengono mai i tuoi messaggi, nomi o canali.
+Attiva o disattiva la traduzione con Alt+Maiusc+T, perché Alt+T è la modalità cinema di Twitch. Tab inserisce la traduzione solo quando 7TV o BTTV non hanno appena completato un'emote. I bot ignorati sono quelli misurati su Twitch: StreamElements, Fossabot, Moobot, Streamlabs e Nightbot.
+
+Facoltativo: statistiche d'uso giornaliere anonime, disattivate a meno che tu non dica di sì. Non contengono mai i tuoi messaggi, nomi o canali.

@@ -16,8 +16,8 @@ import { fileURLToPath } from 'node:url';
 import { LISTINGS, apiLocale, chromeCode } from './languages.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const ITEM = 'nkkjmbkmacbdkboijmnhjnblcaiclhni';
-const SLUG = 'kick-chat-translator';
+const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
+const SLUG = 'twitch-chat-translator';
 const KEYWORDS = JSON.parse(fs.readFileSync(path.join(ROOT, 'store/keywords.json'), 'utf8'));
 const UA = { 'User-Agent': 'Mozilla/5.0' };
 

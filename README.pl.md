@@ -2,60 +2,62 @@
 
 <img src="public/icons/icon128.png" alt="" width="80" height="80">
 
-# Kick Chat Translator
+# Twitch Chat Translator
 
-Czytaj czat każdego streama na Kicku w swoim języku, a odpowiadaj w języku kanału.<br>
+Czytaj czat każdego streama na Twitchu w swoim języku, a odpowiadaj w języku kanału.<br>
 Za darmo, bez konta, bez konfiguracji. 43 języki, w czacie i w samym rozszerzeniu.
 
-**[Dodaj do Chrome, Brave lub Edge](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)** &nbsp;·&nbsp; **[Dodaj do Firefoksa](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)**
+**[Pobierz najnowsze wydanie](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge i Firefox
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=Chrome%20Web%20Store&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Chrome users](https://img.shields.io/chrome-web-store/users/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=users&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Firefox Add-on](https://img.shields.io/amo/v/kick-chat-translator?label=Firefox%20Add-on&color=53fc18)](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-[![CI](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml)
+[![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](README.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [العربية](README.ar.md) · [עברית](README.he.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Català](README.ca.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [فارسی](README.fa.md) · [বাংলা](README.bn.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
 <img src="screenshots/demo.gif" alt="Hiszpańskie wiadomości z czatu wpadają jedna po drugiej, każda z angielskim tłumaczeniem pod spodem; potem ktoś pisze odpowiedź po angielsku, nad polem czatu pojawia się hiszpański podgląd, a Tab go wstawia" width="360">
 
-[Zobacz to na prawdziwym czacie](https://www.youtube.com/watch?v=NoGJeUrwy9o)
-
 </div>
 
 ## Jak to działa
 
-1. Zainstaluj rozszerzenie i otwórz dowolny stream na Kicku. Zielony pasek na górze czatu pokazuje, że działa.
+1. Zainstaluj rozszerzenie i otwórz dowolny stream na Twitchu. Fioletowy pasek na górze czatu pokazuje, że działa.
 2. Każda wiadomość dostaje tłumaczenie tuż pod sobą, gdy tylko się pojawi, w języku Twojej przeglądarki.
-   Zarówno na streamach na żywo, jak i w powtórkach VOD.
+   Tak samo na streamach na żywo, w VOD-ach i w klipach.
 3. Napisz odpowiedź w swoim języku. Podgląd nad polem czatu pokaże ją w języku kanału: naciśnij Tab albo
    kliknij podgląd, a ta wersja zastąpi to, co wpisałeś.
 
-Język kanału jest odczytywany bezpośrednio z Kicka, więc nic nie trzeba ustawiać. Oba języki można zmienić
+Język kanału to ten, który streamer ustawił na Twitchu, więc nic nie trzeba ustawiać. Oba języki można zmienić
 w ustawieniach, a język czytania można zapamiętać osobno dla każdego kanału.
+
+Jeśli używasz też 7TV lub BTTV, one również używają Tab do dokończenia emotki. Wtedy Tab najpierw dokańcza emotkę, a tłumaczenie wstawia tylko wtedy, gdy nie było nic do dokończenia. Ctrl/Cmd+Enter i kliknięcie zawsze je wstawiają.
 
 ## Co dostajesz
 
 - **43 języki**, także pisane od prawej do lewej (arabski, hebrajski, perski), z osobnymi wariantami
   regionalnymi (portugalski brazylijski i europejski, chiński uproszczony i tradycyjny, kantoński)
+- **Wszędzie tam, gdzie jest czat**: czat na żywo, popout, osadzony czat, widok moderatora, stream manager, powtórki VOD i klipów, na
+  www.twitch.tv, m.twitch.tv i dashboard.twitch.tv, z 7TV, BTTV i FFZ albo bez nich
 - **Rozszerzenie mówi nimi też samo**: ustawienia, popup i pasek czatu we wszystkich 43, do wyboru z menu
   z flagami
 - **Za darmo od razu** dzięki Google Translate. Dodaj własny darmowy klucz DeepL, żeby lepiej tłumaczyć
   języki europejskie; gdy któryś silnik padnie, przejmują MyMemory i Lingva
-- **Tłumaczenie na urządzeniu** w Chrome i Edge, jeśli przeglądarka je oferuje: 22 ms zamiast 1,6 s,
+- **Tłumaczenie na urządzeniu** w Chrome i Edge, jeśli przeglądarka je oferuje: bez sieci, bez limitu,
   a tekst nigdy nie opuszcza Twojego komputera
 - **Filtry**: pomijanie botów, wyciszanie użytkowników lub kanałów, ukrywanie linii zawierających dane
   słowo, tłumaczenie tylko wybranych języków
-- **Stworzone pod szybkie czaty**: emotki 7TV zostają bez zmian, spam emoji i linki są usuwane, zanim cokolwiek
-  zostanie wysłane, jest słownik na nicki i nazwy, które silniki przekręcają, i pamięć podręczna tłumaczeń
+- **Stworzone pod szybkie czaty**: nazw emotek z zestawów 7TV, BTTV i FFZ kanału nigdy się nie tłumaczy, nawet jeśli
+  nie używasz tych rozszerzeń, linki i @wzmianki są odkładane na bok, zanim cokolwiek zostanie wysłane, jest słownik
+  na nicki i nazwy, które silniki przekręcają, i pamięć podręczna tłumaczeń
 - **Cztery style wyświetlania**: pod wiadomością, w tej samej linii, zamiast niej albo tylko po najechaniu
 - **Wstrzymaj jeden kanał** z paska czatu, nie zatrzymując pozostałych. Zmiana kanału lub aktualizacja
   rozszerzenia nie przerywa tłumaczenia w otwartych kartach, bez przeładowania
+- **Z uwzględnieniem moderacji**: wiadomość usunięta przez moderatora, timeout lub ban odbierają jej też tłumaczenie
+- **Wygląda jak Twitch**: fiolet, a motyw czatu, jasny albo ciemny, podąża za samym czatem, chyba że wybierzesz własny
 - Chrome, Brave, Edge i Firefox
 
 | Czat tłumaczony w trakcie przewijania | Popup na pasku narzędzi |
 |---|---|
-| <img src="screenshots/chat.png" alt="Czat na Kicku, w którym każda hiszpańska wiadomość ma pod sobą angielskie tłumaczenie, z paskiem stanu rozszerzenia nad listą" width="360"> | <img src="screenshots/popup.png" alt="Popup rozszerzenia z językiem docelowym, trybem wyświetlania, listą dostawców i dzisiejszą liczbą zapytań" width="360"> |
+| <img src="screenshots/chat.png" alt="Czat na Twitchu, w którym każda hiszpańska wiadomość ma pod sobą angielskie tłumaczenie, z paskiem stanu rozszerzenia nad listą" width="360"> | <img src="screenshots/popup.png" alt="Popup rozszerzenia z językiem docelowym, stylem wyświetlania, ustawieniem podglądu przy pisaniu i łańcuchem dostawców" width="360"> |
 
 | To, co piszesz, zanim to wyślesz | Wybierz język albo pozwól, żeby wybrał się sam |
 |---|---|
@@ -67,25 +69,14 @@ prawdziwego człowieka.</sub>
 
 ## Instalacja
 
-[Chrome, Brave, Edge: Chrome Web Store](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-&nbsp;·&nbsp;
-[Firefox: Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-
-Wersje ze sklepów aktualizują się same.
-
-<details>
-<summary>Ręczna instalacja z archiwum zip wydania</summary>
-
-Pobierz zip dla swojej przeglądarki z [Releases](https://github.com/Pkkls/kick-chat-translator/releases/latest) i rozpakuj go.
+Pobierz zip dla swojej przeglądarki z [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) i rozpakuj go.
 
 - Chrome, Brave, Edge (`…-chromium.zip`): otwórz `chrome://extensions`, włącz tryb dewelopera, kliknij Załaduj rozpakowane, wybierz folder.
 - Firefox 121+ (`…-firefox.zip`): otwórz `about:debugging#/runtime/this-firefox`, kliknij Załaduj tymczasowy dodatek, wybierz `manifest.json`.
+  Firefox zapomina tymczasowy dodatek po ponownym uruchomieniu.
 
-Jeśli wersja ze sklepu jest też zainstalowana, najpierw ją wyłącz, bo inaczej każda wiadomość będzie
-tłumaczona dwa razy. Kopia zainstalowana w ten sposób nie aktualizuje się sama: gdy jest nowsza wersja, na jej
-ikonie pojawia się plakietka, a popup prowadzi do sklepu.
-
-</details>
+Kopia zainstalowana w ten sposób nie aktualizuje się sama: gdy jest nowsza wersja, na jej
+ikonie pojawia się plakietka, a popup prowadzi do najnowszego wydania.
 
 ## Silniki tłumaczeń
 
@@ -94,15 +85,13 @@ Czterech dostawców w łańcuchu: gdy jeden zawodzi, przejmuje następny. Kolejn
 | Dostawca | Klucz | Uwaga |
 |---|---|---|
 | Google | brak | domyślny, działa od razu |
-| DeepL | darmowy | najlepsza jakość, [darmowy klucz](https://www.deepl.com/pro-api) na 1 milion znaków miesięcznie |
+| DeepL | darmowy | najlepszy dla języków europejskich, [darmowy klucz](https://www.deepl.com/pro-api) na 1 milion znaków miesięcznie |
 | MyMemory | brak | zapasowy |
 | Lingva | brak | zapasowy, na publicznej instancji, chyba że wskażesz własną |
 
-Wbudowany tłumacz Chromium jest szybszy od wszystkich pozostałych. Pomiar na kanale na żywo: 22 ms od
-pojawienia się wiadomości do tłumaczenia na ekranie, wobec 1618 ms przez łańcuch w chmurze, bez sieci i bez
-limitu. Mogą go oferować Chrome i Edge od wersji 138, ale nie każda kopia go ma, a każda para języków wymaga
-jednorazowego pobrania modelu, jednym kliknięciem z paska. Firefox go nie ma. Wszędzie tam, gdzie go brakuje,
-przejmuje łańcuch w chmurze i nic się nie psuje.
+Wbudowany tłumacz Chromium nie potrzebuje sieci ani limitu. Mogą go oferować Chrome i Edge od wersji 138, ale nie
+każda kopia go ma, a każda para języków wymaga jednorazowego pobrania modelu, jednym kliknięciem z paska. Firefox go
+nie ma. Wszędzie tam, gdzie go brakuje, przejmuje łańcuch w chmurze i nic się nie psuje.
 
 ## Ustawienia
 
@@ -115,9 +104,10 @@ Kliknij zębatkę na pasku czatu albo kliknij ikonę rozszerzenia prawym przycis
 - **Zaawansowane**: rozmiar i czas życia pamięci podręcznej, równoległe zapytania, limit zapytań na kanał, kopia zapasowa i przywracanie
 - **Aktywność**: przetłumaczone wiadomości, trafienia w pamięci podręcznej, każdy język widziany na czacie i powód,
   dla którego każda z ostatnich 50 linii została przetłumaczona albo pominięta
-- **Klawiatura**: Alt+T włącza i wyłącza tłumaczenie czatu, Alt+W podgląd przy pisaniu
-- Przycisk języka na pasku akcji czatu: jedno kliknięcie przełącza między językiem kanału
-  a ostatnio wybranym, przytrzymanie otwiera listę, wpisanie dwóch liter ją filtruje
+- **Klawiatura**: Alt+Shift+T włącza i wyłącza tłumaczenie czatu (Alt+T to tryb kinowy Twitcha), Alt+W podgląd przy
+  pisaniu. Oba skróty można zmienić w skrótach rozszerzeń Twojej przeglądarki
+- Przycisk języka na pasku akcji czatu, pod polem wiadomości: jedno kliknięcie otwiera listę języków, w których
+  piszesz, wpisywanie ją filtruje. Ten na górze czatu ustawia język, w którym czytasz
 
 ## Obsługiwane języki
 
@@ -127,8 +117,8 @@ Czat tłumaczy się na każdy z nich, a interfejs samego rozszerzenia jest dost�
 
 ## Prywatność
 
-Żadnego konta, żadnego serwera i żadnych analiz, chyba że zgodzisz się na codzienne anonimowe zliczanie wysyłane do Google Analytics (wykorzystane silniki, błędy, prędkość, nigdy Twoje wiadomości, nazwy i kanały). Wiadomości z czatu trafiają do wybranego dostawcy tłumaczeń
-i nigdzie indziej, a w trybie na urządzeniu nawet tam nie. Kopia zainstalowana ze sklepu nie wysyła żadnych
+Żadnego konta, żadnego serwera i żadnych analiz, chyba że zgodzisz się na codzienne anonimowe zliczanie wysyłane do Google Analytics (wykorzystane silniki, błędy, prędkość, nigdy Twoje wiadomości, nazwy i kanały). Wiadomości z czatu, a przy włączonym podglądzie przy pisaniu także Twój szkic, trafiają do wybranego dostawcy tłumaczeń
+i nigdzie indziej, a w trybie na urządzeniu nawet tam nie. Żeby poznać język kanału, pyta Twitcha o język nadawania i id kanału, a żeby nazwy emotek nie trafiały do tłumaczeń, pyta 7TV, BetterTTV i FrankerFaceZ o nazwy emotek kanału, co mówi im id tego kanału i nic więcej. Kopia zainstalowana ze sklepu nie wysyła żadnych
 innych zapytań. Kopia zainstalowana ręcznie pyta GitHub o tag najnowszego wydania, najwyżej co sześć godzin,
 żeby wiedzieć, czy pokazać plakietkę aktualizacji. [Szczegóły](PRIVACY.md)
 
@@ -136,13 +126,12 @@ innych zapytań. Kopia zainstalowana ręcznie pyta GitHub o tag najnowszego wyda
 
 **Wiadomości się nie tłumaczą.**
 Otwórz kartę Aktywność w ustawieniach i naciśnij "Odczytaj decyzje": zobaczysz ostatnie 50 linii i powód, dla
-którego każda została przetłumaczona albo pominięta. Większość pominiętych linii jest pomijana celowo. W jednej
-sesji na żywo 213 z 234 to był ten sam użytkownik powtarzający się, 9 było za krótkich, 7 to były same emoji
-albo śmiech, a 1 był już w języku czytania. Jeśli karta nie pokazuje nic, rozszerzenie nie widzi czatu:
-otwórz zgłoszenie.
+którego każda została przetłumaczona albo pominięta. Większość pominiętych linii jest pomijana celowo: ten sam użytkownik
+powtarzający się, linie zbyt krótkie, same emoji albo śmiech, albo już w Twoim języku czytania. Jeśli karta nie
+pokazuje nic, rozszerzenie nie widzi czatu: otwórz zgłoszenie.
 
-**Zielony pasek zniknął.**
-Odśwież stronę. Jeśli to się powtórzy, otwórz [zgłoszenie](https://github.com/Pkkls/kick-chat-translator/issues)
+**Fioletowy pasek zniknął.**
+Odśwież stronę. Jeśli to się powtórzy, otwórz [zgłoszenie](https://github.com/kilworks/twitch-chat-translator/issues)
 z nazwą kanału i opisem tego, co robiłeś wcześniej.
 
 **Jak uzyskać lepsze tłumaczenia?**
@@ -156,32 +145,36 @@ Pod wiadomością. Pozostałe trzy działają, ale są jeszcze dopracowywane.
 Tak. Rozszerzenie podąża za językiem przeglądarki, a menu na górze ustawień przełącza je na dowolny
 z 43.
 
-**Czy działa w powtórkach VOD?**
+**Czy działa z 7TV, BTTV i FFZ?**
+Tak, z każdym z nich albo bez żadnego. Nazwy ich emotek nie trafiają do tłumaczeń.
+
+**Czy działa w VOD-ach i klipach?**
 Tak, tak samo jak na streamach na żywo.
 
-**Przestało działać po aktualizacji Kicka.**
-Kick czasem zmienia budowę swojego czatu. Otwórz [zgłoszenie](https://github.com/Pkkls/kick-chat-translator/issues)
+**Przestało działać po aktualizacji Twitcha.**
+Twitch czasem zmienia budowę swojego czatu. Otwórz [zgłoszenie](https://github.com/kilworks/twitch-chat-translator/issues)
 i zostanie to poprawione.
 
-**Czy to robi Kick?**
-Nie. To niezależny projekt open source, niezwiązany z Kickiem.
+**Czy to robi Twitch?**
+Nie. To niezależny projekt open source, niezwiązany z Twitchem.
 
 ## Co nowego
 
-W wersji 3.2.0:
+W wersji 1.0.0, pierwszym wydaniu dla Twitcha:
 
-- Ustawienia, popup i pasek czatu mówią we wszystkich 43 językach, na które rozszerzenie tłumaczy, a nie w 10, a hebrajski i perski są pisane od prawej do lewej, tak jak arabski
-- Dziesięć języków, które już znało, zostało napisanych od nowa, żeby brzmiały jak napisane od początku w danym języku, a nie słowo w słowo z angielskiego
-- Menu języka interfejsu pokazuje flagę każdego języka i działa z klawiatury
+- Czyta czat Twitcha w jego trzech postaciach: własna lista Twitcha (także z BTTV i FFZ), lista 7TV oraz powtórki VOD i klipów, w popoucie, osadzonym czacie, widoku moderatora, stream managerze i na telefonie
+- Wpisuje tłumaczenia w pole wiadomości z emotkami zostawionymi jako słowa i nigdy nie tłumaczy nazw emotek z zestawów 7TV, BTTV i FFZ kanału
+- Język kanału pochodzi z Twitcha, usunięta wiadomość traci tłumaczenie, a wygląd jest fioletowy i podąża za jasnym lub ciemnym czatem Twitcha
+- Alt+Shift+T włącza i wyłącza tłumaczenie, Tab wstawia tłumaczenie tylko wtedy, gdy 7TV lub BTTV nie dokończyły przed chwilą emotki, a przycisk języka jest na pasku akcji pod polem wiadomości
 
 Każde wydanie, z tym, co się zmieniło, i pomiarem, który za tym stoi:
-[Releases](https://github.com/Pkkls/kick-chat-translator/releases) i [CHANGELOG.md](CHANGELOG.md).
+[Releases](https://github.com/kilworks/twitch-chat-translator/releases) i [CHANGELOG.md](CHANGELOG.md).
 
 ## Rozwój
 
 ```bash
-git clone https://github.com/Pkkls/kick-chat-translator.git
-cd kick-chat-translator
+git clone https://github.com/kilworks/twitch-chat-translator.git
+cd twitch-chat-translator
 npm ci
 npm run release:check    # typecheck, lint, unit tests, build: the gate every package goes through
 npm run build:firefox    # Firefox build, same dist/ folder
@@ -192,13 +185,13 @@ npm run dev              # HMR
 Buildy są powtarzalne: ten sam commit daje identyczne bajt w bajt archiwa zip na każdej maszynie, co
 sprawdza się, budując `git archive` tagu w pustym folderze i porównując hashe.
 
-Poza testami jednostkowymi 42 bramki offline ładują zbudowane rozszerzenie do prawdziwej przeglądarki,
+Poza testami jednostkowymi bramki offline ładują zbudowane rozszerzenie do prawdziwej przeglądarki,
 sterują nim i sprawdzają, co robi, przy stronie serwowanej lokalnie i silniku tłumaczeń odpowiadającym lokalnie.
 Potrzebują Playwrighta, który celowo nie jest zależnością: wskaż w `UX_KIT` folder, którego `node_modules`
 go zawiera, albo uruchom `npm i -D playwright`.
 
 ```bash
-node test/e2e/run-gates.mjs --headless                  # all 42, no window
+node test/e2e/run-gates.mjs --headless                  # all the offline gates, no window
 node test/e2e/store-shots-fixture.mjs --lang=ja         # the store screenshots, in one listing language
 node test/e2e/store-shots-fixture.mjs --gif             # English store screenshots, the README images and this GIF
 ```
@@ -212,11 +205,8 @@ Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 
 ## Powiązane projekty
 
-- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker), blokuje reklamy pre-roll i nakładkowe na Kicku
-- [kick-core](https://github.com/Pkkls/kick-core), klient bramy czasu rzeczywistego współdzielony przez te rozszerzenia
-- [kickbus](https://github.com/Pkkls/kickbus), oficjalne webhooki Kicka przekazywane do lokalnych botów przez SSE
-- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner), aplikacja na Windows, która nabija czas oglądania do dropów Kicka
+- [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), ten sam tłumacz dla czatu Kicka, od tego samego autora
 
 ## Licencja
 
-MIT. Niezwiązane z Kickiem.
+MIT. Niezwiązane z Twitchem.

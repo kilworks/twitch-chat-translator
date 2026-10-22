@@ -1,9 +1,11 @@
-Tính năng gõ bằng biểu tượng cảm xúc hiện đã hoạt động bình thường. Tab hoàn thành các biểu tượng cảm xúc và @đề cập của Kick và 7TV thay vì chèn bản dịch, các biểu tượng cảm xúc vẫn ở trong tin nhắn của bạn khi nó được dịch và bản xem trước không còn bao gồm danh sách của Kick hoặc bộ chọn biểu tượng cảm xúc.
+Bản phát hành đầu tiên, cho Twitch. Công cụ dịch, nhận diện ngôn ngữ, bộ nhớ đệm và các tùy chọn đến từ Kick Chat Translator, của cùng tác giả. Mọi phần đọc hoặc ghi vào trang đều được làm lại cho Twitch và đo trên các kênh đang phát.
 
-Bản dịch chính xác hơn: tên thương hiệu và tên người (iPhone, YouTube, LeBron) không còn bị loại bỏ trước khi dịch và các @đề cập vẫn ở trong tin nhắn đã dịch.
+Nó đọc chat Twitch ở cả ba dạng: danh sách riêng của Twitch (cả khi có BTTV và FFZ), danh sách của 7TV, và xem lại VOD và clip. Popout, embed, chế độ điều hành viên, trình quản lý stream và di động đều được hỗ trợ.
 
-Các bộ lọc đã được làm lại: các bot Kick thực sự bị bỏ qua và bạn có thể thêm các bộ lọc của riêng mình, "Ẩn tin nhắn có chứa" giờ đây cũng ẩn những gì đã có trên màn hình và danh sách có thể được nhập lại.
+Bản dịch được ghi vào ô soạn tin của Twitch với emote giữ nguyên như chữ. Tên emote trong bộ 7TV, BTTV và FFZ của kênh không bao giờ bị dịch, kể cả khi bạn không dùng các tiện ích đó.
 
-Tiện ích mở rộng nhẹ hơn trên mọi trang Kick và trên Chrome, công cụ trên thiết bị sẽ được cung cấp lại khi ngôn ngữ đích ở chế độ Tự động.
+Ngôn ngữ của kênh lấy từ chính Twitch, tin nhắn bị điều hành viên xóa, bị timeout hoặc ban cũng mất bản dịch, và giao diện màu tím, theo giao diện chat tối hoặc sáng của Twitch.
 
-Mới và tùy chọn: số liệu thống kê sử dụng hàng ngày ẩn danh, tắt trừ khi bạn đồng ý. Chúng không bao giờ chứa tin nhắn, tên hoặc kênh của bạn.
+Bật hoặc tắt dịch bằng Alt+Shift+T, vì Alt+T là chế độ rạp hát của Twitch. Tab chỉ chèn bản dịch khi 7TV hoặc BTTV vừa không hoàn tất một emote. Các bot bị bỏ qua là những bot đã đo trên Twitch: StreamElements, Fossabot, Moobot, Streamlabs và Nightbot.
+
+Tùy chọn: số liệu thống kê sử dụng hàng ngày ẩn danh, tắt trừ khi bạn đồng ý. Chúng không bao giờ chứa tin nhắn, tên hoặc kênh của bạn.

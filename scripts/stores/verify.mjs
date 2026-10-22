@@ -18,8 +18,8 @@ import { LISTINGS, apiLocale, chromeCode } from './languages.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const VERSION = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
-const ITEM = 'nkkjmbkmacbdkboijmnhjnblcaiclhni';
-const SLUG = 'kick-chat-translator';
+const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
+const SLUG = 'twitch-chat-translator';
 const store = (rel) => fs.readFileSync(path.join(ROOT, 'store', rel), 'utf8').trim();
 const catalog = (dir) => JSON.parse(fs.readFileSync(path.join(ROOT, 'public/_locales', dir, 'messages.json'), 'utf8'));
 const locale = (dir) => catalog(dir).extDescription.message;

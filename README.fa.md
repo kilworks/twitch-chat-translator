@@ -2,24 +2,19 @@
 
 <img src="public/icons/icon128.png" alt="" width="80" height="80">
 
-# Kick Chat Translator
+# Twitch Chat Translator
 
-چت هر استریم Kick را به زبان خودت بخوان و به زبان کانال جواب بده.<br>
+چت هر استریم Twitch را به زبان خودت بخوان و به زبان کانال جواب بده.<br>
 رایگان، بدون حساب کاربری، بدون هیچ تنظیمی. 43 زبان، هم در چت و هم در خود افزونه.
 
-**[افزودن به Chrome، Brave یا Edge](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)** &nbsp;·&nbsp; **[افزودن به Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)**
+**[دانلود آخرین نسخه](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome، Brave، Edge و Firefox
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=Chrome%20Web%20Store&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Chrome users](https://img.shields.io/chrome-web-store/users/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=users&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Firefox Add-on](https://img.shields.io/amo/v/kick-chat-translator?label=Firefox%20Add-on&color=53fc18)](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-[![CI](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml)
+[![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](README.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [العربية](README.ar.md) · [עברית](README.he.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Català](README.ca.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [বাংলা](README.bn.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
 <img src="screenshots/demo.gif" alt="پیام‌های اسپانیایی چت یکی‌یکی می‌رسند و زیر هر کدام ترجمه انگلیسی‌اش است؛ بعد یک جواب انگلیسی تایپ می‌شود، پیش‌نمایش اسپانیایی بالای کادر چت ظاهر می‌شود و Tab آن را جایگزین می‌کند" width="360">
-
-[روی یک چت واقعی ببینش](https://www.youtube.com/watch?v=NoGJeUrwy9o)
 
 </div>
 
@@ -27,37 +22,45 @@
 
 ## چطور کار می‌کند
 
-1. نصبش کن و یک استریم Kick باز کن. یک نوار سبز بالای چت نشان می‌دهد که فعال است.
+1. نصبش کن و یک استریم Twitch باز کن. یک نوار بنفش بالای چت نشان می‌دهد که فعال است.
 2. هر پیام همان لحظه‌ای که می‌رسد ترجمه‌اش را درست زیر خودش می‌گیرد، به زبان مرورگرت. هم در
-   استریم زنده و هم در بازپخش‌ها.
+   استریم زنده، هم در VODها و هم در کلیپ‌ها.
 3. جوابت را به زبان خودت بنویس. یک پیش‌نمایش بالای کادر چت آن را به زبان کانال نشان می‌دهد:
    Tab را بزن یا رویش کلیک کن تا همان نسخه جای چیزی که نوشتی بنشیند.
 
-زبان کانال از خود Kick خوانده می‌شود، پس چیزی برای تنظیم کردن نیست. هر دو زبان را می‌شود در تنظیمات
+زبان کانال همان است که استریمر در Twitch تنظیم کرده، پس چیزی برای تنظیم کردن نیست. هر دو زبان را می‌شود در تنظیمات
 عوض کرد و زبان خواندن را هم می‌شود برای هر کانال جدا به خاطر سپرد.
+
+اگر 7TV یا BTTV هم داری، آن‌ها Tab را برای تمام کردن یک ایموت به کار می‌برند. آن‌وقت Tab اول ایموت را تمام می‌کند و
+ترجمه را فقط وقتی جایگذاری می‌کند که چیزی برای تمام کردن نبوده باشد. Ctrl/Cmd+Enter و کلیک همیشه آن را جایگذاری می‌کنند.
 
 ## چه چیزی می‌گیری
 
 - **43 زبان**، از جمله زبان‌های راست‌به‌چپ (عربی، عبری، فارسی)، با نسخه‌های منطقه‌ای جدا از هم
   (پرتغالی برزیلی و اروپایی، چینی ساده و سنتی، کانتونی)
+- **هر جا چت هست**: چت زنده، پنجره جدا (popout)، embed، نمای مدیر (moderator)، استریم منیجر، بازپخش VOD و کلیپ، روی
+  www.twitch.tv، m.twitch.tv و dashboard.twitch.tv، چه با 7TV، BTTV و FFZ و چه بدون آن‌ها
 - **خود افزونه هم به همین زبان‌ها حرف می‌زند**: تنظیمات، پاپ‌آپ و نوار چت به هر 43 زبان، با منویی که
   پرچم‌ها را نشان می‌دهد
 - **همان اول رایگان** با Google Translate. اگر کلید رایگان DeepL خودت را اضافه کنی، زبان‌های اروپایی
   بهتر ترجمه می‌شوند؛ MyMemory و Lingva هم وقتی یک موتور از کار بیفتد جایش را می‌گیرند
-- **ترجمه روی دستگاه** در Chrome و Edge، هر جا مرورگر پشتیبانی کند: 22 میلی‌ثانیه به جای 1.6 ثانیه، و
+- **ترجمه روی دستگاه** در Chrome و Edge، هر جا مرورگر پشتیبانی کند: بدون شبکه، بدون سقف مصرف، و
   متن اصلاً از کامپیوترت بیرون نمی‌رود
 - **فیلترها**: ردکردن ربات‌ها، بی‌صدا کردن کاربرها یا کانال‌ها، پنهان کردن خط‌هایی که کلمه‌ای خاص
   دارند، و ترجمه فقط زبان‌هایی که خودت انتخاب می‌کنی
-- **ساخته‌شده برای چت‌های سریع**: ایموت‌های 7TV همان‌طور که هستند می‌مانند، اسپم ایموجی و لینک‌ها قبل از
-  ارسال هر چیزی حذف می‌شوند، واژه‌نامه‌ای برای اسم‌هایی که موتورها خرابشان می‌کنند، و کش ترجمه
+- **ساخته‌شده برای چت‌های سریع**: اسم ایموت‌های مجموعه‌های 7TV، BTTV و FFZ کانال هرگز ترجمه نمی‌شوند، حتی اگر آن
+  افزونه‌ها را نداشته باشی، لینک‌ها و @منشن‌ها قبل از ارسال هر چیزی کنار گذاشته می‌شوند، واژه‌نامه‌ای برای
+  اسم‌هایی که موتورها خرابشان می‌کنند، و کش ترجمه
 - **چهار سبک نمایش**: زیر پیام، توی همان خط، جای پیام، یا فقط وقتی موس را رویش می‌بری
 - **یک کانال را متوقف کن** از نوار چت، بدون اینکه بقیه متوقف شوند. با عوض کردن کانال یا آپدیت
   افزونه، برگه‌های باز بدون رفرش به ترجمه ادامه می‌دهند
+- **حواسش به مدیریت چت هست**: پیامی که مدیر پاک کند، یا تایم‌اوت یا بن حذفش کند، ترجمه‌اش را هم از دست می‌دهد
+- **شبیه Twitch است**: بنفش، و از تم تیره یا روشن خود چت پیروی می‌کند مگر اینکه خودت یکی را انتخاب کنی
 - Chrome، Brave، Edge و Firefox
 
 | چت، همان‌طور که اسکرول می‌شود ترجمه می‌شود | پاپ‌آپ نوار ابزار |
 |---|---|
-| <img src="screenshots/chat.png" alt="چت Kick که زیر هر پیام اسپانیایی ترجمه انگلیسی‌اش آمده، با نوار وضعیت افزونه بالای لیست" width="360"> | <img src="screenshots/popup.png" alt="پاپ‌آپ افزونه با زبان مقصد، حالت نمایش، فهرست سرویس‌ها و تعداد درخواست‌های امروز" width="360"> |
+| <img src="screenshots/chat.png" alt="چت Twitch که زیر هر پیام اسپانیایی ترجمه انگلیسی‌اش آمده، با نوار وضعیت افزونه بالای لیست" width="360"> | <img src="screenshots/popup.png" alt="پاپ‌آپ افزونه با زبان مقصد، سبک نمایش، تنظیم پیش‌نمایش نوشتن و زنجیره سرویس‌ها" width="360"> |
 
 | چیزی که می‌نویسی، قبل از ارسال | یک زبان انتخاب کن، یا بگذار خودش انتخاب کند |
 |---|---|
@@ -68,25 +71,14 @@
 
 ## نصب
 
-[Chrome، Brave، Edge: فروشگاه وب Chrome](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-&nbsp;·&nbsp;
-[Firefox: افزونه‌های Mozilla](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-
-نسخه‌های فروشگاه خودشان آپدیت می‌شوند.
-
-<details>
-<summary>نصب دستی از روی فایل zip نسخه</summary>
-
-فایل zip مخصوص مرورگرت را از [Releases](https://github.com/Pkkls/kick-chat-translator/releases/latest) دانلود کن و از حالت فشرده دربیاور.
+فایل zip مخصوص مرورگرت را از [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) دانلود کن و از حالت فشرده دربیاور.
 
 - Chrome، Brave، Edge (`…-chromium.zip`): `chrome://extensions` را باز کن، حالت Developer را روشن کن، روی Load unpacked کلیک کن و پوشه را انتخاب کن.
 - Firefox 121+ (`…-firefox.zip`): `about:debugging#/runtime/this-firefox` را باز کن، روی Load Temporary Add-on کلیک کن و `manifest.json` را انتخاب کن.
+  Firefox با ری‌استارت شدن، افزونه موقت را فراموش می‌کند.
 
-اگر نسخه فروشگاه هم نصب است، اول آن را خاموش کن، وگرنه هر پیام دو بار ترجمه می‌شود. نسخه‌ای که
-این‌طوری نصب شود خودش آپدیت نمی‌شود: وقتی نسخه جدیدتری باشد، روی آیکونش یک نشان می‌آید و پاپ‌آپ
-به فروشگاه لینک می‌دهد.
-
-</details>
+نسخه‌ای که این‌طوری نصب شود خودش آپدیت نمی‌شود: وقتی نسخه جدیدتری باشد، روی آیکونش یک نشان می‌آید و پاپ‌آپ
+به آخرین نسخه لینک می‌دهد.
 
 ## موتورهای ترجمه
 
@@ -95,15 +87,13 @@
 | سرویس | کلید | توضیح |
 |---|---|---|
 | Google | لازم نیست | پیش‌فرض، همان اول کار می‌کند |
-| DeepL | رایگان | بهترین کیفیت، [کلید رایگان](https://www.deepl.com/pro-api) برای یک میلیون کاراکتر در ماه |
+| DeepL | رایگان | بهترین برای زبان‌های اروپایی، [کلید رایگان](https://www.deepl.com/pro-api) برای یک میلیون کاراکتر در ماه |
 | MyMemory | لازم نیست | جایگزین |
 | Lingva | لازم نیست | جایگزین، روی یک سرور عمومی مگر اینکه به سرور خودت وصلش کنی |
 
-مترجم داخلی Chromium از همه‌شان سریع‌تر است. روی یک کانال زنده اندازه گرفته شد: 22 میلی‌ثانیه از ظاهر
-شدن پیام تا ظاهر شدن ترجمه‌اش روی صفحه، در برابر 1618 میلی‌ثانیه از مسیر زنجیره ابری، بدون شبکه و
-بدون سقف مصرف. Chrome و Edge از نسخه 138 به بعد می‌توانند آن را ارائه کنند، هرچند نه روی همه نسخه‌ها،
-و مدل هر جفت زبان باید یک بار دانلود شود، با یک کلیک از روی نوار. Firefox آن را ندارد. هر جا نباشد،
-زنجیره ابری جایش را می‌گیرد و چیزی خراب نمی‌شود.
+مترجم داخلی Chromium نه شبکه می‌خواهد و نه سقف مصرف دارد. Chrome و Edge از نسخه 138 به بعد می‌توانند آن را ارائه کنند،
+هرچند نه روی همه نسخه‌ها، و مدل هر جفت زبان باید یک بار دانلود شود، با یک کلیک از روی نوار. Firefox آن را ندارد.
+هر جا نباشد، زنجیره ابری جایش را می‌گیرد و چیزی خراب نمی‌شود.
 
 ## تنظیمات
 
@@ -117,9 +107,10 @@
   بازیابی
 - **فعالیت**: پیام‌های ترجمه‌شده، تعداد برخوردهای کش، هر زبانی که توی چت دیده شده، و اینکه چرا هر کدام
   از 50 خط آخر ترجمه شد یا رد شد
-- **صفحه‌کلید**: Alt+T ترجمه چت را روشن و خاموش می‌کند، Alt+W پیش‌نمایش نوشتن را
-- دکمه زبان توی نوار اقدام‌های چت: یک کلیک بین زبان کانال و آخرین انتخابت جابه‌جا می‌کند، نگه داشتن
-  دکمه فهرست را باز می‌کند، و تایپ دو حرف فهرست را فیلتر می‌کند
+- **صفحه‌کلید**: Alt+Shift+T ترجمه چت را روشن و خاموش می‌کند (Alt+T حالت تئاتر Twitch است)، Alt+W پیش‌نمایش نوشتن را.
+  هر دو را می‌شود در میانبرهای افزونه‌های مرورگرت عوض کرد
+- دکمه زبان توی نوار اقدام‌های چت، زیر کادر پیام: یک کلیک فهرست زبان‌هایی را که با آن‌ها می‌نویسی باز می‌کند،
+  و تایپ کردن فهرست را فیلتر می‌کند. دکمه بالای چت زبانی را تعیین می‌کند که به آن می‌خوانی
 
 ## زبان‌های پشتیبانی‌شده
 
@@ -129,8 +120,8 @@
 
 ## حریم خصوصی
 
-بدون حساب، بدون سرور من، و بدون تجزیه و تحلیل، مگر اینکه تعداد روزانه ناشناس ارسال شده به Google Analytics را انتخاب کنید (موتورهای استفاده شده، خطاها، سرعت، هرگز پیام ها، نام ها یا کانال های شما). پیام‌های چت فقط به سرویس ترجمه‌ای که انتخاب
-کرده‌ای می‌روند و جای دیگری نه، و در حالت ترجمه روی دستگاه حتی به آن هم نمی‌روند. نسخه نصب‌شده از
+بدون حساب، بدون سرور من، و بدون تجزیه و تحلیل، مگر اینکه تعداد روزانه ناشناس ارسال شده به Google Analytics را انتخاب کنید (موتورهای استفاده شده، خطاها، سرعت، هرگز پیام ها، نام ها یا کانال های شما). پیام‌های چت، و پیش‌نویس تو وقتی پیش‌نمایش نوشتن روشن است، فقط به سرویس ترجمه‌ای که انتخاب
+کرده‌ای می‌روند و جای دیگری نه، و در حالت ترجمه روی دستگاه حتی به آن هم نمی‌روند. برای فهمیدن زبان کانال، از Twitch زبان پخش و شناسه کانال را می‌پرسد، و برای اینکه اسم ایموت‌ها ترجمه نشوند، از 7TV، BetterTTV و FrankerFaceZ اسم ایموت‌های کانال را می‌پرسد، که فقط شناسه کانال را به آن‌ها می‌گوید و هیچ چیز دیگری. نسخه نصب‌شده از
 فروشگاه هیچ درخواست دیگری نمی‌فرستد. نسخه‌ای که دستی نصب شده باشد، حداکثر هر شش ساعت یک بار برچسب
 آخرین نسخه را از GitHub می‌پرسد تا بفهمد نشان آپدیت را نشان بدهد یا نه.
 [جزئیات](PRIVACY.md)
@@ -139,13 +130,13 @@
 
 **پیام‌ها ترجمه نمی‌شوند.**
 تب فعالیت را توی تنظیمات باز کن و «خواندن تصمیم‌ها» (Read decisions) را بزن: 50 خط آخر را فهرست می‌کند و
-می‌گوید چرا هر کدام ترجمه شد یا رد شد. بیشتر خط‌های ردشده عمداً رد می‌شوند. توی یک جلسه استریم زنده، 213
-تا از 234 خط تکرار حرف خود همان کاربر بود، 9 تا خیلی کوتاه بودند، 7 تا فقط ایموجی یا خنده بودند، و
-یکی هم از اول به زبان خواندن بود. اگر تب اصلاً هیچ چیزی نشان نمی‌دهد، یعنی افزونه چت را نمی‌بیند:
+می‌گوید چرا هر کدام ترجمه شد یا رد شد. بیشتر خط‌های ردشده عمداً رد می‌شوند: تکرار حرف خود همان کاربر،
+خط‌های خیلی کوتاه، فقط ایموجی یا خنده، یا چیزی که از اول به زبان خواندن توست. اگر تب اصلاً هیچ چیزی نشان نمی‌دهد،
+یعنی افزونه چت را نمی‌بیند:
 لطفاً یک issue باز کن.
 
-**نوار سبز غیب شد.**
-صفحه را رفرش کن. اگر دوباره شد، یک [issue](https://github.com/Pkkls/kick-chat-translator/issues) باز کن
+**نوار بنفش غیب شد.**
+صفحه را رفرش کن. اگر دوباره شد، یک [issue](https://github.com/kilworks/twitch-chat-translator/issues) باز کن
 و کانال و کاری که قبلش کردی را بنویس.
 
 **چطور ترجمه بهتری بگیرم؟**
@@ -158,32 +149,36 @@
 **می‌توانم افزونه را به زبان خودم استفاده کنم؟**
 بله. از زبان مرورگرت پیروی می‌کند و منوی بالای تنظیمات آن را به هر کدام از 43 زبان عوض می‌کند.
 
-**توی بازپخش‌ها هم کار می‌کند؟**
+**با 7TV، BTTV و FFZ هم کار می‌کند؟**
+بله، با هر کدامشان یا بدون هیچ‌کدام. اسم ایموت‌هایشان ترجمه نمی‌شود.
+
+**توی VODها و کلیپ‌ها هم کار می‌کند؟**
 بله، دقیقاً مثل استریم‌های زنده.
 
-**بعد از آپدیت Kick خراب شد.**
-Kick گاهی ساختار چتش را عوض می‌کند. یک [issue](https://github.com/Pkkls/kick-chat-translator/issues) باز
+**بعد از آپدیت Twitch خراب شد.**
+Twitch گاهی ساختار چتش را عوض می‌کند. یک [issue](https://github.com/kilworks/twitch-chat-translator/issues) باز
 کن تا درست شود.
 
-**این را خود Kick ساخته؟**
-نه. یک پروژه مستقل و متن‌باز است و به Kick ربطی ندارد.
+**این را خود Twitch ساخته؟**
+نه. یک پروژه مستقل و متن‌باز است و به Twitch ربطی ندارد.
 
 ## چه خبر
 
-در 3.2.0:
+در 1.0.0، اولین نسخه برای Twitch:
 
-- تنظیمات، پاپ‌آپ و نوار چت به هر 43 زبانی که افزونه به آن‌ها ترجمه می‌کند حرف می‌زنند، نه فقط 10 تا، و عبری و فارسی مثل عربی راست‌به‌چپ‌اند
-- ده زبانی که از قبل داشت طوری بازنویسی شد که انگار از اول به همان زبان نوشته شده‌اند، نه ترجمه کلمه‌به‌کلمه از انگلیسی
-- منوی زبان رابط پرچم هر زبان را نشان می‌دهد و با صفحه‌کلید هم کار می‌کند
+- چت Twitch را در سه شکلش می‌خواند: فهرست خود Twitch (با BTTV و FFZ هم)، فهرست 7TV، و بازپخش VOD و کلیپ، در پنجره جدا (popout)، embed، نمای مدیر، استریم منیجر و موبایل
+- ترجمه‌ها را توی کادر پیام می‌نویسد و ایموت‌ها را مثل کلمه نگه می‌دارد، و اسم ایموت‌های مجموعه‌های 7TV، BTTV و FFZ کانال را هرگز ترجمه نمی‌کند
+- زبان کانال از Twitch می‌آید، پیام پاک‌شده ترجمه‌اش را هم از دست می‌دهد، و ظاهرش بنفش است و از چت تیره یا روشن Twitch پیروی می‌کند
+- Alt+Shift+T ترجمه را روشن و خاموش می‌کند، Tab ترجمه را فقط وقتی جایگذاری می‌کند که 7TV یا BTTV همین الان ایموتی را تمام نکرده باشد، و دکمه زبان توی نوار اقدام‌ها، زیر کادر پیام، است
 
 همه نسخه‌ها، با اینکه چه چیزی عوض شد و اندازه‌گیری پشتش:
-[Releases](https://github.com/Pkkls/kick-chat-translator/releases) و [CHANGELOG.md](CHANGELOG.md).
+[Releases](https://github.com/kilworks/twitch-chat-translator/releases) و [CHANGELOG.md](CHANGELOG.md).
 
 ## توسعه
 
 ```bash
-git clone https://github.com/Pkkls/kick-chat-translator.git
-cd kick-chat-translator
+git clone https://github.com/kilworks/twitch-chat-translator.git
+cd twitch-chat-translator
 npm ci
 npm run release:check    # typecheck, lint, unit tests, build: the gate every package goes through
 npm run build:firefox    # Firefox build, same dist/ folder
@@ -194,13 +189,13 @@ npm run dev              # HMR
 بیلدها قابل بازتولیدند: یک کامیت روی هر ماشینی zipهای کاملاً یکسان بایت‌به‌بایت می‌دهد، که با ساختن
 `git archive` تگ در یک پوشه خالی و مقایسه هش‌ها بررسی می‌شود.
 
-جدا از تست‌های واحد، 42 گیت آفلاین افزونه ساخته‌شده را توی یک مرورگر واقعی بالا می‌آورند، آن را راه
+جدا از تست‌های واحد، گیت‌های آفلاین افزونه ساخته‌شده را توی یک مرورگر واقعی بالا می‌آورند، آن را راه
 می‌برند و بررسی می‌کنند چه کار می‌کند، با صفحه‌ای که محلی سرو می‌شود و موتور ترجمه‌ای که محلی جواب
 می‌دهد. به Playwright نیاز دارند که عمداً وابستگی پروژه نیست: `UX_KIT` را به پوشه‌ای نشان بده که
 `node_modules`اش آن را دارد، یا `npm i -D playwright` را اجرا کن.
 
 ```bash
-node test/e2e/run-gates.mjs --headless                  # all 42, no window
+node test/e2e/run-gates.mjs --headless                  # all the offline gates, no window
 node test/e2e/store-shots-fixture.mjs --lang=ja         # the store screenshots, in one listing language
 node test/e2e/store-shots-fixture.mjs --gif             # English store screenshots, the README images and this GIF
 ```
@@ -214,13 +209,10 @@ node test/e2e/store-shots-fixture.mjs --gif             # English store screensh
 
 ## پروژه‌های مرتبط
 
-- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker)، تبلیغ‌های پیش از پخش و روی صفحه Kick را مسدود می‌کند
-- [kick-core](https://github.com/Pkkls/kick-core)، کلاینت دروازه بلادرنگ که بین این افزونه‌ها مشترک است
-- [kickbus](https://github.com/Pkkls/kickbus)، وب‌هوک‌های رسمی Kick که با SSE به ربات‌های محلی می‌رسند
-- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner)، برنامه Windows که زمان تماشای دراپ‌های Kick را جلو می‌برد
+- [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/))، همین مترجم برای چت Kick، از همان سازنده
 
 ## مجوز
 
-MIT. به Kick ربطی ندارد.
+MIT. به Twitch ربطی ندارد.
 
 </div>

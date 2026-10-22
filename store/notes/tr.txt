@@ -1,9 +1,11 @@
-İfadelerle yazmak artık düzgün çalışıyor. Sekme, çeviriyi eklemek yerine Kick'in ve 7TV'nin ifadelerini ve @bahsetmelerini tamamlar, ifadeler çevrildiğinde mesajınızda kalır ve önizleme artık Kick'in listelerini veya ifade seçiciyi kapsamaz.
+Twitch için ilk sürüm. Çeviri motoru, dil algılama, önbellek ve seçenekler aynı yazarın Kick Chat Translator eklentisinden geliyor. Sayfayı okuyan ya da yazan her şey Twitch için baştan yazıldı ve canlı kanallarda ölçüldü.
 
-Çeviriler daha doğru: marka ve kişi adları (iPhone, YouTube, LeBron) artık çeviriden önce atlanmıyor ve @bahisler çevrilmiş mesajlarda kalıyor.
+Twitch sohbetini üç biçimde okur: Twitch'in kendi listesi (BTTV ve FFZ ile de), 7TV listesi, ve VOD ile klip tekrarı. Popout, embed, moderatör görünümü, yayın yöneticisi ve mobil dahildir.
 
-Filtreler yeniden düzenlendi: gerçek Kick botları göz ardı edildi ve siz kendi filtrenizi ekleyebilirsiniz, "İçeren mesajları gizle" seçeneği artık ekranda görünenleri de gizler ve listeler yeniden yazılabilir.
+Çeviriler Twitch mesaj kutusuna, emote'lar kelime olarak kalacak şekilde yazılır. Kanalın 7TV, BTTV ve FFZ setlerindeki emote adları, bu uzantıları kullanmasan bile asla çevrilmez.
 
-Uzantı her Kick sayfasında daha hafiftir ve Chrome'da, hedef dil Otomatik olduğunda cihaz içi motor yeniden sunulur.
+Kanalın dili doğrudan Twitch'ten gelir, bir moderatörün sildiği mesaj, bir timeout ya da bir ban çevirisini de kaybeder, görünüm mordur ve Twitch'in koyu ya da açık sohbet temasını izler.
 
-Yeni ve isteğe bağlı: anonim günlük kullanım istatistikleri, siz evet demediğiniz sürece kapalı. Hiçbir zaman mesajlarınızı, adlarınızı veya kanallarınızı içermezler.
+Çeviriyi Alt+Shift+T ile aç ya da kapat, çünkü Alt+T Twitch'in tiyatro modudur. Tab çeviriyi yalnızca 7TV ya da BTTV az önce bir emote'u tamamlamadıysa ekler. Yok sayılan botlar Twitch'te ölçülenlerdir: StreamElements, Fossabot, Moobot, Streamlabs ve Nightbot.
+
+İsteğe bağlı: anonim günlük kullanım istatistikleri, sen evet demedikçe kapalı. Hiçbir zaman mesajlarını, adlarını veya kanallarını içermezler.

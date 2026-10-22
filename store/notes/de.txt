@@ -1,9 +1,11 @@
-Das Tippen mit Emotes funktioniert jetzt ordnungsgemäß. Tab vervollständigt die Emotes und @Erwähnungen von Kick und 7TV, anstatt die Übersetzung einzufügen. Emotes bleiben in Ihrer Nachricht, wenn sie übersetzt wird, und die Vorschau deckt nicht mehr Kicks Listen oder die Emote-Auswahl ab.
+Erste Version, für Twitch. Die Übersetzungs-Engine, die Spracherkennung, der Cache und die Optionen stammen von Kick Chat Translator, vom selben Autor. Alles, was die Seite liest oder beschreibt, wurde für Twitch neu gebaut und in Live-Kanälen gemessen.
 
-Übersetzungen sind genauer: Marken- und Personennamen (iPhone, YouTube, LeBron) werden vor der Übersetzung nicht mehr gelöscht und @Erwähnungen bleiben in übersetzten Nachrichten.
+Sie liest den Twitch-Chat in seinen drei Formen: Twitchs eigene Liste (auch mit BTTV und FFZ), die 7TV-Liste sowie VOD- und Clip-Wiederholungen. Popout, Embed, Moderatoransicht, Stream-Manager und Mobilgeräte sind eingeschlossen.
 
-Filter wurden überarbeitet: Die echten Kick-Bots werden ignoriert und Sie können Ihre eigenen hinzufügen. „Nachrichten ausblenden mit“ blendet jetzt auch aus, was bereits auf dem Bildschirm ist, und die Listen können erneut eingegeben werden.
+Übersetzungen werden mit als Wörter erhaltenen Emotes in das Twitch-Nachrichtenfeld geschrieben. Die Emote-Namen aus den 7TV-, BTTV- und FFZ-Sets des Kanals werden nie übersetzt, auch wenn du diese Erweiterungen nicht nutzt.
 
-Die Erweiterung ist auf jeder Kick-Seite leichter, und in Chrome wird die Übersetzung auf dem Gerät wieder angeboten, wenn die Zielsprache auf „Auto“ steht.
+Die Sprache des Kanals kommt von Twitch selbst, eine von einem Moderator gelöschte Nachricht oder eine durch Timeout oder Bann entfernte verliert auch ihre Übersetzung, und das Aussehen ist violett und folgt dem dunklen oder hellen Chat-Design von Twitch.
 
-Neu und optional: Anonyme tägliche Nutzungsstatistik, deaktiviert, sofern Sie nicht „Ja“ sagen. Sie enthalten niemals Ihre Nachrichten, Namen oder Kanäle.
+Schalte die Übersetzung mit Alt+Umschalt+T ein oder aus, weil Alt+T der Kinomodus von Twitch ist. Tab fügt die Übersetzung nur ein, wenn 7TV oder BTTV nicht gerade ein Emote vervollständigt haben. Die ignorierten Bots sind die auf Twitch gemessenen: StreamElements, Fossabot, Moobot, Streamlabs und Nightbot.
+
+Optional: anonyme tägliche Nutzungsstatistik, aus, solange du nicht Ja sagst. Sie enthält nie deine Nachrichten, Namen oder Kanäle.

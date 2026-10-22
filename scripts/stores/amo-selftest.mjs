@@ -51,24 +51,24 @@ const srv = http.createServer(async (req, res) => {
     polls++;
     return send(200, { uuid: 'u-1', processed: polls >= 2, valid: true, version: '9.9.9', validation: { errors: 0, warnings: 3 } });
   }
-  if (req.method === 'POST' && url === '/addons/addon/kick-chat-translator/versions/') {
+  if (req.method === 'POST' && url === '/addons/addon/twitch-chat-translator/versions/') {
     seen.push(`version:${has(src) && has(Buffer.from('u-1'))}`);
     return send(201, { id: 42, version: '9.9.9' });
   }
-  if (req.method === 'PATCH' && url === '/addons/addon/kick-chat-translator/versions/42/') {
+  if (req.method === 'PATCH' && url === '/addons/addon/twitch-chat-translator/versions/42/') {
     const j = JSON.parse(body);
     seen.push(`notes:${Object.keys(j.release_notes).sort().join(',')}|${j.approval_notes}`);
     return send(200, {});
   }
-  if (req.method === 'GET' && url === '/addons/addon/kick-chat-translator/versions/42/') {
+  if (req.method === 'GET' && url === '/addons/addon/twitch-chat-translator/versions/42/') {
     return send(200, { version: '9.9.9', file: { status: 'public' }, source: 'x.zip', release_notes: { fr: 'n fr', 'en-US': 'n en', 'pt-BR': 'n br' } });
   }
-  if (req.method === 'PATCH' && url === '/addons/addon/kick-chat-translator/') {
+  if (req.method === 'PATCH' && url === '/addons/addon/twitch-chat-translator/') {
     stored = JSON.parse(body);
     seen.push(`listing:${Object.keys(stored.summary).sort().join(',')}`);
     return send(200, {});
   }
-  if (req.method === 'GET' && url === '/addons/addon/kick-chat-translator/') {
+  if (req.method === 'GET' && url === '/addons/addon/twitch-chat-translator/') {
     // As the real AMO does: URLs become outgoing links, & is escaped.
     const served = Object.fromEntries(Object.entries(stored.description ?? {}).map(([l, t]) => [l,
       t.replace(/&/g, '&amp;').replace(/github\.com\/x/, '<a href="https://outgoing.example/v1/x" rel="nofollow">github.com/x</a>')]));

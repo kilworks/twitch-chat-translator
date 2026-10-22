@@ -1,14 +1,14 @@
-Kick Chat Translator er en gratis chat oversetter for Kick. Les chatten i enhver stream på ditt eget språk, og svar på kanalens språk, rett i chatten.
+Twitch Chat Translator er en gratis chat oversetter for Twitch. Les chatten i enhver stream på ditt eget språk, og svar på kanalens språk, rett i chatten.
 
 Ser du en tyrkisk, spansk, russisk eller arabisk stream og får ikke med deg chatten? Installer, åpne streamen, og hver melding får oversettelsen rett under seg så snart den kommer. Ingen konto, ingen API-nøkkel, ingenting å sette opp.
 
 SLIK FUNGERER DET
 
-1. Åpne en vilkårlig Kick-stream. En grønn linje øverst i chatten viser at oversetteren er på.
+1. Åpne en vilkårlig Twitch-stream. En lilla linje øverst i chatten viser at oversetteren er på.
 2. Hver ny melding får oversettelsen sin under seg, på nettleserens språk.
 3. Skriv et svar på ditt eget språk. En forhåndsvisning viser det på kanalens språk: trykk Tab eller klikk på den, og send.
 
-Kanalens språk leses fra Kick selv, og begge språkene kan endres i innstillingene. Fungerer på direktesendinger og på VOD-gjenavspillinger, lar 7TV-emotes være som de er, og setter seg selv på pause i faner i bakgrunnen.
+Kanalens språk er det streameren har satt på Twitch, og begge språkene kan endres i innstillingene. Fungerer i live-chat, popout, embed, moderatorvisning og stream manager, og på VOD- og klippgjenavspillinger, med eller uten 7TV, BTTV og FFZ. Den setter seg selv på pause i faner i bakgrunnen (en innstilling, på som standard).
 
 DETTE FÅR DU
 
@@ -17,19 +17,21 @@ DETTE FÅR DU
 • Bedre europeiske språk med din egen DeepL API-nøkkel. DeepL får de siste chatlinjene som kontekst, slik at formuleringen passer til samtalen.
 • Oversettelse på enheten i Chrome og Edge 138+ når datamaskinen din støtter det: offline, ubegrenset, og chatten forlater aldri maskinen din.
 • Automatisk reserve: når en motor feiler, tar MyMemory eller Lingva over. Du velger rekkefølgen.
-• Fire visningsstiler: under meldingen, på samme linje, i liten kursiv etter den, eller bare når du holder musen over. Hover-modus oversetter ingenting før du peker på en melding, noe som kutter forbruket omtrent ti ganger i en rask chat.
+• Fire visningsstiler: under meldingen, på samme linje, i stedet for den, eller bare når du holder musen over. Hover-modus oversetter ingenting før du peker på en melding, noe som sparer kvoten din i en rask chat.
 • Filtre: hopp over roboter, demp brukere eller kanaler, skjul linjer som inneholder et ord du velger (praktisk mot !command-spam), eller oversett bare språkene du vil ha.
-• Emotes, omtaler, lenker og emoji-spam fjernes før noe sendes, slik at ingenting brukes på å oversette "kkkkkk".
-• Gjør den til din egen: tekststørrelse, linjeavstand, skrifttype, aksentfarge, mørk eller lys chat, et lesespråk som huskes per kanal, hurtigtaster.
+• Emote-navn fra kanalens 7TV-, BTTV- og FFZ-sett oversettes aldri, selv om du ikke bruker de utvidelsene. @omtaler og lenker settes til side før noe sendes, og linjer som bare er emojier eller latter hoppes over, slik at ingenting brukes på å oversette "kkkkkk".
+• En melding en moderator sletter, eller som en timeout eller utestengelse fjerner, mister oversettelsen også.
+• Gjør den til din egen: tekststørrelse, linjeavstand, skrifttype, aksentfarge, mørk eller lys chat (den følger Twitchs egen som standard), et lesespråk som huskes per kanal, hurtigtaster.
 • Grensesnitt på de samme 43 språkene, også de som skrives fra høyre til venstre, valgt i en meny som viser hvert flagg.
 
 PERSONVERN
 
-Ingen konto, ingen server fra meg og ingen analyse, med mindre du sier ja til en daglig anonym telling av brukte tjenester, feil og hastighet, aldri meldingene, navnene eller kanalene dine. Chatteksten går bare til oversettelsesmotoren du har valgt. Med Google, MyMemory eller Lingva er det teksten i hver melding og ingenting annet. Med DeepL følger de siste chatlinjene med som kontekst, sammen med navnene til dem som skrev dem, slik at oversettelsen passer til samtalen. Kanalen du ser på sendes aldri, og med oversettelse på enheten forlater ingenting datamaskinen din.
+Ingen konto, ingen server fra meg og ingen analyse, med mindre du sier ja til en daglig anonym telling av brukte tjenester, feil og hastighet, aldri meldingene, navnene eller kanalene dine. Chatteksten går bare til oversettelsesmotoren du har valgt, og det samme gjør utkastet ditt mens forhåndsvisningen mens du skriver er på. Med Google, MyMemory eller Lingva er det teksten i hver melding og ingenting annet. Med DeepL følger de siste chatlinjene med som kontekst, sammen med navnene til dem som skrev dem, slik at oversettelsen passer til samtalen. Kanalen du ser på sendes aldri til en motor, og med oversettelse på enheten forlater ingen chattekst datamaskinen din. En kanal nevnes på ett sted: utvidelsen spør Twitch om språket, og spør 7TV, BetterTTV og FrankerFaceZ om emote-navnene, noe som forteller dem kanalens id og ingenting annet.
 
-Tillatelsene med vanlige ord: lagring for innstillingene dine og oversettelsesbufferen; tilgang til kick.com for å vise oversettelser i chatten; tilgang til motorene den kan kalle (Google, DeepL, MyMemory og Lingva); en vekkeklokke slik at oversetteren er klar mens du ser på; og retten til å laste inn sitt eget skript på nytt i Kick-faner som allerede er åpne, ved installasjon eller oppdatering, slik at de fortsetter å oversette uten å lastes på nytt. Den leser også GitHub-utgivelsessiden for å si fra når det finnes en nyere versjon, og sender ingenting med den forespørselen.
+Tillatelsene med vanlige ord: lagring for innstillingene dine og oversettelsesbufferen; tilgang til twitch.tv, og til stream manager på dashboard.twitch.tv, for å vise oversettelser i chatten; tilgang til Twitchs språkoppslag og til emote-listene til 7TV, BetterTTV og FrankerFaceZ, slik at emote-navn aldri oversettes; tilgang til motorene den kan kalle (Google, DeepL, MyMemory og Lingva); en vekkeklokke slik at oversetteren er klar mens du ser på; og retten til å laste inn sitt eget skript på nytt i Twitch-faner som allerede er åpne, ved installasjon eller oppdatering, slik at de fortsetter å oversette uten å lastes på nytt, og til å kjøre én egen funksjon på Twitch-siden for å skrive en oversettelse inn i meldingsfeltet når du setter den inn. I en kopi installert for hånd leser den også GitHub-utgivelsessiden for å si fra når det finnes en nyere versjon, og sender ingenting med den forespørselen.
 
 GRATIS OG ÅPEN KILDEKODE
 
-MIT-lisens, hver kodelinje er offentlig: github.com/Pkkls/kick-chat-translator
+MIT-lisens, hver kodelinje er offentlig: github.com/kilworks/twitch-chat-translator
 Feilrapporter og språkønsker er velkomne der, og hva som er endret i hver versjon står på utgivelsessiden.
+Twitch Chat Translator er et uavhengig prosjekt, uten tilknytning til Twitch.

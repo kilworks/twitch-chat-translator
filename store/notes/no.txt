@@ -1,9 +1,11 @@
-Å skrive med følelser fungerer som det skal nå. Tab fullfører Kicks og 7TVs emotes og @mentions i stedet for å sette inn oversettelsen, emotes blir i meldingen når den oversettes, og forhåndsvisningen dekker ikke lenger Kicks lister eller følelsesvelgeren.
+Første versjon, for Twitch. Oversettelsesmotoren, språkgjenkjenningen, bufferen og innstillingene kommer fra Kick Chat Translator, av samme utvikler. Alt som leser eller skriver siden ble bygd på nytt for Twitch og målt på live kanaler.
 
-Oversettelser er mer nøyaktige: merkevare- og personnavn (iPhone, YouTube, LeBron) blir ikke lenger utelatt før oversettelse, og @omtaler forblir i oversatte meldinger.
+Den leser Twitch-chatten i alle tre former: Twitchs egen liste (også med BTTV og FFZ), 7TV-listen, og VOD- og klippgjenavspilling. Popout, embed, moderatorvisning, stream manager og mobil er med.
 
-Filtre ble omarbeidet: de virkelige Kick-robotene blir ignorert og du kan legge til dine egne, "Skjul meldinger som inneholder" skjuler nå også det som allerede er på skjermen, og listene kan skrives inn igjen.
+Oversettelser skrives inn i Twitchs meldingsfelt med emotes beholdt som ord. Emote-navnene i kanalens 7TV-, BTTV- og FFZ-sett oversettes aldri, selv om du ikke bruker de utvidelsene.
 
-Utvidelsen er lettere på hver Kick-side, og på Chrome tilbys motoren på enheten igjen når målspråket er på Auto.
+Kanalens språk kommer fra Twitch selv, en melding slettet av en moderator, en timeout eller en utestengelse mister oversettelsen også, og utseendet er lilla og følger Twitchs mørke eller lyse chattema.
 
-Nytt og valgfritt: anonym daglig bruksstatistikk, slått av med mindre du sier ja. Den inneholder aldri meldingene, navnene eller kanalene dine.
+Slå oversettelsen på eller av med Alt+Shift+T, fordi Alt+T er Twitchs teatermodus. Tab setter inn oversettelsen bare når 7TV eller BTTV ikke nettopp fullførte en emote. Robotene som ignoreres er de som er målt på Twitch: StreamElements, Fossabot, Moobot, Streamlabs og Nightbot.
+
+Valgfritt: anonym daglig bruksstatistikk, av med mindre du sier ja. Den inneholder aldri meldingene, navnene eller kanalene dine.

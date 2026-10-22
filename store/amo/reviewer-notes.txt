@@ -1,16 +1,16 @@
-Source: https://github.com/Pkkls/kick-chat-translator, public, MIT, tag v{{VERSION}}.
+Source: https://github.com/kilworks/twitch-chat-translator, public, MIT, tag v{{VERSION}}.
 The submitted zip is built from that tag with no patching in between.
 
 Build:
 
-  git clone https://github.com/Pkkls/kick-chat-translator
-  cd kick-chat-translator
+  git clone https://github.com/kilworks/twitch-chat-translator
+  cd twitch-chat-translator
   git checkout v{{VERSION}}
   npm ci
   npm run build:firefox
   npm run pack:firefox
 
-The archive lands in release/kick-chat-translator-{{VERSION}}-firefox.zip.
+The archive lands in release/twitch-chat-translator-{{VERSION}}-firefox.zip.
 
 Toolchain actually used for the submitted build: {{TOOLCHAIN}}.
 
@@ -26,14 +26,26 @@ to contain no backslash before release.
 
 No remote code. Every line of JavaScript is inside the package: no eval, no new
 Function on fetched text, no remote script tag, no hosted module. The only
-network calls are the translation engines the user selects, kick.com, and one
-GET to the project's own GitHub releases endpoint for the update notice.
+network calls are the translation engines the user selects (translate.googleapis.com,
+api-free.deepl.com, api.deepl.com, api.mymemory.translated.net, lingva.lunar.icu,
+lingva.ml), twitch.tv itself and gql.twitch.tv (the channel's broadcast language and
+id, with the Client-Id the page already uses, read from the page at runtime), the
+emote lists of 7tv.io, api.betterttv.net and api.frankerfacez.com (names only, so they
+are never translated), and one GET to the project's own GitHub releases endpoint
+for the update notice, made only by a copy that is not the AMO one.
 
-scripting is used in one place, background/index.ts, on runtime.onInstalled:
-it calls scripting.executeScript with the extension's own packaged content
-script file, read from the manifest, on kick.com tabs that were already open.
-Without it an update leaves those tabs with a disconnected script that stops
-translating until a reload. No code string, no other file, no other host.
+scripting is used in two places, both in background/index.ts.
+First, on runtime.onInstalled: it calls scripting.executeScript with the
+extension's own packaged content script file, read from the manifest, on
+twitch.tv tabs that were already open. Without it an update leaves those tabs
+with a disconnected script that stops translating until a reload.
+Second, on the compose.write message: it calls scripting.executeScript with
+world MAIN and func set to ecrireDansSlate (src/background/slateWrite.ts), a
+function packaged in the extension, with the translated text as its only
+argument, in the frame that sent the message. It writes the text into Twitch's
+Slate message box through the editor object React holds, which the content
+script's isolated world cannot reach. Nothing is evaluated from a string, no
+other file, no other host.
 
 Minification is esbuild and Vite defaults through @crxjs/vite-plugin. There is
 no obfuscation step.

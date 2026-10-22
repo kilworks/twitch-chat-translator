@@ -1,14 +1,14 @@
-Kick Chat Translator, Kick için ücretsiz bir canlı sohbet çevirici. Herhangi bir yayının sohbetini kendi dilinde oku, kanalın dilinde yanıt ver, hepsi doğrudan sohbetin içinde.
+Twitch Chat Translator, Twitch için ücretsiz bir canlı sohbet çevirici. Herhangi bir yayının sohbetini kendi dilinde oku, kanalın dilinde yanıt ver, hepsi doğrudan sohbetin içinde.
 
-İngilizce, İspanyolca, Rusça ya da Arapça bir yayın izliyorsun ama sohbeti takip edemiyor musun? Eklentiyi kur, yayını aç: her mesaj geldiği anda hemen altında çevirisiyle görünür. Hesap yok, API anahtarı yok, ayarlanacak bir şey yok.
+Türkçe, İspanyolca, Rusça ya da Arapça bir yayın izliyorsun ama sohbeti takip edemiyor musun? Eklentiyi kur, yayını aç: her mesaj geldiği anda hemen altında çevirisiyle görünür. Hesap yok, API anahtarı yok, ayarlanacak bir şey yok.
 
 NASIL ÇALIŞIR
 
-1. Herhangi bir Kick yayınını aç. Sohbetin üstündeki yeşil çubuk çevirmenin açık olduğunu gösterir.
+1. Herhangi bir Twitch yayınını aç. Sohbetin üstündeki mor çubuk çevirmenin açık olduğunu gösterir.
 2. Her yeni mesajın altında, tarayıcının dilinde çevirisi belirir.
 3. Yanıtını kendi dilinde yaz. Bir önizleme onu kanalın dilinde gösterir: Tab'a bas ya da önizlemeye tıkla, sonra gönder.
 
-Kanalın dili doğrudan Kick'ten okunur, iki dil de ayarlardan değiştirilebilir. Canlı yayınlarda da VOD tekrarlarında da çalışır, 7TV emotelerini olduğu gibi bırakır ve arka plandaki sekmelerde kendiliğinden duraklar.
+Kanalın dili, yayıncının Twitch'te ayarladığı dildir, iki dil de ayarlardan değiştirilebilir. Canlı sohbette, popout'ta, embed'de, moderatör görünümünde ve yayın yöneticisinde, ayrıca VOD ve klip tekrarlarında çalışır, 7TV, BTTV ve FFZ ile de onlarsız da. Arka plandaki sekmelerde kendiliğinden duraklar (bir ayar, varsayılan olarak açık).
 
 NELER SUNUYOR
 
@@ -17,19 +17,21 @@ NELER SUNUYOR
 • Kendi DeepL API anahtarınla Avrupa dillerinde daha iyi çeviri. DeepL sohbetin son satırlarını bağlam olarak alır, böylece ifade konuşmaya oturur.
 • Bilgisayarın destekliyorsa Chrome ve Edge 138+ üzerinde cihazda çeviri: çevrimdışı, sınırsız, ve sohbet makineni hiç terk etmez.
 • Otomatik yedek: bir motor başarısız olursa MyMemory ya da Lingva devralır. Sırayı sen belirlersin.
-• Dört görünüm: mesajın altında, aynı satırda, ardından küçük italikle ya da yalnızca üzerine gelince. Üzerine gelme modu sen bir mesajı işaret edene kadar hiçbir şey çevirmez, bu da hızlı bir sohbette kullanımı yaklaşık on kat azaltır.
+• Dört görünüm: mesajın altında, aynı satırda, yerine ya da yalnızca üzerine gelince. Üzerine gelme modu sen bir mesajı işaret edene kadar hiçbir şey çevirmez, bu da hızlı bir sohbette kotanı korur.
 • Filtreler: botları atla, kullanıcıları veya kanalları sustur, seçtiğin bir kelimeyi içeren satırları gizle (!komut spamına karşı işe yarar) ya da yalnızca istediğin dilleri çevir.
-• Emoteler, bahsetmeler, bağlantılar ve emoji spamı gönderilmeden önce ayıklanır, yani "kkkkkk" çevirmek için hiçbir şey harcanmaz.
-• Sana göre ayarla: yazı boyutu, satır aralığı, yazı tipi, vurgu rengi, koyu ya da açık sohbet, kanal başına hatırlanan bir okuma dili, klavye kısayolları.
+• Kanalın 7TV, BTTV ve FFZ setlerindeki emote adları, bu uzantıları kullanmasan bile asla çevrilmez. @bahsetmeler ve bağlantılar gönderilmeden önce ayrı tutulur, yalnızca emoji ya da kahkahadan oluşan satırlar atlanır, yani "kkkkkk" çevirmek için hiçbir şey harcanmaz.
+• Bir moderatörün sildiği ya da bir timeout veya banın kaldırdığı mesaj, çevirisini de kaybeder.
+• Sana göre ayarla: yazı boyutu, satır aralığı, yazı tipi, vurgu rengi, koyu ya da açık sohbet (varsayılan olarak Twitch'inkini izler), kanal başına hatırlanan bir okuma dili, klavye kısayolları.
 • Arayüz aynı 43 dilde, sağdan sola yazılanlar dahil, her dilin bayrağını gösteren bir menüden seçiliyor.
 
 GİZLİLİK
 
-Hesap yok, bana ait sunucu yok ve sen kabul etmedikçe analitik de yok: kullanılan motorların, hataların ve hızın günlük anonim sayımı, asla mesajların, adların veya kanalların değil. Sohbet metni yalnızca seçtiğin çeviri motoruna gider. Google, MyMemory ya da Lingva ile giden yalnızca her mesajın metnidir, başka hiçbir şey değil. DeepL ile son birkaç sohbet satırı, onları yazanların adlarıyla birlikte bağlam olarak gider, böylece çeviri konuşmaya oturur. İzlediğin kanal asla gönderilmez; cihazda çeviride ise hiçbir şey bilgisayarından çıkmaz.
+Hesap yok, bana ait sunucu yok ve sen kabul etmedikçe analitik de yok: kullanılan motorların, hataların ve hızın günlük anonim sayımı, asla mesajların, adların veya kanalların değil. Sohbet metni yalnızca seçtiğin çeviri motoruna gider, yazma önizlemesi açıkken taslağın da. Google, MyMemory ya da Lingva ile giden yalnızca metindir, başka hiçbir şey değil. DeepL ile son birkaç sohbet satırı, onları yazanların adlarıyla birlikte bağlam olarak gider, böylece çeviri konuşmaya oturur. İzlediğin kanal asla bir motora gönderilmez; cihazda çeviride ise hiçbir sohbet metni bilgisayarından çıkmaz. Bir kanal yalnızca tek bir yerde anılır: eklenti Twitch'ten kanalın dilini, 7TV'den, BetterTTV'den ve FrankerFaceZ'den emote adlarını ister, bu da onlara kanalın kimliğini söyler, başka hiçbir şeyi değil.
 
-İzinler, açık bir dille: ayarların ve çeviri önbelleği için depolama; çevirileri sohbette göstermek için kick.com erişimi; çağırabileceği motorlara erişim (Google, DeepL, MyMemory ve Lingva); sen izlerken çevirmenin hazır kalması için bir uyandırma zamanlayıcısı; ve kurulumda ya da güncellemede kendi betiğini zaten açık olan Kick sekmelerine yeniden yükleme izni, böylece o sekmeler sayfa yenilenmeden çevirmeye devam eder. Ayrıca daha yeni bir sürüm çıktığında haber vermek için GitHub sürümler sayfasını okur, bu istekle hiçbir şey göndermez.
+İzinler, açık bir dille: ayarların ve çeviri önbelleği için depolama; çevirileri sohbette göstermek için twitch.tv ve dashboard.twitch.tv üzerindeki yayın yöneticisine erişim; Twitch'in dil sorgusuna ve 7TV, BetterTTV ve FrankerFaceZ emote listelerine erişim, böylece emote adları asla çevrilmez; çağırabileceği motorlara erişim (Google, DeepL, MyMemory ve Lingva); sen izlerken çevirmenin hazır kalması için bir uyandırma zamanlayıcısı; ve kurulumda ya da güncellemede kendi betiğini zaten açık olan Twitch sekmelerine yeniden yükleme izni, böylece o sekmeler sayfa yenilenmeden çevirmeye devam eder, ayrıca bir çeviriyi eklediğinde mesaj kutusuna yazmak için Twitch sayfasında kendi işlevlerinden birini çalıştırma izni. Elle kurulan kopyada ayrıca daha yeni bir sürüm çıktığında haber vermek için GitHub sürümler sayfasını okur, bu istekle hiçbir şey göndermez.
 
 ÜCRETSİZ VE AÇIK KAYNAK
 
-MIT lisansı, kodun her satırı herkese açık: github.com/Pkkls/kick-chat-translator
+MIT lisansı, kodun her satırı herkese açık: github.com/kilworks/twitch-chat-translator
 Hata bildirimleri ve dil istekleri orada memnuniyetle karşılanır, her sürümde nelerin değiştiği de sürümler sayfasında.
+Twitch Chat Translator bağımsız bir projedir, Twitch ile bağlantısı yoktur.

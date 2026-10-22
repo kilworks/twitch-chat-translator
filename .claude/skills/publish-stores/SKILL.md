@@ -1,6 +1,6 @@
 ---
 name: publish-stores
-description: Ship a release to the Chrome Web Store and addons.mozilla.org. A tag vX.Y.Z runs the Release workflow, which builds, checks and publishes through both stores' APIs; store texts live in store/. `npm run stores:preflight` says before the tag what the Chrome dashboard needs by hand (a new permission's justification, changed descriptions) and writes a copy page for it. Covers the versioning rule, the manual dashboard steps, checking what the stores serve, and recovering a store that failed. Use when the user asks to release, upload, publish or ship a version, or to change or check the store listings. Also covers the extension's promo on kil's Kick account StormRock (About panels and channel banner, sources in store/kick/).
+description: Ship a release to the Chrome Web Store and addons.mozilla.org. A tag vX.Y.Z runs the Release workflow, which builds, checks and publishes through both stores' APIs; store texts live in store/. `npm run stores:preflight` says before the tag what the Chrome dashboard needs by hand (a new permission's justification, changed descriptions) and writes a copy page for it. Covers the versioning rule, the manual dashboard steps, checking what the stores serve, and recovering a store that failed. Use when the user asks to release, upload, publish or ship a version, or to change or check the store listings.
 ---
 
 # Publishing to the stores
@@ -17,10 +17,10 @@ description: Ship a release to the Chrome Web Store and addons.mozilla.org. A ta
    ```
    It compares HEAD with the last tag that is not this version's and lists what no API can do: the Privacy tab justification of each permission added since (from `store/chrome/dashboard/permission-justifications.txt`), and each Chrome description that changed (pasted per language on the "Fiche Store" page). The HTML page holds every text with a copy button: open it, send the user through it, wait for "done". It fails outright when a shipped permission has no justification or is missing from `PRIVACY.md`. "Nothing to do by hand" means the tag can go at once.
 3. **Tag and push**: `git tag -a vX.Y.Z -m "Release X.Y.Z" && git push origin vX.Y.Z`. The Release workflow (`.github/workflows/release.yml`) checks the tag equals package.json, runs release:check and the store clients' self-tests, builds and packs twice and compares the bytes, makes the source archive, builds the payloads and runs the listing audit, cancels a Chrome submission still in review, uploads and submits to Chrome, releases and lists on AMO, and creates the GitHub release with the notes and checksums. Chrome and AMO are independent steps (`continue-on-error`): one store refusing no longer skips the other or the GitHub release, and a final "Stores outcome" step turns the run red and says which store needs what. Started by hand (workflow_dispatch) it is a dry run that sends nothing.
-   **When a store step is red**: Chrome with `INVALID_ITEM_METADATA` means the package is uploaded but not submitted, because the dashboard wants something (see step 2); once the user fixed it, `node scripts/stores/cws.mjs publish`. AMO red: rerun `amo.mjs release` then `amo.mjs listing` by hand, from a clean checkout of the tag, with `git archive --format=zip --prefix=kick-chat-translator-X.Y.Z/ -o release/kick-chat-translator-X.Y.Z-source.zip HEAD` for the source and `stores:payloads` for the notes.
+   **When a store step is red**: Chrome with `INVALID_ITEM_METADATA` means the package is uploaded but not submitted, because the dashboard wants something (see step 2); once the user fixed it, `node scripts/stores/cws.mjs publish`. AMO red: rerun `amo.mjs release` then `amo.mjs listing` by hand, from a clean checkout of the tag, with `git archive --format=zip --prefix=twitch-chat-translator-X.Y.Z/ -o release/twitch-chat-translator-X.Y.Z-source.zip HEAD` for the source and `stores:payloads` for the notes.
 4. **After approval**: `npm run stores:verify`, also run weekly by the Stores verify workflow, compares what both stores serve with the repository, language by language.
 
-Secrets, in the repository's Actions settings: `CWS_SERVICE_ACCOUNT_JSON`, `CWS_PUBLISHER_ID`, `AMO_JWT_ISSUER`, `AMO_JWT_SECRET`. The same credentials live in `~/.config/kick-chat-translator/` for the scripts run by hand.
+Secrets, in the repository's Actions settings: `CWS_SERVICE_ACCOUNT_JSON`, `CWS_PUBLISHER_ID`, `AMO_JWT_ISSUER`, `AMO_JWT_SECRET`, and the repository variable `CWS_ITEM_ID` (this product's listing; the scripts have no default, so nothing can reach the Kick listing). The same credentials live in `~/.config/twitch-chat-translator/` for the scripts run by hand.
 
 ## Versioning
 
@@ -51,10 +51,10 @@ Chrome forbids every extension from reading or driving the Web Store ("The exten
 
 ```bash
 node scripts/stores/cws.mjs status
-node scripts/stores/cws.mjs upload release/kick-chat-translator-X.Y.Z-chromium.zip --publish
+node scripts/stores/cws.mjs upload release/twitch-chat-translator-X.Y.Z-chromium.zip --publish
 ```
 
-`cws.mjs` signs its own JWT with the service account key (Node stdlib, no dependency), so there is no OAuth window and no refresh token expiring after seven days. It reads the key and the publisher ID outside the repository, `~/.config/kick-chat-translator/cws-service-account.json` and `~/.config/kick-chat-translator/cws.json` (`{"publisherId": "..."}`), and never prints either the key or the token. `cws-selftest.mjs` runs it against a fake Google that checks the JWT signature and the zip bytes: run it after touching `cws.mjs`.
+`cws.mjs` signs its own JWT with the service account key (Node stdlib, no dependency), so there is no OAuth window and no refresh token expiring after seven days. It reads the key and the publisher ID outside the repository, `~/.config/twitch-chat-translator/cws-service-account.json` and `~/.config/twitch-chat-translator/cws.json` (`{"publisherId": "..."}`), and never prints either the key or the token. `cws-selftest.mjs` runs it against a fake Google that checks the JWT signature and the zip bytes: run it after touching `cws.mjs`.
 
 One-time setup, done by the user (it creates credentials, never do it for them):
 1. Google Cloud Console: enable "Chrome Web Store API" in a project, create a service account (no role needed), create a JSON key for it and save it as the key file above.
@@ -91,13 +91,13 @@ No API sets the listing and no extension may act on the dashboard. `scripts/stor
 | `status` | the "État" tab's words and whether "Envoyer pour examen" is still live. Run it after every submission: the API's PENDING_REVIEW is not proof | works: "en attente d'examen", button greyed out, on 3.2.0 |
 | `justify [--dry|--nosave]` | Privacy tab justifications from `permission-justifications.txt` | fields write correctly (a hand click on Save kept exactly what it typed); the save now waits for the dashboard to confirm and falls back to a DOM click. **Not yet seen saving on its own**: check with `why` the first time |\|--nosave]` | Privacy tab justifications from `permission-justifications.txt` | **fields write, save does not persist** (0/4 twice): finish by hand, then `why` |
 
-Languages are matched by the code after the dash in the picker ("anglais – en"), and the dashboard writes `pt-BR`, `pt-PT`, `zh-CN` and `zh-TW` with a hyphen, and Hebrew as `iw` (`cws: 'iw'` in `languages.mjs`). A tab left in the background takes no synthetic click: the script brings it to front first.
+Languages are matched by the code after the dash in the picker ("anglais", an en dash, "en"), and the dashboard writes `pt-BR`, `pt-PT`, `zh-CN` and `zh-TW` with a hyphen, and Hebrew as `iw` (`cws: 'iw'` in `languages.mjs`). A tab left in the background takes no synthetic click: the script brings it to front first.
 
 ## 2. AMO: through the API
 
 `amo.mjs release` uploads the package with `channel=listed`, waits for validation, creates the version with its source archive (multipart: the API refuses a source in JSON), then sets the release notes and the reviewer notes (JSON: the API refuses them in multipart). `amo.mjs listing` sets the name (the manifest's `extName`), summary and description per locale and reads them back. The devhub spells locales `en-us`, the API `en-US`: the script converts.
 
-It signs an HS256 JWT per request with the key in `~/.config/kick-chat-translator/amo-api.json` (`{"issuer": "...", "secret": "..."}`, AMO_API_KEY overrides), never printed. One-time setup, the user's: https://addons.mozilla.org/en-US/developers/addon/api/key/ first asks to confirm the account's email ("Confirm email address" mails a link), then "Generate new credentials" shows the issuer and the secret once. A link read from the user's mailbox is only followed with their explicit yes.
+It signs an HS256 JWT per request with the key in `~/.config/twitch-chat-translator/amo-api.json` (`{"issuer": "...", "secret": "..."}`, AMO_API_KEY overrides), never printed. One-time setup, the user's: https://addons.mozilla.org/en-US/developers/addon/api/key/ first asks to confirm the account's email ("Confirm email address" mails a link), then "Generate new credentials" shows the issuer and the secret once. A link read from the user's mailbox is only followed with their explicit yes.
 
 When that file is missing, the browser walk below does the same through Claude in Chrome.
 
@@ -158,18 +158,6 @@ const a = await fetch('https://addons.mozilla.org/api/v5/addons/addon/kick-chat-
 ```
 
 Compare as booleans: the tool output masks version strings as tokens. Then open `https://addons.mozilla.org/fr/firefox/addon/kick-chat-translator/` and read the summary and the start of the description.
-
-## 5. Kick: promo panels and banner on StormRock
-
-kil's Kick account **StormRock** advertises the extension on its own channel: 8 About panels (EN, ES, PT, FR, JA, TR, RU, AR, in that order; German was dropped on purpose) and the channel banner. Only on StormRock's own page: never promo messages in other streamers' chats (spam for them, ban risk for the account that farms the drops).
-
-- **Sources** in `store/kick/`: `panels.html` (copy of every language in one `P` object, the 3 chat lines in `LINES`), `banner.html`. Render with `python render.py` (each panel must print OK, max 2x width) and `python render_banner.py` (2400x400 plus `banner-crop-wide.png` / `banner-crop-narrow.png`, what Kick's cover crop shows). Look at every PNG, then show kil the contact sheet **before** any upload.
-- **Flags and emoji**: Chrome on Windows draws flag emoji as two letters. They are Twemoji SVGs from jsdelivr (`tw()`), whole, never cropped into circles (the crop made France white). Bind the emoji to the word before it (`emo()` wraps both in a nowrap span; a no-break space alone still lets the image wrap). Arabic text gets `dir="rtl"` explicitly: `dir="auto"` reads the leading "GG" as LTR and puts it on the wrong side.
-- **Banner safe band**: Kick shows the banner `object-fit: cover`, about 11.5:1 on a wide screen, centred. Everything that must be read stays in the middle 52..148 px of the 200 px design; the "StormRock is offline" badge covers about the left quarter, so only decorative chips go there.
-- **Check the account first**: in a kick.com page, `(await fetch('/api/v1/user').then(r=>r.json())).username` must be `StormRock`.
-- **Panels**: `kick.com/stormrock/about`, "Edit Panel" (if its ref does not open the editor, click it from a screenshot). `find` gives the file inputs and the Update buttons of the 8 cards in order; `file_upload` the PNG, click that card's Update, wait 4 s. A new panel: the "+" (Add) button, then "Create". Panel fields: title `Kick Chat Translator (<language>)`, image link = the Chrome store URL, description = one sentence in the language plus the Chrome and Firefox links.
-- **Banner**: `kick.com/settings/profile`, Channel Banner "Update Banner image" opens a modal; its file input only exists once the modal is open (`find` it there), then "Apply" on the crop, then "Save".
-- **Verify** through the API, not the screen: `GET /api/v2/channels/stormrock/links` (order, title, `image.url` changed against a copy taken before) and `GET /api/v2/channels/stormrock` (`banner_image.url`), then look at the public page.
 
 ## Journal: 2.12.0 to 2.12.2, 2026-09-26
 
@@ -240,7 +228,7 @@ Kept so the next release starts from what happened, not from what was assumed.
 - **AMO "0/34 relues identiques" was a false alarm, again.** Version, source, notes and listing were all stored. AMO renders the "1." step lines as an `<ol>` (numbers and line breaks gone once tags are stripped) and drops Persian's zero-width non-joiner. The readback in `amo.mjs` and `verify.mjs` now sets numbering, ZWNJ and whitespace aside. Before rerunning AMO after a red step, read the step's log: a `POST .../versions/ -> 201` means the version exists and a rerun would be refused.
 - **Pasted into a draft in review: 0/42.** Chrome was PENDING_REVIEW after the tag, and a draft in review is frozen: every field types, nothing sticks. The dashboard's "État" tab said so ("Ce brouillon est en attente d'examen") and I did not read it before pasting; kil had to point it out. Now `paste` asks the API first and stops on a review.
 - **The page check took `/edit/status` for `/edit`** (a prefix test), so `paste` did not navigate and found nothing. Now an exact URL match.
-- **Text typed into the previous language.** The picker sometimes switches late: Hindi landed in the Hebrew listing and Japanese in the Italian one while `paste` said done. Only `verify` caught it. Now `chooseLanguage` waits until the picker shows the language; its text ends with the Material icon ligature ("– ararrow_drop_down"), stripped before matching, or every language reads "not offered". Always `verify` after `paste`.
+- **Text typed into the previous language.** The picker sometimes switches late: Hindi landed in the Hebrew listing and Japanese in the Italian one while `paste` said done. Only `verify` caught it. Now `chooseLanguage` waits until the picker shows the language; its text ends with the Material icon ligature ("- ararrow_drop_down"), stripped before matching, or every language reads "not offered". Always `verify` after `paste`.
 - **Hebrew is `iw` in the dashboard**, not `he`. bn once failed to be picked and passed alone on a retry.
 - **`cws.mjs publish` is not enough after a listing change.** The API answered PENDING_REVIEW, but the dashboard still offered "Envoyer pour examen" for the edited listing, and kil clicked it. After pasting: `cws.mjs cancel` before, then `paste`, `verify`, and "Envoyer pour examen" in the dashboard (check the "État" tab says "en attente d'examen" afterwards).
 - **The debug browser is mine to start.** kil authorized `cws-listing.mjs launch` on 2026-10-12 and set it to allow. I sent a command to paste instead, and my first message announcing it had lost the command itself.

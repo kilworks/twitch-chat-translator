@@ -1,16 +1,14 @@
-Kick Chat Translator on ilmainen chat kääntäjä Kickille. Lue minkä tahansa streamin chat omalla kielelläsi ja vastaa kanavan kielellä suoraan chatissa.
+Twitch Chat Translator on ilmainen chat kääntäjä Twitchille. Lue minkä tahansa streamin chat omalla kielelläsi ja vastaa kanavan kielellä suoraan chatissa.
 
 Katsotko turkin-, espanjan-, venäjän- tai arabiankielistä streamia etkä pysy chatin mukana? Asenna, avaa stream, ja jokaisen viestin käännös näkyy heti sen alla, kun viesti saapuu. Ei tiliä, ei API-avainta, ei mitään säädettävää.
 
 NÄIN SE TOIMII
 
-1. Avaa mikä tahansa Kick-stream. Chatin yläreunan vihreä palkki kertoo, että kääntäjä on päällä.
+1. Avaa mikä tahansa Twitch-stream. Chatin yläreunan violetti palkki kertoo, että kääntäjä on päällä.
 2. Jokainen uusi viesti saa käännöksensä alleen selaimesi kielellä.
 3. Kirjoita vastaus omalla kielelläsi. Esikatselu näyttää sen kanavan kielellä: paina Tab tai klikkaa sitä ja lähetä sitten.
 
-Kanavan kieli luetaan suoraan Kickistä, ja molempia kieliä voi muuttaa asetuksissa. Toimii suorissa lähetyksissä ja VOD-uusinnoissa, jättää 7TV-emotet ennalleen ja pysäyttää itsensä taustavälilehdissä.
-
-Katso se toiminnassa oikeassa chatissa: https://www.youtube.com/watch?v=NoGJeUrwy9o
+Kanavan kieli on se, jonka striimaaja on asettanut Twitchissä, ja molempia kieliä voi muuttaa asetuksissa. Toimii live-chatissa, popoutissa, upotuksessa, moderaattorinäkymässä ja stream managerissa sekä VOD- ja klippiuusinnoissa, 7TV:n, BTTV:n ja FFZ:n kanssa tai ilman. Se pysäyttää itsensä taustavälilehdissä (asetus, oletuksena päällä).
 
 MITÄ SAAT
 
@@ -18,17 +16,19 @@ MITÄ SAAT
 • Ilmainen heti Google Translaten kanssa, ilman avainta ja ilman tiliä.
 • Parempi käännös eurooppalaisille kielille omalla DeepL API -avaimellasi. DeepL saa viimeisimmät chat-rivit asiayhteydeksi, jotta sanavalinnat sopivat keskusteluun.
 • Automaattinen varavaihtoehto: kun yksi moottori pettää, MyMemory tai Lingva ottaa vallan. Järjestyksen valitset itse.
-• Neljä näyttötapaa: viestin alla, samalla rivillä, pienellä kursiivilla sen perässä tai vain kun viet hiiren päälle. Hover-tila ei käännä mitään ennen kuin osoitat viestiä, mikä vähentää käyttöä noin kymmenesosaan nopeassa chatissa.
+• Neljä näyttötapaa: viestin alla, samalla rivillä, viestin tilalla tai vain kun viet hiiren päälle. Hover-tila ei käännä mitään ennen kuin osoitat viestiä, mikä säästää kiintiötäsi nopeassa chatissa.
 • Suodattimet: ohita botit, mykistä käyttäjiä tai kanavia, piilota rivit, joissa on valitsemasi sana (kätevä !command-roskaviestejä vastaan), tai käännä vain haluamasi kielet.
-• Emotet, maininnat, linkit ja emoji-spämmi poistetaan ennen kuin mitään lähetetään, joten "kkkkkk" ei kuluta käännöksiä.
-• Tee siitä omasi: tekstin koko, riviväli, kirjasin, korostusväri, tumma tai vaalea chat, kanavakohtaisesti muistettava lukukieli, pikanäppäimet.
+• Kanavan 7TV-, BTTV- ja FFZ-settien emote-nimiä ei koskaan käännetä, vaikka et käyttäisi niitä laajennuksia. @maininnat ja linkit siirretään sivuun ennen kuin mitään lähetetään, ja rivit, jotka ovat pelkkiä emojeita tai naurua, ohitetaan, joten "kkkkkk" ei kuluta käännöksiä.
+• Viesti, jonka moderaattori poistaa tai jonka timeout tai porttikielto vie, menettää käännöksensäkin.
+• Tee siitä omasi: tekstin koko, riviväli, kirjasin, korostusväri, tumma tai vaalea chat (oletuksena Twitchin oma teema), kanavakohtaisesti muistettava lukukieli, pikanäppäimet.
 • Käyttöliittymä samoilla 43 kielellä, oikealta vasemmalle kirjoitettavat mukaan lukien, valittavissa valikosta, joka näyttää jokaisen lipun.
 
 MITÄ SELAIMESTASI LÄHTEE
 
-Chatin teksti menee vain valitsemallesi käännösmoottorille. Googlen, MyMemoryn tai Lingvan kanssa se on jokaisen viestin teksti eikä mitään muuta: ei kanavaa, ei kirjoittajaa. DeepLin kanssa viimeiset chat-rivit lähtevät mukana asiayhteytenä kirjoittajien nimineen, jotta käännös sopii keskusteluun. Tähän viittaa yllä olevien käyttöoikeuksien rivi "verkkosivuston sisältö", eikä muuta ole. Ei ole tiliä eikä omaa palvelinta: laajennus keskustelee Kickin, valitsemasi moottorin ja GitHubin julkaisusivun kanssa kertoakseen, kun uudempi versio on olemassa, eikä viimeksi mainitun pyynnön mukana lähde mitään. Jos valitset vapaaehtoisen kohdan "tekniset ja vuorovaikutustiedot", laajennus lähettää myös Google Analyticsiin päivittäisen nimettömän laskennan käytetyistä moottoreista, virheistä ja nopeudesta, ei koskaan viestejäsi, nimiä tai kanavia.
+Chatin teksti menee vain valitsemallesi käännösmoottorille, samoin luonnoksesi kun esikatselu kirjoittaessa on päällä. Googlen, MyMemoryn tai Lingvan kanssa se on jokaisen viestin teksti eikä mitään muuta: ei kanavaa, ei kirjoittajaa. DeepLin kanssa viimeiset chat-rivit lähtevät mukana asiayhteytenä kirjoittajien nimineen, jotta käännös sopii keskusteluun. Tähän viittaa yllä olevien käyttöoikeuksien rivi "verkkosivuston sisältö". Ei ole tiliä eikä omaa palvelinta. Valitsemasi moottorin lisäksi laajennus keskustelee Twitchin kanssa kysyäkseen kanavan kielen ja tunnuksen; 7TV:n, BetterTTV:n ja FrankerFaceZ:n kanssa kysyäkseen kanavan emote-nimet, mikä kertoo niille kanavan tunnuksen eikä mitään muuta; ja käsin asennetussa kopiossa GitHubin julkaisusivun kanssa kertoakseen, kun uudempi versio on olemassa, eikä pyynnön mukana lähde mitään. Jos valitset vapaaehtoisen kohdan "tekniset ja vuorovaikutustiedot", laajennus lähettää myös Google Analyticsiin päivittäisen nimettömän laskennan käytetyistä moottoreista, virheistä ja nopeudesta, ei koskaan viestejäsi, nimiä tai kanavia.
 
 ILMAINEN JA AVOIN LÄHDEKOODI
 
-MIT-lisenssi, jokainen koodirivi on julkinen: github.com/Pkkls/kick-chat-translator
-Virheraportit ja kielitoiveet ovat tervetulleita sinne, ja lähdekoodi on kaikkien luettavissa.
+MIT-lisenssi, jokainen koodirivi on julkinen: github.com/kilworks/twitch-chat-translator
+Virheraportit ja kielitoiveet ovat tervetulleita sinne.
+Twitch Chat Translator on itsenäinen projekti, jolla ei ole yhteyttä Twitchiin.

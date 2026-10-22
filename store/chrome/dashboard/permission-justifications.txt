@@ -1,44 +1,76 @@
 Paste each one into the matching field. Every claim here is checkable in the
-source at github.com/Pkkls/kick-chat-translator.
+source at github.com/kilworks/twitch-chat-translator.
 
 storage
 Keeps the user's own settings and nothing else: reading language, display style,
-provider order, filters, and the per-day counters the popup shows
-(kt.settings.v2, kt.stats.v1, kt.update.v1). A DeepL API key, if the user
-chooses to add one, is held in local storage (kt.deeplKey.v1) rather than synced
-storage, so it stays on the machine it was typed on instead of travelling to
-every Chrome signed into the same account. None of it is transmitted anywhere.
+provider order, filters, per-channel choices (a remembered reading language, a
+paused channel, the last broadcast language seen on a channel), and the per-day
+counters the popup shows (kt.settings.v2, kt.stats.v1, kt.update.v1). A DeepL API
+key, if the user chooses to add one, is held in local storage (kt.deeplKey.v1)
+rather than synced storage, so it stays on the machine it was typed on instead of
+travelling to every Chrome signed into the same account. None of it is
+transmitted anywhere by the extension.
 
 alarms
-One periodic alarm, kt.keepalive, which touches chrome.storage.session so the
-MV3 service worker is not evicted between bursts of chat. Without it the first
-messages after an idle gap wait for the worker to cold-start. The alarm makes no
-network request and carries no data.
+Three periodic alarms, none of which makes a request on its own account:
+kt.keepalive touches chrome.storage.session so the MV3 service worker is not
+evicted between bursts of chat (without it the first messages after an idle gap
+wait for the worker to cold-start); kt.update wakes the update check of a copy
+installed by hand, every six hours; kt-usage closes the day of the opt-in
+anonymous statistics. They carry no data.
 
 scripting
-Used once, when the extension is installed or updated, to load its own packaged
-content script into kick.com tabs that were already open. Chrome only injects a
+Used in two places, always with the extension's own packaged code and on the
+three Twitch hosts below only.
+First, once, when the extension is installed or updated, to load its own packaged
+content script into twitch.tv tabs that were already open. Chrome only injects a
 content script into pages loaded after an install, and an update cuts off the
-copy in pages already open, so without it a Kick tab open at that moment shows
-the chat untranslated until the user reloads it. It injects nothing but the
-extension's own file, on kick.com only.
+copy in pages already open, so without it a Twitch tab open at that moment shows
+the chat untranslated until the user reloads it.
+Second, when the user inserts a translation into the message box (Tab,
+Ctrl/Cmd+Enter or a click), to run one packaged function in the page's own world
+that writes the text into Twitch's message box. That editor can only be reached
+from the page's world, and the content script's isolated world cannot see it. The
+function takes the translated text as its only argument, in the frame the user is
+typing in; nothing is evaluated from a string and nothing is fetched.
 
-Host permission: https://kick.com/*
-The only site the extension acts on. The content script reads chat messages
-there, renders their translations in place, and adds the language control to the
-chat's own action bar.
+Host permissions: https://www.twitch.tv/*, https://m.twitch.tv/*,
+https://dashboard.twitch.tv/*
+The only sites the extension acts on. The content script reads chat messages
+there, renders their translations in place, writes the translation into the
+message box when the user inserts it, and adds the language control to the chat's
+own action bar. www.twitch.tv covers live chat, popout, embed, moderator view and
+VOD and clip replay, m.twitch.tv is the mobile site, and dashboard.twitch.tv is
+the stream manager, whose chat is the same chat.
+
+Host permission: https://gql.twitch.tv/*
+One POST per channel opened, answered from a cache for five minutes, asking
+Twitch's own interface for the channel's broadcast language and its numeric id.
+The request carries the channel's login name (on a VOD page, the video's number)
+and the Client-Id the Twitch page itself uses, read from the page at runtime. It
+does not carry the user's Twitch login. The language tells the compose preview
+which language to write in, and the id is what the emote lists below are keyed by.
+
+Host permissions: https://7tv.io/*, https://api.betterttv.net/*,
+https://api.frankerfacez.com/*
+Reads the emote names of the channel and the global ones from 7TV, BetterTTV and
+FrankerFaceZ, so a viewer who does not run those extensions never has an emote
+name translated as if it were a word. Only the names are kept, in memory, for a
+few minutes. The request carries the channel's numeric Twitch id and nothing else.
 
 Host permission: https://api.github.com/*
-A single GET to the project's own releases/latest, so the user can be told a
-newer version exists. No query parameters, no body, no header identifying the
+A single GET to the project's own releases/latest, at most every six hours, so a
+copy installed by hand can tell the user a newer version exists. A copy installed
+from the store skips it. No query parameters, no body, no header identifying the
 user, and nothing about their browsing is sent with it.
 
 Host permissions: translate.googleapis.com, api.deepl.com, api-free.deepl.com,
 api.mymemory.translated.net, lingva.ml, lingva.lunar.icu
-The five translation engines the user picks between. Only the chat text being
-translated is sent, and only to the engine selected at that moment. On Chrome
-138 and later the built-in on-device translator can be used instead, in which
-case no text leaves the machine at all.
+The translation engines the user picks between. Only the chat text being
+translated (and the draft the user is typing, while the compose preview is on) is
+sent, and only to the engine selected at that moment. On Chrome 138 and later the
+built-in on-device translator can be used instead, in which case no chat text
+leaves the machine at all.
 
 Remote code
 None. All JavaScript ships inside the package. Nothing is fetched and executed

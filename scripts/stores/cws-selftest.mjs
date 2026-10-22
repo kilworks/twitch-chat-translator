@@ -41,18 +41,18 @@ const srv = http.createServer(async (req, res) => {
     return good ? send(200, { access_token: 'tok-123', expires_in: 3600 }) : send(400, { error: 'invalid_grant', error_description: 'Invalid JWT Signature.' });
   }
   if (req.headers.authorization !== 'Bearer tok-123') return send(401, { error: 'unauthenticated' });
-  const item = '/v2/publishers/pub-1/items/nkkjmbkmacbdkboijmnhjnblcaiclhni';
+  const item = '/v2/publishers/pub-1/items/selftestitem';
   if (req.method === 'POST' && req.url === `/upload${item}:upload`) {
     seen.push(`upload:${body.equals(zip)}`);
-    return send(200, { itemId: 'nkkjmbkmacbdkboijmnhjnblcaiclhni', uploadState: 'IN_PROGRESS' });
+    return send(200, { itemId: 'selftestitem', uploadState: 'IN_PROGRESS' });
   }
   if (req.method === 'GET' && req.url === `${item}:fetchStatus`) {
     seen.push('status');
-    return send(200, { itemId: 'nkkjmbkmacbdkboijmnhjnblcaiclhni', lastAsyncUploadState: 'SUCCEEDED' });
+    return send(200, { itemId: 'selftestitem', lastAsyncUploadState: 'SUCCEEDED' });
   }
   if (req.method === 'POST' && req.url === `${item}:publish`) {
     seen.push('publish');
-    return send(200, { itemId: 'nkkjmbkmacbdkboijmnhjnblcaiclhni', state: 'PENDING_REVIEW' });
+    return send(200, { itemId: 'selftestitem', state: 'PENDING_REVIEW' });
   }
   send(404, { error: `unexpected ${req.method} ${req.url}` });
 });
@@ -63,7 +63,7 @@ const base = `http://127.0.0.1:${srv.address().port}`;
 const run = (args, keyFile = 'key.json') =>
   new Promise((resolve) => {
     const p = spawn(process.execPath, [CWS, ...args], {
-      env: { ...process.env, CWS_SA_KEY: path.join(dir, keyFile), CWS_PUBLISHER_ID: 'pub-1', CWS_TOKEN_URL: `${base}/token`, CWS_API: base },
+      env: { ...process.env, CWS_SA_KEY: path.join(dir, keyFile), CWS_PUBLISHER_ID: 'pub-1', CWS_ITEM_ID: 'selftestitem', CWS_TOKEN_URL: `${base}/token`, CWS_API: base },
     });
     let out = '';
     p.stdout.on('data', (d) => (out += d));

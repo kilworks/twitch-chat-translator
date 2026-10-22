@@ -2,24 +2,19 @@
 
 <img src="public/icons/icon128.png" alt="" width="80" height="80">
 
-# Kick Chat Translator
+# Twitch Chat Translator
 
-اقرأ دردشة أي بث على Kick بلغتك، وردّ بلغة القناة.<br>
+اقرأ دردشة أي بث على Twitch بلغتك، وردّ بلغة القناة.<br>
 مجاني، بلا حساب، ولا شيء يلزم إعداده. 43 لغة، في الدردشة وفي الإضافة نفسها.
 
-**[أضِف إلى Chrome أو Brave أو Edge](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)** &nbsp;·&nbsp; **[أضِف إلى Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)**
+**[نزّل أحدث إصدار](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome وBrave وEdge وFirefox
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=Chrome%20Web%20Store&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Chrome users](https://img.shields.io/chrome-web-store/users/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=users&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Firefox Add-on](https://img.shields.io/amo/v/kick-chat-translator?label=Firefox%20Add-on&color=53fc18)](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-[![CI](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml)
+[![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](README.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [עברית](README.he.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Català](README.ca.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [فارسی](README.fa.md) · [বাংলা](README.bn.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
 <img src="screenshots/demo.gif" alt="رسائل دردشة إسبانية تصل واحدة تلو الأخرى، وتحت كل منها ترجمتها الإنجليزية؛ ثم يُكتب رد بالإنجليزية فتظهر معاينة إسبانية فوق مربع الدردشة، ويستبدلها مفتاح Tab" width="360">
-
-[شاهدها تعمل في دردشة حقيقية](https://www.youtube.com/watch?v=NoGJeUrwy9o)
 
 </div>
 
@@ -27,37 +22,45 @@
 
 ## كيف تعمل
 
-1. ثبّتها وافتح أي بث على Kick. يدل شريط أخضر أعلى الدردشة على أنها تعمل.
+1. ثبّتها وافتح أي بث على Twitch. يدل شريط بنفسجي أعلى الدردشة على أنها تعمل.
 2. تحصل كل رسالة على ترجمتها أسفلها مباشرةً لحظة وصولها، بلغة متصفحك. في البث المباشر وفي إعادات
-   البث على حد سواء.
+   البث ومقاطع الكليب على حد سواء.
 3. اكتب ردًا بلغتك. تعرضه معاينة فوق مربع الدردشة بلغة القناة: اضغط Tab أو انقر عليها، فتحل تلك النسخة
    محل ما كتبته.
 
-تُقرأ لغة القناة من Kick نفسها، فلا شيء يحتاج إلى إعداد. يمكن تغيير اللغتين من الإعدادات، ويمكن حفظ لغة
+لغة القناة هي التي ضبطها صاحب البث على Twitch، فلا شيء يحتاج إلى إعداد. يمكن تغيير اللغتين من الإعدادات، ويمكن حفظ لغة
 القراءة لكل قناة.
+
+إن كنت تشغّل 7TV أو BTTV أيضًا، فهما يستخدمان Tab لإكمال رمز تعبيري. عندها يُكمل Tab الرمز التعبيري أولًا، ولا يُدرج
+الترجمة إلا إذا لم يكن هناك ما يُكمله. أما Ctrl/Cmd+Enter والنقر فيُدرجانها دائمًا.
 
 ## ماذا تقدم
 
 - ‏**43 لغة**، بما فيها الكتابات من اليمين إلى اليسار (العربية والعبرية والفارسية)، مع إبقاء المتغيرات
   الإقليمية منفصلة (البرتغالية البرازيلية والأوروبية، والصينية المبسطة والتقليدية، والكانتونية)
+- **في كل مكان توجد فيه الدردشة**: الدردشة المباشرة، والنافذة المنفصلة، والتضمين، وعرض المشرف، ومدير البث،
+  وإعادات البث ومقاطع الكليب، على www.twitch.tv وm.twitch.tv وdashboard.twitch.tv، مع 7TV وBTTV وFFZ أو بدونها
 - **الإضافة نفسها تتحدثها أيضًا**: الإعدادات والنافذة المنبثقة وشريط الدردشة بكل اللغات الـ43، وتُختار من
   قائمة تعرض الأعلام
 - **مجانية من أول لحظة** عبر Google Translate. أضف مفتاح DeepL المجاني الخاص بك لجودة أفضل في اللغات
   الأوروبية، ويتولى MyMemory وLingva الأمر حين يفشل أحد المحركات
-- **ترجمة على الجهاز** في Chrome وEdge حيث يوفرها المتصفح: ‏22 ملّي ثانية بدل 1.6 ثانية، ولا يغادر النص
+- **ترجمة على الجهاز** في Chrome وEdge حيث يوفرها المتصفح: بلا شبكة وبلا حصة، ولا يغادر النص
   جهازك
 - **الفلاتر**: تخطي الروبوتات، وكتم مستخدمين أو قنوات، وإخفاء الأسطر التي تحتوي كلمة معينة، وترجمة اللغات
   التي تختارها فقط
-- **مصنوعة للدردشات السريعة**: رموز 7TV التعبيرية تبقى كما هي، ويُحذف سيل الإيموجي والروابط قبل إرسال أي
-  شيء، ومسرد للأسماء التي تشوهها المحركات، وذاكرة مؤقتة للترجمات
+- **مصنوعة للدردشات السريعة**: أسماء الرموز التعبيرية من مجموعات القناة في 7TV وBTTV وFFZ لا تُترجم أبدًا، حتى
+  لو لم تشغّل هذه الإضافات، وتُعزل الروابط والإشارات @ قبل إرسال أي شيء، ومسرد للأسماء التي تشوهها المحركات،
+  وذاكرة مؤقتة للترجمات
 - **أربع طرق عرض**: تحت الرسالة، أو في السطر نفسه، أو مكانها، أو عند تمرير المؤشر فقط
 - **أوقف قناة واحدة مؤقتًا** من شريط الدردشة دون إيقاف القنوات الأخرى. وعند تبديل القناة أو تحديث
   الإضافة تواصل علامات التبويب المفتوحة الترجمة دون إعادة تحميل
+- **تراعي الإشراف**: الرسالة التي يحذفها مشرف، أو يزيلها حظر مؤقت أو حظر دائم، تفقد ترجمتها أيضًا
+- **تبدو كأنها من Twitch**: بنفسجية، وتتبع سمة الدردشة الداكنة أو الفاتحة نفسها ما لم تختر سمة
 - Chrome وBrave وEdge وFirefox
 
 | دردشة تُترجم أثناء التمرير | النافذة المنبثقة في شريط الأدوات |
 |---|---|
-| <img src="screenshots/chat.png" alt="دردشة Kick وتحت كل رسالة إسبانية ترجمتها الإنجليزية، مع شريط حالة الإضافة فوق القائمة" width="360"> | <img src="screenshots/popup.png" alt="النافذة المنبثقة للإضافة مع اللغة المستهدفة وطريقة العرض وقائمة المزودين وعدد طلبات اليوم" width="360"> |
+| <img src="screenshots/chat.png" alt="دردشة Twitch وتحت كل رسالة إسبانية ترجمتها الإنجليزية، مع شريط حالة الإضافة فوق القائمة" width="360"> | <img src="screenshots/popup.png" alt="النافذة المنبثقة للإضافة مع اللغة المستهدفة وطريقة العرض وإعداد معاينة الكتابة وسلسلة المزودين" width="360"> |
 
 | ما تكتبه قبل أن ترسله | اختر لغة، أو دعها تختار |
 |---|---|
@@ -68,24 +71,14 @@
 
 ## التثبيت
 
-[Chrome وBrave وEdge: سوق Chrome الإلكتروني](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-&nbsp;·&nbsp;
-[Firefox: إضافات Mozilla](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-
-النسخ المثبتة من المتاجر تتحدث تلقائيًا.
-
-<details>
-<summary>التثبيت يدويًا من ملف zip لإصدار</summary>
-
-نزّل ملف zip الخاص بمتصفحك من [Releases](https://github.com/Pkkls/kick-chat-translator/releases/latest) وفك ضغطه.
+نزّل ملف zip الخاص بمتصفحك من [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) وفك ضغطه.
 
 - Chrome وBrave وEdge (`…-chromium.zip`): افتح `chrome://extensions`، وفعّل وضع المطوّر، وانقر "تحميل إضافة غير مضغوطة"، واختر المجلد.
 - Firefox 121+ (`…-firefox.zip`): افتح `about:debugging#/runtime/this-firefox`، وانقر "تحميل إضافة مؤقتة"، واختر `manifest.json`.
+  ينسى Firefox الإضافة المؤقتة عند إعادة تشغيله.
 
-إن كانت نسخة المتجر مثبتة أيضًا فأوقفها أولًا، وإلا تُترجم كل رسالة مرتين. النسخة المثبتة بهذه الطريقة لا
-تتحدث تلقائيًا: تُظهر أيقونتها شارة عند وجود إصدار أحدث، وتربط النافذة المنبثقة بالمتجر.
-
-</details>
+النسخة المثبتة بهذه الطريقة لا تتحدث تلقائيًا: تُظهر أيقونتها شارة عند وجود إصدار أحدث، وتربط النافذة المنبثقة
+بأحدث إصدار.
 
 ## محركات الترجمة
 
@@ -94,12 +87,11 @@
 | المزود | المفتاح | ملاحظة |
 |---|---|---|
 | Google | لا يلزم | الافتراضي، يعمل مباشرةً |
-| DeepL | مجاني | أفضل جودة، [مفتاح مجاني](https://www.deepl.com/pro-api) لمليون حرف شهريًا |
+| DeepL | مجاني | الأفضل في اللغات الأوروبية، [مفتاح مجاني](https://www.deepl.com/pro-api) لمليون حرف شهريًا |
 | MyMemory | لا يلزم | احتياطي |
 | Lingva | لا يلزم | احتياطي، على نسخة عامة ما لم توجهه إلى نسختك الخاصة |
 
-المترجم المدمج في Chromium أسرع منها جميعًا. قيس على قناة مباشرة: ‏22 ملّي ثانية من ظهور الرسالة إلى ظهور
-ترجمتها على الشاشة، مقابل 1618 ملّي ثانية عبر السلسلة السحابية، بلا شبكة وبلا حصة. قد يوفره Chrome وEdge
+المترجم المدمج في Chromium لا يحتاج إلى شبكة ولا إلى حصة. قد يوفره Chrome وEdge
 بدءًا من الإصدار 138، وإن لم يكن في كل نسخة، وكل زوج لغات يحتاج إلى تنزيل نموذجه مرة واحدة بنقرة من الشريط.
 Firefox لا يملكه. وحيثما غاب، تتولى السلسلة السحابية الأمر ولا يتعطل شيء.
 
@@ -115,9 +107,10 @@ Firefox لا يملكه. وحيثما غاب، تتولى السلسلة الس�
   والاستعادة
 - **النشاط**: الرسائل المترجمة، ومرات الاستفادة من الذاكرة المؤقتة، وكل لغة ظهرت في الدردشة، وسبب ترجمة كل
   سطر من آخر 50 سطرًا أو تركه
-- **لوحة المفاتيح**: ‏Alt+T يشغّل ترجمة الدردشة أو يوقفها، وAlt+W معاينة الكتابة
-- زر اللغة في شريط إجراءات الدردشة: نقرة واحدة تبدّل بين لغة القناة وآخر اختيار لك، والضغط المطوّل يفتح
-  القائمة، وكتابة حرفين تصفّيها
+- **لوحة المفاتيح**: ‏Alt+Shift+T يشغّل ترجمة الدردشة أو يوقفها (Alt+T هو وضع المسرح في Twitch)، وAlt+W معاينة
+  الكتابة. يمكن إعادة تعيين الاثنين من اختصارات الإضافات في متصفحك
+- زر اللغة في شريط إجراءات الدردشة، تحت مربع الرسالة: نقرة واحدة تفتح قائمة اللغات التي تكتب بها، والكتابة
+  تصفّيها. أما الزر الموجود أعلى الدردشة فيحدد اللغة التي تقرأ بها
 
 ## اللغات المدعومة
 
@@ -127,8 +120,10 @@ Firefox لا يملكه. وحيثما غاب، تتولى السلسلة الس�
 
 ## الخصوصية
 
-لا حساب ولا خادم يخصني، ولا تحليلات إلا إذا وافقت على عدّ يومي مجهول الهوية يُرسل إلى Google Analytics (المحركات المستخدمة، الأخطاء، السرعة، دون رسائلك أو الأسماء أو القنوات أبدًا). تذهب رسائل الدردشة إلى مزود الترجمة الذي اخترته ولا مكان غيره، وفي
-وضع الترجمة على الجهاز لا تذهب حتى إليه. النسخة المثبتة من متجر لا ترسل أي طلب آخر. أما النسخة المثبتة
+لا حساب ولا خادم يخصني، ولا تحليلات إلا إذا وافقت على عدّ يومي مجهول الهوية يُرسل إلى Google Analytics (المحركات المستخدمة، الأخطاء، السرعة، دون رسائلك أو الأسماء أو القنوات أبدًا). تذهب رسائل الدردشة، ومسودتك أثناء تشغيل معاينة الكتابة، إلى مزود الترجمة الذي اخترته ولا مكان غيره، وفي
+وضع الترجمة على الجهاز لا تذهب حتى إليه. ولمعرفة لغة القناة تسأل Twitch عن لغة بث القناة ومعرّفها، ولإبعاد أسماء الرموز
+التعبيرية عن الترجمات تسأل 7TV وBetterTTV وFrankerFaceZ عن أسماء الرموز التعبيرية في القناة، وهذا يخبرهم بمعرّف القناة
+ولا شيء غيره. النسخة المثبتة من متجر لا ترسل أي طلب آخر. أما النسخة المثبتة
 يدويًا فتسأل GitHub عن وسم آخر إصدار مرة كل ست ساعات على الأكثر، لتعرف هل تُظهر شارة التحديث.
 [التفاصيل](PRIVACY.md)
 
@@ -136,12 +131,12 @@ Firefox لا يملكه. وحيثما غاب، تتولى السلسلة الس�
 
 **الرسائل لا تُترجم.**
 افتح تبويب النشاط في الإعدادات واضغط "Read decisions": يعرض آخر 50 سطرًا ويذكر سبب ترجمة كل منها أو تركه.
-معظم الأسطر المتخطاة تُتخطى عمدًا. في جلسة بث مباشر واحدة كان 213 من 234 سطرًا تكرارًا من المستخدم نفسه،
-و9 أقصر من اللازم، و7 رموزًا تعبيرية أو ضحكًا فقط، وسطر واحد كان بلغة القراءة أصلًا. إن لم يُظهر التبويب
+معظم الأسطر المتخطاة تُتخطى عمدًا: تكرار من المستخدم نفسه، وأسطر أقصر من اللازم، ورموز تعبيرية أو ضحك فقط،
+أو أسطر بلغة القراءة أصلًا. إن لم يُظهر التبويب
 شيئًا على الإطلاق، فالإضافة لا ترى الدردشة: افتح بلاغًا من فضلك.
 
-**اختفى الشريط الأخضر.**
-أعد تحميل الصفحة. وإن تكرر ذلك، افتح [بلاغًا](https://github.com/Pkkls/kick-chat-translator/issues) يذكر القناة
+**اختفى الشريط البنفسجي.**
+أعد تحميل الصفحة. وإن تكرر ذلك، افتح [بلاغًا](https://github.com/kilworks/twitch-chat-translator/issues) يذكر القناة
 وما فعلته قبلها.
 
 **كيف أحصل على ترجمات أفضل؟**
@@ -154,32 +149,36 @@ Firefox لا يملكه. وحيثما غاب، تتولى السلسلة الس�
 **هل أستطيع استخدام الإضافة بلغتي؟**
 نعم. تتبع لغة متصفحك، والقائمة أعلى الإعدادات تبدّلها إلى أي لغة من اللغات الـ43.
 
-**هل تعمل في إعادات البث؟**
+**هل تعمل مع 7TV وBTTV وFFZ؟**
+نعم، مع أي منها أو بدونها. أسماء رموزها التعبيرية لا تدخل في الترجمات.
+
+**هل تعمل في إعادات البث ومقاطع الكليب؟**
 نعم، بالطريقة نفسها كما في البث المباشر.
 
-**توقفت بعد تحديث في Kick.**
-تغيّر Kick أحيانًا طريقة بناء دردشتها. افتح [بلاغًا](https://github.com/Pkkls/kick-chat-translator/issues) وسيُصلح
+**توقفت بعد تحديث في Twitch.**
+تغيّر Twitch أحيانًا طريقة بناء دردشتها. افتح [بلاغًا](https://github.com/kilworks/twitch-chat-translator/issues) وسيُصلح
 الأمر.
 
-**هل هذه من صنع Kick؟**
-لا. إنها مشروع مستقل مفتوح المصدر، لا صلة له بـ Kick.
+**هل هذه من صنع Twitch؟**
+لا. إنها مشروع مستقل مفتوح المصدر، لا صلة له بـ Twitch.
 
 ## الجديد
 
-في 3.2.0:
+في 1.0.0، أول إصدار لـ Twitch:
 
-- الإعدادات والنافذة المنبثقة وشريط الدردشة تتحدث كل اللغات الـ43 التي تترجم إليها الإضافة، لا 10 فقط، مع العبرية والفارسية من اليمين إلى اليسار مثل العربية
-- اللغات العشر التي كانت تتحدثها من قبل أُعيدت كتابتها لتُقرأ كأنها مكتوبة بتلك اللغة، لا ترجمة حرفية من الإنجليزية
-- قائمة لغة الواجهة تعرض علم كل لغة وتعمل بلوحة المفاتيح
+- تقرأ دردشة Twitch بأشكالها الثلاثة: قائمة Twitch نفسها (ومعها BTTV وFFZ أيضًا)، وقائمة 7TV، وإعادات البث ومقاطع الكليب، في النافذة المنفصلة والتضمين وعرض المشرف ومدير البث والجوال
+- تكتب الترجمات في مربع رسالة Twitch مع إبقاء الرموز التعبيرية ككلمات، ولا تترجم أبدًا أسماء الرموز التعبيرية في مجموعات القناة في 7TV وBTTV وFFZ
+- لغة القناة تأتي من Twitch، والرسالة المحذوفة تفقد ترجمتها، والمظهر بنفسجي ويتبع دردشة Twitch الداكنة أو الفاتحة
+- Alt+Shift+T يشغّل الترجمة أو يوقفها، وTab يُدرج الترجمة فقط إذا لم يكن 7TV أو BTTV قد أكمل رمزًا تعبيريًا للتو، وزر اللغة في شريط الإجراءات تحت مربع الرسالة
 
 كل إصدار، مع ما تغيّر والقياس الذي يقف خلفه:
-[Releases](https://github.com/Pkkls/kick-chat-translator/releases) و[CHANGELOG.md](CHANGELOG.md).
+[Releases](https://github.com/kilworks/twitch-chat-translator/releases) و[CHANGELOG.md](CHANGELOG.md).
 
 ## التطوير
 
 ```bash
-git clone https://github.com/Pkkls/kick-chat-translator.git
-cd kick-chat-translator
+git clone https://github.com/kilworks/twitch-chat-translator.git
+cd twitch-chat-translator
 npm ci
 npm run release:check    # typecheck, lint, unit tests, build: the gate every package goes through
 npm run build:firefox    # Firefox build, same dist/ folder
@@ -190,12 +189,12 @@ npm run dev              # HMR
 البناء قابل لإعادة الإنتاج: يعطي الالتزام نفسه ملفات zip متطابقة بايتًا ببايت على أي جهاز، ويُتحقق من ذلك
 ببناء `git archive` للوسم في مجلد فارغ ومقارنة البصمات.
 
-إلى جانب اختبارات الوحدات، تحمّل 42 بوابة غير متصلة الإضافة المبنية في متصفح حقيقي، وتقودها وتتحقق مما
+إلى جانب اختبارات الوحدات، تحمّل بوابات غير متصلة الإضافة المبنية في متصفح حقيقي، وتقودها وتتحقق مما
 تفعله، مع صفحة تُقدَّم محليًا ومحرك ترجمة يُجاب محليًا. تحتاج إلى Playwright، الذي ليس اعتمادية عن قصد:
 وجّه `UX_KIT` إلى مجلد يحتوي `node_modules` الخاص به عليه، أو شغّل `npm i -D playwright`.
 
 ```bash
-node test/e2e/run-gates.mjs --headless                  # all 42, no window
+node test/e2e/run-gates.mjs --headless                  # all the offline gates, no window
 node test/e2e/store-shots-fixture.mjs --lang=ja         # the store screenshots, in one listing language
 node test/e2e/store-shots-fixture.mjs --gif             # English store screenshots, the README images and this GIF
 ```
@@ -209,13 +208,10 @@ node test/e2e/store-shots-fixture.mjs --gif             # English store screensh
 
 ## مشاريع ذات صلة
 
-- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker)، يحجب إعلانات Kick قبل التشغيل وفوقه
-- [kick-core](https://github.com/Pkkls/kick-core)، عميل البوابة الفورية المشترك بين هذه الإضافات
-- [kickbus](https://github.com/Pkkls/kickbus)، webhooks الرسمية من Kick تُمرَّر إلى الروبوتات المحلية عبر SSE
-- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner)، تطبيق Windows يراكم وقت المشاهدة لهدايا Kick
+- [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/))، المترجم نفسه لدردشة Kick، من المؤلف نفسه
 
 ## الترخيص
 
-MIT. لا صلة له بـ Kick.
+MIT. لا صلة له بـ Twitch.
 
 </div>

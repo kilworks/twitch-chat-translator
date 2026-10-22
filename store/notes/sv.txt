@@ -1,9 +1,11 @@
-Att skriva med emotes fungerar korrekt nu. Tab slutför Kicks och 7TV:s emotes och @omnämnanden istället för att infoga översättningen, emotes stannar i ditt meddelande när det översätts, och förhandsvisningen täcker inte längre Kicks listor eller emoteväljaren.
+Första versionen, för Twitch. Översättningsmotorn, språkigenkänningen, cachen och alternativen kommer från Kick Chat Translator, av samma upphovsperson. Allt som läser eller skriver på sidan byggdes om för Twitch och mättes på livekanaler.
 
-Översättningar är mer exakta: varumärken och personers namn (iPhone, YouTube, LeBron) tas inte längre bort före översättning, och @omnämnanden stannar kvar i översatta meddelanden.
+Den läser Twitch-chatten i dess tre former: Twitchs egen lista (också med BTTV och FFZ), 7TV-listan samt VOD- och klipprepriser. Popout, inbäddad chatt, moderatorvy, stream manager och mobil ingår.
 
-Filtren omarbetades: de riktiga Kick-botarna ignoreras och du kan lägga till dina egna, "Dölj meddelanden som innehåller" döljer nu också det som redan finns på skärmen, och listorna kan skrivas in igen.
+Översättningar skrivs in i Twitchs meddelanderuta med emotes kvar som ord. Emotenamnen i kanalens 7TV-, BTTV- och FFZ-set översätts aldrig, även om du inte kör de tilläggen.
 
-Tillägget är lättare på varje Kick-sida, och på Chrome erbjuds motorn på enheten igen när målspråket är på Auto.
+Kanalens språk kommer från Twitch själv, ett meddelande som en moderator tar bort, en timeout eller en ban förlorar också sin översättning, och utseendet är lila och följer Twitchs mörka eller ljusa chatttema.
 
-Nytt och valfritt: anonym daglig användningsstatistik, avstängd om du inte säger ja. De innehåller aldrig dina meddelanden, namn eller kanaler.
+Slå på eller av översättningen med Alt+Shift+T, eftersom Alt+T är Twitchs teaterläge. Tab infogar översättningen bara när 7TV eller BTTV inte nyss slutförde en emote. Botarna som ignoreras är de som mätts på Twitch: StreamElements, Fossabot, Moobot, Streamlabs och Nightbot.
+
+Valfritt: anonym daglig användningsstatistik, avstängd om du inte säger ja. De innehåller aldrig dina meddelanden, namn eller kanaler.

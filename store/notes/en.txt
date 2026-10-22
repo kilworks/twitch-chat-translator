@@ -1,9 +1,11 @@
-Typing with emotes works properly now. Tab completes Kick's and 7TV's emotes and @mentions instead of inserting the translation, emotes stay in your message when it is translated, and the preview no longer covers Kick's lists or the emote picker.
+First release, for Twitch. The translation engine, the language detection, the cache and the options come from Kick Chat Translator, by the same author. Everything that reads or writes the page was rebuilt for Twitch and measured on live channels.
 
-Translations are more accurate: brand and people names (iPhone, YouTube, LeBron) are no longer dropped before translating, and @mentions stay in translated messages.
+It reads Twitch chat in its three shapes: Twitch's own list (also with BTTV and FFZ), the 7TV list, and VOD and clip replay. Popout, embed, moderator view, the stream manager and mobile are included.
 
-Filters were reworked: the real Kick bots are ignored and you can add your own, "Hide messages containing" now also hides what is already on screen, and the lists can be typed in again.
+Translations are written into the Twitch message box with emotes kept as words. The emote names of the channel's 7TV, BTTV and FFZ sets are never translated, even if you do not run those extensions.
 
-The extension is lighter on every Kick page, and on Chrome the on-device engine is offered again when the target language is on Auto.
+The channel's language comes from Twitch itself, a message deleted by a moderator, a timeout or a ban loses its translation too, and the look is purple and follows Twitch's dark or light chat theme.
 
-New and optional: anonymous daily usage statistics, off unless you say yes. They never contain your messages, names or channels.
+Turn translation on or off with Alt+Shift+T, because Alt+T is Twitch's theater mode. Tab inserts the translation only when 7TV or BTTV did not just complete an emote. The ignored bots are the ones measured on Twitch: StreamElements, Fossabot, Moobot, Streamlabs and Nightbot.
+
+Optional: anonymous daily usage statistics, off unless you say yes. They never contain your messages, names or channels.

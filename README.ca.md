@@ -2,59 +2,62 @@
 
 <img src="public/icons/icon128.png" alt="" width="80" height="80">
 
-# Kick Chat Translator
+# Twitch Chat Translator
 
-Llegeix el xat de qualsevol directe de Kick en el teu idioma i respon en el del canal.<br>
+Llegeix el xat de qualsevol directe de Twitch en el teu idioma i respon en el del canal.<br>
 Gratuït, sense compte, res a configurar. 43 idiomes, al xat i a la mateixa extensió.
 
-**[Afegeix a Chrome, Brave o Edge](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)** &nbsp;·&nbsp; **[Afegeix a Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)**
+**[Descarrega l'última versió](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge i Firefox
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=Chrome%20Web%20Store&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Usuaris de Chrome](https://img.shields.io/chrome-web-store/users/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=usuaris&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Firefox Add-on](https://img.shields.io/amo/v/kick-chat-translator?label=Firefox%20Add-on&color=53fc18)](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-[![CI](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml)
+[![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](README.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [العربية](README.ar.md) · [עברית](README.he.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [فارسی](README.fa.md) · [বাংলা](README.bn.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
 <img src="screenshots/demo.gif" alt="Missatges de xat en castellà arriben un a un, cadascun amb la seva traducció a l'anglès a sota; després s'escriu una resposta en anglès, apareix una vista prèvia en castellà sobre la caixa del xat i Tab la substitueix" width="360">
 
-[Mira-la en un xat real](https://www.youtube.com/watch?v=NoGJeUrwy9o)
-
 </div>
 
 ## Com funciona
 
-1. Instal·la-la i obre qualsevol directe de Kick. Una barra verda a la part superior del xat indica que està activa.
+1. Instal·la-la i obre qualsevol directe de Twitch. Una barra lila a la part superior del xat indica que està activa.
 2. Cada missatge rep la seva traducció just a sota a mesura que arriba, en l'idioma del teu navegador. Tant als
-   directes com a les repeticions de VOD.
+   directes com als VOD i als clips.
 3. Escriu una resposta en el teu idioma. Una vista prèvia sobre la caixa del xat te la mostra en l'idioma del
    canal: prem Tab o fes-hi clic, i aquesta versió substitueix el que has escrit.
 
-L'idioma del canal es llegeix de la mateixa Kick, així que no hi ha res a configurar. Tots dos idiomes es poden
+L'idioma del canal és el que el streamer ha triat a Twitch, així que no hi ha res a configurar. Tots dos idiomes es poden
 canviar als ajustos, i l'idioma de lectura es pot recordar per canal.
+
+Si també fas servir 7TV o BTTV, ells utilitzen Tab per acabar un emote. Aleshores Tab acaba primer l'emote, i només
+insereix la traducció quan no tenia res a acabar. Ctrl/Cmd+Enter i un clic sempre la insereixen.
 
 ## Què inclou
 
 - **43 idiomes**, també els que s'escriuen de dreta a esquerra (àrab, hebreu, persa), amb les variants
   regionals per separat (portuguès del Brasil i de Portugal, xinès simplificat i tradicional, cantonès)
+- **Allà on hi ha el xat**: xat en directe, popout, incrustat, vista de moderador, el gestor del directe, repeticions
+  de VOD i de clips, a www.twitch.tv, m.twitch.tv i dashboard.twitch.tv, amb o sense 7TV, BTTV i FFZ
 - **L'extensió també els parla**: ajustos, finestra emergent i barra del xat en els 43, que es trien en un menú amb banderes
 - **Gratuïta de sèrie** amb Google Translate. Afegeix la teva pròpia clau gratuïta de DeepL per millorar els
   idiomes europeus; MyMemory i Lingva agafen el relleu quan un motor falla
-- **Traducció al dispositiu** a Chrome i Edge quan el navegador l'ofereix: 22 ms en comptes d'1,6 s, i el text
+- **Traducció al dispositiu** a Chrome i Edge quan el navegador l'ofereix: sense xarxa, sense quota, i el text
   no surt mai del teu ordinador
 - **Filtres**: ignora els bots, silencia usuaris o canals, amaga les línies que continguin una paraula,
   tradueix només els idiomes que triïs
-- **Pensada per a xats ràpids**: els emotes de 7TV es deixen tal qual, l'spam d'emojis i els enllaços se
-  suprimeixen abans d'enviar res, un glossari per als noms que els motors destrossen, una memòria cau de traduccions
+- **Pensada per a xats ràpids**: els noms dels emotes dels conjunts de 7TV, BTTV i FFZ del canal no es tradueixen mai,
+  encara que no tinguis aquestes extensions, els enllaços i les @mencions es deixen de banda abans d'enviar res, un
+  glossari per als noms que els motors destrossen, una memòria cau de traduccions
 - **Quatre estils de visualització**: sota el missatge, a la mateixa línia, en lloc seu, o només en passar-hi per sobre
 - **Posa un canal en pausa** des de la barra del xat sense aturar els altres. En canviar de canal o actualitzar
   l'extensió, les pestanyes obertes continuen traduint, sense recarregar
+- **Atenta a la moderació**: un missatge que esborra un moderador, un timeout o un ban també perd la traducció
+- **Té aspecte de Twitch**: lila, i segueix el tema fosc o clar del mateix xat tret que en triïs un
 - Chrome, Brave, Edge i Firefox
 
 | El xat, traduït mentre avança | La finestra de la barra d'eines |
 |---|---|
-| <img src="screenshots/chat.png" alt="Xat de Kick on cada missatge en castellà porta a sota la seva traducció a l'anglès, amb la barra d'estat de l'extensió sobre la llista" width="360"> | <img src="screenshots/popup.png" alt="La finestra de l'extensió amb l'idioma de destinació, el mode de visualització, la llista de serveis i les peticions del dia" width="360"> |
+| <img src="screenshots/chat.png" alt="Xat de Twitch on cada missatge en castellà porta a sota la seva traducció a l'anglès, amb la barra d'estat de l'extensió sobre la llista" width="360"> | <img src="screenshots/popup.png" alt="La finestra de l'extensió amb l'idioma de destinació, l'estil de visualització, l'ajust de la vista prèvia d'escriptura i la cadena de serveis" width="360"> |
 
 | El que escrius, abans d'enviar-ho | Tria un idioma, o deixa que triï ella |
 |---|---|
@@ -65,25 +68,14 @@ missatges són ficticis i les traduccions es responen en local, així que cap us
 
 ## Instal·lació
 
-[Chrome, Brave, Edge: Chrome Web Store](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-&nbsp;·&nbsp;
-[Firefox: Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-
-Les còpies de les botigues s'actualitzen soles.
-
-<details>
-<summary>Instal·lació manual, des d'un zip de release</summary>
-
-Descarrega el zip del teu navegador a [Releases](https://github.com/Pkkls/kick-chat-translator/releases/latest) i descomprimeix-lo.
+Descarrega el zip del teu navegador a [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) i descomprimeix-lo.
 
 - Chrome, Brave, Edge (`…-chromium.zip`): obre `chrome://extensions`, activa el Mode de desenvolupador, fes clic a Carrega descomprimida i tria la carpeta.
 - Firefox 121+ (`…-firefox.zip`): obre `about:debugging#/runtime/this-firefox`, fes clic a Carrega un complement temporal i tria `manifest.json`.
+  Firefox oblida un complement temporal quan es reinicia.
 
-Si també tens instal·lada la versió de la botiga, desactiva-la primer, o cada missatge es traduirà dues
-vegades. Una còpia instal·lada així no s'actualitza sola: la seva icona mostra una insígnia quan hi ha una
-versió nova, i la finestra enllaça a la botiga.
-
-</details>
+Una còpia instal·lada així no s'actualitza sola: la seva icona mostra una insígnia quan hi ha una versió nova, i la
+finestra enllaça a l'última release.
 
 ## Motors de traducció
 
@@ -92,15 +84,13 @@ Quatre serveis encadenats: quan un falla, el següent agafa el relleu. L'ordre e
 | Servei | Clau | Nota |
 |---|---|---|
 | Google | cap | el predeterminat, funciona de sèrie |
-| DeepL | gratuïta | la millor qualitat, [clau gratuïta](https://www.deepl.com/pro-api) per a 1 milió de caràcters al mes |
+| DeepL | gratuïta | la millor en idiomes europeus, [clau gratuïta](https://www.deepl.com/pro-api) per a 1 milió de caràcters al mes |
 | MyMemory | cap | de reserva |
 | Lingva | cap | de reserva, en una instància pública tret que apuntis a la teva |
 
-El traductor integrat de Chromium és més ràpid que tots ells. Mesurat en un canal en directe: 22 ms des que
-apareix un missatge fins que la seva traducció és en pantalla, davant dels 1618 ms de la cadena al núvol, sense
-xarxa i sense quota. Chrome i Edge 138 i posteriors el poden oferir, tot i que no totes les còpies ho fan, i
-cada parell d'idiomes necessita descarregar el seu model una vegada, amb un clic des de la barra. Firefox no
-el té. On falta, la cadena al núvol agafa el relleu i no es trenca res.
+El traductor integrat de Chromium no necessita xarxa ni quota. Chrome i Edge 138 i posteriors el poden oferir, tot i
+que no totes les còpies ho fan, i cada parell d'idiomes necessita descarregar el seu model una vegada, amb un clic
+des de la barra. Firefox no el té. On falta, la cadena al núvol agafa el relleu i no es trenca res.
 
 ## Ajustos
 
@@ -115,9 +105,10 @@ Fes clic a l'engranatge de la barra del xat, o clic dret a la icona de l'extensi
 - **Avançat**: mida i durada de la memòria cau, peticions simultànies, límit per canal, còpia de seguretat i restauració
 - **Activitat**: missatges traduïts, encerts de memòria cau, cada idioma vist al xat, i per què cadascuna de les
   últimes 50 línies es va traduir o no
-- **Teclat**: Alt+T activa o desactiva la traducció del xat, Alt+W la vista prèvia d'escriptura
-- El botó d'idioma de la barra d'accions del xat: un clic alterna entre l'idioma del canal i la teva última
-  elecció, mantenir-lo premut obre la llista, escriure dues lletres la filtra
+- **Teclat**: Alt+Shift+T activa o desactiva la traducció del xat (Alt+T és el mode cinema de Twitch), Alt+W la vista
+  prèvia d'escriptura. Tots dos es poden reassignar a les dreceres d'extensions del navegador
+- El botó d'idioma de la barra d'accions del xat, sota la caixa de missatge: un clic obre la llista dels idiomes en
+  què escrius, escriure la filtra. El de la part superior del xat fixa l'idioma en què llegeixes
 
 ## Idiomes compatibles
 
@@ -127,21 +118,22 @@ El xat es tradueix a qualsevol d'ells, i la interfície de l'extensió està dis
 
 ## Privadesa
 
-Cap compte, cap servidor meu i cap anàlisi, tret que opteu per un recompte anònim diari enviat a Google Analytics (motors utilitzats, errors, velocitat, mai els vostres missatges, noms o canals). Els missatges del xat van al servei de traducció que has
-triat i a cap altre lloc, i en mode dispositiu ni tan sols allà. Una còpia instal·lada des d'una botiga no fa
-cap altra petició. Una còpia instal·lada a mà pregunta a GitHub l'última etiqueta de release, com a molt cada
+Cap compte, cap servidor meu i cap anàlisi, tret que opteu per un recompte anònim diari enviat a Google Analytics (motors utilitzats, errors, velocitat, mai els vostres missatges, noms o canals). Els missatges del xat, i el teu esborrany mentre la vista prèvia d'escriptura és activa, van al servei de traducció que has
+triat i a cap altre lloc, i en mode dispositiu ni tan sols allà. Per conèixer l'idioma del canal pregunta a Twitch l'idioma
+d'emissió i l'id del canal, i per mantenir els noms dels emotes fora de les traduccions pregunta a 7TV, BetterTTV i
+FrankerFaceZ els noms dels emotes del canal, cosa que els diu l'id del canal i res més. Una còpia instal·lada des d'una
+botiga no fa cap altra petició. Una còpia instal·lada a mà pregunta a GitHub l'última etiqueta de release, com a molt cada
 sis hores, per saber si ha de mostrar la insígnia d'actualització. [Detalls](PRIVACY.md)
 
 ## Preguntes freqüents
 
 **Els missatges no es tradueixen.**
 Obre la pestanya Activitat als ajustos i prem "Llegeix les decisions": mostra les últimes 50 línies i per què
-cadascuna es va traduir o no. La majoria de les línies omeses s'ometen a propòsit. En una sessió en directe,
-213 de 234 eren el mateix usuari repetint-se, 9 eren massa curtes, 7 només emojis o rialles, i 1 ja era en
-l'idioma de lectura. Si la pestanya no mostra res, l'extensió no veu el xat: obre una incidència.
+cadascuna es va traduir o no. La majoria de les línies omeses s'ometen a propòsit: el mateix usuari repetint-se, línies massa curtes, només
+emojis o rialles, o línies que ja són en l'idioma de lectura. Si la pestanya no mostra res, l'extensió no veu el xat: obre una incidència.
 
-**La barra verda ha desaparegut.**
-Recarrega la pàgina. Si torna a passar, obre una [incidència](https://github.com/Pkkls/kick-chat-translator/issues)
+**La barra lila ha desaparegut.**
+Recarrega la pàgina. Si torna a passar, obre una [incidència](https://github.com/kilworks/twitch-chat-translator/issues)
 amb el canal i el que havies fet abans.
 
 **Com aconsegueixo millors traduccions?**
@@ -154,32 +146,36 @@ Sota el missatge. Els altres tres funcionen i encara s'estan ajustant.
 **Puc fer servir l'extensió en el meu idioma?**
 Sí. Segueix l'idioma del teu navegador, i el menú de la part superior dels ajustos la canvia a qualsevol dels 43.
 
-**Funciona a les repeticions de VOD?**
+**Funciona amb 7TV, BTTV i FFZ?**
+Sí, amb qualsevol d'ells o amb cap. Els noms dels seus emotes no entren a les traduccions.
+
+**Funciona als VOD i als clips?**
 Sí, igual que als directes.
 
-**Ha deixat de funcionar després d'una actualització de Kick.**
-Kick de vegades canvia com està construït el seu xat. Obre una [incidència](https://github.com/Pkkls/kick-chat-translator/issues)
+**Ha deixat de funcionar després d'una actualització de Twitch.**
+Twitch de vegades canvia com està construït el seu xat. Obre una [incidència](https://github.com/kilworks/twitch-chat-translator/issues)
 i es corregeix.
 
-**La fa Kick?**
-No. És un projecte independent de codi obert, sense cap relació amb Kick.
+**La fa Twitch?**
+No. És un projecte independent de codi obert, sense cap relació amb Twitch.
 
 ## Novetats
 
-A la 3.2.0:
+A la 1.0.0, la primera versió per a Twitch:
 
-- Els ajustos, la finestra emergent i la barra del xat parlen els 43 idiomes als quals tradueix l'extensió, no 10, amb l'hebreu i el persa de dreta a esquerra com l'àrab
-- Els deu idiomes que ja parlava s'han reescrit perquè sonin com escrits en aquest idioma, no paraula per paraula des de l'anglès
-- El menú de l'idioma de la interfície mostra la bandera de cada idioma i es pot fer servir amb el teclat
+- Llegeix el xat de Twitch en les seves tres formes: la llista pròpia de Twitch (també amb BTTV i FFZ), la llista de 7TV, i la repetició de VOD i de clips, en popout, incrustat, vista de moderador, el gestor del directe i el mòbil
+- Escriu les traduccions a la caixa de missatge amb els emotes com a paraules, i mai tradueix els noms dels emotes dels conjunts de 7TV, BTTV i FFZ del canal
+- L'idioma del canal ve de Twitch, un missatge esborrat perd la traducció, i l'aspecte és lila i segueix el xat fosc o clar de Twitch
+- Alt+Shift+T activa o desactiva la traducció, Tab insereix la traducció només quan 7TV o BTTV no acaben d'acabar un emote, i el botó d'idioma és a la barra d'accions sota la caixa de missatge
 
 Cada versió, amb el que va canviar i la mesura que hi ha al darrere:
-[Releases](https://github.com/Pkkls/kick-chat-translator/releases) i [CHANGELOG.md](CHANGELOG.md).
+[Releases](https://github.com/kilworks/twitch-chat-translator/releases) i [CHANGELOG.md](CHANGELOG.md).
 
 ## Desenvolupament
 
 ```bash
-git clone https://github.com/Pkkls/kick-chat-translator.git
-cd kick-chat-translator
+git clone https://github.com/kilworks/twitch-chat-translator.git
+cd twitch-chat-translator
 npm ci
 npm run release:check    # typecheck, lint, tests unitaris, build: el control pel qual passa cada paquet
 npm run build:firefox    # build de Firefox, a la mateixa carpeta dist/
@@ -190,13 +186,13 @@ npm run dev              # HMR
 Els builds són reproduïbles: el mateix commit dona zips idèntics byte a byte a qualsevol màquina,
 comprovat construint un `git archive` de l'etiqueta en una carpeta buida i comparant els hashes.
 
-A més dels tests unitaris, 42 proves sense xarxa carreguen l'extensió construïda en un navegador real, la
+A més dels tests unitaris, les proves sense xarxa carreguen l'extensió construïda en un navegador real, la
 fan servir i comproven què fa, amb la pàgina i el motor de traducció servits en local. Necessiten
 Playwright, que a propòsit no és una dependència: apunta `UX_KIT` a una carpeta el `node_modules` de la qual
 el contingui, o executa `npm i -D playwright`.
 
 ```bash
-node test/e2e/run-gates.mjs --headless                  # les 42, sense finestra
+node test/e2e/run-gates.mjs --headless                  # totes les proves sense xarxa, sense finestra
 node test/e2e/store-shots-fixture.mjs --lang=ja         # les captures de la botiga, en un idioma de fitxa
 node test/e2e/store-shots-fixture.mjs --gif             # captures de la botiga en anglès, les imatges del README i aquest GIF
 ```
@@ -211,11 +207,8 @@ Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 
 ## Projectes relacionats
 
-- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker), bloqueja els anuncis pre-roll i superposats de Kick
-- [kick-core](https://github.com/Pkkls/kick-core), el client del gateway en temps real que comparteixen aquestes extensions
-- [kickbus](https://github.com/Pkkls/kickbus), webhooks oficials de Kick reenviats a bots locals per SSE
-- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner), aplicació de Windows que fa avançar el temps de visionat dels drops de Kick
+- [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), el mateix traductor per al xat de Kick, del mateix autor
 
 ## Llicència
 
-MIT. Sense relació amb Kick.
+MIT. Sense relació amb Twitch.

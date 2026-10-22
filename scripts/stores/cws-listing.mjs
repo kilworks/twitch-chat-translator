@@ -12,7 +12,7 @@
  *   node scripts/stores/cws-listing.mjs paste      # store/chrome/description/<lang>.txt, every language
  *
  * Signing in is a person's job, once: `launch` opens the dashboard in a
- * profile kept under ~/.config/kick-chat-translator/cws-browser, the person
+ * profile kept under ~/.config/twitch-chat-translator/cws-browser, the person
  * signs in by hand, and the profile stays signed in for every later run. This
  * script never types a credential and stops if Google asks for one.
  */
@@ -25,9 +25,9 @@ import { LISTINGS, chromeCode } from './languages.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const PORT = Number(process.env.CWS_CDP_PORT ?? 9222);
-const PROFILE = path.join(os.homedir(), '.config', 'kick-chat-translator', 'cws-browser');
+const PROFILE = path.join(os.homedir(), '.config', 'twitch-chat-translator', 'cws-browser');
 const PUBLISHER = 'ef2a9029-0a4d-4858-bb63-4ca619ffd657';
-const ITEM = 'nkkjmbkmacbdkboijmnhjnblcaiclhni';
+const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
 // CWS_EDIT_URL points the script at a stand-in page for its own test.
 export const EDIT_URL = process.env.CWS_EDIT_URL ?? `https://chrome.google.com/webstore/devconsole/${PUBLISHER}/${ITEM}/edit`;
 const BROWSERS = [
@@ -145,13 +145,13 @@ async function inspect(tab = 'edit') {
 
 /**
  * The Chrome locale code of each listing language. The dashboard writes
- * "<name> – <code>" with the name in its own interface language ("anglais –
+ * "<name> (en dash) <code>" with the name in its own interface language ("anglais (en dash)
  * en" on a French dashboard), so the code after the dash is what is matched,
  * as a whole word: `fr` must not pick `fr_CA`, nor `es` pick `es-419`.
  */
 export const LANG_CODES = Object.fromEntries(Object.keys(LISTINGS).map((l) => [l, chromeCode(l)]));
 /** Source of the in-page test for one option's text. */
-const matcher = (lang) => `((t) => new RegExp('–\\\\s*${LANG_CODES[lang]}(?![A-Za-z0-9_-])').test(t))`;
+const matcher = (lang) => `((t) => new RegExp('\\u2013\\\\s*${LANG_CODES[lang]}(?![A-Za-z0-9_-])').test(t))`;
 
 /** Runs in the page: the description field, the language picker, the save button. */
 const LOCATE = `(() => {
@@ -211,7 +211,7 @@ async function chooseLanguageOnce(cdp, lang) {
     console.log(lang, JSON.stringify(await cdp.eval(`(() => {
       const p = document.querySelector('[data-kt-cws=picker]');
       const opts = [...document.querySelectorAll('[role=option], mat-option, li')].filter((e) => e.getClientRects().length);
-      return { picker: p?.textContent.trim().slice(0, 40), expanded: p?.getAttribute('aria-expanded'), options: opts.length, first: opts.filter((o) => /–/.test(o.textContent)).map((o) => o.textContent.trim().slice(0, 30)) };
+      return { picker: p?.textContent.trim().slice(0, 40), expanded: p?.getAttribute('aria-expanded'), options: opts.length, first: opts.filter((o) => /\\u2013/.test(o.textContent)).map((o) => o.textContent.trim().slice(0, 30)) };
     })()`)));
   const at = await cdp.eval(`(() => {
     const o = [...document.querySelectorAll('[role=option], mat-option, li')].filter((e) => e.getClientRects().length)
@@ -228,7 +228,7 @@ async function chooseLanguageOnce(cdp, lang) {
   for (let i = 0; i < 20; i++) {
     await sleep(500);
     // LOCATE again: the picker may be re-rendered and lose its mark. Its text
-    // ends with the Material icon's ligature ("...– ararrow_drop_down").
+    // ends with the Material icon's ligature ("...(en dash) ararrow_drop_down").
     if (await cdp.eval(`(${LOCATE}, ${is}((document.querySelector('[data-kt-cws=picker]')?.textContent ?? '').replace(/arrow_drop_\\w+|expand_\\w+/g, ' ')))`)) {
       await sleep(1000);
       return true;

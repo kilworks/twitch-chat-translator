@@ -1,14 +1,14 @@
-Kick Chat Translator je brezplačni prevajalnik chata v živo za Kick. Berite chat katerega koli prenosa v svojem jeziku in odgovarjajte v jeziku kanala, kar v chatu.
+Twitch Chat Translator je brezplačni prevajalnik chata v živo za Twitch. Berite chat katerega koli prenosa v svojem jeziku in odgovarjajte v jeziku kanala, kar v chatu.
 
 Gledate turški, španski, ruski ali arabski prenos in ne sledite chatu? Namestite, odprite prenos in vsako sporočilo takoj pod seboj pokaže svoj prevod, ko prispe. Brez računa, brez ključa API, brez nastavljanja.
 
 KAKO DELUJE
 
-1. Odprite poljuben prenos na Kicku. Zelena vrstica na vrhu chata pokaže, da prevajalnik deluje.
+1. Odprite poljuben prenos na Twitchu. Vijolična vrstica na vrhu chata pokaže, da prevajalnik deluje.
 2. Vsako novo sporočilo dobi pod seboj prevod v jezik vašega brskalnika.
 3. Napišite odgovor v svojem jeziku. Predogled ga pokaže v jeziku kanala: pritisnite Tab ali kliknite nanj, nato pošljite.
 
-Jezik kanala se prebere neposredno iz Kicka, oba jezika pa lahko spremenite v nastavitvah. Deluje na prenosih v živo in na posnetkih VOD, čustvenčke 7TV pusti, kakršni so, in se v zavihkih v ozadju samodejno ustavi.
+Jezik kanala je tisti, ki ga je streamer nastavil na Twitchu, oba jezika pa lahko spremenite v nastavitvah. Deluje v chatu v živo, pojavnem oknu (popout), vdelanem chatu, pogledu moderatorja in upravljalniku prenosa ter na posnetkih VOD in klipih, s 7TV, BTTV in FFZ ali brez njih. V zavihkih v ozadju se samodejno ustavi (nastavitev, privzeto vklopljena).
 
 KAJ DOBITE
 
@@ -17,19 +17,21 @@ KAJ DOBITE
 • Boljši evropski jeziki z lastnim ključem API za DeepL. DeepL dobi zadnje vrstice chata kot kontekst, zato se izrazi prilegajo pogovoru.
 • Prevajanje v napravi v Chromu in Edge 138+, če ga vaš računalnik podpira: brez povezave, brez omejitev, chat pa nikoli ne zapusti vašega računalnika.
 • Samodejna rezerva: ko en pogon odpove, prevzame MyMemory ali Lingva. Vrstni red določite vi.
-• Štirje slogi prikaza: pod sporočilom, v isti vrstici, za njim v manjši kurzivi ali samo ob prehodu miške. Način prehoda miške ne prevaja ničesar, dokler ne pokažete na sporočilo, kar pri hitrem chatu zmanjša porabo približno desetkrat.
+• Štirje slogi prikaza: pod sporočilom, v isti vrstici, namesto njega ali samo ob prehodu miške. Način prehoda miške ne prevaja ničesar, dokler ne pokažete na sporočilo, kar pri hitrem chatu varčuje z vašo kvoto.
 • Filtri: preskakovanje botov, utišanje uporabnikov ali kanalov, skrivanje vrstic z besedo, ki jo izberete (uporabno proti spamu ukazov, kot je !command), ali prevajanje samo jezikov, ki jih želite.
-• Čustvenčki, omembe, povezave in poplave emojijev se odstranijo, preden se karkoli pošlje, zato se nič ne porabi za prevajanje „kkkkkk“.
-• Prilagodite si ga: velikost besedila, razmik med vrsticami, pisava, barva poudarka, temen ali svetel chat, jezik branja, zapomnjen za vsak kanal, bližnjice na tipkovnici.
+• Imena čustvenčkov iz kanalovih naborov 7TV, BTTV in FFZ se nikoli ne prevajajo, tudi če teh razširitev ne uporabljate. Omembe (@) in povezave se odstranijo, preden se karkoli pošlje, vrstice samo z emojiji ali smehom pa se preskočijo, zato se nič ne porabi za prevajanje „kkkkkk“.
+• Sporočilo, ki ga izbriše moderator ali ki ga odstrani časovna omejitev (timeout) ali prepoved (ban), izgubi tudi prevod.
+• Prilagodite si ga: velikost besedila, razmik med vrsticami, pisava, barva poudarka, temen ali svetel chat (privzeto sledi Twitchevemu), jezik branja, zapomnjen za vsak kanal, bližnjice na tipkovnici.
 • Vmesnik v istih 43 jezikih, vključno z jeziki, ki se pišejo od desne proti levi, izbran v meniju, ki prikazuje zastavo vsakega jezika.
 
 ZASEBNOST
 
-Brez računa, brez mojega strežnika in brez analitike, razen če privolite v dnevno anonimno štetje uporabljenih storitev, napak in hitrosti, nikoli vaša sporočila, imena ali kanali. Besedilo chata gre samo v prevajalski pogon, ki ste ga izbrali. Pri Googlu, MyMemory ali Lingva je to besedilo vsakega sporočila in nič drugega. Pri DeepL gre kot kontekst zraven tudi nekaj zadnjih vrstic chata z imeni tistih, ki so jih napisali, da se prevod prilega pogovoru. Kanal, ki ga gledate, se nikoli ne pošlje, pri prevajanju v napravi pa nič ne zapusti vašega računalnika.
+Brez računa, brez mojega strežnika in brez analitike, razen če privolite v dnevno anonimno štetje uporabljenih storitev, napak in hitrosti, nikoli vaša sporočila, imena ali kanali. Besedilo chata gre samo v prevajalski pogon, ki ste ga izbrali, enako velja za vaš osnutek, dokler je predogled pri pisanju vklopljen. Pri Googlu, MyMemory ali Lingva je to besedilo vsakega sporočila in nič drugega. Pri DeepL gre kot kontekst zraven tudi nekaj zadnjih vrstic chata z imeni tistih, ki so jih napisali, da se prevod prilega pogovoru. Kanal, ki ga gledate, se nikoli ne pošlje prevajalskemu pogonu, pri prevajanju v napravi pa nobeno besedilo chata ne zapusti vašega računalnika. Kanal je poimenovan samo na enem mestu: razširitev vpraša Twitch za njegov jezik ter 7TV, BetterTTV in FrankerFaceZ za imena njegovih čustvenčkov, kar jim pove id kanala in nič drugega.
 
-Dovoljenja po domače: shramba za vaše nastavitve in predpomnilnik prevodov; dostop do kick.com, da se prevodi prikažejo v chatu; dostop do pogonov, ki jih lahko pokliče (Google, DeepL, MyMemory in Lingva); časovnik, da prevajalnik ostane pripravljen, medtem ko gledate; in pravica, da ob namestitvi ali posodobitvi znova naloži svoj skript v že odprte zavihke Kick, tako da prevajajo naprej brez osvežitve strani. Bere tudi stran z izdajami na GitHubu, da vam sporoči, če obstaja novejša različica, pri tej zahtevi pa ne pošlje ničesar.
+Dovoljenja po domače: shramba za vaše nastavitve in predpomnilnik prevodov; dostop do twitch.tv in do upravljalnika prenosa na dashboard.twitch.tv, da se prevodi prikažejo v chatu; dostop do Twitchevega iskanja jezika in do seznamov čustvenčkov 7TV, BetterTTV in FrankerFaceZ, da se imena čustvenčkov nikoli ne prevajajo; dostop do pogonov, ki jih lahko pokliče (Google, DeepL, MyMemory in Lingva); časovnik, da prevajalnik ostane pripravljen, medtem ko gledate; in pravica, da ob namestitvi ali posodobitvi znova naloži svoj skript v že odprte zavihke Twitcha, tako da prevajajo naprej brez osvežitve strani, ter da na strani Twitcha zažene eno svojo funkcijo, ki ob vstavitvi zapiše prevod v polje za sporočilo. V ročno nameščeni kopiji bere tudi stran z izdajami na GitHubu, da vam sporoči, če obstaja novejša različica, pri tej zahtevi pa ne pošlje ničesar.
 
 BREZPLAČNO IN ODPRTOKODNO
 
-Licenca MIT, vsaka vrstica kode je javna: github.com/Pkkls/kick-chat-translator
+Licenca MIT, vsaka vrstica kode je javna: github.com/kilworks/twitch-chat-translator
 Prijave napak in želje po novih jezikih so tam dobrodošle, kaj se je spremenilo v posamezni različici, pa najdete na strani z izdajami.
+Twitch Chat Translator je neodvisen projekt, ki ni povezan s Twitchem.

@@ -1,16 +1,14 @@
-A Kick Chat Translator egy ingyenes élő chat fordító a Kick számára. Olvasd bármely stream chatjét a saját nyelveden, és válaszolj a csatorna nyelvén, közvetlenül a chatben.
+A Twitch Chat Translator egy ingyenes élő chat fordító a Twitch számára. Olvasd bármely stream chatjét a saját nyelveden, és válaszolj a csatorna nyelvén, közvetlenül a chatben.
 
 Török, spanyol, orosz vagy arab streamet nézel, és nem tudod követni a chatet? Telepítsd, nyisd meg a streamet, és minden üzenet alatt megjelenik a fordítása, ahogy megérkezik. Fiók nélkül, API-kulcs nélkül, semmit nem kell beállítani.
 
 HOGYAN MŰKÖDIK
 
-1. Nyiss meg egy tetszőleges Kick streamet. A chat tetején egy zöld sáv jelzi, hogy a fordító be van kapcsolva.
+1. Nyiss meg egy tetszőleges Twitch streamet. A chat tetején egy lila sáv jelzi, hogy a fordító be van kapcsolva.
 2. Minden új üzenet alatt megjelenik a fordítása a böngésződ nyelvén.
 3. Írj választ a saját nyelveden. Egy előnézet megmutatja a csatorna nyelvén: nyomj Tabot vagy kattints rá, aztán küldd el.
 
-A csatorna nyelvét a Kicktől olvassa ki, és mindkét nyelv módosítható a beállításokban. Működik élő adásokban és VOD-visszajátszásokban is, a 7TV emote-okat érintetlenül hagyja, és a háttérben lévő lapokon magától szünetel.
-
-Nézd meg működés közben egy valódi chaten: https://www.youtube.com/watch?v=NoGJeUrwy9o
+A csatorna nyelve az, amelyet a streamer a Twitchen beállított, és mindkét nyelv módosítható a beállításokban. Működik élő chaten, popoutban, beágyazásban, moderátornézetben és a streamkezelőben, valamint VOD- és klip-visszajátszásokban, 7TV-vel, BTTV-vel és FFZ-vel vagy anélkül. A háttérben lévő lapokon magától szünetel (beállítás, alapból bekapcsolva).
 
 MIT KAPSZ
 
@@ -18,17 +16,19 @@ MIT KAPSZ
 • Ingyenes már telepítés után a Google Translate-tel, kulcs és fiók nélkül.
 • Jobb fordítás az európai nyelvekhez a saját DeepL API-kulcsoddal. A DeepL kontextusként megkapja a legutóbbi chatsorokat, így a megfogalmazás illik a beszélgetéshez.
 • Automatikus tartalék: ha egy motor kiesik, a MyMemory vagy a Lingva átveszi a helyét. A sorrendet te választod.
-• Négy megjelenítési stílus: az üzenet alatt, ugyanabban a sorban, apró dőlt betűvel utána, vagy csak ha föléje viszed az egeret. Az egérrel működő mód addig nem fordít semmit, amíg egy üzenetre nem mutatsz, ami gyors chaten nagyjából tizedére csökkenti a használatot.
+• Négy megjelenítési stílus: az üzenet alatt, ugyanabban a sorban, helyette, vagy csak ha föléje viszed az egeret. Az egérrel működő mód addig nem fordít semmit, amíg egy üzenetre nem mutatsz, ami gyors chaten kíméli a keretedet.
 • Szűrők: botok kihagyása, felhasználók vagy csatornák némítása, az általad választott szót tartalmazó sorok elrejtése (hasznos a !command spam ellen), vagy csak a kívánt nyelvek fordítása.
-• Az emote-okat, említéseket, linkeket és az emoji spamet a rendszer eltávolítja, mielőtt bármit elküldene, így semmit nem költ arra, hogy a "kkkkkk"-t fordítsa.
-• Tedd a magadévá: szövegméret, sorköz, betűtípus, kiemelőszín, sötét vagy világos chat, csatornánként megjegyzett olvasási nyelv, billentyűparancsok.
+• A csatorna 7TV-, BTTV- és FFZ-készleteiben szereplő emotenevek soha nem fordítódnak, akkor sem, ha nem futtatod ezeket a bővítményeket. Az @említések és a linkek félre vannak téve, mielőtt bármi elmenne, a csak emojiból vagy nevetésből álló sorokat pedig kihagyja, így semmit nem költ arra, hogy a "kkkkkk"-t fordítsa.
+• A moderátor által törölt üzenet, vagy amelyet egy timeout vagy ban eltávolít, elveszti a fordítását is.
+• Tedd a magadévá: szövegméret, sorköz, betűtípus, kiemelőszín, sötét vagy világos chat (alapból a Twitch sajátját követi), csatornánként megjegyzett olvasási nyelv, billentyűparancsok.
 • A felület ugyanazon a 43 nyelven érhető el, a jobbról balra írottakon is, és egy olyan menüből választható, amely minden nyelv zászlaját mutatja.
 
 MI HAGYJA EL A BÖNGÉSZŐDET
 
-A chat szövege csak az általad választott fordítómotorhoz jut el. Google, MyMemory vagy Lingva esetén ez minden üzenet szövege, és semmi más: sem a csatorna, sem az, hogy ki írta. DeepL esetén az utolsó néhány chatsor is megy kontextusként, az íróik nevével együtt, hogy a fordítás illjen a beszélgetéshez. Erre utal fent az engedélyeknél a "weboldal tartalma" sor, és ennyi az egész. Nincs fiók, és nincs saját szerverem: a bővítmény a Kickkel, az általad választott motorral és a GitHub kiadási oldalával beszél, hogy jelezze, ha új verzió érhető el, és ezzel az utolsó kéréssel semmit nem küld. Ha bejelölöd a választható "technikai és interakciós adatok" lehetőséget, a Google Analyticsnek is elküld naponta egy névtelen számlálást a használt motorokról, hibákról és sebességről, soha nem az üzeneteidet, neveidet vagy csatornáidat.
+A chat szövege csak az általad választott fordítómotorhoz jut el, és ugyanez igaz a piszkozatodra, amíg az írás közbeni előnézet be van kapcsolva. Google, MyMemory vagy Lingva esetén ez minden üzenet szövege, és semmi más: sem a csatorna, sem az, hogy ki írta. DeepL esetén az utolsó néhány chatsor is megy kontextusként, az íróik nevével együtt, hogy a fordítás illjen a beszélgetéshez. Erre utal fent az engedélyeknél a "weboldal tartalma" sor. Nincs fiók, és nincs saját szerverem. A kiválasztott motoron kívül a bővítmény beszél a Twitchcsel, hogy megkérdezze a csatorna nyelvét és azonosítóját; a 7TV-vel, a BetterTTV-vel és a FrankerFaceZ-szel, hogy megkérdezze a csatorna emoteneveit, ami a csatorna azonosítóját közli velük, és mást nem; és kézzel telepített példányban a GitHub kiadási oldalával, hogy jelezze, ha új verzió érhető el, és ezzel a kéréssel semmit nem küld. Ha bejelölöd a választható "technikai és interakciós adatok" lehetőséget, a Google Analyticsnek is elküld naponta egy névtelen számlálást a használt motorokról, hibákról és sebességről, soha nem az üzeneteidet, neveidet vagy csatornáidat.
 
 INGYENES ÉS NYÍLT FORRÁSKÓDÚ
 
-MIT licenc, a kód minden sora nyilvános: github.com/Pkkls/kick-chat-translator
+MIT licenc, a kód minden sora nyilvános: github.com/kilworks/twitch-chat-translator
 Hibajelentéseket és nyelvi kéréseket szívesen fogadunk ott.
+A Twitch Chat Translator független projekt, a Twitchhez nem kapcsolódik.

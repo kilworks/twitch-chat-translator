@@ -1,9 +1,11 @@
-Psaní pomocí emocí nyní funguje správně. Tab doplní Kickovy a 7TV emoce a @zmínky místo vložení překladu, emoce zůstanou ve vaší zprávě, když je přeložena, a náhled již nepokrývá Kickovy seznamy ani výběr emocí.
+První vydání, pro Twitch. Překladový engine, rozpoznávání jazyka, mezipaměť a možnosti pocházejí z Kick Chat Translator, od stejného autora. Vše, co čte nebo zapisuje stránku, bylo postaveno znovu pro Twitch a změřeno na živých kanálech.
 
-Překlady jsou přesnější: jména značek a lidí (iPhone, YouTube, LeBron) se již před překladem nevynechávají a @zmínky zůstávají v přeložených zprávách.
+Čte chat Twitche ve třech podobách: vlastní seznam Twitche (i s BTTV a FFZ), seznam 7TV a záznamy VOD a klipů. Popout, vložený chat, pohled moderátora, stream manager i mobil jsou v ceně.
 
-Filtry byly přepracovány: skuteční Kick boti jsou ignorováni a můžete přidat své vlastní, „Skrýt zprávy obsahující“ nyní také skryje to, co je již na obrazovce, a seznamy lze znovu zadat.
+Překlady se zapisují do pole zprávy na Twitchi s emoty ponechanými jako slova. Názvy emotů ze sad 7TV, BTTV a FFZ kanálu se nikdy nepřekládají, ani když tato rozšíření nepoužíváte.
 
-Rozšíření je na každé stránce Kick světlejší a v prohlížeči Chrome se engine na zařízení znovu nabízí, když je cílový jazyk nastaven na Auto.
+Jazyk kanálu pochází přímo z Twitche, zpráva smazaná moderátorem, timeout nebo ban přijde i o svůj překlad a vzhled je fialový a řídí se tmavým či světlým motivem chatu Twitche.
 
-Nové a volitelné: anonymní denní statistiky využití, pokud neřeknete ano, jsou vypnuté. Nikdy neobsahují vaše zprávy, jména nebo kanály.
+Překlad zapnete nebo vypnete pomocí Alt+Shift+T, protože Alt+T je divadelní režim Twitche. Tab vloží překlad jen tehdy, když 7TV nebo BTTV právě nedokončilo emote. Ignorovaní boti jsou ti, které se podařilo změřit na Twitchi: StreamElements, Fossabot, Moobot, Streamlabs a Nightbot.
+
+Volitelné: anonymní denní statistiky využití, pokud neřeknete ano, jsou vypnuté. Nikdy neobsahují vaše zprávy, jména nebo kanály.

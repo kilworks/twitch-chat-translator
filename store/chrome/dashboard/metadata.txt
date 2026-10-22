@@ -1,12 +1,15 @@
-Name: Kick Chat Translator (20 of 45 characters)
+Name: Twitch Chat Translator: Live Chat Translation (45 of 45 characters, the
+  manifest's extName in English; the other listing languages carry their own, in
+  public/_locales). "Twitch Chat Translator" is provisional until the owner
+  confirms it.
 Category: Social & Communication
 Language: English, with the localised listings above pasted into their own
-  language tabs
-Privacy policy URL: https://github.com/Pkkls/kick-chat-translator/blob/master/PRIVACY.md
-Support / homepage URL: https://github.com/Pkkls/kick-chat-translator
-Screenshots: five 1280x800 PNGs from test/e2e/store-fixture/,
+  language tab
+Privacy policy URL: https://github.com/kilworks/twitch-chat-translator/blob/master/PRIVACY.md
+Support / homepage URL: https://github.com/kilworks/twitch-chat-translator
+  (provisional, the repository does not exist yet)
+Screenshots: five 1280x800 PNGs from test/e2e/store-fixture/en/,
   produced by store-shots-fixture.mjs. They are taken on a fabricated chat
   with invented handles and a locally answered engine, so no third party's
   channel, branding or viewers appear, while the shipped build does the
-  actual translating in the image. test/e2e/store/ holds the older
-  set taken on a live channel; do not submit those.
+  actual translating in the image.

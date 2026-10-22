@@ -46,7 +46,7 @@ jobs:
         run: |
           V=$(node -p "require('./package.json').version")
           echo "VERSION=$V" >> "$GITHUB_ENV"
-          git archive --format=zip --prefix="kick-chat-translator-$V/" -o "release/kick-chat-translator-$V-source.zip" HEAD
+          git archive --format=zip --prefix="twitch-chat-translator-$V/" -o "release/twitch-chat-translator-$V-source.zip" HEAD
           node scripts/stores/payloads.mjs "$RUNNER_TEMP/stores"
           python3 test/audits/audit_fiche.py
           # What this release asks of a person in the Chrome dashboard, in the log
@@ -78,9 +78,11 @@ jobs:
         env:
           CWS_SA_KEY: ${{ runner.temp }}/cws-key.json
           CWS_PUBLISHER_ID: ${{ secrets.CWS_PUBLISHER_ID }}
+          # The listing of this product, a repository variable: cws.mjs has no default.
+          CWS_ITEM_ID: ${{ vars.CWS_ITEM_ID }}
         run: |
           node scripts/stores/cws.mjs cancel || echo "no submission in review to cancel"
-          node scripts/stores/cws.mjs upload "release/kick-chat-translator-$VERSION-chromium.zip" --publish
+          node scripts/stores/cws.mjs upload "release/twitch-chat-translator-$VERSION-chromium.zip" --publish
 
       - name: addons.mozilla.org
         id: amo
@@ -89,7 +91,7 @@ jobs:
         env:
           AMO_API_KEY: ${{ runner.temp }}/amo-api.json
         run: |
-          node scripts/stores/amo.mjs release "release/kick-chat-translator-$VERSION-firefox.zip" "release/kick-chat-translator-$VERSION-source.zip" "$RUNNER_TEMP/stores/amo-notes.json"
+          node scripts/stores/amo.mjs release "release/twitch-chat-translator-$VERSION-firefox.zip" "release/twitch-chat-translator-$VERSION-source.zip" "$RUNNER_TEMP/stores/amo-notes.json"
           node scripts/stores/amo.mjs listing "$RUNNER_TEMP/stores/amo-listing.json"
 
       - name: Release notes with checksums

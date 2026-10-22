@@ -1,35 +1,37 @@
-Kick Chat Translator is een gratis chat vertaler voor Kick. Lees de chat van elke stream in je eigen taal en reageer in de taal van het kanaal, direct in de chat.
+Twitch Chat Translator is een gratis chat vertaler voor Twitch. Lees de chat van elke stream in je eigen taal en reageer in de taal van het kanaal, direct in de chat.
 
 Kijk je naar een Turkse, Spaanse, Russische of Arabische stream en kun je de chat niet volgen? Installeer, open de stream, en elk bericht krijgt direct eronder zijn vertaling zodra het binnenkomt. Geen account, geen API-sleutel, niets om in te stellen.
 
 ZO WERKT HET
 
-1. Open een willekeurige Kick-stream. Een groene balk bovenaan de chat laat zien dat de vertaler aanstaat.
+1. Open een willekeurige Twitch-stream. Een paarse balk bovenaan de chat laat zien dat de vertaler aanstaat.
 2. Elk nieuw bericht krijgt zijn vertaling eronder, in de taal van je browser.
 3. Typ een antwoord in je eigen taal. Een voorbeeld toont het in de taal van het kanaal: druk op Tab of klik erop en verstuur het.
 
-De taal van het kanaal wordt van Kick zelf overgenomen, en beide talen kun je in de instellingen wijzigen. Werkt bij livestreams en bij VOD-herhalingen, laat 7TV-emotes zoals ze zijn en pauzeert zichzelf in tabbladen op de achtergrond.
+De taal van het kanaal is de taal die de streamer op Twitch heeft ingesteld, en beide talen kun je wijzigen in de instellingen. Werkt in de livechat, de popout, de embed, de moderatorweergave en de streammanager, en bij VOD- en clipherhalingen, met of zonder 7TV, BTTV en FFZ. In achtergrondtabbladen pauzeert hij zichzelf (een instelling, standaard aan).
 
 WAT JE KRIJGT
 
-• 43 talen, ook van rechts naar links (Arabisch, Hebreeuws, Perzisch), met regionale varianten die apart blijven (Braziliaans Portugees, Traditioneel Chinees).
-• Direct gratis met Google Translate, zonder sleutel en zonder account.
+• 43 talen, ook van rechts naar links (Arabisch, Hebreeuws, Perzisch), met regionale varianten apart (Braziliaans Portugees, traditioneel Chinees).
+• Gratis uit de doos met Google Translate, zonder sleutel en zonder account.
 • Betere Europese talen met je eigen DeepL API-sleutel. DeepL krijgt de laatste chatregels als context, zodat de formulering bij het gesprek past.
 • Vertaling op je apparaat in Chrome en Edge 138+ als je computer dat ondersteunt: offline, onbeperkt, en de chat verlaat je machine nooit.
-• Automatische terugval: als een engine uitvalt, neemt MyMemory of Lingva het over. De volgorde bepaal je zelf.
-• Vier weergavestijlen: onder het bericht, op dezelfde regel, in kleine cursieve letters erachter, of alleen als je erover heen beweegt. De hovermodus vertaalt niets totdat je naar een bericht wijst, wat het gebruik in een snelle chat ongeveer tien keer verlaagt.
+• Automatische reserve: als een engine uitvalt, neemt MyMemory of Lingva het over. De volgorde kies je zelf.
+• Vier weergavestijlen: onder het bericht, op dezelfde regel, in plaats van het bericht, of alleen als je erover heen beweegt. De hovermodus vertaalt niets totdat je naar een bericht wijst, wat je limiet spaart in een snelle chat.
 • Filters: bots overslaan, gebruikers of kanalen dempen, regels met een woord naar keuze verbergen (handig tegen !command-spam), of alleen de talen vertalen die je wilt.
-• Emotes, vermeldingen, links en emoji-spam worden verwijderd voordat er iets wordt verstuurd, zodat er niets wordt besteed aan het vertalen van "kkkkkk".
-• Maak het van jou: tekstgrootte, regelafstand, lettertype, accentkleur, donkere of lichte chat, een leestaal die per kanaal wordt onthouden, sneltoetsen.
-• Interface in dezelfde 43 talen, ook van rechts naar links, te kiezen in een menu dat elke vlag toont.
+• De emotenamen uit de 7TV-, BTTV- en FFZ-sets van het kanaal worden nooit vertaald, ook als je die extensies niet gebruikt. @vermeldingen en links worden apart gehouden voordat er iets wordt verstuurd, en regels die alleen uit emoji of gelach bestaan worden overgeslagen, zodat er niets wordt besteed aan het vertalen van "kkkkkk".
+• Een bericht dat een moderator verwijdert, of dat door een timeout of ban verdwijnt, verliest ook zijn vertaling.
+• Maak het eigen: tekstgrootte, regelafstand, lettertype, accentkleur, donkere of lichte chat (standaard die van Twitch zelf), een leestaal die per kanaal wordt onthouden, sneltoetsen.
+• Interface in dezelfde 43 talen, ook van rechts naar links, te kiezen uit een menu dat elke vlag toont.
 
 PRIVACY
 
-Geen account, geen server van mij en geen analytics, tenzij je instemt met een dagelijkse anonieme telling van gebruikte diensten, fouten en snelheid, nooit je berichten, namen of kanalen. De chattekst gaat alleen naar de vertaalengine die je hebt gekozen. Bij Google, MyMemory of Lingva is dat de tekst van elk bericht en verder niets. Bij DeepL gaan de laatste chatregels mee als context, met de namen van wie ze schreef, zodat de vertaling bij het gesprek past. Het kanaal waar je naar kijkt wordt nooit verstuurd, en bij vertaling op je apparaat verlaat niets je computer.
+Geen account, geen server van mij en geen analytics, tenzij je instemt met een dagelijkse anonieme telling van gebruikte diensten, fouten en snelheid, nooit je berichten, namen of kanalen. De chattekst gaat alleen naar de vertaalengine die je hebt gekozen, en je concept ook zolang de voorvertoning bij het typen aanstaat. Bij Google, MyMemory of Lingva is dat de tekst en verder niets. Bij DeepL gaan de laatste chatregels mee als context, met de namen van wie ze schreef, zodat de vertaling bij het gesprek past. Het kanaal waar je naar kijkt wordt nooit naar een engine gestuurd, en bij vertaling op je apparaat verlaat geen chattekst je computer. Een kanaal wordt op één plek genoemd: de extensie vraagt Twitch om de taal en vraagt 7TV, BetterTTV en FrankerFaceZ om de emotenamen, wat hun alleen de id van het kanaal vertelt en verder niets.
 
-De rechten in gewone woorden: opslag voor je instellingen en de vertaalcache; toegang tot kick.com om vertalingen in de chat te tonen; toegang tot de engines die het kan aanroepen (Google, DeepL, MyMemory en Lingva); een wekker zodat de vertaler klaarstaat terwijl je kijkt; en het recht om zijn eigen script opnieuw te laden in al geopende Kick-tabbladen bij installatie of update, zodat ze blijven vertalen zonder te verversen. Het leest ook de GitHub-releasepagina om je te laten weten wanneer er een nieuwere versie is, en stuurt daarbij niets mee.
+De rechten in gewone woorden: opslag voor je instellingen en de vertaalcache; toegang tot twitch.tv, en tot de streammanager op dashboard.twitch.tv, om vertalingen in de chat te tonen; toegang tot de taalopzoeking van Twitch en tot de emotelijsten van 7TV, BetterTTV en FrankerFaceZ, zodat emotenamen nooit worden vertaald; toegang tot de engines die het kan aanroepen (Google, DeepL, MyMemory en Lingva); een wekker zodat de vertaler klaarstaat terwijl je kijkt; en het recht om zijn eigen script opnieuw te laden in al geopende Twitch-tabbladen bij installatie of update, zodat ze blijven vertalen zonder te verversen, en om een eigen functie op de Twitch-pagina uit te voeren die een vertaling in het berichtvak schrijft als je die invoegt. In een handmatig geïnstalleerde kopie leest het ook de GitHub-releasepagina om je te laten weten wanneer er een nieuwere versie is, en stuurt daarbij niets mee.
 
 GRATIS EN OPEN SOURCE
 
-MIT-licentie, elke regel code is openbaar: github.com/Pkkls/kick-chat-translator
+MIT-licentie, elke regel code is openbaar: github.com/kilworks/twitch-chat-translator
 Bugmeldingen en taalverzoeken zijn daar welkom, en wat er in elke versie is veranderd staat op de releasepagina.
+Twitch Chat Translator is een onafhankelijk project, niet verbonden aan Twitch.

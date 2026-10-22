@@ -1,35 +1,37 @@
-Kick Chat Translator é um tradutor de chat ao vivo gratuito para a Kick. Leia o chat de qualquer live no seu idioma e responda na língua do canal, direto no próprio chat.
+Twitch Chat Translator é um tradutor de chat ao vivo gratuito para a Twitch. Leia o chat de qualquer live no seu idioma e responda na língua do canal, direto no próprio chat.
 
 Assistindo a uma live em turco, espanhol, russo ou árabe e não consegue acompanhar o chat? Instale, abra a transmissão, e cada mensagem mostra sua tradução logo abaixo, conforme chega. Sem conta, sem chave de API, nada para configurar.
 
 COMO FUNCIONA
 
-1. Abra qualquer transmissão na Kick. Uma barra verde no topo do chat mostra que o tradutor está ligado.
+1. Abra qualquer transmissão na Twitch. Uma barra roxa no topo do chat mostra que o tradutor está ligado.
 2. Cada mensagem nova recebe a tradução embaixo, no idioma do seu navegador.
 3. Digite uma resposta no seu idioma. Uma prévia a mostra no idioma do canal: pressione Tab ou clique nela, depois envie.
 
-O idioma do canal é lido da própria Kick, e os dois idiomas podem ser trocados nas configurações. Funciona em transmissões ao vivo e em replays VOD, mantém os emotes do 7TV como estão e se pausa sozinho em abas em segundo plano.
+O idioma do canal é o que o streamer definiu na Twitch, e os dois idiomas podem ser trocados nas configurações. Funciona no chat ao vivo, no popout, no embed, na visão de moderador e no gerenciador da transmissão, e em replays de VOD e clipes, com ou sem 7TV, BTTV e FFZ. Ele se pausa sozinho em abas em segundo plano (uma configuração, ligada por padrão).
 
 O QUE VOCÊ GANHA
 
-• 43 idiomas, incluindo escrita da direita para a esquerda (árabe, hebraico, persa), com as variantes regionais mantidas separadas (português do Brasil, chinês tradicional).
-• Gratuito logo de cara com o Google Tradutor, sem chave e sem conta.
-• Idiomas europeus melhores com sua própria chave de API da DeepL. A DeepL recebe as linhas recentes do chat como contexto, então o texto combina com a conversa.
-• Tradução no próprio aparelho no Chrome e no Edge 138+, quando o seu computador permite: offline, ilimitada, e o chat nunca sai da sua máquina.
-• Reserva automática: quando um motor falha, o MyMemory ou o Lingva assume. A ordem é você quem escolhe.
-• Quatro estilos de exibição: abaixo da mensagem, na mesma linha, depois dela em itálico menor, ou só ao passar o mouse. O modo ao passar o mouse não traduz nada até você apontar para uma mensagem, o que corta o uso em cerca de dez vezes num chat rápido.
-• Filtros: pular bots, silenciar usuários ou canais, esconder linhas que contenham uma palavra escolhida por você (útil contra spam de !comandos), ou traduzir só os idiomas que você quiser.
-• Emotes, menções, links e enxurradas de emoji são removidos antes de qualquer envio, então nada é gasto traduzindo "kkkkkk".
-• Do seu jeito: tamanho do texto, entrelinha, fonte, cor de destaque, chat escuro ou claro, um idioma de leitura lembrado por canal, atalhos de teclado.
-• Interface nos mesmos 43 idiomas, inclusive os da direita para a esquerda, escolhida num menu que mostra cada bandeira.
+• 43 idiomas, incluindo os escritos da direita para a esquerda (árabe, hebraico, persa), com as variantes regionais separadas (português do Brasil, chinês tradicional).
+• Grátis de fábrica com o Google Tradutor, sem chave e sem conta.
+• Idiomas europeus melhores com a sua própria chave de API do DeepL. O DeepL recebe as últimas linhas do chat como contexto, para que a redação combine com a conversa.
+• Tradução no próprio aparelho no Chrome e no Edge 138+ quando o seu computador permite: offline, sem limite, e o chat nunca sai da sua máquina.
+• Reserva automática: quando um motor falha, o MyMemory ou o Lingva assume. Você escolhe a ordem.
+• Quatro estilos de exibição: abaixo da mensagem, na mesma linha, no lugar dela, ou só quando você passa o mouse. O modo de passar o mouse não traduz nada até você apontar para uma mensagem, o que poupa a sua cota num chat rápido.
+• Filtros: pular bots, silenciar usuários ou canais, esconder as linhas que contenham uma palavra à sua escolha (útil contra spam de !comando), ou traduzir só os idiomas que você quiser.
+• Os nomes dos emotes dos conjuntos 7TV, BTTV e FFZ do canal nunca são traduzidos, mesmo que você não use essas extensões. As @menções e os links são postos de lado antes de qualquer envio, e as linhas só de emoji ou risada são puladas, então nada é gasto traduzindo "kkkkkk".
+• Uma mensagem que um moderador apaga, ou que um timeout ou um ban remove, perde a tradução também.
+• Deixe do seu jeito: tamanho do texto, espaçamento entre linhas, fonte, cor de destaque, chat escuro ou claro (por padrão segue o da própria Twitch), um idioma de leitura lembrado por canal, atalhos de teclado.
+• Interface nos mesmos 43 idiomas, incluindo os da direita para a esquerda, escolhida num menu que mostra cada bandeira.
 
 PRIVACIDADE
 
-Sem conta, sem servidor meu e sem analytics, a não ser que você aceite uma contagem diária anônima de mecanismos usados, erros e velocidade, nunca suas mensagens, nomes ou canais. O texto do chat vai só para o motor de tradução que você escolheu. Com Google, MyMemory ou Lingva, é o texto de cada mensagem e nada mais. Com a DeepL, as últimas linhas do chat vão junto como contexto, com os nomes de quem as escreveu, para que a tradução combine com a conversa. O canal que você assiste nunca é enviado, e com a tradução no próprio aparelho nada sai do seu computador.
+Sem conta, sem servidor meu e sem analytics, a não ser que você aceite uma contagem diária anônima de mecanismos usados, erros e velocidade, nunca suas mensagens, nomes ou canais. O texto do chat vai só para o motor de tradução que você escolheu, e o seu rascunho também enquanto a prévia de escrita está ligada. Com Google, MyMemory ou Lingva, é o texto e nada mais. Com a DeepL, as últimas linhas do chat vão junto como contexto, com os nomes de quem as escreveu, para que a tradução combine com a conversa. O canal que você assiste nunca é enviado a um motor, e com a tradução no próprio aparelho nenhum texto do chat sai do seu computador. Um canal é nomeado num único lugar: a extensão pergunta à Twitch qual é o idioma dele, e pergunta ao 7TV, ao BetterTTV e ao FrankerFaceZ quais são os nomes dos emotes dele, o que diz a eles o id do canal e nada mais.
 
-As permissões, em palavras simples: armazenamento para as suas configurações e o cache de traduções; acesso à kick.com para mostrar as traduções no chat; acesso aos motores que ela pode chamar (Google, DeepL, MyMemory e Lingva); um temporizador para o tradutor ficar pronto enquanto você assiste; e o direito de recarregar o próprio script nas abas da Kick já abertas quando você a instala ou atualiza, para que continuem traduzindo sem atualizar a página. Ela também lê a página de versões do GitHub para avisar quando existe uma versão mais nova, sem enviar nada nessa requisição.
+As permissões, em palavras simples: armazenamento para as suas configurações e o cache de traduções; acesso à twitch.tv, e ao gerenciador da transmissão em dashboard.twitch.tv, para mostrar as traduções no chat; acesso à consulta de idioma da Twitch e às listas de emotes do 7TV, do BetterTTV e do FrankerFaceZ, para que os nomes dos emotes nunca sejam traduzidos; acesso aos motores que ela pode chamar (Google, DeepL, MyMemory e Lingva); um temporizador para o tradutor ficar pronto enquanto você assiste; e o direito de recarregar o próprio script nas abas da Twitch já abertas quando você a instala ou atualiza, para que continuem traduzindo sem atualizar a página, e de executar uma função própria na página da Twitch para escrever uma tradução na caixa de mensagem quando você a insere. Numa cópia instalada à mão, ela também lê a página de versões do GitHub para avisar quando existe uma versão mais nova, sem enviar nada nessa requisição.
 
 GRATUITO E DE CÓDIGO ABERTO
 
-Licença MIT, cada linha de código pública: github.com/Pkkls/kick-chat-translator
+Licença MIT, todo o código é público: github.com/kilworks/twitch-chat-translator
 Relatos de bugs e pedidos de idiomas são bem-vindos lá, e o que mudou em cada versão está na página de versões.
+O Twitch Chat Translator é um projeto independente, sem vínculo com a Twitch.

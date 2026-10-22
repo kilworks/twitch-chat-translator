@@ -1,1 +1,1 @@
-Gratis chat vertaler voor Kick: elk bericht wordt vertaald naar jouw taal zodra het binnenkomt, en je antwoorden gaan in de taal van het kanaal. Geen account. Voor livestreams en VODs.
+Gratis live chat vertaler voor Twitch: elk bericht wordt vertaald naar jouw taal zodra het binnenkomt, en je reacties gaan uit in de taal van het kanaal. Geen account, niets in te stellen. Werkt bij livestreams, VODs en clips.

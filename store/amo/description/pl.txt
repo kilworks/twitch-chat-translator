@@ -1,16 +1,14 @@
-Kick Chat Translator to darmowy tłumacz czatu na żywo dla Kick. Czytaj czat każdego streama w swoim języku i odpisuj w języku kanału, prosto w czacie.
+Twitch Chat Translator to darmowy tłumacz czatu na żywo dla Twitcha. Czytaj czat każdego streama w swoim języku i odpisuj w języku kanału, prosto w czacie.
 
 Oglądasz stream po turecku, hiszpańsku, rosyjsku albo arabsku i nie nadążasz za czatem? Zainstaluj, otwórz stream, a przy każdej wiadomości od razu pod nią pojawi się tłumaczenie. Bez konta, bez klucza API, bez konfiguracji.
 
 JAK TO DZIAŁA
 
-1. Otwórz dowolny stream na Kick. Zielony pasek u góry czatu pokazuje, że tłumacz działa.
+1. Otwórz dowolny stream na Twitchu. Fioletowy pasek u góry czatu pokazuje, że tłumacz działa.
 2. Każda nowa wiadomość dostaje pod spodem tłumaczenie na język twojej przeglądarki.
 3. Napisz odpowiedź w swoim języku. Podgląd pokaże ją w języku kanału: naciśnij Tab albo kliknij podgląd, potem wyślij.
 
-Język kanału jest odczytywany z samego Kick, a oba języki możesz zmienić w ustawieniach. Działa na streamach na żywo i na powtórkach VOD, zostawia emotki 7TV bez zmian i sam się wstrzymuje w kartach w tle.
-
-Zobacz, jak działa na prawdziwym czacie: https://www.youtube.com/watch?v=NoGJeUrwy9o
+Język kanału to ten, który streamer ustawił na Twitchu, a oba języki możesz zmienić w ustawieniach. Działa na czacie na żywo, w popoucie, w osadzonym czacie, w widoku moderatora i w stream managerze, a także na powtórkach VOD i klipów, z 7TV, BTTV i FFZ albo bez nich. Sam się wstrzymuje w kartach w tle (ustawienie, domyślnie włączone).
 
 CO DOSTAJESZ
 
@@ -18,17 +16,19 @@ CO DOSTAJESZ
 • Za darmo od razu po instalacji dzięki Google Translate, bez klucza i bez konta.
 • Lepsze tłumaczenia języków europejskich z własnym kluczem API DeepL. DeepL dostaje ostatnie linijki czatu jako kontekst, więc sformułowania pasują do rozmowy.
 • Automatyczna rezerwa: gdy jeden silnik zawiedzie, przejmuje MyMemory albo Lingva. Kolejność ustalasz ty.
-• Cztery style wyświetlania: pod wiadomością, w tej samej linii, małą kursywą po niej albo tylko po najechaniu myszą. Tryb najechania nie tłumaczy niczego, dopóki nie wskażesz wiadomości, co na szybkim czacie zmniejsza zużycie mniej więcej dziesięciokrotnie.
+• Cztery style wyświetlania: pod wiadomością, w tej samej linii, zamiast niej albo tylko po najechaniu myszą. Tryb najechania nie tłumaczy niczego, dopóki nie wskażesz wiadomości, co na szybkim czacie oszczędza twój limit.
 • Filtry: pomijanie botów, wyciszanie użytkowników lub kanałów, ukrywanie linijek ze słowem, które wybierzesz (przydatne przeciw spamowi z komendami typu !command), albo tłumaczenie tylko wybranych języków.
-• Emotki, wzmianki, linki i spam emoji są usuwane, zanim cokolwiek zostanie wysłane, więc nic nie jest wydawane na tłumaczenie „kkkkkk”.
-• Dopasuj do siebie: rozmiar tekstu, odstęp między wierszami, krój pisma, kolor akcentu, ciemny lub jasny czat, język czytania zapamiętany osobno dla każdego kanału, skróty klawiszowe.
+• Nazw emotek z zestawów 7TV, BTTV i FFZ kanału nigdy się nie tłumaczy, nawet jeśli nie używasz tych rozszerzeń. @wzmianki i linki są odkładane na bok, zanim cokolwiek zostanie wysłane, a linijki złożone tylko z emoji lub śmiechu są pomijane, więc nic nie jest wydawane na tłumaczenie „kkkkkk”.
+• Wiadomość usunięta przez moderatora, albo taka, którą usuwa timeout lub ban, traci też swoje tłumaczenie.
+• Dopasuj do siebie: rozmiar tekstu, odstęp między wierszami, krój pisma, kolor akcentu, ciemny lub jasny czat (domyślnie podąża za czatem Twitcha), język czytania zapamiętany osobno dla każdego kanału, skróty klawiszowe.
 • Interfejs w tych samych 43 językach, także pisanych od prawej do lewej, wybierany z menu pokazującego każdą flagę.
 
 CO OPUSZCZA TWOJĄ PRZEGLĄDARKĘ
 
-Tekst czatu trafia tylko do silnika tłumaczącego, który wybierzesz. W przypadku Google, MyMemory i Lingva to tekst każdej wiadomości i nic więcej: ani kanał, ani autor. W przypadku DeepL razem z nim idzie kilka ostatnich linijek czatu jako kontekst, wraz z nazwami osób, które je napisały, żeby tłumaczenie pasowało do rozmowy. Do tego odnosi się wiersz „zawartość witryn” w uprawnieniach powyżej i to jest całość. Nie ma konta ani mojego serwera: rozszerzenie łączy się z Kick, z wybranym przez ciebie silnikiem i ze stroną wydań na GitHubie, żeby dać ci znać o nowszej wersji, a przy tym ostatnim zapytaniu nie wysyła niczego. Jeśli zaznaczysz opcjonalny wybór "dane techniczne i dane o interakcjach", wysyła też do Google Analytics codzienne anonimowe zliczenie użytych silników, błędów i szybkości, nigdy twoich wiadomości, nazw ani kanałów.
+Tekst czatu trafia tylko do silnika tłumaczącego, który wybierzesz, tak samo jak twój szkic, gdy podgląd przy pisaniu jest włączony. W przypadku Google, MyMemory i Lingva to tekst każdej wiadomości i nic więcej: ani kanał, ani autor. W przypadku DeepL razem z nim idzie kilka ostatnich linijek czatu jako kontekst, wraz z nazwami osób, które je napisały, żeby tłumaczenie pasowało do rozmowy. Do tego odnosi się wiersz „zawartość witryn” w uprawnieniach powyżej. Nie ma konta ani mojego serwera. Poza wybranym przez ciebie silnikiem rozszerzenie łączy się z Twitchem, żeby zapytać o język i id kanału; z 7TV, BetterTTV i FrankerFaceZ, żeby zapytać o nazwy emotek kanału, co mówi im id kanału i nic więcej; oraz, w kopii zainstalowanej ręcznie, ze stroną wydań na GitHubie, żeby dać ci znać o nowszej wersji, a przy tym ostatnim zapytaniu nie wysyła niczego. Jeśli zaznaczysz opcjonalny wybór "dane techniczne i dane o interakcjach", wysyła też do Google Analytics codzienne anonimowe zliczenie użytych silników, błędów i szybkości, nigdy twoich wiadomości, nazw ani kanałów.
 
 ZA DARMO I Z OTWARTYM KODEM
 
-Licencja MIT, każda linijka kodu jest publiczna: github.com/Pkkls/kick-chat-translator
+Licencja MIT, każda linijka kodu jest publiczna: github.com/kilworks/twitch-chat-translator
 Zgłoszenia błędów i prośby o nowe języki są tam mile widziane.
+Twitch Chat Translator to niezależny projekt, niezwiązany z Twitchem.

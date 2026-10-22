@@ -8,8 +8,9 @@
  *   node .claude/skills/publish-stores/cws.mjs cancel
  *
  * Reads, outside the repository:
- *   ~/.config/kick-chat-translator/cws-service-account.json   the key (CWS_SA_KEY overrides)
- *   ~/.config/kick-chat-translator/cws.json                   {"publisherId": "..."} (CWS_PUBLISHER_ID overrides)
+ *   ~/.config/twitch-chat-translator/cws-service-account.json   the key (CWS_SA_KEY overrides)
+ *   ~/.config/twitch-chat-translator/cws.json                   {"publisherId": "..."} (CWS_PUBLISHER_ID overrides)
+ * and CWS_ITEM_ID, the listing's id, which has no default.
  *
  * The key and the access token are never printed. What the API answers is,
  * because it holds nothing secret and it is the only proof of what happened.
@@ -19,8 +20,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-const ITEM_ID = process.env.CWS_ITEM_ID ?? 'nkkjmbkmacbdkboijmnhjnblcaiclhni';
-const CONF = path.join(os.homedir(), '.config', 'kick-chat-translator');
+// No default: this product has no Chrome listing yet (PLAN K04), and the id this script was
+// copied with is the Kick extension's. An upload sent there would replace another product.
+const ITEM_ID = process.env.CWS_ITEM_ID;
+const CONF = path.join(os.homedir(), '.config', 'twitch-chat-translator');
 const KEY_FILE = process.env.CWS_SA_KEY ?? path.join(CONF, 'cws-service-account.json');
 const TOKEN_URL = process.env.CWS_TOKEN_URL ?? 'https://oauth2.googleapis.com/token';
 const API = process.env.CWS_API ?? 'https://chromewebstore.googleapis.com';
@@ -75,6 +78,7 @@ async function call(method, url, token, body) {
 }
 
 const [cmd, arg] = process.argv.slice(2);
+if (!ITEM_ID) die('CWS_ITEM_ID absent : l id de la fiche Chrome de ce produit, jamais celui de Kick');
 const item = () => `${API}/v2/publishers/${publisherId()}/items/${ITEM_ID}`;
 
 if (cmd === 'status') {

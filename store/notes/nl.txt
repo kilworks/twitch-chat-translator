@@ -1,9 +1,11 @@
-Typen met emotes werkt nu naar behoren. Tab voltooit de emotes en @mentions van Kick en 7TV in plaats van de vertaling in te voegen, emotes blijven in je bericht wanneer het vertaald is, en het voorbeeld dekt niet langer de lijsten van Kick of de emotekiezer.
+Eerste release, voor Twitch. De vertaalmotor, de taaldetectie, de cache en de opties komen van Kick Chat Translator, van dezelfde auteur. Alles wat de pagina leest of beschrijft is voor Twitch opnieuw gebouwd en op live kanalen gemeten.
 
-Vertalingen zijn nauwkeuriger: merk- en persoonsnamen (iPhone, YouTube, LeBron) worden niet langer verwijderd voordat ze worden vertaald, en @vermeldingen blijven in vertaalde berichten.
+Hij leest de Twitch-chat in zijn drie vormen: de eigen lijst van Twitch (ook met BTTV en FFZ), de 7TV-lijst, en VOD- en clipherhalingen. Popout, embed, moderatorweergave, de streammanager en mobiel zitten erbij.
 
-De filters zijn herwerkt: de echte Kick-bots worden genegeerd en je kunt je eigen bots toevoegen, "Verberg berichten met" verbergt nu ook wat al op het scherm staat, en de lijsten kunnen opnieuw worden ingetypt.
+Vertalingen worden in het Twitch-berichtvak geschreven, met emotes als woorden bewaard. De emotenamen uit de 7TV-, BTTV- en FFZ-sets van het kanaal worden nooit vertaald, ook als je die extensies niet gebruikt.
 
-De extensie is op elke Kick-pagina lichter en in Chrome wordt de on-device-engine opnieuw aangeboden wanneer de doeltaal op Auto staat.
+De taal van het kanaal komt van Twitch zelf, een bericht dat een moderator verwijdert of dat door een timeout of ban verdwijnt verliest ook zijn vertaling, en de uitstraling is paars en volgt het donkere of lichte chatthema van Twitch.
 
-Nieuw en optioneel: anonieme dagelijkse gebruiksstatistieken, uitgeschakeld tenzij u ja zegt. Ze bevatten nooit uw berichten, namen of kanalen.
+Zet de vertaling aan of uit met Alt+Shift+T, want Alt+T is de bioscoopmodus van Twitch. Tab voegt de vertaling alleen in als 7TV of BTTV niet net een emote hebben aangevuld. De genegeerde bots zijn die welke op Twitch zijn gemeten: StreamElements, Fossabot, Moobot, Streamlabs en Nightbot.
+
+Optioneel: anonieme dagelijkse gebruiksstatistieken, uit tenzij je ja zegt. Ze bevatten nooit je berichten, namen of kanalen.

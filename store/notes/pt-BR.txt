@@ -1,9 +1,11 @@
-Digitar com emotes funciona corretamente agora. Tab completa os emotes e @menções do Kick e 7TV em vez de inserir a tradução, os emotes permanecem na sua mensagem quando ela é traduzida e a visualização não cobre mais as listas do Kick ou o seletor de emotes.
+Primeira versão, para a Twitch. O motor de tradução, a detecção de idioma, o cache e as opções vêm do Kick Chat Translator, do mesmo autor. Tudo o que lê ou escreve a página foi reconstruído para a Twitch e medido em canais ao vivo.
 
-As traduções são mais precisas: nomes de marcas e pessoas (iPhone, YouTube, LeBron) não são mais eliminados antes da tradução e as @menções permanecem nas mensagens traduzidas.
+Ela lê o chat da Twitch nas três formas: a lista própria da Twitch (também com BTTV e FFZ), a lista do 7TV, e o replay de VODs e clipes. Popout, embed, visão de moderador, gerenciador da transmissão e celular estão incluídos.
 
-Os filtros foram reformulados: os bots reais do Kick são ignorados e você pode adicionar os seus próprios, "Ocultar mensagens contendo" agora também oculta o que já está na tela, e as listas podem ser digitadas novamente.
+As traduções são escritas na caixa de mensagem da Twitch com os emotes mantidos como palavras. Os nomes dos emotes dos conjuntos 7TV, BTTV e FFZ do canal nunca são traduzidos, mesmo que você não use essas extensões.
 
-A extensão é mais leve em todas as páginas do Kick, e no Chrome o mecanismo no dispositivo é oferecido novamente quando o idioma de destino está no Auto.
+O idioma do canal vem da própria Twitch, uma mensagem apagada por um moderador, um timeout ou um ban perde a tradução também, e o visual é roxo e segue o tema escuro ou claro do chat da Twitch.
 
-Novo e opcional: estatísticas de uso diário anônimas, desativadas, a menos que você diga sim. Eles nunca contêm suas mensagens, nomes ou canais.
+Ligue ou desligue a tradução com Alt+Shift+T, porque Alt+T é o modo cinema da Twitch. O Tab só insere a tradução quando o 7TV ou o BTTV não acabaram de completar um emote. Os bots ignorados são os medidos na Twitch: StreamElements, Fossabot, Moobot, Streamlabs e Nightbot.
+
+Opcional: estatísticas de uso diárias anônimas, desligadas a menos que você diga que sim. Elas nunca contêm suas mensagens, nomes ou canais.

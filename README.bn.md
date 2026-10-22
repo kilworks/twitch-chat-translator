@@ -2,59 +2,61 @@
 
 <img src="public/icons/icon128.png" alt="" width="80" height="80">
 
-# Kick Chat Translator
+# Twitch Chat Translator
 
-যেকোনো Kick চ্যাট নিজের ভাষায় পড়ো, আর উত্তর দাও চ্যানেলের ভাষায়।<br>
+যেকোনো Twitch চ্যাট নিজের ভাষায় পড়ো, আর উত্তর দাও চ্যানেলের ভাষায়।<br>
 ফ্রি, অ্যাকাউন্ট লাগে না, কিছু সেটআপ করতে হয় না। 43টি ভাষা, চ্যাটে আর এক্সটেনশনের ভেতরেও।
 
-**[Chrome, Brave বা Edge-এ যোগ করুন](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)** &nbsp;·&nbsp; **[Firefox-এ যোগ করুন](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)**
+**[সর্বশেষ রিলিজ ডাউনলোড করুন](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge আর Firefox
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=Chrome%20Web%20Store&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Chrome users](https://img.shields.io/chrome-web-store/users/nkkjmbkmacbdkboijmnhjnblcaiclhni?label=users&color=53fc18)](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-[![Firefox Add-on](https://img.shields.io/amo/v/kick-chat-translator?label=Firefox%20Add-on&color=53fc18)](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-[![CI](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/Pkkls/kick-chat-translator/actions/workflows/ci.yml)
+[![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](README.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [العربية](README.ar.md) · [עברית](README.he.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Català](README.ca.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [فارسی](README.fa.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
 <img src="screenshots/demo.gif" alt="স্প্যানিশ চ্যাট মেসেজ একটা একটা করে আসছে, প্রতিটার নিচে তার ইংরেজি অনুবাদ; তারপর ইংরেজিতে একটা উত্তর টাইপ করা হয়, চ্যাট বক্সের ওপরে স্প্যানিশ প্রিভিউ আসে, আর Tab চাপলে সেটাই বসে যায়" width="360">
 
-[আসল চ্যাটে দেখো](https://www.youtube.com/watch?v=NoGJeUrwy9o)
-
 </div>
 
 ## কীভাবে কাজ করে
 
-1. ইনস্টল করো আর যেকোনো Kick স্ট্রিম খোলো। চ্যাটের ওপরে একটা সবুজ বার দেখাবে যে এটা চালু আছে।
-2. প্রতিটা মেসেজ আসামাত্র তার অনুবাদ ঠিক নিচেই দেখা যায়, তোমার ব্রাউজারের ভাষায়। লাইভ স্ট্রিম আর
-   VOD রিপ্লে, দুটোতেই।
+1. ইনস্টল করো আর যেকোনো Twitch স্ট্রিম খোলো। চ্যাটের ওপরে একটা বেগুনি বার দেখাবে যে এটা চালু আছে।
+2. প্রতিটা মেসেজ আসামাত্র তার অনুবাদ ঠিক নিচেই দেখা যায়, তোমার ব্রাউজারের ভাষায়। লাইভ স্ট্রিম, VOD আর
+   ক্লিপ, সবকটাতেই।
 3. নিজের ভাষায় উত্তর লেখো। চ্যাট বক্সের ওপরের প্রিভিউ সেটা চ্যানেলের ভাষায় দেখায়: Tab চাপো বা
    তাতে ক্লিক করো, তাহলে ওই ভার্সনটা তোমার লেখার জায়গায় বসে যায়।
 
-চ্যানেলের ভাষা Kick থেকেই পড়ে নেওয়া হয়, তাই কিছু কনফিগার করতে হয় না। দুটো ভাষাই সেটিংসে বদলানো
+চ্যানেলের ভাষা হলো স্ট্রিমার Twitch-এ যেটা সেট করেছে, তাই কিছু কনফিগার করতে হয় না। দুটো ভাষাই সেটিংসে বদলানো
 যায়, আর পড়ার ভাষা প্রতিটা চ্যানেলের জন্য আলাদা করে মনে রাখা যায়।
+
+তুমি যদি 7TV বা BTTV-ও চালাও, ওরা ইমোট শেষ করতে Tab ব্যবহার করে। তখন Tab আগে ইমোটটা শেষ করে, আর অনুবাদ বসায় শুধু তখনই
+যখন শেষ করার মতো কিছু ছিল না। Ctrl/Cmd+Enter আর ক্লিক সবসময় অনুবাদ বসিয়ে দেয়।
 
 ## কী কী পাবে
 
 - **43টি ভাষা**, ডান থেকে বাঁয়ে লেখা ভাষাসহ (আরবি, হিব্রু, ফারসি), আর আঞ্চলিক ভার্সন আলাদা রাখা
   হয়েছে (ব্রাজিলীয় ও ইউরোপীয় পর্তুগিজ, সরল ও ঐতিহ্যবাহী চীনা, ক্যান্টনিজ)
+- **চ্যাট যেখানেই আছে**: লাইভ চ্যাট, পপআউট, এমবেড, মডারেটর ভিউ, স্ট্রিম ম্যানেজার, VOD আর ক্লিপ রিপ্লে, www.twitch.tv,
+  m.twitch.tv আর dashboard.twitch.tv-তে, 7TV, BTTV আর FFZ থাকুক বা না থাকুক
 - **এক্সটেনশন নিজেও এই ভাষাগুলোতে কথা বলে**: সেটিংস, পপআপ আর চ্যাট বার, সব 43টিতে, পতাকাওয়ালা মেনু থেকে বেছে নাও
 - **শুরু থেকেই ফ্রি**, Google Translate দিয়ে। ইউরোপীয় ভাষায় ভালো মানের জন্য নিজের ফ্রি DeepL
   key বসিয়ে নাও; কোনো ইঞ্জিন ফেল করলে MyMemory আর Lingva ধরে নেয়
-- **ডিভাইসেই অনুবাদ** Chrome আর Edge-এ, যেখানে ব্রাউজার এটা দেয়: 1.6 সেকেন্ডের জায়গায় 22 ms, আর
+- **ডিভাইসেই অনুবাদ** Chrome আর Edge-এ, যেখানে ব্রাউজার এটা দেয়: নেটওয়ার্ক লাগে না, কোটা লাগে না, আর
   লেখা তোমার কম্পিউটার ছেড়ে বেরোয়ই না
 - **ফিল্টার**: বট বাদ দাও, ইউজার বা চ্যানেল মিউট করো, কোনো শব্দ থাকলে সেই লাইন লুকিয়ে দাও, আর শুধু
   তোমার বাছা ভাষাগুলোই অনুবাদ করো
-- **দ্রুত চ্যাটের জন্য বানানো**: 7TV ইমোট যেমন আছে তেমনই থাকে, ইমোজি স্প্যাম আর লিংক কিছু পাঠানোর
-  আগেই ছেঁটে ফেলা হয়, যে নামগুলো ইঞ্জিন ভুল করে ফেলে তার জন্য শব্দকোষ, আর অনুবাদের ক্যাশ
+- **দ্রুত চ্যাটের জন্য বানানো**: চ্যানেলের 7TV, BTTV আর FFZ সেটের ইমোটের নাম কখনও অনুবাদ হয় না, ওই এক্সটেনশন না চালালেও,
+  লিংক আর @মেনশন কিছু পাঠানোর আগেই আলাদা করে রাখা হয়, যে নামগুলো ইঞ্জিন ভুল করে ফেলে তার জন্য শব্দকোষ, আর অনুবাদের ক্যাশ
 - **দেখানোর চারটা ধরন**: মেসেজের নিচে, একই লাইনে, মেসেজের জায়গায়, অথবা শুধু হোভার করলে
 - **একটা চ্যানেল পজ করো** চ্যাট বার থেকে, বাকিগুলো না থামিয়ে। চ্যানেল বদলালে বা এক্সটেনশন আপডেট
   হলেও খোলা ট্যাবগুলো রিলোড ছাড়াই অনুবাদ করে যায়
+- **মডারেশন বোঝে**: মডারেটর মুছে দিলে, অথবা টাইমআউট বা ব্যানে সরে গেলে, মেসেজের অনুবাদও চলে যায়
+- **দেখতে Twitch-এর মতো**: বেগুনি, আর তুমি আলাদা কিছু না বাছলে চ্যাটের নিজের ডার্ক বা লাইট থিম অনুসরণ করে
 - Chrome, Brave, Edge আর Firefox
 
 | চ্যাট, স্ক্রল হতে হতে অনুবাদ | টুলবার পপআপ |
 |---|---|
-| <img src="screenshots/chat.png" alt="Kick চ্যাট যেখানে প্রতিটা স্প্যানিশ মেসেজের নিচে ইংরেজি অনুবাদ, আর লিস্টের ওপরে এক্সটেনশনের স্ট্যাটাস বার" width="360"> | <img src="screenshots/popup.png" alt="এক্সটেনশনের পপআপ: টার্গেট ভাষা, ডিসপ্লে মোড, পরিষেবার তালিকা আর আজকের রিকোয়েস্টের সংখ্যা" width="360"> |
+| <img src="screenshots/chat.png" alt="Twitch চ্যাট যেখানে প্রতিটা স্প্যানিশ মেসেজের নিচে ইংরেজি অনুবাদ, আর লিস্টের ওপরে এক্সটেনশনের স্ট্যাটাস বার" width="360"> | <img src="screenshots/popup.png" alt="এক্সটেনশনের পপআপ: টার্গেট ভাষা, প্রদর্শনের ধরন, লেখার প্রিভিউ সেটিং আর পরিষেবার চেইন" width="360"> |
 
 | পাঠানোর আগে যা লেখো | ভাষা বেছে নাও, নয়তো ওকেই বাছতে দাও |
 |---|---|
@@ -65,25 +67,14 @@
 
 ## ইনস্টল
 
-[Chrome, Brave, Edge: Chrome Web Store](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni)
-&nbsp;·&nbsp;
-[Firefox: Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)
-
-স্টোরের কপি নিজে থেকেই আপডেট হয়।
-
-<details>
-<summary>হাতে ইনস্টল করো, রিলিজ zip থেকে</summary>
-
-নিজের ব্রাউজারের zip [Releases](https://github.com/Pkkls/kick-chat-translator/releases/latest) থেকে ডাউনলোড করে আনজিপ করো।
+নিজের ব্রাউজারের zip [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) থেকে ডাউনলোড করে আনজিপ করো।
 
 - Chrome, Brave, Edge (`…-chromium.zip`): `chrome://extensions` খোলো, Developer mode অন করো, Load unpacked-এ ক্লিক করো, ফোল্ডারটা বেছে নাও।
 - Firefox 121+ (`…-firefox.zip`): `about:debugging#/runtime/this-firefox` খোলো, Load Temporary Add-on-এ ক্লিক করো, `manifest.json` বেছে নাও।
+  Firefox রিস্টার্ট হলে অস্থায়ী অ্যাড-অন ভুলে যায়।
 
-স্টোরের ভার্সনও ইনস্টল করা থাকলে আগে সেটা বন্ধ করো, নইলে প্রতিটা মেসেজ দুবার অনুবাদ হবে। এভাবে
-ইনস্টল করা কপি নিজে আপডেট হয় না: নতুন ভার্সন থাকলে তার আইকনে একটা ব্যাজ দেখা যায়, আর পপআপ
-স্টোরের লিংক দেয়।
-
-</details>
+এভাবে ইনস্টল করা কপি নিজে আপডেট হয় না: নতুন ভার্সন থাকলে তার আইকনে একটা ব্যাজ দেখা যায়, আর পপআপ
+সর্বশেষ রিলিজের লিংক দেয়।
 
 ## অনুবাদ ইঞ্জিন
 
@@ -92,15 +83,13 @@
 | পরিষেবা | Key | মন্তব্য |
 |---|---|---|
 | Google | লাগে না | ডিফল্ট, কিছু না করেই চলে |
-| DeepL | ফ্রি | সেরা মান, মাসে 10 লক্ষ অক্ষরের জন্য [ফ্রি key](https://www.deepl.com/pro-api) |
+| DeepL | ফ্রি | ইউরোপীয় ভাষায় সেরা, মাসে 10 লক্ষ অক্ষরের জন্য [ফ্রি key](https://www.deepl.com/pro-api) |
 | MyMemory | লাগে না | ব্যাকআপ |
 | Lingva | লাগে না | ব্যাকআপ, পাবলিক ইনস্ট্যান্সে, যদি না নিজের ইনস্ট্যান্সে বসাও |
 
-Chromium-এর বিল্ট-ইন অনুবাদক এগুলোর সবকটার চেয়ে দ্রুত। লাইভ চ্যানেলে মাপা হয়েছে: মেসেজ দেখা দেওয়া
-থেকে স্ক্রিনে অনুবাদ আসা পর্যন্ত 22 ms, আর ক্লাউড চেইনে 1618 ms, নেটওয়ার্ক ছাড়া, কোটা ছাড়া। Chrome
-আর Edge 138 ও তার পরের ভার্সনে এটা পাওয়া যেতে পারে, যদিও সব কপিতে নয়, আর প্রতিটা ভাষা-জোড়ার
-মডেল একবার ডাউনলোড করতে হয়, বার থেকে এক ক্লিকে। Firefox-এ এটা নেই। যেখানেই নেই, ক্লাউড চেইন
-ধরে নেয় আর কিছু ভাঙে না।
+Chromium-এর বিল্ট-ইন অনুবাদকের নেটওয়ার্কও লাগে না, কোটাও নেই। Chrome আর Edge 138 ও তার পরের ভার্সনে এটা
+পাওয়া যেতে পারে, যদিও সব কপিতে নয়, আর প্রতিটা ভাষা-জোড়ার মডেল একবার ডাউনলোড করতে হয়, বার থেকে এক ক্লিকে।
+Firefox-এ এটা নেই। যেখানেই নেই, ক্লাউড চেইন ধরে নেয় আর কিছু ভাঙে না।
 
 ## সেটিংস
 
@@ -113,9 +102,10 @@ Chromium-এর বিল্ট-ইন অনুবাদক এগুলোর 
 - **উন্নত**: ক্যাশের সাইজ আর মেয়াদ, একসাথে রিকোয়েস্ট, প্রতি চ্যানেলে রেট লিমিট, ব্যাকআপ আর রিস্টোর
 - **কার্যকলাপ**: কতগুলো মেসেজ অনুবাদ হলো, ক্যাশ হিট, চ্যাটে দেখা প্রতিটা ভাষা, আর শেষ 50টা লাইনের
   প্রতিটা কেন অনুবাদ হলো বা বাদ গেল
-- **কিবোর্ড**: Alt+T চ্যাট অনুবাদ অন বা অফ করে, Alt+W লেখার প্রিভিউ
-- চ্যাটের অ্যাকশন বারের ভাষার বোতাম: এক ক্লিকে চ্যানেলের ভাষা আর তোমার শেষ বাছাইয়ের মধ্যে বদলায়,
-  চেপে ধরলে লিস্ট খোলে, আর দুটো অক্ষর টাইপ করলে লিস্ট ফিল্টার হয়
+- **কিবোর্ড**: Alt+Shift+T চ্যাট অনুবাদ অন বা অফ করে (Alt+T হলো Twitch-এর থিয়েটার মোড), Alt+W লেখার প্রিভিউ।
+  দুটোই ব্রাউজারের এক্সটেনশন শর্টকাটে বদলানো যায়
+- চ্যাটের অ্যাকশন বারের ভাষার বোতাম, মেসেজ বক্সের নিচে: এক ক্লিকে তুমি যে ভাষায় লেখো তার লিস্ট খোলে,
+  টাইপ করলে লিস্ট ফিল্টার হয়। চ্যাটের ওপরেরটা ঠিক করে তুমি কোন ভাষায় পড়বে
 
 ## সাপোর্ট করা ভাষা
 
@@ -125,8 +115,8 @@ Chromium-এর বিল্ট-ইন অনুবাদক এগুলোর 
 
 ## প্রাইভেসি
 
-কোনো অ্যাকাউন্ট, আমার কোনো সার্ভার, এবং কোনো বিশ্লেষণ নেই যদি না আপনি Google Analytics-এ পাঠানো একটি দৈনিক বেনামী গণনা বেছে না নেন (ব্যবহৃত ইঞ্জিন, ত্রুটি, গতি, আপনার বার্তা, নাম বা চ্যানেল কখনই নয়)। চ্যাট মেসেজ শুধু তোমার বাছা অনুবাদ
-পরিষেবার কাছে যায়, আর কোথাও না, আর ডিভাইস মোডে সেখানেও না। স্টোর থেকে ইনস্টল করা কপি অন্য
+কোনো অ্যাকাউন্ট, আমার কোনো সার্ভার, এবং কোনো বিশ্লেষণ নেই যদি না আপনি Google Analytics-এ পাঠানো একটি দৈনিক বেনামী গণনা বেছে না নেন (ব্যবহৃত ইঞ্জিন, ত্রুটি, গতি, আপনার বার্তা, নাম বা চ্যানেল কখনই নয়)। চ্যাট মেসেজ, আর লেখার প্রিভিউ চালু থাকলে তোমার খসড়া, শুধু তোমার বাছা অনুবাদ
+পরিষেবার কাছে যায়, আর কোথাও না, আর ডিভাইস মোডে সেখানেও না। চ্যানেলের ভাষা জানতে এটা Twitch-কে চ্যানেলের সম্প্রচার ভাষা আর id জিজ্ঞেস করে, আর ইমোটের নাম অনুবাদের বাইরে রাখতে 7TV, BetterTTV আর FrankerFaceZ-কে চ্যানেলের ইমোটের নাম জিজ্ঞেস করে, যাতে ওরা শুধু চ্যানেলের id জানতে পারে, আর কিছু নয়। স্টোর থেকে ইনস্টল করা কপি অন্য
 কোনো রিকোয়েস্ট করে না। হাতে ইনস্টল করা কপি GitHub-কে সর্বশেষ রিলিজের ট্যাগ জিজ্ঞেস করে, বড়জোর
 প্রতি ছয় ঘণ্টায় একবার, আপডেট ব্যাজ দেখাতে হবে কি না জানতে।
 [বিস্তারিত](PRIVACY.md)
@@ -135,14 +125,14 @@ Chromium-এর বিল্ট-ইন অনুবাদক এগুলোর 
 
 **মেসেজ অনুবাদ হচ্ছে না।**
 সেটিংসে কার্যকলাপ ট্যাব খোলো আর "সিদ্ধান্ত পড়ুন" (Read decisions) চাপো: এটা শেষ 50টা লাইন দেখায় আর
-বলে প্রতিটা কেন অনুবাদ হলো বা বাদ গেল। বেশিরভাগ বাদ পড়া লাইন ইচ্ছা করেই বাদ দেওয়া হয়। একটা লাইভ
-সেশনে 234টার মধ্যে 213টা ছিল একই ইউজারের নিজেকে বারবার বলা, 9টা খুব ছোট, 7টা শুধু ইমোজি বা হাসি,
-আর 1টা আগে থেকেই পড়ার ভাষায় ছিল। ট্যাবে যদি কিছুই না দেখায়, তাহলে এক্সটেনশন চ্যাটটা দেখতেই পাচ্ছে
+বলে প্রতিটা কেন অনুবাদ হলো বা বাদ গেল। বেশিরভাগ বাদ পড়া লাইন ইচ্ছা করেই বাদ দেওয়া হয়: একই ইউজারের নিজেকে
+বারবার বলা, খুব ছোট লাইন, শুধু ইমোজি বা হাসি, অথবা যা আগে থেকেই পড়ার ভাষায় আছে। ট্যাবে যদি কিছুই না দেখায়,
+তাহলে এক্সটেনশন চ্যাটটা দেখতেই পাচ্ছে
 না: একটা issue খুলো, প্লিজ।
 
-**সবুজ বারটা গায়েব হয়ে গেছে।**
+**বেগুনি বারটা গায়েব হয়ে গেছে।**
 পেজ রিফ্রেশ করো। আবার হলে চ্যানেল আর তার আগে কী করেছিলে সেটা লিখে একটা
-[issue](https://github.com/Pkkls/kick-chat-translator/issues) খোলো।
+[issue](https://github.com/kilworks/twitch-chat-translator/issues) খোলো।
 
 **ভালো অনুবাদ কীভাবে পাব?**
 সেটিংসে একটা ফ্রি DeepL key বসাও। ফ্রি টিয়ারে মাসে 10 লক্ষ অক্ষর মেলে, আর DeepL শুধু সেই
@@ -154,32 +144,36 @@ Chromium-এর বিল্ট-ইন অনুবাদক এগুলোর 
 **এক্সটেনশন কি নিজের ভাষায় ব্যবহার করা যায়?**
 হ্যাঁ। এটা ব্রাউজারের ভাষা অনুসরণ করে, আর সেটিংসের ওপরের মেনু 43টির যেকোনোটায় বদলে দেয়।
 
-**VOD রিপ্লেতে কাজ করে?**
+**7TV, BTTV আর FFZ-এর সাথে কাজ করে?**
+হ্যাঁ, ওগুলোর যেকোনোটার সাথে বা কোনোটা ছাড়াই। ওদের ইমোটের নাম অনুবাদ হয় না।
+
+**VOD আর ক্লিপে কাজ করে?**
 হ্যাঁ, লাইভ স্ট্রিমের মতোই।
 
-**Kick-এর আপডেটের পর ভেঙে গেছে।**
-Kick মাঝে মাঝে তাদের চ্যাটের কাঠামো বদলায়। একটা [issue](https://github.com/Pkkls/kick-chat-translator/issues)
+**Twitch-এর আপডেটের পর ভেঙে গেছে।**
+Twitch মাঝে মাঝে তাদের চ্যাটের কাঠামো বদলায়। একটা [issue](https://github.com/kilworks/twitch-chat-translator/issues)
 খোলো, প্যাচ চলে আসবে।
 
-**এটা কি Kick বানিয়েছে?**
-না। এটা একটা স্বাধীন ওপেন-সোর্স প্রজেক্ট, Kick-এর সাথে কোনো সম্পর্ক নেই।
+**এটা কি Twitch বানিয়েছে?**
+না। এটা একটা স্বাধীন ওপেন-সোর্স প্রজেক্ট, Twitch-এর সাথে কোনো সম্পর্ক নেই।
 
 ## নতুন কী
 
-3.2.0-তে:
+1.0.0-তে, Twitch-এর জন্য প্রথম রিলিজ:
 
-- সেটিংস, পপআপ আর চ্যাট বার এখন এক্সটেনশন যে সব 43টি ভাষায় অনুবাদ করে সবগুলোতেই কথা বলে, শুধু 10টায় নয়, আর হিব্রু ও ফারসি আরবির মতো ডান থেকে বাঁয়ে
-- আগে থেকে থাকা দশটা ভাষা নতুন করে লেখা হয়েছে যাতে মনে হয় সেই ভাষাতেই লেখা, ইংরেজি থেকে শব্দে শব্দে নয়
-- ইন্টারফেস ভাষার মেনু প্রতিটা ভাষার পতাকা দেখায় আর কিবোর্ডেও চলে
+- Twitch চ্যাট তিনটা রূপে পড়ে: Twitch-এর নিজের লিস্ট (BTTV আর FFZ থাকলেও), 7TV লিস্ট, আর VOD ও ক্লিপ রিপ্লে, পপআউট, এমবেড, মডারেটর ভিউ, স্ট্রিম ম্যানেজার আর মোবাইলে
+- অনুবাদ মেসেজ বক্সে লেখে, ইমোট শব্দ হিসেবেই থাকে, আর চ্যানেলের 7TV, BTTV ও FFZ সেটের ইমোটের নাম কখনও অনুবাদ করে না
+- চ্যানেলের ভাষা আসে Twitch থেকে, মুছে ফেলা মেসেজের অনুবাদও চলে যায়, আর চেহারা বেগুনি এবং Twitch-এর ডার্ক বা লাইট চ্যাট অনুসরণ করে
+- Alt+Shift+T অনুবাদ অন বা অফ করে, 7TV বা BTTV এইমাত্র ইমোট শেষ না করলে তবেই Tab অনুবাদ বসায়, আর ভাষার বোতাম মেসেজ বক্সের নিচের অ্যাকশন বারে
 
 প্রতিটা রিলিজ, কী বদলেছে আর তার পেছনের মাপজোক সহ:
-[Releases](https://github.com/Pkkls/kick-chat-translator/releases) আর [CHANGELOG.md](CHANGELOG.md)।
+[Releases](https://github.com/kilworks/twitch-chat-translator/releases) আর [CHANGELOG.md](CHANGELOG.md)।
 
 ## ডেভেলপমেন্ট
 
 ```bash
-git clone https://github.com/Pkkls/kick-chat-translator.git
-cd kick-chat-translator
+git clone https://github.com/kilworks/twitch-chat-translator.git
+cd twitch-chat-translator
 npm ci
 npm run release:check    # typecheck, lint, unit tests, build: the gate every package goes through
 npm run build:firefox    # Firefox build, same dist/ folder
@@ -190,13 +184,13 @@ npm run dev              # HMR
 বিল্ড রিপ্রোডিউসিবল: একই কমিট যেকোনো মেশিনে বাইটে বাইটে একই zip দেয়, যেটা ট্যাগের `git archive` একটা
 ফাঁকা ফোল্ডারে বিল্ড করে আর হ্যাশ মিলিয়ে দেখে যাচাই করা হয়।
 
-ইউনিট টেস্টের বাইরে, 42টা অফলাইন গেট বিল্ড করা এক্সটেনশন একটা আসল ব্রাউজারে লোড করে, চালায় আর
+ইউনিট টেস্টের বাইরে, অফলাইন গেট বিল্ড করা এক্সটেনশন একটা আসল ব্রাউজারে লোড করে, চালায় আর
 যাচাই করে সেটা কী করে, পেজ লোকালি সার্ভ হয় আর অনুবাদ ইঞ্জিনের উত্তরও লোকালি আসে। এগুলোর জন্য
 Playwright লাগে, যেটা ইচ্ছা করেই ডিপেন্ডেন্সি নয়: `UX_KIT`-কে এমন একটা ফোল্ডারে পয়েন্ট করো যার
 `node_modules`-এ ওটা আছে, অথবা `npm i -D playwright` চালাও।
 
 ```bash
-node test/e2e/run-gates.mjs --headless                  # all 42, no window
+node test/e2e/run-gates.mjs --headless                  # all the offline gates, no window
 node test/e2e/store-shots-fixture.mjs --lang=ja         # the store screenshots, in one listing language
 node test/e2e/store-shots-fixture.mjs --gif             # English store screenshots, the README images and this GIF
 ```
@@ -210,11 +204,8 @@ node test/e2e/store-shots-fixture.mjs --gif             # English store screensh
 
 ## সম্পর্কিত প্রজেক্ট
 
-- [kick-ad-blocker](https://github.com/Pkkls/kick-ad-blocker), Kick-এর প্রি-রোল আর ওভারলে বিজ্ঞাপন ব্লক করে
-- [kick-core](https://github.com/Pkkls/kick-core), এই এক্সটেনশনগুলোর মধ্যে শেয়ার করা রিয়েলটাইম গেটওয়ে ক্লায়েন্ট
-- [kickbus](https://github.com/Pkkls/kickbus), Kick-এর অফিশিয়াল webhook SSE দিয়ে লোকাল বটে পাঠানো হয়
-- [kick-drops-miner](https://github.com/Pkkls/kick-drops-miner), Windows অ্যাপ যেটা Kick drops-এর ওয়াচ-টাইম এগিয়ে দেয়
+- [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), Kick চ্যাটের জন্য একই অনুবাদক, একই নির্মাতার
 
 ## লাইসেন্স
 
-MIT। Kick-এর সাথে কোনো সম্পর্ক নেই।
+MIT। Twitch-এর সাথে কোনো সম্পর্ক নেই।

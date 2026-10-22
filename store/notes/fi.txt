@@ -1,9 +1,11 @@
-Hymiöillä kirjoittaminen toimii nyt oikein. Välilehti täydentää Kickin ja 7TV:n hymiöt ja @maininnat käännöksen lisäämisen sijaan, hymiöt pysyvät viestissäsi, kun se käännetään, eikä esikatselu enää kata Kickin luetteloita tai hymiövalitsinta.
+Ensimmäinen julkaisu Twitchille. Käännösmoottori, kielentunnistus, välimuisti ja asetukset ovat peräisin Kick Chat Translatorista, saman tekijän. Kaikki, mikä lukee tai kirjoittaa sivua, rakennettiin uudelleen Twitchille ja mitattiin suorilla kanavilla.
 
-Käännökset ovat tarkempia: tuotemerkkien ja ihmisten nimiä (iPhone, YouTube, LeBron) ei enää pudoteta ennen käännöstä, ja @maininnat pysyvät käännetyissä viesteissä.
+Se lukee Twitchin chatin kaikissa kolmessa muodossaan: Twitchin oma lista (myös BTTV:n ja FFZ:n kanssa), 7TV:n lista sekä VOD- ja klippiuusinta. Popout, upotus, moderaattorinäkymä, stream manager ja mobiili kuuluvat mukaan.
 
-Suodattimet uusittiin: todellisia Kick-botteja ei huomioida ja voit lisätä omia, "Piilota sisältävät viestit" piilottaa nyt myös sen, mikä on jo näytöllä, ja listat voidaan kirjoittaa uudelleen.
+Käännökset kirjoitetaan Twitchin viestikenttään emotet sanoina säilyttäen. Kanavan 7TV-, BTTV- ja FFZ-settien emote-nimiä ei koskaan käännetä, vaikka et käyttäisi niitä laajennuksia.
 
-Laajennus on kevyempi jokaisella Kick-sivulla, ja Chromessa laitteen sisäistä käännöstä tarjotaan taas, kun kohdekieli on Auto.
+Kanavan kieli tulee Twitchiltä itseltään, viesti, jonka moderaattori poistaa tai jonka timeout tai porttikielto vie, menettää käännöksensäkin, ja ulkoasu on violetti ja seuraa Twitchin tummaa tai vaaleaa chat-teemaa.
 
-Uusi ja valinnainen: anonyymit päivittäiset käyttötilastot pois päältä, ellet sano kyllä. Ne eivät koskaan sisällä viestejäsi, nimiäsi tai kanaviasi.
+Kytke käännös päälle tai pois Alt+Shift+T:llä, koska Alt+T on Twitchin teatteritila. Tab lisää käännöksen vain, jos 7TV tai BTTV ei juuri viimeistellyt emotea. Ohitetut botit ovat Twitchissä mitatut: StreamElements, Fossabot, Moobot, Streamlabs ja Nightbot.
+
+Valinnainen: anonyymit päivittäiset käyttötilastot pois päältä, ellet sano kyllä. Ne eivät koskaan sisällä viestejäsi, nimiäsi tai kanaviasi.

@@ -1,15 +1,28 @@
 The manifest declares this already, under browser_specific_settings, as
-data_collection_permissions required: websiteContent. In the submission form:
+data_collection_permissions required: websiteContent, optional:
+technicalAndInteraction. In the submission form:
 
 Website content: yes. The text of a chat message, and only that, is sent to the
-translation engine the user selected, to be translated. Not the username, not
-the channel, not who said what. It is not stored, not logged and not sent
-anywhere else.
+translation engine the user selected, to be translated. The same goes for the
+draft the user types in the message box while the compose preview is on. Not the
+username, not the channel, not who said what. It is not stored, not logged and
+not sent anywhere else.
 
 Authentication information: yes, conditionally. If the user enters a DeepL API
 key, it is kept in local storage, never synced, and sent only to DeepL to
 authenticate that user's own request.
 
+Technical and interaction data: optional, off unless the user ticks it. Once a
+day, anonymous counts (engines used, errors, speed, which of 7TV, BTTV and FFZ
+are present) go to Google Analytics. Never message text, names or channels.
+
 Everything else: no. No personally identifying information, no location, no
 browsing history, no financial or health data, no user activity tracking, no
-analytics, no accounts, and no server operated by the developer.
+accounts, and no server operated by the developer.
+
+One thing to say plainly in the form's free text if it asks: to read the
+channel's language and to keep emote names out of translations, the extension
+sends the channel's login name to Twitch's own endpoint (gql.twitch.tv, the one
+the Twitch page uses) and the channel's numeric Twitch id to 7TV, BetterTTV and
+FrankerFaceZ. No URL and no history is sent, the extension keeps the answers in
+memory for a few minutes only, and nothing links the id to a person.

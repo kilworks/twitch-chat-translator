@@ -1,9 +1,11 @@
-A hangulatjelekkel való gépelés most megfelelően működik. A Tab kiegészíti a Kick és 7TV hangulatjeleit és @említéseit a fordítás beszúrása helyett, a hangulatjelek az üzenetben maradnak, amikor lefordítják, és az előnézet már nem fedi a Kick listáit vagy az emote-választót.
+Első kiadás, a Twitch számára. A fordítómotor, a nyelvfelismerés, a gyorsítótár és a beállítások a Kick Chat Translatorból származnak, ugyanattól a szerzőtől. Minden, ami az oldalt olvassa vagy írja, újraépült a Twitchre, és élő csatornákon lett lemérve.
 
-A fordítások pontosabbak: a márka- és személynevek (iPhone, YouTube, LeBron) már nem kerülnek ki a fordítás előtt, és a @említések a lefordított üzenetekben maradnak.
+A Twitch-csevegést mindhárom formájában olvassa: a Twitch saját listáját (BTTV-vel és FFZ-vel is), a 7TV listáját, valamint a VOD- és klip-visszajátszást. A popout, a beágyazás, a moderátornézet, a streamkezelő és a mobil is benne van.
 
-Átdolgozták a szűrőket: az igazi Kick botokat figyelmen kívül hagyják, és felveheti a sajátjait, a "Hide üzenetek elrejtése" most azt is elrejti, ami már a képernyőn van, és a listák újra beírhatók.
+A fordításokat a Twitch üzenetmezőjébe írja, az emotek szavakként megmaradnak. A csatorna 7TV-, BTTV- és FFZ-készleteiben szereplő emotenevek soha nem fordítódnak, akkor sem, ha nem futtatod ezeket a bővítményeket.
 
-A bővítmény minden Kick oldalon könnyebb, a Chrome-ban pedig az eszközön lévő motor ismét elérhető, ha a célnyelv az Auto.
+A csatorna nyelve magától a Twitchtől jön, a moderátor által törölt üzenet, egy timeout vagy egy ban elveszi a fordítását is, a megjelenés pedig lila, és követi a Twitch sötét vagy világos csevegési témáját.
 
-Új és opcionális: névtelen napi használati statisztika, hacsak nem mond igent. Soha nem tartalmazzák az Ön üzeneteit, neveit vagy csatornáit.
+A fordítást az Alt+Shift+T ki-be kapcsolja, mert az Alt+T a Twitch színházmódja. A Tab csak akkor szúrja be a fordítást, ha a 7TV vagy a BTTV nem most fejezett be egy emotet. A figyelmen kívül hagyott botok azok, amelyeket a Twitchen mértek: StreamElements, Fossabot, Moobot, Streamlabs és Nightbot.
+
+Opcionális: névtelen napi használati statisztika, hacsak nem mond igent. Soha nem tartalmazzák az Ön üzeneteit, neveit vagy csatornáit.

@@ -1,1 +1,1 @@
-Free live chat translator for Kick: read any stream's chat in your language and reply in the channel's. No account, no setup.
+Free live chat translator for Twitch: read any stream's chat in your language and reply in the channel's. No account, no setup.

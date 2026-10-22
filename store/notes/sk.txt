@@ -1,9 +1,11 @@
-Písanie s emóciami teraz funguje správne. Tab dokončí Kickove a 7TV emócie a @zmienky namiesto vloženia prekladu, emócie zostanú vo vašej správe, keď je preložená, a ukážka už nepokrýva Kickove zoznamy ani výber emócií.
+Prvé vydanie, pre Twitch. Prekladový engine, rozpoznávanie jazyka, vyrovnávacia pamäť a možnosti pochádzajú z Kick Chat Translator, od toho istého autora. Všetko, čo číta alebo zapisuje stránku, bolo postavené nanovo pre Twitch a zmerané na živých kanáloch.
 
-Preklady sú presnejšie: mená značiek a ľudí (iPhone, YouTube, LeBron) sa už pred prekladom nevynechávajú a @zmienky zostávajú v preložených správach.
+Číta chat Twitchu v troch podobách: vlastný zoznam Twitchu (aj s BTTV a FFZ), zoznam 7TV a záznamy VOD a klipov. Popout, vložený chat, pohľad moderátora, stream manager aj mobil sú v cene.
 
-Filtre boli prepracované: skutoční roboti Kick sú ignorovaní a môžete pridať svoje vlastné, „Skryť správy obsahujúce“ teraz tiež skryje to, čo už je na obrazovke, a zoznamy je možné znova zadať.
+Preklady sa zapisujú do poľa správy na Twitchi s emotes ponechanými ako slová. Názvy emotov zo sád 7TV, BTTV a FFZ kanála sa nikdy neprekladajú, ani keď tieto rozšírenia nepoužívate.
 
-Rozšírenie je svetlejšie na každej stránke Kick a v prehliadači Chrome sa nástroj na zariadení opäť ponúka, keď je cieľový jazyk nastavený na Auto.
+Jazyk kanála pochádza priamo z Twitchu, správa zmazaná moderátorom, timeout alebo ban príde aj o svoj preklad a vzhľad je fialový a riadi sa tmavým či svetlým motívom chatu Twitchu.
 
-Nové a voliteľné: anonymné denné štatistiky používania, vypnuté, pokiaľ nepoviete áno. Nikdy neobsahujú vaše správy, mená alebo kanály.
+Preklad zapnete alebo vypnete pomocou Alt+Shift+T, pretože Alt+T je divadelný režim Twitchu. Tab vloží preklad len vtedy, keď 7TV alebo BTTV práve nedokončilo emote. Ignorovaní boti sú tí, ktorých sa podarilo zmerať na Twitchi: StreamElements, Fossabot, Moobot, Streamlabs a Nightbot.
+
+Voliteľné: anonymné denné štatistiky používania, vypnuté, pokiaľ nepoviete áno. Nikdy neobsahujú vaše správy, mená alebo kanály.

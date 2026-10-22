@@ -1,1 +1,1 @@
-Traductor de chat en vivo gratuito para Kick: cada mensaje se traduce a tu idioma según llega, y tus respuestas salen en el idioma del canal. Sin cuenta, sin configurar nada. Funciona en directos y en VOD.
+Traductor de chat en vivo gratuito para Twitch: cada mensaje se traduce a tu idioma según va llegando, y tus respuestas salen en el idioma del canal. Sin cuenta, sin configuración. Funciona en directos, VOD y clips.

@@ -1,16 +1,14 @@
-Kick Chat Translator is a free live chat translator for Kick. Read any stream's chat in your own language, and reply in the channel's language, right inside the chat.
+Twitch Chat Translator is a free live chat translator for Twitch. Read any stream's chat in your own language, and reply in the channel's language, right inside the chat.
 
 Watching a Turkish, Spanish, Russian or Arabic stream and can't follow the chat? Install, open the stream, and every message shows its translation right under it as it arrives. No account, no API key, nothing to set up.
 
 HOW IT WORKS
 
-1. Open any Kick stream. A green bar at the top of the chat shows the translator is on.
+1. Open any Twitch stream. A purple bar at the top of the chat shows the translator is on.
 2. Each new message gets its translation underneath, in your browser's language.
 3. Type a reply in your own language. A preview shows it in the channel's language: press Tab or click it, then send.
 
-The channel's language is read from Kick itself, and both languages can be changed in settings. Works on live streams and on VOD replays, keeps 7TV emotes as they are, and pauses itself in background tabs.
-
-See it running on a real chat: https://www.youtube.com/watch?v=NoGJeUrwy9o
+The channel's language is the one the streamer set on Twitch, and both languages can be changed in settings. Works on live chat, popout, embed, moderator view and the stream manager, and on VOD and clip replays, with or without 7TV, BTTV and FFZ. It pauses itself in background tabs (a setting, on by default).
 
 WHAT YOU GET
 
@@ -18,17 +16,19 @@ WHAT YOU GET
 • Free out of the box with Google Translate, no key and no account.
 • Better European languages with your own DeepL API key. DeepL gets the recent chat lines as context, so the wording fits the conversation.
 • Automatic fallback: when one engine fails, MyMemory or Lingva takes over. You choose the order.
-• Four display styles: under the message, on the same line, in small italics after it, or only when you hover. Hover mode translates nothing until you point at a message, which cuts usage about ten times on a fast chat.
+• Four display styles: under the message, on the same line, in place of it, or only when you hover. Hover mode translates nothing until you point at a message, which spares your quota on a fast chat.
 • Filters: skip bots, mute users or channels, hide lines that contain a word you choose (handy against !command spam), or translate only the languages you want.
-• Emotes, mentions, links and emoji spam are stripped before anything is sent, so nothing is spent translating "kkkkkk".
-• Make it yours: text size, line spacing, typeface, accent colour, dark or light chat, a reading language remembered per channel, keyboard shortcuts.
+• Emote names of the channel's 7TV, BTTV and FFZ sets are never translated, even if you do not run those extensions. @mentions and links are set aside before anything is sent, and lines that are only emoji or laughter are skipped, so nothing is spent translating "kkkkkk".
+• A message a moderator deletes, or that a timeout or ban removes, loses its translation too.
+• Make it yours: text size, line spacing, typeface, accent colour, dark or light chat (it follows Twitch's own by default), a reading language remembered per channel, keyboard shortcuts.
 • Interface in the same 43 languages, right to left included, picked from a menu that shows each flag.
 
 WHAT LEAVES YOUR BROWSER
 
-Chat text goes only to the translation engine you picked. With Google, MyMemory or Lingva, that is the text of each message and nothing else: not the channel, not who said it. With DeepL, the last few chat lines go along as context, with the names of whoever wrote them, so the translation fits the conversation. That is what the "website content" line in the permissions above refers to, and it is the whole of it. There is no account and no server of mine: the extension talks to Kick, to the engine you chose, and to the GitHub releases page to tell you when a newer version exists, sending nothing with that request. If you tick the optional "technical and interaction data" choice, it also sends Google Analytics a daily anonymous count of engines used, errors and speed, never your messages, names or channels.
+Chat text goes only to the translation engine you picked, and so does your draft while the compose preview is on. With Google, MyMemory or Lingva, that is the text of each message and nothing else: not the channel, not who said it. With DeepL, the last few chat lines go along as context, with the names of whoever wrote them, so the translation fits the conversation. That is what the "website content" line in the permissions above refers to. There is no account and no server of mine. Besides the engine you chose, the extension talks to Twitch, to ask the channel's language and id; to 7TV, BetterTTV and FrankerFaceZ, to ask the channel's emote names, which tells them the channel's id and nothing else; and, in a copy installed by hand, to the GitHub releases page to tell you when a newer version exists, sending nothing with that request. If you tick the optional "technical and interaction data" choice, it also sends Google Analytics a daily anonymous count of engines used, errors and speed, never your messages, names or channels.
 
 FREE AND OPEN SOURCE
 
-MIT licence, every line of code public: github.com/Pkkls/kick-chat-translator
+MIT licence, every line of code public: github.com/kilworks/twitch-chat-translator
 Bug reports and language requests are welcome there.
+Twitch Chat Translator is an independent project, not affiliated with Twitch.

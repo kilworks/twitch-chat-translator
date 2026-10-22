@@ -1,16 +1,14 @@
-Kick Chat Translator je bezplatný prekladač chatu naživo pre Kick. Čítajte chat akéhokoľvek streamu vo svojom jazyku a odpovedajte v jazyku kanála, priamo v chate.
+Twitch Chat Translator je bezplatný prekladač chatu naživo pre Twitch. Čítajte chat akéhokoľvek streamu vo svojom jazyku a odpovedajte v jazyku kanála, priamo v chate.
 
 Pozeráte turecký, španielsky, ruský alebo arabský stream a chat vám uniká? Nainštalujte, otvorte stream a každá správa ukáže svoj preklad hneď pod sebou, len čo príde. Žiadny účet, žiadny API kľúč, nič na nastavovanie.
 
 AKO TO FUNGUJE
 
-1. Otvorte ľubovoľný stream na Kicku. Zelený pruh navrchu chatu ukazuje, že prekladač beží.
+1. Otvorte ľubovoľný stream na Twitchi. Fialový pruh navrchu chatu ukazuje, že prekladač beží.
 2. Každá nová správa dostane pod seba preklad do jazyka vášho prehliadača.
 3. Napíšte odpoveď vo svojom jazyku. Náhľad ju ukáže v jazyku kanála: stlačte Tab alebo naň kliknite a potom odošlite.
 
-Jazyk kanála sa načítava priamo z Kicku a oba jazyky sa dajú zmeniť v nastaveniach. Funguje na živých vysielaniach aj na záznamoch VOD, emotikony 7TV nechá tak, ako sú, a na kartách na pozadí sa sám pozastaví.
-
-Pozrite si ho v akcii na skutočnom chate: https://www.youtube.com/watch?v=NoGJeUrwy9o
+Jazyk kanála je ten, ktorý streamer nastavil na Twitchi, a oba jazyky sa dajú zmeniť v nastaveniach. Funguje v živom chate, popoute, vloženom chate, pohľade moderátora a v stream manageri, ako aj na záznamoch VOD a klipov, s 7TV, BTTV a FFZ aj bez nich. Na kartách na pozadí sa sám pozastaví (nastavenie, predvolene zapnuté).
 
 ČO ZÍSKATE
 
@@ -18,17 +16,19 @@ Pozrite si ho v akcii na skutočnom chate: https://www.youtube.com/watch?v=NoGJe
 • Zadarmo hneď po inštalácii s Google Translate, bez kľúča a bez účtu.
 • Lepšie európske jazyky s vlastným API kľúčom DeepL. DeepL dostáva posledné riadky chatu ako kontext, takže formulácie zapadnú do konverzácie.
 • Automatická záloha: keď jeden engine zlyhá, prevezme to MyMemory alebo Lingva. Poradie určujete vy.
-• Štyri štýly zobrazenia: pod správou, na tom istom riadku, za ňou menšou kurzívou, alebo len po nabehnutí myšou. Režim nabehnutia myšou nepreloží nič, kým na správu neukážete, čo v rýchlom chate zníži spotrebu zhruba desaťkrát.
+• Štyri štýly zobrazenia: pod správou, na tom istom riadku, namiesto nej, alebo len po nabehnutí myšou. Režim nabehnutia myšou nepreloží nič, kým na správu neukážete, čo v rýchlom chate šetrí váš limit.
 • Filtre: preskočiť botov, stíšiť používateľov alebo kanály, skryť riadky so slovom podľa vášho výberu (hodí sa proti spamu príkazov typu !command), alebo prekladať len jazyky, ktoré chcete.
-• Emotikony, zmienky, odkazy a záplavy emoji sa odstránia skôr, než sa čokoľvek odošle, takže sa nič nespotrebuje na preklad „kkkkkk“.
-• Prispôsobte si ho: veľkosť textu, riadkovanie, písmo, farba zvýraznenia, tmavý alebo svetlý chat, jazyk čítania zapamätaný pre každý kanál, klávesové skratky.
+• Názvy emotov zo sád 7TV, BTTV a FFZ kanála sa nikdy neprekladajú, ani keď tieto rozšírenia nepoužívate. @zmienky a odkazy sa odložia nabok skôr, než sa čokoľvek odošle, a riadky, ktoré sú len emoji alebo smiech, sa preskočia, takže sa nič nespotrebuje na preklad „kkkkkk“.
+• Správa, ktorú moderátor zmaže alebo ktorú odstráni timeout či ban, príde aj o svoj preklad.
+• Prispôsobte si ho: veľkosť textu, riadkovanie, písmo, farba zvýraznenia, tmavý alebo svetlý chat (predvolene sa riadi chatom Twitchu), jazyk čítania zapamätaný pre každý kanál, klávesové skratky.
 • Rozhranie v rovnakých 43 jazykoch vrátane tých písaných sprava doľava, vyberané z ponuky, ktorá zobrazuje každú vlajku.
 
 ČO OPÚŠŤA VÁŠ PREHLIADAČ
 
-Text z chatu ide len do prekladového enginu, ktorý ste zvolili. Pri Google, MyMemory alebo Lingva je to text každej správy a nič iné: ani kanál, ani autor. Pri DeepL ide ako kontext aj niekoľko posledných riadkov chatu s menami tých, ktorí ich napísali, aby preklad zapadol do konverzácie. Na to sa vzťahuje riadok „obsah webových stránok“ v povoleniach vyššie a je to všetko. Nie je tu žiadny účet ani môj server: rozšírenie komunikuje s Kickom, s enginom, ktorý ste zvolili, a so stránkou vydaní na GitHub, aby vám oznámilo novšiu verziu, a pri tejto poslednej požiadavke nič neposiela. Ak zaškrtnete voliteľnú položku "technické údaje a údaje o interakcii", posiela navyše do Google Analytics denný anonymný počet použitých enginov, chýb a rýchlosti, nikdy vaše správy, mená ani kanály.
+Text z chatu ide len do prekladového enginu, ktorý ste zvolili, rovnako ako váš koncept, kým je zapnutý náhľad pri písaní. Pri Google, MyMemory alebo Lingva je to text každej správy a nič iné: ani kanál, ani autor. Pri DeepL ide ako kontext aj niekoľko posledných riadkov chatu s menami tých, ktorí ich napísali, aby preklad zapadol do konverzácie. Na to sa vzťahuje riadok „obsah webových stránok“ v povoleniach vyššie. Nie je tu žiadny účet ani môj server. Okrem enginu, ktorý ste zvolili, rozšírenie komunikuje s Twitchom, aby sa opýtalo na jazyk a id kanála; so 7TV, BetterTTV a FrankerFaceZ, aby sa opýtalo na názvy emotov kanála, čím im povie id kanála a nič iné; a v ručne nainštalovanej kópii so stránkou vydaní na GitHub, aby vám oznámilo novšiu verziu, pričom pri tejto poslednej požiadavke nič neposiela. Ak zaškrtnete voliteľnú položku "technické údaje a údaje o interakcii", posiela navyše do Google Analytics denný anonymný počet použitých enginov, chýb a rýchlosti, nikdy vaše správy, mená ani kanály.
 
 ZADARMO A S OTVORENÝM KÓDOM
 
-Licencia MIT, každý riadok kódu je verejný: github.com/Pkkls/kick-chat-translator
+Licencia MIT, každý riadok kódu je verejný: github.com/kilworks/twitch-chat-translator
 Hlásenia chýb a žiadosti o nové jazyky tam radi privítame.
+Twitch Chat Translator je nezávislý projekt, nepridružený k Twitchu.

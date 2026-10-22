@@ -112,7 +112,7 @@ for (const lang of Object.keys(LISTINGS)) {
 }
 
 // Reviewer notes, filled with what this build actually is.
-const zips = ['chromium', 'firefox'].map((t) => [t, path.join(ROOT, 'release', `kick-chat-translator-${VERSION}-${t}.zip`)]);
+const zips = ['chromium', 'firefox'].map((t) => [t, path.join(ROOT, 'release', `twitch-chat-translator-${VERSION}-${t}.zip`)]);
 const lines = zips.map(([t, f]) => {
   if (!fs.existsSync(f)) {
     fails.push(`${path.basename(f)}: absent, construire les paquets avant`);
