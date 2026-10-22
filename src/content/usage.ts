@@ -1,6 +1,6 @@
 import { send } from '~/shared/messages';
 import type { UsageCounter, UsageCounts } from '~/shared/usage';
-import { refresh7TV } from './platform';
+import { detectExtensions } from './platform';
 
 /**
  * The page's half of the opt-in usage statistics: counts in memory and hands
@@ -32,7 +32,9 @@ function flush(): void {
   void send({
     type: 'usage.add',
     counts: batch,
-    env: { has7tv: refresh7TV(), localApi: 'Translator' in self },
+    env: (({ seventv, bttv, ffz }) => ({ has7tv: seventv, hasBttv: bttv, hasFfz: ffz, localApi: 'Translator' in self }))(
+      detectExtensions(),
+    ),
   }).catch(() => undefined);
 }
 

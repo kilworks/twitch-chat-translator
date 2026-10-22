@@ -6,7 +6,7 @@ import { buildEvent, type Day } from './usage';
 // Ce qui part chez GA, champ par champ. PRIVACY.md promet cette liste et rien
 // d'autre : un champ ajoute ici sans y etre ecrit fait rougir ce test.
 const PROMIS = [
-  'ext_version', 'browser', 'ui_lang', 'target_lang', 'engine_mode', 'has_7tv', 'local_api',
+  'ext_version', 'browser', 'ui_lang', 'target_lang', 'engine_mode', 'has_7tv', 'has_bttv', 'has_ffz', 'local_api',
   'lat_p50', 'lat_p95', 'engagement_time_msec', 'session_id', ...USAGE_COUNTERS,
 ].sort();
 
@@ -15,11 +15,11 @@ const jour: Day = {
   counts: { tr_google: 40, tr_cache: 5, skipped: 12, compose_insert: 2 },
   lat: [300, 900, 1200, 1500, 4000],
   seen: 5,
-  env: { has7tv: true, localApi: false },
+  env: { has7tv: true, hasBttv: false, hasFfz: true, localApi: false },
 };
 
 describe('the daily usage event', () => {
-  const ev = buildEvent(jour, defaultSettings(), '3.3.0', 'brave', 'fr');
+  const ev = buildEvent(jour, defaultSettings(), '1.0.0', 'brave', 'fr');
 
   it('carries exactly the fields the privacy policy lists', () => {
     expect(Object.keys(ev).sort()).toEqual(PROMIS);
@@ -34,6 +34,8 @@ describe('the daily usage event', () => {
     expect(ev.tr_google).toBe(40);
     expect(ev.err_provider).toBe(0);
     expect(ev.has_7tv).toBe(1);
+    expect(ev.has_bttv).toBe(0);
+    expect(ev.has_ffz).toBe(1);
     expect(ev.lat_p50).toBe(1200);
     expect(ev.lat_p95).toBe(4000);
     expect(ev.ui_lang).toBe('fr'); // 'auto' resolved to the browser's language

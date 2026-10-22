@@ -1,8 +1,5 @@
-export const EXT_NAME = 'Kick Chat Translator';
-export const EXT_PREFIX = '[KickTranslator]';
-
-export const KICK_API_BASE = 'https://kick.com/api/v2';
-export const KICK_CHANNEL_API = (slug: string): string => `${KICK_API_BASE}/channels/${slug}`;
+export const EXT_NAME = 'Twitch Chat Translator';
+export const EXT_PREFIX = '[TwitchTranslator]';
 
 export const PROVIDER_ENDPOINTS = {
   google: 'https://translate.googleapis.com/translate_a/single',
@@ -51,7 +48,7 @@ export const BATCH_WINDOW_MS = 180;
 export const MIN_BATCH_WINDOW_MS = 40;
 /** Fast chat: batching pays for itself, so hold longer and send fewer calls. */
 export const MAX_BATCH_WINDOW_MS = 300;
-export const BATCH_MAX_ITEMS = 40; // flush size — aligned with DeepL's batch cap (fewer requests)
+export const BATCH_MAX_ITEMS = 40; // flush size, aligned with DeepL's batch cap (fewer requests)
 
 // DeepL usage endpoints (quota display in the popup).
 export const DEEPL_USAGE_FREE = 'https://api-free.deepl.com/v2/usage';
@@ -98,8 +95,11 @@ export const GA_MEASUREMENT_ID = 'G-M3X9D6KZLP';
 export const GA_API_SECRET = 'SeO_Zkk4RKCCB0Iv_SDr1A';
 export const GA_ENDPOINT = 'https://www.google-analytics.com/mp/collect';
 
-// Self-update check: compare the installed version to the latest GitHub release.
-export const GITHUB_REPO = 'Pkkls/kick-chat-translator';
+// Self-update check: compare the installed version to the latest GitHub release of THIS
+// product. The repository name is provisional until it exists (PLAN K03); until then the
+// API answers 404, which reads as "no release known", so no notice is ever shown. It was the
+// Kick repository, copied with the tree: Kick's releases would have been announced here.
+export const GITHUB_REPO = 'kilworks/twitch-chat-translator';
 /**
  * The listing's id on the Chrome Web Store.
  *
@@ -107,26 +107,30 @@ export const GITHUB_REPO = 'Pkkls/kick-chat-translator';
  * `chrome.runtime.id` tells a store install from a zip without asking for the
  * `management` permission, which would send the listing back through a longer
  * review for a single boolean.
+ *
+ * Null until the first upload creates the listing (PLAN K04): no Chrome copy is a store copy
+ * yet. It held the Kick listing's id, which would have sent the update notice to Kick's page.
  */
-export const CHROME_STORE_ID = 'nkkjmbkmacbdkboijmnhjnblcaiclhni';
+export const CHROME_STORE_ID = null as string | null;
 
 /** The Firefox build's id, fixed in manifest.config.ts: every AMO install carries it. */
 export const FIREFOX_ADDON_ID = 'twitch-translator@pkkls.dev';
-/** Where the update notice sends a zip install: the store copy updates itself from then on. */
-export const CHROME_STORE_URL = `https://chromewebstore.google.com/detail/kick-chat-translator/${CHROME_STORE_ID}`;
+/**
+ * Where the update notice sends a zip install: the store copy updates itself from then on.
+ * Before the listing exists, this product's own releases.
+ */
+export const CHROME_STORE_URL = CHROME_STORE_ID
+  ? `https://chromewebstore.google.com/detail/${CHROME_STORE_ID}`
+  : `https://github.com/${GITHUB_REPO}/releases/latest`;
+
+/** The sister extension, the same translator for Kick chat: named in the About tab. */
+export const KICK_EXTENSION_URLS = {
+  chrome: 'https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni',
+  firefox: 'https://addons.mozilla.org/firefox/addon/kick-chat-translator/',
+} as const;
 
 export const GITHUB_LATEST_RELEASE_API = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
 export const UPDATE_CHECK_TTL_MS = 6 * 60 * 60_000; // 6h
-
-/**
- * Chat bots that run on Kick, always ignored when "Ignore chat bots" is on.
- * This list came from the first version as StreamElements, Nightbot and Moobot,
- * which are Twitch bots and never post on Kick. Kept short on purpose: anything
- * else a channel uses goes in the user's own list (settings.extraBots), not
- * here. Shown in the options page as written.
- */
-export const KICK_BOTS = ['BotRix', 'Fossabot', 'KickBot', 'Sery_Bot', 'Kicklet'] as const;
-export const COMMON_BOTS = new Set<string>(KICK_BOTS.map((b) => b.toLowerCase()));
 
 /** How many languages the composer chip keeps pinned. Four fits 340px; five does not. */
 export const FAVORITE_LANGS_MAX = 4;

@@ -142,6 +142,8 @@ export function buildEvent(
     target_lang: settings.targetLang,
     engine_mode: settings.engineMode,
     has_7tv: d.env?.has7tv ? 1 : 0,
+    has_bttv: d.env?.hasBttv ? 1 : 0,
+    has_ffz: d.env?.hasFfz ? 1 : 0,
     local_api: d.env?.localApi ? 1 : 0,
     lat_p50: percentile(d.lat, 50),
     lat_p95: percentile(d.lat, 95),

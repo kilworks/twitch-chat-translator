@@ -31,6 +31,10 @@ export type UsageCounts = Partial<Record<UsageCounter, number>>;
 export interface UsageEnv {
   /** 7TV re-renders the chat and takes Tab in the composer. */
   has7tv: boolean;
+  /** BTTV completes emotes on Tab. */
+  hasBttv: boolean;
+  /** FFZ rewrites the chat rows. */
+  hasFfz: boolean;
   /** Chrome's on-device Translator API exists in this browser. */
   localApi: boolean;
 }
