@@ -1,32 +1,32 @@
-import { describe, expect, it } from 'vitest';
-import { mentionsOf, parseKickContent } from './emoteParser';
+import { afterEach, describe, expect, it } from 'vitest';
+import { mentionsOf, parseChatContent, setChannelEmotes } from './emoteParser';
 
 describe('realText (what we actually translate)', () => {
   it('drops emote-only messages to empty realText', () => {
-    expect(parseKickContent('[emote:1:KEKW] [emote:2:PepeLaugh]').realText).toBe('');
+    expect(parseChatContent('[emote:1:KEKW] [emote:2:PepeLaugh]').realText).toBe('');
   });
   it('drops url-only messages to empty realText', () => {
-    expect(parseKickContent('https://discord.gg/foo').realText).toBe('');
+    expect(parseChatContent('https://discord.gg/foo').realText).toBe('');
   });
   it('drops mention-only messages to empty realText', () => {
-    expect(parseKickContent('@joao').realText).toBe('');
+    expect(parseChatContent('@joao').realText).toBe('');
   });
   it('keeps the real words, removing emotes/mentions/urls', () => {
-    const r = parseKickContent('@joao vamos [emote:1:KEKW] https://x.io agora');
+    const r = parseChatContent('@joao vamos [emote:1:KEKW] https://x.io agora');
     expect(r.realText).toBe('vamos  agora'.replace(/\s+/g, ' ').trim());
   });
 });
 
-describe('parseKickContent', () => {
+describe('parseChatContent', () => {
   it('returns plain text untouched when there are no markers', () => {
-    const r = parseKickContent('hello world');
+    const r = parseChatContent('hello world');
     expect(r.plain).toBe('hello world');
     expect(r.realText).toBe('hello world');
     expect(r.tokens).toEqual([{ kind: 'text', value: 'hello world' }]);
   });
 
   it('extracts an emote token and replaces it with a readable placeholder', () => {
-    const r = parseKickContent('hi [emote:123:Kappa] there');
+    const r = parseChatContent('hi [emote:123:Kappa] there');
     expect(r.tokens).toHaveLength(3);
     const emote = r.tokens[1];
     expect(emote).toEqual({ kind: 'emote', id: '123', name: 'Kappa' });
@@ -34,21 +34,21 @@ describe('parseKickContent', () => {
   });
 
   it('extracts mention with leading whitespace preserved', () => {
-    const r = parseKickContent('yo @adin nice');
+    const r = parseChatContent('yo @adin nice');
     const mention = r.tokens.find((t) => t.kind === 'mention');
     expect(mention).toEqual({ kind: 'mention', user: 'adin' });
     expect(r.plain).toContain('@adin');
   });
 
   it('extracts URLs without breaking adjacent text', () => {
-    const r = parseKickContent('check https://kick.com/foo now');
+    const r = parseChatContent('check https://kick.com/foo now');
     const url = r.tokens.find((t) => t.kind === 'url');
     expect(url).toEqual({ kind: 'url', href: 'https://kick.com/foo' });
     expect(r.plain).toBe('check [link] now');
   });
 
   it('does not double-match overlapping URLs and mentions', () => {
-    const r = parseKickContent('see https://kick.com/@adin x');
+    const r = parseChatContent('see https://kick.com/@adin x');
     const url = r.tokens.find((t) => t.kind === 'url');
     expect(url?.kind).toBe('url');
     // the @adin inside the URL must not be extracted as a mention
@@ -57,7 +57,7 @@ describe('parseKickContent', () => {
   });
 
   it('strips multiple emotes correctly', () => {
-    const r = parseKickContent('[emote:1:A] [emote:2:B] text');
+    const r = parseChatContent('[emote:1:A] [emote:2:B] text');
     const emotes = r.tokens.filter((t) => t.kind === 'emote');
     expect(emotes).toHaveLength(2);
     expect(r.plain).toBe(':A: :B: text');
@@ -99,18 +99,18 @@ describe('the inline emote-name stripper leaves ordinary words alone', () => {
 
   for (const phrase of intacts) {
     it(`keeps every word of ${JSON.stringify(phrase.slice(0, 28))}`, () => {
-      expect(parseKickContent(phrase).realText).toBe(phrase);
+      expect(parseChatContent(phrase).realText).toBe(phrase);
     });
   }
 
   it('still strips emote names mixed into a sentence', () => {
-    expect(parseKickContent('hola pepeLaugh que tal la partida').realText).toBe(
+    expect(parseChatContent('hola pepeLaugh que tal la partida').realText).toBe(
       'hola que tal la partida',
     );
-    expect(parseKickContent('eso fue OMEGALUL de verdad').realText).toBe('eso fue de verdad');
-    expect(parseKickContent('mira namedarumajankiss2 ahora').realText).toBe('mira ahora');
+    expect(parseChatContent('eso fue OMEGALUL de verdad').realText).toBe('eso fue de verdad');
+    expect(parseChatContent('mira namedarumajankiss2 ahora').realText).toBe('mira ahora');
     for (const name of ['CATJAM', 'catjam', 'peepohug', 'peepoLove', 'ezclap', 'omegalul', 'pepejam', 'dogjam']) {
-      expect(parseKickContent(`hola ${name} amigo`).realText).toBe('hola amigo');
+      expect(parseChatContent(`hola ${name} amigo`).realText).toBe('hola amigo');
     }
   });
 });
@@ -120,14 +120,14 @@ describe('the inline emote-name stripper leaves ordinary words alone', () => {
 // 2026-10-16 (scratchpad classify-mixedcase / classify-heldout).
 describe('names and brands survive, 7TV emote names do not', () => {
   it('keeps brand and person names', () => {
-    for (const w of ['iPhone', 'eBay', 'YouTube', 'TikTok', 'PlayStation', 'PayPal', 'LeBron', 'McDonald', 'xQc', 'KaiCenat', 'GitHub', 'ChatGPT']) {
-      expect(parseKickContent(`I saw ${w} today`).realText).toBe(`I saw ${w} today`);
+    for (const w of ['iPhone', 'eBay', 'YouTube', 'TikTok', 'PlayStation', 'PayPal', 'LeBron', 'McDonald', 'iPad', 'DeVito', 'GitHub', 'ChatGPT']) {
+      expect(parseChatContent(`I saw ${w} today`).realText).toBe(`I saw ${w} today`);
     }
   });
 
   it('removes emote names typed as text', () => {
-    for (const w of ['pepeLaugh', 'catJam', 'monkaS', 'peepoHappy', 'widepeepoHappy', 'modCheck', 'xqcL', 'PogChamp', 'PepeHands', 'FeelsBadMan', 'BibleThump']) {
-      expect(parseKickContent(`so funny ${w} really`).realText).toBe('so funny really');
+    for (const w of ['pepeLaugh', 'catJam', 'monkaS', 'peepoHappy', 'widepeepoHappy', 'modCheck', 'peepoClap', 'PogChamp', 'PepeHands', 'FeelsBadMan', 'BibleThump']) {
+      expect(parseChatContent(`so funny ${w} really`).realText).toBe('so funny really');
     }
   });
 });
@@ -137,5 +137,32 @@ describe('mentionsOf', () => {
     expect(mentionsOf('@Bob merci @alice et @bob')).toEqual(['@Bob', '@alice']);
     expect(mentionsOf('mail me at a@b.com')).toEqual([]);
     expect(mentionsOf('no mention here')).toEqual([]);
+  });
+});
+
+
+describe('with the channel emote list loaded', () => {
+  afterEach(() => setChannelEmotes([]));
+
+  it('removes exactly the names of the list, case kept', () => {
+    setChannelEmotes(['KEKW', 'catJAM', 'Okayge']);
+    expect(parseChatContent('KEKW that was so funny catJAM').realText).toBe('that was so funny');
+    // Not an emote of this channel: a real word stays even when it is shaped like one.
+    expect(parseChatContent('kekw iPhone LeBron').realText).toBe('kekw iPhone LeBron');
+  });
+
+  it('no longer guesses once the list is known', () => {
+    setChannelEmotes(['KEKW']);
+    // pepeLaugh is caught by the name heuristic, which is only the fallback now.
+    expect(parseChatContent('hola pepeLaugh amigos').realText).toBe('hola pepeLaugh amigos');
+    setChannelEmotes([]);
+    expect(parseChatContent('hola pepeLaugh amigos').realText).toBe('hola amigos');
+  });
+
+  it('keeps cheermotes out', () => {
+    setChannelEmotes(['KEKW']);
+    expect(parseChatContent('Cheer100 bonne chance Kappa500').realText).toBe('bonne chance');
+    // A word that only starts like a prefix is not a cheer.
+    expect(parseChatContent('Partytime 2024').realText).toBe('Partytime 2024');
   });
 });

@@ -1,7 +1,9 @@
 import type { TextToken } from '~/shared/types';
 
-// Kick chat content uses [emote:<id>:<name>] tokens for emotes,
-// @<user> for mentions, and bare URLs for links.
+// Emotes drawn by Twitch, 7TV, BTTV or FFZ are images and never reach this text
+// (selectors.ts reads text fragments only). What does reach it: an emote name a viewer
+// without the extension sees as a word, @mentions and bare URLs. `[emote:<id>:<name>]`
+// is the composer's own markup for an emote (composeLogic).
 const EMOTE_RE = /\[emote:(\d+):([^\]]+)\]/g;
 const MENTION_RE = /(^|[\s,.!?])@([a-z0-9_]{2,32})/gi;
 const URL_RE = /\bhttps?:\/\/[^\s<>"']+/gi;
@@ -15,10 +17,28 @@ const URL_RE = /\bhttps?:\/\/[^\s<>"']+/gi;
 export const EMOTE_NAME_RE =
   /\b(?:[a-z]{2,}[A-Z][a-zA-Z0-9]*|(?:Pepe|Peepo|Pepo|Pepega|Pog|Pause|Feels|Weird|Okay|Monka|Widepeepo)[A-Z][a-zA-Z0-9]*|BibleThump|ResidentSleeper|NotLikeThis|WutFace|DansGame|SeemsGood|HeyGuys|KomodoHype|CoolCat|TriHard|BabyRage)\b/g;
 
+/**
+ * The emote names of the channel on screen, channel and global sets of 7TV, BTTV and FFZ
+ * (background/emotes). Empty until the worker answers, and then the name heuristics below
+ * are only the fallback: an exact list removes every emote and no real word.
+ */
+let channelEmotes: ReadonlySet<string> = new Set();
+export function setChannelEmotes(names: Iterable<string>): void {
+  channelEmotes = new Set(names);
+}
+
+/**
+ * Cheermotes typed as text: a global prefix and an amount (Cheer100, Kappa500). Twitch draws
+ * them as images natively, so this only catches a line read without that rendering.
+ * The prefixes are Twitch's global cheermotes.
+ */
+const CHEER_RE =
+  /(?<![\w])(?:Cheer|DoodleCheer|BibleThump|cheerwhal|Corgo|Scoops|uni|ShowLove|Party|SeemsGood|Pride|Kappa|FrankerZ|HeyGuys|DansGame|EleGiggle|TriHard|Kreygasm|4Head|SwiftRage|NotLikeThis|FailFish|VoHiYo|PJSalt|MrDestructoid|bday|RIPCheer|Shamrock|BitBoss|Streamlabs|Muxy|HolidayCheer|Goal|Anon|Charity)\d+(?![\w])/g;
+
 export interface ParsedContent {
   /** Readable text with placeholders (`:emote:`, `[link]`, `@user`). */
   plain: string;
-  /** ONLY the human words — emotes / mentions / urls removed. What we translate. */
+  /** ONLY the human words, emotes / mentions / urls removed. What we translate. */
   realText: string;
   tokens: TextToken[];
 }
@@ -30,7 +50,7 @@ interface Marker {
   plain: string;
 }
 
-export function parseKickContent(content: string): ParsedContent {
+export function parseChatContent(content: string): ParsedContent {
   const markers: Marker[] = [];
 
   for (const match of content.matchAll(EMOTE_RE)) {
@@ -101,17 +121,26 @@ export function parseKickContent(content: string): ParsedContent {
     .replace(/\s+/g, ' ')
     .trim();
   // Strip inline emote names: tokens like "namedarumajankiss2", "LUL", "KEKW",
-  // "xqcL", "pepeLaugh" that are concatenated with real text. These are typically
+  // "peepoClap", "pepeLaugh" that are concatenated with real text. These are typically
   // camelCase/PascalCase with digits, or ALL-CAPS 3+ letter words that aren't real
   // words. We strip them to recover the translatable text underneath.
-  const realText = stripInlineEmoteNames(rawReal);
+  const realText = channelEmotes.size ? stripKnownEmotes(rawReal) : stripInlineEmoteNames(rawReal);
   return { plain, realText, tokens };
 }
 
+/** Exact: the words that are an emote of this channel, and cheermotes. Case matters. */
+function stripKnownEmotes(text: string): string {
+  return text
+    .replace(CHEER_RE, ' ')
+    .split(/\s+/)
+    .filter((w) => w && !channelEmotes.has(w))
+    .join(' ');
+}
+
 /**
- * Strip words that look like emote names from extracted text.
+ * Fallback before the channel's list is known: strip words that look like emote names.
  * Patterns:
- * - camelCase/PascalCase with digits (namedarumajankiss2, xqcL, pepeLaugh)
+ * - camelCase/PascalCase with digits (namedarumajankiss2, peepoClap, pepeLaugh)
  * - ALL-CAPS 3+ letters that aren't common words (KEKW, LULW, OMEGALUL)
  * - Words starting with lowercase then uppercase mid-word (catJam, monkaS)
  * Preserves real text around them.
@@ -119,14 +148,14 @@ export function parseKickContent(content: string): ParsedContent {
 function stripInlineEmoteNames(text: string): string {
   return (
     text
-      // Mixed-case emote names (pepeLaugh, catJam, xqcL3, PogChamp, FeelsBadMan).
+      // Mixed-case emote names (pepeLaugh, catJam, peepoClap3, PogChamp, FeelsBadMan).
       //
       // This was every mixed-case word, and the brands it cost were the
       // sentence: "LeBron is the best player ever" reached the reader as "est
       // le meilleur joueur de tous les temps", "let's go to McDonald's" as
       // "allons à 's". Measured on two lists written before the rule, then on
       // two fresh ones it never saw: the old rule deleted 49 of 50 and 30 of 30
-      // brand and person names (iPhone, YouTube, PlayStation, PayPal, xQc). This
+      // brand and person names (iPhone, YouTube, PlayStation, PayPal, a streamer handle). This
       // one deletes none, and still removes 50 of 50 and 23 of 29 emote names.
       // 7TV names start with a lowercase stem of two letters or more (iPhone and
       // eBay have one); PascalCase ones are taken by family. Kept, an emote name
