@@ -416,7 +416,7 @@ Open task for kil: #147.
       another tab). Measure in a real browser: leave a channel in a background tab for 60 s, come
       back, report whether lines were lost.
       Not measured: 5 automated methods never hid the page, and a hand test is the owner's.
-      Declined once (#145), left open without urgency (#147). `pauseWhenHidden` is on by
+      Deferred by the owner on 2026-10-23 to a later version (#147). `pauseWhenHidden` is on by
       default, so a hidden tab stops translating; whether it catches up on return is unknown.
 
 ---
