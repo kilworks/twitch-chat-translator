@@ -152,7 +152,9 @@ async function inspect(tab = 'edit') {
  */
 export const LANG_CODES = Object.fromEntries(Object.keys(LISTINGS).map((l) => [l, chromeCode(l)]));
 /** Source of the in-page test for one option's text. */
-const matcher = (lang) => `((t) => new RegExp('\\u2013\\\\s*${LANG_CODES[lang]}(?![A-Za-z0-9_-])').test(t))`;
+// Hebrew: the Kick listing's picker says iw, a listing created on 2026-10-23 says he.
+const pickerCode = (lang) => (LANG_CODES[lang] === 'iw' ? '(?:he|iw)' : LANG_CODES[lang]);
+const matcher = (lang) => `((t) => new RegExp('\\u2013\\\\s*${pickerCode(lang)}(?![A-Za-z0-9_-])').test(t))`;
 
 /** Runs in the page: the description field, the language picker, the save button. */
 const LOCATE = `(() => {
@@ -547,7 +549,205 @@ async function status() {
 }
 
 const cmd = process.argv[2];
+/**
+ * create <zip>: a new item, the one thing the API cannot do. Clicks "Ajouter un élément" on the
+ * dashboard home, hands the zip to the file input through CDP (never a native dialog), and
+ * prints the new item's id once the dashboard has moved to its edit page.
+ */
+async function create(zip) {
+  if (!zip || !fs.existsSync(zip)) throw new Error(`zip not found: ${zip}`);
+  const cdp = await Cdp.open('/devconsole/');
+  const home = `https://chrome.google.com/webstore/devconsole/${PUBLISHER}`;
+  if (!(await cdp.eval('location.href')).startsWith(home)) {
+    await cdp.send('Page.navigate', { url: home });
+    await sleep(6000);
+  }
+  const clicked = await cdp.eval(`(() => {
+    // The button's words can sit in aria-label only, its text being an icon ligature.
+    const b = [...document.querySelectorAll('button, [role=button], a')].find((e) => /Ajouter un .l.ment|Add new item|New item/i.test((e.getAttribute('aria-label') ?? '') + ' ' + e.textContent) && e.getClientRects().length);
+    if (!b) return false;
+    b.click();
+    return true;
+  })()`);
+  if (!clicked) throw new Error('no "Ajouter un élément" button on the dashboard home');
+  let input = null;
+  await cdp.send('DOM.enable');
+  for (let i = 0; i < 20 && !input; i++) {
+    await sleep(500);
+    const { root } = await cdp.send('DOM.getDocument', { depth: -1, pierce: true });
+    const r = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector: 'input[type=file]' });
+    if (r.nodeId) input = r.nodeId;
+  }
+  if (!input) throw new Error('no file input appeared after the click');
+  await cdp.send('DOM.setFileInputFiles', { nodeId: input, files: [path.resolve(zip)] });
+  for (let i = 0; i < 120; i++) {
+    await sleep(1000);
+    const here = await cdp.eval('location.href');
+    const m = new RegExp(`/devconsole/${PUBLISHER}/([a-p]{32})`).exec(here);
+    if (m) {
+      console.log(`item created: ${m[1]}`);
+      cdp.close();
+      return;
+    }
+  }
+  console.log(JSON.stringify(await cdp.eval(SURVEY), null, 1));
+  cdp.close();
+  throw new Error('the dashboard did not open an item page within 2 minutes');
+}
+
+/**
+ * assets: the listing's images and category, for a first submission. Each file input is
+ * matched by the words of its own field block (icon, screenshots, small promo tile), the
+ * files go in through CDP, the category is picked by its label, then the draft is saved.
+ * Files: public/icons/icon128.png, store/chrome/images/0*.png, store/chrome/images/promo-small.png.
+ */
+async function assets() {
+  const cdp = await Cdp.open();
+  await cdp.send('Page.navigate', { url: pageUrl('edit') });
+  await sleep(7000);
+  const blocks = await cdp.eval(`(() => [...document.querySelectorAll('input[type=file]')].map((inp, i) => {
+    inp.setAttribute('data-kt-file', String(i));
+    let n = inp, text = '';
+    for (let d = 0; n && d < 8 && text.length < 40; d++, n = n.parentElement) text = (n.innerText || '').trim();
+    return { i, accept: inp.accept, multiple: inp.multiple, text: text.replace(/\\s+/g, ' ').slice(0, 120) };
+  }))()`);
+  console.log(JSON.stringify(blocks, null, 1));
+  const img = (f) => path.join(ROOT, 'store/chrome/images', f);
+  const shots = fs.readdirSync(path.join(ROOT, 'store/chrome/images')).filter((f) => /^0\d.*\.png$/.test(f)).sort().map(img);
+  // International screenshots first: localized ones only show in the language they belong to.
+  // CWS_ONLY=shots limits a rerun to them.
+  const plan = [
+    [/ic[oô]ne|icon/i, [path.join(ROOT, 'public/icons/icon128.png')]],
+    [/internationa/i, shots],
+    [/petite|small|vignette/i, [img('promo-small.png')]],
+  ].filter(([re]) => process.env.CWS_ONLY !== 'shots' || String(re).includes('internationa'));
+  await cdp.send('DOM.enable');
+  const done = [];
+  for (const [re, files] of plan) {
+    const b = blocks.find((x) => re.test(x.text) && !done.includes(x.i));
+    if (!b) {
+      console.log(`no input for ${re}`);
+      continue;
+    }
+    const { root } = await cdp.send('DOM.getDocument', { depth: -1, pierce: true });
+    const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector: `input[data-kt-file="${b.i}"]` });
+    // A single-file input takes the files one at a time, each upload clearing the input.
+    for (const f of b.multiple ? [files] : files.map((f) => [f])) {
+      await cdp.send('DOM.setFileInputFiles', { nodeId, files: f });
+      await sleep(4000);
+    }
+    done.push(b.i);
+    console.log(`${re}: ${files.length} file(s) into input ${b.i}`);
+  }
+  // Category: open the select, pick the communication entry.
+  const cat = await cdp.eval(`(async () => {
+    const sel = [...document.querySelectorAll('[role=combobox], [aria-haspopup=listbox]')].find((c) => /Cat.gorie|Category/i.test((c.getAttribute('aria-label') || '') + c.textContent));
+    if (!sel) return 'no category select';
+    sel.click();
+    await new Promise((r) => setTimeout(r, 1200));
+    const opt = [...document.querySelectorAll('[role=option]')].find((o) => /communication/i.test(o.textContent) && o.getClientRects().length);
+    if (!opt) return 'options: ' + [...document.querySelectorAll('[role=option]')].map((o) => o.textContent.trim()).slice(0, 30).join(' | ');
+    opt.click();
+    return 'picked ' + opt.textContent.trim();
+  })()`);
+  console.log(`category: ${cat}`);
+  await sleep(1500);
+  const saved = await cdp.eval(`(() => { const b = [...document.querySelectorAll('button')].find((e) => /Enregistrer le brouillon|Save draft/i.test(e.textContent)); if (!b || b.disabled) return 'save button ' + (b ? 'disabled' : 'missing'); b.click(); return 'clicked'; })()`);
+  console.log(`save: ${saved}`);
+  await sleep(6000);
+  cdp.close();
+}
+
+/** Every checkbox, radio and text input of the Privacy tab with the words of its own label. */
+const PRIVACY_SURVEY = `(() => [...document.querySelectorAll('input[type=checkbox], input[type=radio], input[type=text], input[type=url], input:not([type]), textarea')].filter((e) => e.getClientRects().length || e.type === 'checkbox' || e.type === 'radio').map((e, i) => {
+  e.setAttribute('data-kt-p', String(i));
+  let n = e, text = '';
+  for (let d = 0; n && d < 6 && text.length < 8; d++, n = n.parentElement) text = (n.innerText || '').trim();
+  // A text field's nearest block is its counter ("0/1 000"): its own label says what it is.
+  const own = (e.getAttribute('aria-label') || e.labels?.[0]?.textContent || '').trim();
+  if (own) text = own + ' ' + text;
+  return { i, type: e.type || e.tagName, checked: e.checked ?? null, len: (e.value || '').length, text: text.replace(/\\s+/g, ' ').slice(0, 90) };
+}))()`;
+
+/**
+ * Writes `text` into the element tagged data-kt-p=i the way `justify` does and the form
+ * notices: a real mouse click in the field, select, Delete, then insertText. Focus set from
+ * script plus synthetic char events left the form unaware (nothing saved).
+ */
+async function typeInto(cdp, i, text) {
+  const at = await cdp.eval(`(() => { const e = document.querySelector('[data-kt-p="${i}"]'); e.scrollIntoView({ block: 'center' }); const r = e.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`);
+  await sleep(300);
+  await click(cdp, at);
+  await cdp.eval(`document.querySelector('[data-kt-p="${i}"]').select()`);
+  await cdp.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Delete', code: 'Delete', windowsVirtualKeyCode: 46 });
+  await cdp.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Delete', code: 'Delete', windowsVirtualKeyCode: 46 });
+  await cdp.send('Input.insertText', { text });
+  await sleep(300);
+}
+
+/**
+ * privacy [--survey]: the Privacy tab of a first submission. Texts from
+ * store/chrome/dashboard (single purpose, permission justifications), remote code answered
+ * "no", the data categories and the three certifications of data-usage.txt, the privacy
+ * policy URL on raw.githubusercontent.com (the blob page answers 503 to Google's checker).
+ */
+async function privacy(surveyOnly) {
+  const cdp = await Cdp.open();
+  await cdp.send('Page.navigate', { url: pageUrl('privacy') });
+  await sleep(7000);
+  const fields = await cdp.eval(PRIVACY_SURVEY);
+  if (surveyOnly) {
+    console.log(JSON.stringify(fields, null, 1));
+    cdp.close();
+    return;
+  }
+  const { byName, host } = justificationTexts();
+  const purpose = fs.readFileSync(path.join(ROOT, 'store/chrome/dashboard/single-purpose.txt'), 'utf8').replace(/\s+/g, ' ').trim();
+  const find = (re, type) => fields.find((f) => (!type || f.type === type) && re.test(f.text));
+  const texts = [
+    [/objectif unique|single purpose/i, purpose],
+    [/autorisation storage/i, byName.storage],
+    [/autorisation alarms/i, byName.alarms],
+    [/autorisation scripting/i, byName.scripting],
+    [/Autorisation d'acc|host permission/i, host],
+  ];
+  for (const [re, text] of texts) {
+    const f = find(re, 'textarea');
+    if (!f || !text) {
+      console.log(`no field or text for ${re}`);
+      continue;
+    }
+    await typeInto(cdp, f.i, text);
+    console.log(`typed ${text.length} characters into "${f.text.slice(0, 40)}"`);
+  }
+  const click = (i) => cdp.eval(`(() => { const e = document.querySelector('[data-kt-p="${i}"]'); e.scrollIntoView({ block: 'center' }); e.click(); return e.checked; })()`);
+  const remoteNo = fields.find((f) => f.type === 'radio' && /^Non\b|^No\b/i.test(f.text) && /distant|remote/i.test(f.text)) ?? fields.find((f) => f.type === 'radio' && /^Non\b|^No\b/i.test(f.text));
+  if (remoteNo && !remoteNo.checked) console.log(`remote code "no": ${await click(remoteNo.i)}`);
+  for (const re of [/authentification|authentication/i, /communications personnelles|personal communications/i, /contenu du site|website content/i, /ne vends pas|not being sold|tiers/i, /sans rapport|unrelated/i, /d.terminer leur|creditworthiness/i]) {
+    const f = find(re, 'checkbox');
+    if (!f) console.log(`no checkbox for ${re}`);
+    else if (!f.checked) console.log(`checked "${f.text.slice(0, 50)}": ${await click(f.i)}`);
+  }
+  const url = fields.find((f) => f.type !== 'textarea' && f.type !== 'checkbox' && f.type !== 'radio' && /confidentialit|privacy/i.test(f.text));
+  if (url) {
+    await typeInto(cdp, url.i, 'https://raw.githubusercontent.com/kilworks/twitch-chat-translator/master/PRIVACY.md');
+    console.log('privacy policy URL typed');
+  } else console.log('no privacy URL field');
+  await sleep(1000);
+  const saved = await cdp.eval(`(() => { const b = [...document.querySelectorAll('button')].find((e) => /Enregistrer le brouillon|Save draft/i.test(e.textContent)); if (!b || b.disabled) return 'save button ' + (b ? 'disabled' : 'missing'); b.click(); return 'clicked'; })()`);
+  console.log(`save: ${saved}`);
+  await sleep(6000);
+  await cdp.send('Page.navigate', { url: pageUrl('privacy') });
+  await sleep(7000);
+  const after = await cdp.eval(PRIVACY_SURVEY);
+  console.log(`read back: ${after.filter((f) => f.type === 'textarea' && f.len > 0).length} text fields filled, ${after.filter((f) => f.checked).length} boxes ticked`);
+  cdp.close();
+}
+
 if (cmd === 'links') await links();
+else if (cmd === 'privacy') await privacy(process.argv.includes('--survey'));
+else if (cmd === 'assets') await assets();
+else if (cmd === 'create') await create(process.argv[3]);
 else if (cmd === 'status') await status();
 else if (cmd === 'justify') await justify(process.argv.includes('--dry'));
 else if (cmd === 'why') await why();

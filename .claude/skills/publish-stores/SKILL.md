@@ -245,3 +245,49 @@ kil counted more than four passes over the 42 Chrome languages in one day. Each 
 6. **Translation at scale (43 languages, 84 catalogues).** Sonnet agents, three languages each, one brief file plus a checker script in the scratchpad (`check-ui.mjs`, `check-chat.mjs`: exact keys, placeholders, no dash, not left in English). What went wrong: a session limit killed half of them mid-file (state on disk read back with the checkers, the rest relaunched); agents overwrote each other's helper scripts in the shared scratchpad (now: helpers named with their language codes); German shipped the chip as "Local" because its agent died before aligning it (the coverage test's English-identical list caught it).
 7. **AMO "33/34", the fa summary.** AMO drops Persian's zero-width non-joiner from the summary too, not only from the description; the listing was stored. Both readbacks (`amo.mjs`, `verify.mjs`) now set ZWNJ aside in the summary. A red AMO step with `POST .../versions/ -> 201` and one locale "differentes" is this class: compare that locale with the API before rerunning anything.
 8. **Submission checked on the dashboard, not assumed.** `cws-listing.mjs status` reads the "État" tab and the submit button. On 3.2.0, pasting before the tag and letting the workflow publish gave "en attente d'examen" with the button greyed out: no click needed.
+
+## Journal: first publication of a new product, Twitch 1.0.0, 2026-10-23
+
+Everything above assumed listings that already exist. A first publication needs four things no
+release command did. What worked, in order, and the traps:
+
+**Identity.** One publisher account serves both products, so the Kick credentials are reused by
+path, never copied: `CWS_SA_KEY` and `CWS_PUBLISHER_ID` (from `~/.config/kick-chat-translator/`)
+for `cws.mjs`, `AMO_API_KEY` for `amo.mjs`, and `CWS_PROFILE` pointing `cws-listing.mjs` at the
+dashboard profile that is already signed in. `cws.mjs` has no item default on purpose: the copy
+it came from carried the Kick item id, and a tag would have replaced the Kick extension.
+
+**AMO, all by API.** `amo.mjs create <firefox.zip> <source.zip> <amo-notes.json> <amo-listing.json>`
+uploads and validates, then `POST /addons/addon/` creates the add-on with its first version
+(`categories: ['social-communication']`, `license: MIT`), attaches the source with a multipart
+PATCH, sets the notes; `listing` then 34/34. Traps: the obvious slug was another developer's
+(check `GET /addons/addon/<slug>/` first, 200 means taken); slugs take 30 characters at most
+(`twitch-chat-translator-by-pkkls` is 31, so `twitch-chat-translator-pkkls`); reviewer notes take
+3000 (the template was 3174 once filled); `amo.mjs notes` re-sends notes to the latest version
+without a new upload. The reviewer notes name a tag: push it before submitting, or the reviewer
+cannot rebuild.
+
+**Chrome: the item is created in the dashboard.** The API cannot create an item. With the
+debug browser on the signed-in profile (`launch`; if Google asks to confirm the identity, that is
+the person's step):
+1. `create <zip>`: clicks "Ajouter un élément" (its words are in `aria-label`, its text is an
+   icon), hands the zip to the file input through `DOM.setFileInputFiles`, prints the new id.
+2. `paste` then `verify` with `CWS_ITEM_ID`: 42/42. Hebrew is `he` in a new listing's picker,
+   `iw` in the Kick one: the picker matches both. A first `verify` read 13 languages as "not
+   offered" right after a reload; the second read 42/42 with nothing changed.
+3. `assets`: icon (`public/icons/icon128.png`), five screenshots into the INTERNATIONAL field
+   (the localized one only shows in its own language), small promo tile 440x280, category
+   Communication. Screenshots come from `test/e2e/store-shots-fixture.mjs` (fixture, invented
+   names), 24-bit PNG without alpha; the tile from `scripts/stores/store-images.mjs`.
+4. `privacy`: single purpose, the four justifications, remote code "no", the data categories and
+   three certifications of `data-usage.txt`, privacy URL on raw.githubusercontent.com. Each text
+   field takes 1000 characters, host blocks joined (it was 2222; `audit_fiche.py` now checks).
+   The form ignores text written from script with synthetic char events; what it keeps is a real
+   mouse click in the field, select, Delete, then `Input.insertText` (what `justify` does). Read
+   back after a reload: 5 text fields, 7 boxes.
+5. `why` lists what still blocks; empty means ready. `cws.mjs publish` answered PENDING_REVIEW and
+   `status` read "En attente d'examen" with the submit button greyed out.
+
+**Looking at the images is a step.** The README screenshots in the repository were still the Kick
+ones (green, "Kick Chat Translator v3.0.2"): the gate that checks the harness can make them does
+not check that the committed copies were replaced. Regenerate and copy them before any listing.

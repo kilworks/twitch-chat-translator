@@ -34,43 +34,26 @@ from the page's world, and the content script's isolated world cannot see it. Th
 function takes the translated text as its only argument, in the frame the user is
 typing in; nothing is evaluated from a string and nothing is fetched.
 
-Host permissions: https://www.twitch.tv/*, https://m.twitch.tv/*,
-https://dashboard.twitch.tv/*
-The only sites the extension acts on. The content script reads chat messages
-there, renders their translations in place, writes the translation into the
-message box when the user inserts it, and adds the language control to the chat's
-own action bar. www.twitch.tv covers live chat, popout, embed, moderator view and
-VOD and clip replay, m.twitch.tv is the mobile site, and dashboard.twitch.tv is
-the stream manager, whose chat is the same chat.
+Host permissions: www.twitch.tv, m.twitch.tv, dashboard.twitch.tv
+The only sites it acts on: it reads chat, shows translations in place and writes a
+translation into the message box when the user inserts it.
 
-Host permission: https://gql.twitch.tv/*
-One POST per channel opened, answered from a cache for five minutes, asking
-Twitch's own interface for the channel's broadcast language and its numeric id.
-The request carries the channel's login name (on a VOD page, the video's number)
-and the Client-Id the Twitch page itself uses, read from the page at runtime. It
-does not carry the user's Twitch login. The language tells the compose preview
-which language to write in, and the id is what the emote lists below are keyed by.
+Host permission: gql.twitch.tv
+One cached request per channel for its broadcast language and numeric id, with the
+Client-Id the page itself uses. Never the user's login.
 
-Host permissions: https://7tv.io/*, https://api.betterttv.net/*,
-https://api.frankerfacez.com/*
-Reads the emote names of the channel and the global ones from 7TV, BetterTTV and
-FrankerFaceZ, so a viewer who does not run those extensions never has an emote
-name translated as if it were a word. Only the names are kept, in memory, for a
-few minutes. The request carries the channel's numeric Twitch id and nothing else.
+Host permissions: 7tv.io, api.betterttv.net, api.frankerfacez.com
+The channel's emote names, so they are never translated. Names only, in memory;
+the request carries the channel id and nothing else.
 
-Host permission: https://api.github.com/*
-A single GET to the project's own releases/latest, at most every six hours, so a
-copy installed by hand can tell the user a newer version exists. A copy installed
-from the store skips it. No query parameters, no body, no header identifying the
-user, and nothing about their browsing is sent with it.
+Host permission: api.github.com
+One GET to this project's releases/latest every six hours, only in copies
+installed by hand, to announce a newer version.
 
 Host permissions: translate.googleapis.com, api.deepl.com, api-free.deepl.com,
 api.mymemory.translated.net, lingva.ml, lingva.lunar.icu
-The translation engines the user picks between. Only the chat text being
-translated (and the draft the user is typing, while the compose preview is on) is
-sent, and only to the engine selected at that moment. On Chrome 138 and later the
-built-in on-device translator can be used instead, in which case no chat text
-leaves the machine at all.
+The translation engines the user picks: only the text being translated goes to
+the engine selected at that moment.
 
 Remote code
 None. All JavaScript ships inside the package. Nothing is fetched and executed

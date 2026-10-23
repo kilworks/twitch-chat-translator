@@ -82,6 +82,23 @@ for perm in list(manifeste.get('permissions', [])) + list(manifeste.get('host_pe
         echecs.append(f'permission livree sans justification dans la fiche : {perm}')
 comptes['permission justifiee'] = justifiees
 
+# Chaque champ de l'onglet Confidentialite prend 1000 caracteres, et les blocs
+# d'hotes y vont ensemble, comme cws-listing.mjs les joint. La premiere fiche
+# Twitch a refuse 2222 caracteres d'hotes, que rien ici ne mesurait.
+blocs = [b.strip() for b in re.split(r'\n\s*\n', bloc) if b.strip()]
+corps = lambda b: ' '.join(b.split('\n')[1:]).split()
+hotes = [re.sub(r'^host permissions?:\s*', '', b.split('\n')[0], flags=re.I) + ': ' + ' '.join(corps(b))
+         for b in blocs if re.match(r'^host permissions?:', b.split('\n')[0], re.I)]
+champs = {'hotes': '\n\n'.join(hotes)}
+champs.update({b.split('\n')[0].strip(): ' '.join(corps(b)) for b in blocs if re.fullmatch(r'[a-z]+', b.split('\n')[0].strip())})
+OBJET = 'store/chrome/dashboard/single-purpose.txt'
+if os.path.exists(OBJET):
+    champs['objet unique'] = ' '.join(lire(OBJET).split())
+for nom, texte in champs.items():
+    if len(texte) > 1000:
+        echecs.append(f'onglet Confidentialite, {nom} : {len(texte)} caracteres pour 1000')
+comptes['champ Confidentialite'] = len(champs)
+
 # La politique de confidentialite publique doit nommer chaque permission que
 # le paquet demande. 3.0.2 a ajoute `scripting` dans le manifeste et la fiche,
 # pas dans PRIVACY.md : rien ne l'a vu avant la sonde preflight.
