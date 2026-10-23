@@ -1,6 +1,6 @@
 {
   "name": "twitch-chat-translator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Free live chat translator for Twitch: read any stream's chat in your language and reply in the channel's. No account, no setup.",
   "license": "MIT",
