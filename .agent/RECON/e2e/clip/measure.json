@@ -1,6 +1,6 @@
 {
- "date": "2026-10-22",
- "at": "2026-10-22T21:52:06.820Z",
+ "date": "2026-10-23",
+ "at": "2026-10-23T00:25:27.867Z",
  "target": "ja",
  "cells": [
   {
@@ -8,22 +8,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 103
+     "ch": 26,
+     "adds": 6
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 56,
-   "marked": 51,
-   "translations": 25,
+   "rows": 46,
+   "marked": 45,
+   "translations": 22,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -34,27 +30,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "うーん、すごくいいですね！⟳",
-    "チェドゥ⟳",
-    "くそ⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     23
-    ],
-    [
-     "Not translated: it is only chat slang",
-     2
+     20
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
+     2
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
      1
     ]
    ],
-   "stillAttached10s": 25,
+   "stillAttached10s": 22,
    "after10s": {
-    "onScreen": 25,
+    "onScreen": 22,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -72,22 +68,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 104
+     "ch": 26,
+     "adds": 6
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 56,
-   "marked": 51,
-   "translations": 25,
+   "rows": 46,
+   "marked": 45,
+   "translations": 22,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -98,27 +90,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "うーん、すごくいいですね！⟳",
-    "チェドゥ⟳",
-    "くそ⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     23
-    ],
-    [
-     "Not translated: it is only chat slang",
-     2
+     20
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
+     2
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
      1
     ]
    ],
-   "stillAttached10s": 25,
+   "stillAttached10s": 22,
    "after10s": {
-    "onScreen": 25,
+    "onScreen": 22,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -136,22 +128,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 115
+     "ch": 26,
+     "adds": 13
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 29,
-   "marked": 26,
-   "translations": 13,
+   "rows": 46,
+   "marked": 44,
+   "translations": 22,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -162,27 +150,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "あなたはクレイジーに正確に見えます、それは不気味です⟳",
-    "エミはエミに似てない⟳",
-    "TEチェダ⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     10
+     19
     ],
     [
-     "Not translated: the translation came back the same as the original",
+     "Not translated: it is only emoji, symbols or laughter",
      2
     ],
     [
-     "Not translated: it is only chat slang",
+     "Not translated: the translation came back the same as the original",
      1
     ]
    ],
-   "stillAttached10s": 13,
+   "stillAttached10s": 22,
    "after10s": {
-    "onScreen": 13,
+    "onScreen": 22,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -200,22 +188,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 104
+     "ch": 26,
+     "adds": 6
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 56,
-   "marked": 51,
-   "translations": 25,
+   "rows": 46,
+   "marked": 44,
+   "translations": 22,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -226,27 +210,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "うーん、すごくいいですね！⟳",
-    "チェドゥ⟳",
-    "くそ⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     23
-    ],
-    [
-     "Not translated: it is only chat slang",
-     2
+     19
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
+     2
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
      1
     ]
    ],
-   "stillAttached10s": 25,
+   "stillAttached10s": 22,
    "after10s": {
-    "onScreen": 25,
+    "onScreen": 22,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -264,22 +248,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 115
+     "ch": 26,
+     "adds": 46
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 56,
-   "marked": 32,
-   "translations": 25,
+   "rows": 46,
+   "marked": 28,
+   "translations": 19,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -290,27 +270,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "うーん、すごくいいですね！⟳",
-    "チェドゥ⟳",
-    "くそ⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
-     "Not translated: it is shorter than your 2 character minimum",
+     "Not translated: the translation came back the same as the original",
      4
     ],
     [
-     "Not translated: it is only chat slang",
-     2
+     "Not translated: it is shorter than your 2 character minimum",
+     3
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
-     1
+     2
     ]
    ],
-   "stillAttached10s": 25,
+   "stillAttached10s": 19,
    "after10s": {
-    "onScreen": 25,
+    "onScreen": 19,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -328,22 +308,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 104
+     "ch": 26,
+     "adds": 6
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 56,
-   "marked": 51,
-   "translations": 25,
+   "rows": 46,
+   "marked": 44,
+   "translations": 22,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -354,27 +330,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "うーん、すごくいいですね！⟳",
-    "チェドゥ⟳",
-    "くそ⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     23
-    ],
-    [
-     "Not translated: it is only chat slang",
-     2
+     19
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
+     2
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
      1
     ]
    ],
-   "stillAttached10s": 25,
+   "stillAttached10s": 22,
    "after10s": {
-    "onScreen": 25,
+    "onScreen": 22,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -392,22 +368,18 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
-     "adds": 0
-    },
-    {
-     "ch": 10,
-     "adds": 115
+     "ch": 26,
+     "adds": 18
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 29,
-   "marked": 26,
-   "translations": 14,
+   "rows": 46,
+   "marked": 44,
+   "translations": 22,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -418,27 +390,27 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "完全に変身した⟳",
-    "あなたはクレイジーに正確に見えます、それは不気味です⟳",
-    "エミはエミに似てない⟳"
+    "わかりました...⟳",
+    "なんという狙いだ⟳",
+    "何はははは⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     10
+     19
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     2
     ],
     [
      "Not translated: the translation came back the same as the original",
      1
-    ],
-    [
-     "Not translated: it is only chat slang",
-     1
     ]
    ],
-   "stillAttached10s": 14,
+   "stillAttached10s": 22,
    "after10s": {
-    "onScreen": 14,
+    "onScreen": 22,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
@@ -456,22 +428,22 @@
    "surface": "clip",
    "tried": [
     {
-     "ch": 34,
+     "ch": 26,
      "adds": 0
     },
     {
-     "ch": 10,
-     "adds": 114
+     "ch": 7,
+     "adds": 106
     }
    ],
    "targetSet": true,
-   "channel": "ch10",
+   "channel": "ch7",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 56,
-   "marked": 31,
-   "translations": 25,
+   "rows": 46,
+   "marked": 34,
+   "translations": 33,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -482,27 +454,19 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "うーん、すごくいいですね！⟳",
-    "チェドゥ⟳",
-    "くそ⟳"
+    "おお⟳",
+    "自分⟳",
+    "あよ⟳"
    ],
    "reasons": [
-    [
-     "Not translated: it is shorter than your 2 character minimum",
-     3
-    ],
-    [
-     "Not translated: it is only chat slang",
-     2
-    ],
     [
      "Not translated: it is only emoji, symbols or laughter",
      1
     ]
    ],
-   "stillAttached10s": 25,
+   "stillAttached10s": 33,
    "after10s": {
-    "onScreen": 25,
+    "onScreen": 28,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,

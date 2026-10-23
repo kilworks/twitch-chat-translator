@@ -1,6 +1,6 @@
 {
- "date": "2026-10-22",
- "at": "2026-10-22T21:52:12.519Z",
+ "date": "2026-10-23",
+ "at": "2026-10-23T00:25:30.110Z",
  "target": "ja",
  "cells": [
   {
@@ -8,18 +8,18 @@
    "surface": "vod",
    "tried": [
     {
-     "ch": 34,
-     "adds": 21
+     "ch": 26,
+     "adds": 43
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 35,
-   "marked": 35,
-   "translations": 5,
+   "rows": 36,
+   "marked": 36,
+   "translations": 11,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -30,28 +30,28 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "スポンサー⟳",
-    "！広告⟳",
-    "スポンサー⟳"
+    "HAこんにちは。⟳",
+    "ネグリトス・フアンの私の音楽はどこですか⟳",
+    "一週間後、フアン、ありがとう⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     3
+     13
     ]
    ],
    "stillAttached10s": 0,
    "after10s": {
     "onScreen": 0,
     "missing": 0,
-    "trimmed": 35,
+    "trimmed": 36,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 212,
-    "p50": 1040,
-    "p90": 3125
+    "n": 78,
+    "p50": 1338,
+    "p90": 3033
    },
    "pass": true
   },
@@ -60,18 +60,18 @@
    "surface": "vod",
    "tried": [
     {
-     "ch": 34,
-     "adds": 22
+     "ch": 26,
+     "adds": 27
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 49,
-   "marked": 45,
-   "translations": 45,
+   "rows": 33,
+   "marked": 18,
+   "translations": 16,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -82,23 +82,28 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "スポンサーあり⟳",
-    "スポンサーは何ですか スポンサーは何ですか スポンサーは何ですか⟳",
-    "こんにちはスープ⟳"
+    "よかった⟳",
+    "明日もGTA SAが開催されますように⟳",
+    "真実⟳"
    ],
-   "reasons": [],
+   "reasons": [
+    [
+     "Not translated: the translation came back the same as the original",
+     2
+    ]
+   ],
    "stillAttached10s": 0,
    "after10s": {
-    "onScreen": 1,
+    "onScreen": 0,
     "missing": 0,
-    "trimmed": 49,
+    "trimmed": 33,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 267,
-    "p50": 87,
-    "p90": 721
+    "n": 64,
+    "p50": 78,
+    "p90": 1665
    },
    "pass": true
   },
@@ -107,18 +112,18 @@
    "surface": "vod",
    "tried": [
     {
-     "ch": 34,
-     "adds": 21
+     "ch": 26,
+     "adds": 45
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 55,
-   "marked": 55,
-   "translations": 15,
+   "rows": 48,
+   "marked": 48,
+   "translations": 26,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -129,28 +134,32 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "ああ、神様⟳",
-    "スポンサーは何ですか⟳",
-    "AUこんにちは⟳"
+    "HAこんにちは。⟳",
+    "ネグリトス・フアンの私の音楽はどこですか⟳",
+    "一週間後、フアン、ありがとう⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     8
+     20
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     2
     ]
    ],
-   "stillAttached10s": 0,
+   "stillAttached10s": 3,
    "after10s": {
-    "onScreen": 1,
+    "onScreen": 3,
     "missing": 0,
-    "trimmed": 55,
+    "trimmed": 42,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 126,
-    "p50": 82,
-    "p90": 2012
+    "n": 84,
+    "p50": 84,
+    "p90": 1706
    },
    "pass": true
   },
@@ -159,18 +168,18 @@
    "surface": "vod",
    "tried": [
     {
-     "ch": 34,
-     "adds": 22
+     "ch": 26,
+     "adds": 57
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
    "rows": 49,
-   "marked": 49,
-   "translations": 45,
+   "marked": 48,
+   "translations": 27,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -181,173 +190,21 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "スポンサーあり⟳",
-    "スポンサーは何ですか スポンサーは何ですか スポンサーは何ですか⟳",
-    "こんにちはスープ⟳"
+    "すべて黒、FA のカリギュラを参照⟳",
+    "sergiyeezy は 5 回連続でストリーミングを視聴し、連続視聴回数を記録しました。クチュルフレト テ キエロ⟳",
+    "お尻に「怒り」と書かれたタトゥーが入っているのですが、かがむと「聞こえます」と書かれています。⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     4
-    ]
-   ],
-   "stillAttached10s": 0,
-   "after10s": {
-    "onScreen": 0,
-    "missing": 0,
-    "trimmed": 49,
-    "repeatsAfterTrim": 0,
-    "repeatReasons": []
-   },
-   "latencyMs": {
-    "n": 223,
-    "p50": 215,
-    "p90": 2194
-   },
-   "pass": true
-  },
-  {
-   "config": "7tv+bttv",
-   "surface": "vod",
-   "tried": [
-    {
-     "ch": 34,
-     "adds": 20
-    }
-   ],
-   "targetSet": true,
-   "channel": "ch34",
-   "mounted": true,
-   "bar": true,
-   "barInPanel": true,
-   "rows": 55,
-   "marked": 47,
-   "translations": 46,
-   "outsideRows": 0,
-   "rowsWithTwo": 0,
-   "families": [
-    "7tv"
-   ],
-   "errors": 0,
-   "scheme": "dark",
-   "chatTheme": null,
-   "minContrast": 11.06,
-   "sample": [
-    "騒ぎを感じます。⟳",
-    "ああ、神様⟳",
-    "スポンサー王は何ですか⟳"
-   ],
-   "reasons": [
-    [
-     "Not translated: the translation came back the same as the original",
-     1
-    ]
-   ],
-   "stillAttached10s": 0,
-   "after10s": {
-    "onScreen": 1,
-    "missing": 0,
-    "trimmed": 55,
-    "repeatsAfterTrim": 0,
-    "repeatReasons": []
-   },
-   "latencyMs": {
-    "n": 228,
-    "p50": 101,
-    "p90": 3033
-   },
-   "pass": true
-  },
-  {
-   "config": "7tv+ffz",
-   "surface": "vod",
-   "tried": [
-    {
-     "ch": 34,
-     "adds": 22
-    }
-   ],
-   "targetSet": true,
-   "channel": "ch34",
-   "mounted": true,
-   "bar": true,
-   "barInPanel": true,
-   "rows": 42,
-   "marked": 38,
-   "translations": 30,
-   "outsideRows": 0,
-   "rowsWithTwo": 0,
-   "families": [
-    "7tv"
-   ],
-   "errors": 0,
-   "scheme": "dark",
-   "chatTheme": null,
-   "minContrast": 11.06,
-   "sample": [
-    "スポンサーのこととオリジナルのジョークを言ったら本当に面白いでしょう⟳",
-    "サンドレスはいつ着る予定ですか、知りたいのですが⟳",
-    "今日のスポンサーは誰ですか⟳"
-   ],
-   "reasons": [
-    [
-     "Not translated: the translation came back the same as the original",
-     1
-    ]
-   ],
-   "stillAttached10s": 0,
-   "after10s": {
-    "onScreen": 1,
-    "missing": 0,
-    "trimmed": 42,
-    "repeatsAfterTrim": 0,
-    "repeatReasons": []
-   },
-   "latencyMs": {
-    "n": 263,
-    "p50": 83,
-    "p90": 2382
-   },
-   "pass": true
-  },
-  {
-   "config": "bttv+ffz",
-   "surface": "vod",
-   "tried": [
-    {
-     "ch": 34,
-     "adds": 22
-    }
-   ],
-   "targetSet": true,
-   "channel": "ch34",
-   "mounted": true,
-   "bar": true,
-   "barInPanel": true,
-   "rows": 49,
-   "marked": 49,
-   "translations": 23,
-   "outsideRows": 0,
-   "rowsWithTwo": 0,
-   "families": [
-    "replay"
-   ],
-   "errors": 0,
-   "scheme": "dark",
-   "chatTheme": null,
-   "minContrast": 11.06,
-   "sample": [
-    "スポンサーあり⟳",
-    "スポンサーは何ですか スポンサーは何ですか スポンサーは何ですか⟳",
-    "こんにちはスープ⟳"
-   ],
-   "reasons": [
-    [
-     "Not translated: it is shorter than your 2 character minimum",
-     4
+     15
     ],
     [
      "Not translated: the translation came back the same as the original",
+     4
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
      2
     ]
    ],
@@ -360,29 +217,29 @@
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 202,
-    "p50": 92,
-    "p90": 1682
+    "n": 71,
+    "p50": 84,
+    "p90": 93
    },
    "pass": true
   },
   {
-   "config": "all",
+   "config": "7tv+bttv",
    "surface": "vod",
    "tried": [
     {
-     "ch": 34,
-     "adds": 22
+     "ch": 26,
+     "adds": 43
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 53,
-   "marked": 48,
-   "translations": 41,
+   "rows": 50,
+   "marked": 31,
+   "translations": 25,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -393,28 +250,208 @@
    "chatTheme": null,
    "minContrast": 11.06,
    "sample": [
-    "スポンサーのこととオリジナルのジョークを言ったら本当に面白いでしょう⟳",
-    "サンドレスはいつ着る予定ですか、知りたいのですが⟳",
-    "今日のスポンサーは誰ですか⟳"
+    "HAこんにちは。⟳",
+    "YO電話⟳",
+    "emmanuel392 は Tier 1 で購読しました。購読期間は 13 か月です。⟳"
    ],
    "reasons": [
     [
      "Not translated: the translation came back the same as the original",
+     3
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
      1
     ]
    ],
-   "stillAttached10s": 0,
+   "stillAttached10s": 2,
    "after10s": {
     "onScreen": 2,
     "missing": 0,
-    "trimmed": 53,
+    "trimmed": 44,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 213,
-    "p50": 126,
-    "p90": 2014
+    "n": 49,
+    "p50": 79,
+    "p90": 2012
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+ffz",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 26,
+     "adds": 39
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch26",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 54,
+   "marked": 35,
+   "translations": 27,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "本当に醜くなってしまう⟳",
+    "[ファイナル1/2]⟳",
+    "するめはプライムに登録しました。彼らは 20 か月間購読しており、現在は 14 か月連続購読中です。ブエナス ジュアアア"
+   ],
+   "reasons": [
+    [
+     "Not translated: the translation came back the same as the original",
+     4
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ],
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     1
+    ]
+   ],
+   "stillAttached10s": 5,
+   "after10s": {
+    "onScreen": 5,
+    "missing": 0,
+    "trimmed": 43,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 39,
+    "p50": 85,
+    "p90": 1685
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 26,
+     "adds": 44
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch26",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 47,
+   "marked": 44,
+   "translations": 25,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "replay"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "HAこんにちは。⟳",
+    "うーん⟳",
+    "emmanuel392 は Tier 1 で購読しました。購読期間は 13 か月です。⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is shorter than your 2 character minimum",
+     15
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     3
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
+    ]
+   ],
+   "stillAttached10s": 2,
+   "after10s": {
+    "onScreen": 2,
+    "missing": 0,
+    "trimmed": 44,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 35,
+    "p50": 93,
+    "p90": 2010
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "surface": "vod",
+   "tried": [
+    {
+     "ch": 26,
+     "adds": 17
+    }
+   ],
+   "targetSet": true,
+   "channel": "ch26",
+   "mounted": true,
+   "bar": true,
+   "barInPanel": true,
+   "rows": 21,
+   "marked": 17,
+   "translations": 15,
+   "outsideRows": 0,
+   "rowsWithTwo": 0,
+   "families": [
+    "7tv"
+   ],
+   "errors": 0,
+   "scheme": "dark",
+   "chatTheme": null,
+   "minContrast": 11.06,
+   "sample": [
+    "サンアンドラスが終わり、私は自由な日を過ごします（アルゼンチンでは非労働日です）⟳",
+    "食べ終わった:c⟳",
+    "それはまっすぐに来る⟳"
+   ],
+   "reasons": [
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     2
+    ]
+   ],
+   "stillAttached10s": 15,
+   "after10s": {
+    "onScreen": 15,
+    "missing": 0,
+    "trimmed": 0,
+    "repeatsAfterTrim": 0,
+    "repeatReasons": []
+   },
+   "latencyMs": {
+    "n": 65,
+    "p50": 85,
+    "p90": 115
    },
    "pass": true
   }

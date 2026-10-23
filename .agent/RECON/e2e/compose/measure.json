@@ -1,26 +1,151 @@
 {
- "date": "2026-10-22",
- "at": "2026-10-22T23:20:22.708Z",
+ "date": "2026-10-23",
+ "at": "2026-10-23T00:50:05.885Z",
  "cells": [
   {
-   "config": "bttv",
-   "channel": "ch34",
+   "config": "native",
+   "channel": "ch26",
    "a": {
     "typed": "今日はとても楽しい配信で",
-    "preview": "Today's broadcast is very enjoyable, tha",
-    "boxAfterTab": "Today's broadcast is very enjoyable, tha",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
     "inserted": true,
-    "insertMs": 2994
+    "insertMs": 6
+   },
+   "b": {
+    "before": "Kap",
+    "after": "cap",
+    "completed": false,
+    "previewWas": "ready"
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 67
    },
    "b": {
     "before": "Kap",
     "after": "KappaCool",
     "completed": true,
-    "previewWas": "hidden"
+    "previewWas": "ready"
    },
-   "pass": false,
-   "why": "the translation took 2994 ms to appear after Tab"
+   "pass": true
+  },
+  {
+   "config": "bttv",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 66
+   },
+   "b": {
+    "before": "Kap",
+    "after": "KappaCool",
+    "completed": true,
+    "previewWas": "ready"
+   },
+   "pass": true
+  },
+  {
+   "config": "ffz",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 6
+   },
+   "b": {
+    "before": "Kap",
+    "after": "cap",
+    "completed": false,
+    "previewWas": "ready"
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+bttv",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 70
+   },
+   "b": {
+    "before": "Kap",
+    "after": "KappaCool",
+    "completed": true,
+    "previewWas": "ready"
+   },
+   "pass": true
+  },
+  {
+   "config": "7tv+ffz",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 65
+   },
+   "b": {
+    "before": "Kap",
+    "after": "KappaCool",
+    "completed": true,
+    "previewWas": "ready"
+   },
+   "pass": true
+  },
+  {
+   "config": "bttv+ffz",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 66
+   },
+   "b": {
+    "before": "Kap",
+    "after": "KappaCool",
+    "completed": true,
+    "previewWas": "ready"
+   },
+   "pass": true
+  },
+  {
+   "config": "all",
+   "channel": "ch26",
+   "a": {
+    "typed": "今日はとても楽しい配信で",
+    "preview": "La transmisión de hoy es muy amena, grac",
+    "boxAfterTab": "La transmisión de hoy es muy amena, grac",
+    "inserted": true,
+    "insertMs": 65
+   },
+   "b": {
+    "before": "Kap",
+    "after": "KappaCool",
+    "completed": true,
+    "previewWas": "ready"
+   },
+   "pass": true
   }
  ],
- "summary": "0/1 cells green"
+ "summary": "8/8 cells green"
 }

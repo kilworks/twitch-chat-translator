@@ -1,6 +1,6 @@
 {
- "date": "2026-10-22",
- "at": "2026-10-22T21:51:58.162Z",
+ "date": "2026-10-23",
+ "at": "2026-10-23T00:25:20.088Z",
  "target": "ja",
  "cells": [
   {
@@ -8,18 +8,18 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 35
+     "ch": 26,
+     "adds": 129
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 150,
-   "marked": 150,
-   "translations": 93,
+   "rows": 149,
+   "marked": 138,
+   "translations": 38,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -30,40 +30,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "スナイパーを強化していますか？⟳",
-    "米軍スポンサー⟳",
-    "narwhals?⟳"
+    "私にはそれは少ないように思えます⟳",
+    "ウィリレックス万歳⟳",
+    "🇦🇷🇦🇷🇦🇷 私は不滅です ͏⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     34
-    ],
-    [
-     "Not translated: the translation came back the same as the original",
-     16
+     67
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
-     6
+     16
     ],
     [
-     "Not translated: the translation service found it was already in your l",
-     1
+     "Not translated: the translation came back the same as the original",
+     2
+    ],
+    [
+     "Not translated: the same user just sent this",
+     2
     ]
    ],
-   "stillAttached10s": 83,
+   "stillAttached10s": 0,
    "after10s": {
-    "onScreen": 83,
+    "onScreen": 3,
     "missing": 0,
-    "trimmed": 17,
+    "trimmed": 149,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 63,
-    "p50": 762,
-    "p90": 1590
+    "n": 157,
+    "p50": 342,
+    "p90": 1771
    },
    "pass": true
   },
@@ -72,18 +72,18 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 17
+     "ch": 26,
+     "adds": 58
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch26",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 119,
-   "marked": 102,
-   "translations": 91,
+   "rows": 189,
+   "marked": 128,
+   "translations": 43,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -95,40 +95,36 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "うーん、緑豊かです⟳",
-    "受け流さないでそこで殺してください⟳",
-    "肯定的ですか？⟳"
+    "ああああ⟳",
+    "エイプス⟳",
+    "HAちゃおおお⟳"
    ],
    "reasons": [
     [
+     "Not translated: the sender looks like a bot",
+     57
+    ],
+    [
      "Not translated: it is shorter than your 2 character minimum",
-     5
+     9
     ],
     [
-     "Not translated: the translation came back the same as the original",
-     4
-    ],
-    [
-     "Not translated: it is only emoji, symbols or laughter",
-     3
-    ],
-    [
-     "Not translated: it is only chat slang",
-     1
+     "Not translated: the same user just sent this",
+     8
     ]
    ],
-   "stillAttached10s": 91,
+   "stillAttached10s": 30,
    "after10s": {
-    "onScreen": 89,
+    "onScreen": 30,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 42,
-    "p50": 882,
-    "p90": 1856
+    "n": 41,
+    "p50": 774,
+    "p90": 1679
    },
    "pass": true
   },
@@ -137,18 +133,26 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 30
+     "ch": 26,
+     "adds": 5
+    },
+    {
+     "ch": 7,
+     "adds": 1
+    },
+    {
+     "ch": 18,
+     "adds": 56
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch18",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 129,
-   "marked": 127,
-   "translations": 86,
+   "rows": 148,
+   "marked": 146,
+   "translations": 67,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -159,36 +163,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "無知⟳",
-    "ブルーウォーカーには何の意味もない⟳",
-    "正当な最も重要なオブジェクトはlmfaoです⟳"
+    "HR彼を照らしてください⟳",
+    "彼はすべてが必要だと言いました⟳",
+    "押されました⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     22
-    ],
-    [
-     "Not translated: it is only emoji, symbols or laughter",
-     11
+     70
     ],
     [
      "Not translated: the translation came back the same as the original",
-     8
+     3
+    ],
+    [
+     "Not translated: the same user just sent this",
+     1
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
     ]
    ],
-   "stillAttached10s": 86,
+   "stillAttached10s": 32,
    "after10s": {
-    "onScreen": 85,
+    "onScreen": 31,
     "missing": 0,
-    "trimmed": 0,
+    "trimmed": 73,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 49,
-    "p50": 1007,
-    "p90": 2031
+    "n": 94,
+    "p50": 879,
+    "p90": 2015
    },
    "pass": true
   },
@@ -197,18 +205,26 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 21
+     "ch": 26,
+     "adds": 2
+    },
+    {
+     "ch": 7,
+     "adds": 1
+    },
+    {
+     "ch": 18,
+     "adds": 29
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch18",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 121,
-   "marked": 118,
-   "translations": 88,
+   "rows": 149,
+   "marked": 146,
+   "translations": 77,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -219,48 +235,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "このパッチ⟳",
-    "うーん、新しいクランゴです⟳",
-    "ノダーズクラシック⟳"
+    "ランボで試してみよう⟳",
+    "決して良いことではありません⟳",
+    "いいえ⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     21
-    ],
-    [
-     "Not translated: it is only emoji, symbols or laughter",
-     3
+     50
     ],
     [
      "Not translated: the translation came back the same as the original",
+     10
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
      2
     ],
     [
-     "Not translated: the sender looks like a bot",
-     1
-    ],
-    [
-     "Not translated: it is only chat slang",
-     1
-    ],
-    [
      "Not translated: the same user just sent this",
-     1
+     2
     ]
    ],
-   "stillAttached10s": 88,
+   "stillAttached10s": 43,
    "after10s": {
-    "onScreen": 85,
+    "onScreen": 42,
     "missing": 0,
-    "trimmed": 0,
+    "trimmed": 70,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 37,
-    "p50": 789,
-    "p90": 1966
+    "n": 83,
+    "p50": 809,
+    "p90": 1945
    },
    "pass": true
   },
@@ -269,22 +277,29 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 18
+     "ch": 26,
+     "adds": 2
+    },
+    {
+     "ch": 7,
+     "adds": 1
+    },
+    {
+     "ch": 18,
+     "adds": 41
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch18",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 146,
-   "marked": 107,
-   "translations": 97,
+   "rows": 168,
+   "marked": 109,
+   "translations": 44,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
-    "native",
     "7tv"
    ],
    "errors": 0,
@@ -292,40 +307,44 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "座って観察することを学ぶ⟳",
-    "座って観察することを学ぶ⟳",
-    "座って観察することを学ぶ⟳"
+    "非常にクソなシステムは嘘をつきません、他の人があなたの縄張りで販売するのは悪いはずです ͏⟳",
+    "エイリアスを付ける⟳",
+    "@<ch18> 彼らの乗組員との協定は？⟳"
    ],
    "reasons": [
     [
-     "Not translated: the translation came back the same as the original",
-     6
+     "Not translated: it is only emoji, symbols or laughter",
+     26
     ],
     [
-     "Not translated: it is only emoji, symbols or laughter",
-     4
+     "Not translated: the translation came back the same as the original",
+     25
     ],
     [
      "Not translated: it is shorter than your 2 character minimum",
+     7
+    ],
+    [
+     "Not translated: the same user just sent this",
      2
     ],
     [
      "Not translated: the sender looks like a bot",
-     1
+     2
     ]
    ],
-   "stillAttached10s": 97,
+   "stillAttached10s": 13,
    "after10s": {
-    "onScreen": 84,
+    "onScreen": 12,
     "missing": 0,
-    "trimmed": 0,
+    "trimmed": 95,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 61,
-    "p50": 886,
-    "p90": 1870
+    "n": 39,
+    "p50": 854,
+    "p90": 2856
    },
    "pass": true
   },
@@ -334,62 +353,66 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 11
+     "ch": 26,
+     "adds": 1
+    },
+    {
+     "ch": 7,
+     "adds": 1
+    },
+    {
+     "ch": 18,
+     "adds": 13
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch18",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 162,
-   "marked": 145,
-   "translations": 125,
+   "rows": 165,
+   "marked": 119,
+   "translations": 101,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
     "7tv"
    ],
-   "errors": 1,
+   "errors": 0,
    "scheme": "dark",
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "レンガ6⟳",
-    "レンガ3⟳",
-    "兄さんはただ君を体当たりするのを待ってただけだよ⟳"
+    "何？⟳",
+    "人々は実際にこのたわごとを見ますか？⟳",
+    "リスク = 暴露⟳"
    ],
    "reasons": [
     [
      "Not translated: the translation came back the same as the original",
-     8
-    ],
-    [
-     "Not translated: it is only emoji, symbols or laughter",
-     7
+     13
     ],
     [
      "Not translated: it is shorter than your 2 character minimum",
-     3
+     2
     ],
     [
      "Not translated: the same user just sent this",
      1
     ]
    ],
-   "stillAttached10s": 125,
+   "stillAttached10s": 101,
    "after10s": {
-    "onScreen": 122,
+    "onScreen": 84,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 46,
-    "p50": 854,
-    "p90": 1201
+    "n": 106,
+    "p50": 96,
+    "p90": 1508
    },
    "pass": true
   },
@@ -398,18 +421,26 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 9
+     "ch": 26,
+     "adds": 1
+    },
+    {
+     "ch": 7,
+     "adds": 1
+    },
+    {
+     "ch": 18,
+     "adds": 28
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch18",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 95,
-   "marked": 92,
-   "translations": 65,
+   "rows": 150,
+   "marked": 145,
+   "translations": 91,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -420,32 +451,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "WWヘルパー⟳",
-    "なぜこのジョーカーはすでにストリーミングされているのですか？⟳",
-    "素晴らしいスコアラインだ⟳"
+    "あなたがた⟳",
+    "それがあなたがやっていることの要点です⟳",
+    "NYアンゴラ⟳"
    ],
    "reasons": [
     [
      "Not translated: it is shorter than your 2 character minimum",
-     21
+     42
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     6
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
-     6
+     1
+    ],
+    [
+     "Not translated: the same user just sent this",
+     1
     ]
    ],
-   "stillAttached10s": 65,
+   "stillAttached10s": 83,
    "after10s": {
-    "onScreen": 63,
+    "onScreen": 81,
     "missing": 0,
-    "trimmed": 0,
+    "trimmed": 20,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 14,
-    "p50": 780,
-    "p90": 1350
+    "n": 54,
+    "p50": 1204,
+    "p90": 1877
    },
    "pass": true
   },
@@ -454,22 +493,29 @@
    "surface": "theater",
    "tried": [
     {
-     "ch": 34,
-     "adds": 17
+     "ch": 26,
+     "adds": 1
+    },
+    {
+     "ch": 7,
+     "adds": 1
+    },
+    {
+     "ch": 18,
+     "adds": 109
     }
    ],
    "targetSet": true,
-   "channel": "ch34",
+   "channel": "ch18",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 129,
-   "marked": 103,
-   "translations": 88,
+   "rows": 170,
+   "marked": 131,
+   "translations": 113,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
-    "native",
     "7tv"
    ],
    "errors": 0,
@@ -477,36 +523,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "レム・ノーユーカントに行こう⟳",
-    "xqcLギフト⟳",
-    "トランスジェンダープライド⟳"
+    "上司の女性⟳",
+    "押されました⟳",
+    "モグモグ⟳"
    ],
    "reasons": [
     [
      "Not translated: the translation came back the same as the original",
-     8
+     6
     ],
     [
-     "Not translated: it is only emoji, symbols or laughter",
+     "Not translated: the same user just sent this",
      5
     ],
     [
-     "Not translated: it is shorter than your 2 character minimum",
-     3
+     "Not translated: the sender looks like a bot",
+     2
+    ],
+    [
+     "Not translated: it is only emoji, symbols or laughter",
+     1
     ]
    ],
-   "stillAttached10s": 88,
+   "stillAttached10s": 90,
    "after10s": {
-    "onScreen": 81,
+    "onScreen": 68,
     "missing": 0,
-    "trimmed": 0,
+    "trimmed": 38,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 35,
-    "p50": 1866,
-    "p90": 2871
+    "n": 139,
+    "p50": 0,
+    "p90": 1216
    },
    "pass": true
   }
