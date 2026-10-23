@@ -95,6 +95,29 @@ describe('a new line', () => {
   });
 });
 
+// 7TV can draw a message again in a new node with the same msg-id. Its id was already seen,
+// so the new node was marked and skipped: the line stayed on screen without its translation
+// (e2e theater, 7tv+bttv, 1/36 lines, 2026-10-23).
+describe('a 7TV line drawn again in a new node', () => {
+  it('is delivered again', () => {
+    document.body.innerHTML = seventvChat(seventvRow('hola', 'ana', 'id-1'));
+    const seen: string[] = [];
+    const obs = new ChatObserver((m) => seen.push(m.text));
+    obs.start();
+    const liste = document.querySelector('main.seventv-chat-list')!;
+    const holder = document.createElement('div');
+    holder.innerHTML = seventvRow('hola', 'ana', 'id-1');
+    const again = holder.firstElementChild!;
+    liste.replaceChild(again, liste.querySelector('.seventv-message')!);
+    created.find((r) => r.target === liste)!.cb!(
+      [{ type: 'childList', target: liste, addedNodes: [again] } as unknown as MutationRecord],
+      {} as MutationObserver,
+    );
+    obs.stop();
+    expect(seen).toEqual(['hola', 'hola']);
+  });
+});
+
 describe('ChatObserver lifecycle', () => {
   it('observes once attached', () => {
     const obs = new ChatObserver(() => undefined);

@@ -32,6 +32,9 @@ export const ROW_SELECTOR = [
   '.vod-message',
 ].join(', ');
 
+/** Replay rows (VOD and clip, native and 7TV): a recorded chat played back, not a live one. */
+export const REPLAY_ROW_SELECTOR = '.vod-message, .seventv-chat-vod-message-patched';
+
 /**
  * The message body's text nodes, per family. Emotes are images and stay out; mentions and
  * links are part of what was said. Usernames, badges, timestamps and the ": " separator are

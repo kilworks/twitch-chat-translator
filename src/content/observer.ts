@@ -190,7 +190,9 @@ export class ChatObserver {
     const mark = `${INSTANCE}:${id}`;
     const prev = row.getAttribute(PROCESSED_MARK);
     if (prev === mark) return;
-    if (this.seenIds.has(id)) {
+    // An id already seen on a node that carries no mark is the same message drawn again in a
+    // new node (7TV re-renders, measured once in 36 lines): it must get its translation back.
+    if (this.seenIds.has(id) && prev !== null) {
       row.setAttribute(PROCESSED_MARK, mark);
       return;
     }

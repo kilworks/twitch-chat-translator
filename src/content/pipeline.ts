@@ -8,6 +8,7 @@ import { applyUserGlossary, isSlangOnly } from '~/shared/glossary';
 import { createMetrics } from '~/shared/metrics';
 import { mentionsOf, parseChatContent } from './emoteParser';
 import { countUsage } from './usage';
+import { REPLAY_ROW_SELECTOR } from './platform';
 import { spellOutAbbreviations } from './abbreviations';
 import { CHAT_PANEL_SELECTOR, extractMessageText, findAllRows, isDeletedRow, pickInjectionTarget } from './selectors';
 import { ROW_SELECTOR } from './platform';
@@ -187,8 +188,12 @@ export class TranslationPipeline {
     // message nobody has seen yet.
     if (opts.dedup) {
       const dedupKey = meta.username.toLowerCase();
-      if (dedupKey && this.userDedup.get(dedupKey) === rawText) return localised('skipDuplicate', 'the same user just sent this');
-      if (dedupKey) this.userDedup.set(dedupKey, rawText);
+      // Keyed with the message id too: the same message drawn again is not a repeat.
+      const seen = `${(meta as { id?: string }).id ?? ''} ${rawText}`;
+      const last = dedupKey ? this.userDedup.get(dedupKey) : undefined;
+      if (last !== undefined && last !== seen && last.slice(last.indexOf(' ') + 1) === rawText)
+        return localised('skipDuplicate', 'the same user just sent this');
+      if (dedupKey) this.userDedup.set(dedupKey, seen);
     }
 
     const { realText } = parseChatContent(rawText);
@@ -299,7 +304,9 @@ export class TranslationPipeline {
     const blocked = this.settings.enabled && hasBlockedKeyword(msg.text, this.settings);
     (msg.rowElement as HTMLElement).style.display = blocked ? 'none' : '';
     if (blocked) return;
-    const prepared = this.prepare(msg.text, msg);
+    // Replays play a recorded chat back, and a clip loops: the same user's same line is the
+    // same message shown again, not spam. The cache makes the repeat free.
+    const prepared = this.prepare(msg.text, msg, { dedup: !msg.rowElement.matches(REPLAY_ROW_SELECTOR) });
     if (typeof prepared === 'string') {
       this.skip(msg, prepared);
       return;

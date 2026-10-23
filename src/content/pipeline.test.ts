@@ -127,8 +127,35 @@ describe('TranslationPipeline: websocket warm vs DOM display', () => {
     await pipeline.onDomMessage(domMsg(JP));
     sendMock.mockClear();
 
-    await pipeline.onDomMessage(domMsg(JP));
+    // A repeat is a new message: it has its own id.
+    await pipeline.onDomMessage({ ...domMsg(JP), id: 'd2' });
     expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it('translates the same message drawn again (same id)', async () => {
+    const pipeline = makePipeline();
+    await pipeline.onDomMessage(domMsg(JP));
+    sendMock.mockClear();
+
+    await pipeline.onDomMessage(domMsg(JP));
+    expect(sendMock).toHaveBeenCalled();
+  });
+
+  // A clip loops and Twitch rebuilds its whole list each time (RECON: 0/20 markers kept), so
+  // the same lines come back; skipping them as repeats left 42 of 45 clip lines untranslated
+  // (e2e clip, 2026-10-23).
+  it('translates a replayed line again, even from the same user', async () => {
+    const pipeline = makePipeline();
+    const replay = () => {
+      const m = domMsg(JP);
+      m.rowElement.className = 'vod-message';
+      return m;
+    };
+    await pipeline.onDomMessage(replay());
+    sendMock.mockClear();
+
+    await pipeline.onDomMessage(replay());
+    expect(sendMock).toHaveBeenCalled();
   });
 
   it('keeps translating different users sending the same text', async () => {
