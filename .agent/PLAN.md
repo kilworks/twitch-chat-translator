@@ -269,9 +269,9 @@ they test, L last.
 
 ### [P10] Telemetry
 
-- [k] GA4: separate property or shared: K05. Until decided, `usageStats` stays off and opt-in.
-      Decided 2026-10-23: a new property (#144). Waiting for the owner to create it and give its
-      measurement id: task #146. Until then `usageStats` stays off and opt-in.
+- [x] GA4: separate property or shared: K05. Until decided, `usageStats` stays off and opt-in.
+      Decided 2026-10-23: a new property (#144). Created 2026-11-02: property 561930909,
+      `G-9EZ5ZNVKM0`, wired in `src/shared/constants.ts`; a test hit from Oracle showed in Realtime.
 - [x] `has7tv` env flag becomes one flag per extension.
       `seventv`, `bttv`, `ffz` flags in the daily event, tests in usage.test.ts.
 
@@ -403,9 +403,9 @@ they test, L last.
 
 Open task for kil: #146.
 
-- [k] GA4: new property, or the Kick one with a platform dimension.
-      Decided 2026-10-23 (#144): a new property. Creating it is on the owner's account and
-      nothing can be wired before its measurement id exists.
+- [x] GA4: new property, or the Kick one with a platform dimension.
+      Decided 2026-10-23 (#144): a new property. Created 2026-11-02 in account 412256768 (property
+      561930909, stream 16255096729), 5 dimensions and 16 metrics registered; ships in 1.0.2.
 
 ### [K06] Hidden tab behaviour
 

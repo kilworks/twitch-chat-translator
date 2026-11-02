@@ -1,11 +1,5 @@
-First release, for Twitch. The translation engine, the language detection, the cache and the options come from Kick Chat Translator, by the same author. Everything that reads or writes the page was rebuilt for Twitch and measured on live channels.
+Clip replay: a clip loops and Twitch redraws its chat each time, and the repeated lines were taken for spam and left untranslated. Every line of a replay is translated again, from the cache.
 
-It reads Twitch chat in its three shapes: Twitch's own list (also with BTTV and FFZ), the 7TV list, and VOD and clip replay. Popout, embed, moderator view, the stream manager and mobile are included.
+A line that 7TV draws a second time gets its translation back.
 
-Translations are written into the Twitch message box with emotes kept as words. The emote names of the channel's 7TV, BTTV and FFZ sets are never translated, even if you do not run those extensions.
-
-The channel's language comes from Twitch itself, a message deleted by a moderator, a timeout or a ban loses its translation too, and the look is purple and follows Twitch's dark or light chat theme.
-
-Turn translation on or off with Alt+Shift+T, because Alt+T is Twitch's theater mode. Tab inserts the translation only when 7TV or BTTV did not just complete an emote. The ignored bots are the ones measured on Twitch: StreamElements, Fossabot, Moobot, Streamlabs and Nightbot.
-
-Optional: anonymous daily usage statistics, off unless you say yes. They never contain your messages, names or channels.
+The floating bar no longer disappears when Twitch Anti-Ban replaces the chat with its own.

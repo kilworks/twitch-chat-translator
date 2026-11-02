@@ -1,11 +1,5 @@
-Första versionen, för Twitch. Översättningsmotorn, språkigenkänningen, cachen och alternativen kommer från Kick Chat Translator, av samma upphovsperson. Allt som läser eller skriver på sidan byggdes om för Twitch och mättes på livekanaler.
+Klipprepris: ett klipp spelas i en slinga och Twitch ritar om chatten varje gång, och de upprepade raderna togs för spam och lämnades oöversatta. Varje rad i en repris översätts igen, från cachen.
 
-Den läser Twitch-chatten i dess tre former: Twitchs egen lista (också med BTTV och FFZ), 7TV-listan samt VOD- och klipprepriser. Popout, inbäddad chatt, moderatorvy, stream manager och mobil ingår.
+En rad som 7TV ritar om får tillbaka sin översättning.
 
-Översättningar skrivs in i Twitchs meddelanderuta med emotes kvar som ord. Emotenamnen i kanalens 7TV-, BTTV- och FFZ-set översätts aldrig, även om du inte kör de tilläggen.
-
-Kanalens språk kommer från Twitch själv, ett meddelande som en moderator tar bort, en timeout eller en ban förlorar också sin översättning, och utseendet är lila och följer Twitchs mörka eller ljusa chatttema.
-
-Slå på eller av översättningen med Alt+Shift+T, eftersom Alt+T är Twitchs teaterläge. Tab infogar översättningen bara när 7TV eller BTTV inte nyss slutförde en emote. Botarna som ignoreras är de som mätts på Twitch: StreamElements, Fossabot, Moobot, Streamlabs och Nightbot.
-
-Valfritt: anonym daglig användningsstatistik, avstängd om du inte säger ja. De innehåller aldrig dina meddelanden, namn eller kanaler.
+Den flytande raden försvinner inte längre när Twitch Anti-Ban ersätter chatten med sin egen.

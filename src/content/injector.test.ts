@@ -294,6 +294,17 @@ describe('injector artifacts', () => {
       expect(bars[0]?.querySelector('.kt-float-label')?.textContent).toBe('STALE');
     });
 
+    // Twitch Anti-Ban replaces the panel's first child with its proxy chat; a bar
+    // inserted first was the node it threw away.
+    it('survives an extension swapping the panel first child', () => {
+      document.body.innerHTML = '<div id="live-host"><div class="chat-list"></div></div>';
+      const host = document.querySelector<HTMLElement>('#live-host')!;
+      mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
+      host.replaceChild(document.createElement('div'), host.firstElementChild!);
+
+      expect(host.querySelector('#kt-floating-bar')).not.toBeNull();
+    });
+
     // Redrawn by the mount's own painter. A positional lookup used to take the
     // direction arrow for the flag, repaint the arrow and leave the old flag.
     it('redraws the language button when the language changes elsewhere', () => {

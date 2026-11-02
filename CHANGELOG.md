@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.1]
+## [1.0.2]
+
+1.0.1 was numbered but never reached either store; its fixes ship here.
 
 ### Fixed
 
@@ -15,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   skipped as a user repeating themselves. 42 of 45 clip lines stayed untranslated; replays now
   translate every line again, from the cache.
 - A line that 7TV draws again in a new node now gets its translation back instead of staying bare.
+- The floating bar is no longer thrown away when Twitch Anti-Ban replaces the chat panel's first
+  child with its proxy chat.
+
+### Changed
+
+- The opt-in usage statistics go to a Google Analytics property of their own instead of Kick
+  Chat Translator's. What is sent is unchanged.
 
 ## [1.0.0]
 

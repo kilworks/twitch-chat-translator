@@ -1,11 +1,5 @@
-Prima versiune, pentru Twitch. Motorul de traducere, detectarea limbii, memoria cache și opțiunile vin de la Kick Chat Translator, de același autor. Tot ce citește sau scrie în pagină a fost reconstruit pentru Twitch și măsurat pe canale live.
+Reluarea clipurilor: un clip rulează în buclă și Twitch redesenează chatul de fiecare dată, iar liniile repetate erau luate drept spam și rămâneau netraduse. Fiecare linie a unei reluări este tradusă din nou, din cache.
 
-Citește chatul Twitch în cele trei forme ale sale: lista proprie a Twitch (și cu BTTV și FFZ), lista 7TV și reluările de VOD și de clipuri. Popout, chatul încorporat, vizualizarea de moderator, stream manager și mobilul sunt incluse.
+O linie pe care 7TV o redesenează își recapătă traducerea.
 
-Traducerile sunt scrise în caseta de mesaj Twitch cu emote-urile păstrate ca cuvinte. Numele emote-urilor din seturile 7TV, BTTV și FFZ ale canalului nu se traduc niciodată, chiar dacă nu folosești acele extensii.
-
-Limba canalului vine chiar de la Twitch, un mesaj șters de un moderator, un timeout sau un ban își pierde și traducerea, iar aspectul este violet și urmează tema întunecată sau luminoasă a chatului Twitch.
-
-Pornește sau oprește traducerea cu Alt+Shift+T, pentru că Alt+T este modul teatru al Twitch. Tab inserează traducerea doar când 7TV sau BTTV nu tocmai au terminat un emote. Boții ignorați sunt cei măsurați pe Twitch: StreamElements, Fossabot, Moobot, Streamlabs și Nightbot.
-
-Opțional: statistici anonime de utilizare zilnică, dezactivate dacă nu spui da. Nu conțin niciodată mesajele, numele sau canalele tale.
+Bara plutitoare nu mai dispare când Twitch Anti-Ban înlocuiește chatul cu al său.

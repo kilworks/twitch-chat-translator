@@ -43,6 +43,8 @@ if (!since) {
 /** Every permission string in a manifest.config.ts source, both arrays. */
 export function permissionsOf(source) {
   const found = new Set();
+  // A comment line's apostrophe ("channel's") would open a fake string; URLs keep their `//`.
+  source = source.replace(/^\s*\/\/.*$/gm, '');
   for (const key of ['permissions', 'host_permissions']) {
     const m = source.match(new RegExp(`\\b${key}:\\s*\\[([^\\]]*)\\]`));
     if (!m) continue;

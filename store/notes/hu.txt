@@ -1,11 +1,5 @@
-Első kiadás, a Twitch számára. A fordítómotor, a nyelvfelismerés, a gyorsítótár és a beállítások a Kick Chat Translatorból származnak, ugyanattól a szerzőtől. Minden, ami az oldalt olvassa vagy írja, újraépült a Twitchre, és élő csatornákon lett lemérve.
+Klipek visszajátszása: a klip körbeforog, és a Twitch minden alkalommal újrarajzolja a chatet, így az ismétlődő sorokat spamnek vették, és fordítás nélkül maradtak. A visszajátszás minden sora újra le van fordítva, a gyorsítótárból.
 
-A Twitch-csevegést mindhárom formájában olvassa: a Twitch saját listáját (BTTV-vel és FFZ-vel is), a 7TV listáját, valamint a VOD- és klip-visszajátszást. A popout, a beágyazás, a moderátornézet, a streamkezelő és a mobil is benne van.
+Az a sor, amelyet a 7TV újrarajzol, visszakapja a fordítását.
 
-A fordításokat a Twitch üzenetmezőjébe írja, az emotek szavakként megmaradnak. A csatorna 7TV-, BTTV- és FFZ-készleteiben szereplő emotenevek soha nem fordítódnak, akkor sem, ha nem futtatod ezeket a bővítményeket.
-
-A csatorna nyelve magától a Twitchtől jön, a moderátor által törölt üzenet, egy timeout vagy egy ban elveszi a fordítását is, a megjelenés pedig lila, és követi a Twitch sötét vagy világos csevegési témáját.
-
-A fordítást az Alt+Shift+T ki-be kapcsolja, mert az Alt+T a Twitch színházmódja. A Tab csak akkor szúrja be a fordítást, ha a 7TV vagy a BTTV nem most fejezett be egy emotet. A figyelmen kívül hagyott botok azok, amelyeket a Twitchen mértek: StreamElements, Fossabot, Moobot, Streamlabs és Nightbot.
-
-Opcionális: névtelen napi használati statisztika, hacsak nem mond igent. Soha nem tartalmazzák az Ön üzeneteit, neveit vagy csatornáit.
+A lebegő sáv már nem tűnik el, amikor a Twitch Anti-Ban a saját chatjére cseréli a chatet.

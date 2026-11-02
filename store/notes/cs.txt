@@ -1,11 +1,5 @@
-První vydání, pro Twitch. Překladový engine, rozpoznávání jazyka, mezipaměť a možnosti pocházejí z Kick Chat Translator, od stejného autora. Vše, co čte nebo zapisuje stránku, bylo postaveno znovu pro Twitch a změřeno na živých kanálech.
+Přehrávání klipů: klip běží ve smyčce a Twitch pokaždé znovu vykreslí chat, takže opakované řádky byly brány jako spam a zůstaly nepřeložené. Každý řádek přehrávání se znovu přeloží, z mezipaměti.
 
-Čte chat Twitche ve třech podobách: vlastní seznam Twitche (i s BTTV a FFZ), seznam 7TV a záznamy VOD a klipů. Popout, vložený chat, pohled moderátora, stream manager i mobil jsou v ceně.
+Řádek, který 7TV vykreslí znovu, dostane zpět svůj překlad.
 
-Překlady se zapisují do pole zprávy na Twitchi s emoty ponechanými jako slova. Názvy emotů ze sad 7TV, BTTV a FFZ kanálu se nikdy nepřekládají, ani když tato rozšíření nepoužíváte.
-
-Jazyk kanálu pochází přímo z Twitche, zpráva smazaná moderátorem, timeout nebo ban přijde i o svůj překlad a vzhled je fialový a řídí se tmavým či světlým motivem chatu Twitche.
-
-Překlad zapnete nebo vypnete pomocí Alt+Shift+T, protože Alt+T je divadelní režim Twitche. Tab vloží překlad jen tehdy, když 7TV nebo BTTV právě nedokončilo emote. Ignorovaní boti jsou ti, které se podařilo změřit na Twitchi: StreamElements, Fossabot, Moobot, Streamlabs a Nightbot.
-
-Volitelné: anonymní denní statistiky využití, pokud neřeknete ano, jsou vypnuté. Nikdy neobsahují vaše zprávy, jména nebo kanály.
+Plovoucí lišta už nezmizí, když Twitch Anti-Ban nahradí chat svým vlastním.

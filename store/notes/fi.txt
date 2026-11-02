@@ -1,11 +1,5 @@
-Ensimmäinen julkaisu Twitchille. Käännösmoottori, kielentunnistus, välimuisti ja asetukset ovat peräisin Kick Chat Translatorista, saman tekijän. Kaikki, mikä lukee tai kirjoittaa sivua, rakennettiin uudelleen Twitchille ja mitattiin suorilla kanavilla.
+Klippien toisto: klippi pyörii silmukassa ja Twitch piirtää chatin uudelleen joka kerta, ja toistuneet rivit tulkittiin roskapostiksi ja jäivät kääntämättä. Jokainen toiston rivi käännetään taas, välimuistista.
 
-Se lukee Twitchin chatin kaikissa kolmessa muodossaan: Twitchin oma lista (myös BTTV:n ja FFZ:n kanssa), 7TV:n lista sekä VOD- ja klippiuusinta. Popout, upotus, moderaattorinäkymä, stream manager ja mobiili kuuluvat mukaan.
+Rivi, jonka 7TV piirtää uudelleen, saa käännöksensä takaisin.
 
-Käännökset kirjoitetaan Twitchin viestikenttään emotet sanoina säilyttäen. Kanavan 7TV-, BTTV- ja FFZ-settien emote-nimiä ei koskaan käännetä, vaikka et käyttäisi niitä laajennuksia.
-
-Kanavan kieli tulee Twitchiltä itseltään, viesti, jonka moderaattori poistaa tai jonka timeout tai porttikielto vie, menettää käännöksensäkin, ja ulkoasu on violetti ja seuraa Twitchin tummaa tai vaaleaa chat-teemaa.
-
-Kytke käännös päälle tai pois Alt+Shift+T:llä, koska Alt+T on Twitchin teatteritila. Tab lisää käännöksen vain, jos 7TV tai BTTV ei juuri viimeistellyt emotea. Ohitetut botit ovat Twitchissä mitatut: StreamElements, Fossabot, Moobot, Streamlabs ja Nightbot.
-
-Valinnainen: anonyymit päivittäiset käyttötilastot pois päältä, ellet sano kyllä. Ne eivät koskaan sisällä viestejäsi, nimiäsi tai kanaviasi.
+Kelluva palkki ei enää katoa, kun Twitch Anti-Ban korvaa chatin omallaan.

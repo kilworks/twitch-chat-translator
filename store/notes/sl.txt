@@ -1,11 +1,5 @@
-Prva izdaja, za Twitch. Prevajalski pogon, zaznavanje jezika, predpomnilnik in možnosti izvirajo iz Kick Chat Translator, istega avtorja. Vse, kar bere ali piše stran, je bilo zgrajeno na novo za Twitch in izmerjeno na kanalih v živo.
+Predvajanje posnetkov: posnetek se vrti v zanki in Twitch vsakič znova izriše klepet, zato so bile ponovljene vrstice vzete za neželeno vsebino in so ostale neprevedene. Vsaka vrstica predvajanja je znova prevedena, iz predpomnilnika.
 
-Bere Twitchev chat v vseh treh oblikah: Twitchev lastni seznam (tudi z BTTV in FFZ), seznam 7TV ter ponovitve VOD in klipov. Vključeni so pojavno okno (popout), vdelani chat, pogled moderatorja, upravljalnik prenosa in mobilni prikaz.
+Vrstica, ki jo 7TV znova izriše, dobi nazaj svoj prevod.
 
-Prevodi se zapišejo v Twitchevo polje za sporočilo, čustvenčki ostanejo kot besede. Imena čustvenčkov iz kanalovih naborov 7TV, BTTV in FFZ se nikoli ne prevajajo, tudi če teh razširitev ne uporabljate.
-
-Jezik kanala pride s samega Twitcha, sporočilo, ki ga izbriše moderator, ali časovna omejitev (timeout) ali prepoved (ban) mu odvzame tudi prevod, videz pa je vijoličen in sledi Twitchevi temni ali svetli temi chata.
-
-Prevajanje vklopite ali izklopite z Alt+Shift+T, ker je Alt+T Twitchev kinematografski način. Tab vstavi prevod samo, kadar 7TV ali BTTV pravkar nista dokončala čustvenčka. Prezrti boti so tisti, izmerjeni na Twitchu: StreamElements, Fossabot, Moobot, Streamlabs in Nightbot.
-
-Neobvezno: anonimna dnevna statistika uporabe, izklopljena, razen če rečete da. Nikoli ne vsebuje vaših sporočil, imen ali kanalov.
+Plavajoča vrstica ne izgine več, ko Twitch Anti-Ban zamenja klepet s svojim.

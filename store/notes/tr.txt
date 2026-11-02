@@ -1,11 +1,5 @@
-Twitch için ilk sürüm. Çeviri motoru, dil algılama, önbellek ve seçenekler aynı yazarın Kick Chat Translator eklentisinden geliyor. Sayfayı okuyan ya da yazan her şey Twitch için baştan yazıldı ve canlı kanallarda ölçüldü.
+Klip tekrarı: bir klip döngüde oynar ve Twitch sohbeti her seferinde yeniden çizer, tekrarlanan satırlar spam sanılıp çevrilmeden kalıyordu. Bir tekrarın her satırı önbellekten yeniden çevriliyor.
 
-Twitch sohbetini üç biçimde okur: Twitch'in kendi listesi (BTTV ve FFZ ile de), 7TV listesi, ve VOD ile klip tekrarı. Popout, embed, moderatör görünümü, yayın yöneticisi ve mobil dahildir.
+7TV'nin yeniden çizdiği bir satır çevirisini geri alır.
 
-Çeviriler Twitch mesaj kutusuna, emote'lar kelime olarak kalacak şekilde yazılır. Kanalın 7TV, BTTV ve FFZ setlerindeki emote adları, bu uzantıları kullanmasan bile asla çevrilmez.
-
-Kanalın dili doğrudan Twitch'ten gelir, bir moderatörün sildiği mesaj, bir timeout ya da bir ban çevirisini de kaybeder, görünüm mordur ve Twitch'in koyu ya da açık sohbet temasını izler.
-
-Çeviriyi Alt+Shift+T ile aç ya da kapat, çünkü Alt+T Twitch'in tiyatro modudur. Tab çeviriyi yalnızca 7TV ya da BTTV az önce bir emote'u tamamlamadıysa ekler. Yok sayılan botlar Twitch'te ölçülenlerdir: StreamElements, Fossabot, Moobot, Streamlabs ve Nightbot.
-
-İsteğe bağlı: anonim günlük kullanım istatistikleri, sen evet demedikçe kapalı. Hiçbir zaman mesajlarını, adlarını veya kanallarını içermezler.
+Twitch Anti-Ban sohbeti kendi sohbetiyle değiştirdiğinde yüzen çubuk artık kaybolmuyor.

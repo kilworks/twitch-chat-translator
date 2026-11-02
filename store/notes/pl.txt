@@ -1,11 +1,5 @@
-Pierwsze wydanie dla Twitcha. Silnik tłumaczenia, wykrywanie języka, pamięć podręczna i opcje pochodzą z Kick Chat Translator, od tego samego autora. Wszystko, co czyta lub zapisuje stronę, zostało zbudowane od nowa pod Twitcha i zmierzone na kanałach na żywo.
+Powtórki klipów: klip odtwarza się w pętli, a Twitch za każdym razem rysuje czat od nowa, więc powtórzone linie były brane za spam i zostawały bez tłumaczenia. Każda linia powtórki jest znów tłumaczona, z pamięci podręcznej.
 
-Czyta czat Twitcha w jego trzech postaciach: własna lista Twitcha (także z BTTV i FFZ), lista 7TV oraz powtórki VOD i klipów. Popout, osadzony czat, widok moderatora, stream manager i wersja mobilna są w zestawie.
+Linia, którą 7TV rysuje ponownie, odzyskuje swoje tłumaczenie.
 
-Tłumaczenia są wpisywane w pole wiadomości Twitcha z emotkami zostawionymi jako słowa. Nazw emotek z zestawów 7TV, BTTV i FFZ kanału nigdy się nie tłumaczy, nawet jeśli nie używasz tych rozszerzeń.
-
-Język kanału pochodzi od samego Twitcha, wiadomość usunięta przez moderatora, timeout lub ban traci też swoje tłumaczenie, a wygląd jest fioletowy i podąża za jasnym lub ciemnym motywem czatu Twitcha.
-
-Włącz lub wyłącz tłumaczenie skrótem Alt+Shift+T, bo Alt+T to tryb kinowy Twitcha. Tab wstawia tłumaczenie tylko wtedy, gdy 7TV lub BTTV nie dokończyły przed chwilą emotki. Ignorowane boty to te zmierzone na Twitchu: StreamElements, Fossabot, Moobot, Streamlabs i Nightbot.
-
-Opcjonalnie: anonimowe dzienne statystyki użytkowania, wyłączone, chyba że się zgodzisz. Nigdy nie zawierają Twoich wiadomości, nazw ani kanałów.
+Pływający pasek już nie znika, gdy Twitch Anti-Ban zastępuje czat własnym.
