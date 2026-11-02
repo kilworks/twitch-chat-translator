@@ -331,6 +331,7 @@ html[data-kt-scheme='light'] .kt-translation-replace {
   user-select: none;
   position: relative;
   z-index: 50;
+  order: -1;
   transition: background 0.15s;
 }
 .kt-float:hover {

@@ -687,7 +687,8 @@ export function mountFloatingBar(container: Element, settings: Settings, h: Floa
     h.onToggle(enabled);
   });
 
-  host.insertBefore(bar, host.firstChild);
+  // Appended, shown on top by `order: -1`: Twitch Anti-Ban swaps `.chat-room__content`'s first child for its proxy chat.
+  host.appendChild(bar);
 }
 
 function setBarEnabled(bar: HTMLElement, label: HTMLElement, enabled: boolean, lang: string): void {
