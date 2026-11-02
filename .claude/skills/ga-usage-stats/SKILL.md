@@ -82,18 +82,20 @@ Use `client_id` `test.<timestamp>` for test hits so they can be told apart.
 
 Event parameters only appear in reports once registered: Admin > Définitions
 personnalisées. Metrics (event scope): every name in `USAGE_COUNTERS` plus
-`lat_p50`, `lat_p95`, `has_7tv`, `local_api`. Dimensions: `ext_version`,
+`lat_p50`, `lat_p95`, `has_7tv`, `has_bttv`, `has_ffz`, `local_api`. Dimensions: `ext_version`,
 `browser`, `ui_lang`, `target_lang`, `engine_mode`. GA4 allows 50 custom
-metrics and 50 dimensions per property; this uses 14 and 5.
+metrics and 50 dimensions per property; this uses 16 and 5.
 
-## Where it lives (set up 2026-10-16)
+## Where it lives (set up 2026-11-02)
 
-- Account `Kick Chat Translator` 412256768, property `Kick Chat Translator
-  extension` 559336585, web stream 16143972403, measurement ID
-  `G-M3X9D6KZLP`, MP secret nicknamed `extension` (value in constants.ts).
-- Realtime: `analytics.google.com/analytics/web/#/a412256768p559336585/realtime/overview`
-- Custom definitions: `.../a412256768p559336585/admin/customdefinitions/hub`,
-  5 dimensions and 14 metrics, all event scope, unit Standard.
+- Account `Kick Chat Translator` 412256768, property `Twitch Chat Translator
+  extension` 561930909, web stream 16255096729, measurement ID
+  `G-9EZ5ZNVKM0`, MP secret nicknamed `extension` (value in constants.ts).
+  Until 2026-11-02 this port shipped the Kick property's IDs (559336585,
+  `G-M3X9D6KZLP`): Twitch events sent before then are mixed into Kick's.
+- Realtime: `analytics.google.com/analytics/web/#/a412256768p561930909/realtime/overview`
+- Custom definitions: `.../a412256768p561930909/admin/customdefinitions/hub`,
+  5 dimensions and 16 metrics, all event scope, unit Standard.
 
 ## Journal
 

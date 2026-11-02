@@ -88,11 +88,11 @@ export const STORAGE_KEY_USAGE = 'kt.usage.v1';
 // the bundle whatever is done, which is how the Measurement Protocol works: the
 // secret only lets someone ADD events to this stream, it reads nothing. Empty
 // means nothing is ever sent.
-// Property "Kick Chat Translator extension" (account "Kick Chat Translator"),
-// web stream 16143972403, secret nicknamed "extension". Created 2026-10-16
+// Property "Twitch Chat Translator extension" (account "Kick Chat Translator"),
+// web stream 16255096729, secret nicknamed "extension". Created 2026-11-02
 // with the ga-usage-stats skill.
-export const GA_MEASUREMENT_ID = 'G-M3X9D6KZLP';
-export const GA_API_SECRET = 'SeO_Zkk4RKCCB0Iv_SDr1A';
+export const GA_MEASUREMENT_ID = 'G-9EZ5ZNVKM0';
+export const GA_API_SECRET = 'aK4lt3bqSK68QdLcRAoUhg';
 export const GA_ENDPOINT = 'https://www.google-analytics.com/mp/collect';
 
 // Self-update check: compare the installed version to the latest GitHub release of THIS
