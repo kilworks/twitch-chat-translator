@@ -7,7 +7,7 @@
 อ่านแชท Twitch ได้ทุกช่องเป็นภาษาของคุณ และตอบกลับเป็นภาษาของช่องนั้น<br>
 ฟรี ไม่ต้องสมัครบัญชี ไม่ต้องตั้งค่าอะไรเลย รองรับ 43 ภาษา ทั้งในแชทและในตัวส่วนขยายเอง
 
-**[ดาวน์โหลดรุ่นล่าสุด](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge และ Firefox
+**[เพิ่มลงใน Chrome, Brave หรือ Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[เพิ่มลงใน Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

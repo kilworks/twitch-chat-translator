@@ -7,7 +7,7 @@
 Читайте чат любого стрима на Twitch на своём языке и отвечайте на языке канала.<br>
 Бесплатно, без аккаунта, ничего настраивать не нужно. 43 языка, в чате и в самом расширении.
 
-**[Скачать последний релиз](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge и Firefox
+**[Добавить в Chrome, Brave или Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Добавить в Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

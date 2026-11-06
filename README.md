@@ -7,7 +7,7 @@
 Read any Twitch chat in your own language, and reply in the channel's.<br>
 Free, no account, nothing to set up. 43 languages, in the chat and in the extension itself.
 
-**[Download the latest release](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge and Firefox
+**[Add to Chrome, Brave or Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Add to Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -68,7 +68,9 @@ invented and the translations are answered locally, so no real person's handle e
 
 ## Install
 
-Download the zip for your browser from [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) and unzip it.
+Add it from the [Chrome Web Store](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib) or [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/). Store copies update themselves.
+
+To load a copy by hand, download the zip for your browser from [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) and unzip it.
 
 - Chrome, Brave, Edge (`…-chromium.zip`): open `chrome://extensions`, turn on Developer mode, click Load unpacked, pick the folder.
 - Firefox 121+ (`…-firefox.zip`): open `about:debugging#/runtime/this-firefox`, click Load Temporary Add-on, pick `manifest.json`.

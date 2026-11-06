@@ -7,7 +7,7 @@
 چت هر استریم Twitch را به زبان خودت بخوان و به زبان کانال جواب بده.<br>
 رایگان، بدون حساب کاربری، بدون هیچ تنظیمی. 43 زبان، هم در چت و هم در خود افزونه.
 
-**[دانلود آخرین نسخه](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome، Brave، Edge و Firefox
+**[افزودن به Chrome، Brave یا Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[افزودن به Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

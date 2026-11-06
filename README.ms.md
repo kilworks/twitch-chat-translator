@@ -7,7 +7,7 @@
 Baca sembang Twitch mana-mana dalam bahasa anda sendiri, dan balas dalam bahasa saluran itu.<br>
 Percuma, tanpa akaun, tiada apa-apa untuk disediakan. 43 bahasa, dalam sembang dan dalam sambungan itu sendiri.
 
-**[Muat turun keluaran terkini](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge dan Firefox
+**[Tambah ke Chrome, Brave atau Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Tambah ke Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

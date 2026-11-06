@@ -7,7 +7,7 @@
 Twitch のどの配信のチャットも自分の言語で読み、チャンネルの言語で返信できます。<br>
 無料、アカウント不要、設定も不要。チャットでも拡張機能の画面でも、43 言語に対応。
 
-**[最新リリースをダウンロード](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome、Brave、Edge、Firefox
+**[Chrome、Brave、Edge に追加](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Firefox に追加](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

@@ -7,7 +7,7 @@
 Lis le chat de n'importe quel chat Twitch dans ta langue, et réponds dans celle de la chaîne.<br>
 Gratuit, sans compte, rien à configurer. 43 langues, dans le chat et dans l'extension elle-même.
 
-**[Télécharger la dernière version](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge et Firefox
+**[Ajouter à Chrome, Brave ou Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Ajouter à Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

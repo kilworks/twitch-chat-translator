@@ -7,7 +7,7 @@
 קרא את הצ'אט של כל שידור ב-Twitch בשפה שלך, והגב בשפה של הערוץ.<br>
 חינם, בלי חשבון, בלי שום הגדרה. 43 שפות, בצ'אט ובתוסף עצמו.
 
-**[הורד את הגרסה האחרונה](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge ו-Firefox
+**[הוסף ל-Chrome, ל-Brave או ל-Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[הוסף ל-Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

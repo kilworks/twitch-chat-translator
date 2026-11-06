@@ -7,7 +7,7 @@
 Olvasd bármelyik Twitch-csevegést a saját nyelveden, és válaszolj a csatorna nyelvén.<br>
 Ingyen, fiók nélkül, semmit nem kell beállítani. 43 nyelv, a csevegésben és magában a bővítményben is.
 
-**[A legfrissebb kiadás letöltése](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge és Firefox
+**[Hozzáadás Chrome-hoz, Brave-hez vagy Edge-hez](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Hozzáadás Firefoxhoz](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

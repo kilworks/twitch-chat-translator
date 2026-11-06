@@ -7,7 +7,7 @@
 যেকোনো Twitch চ্যাট নিজের ভাষায় পড়ো, আর উত্তর দাও চ্যানেলের ভাষায়।<br>
 ফ্রি, অ্যাকাউন্ট লাগে না, কিছু সেটআপ করতে হয় না। 43টি ভাষা, চ্যাটে আর এক্সটেনশনের ভেতরেও।
 
-**[সর্বশেষ রিলিজ ডাউনলোড করুন](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge আর Firefox
+**[Chrome, Brave বা Edge-এ যোগ করুন](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Firefox-এ যোগ করুন](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
