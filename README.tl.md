@@ -7,7 +7,7 @@
 Basahin ang chat ng kahit anong Twitch stream sa sarili mong wika, at sumagot sa wika ng channel.<br>
 Libre, walang account, walang kailangang i-set up. 43 wika, sa chat at pati sa mismong extension.
 
-**[I-download ang pinakabagong release](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge at Firefox
+**[I-add sa Chrome, Brave o Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[I-add sa Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

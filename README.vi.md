@@ -7,7 +7,7 @@
 Đọc chat Twitch bằng tiếng của bạn, và trả lời bằng tiếng của kênh.<br>
 Miễn phí, không cần tài khoản, không phải cài đặt gì. 43 ngôn ngữ, cả trong chat lẫn trong chính tiện ích.
 
-**[Tải bản phát hành mới nhất](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge và Firefox
+**[Thêm vào Chrome, Brave hoặc Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Thêm vào Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

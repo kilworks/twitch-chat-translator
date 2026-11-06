@@ -7,7 +7,7 @@
 किसी भी Twitch चैट को अपनी भाषा में पढ़ो, और जवाब चैनल की भाषा में दो।<br>
 फ़्री, बिना अकाउंट के, कुछ सेट करने की ज़रूरत नहीं। 43 भाषाएँ, चैट में भी और एक्सटेंशन में भी।
 
-**[लेटेस्ट रिलीज़ डाउनलोड करो](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge और Firefox
+**[Chrome, Brave या Edge में जोड़ें](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Firefox में जोड़ें](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

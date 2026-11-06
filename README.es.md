@@ -7,7 +7,7 @@
 Lee el chat de cualquier chat de Twitch en tu idioma y responde en el del canal.<br>
 Gratis, sin cuenta, nada que configurar. 43 idiomas, en el chat y en la propia extensión.
 
-**[Descargar la última versión](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge y Firefox
+**[Añadir a Chrome, Brave o Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Añadir a Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

@@ -7,7 +7,7 @@
 Twitch의 어떤 방송 채팅이든 자기 언어로 읽고, 채널의 언어로 답할 수 있습니다.<br>
 무료, 계정 불필요, 따로 설정할 것도 없습니다. 채팅에서도 확장 프로그램 화면에서도 43개 언어.
 
-**[최신 릴리스 내려받기](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge, Firefox
+**[Chrome, Brave, Edge에 추가](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Firefox에 추가](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

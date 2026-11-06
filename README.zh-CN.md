@@ -7,7 +7,7 @@
 用你自己的语言阅读任何 Twitch 直播的聊天，并用频道的语言回复。<br>
 免费，无需账号，无需任何设置。支持 43 种语言，聊天和扩展自身的界面都是如此。
 
-**[下载最新发布版](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome、Brave、Edge 和 Firefox
+**[添加到 Chrome、Brave 或 Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[添加到 Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

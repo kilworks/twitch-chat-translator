@@ -7,7 +7,7 @@
 Čítaj chat každého streamu na Twitchi vo svojom jazyku a odpovedaj v jazyku kanála.<br>
 Zadarmo, bez účtu, nič sa nenastavuje. 43 jazykov, v chate aj v samotnom rozšírení.
 
-**[Stiahnuť najnovšie vydanie](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge a Firefox
+**[Pridať do Chrome, Brave alebo Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Pridať do Firefoxu](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

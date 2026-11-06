@@ -7,7 +7,7 @@
 எந்த Twitch சாட்டையும் உன் மொழியில் படி, பதிலை சேனலின் மொழியில் சொல்.<br>
 இலவசம், அக்கவுண்ட் வேண்டாம், எதையும் செட்டப் பண்ண வேண்டாம். 43 மொழிகள், சாட்டிலும் எக்ஸ்டென்ஷனிலும்.
 
-**[சமீபத்திய ரிலீஸை டவுன்லோடு செய்](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge மற்றும் Firefox
+**[Chrome, Brave அல்லது Edge-இல் சேர்](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Firefox-இல் சேர்](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

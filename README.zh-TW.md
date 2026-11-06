@@ -7,7 +7,7 @@
 用你自己的語言看任何 Twitch 直播的聊天室，再用頻道的語言回覆。<br>
 免費、不用註冊帳號、什麼都不用設定。支援 43 種語言，聊天室和擴充功能本身的介面都一樣。
 
-**[下載最新發行版](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome、Brave、Edge 和 Firefox
+**[加到 Chrome、Brave 或 Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[加到 Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

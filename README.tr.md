@@ -7,7 +7,7 @@
 Herhangi bir Twitch yayınının sohbetini kendi dilinde oku, kanalın dilinde yanıt ver.<br>
 Ücretsiz, hesap yok, kurulacak bir şey yok. 43 dil, hem sohbette hem uzantının kendisinde.
 
-**[En son sürümü indir](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge ve Firefox
+**[Chrome, Brave veya Edge'e ekle](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Firefox'a ekle](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

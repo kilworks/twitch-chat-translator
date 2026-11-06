@@ -7,7 +7,7 @@
 اقرأ دردشة أي بث على Twitch بلغتك، وردّ بلغة القناة.<br>
 مجاني، بلا حساب، ولا شيء يلزم إعداده. 43 لغة، في الدردشة وفي الإضافة نفسها.
 
-**[نزّل أحدث إصدار](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome وBrave وEdge وFirefox
+**[أضِف إلى Chrome أو Brave أو Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[أضِف إلى Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

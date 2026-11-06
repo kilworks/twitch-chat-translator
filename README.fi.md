@@ -7,7 +7,7 @@
 Lue minkä tahansa Twitch-lähetyksen chattia omalla kielelläsi ja vastaa kanavan kielellä.<br>
 Ilmainen, ei tiliä, ei mitään asetettavaa. 43 kieltä, sekä chatissa että itse laajennuksessa.
 
-**[Lataa uusin julkaisu](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge ja Firefox
+**[Lisää Chromeen, Braveen tai Edgeen](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Lisää Firefoxiin](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

@@ -7,7 +7,7 @@
 Llegeix el xat de qualsevol directe de Twitch en el teu idioma i respon en el del canal.<br>
 Gratuït, sense compte, res a configurar. 43 idiomes, al xat i a la mateixa extensió.
 
-**[Descarrega l'última versió](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge i Firefox
+**[Afegeix a Chrome, Brave o Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Afegeix a Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

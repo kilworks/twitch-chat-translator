@@ -7,7 +7,7 @@
 Lees elke Twitch-chat in je eigen taal en reageer in die van het kanaal.<br>
 Gratis, zonder account, niets in te stellen. 43 talen, in de chat en in de extensie zelf.
 
-**[Download de nieuwste versie](https://github.com/kilworks/twitch-chat-translator/releases/latest)** &nbsp;·&nbsp; Chrome, Brave, Edge en Firefox
+**[Toevoegen aan Chrome, Brave of Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Toevoegen aan Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
 
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
