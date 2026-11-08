@@ -1,3 +1,1 @@
-Een Discord-knop in het extensievenster en naast de tabbladen van Opties: vraag om hulp, meld een verkeerde vertaling of deel een idee.
-
-Een kopie uit de Chrome Web Store wordt nu als zodanig herkend en werkt zichzelf bij, in plaats van door de updatemelding naar GitHub te worden gestuurd.
+De Discord-knop opent de server weer, met een nieuwe uitnodiging die nooit verloopt.

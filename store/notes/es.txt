@@ -1,3 +1,1 @@
-Un botón de Discord en la ventana de la extensión y junto a las pestañas de Opciones: pide ayuda, informa de una traducción errónea o comparte una idea.
-
-Una copia instalada desde Chrome Web Store ahora se reconoce como tal y se actualiza sola, en lugar de que el aviso de actualización la envíe a GitHub.
+El botón de Discord vuelve a abrir el servidor, con una nueva invitación que nunca caduca.

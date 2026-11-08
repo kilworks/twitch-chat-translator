@@ -1,3 +1,1 @@
-Ein Discord-Knopf im Erweiterungsfenster und neben den Tabs der Optionen: Hilfe holen, eine falsche Übersetzung melden oder eine Idee teilen.
-
-Eine aus dem Chrome Web Store installierte Kopie wird jetzt als solche erkannt und aktualisiert sich selbst, statt über den Update-Hinweis zu GitHub geschickt zu werden.
+Der Discord-Knopf öffnet den Server wieder, mit einer neuen Einladung, die nie abläuft.

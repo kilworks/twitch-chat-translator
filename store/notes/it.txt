@@ -1,3 +1,1 @@
-Un pulsante Discord è ora nella finestra dell'estensione e accanto alle schede delle Opzioni: chiedi aiuto, segnala una traduzione sbagliata o proponi un'idea.
-
-Una copia installata dal Chrome Web Store ora è riconosciuta come tale e si aggiorna da sola, invece di essere mandata su GitHub dall'avviso di aggiornamento.
+Il pulsante Discord apre di nuovo il server, con un nuovo invito che non scade mai.

@@ -123,7 +123,7 @@ export const CHROME_STORE_URL = CHROME_STORE_ID
   : `https://github.com/${GITHUB_REPO}/releases/latest`;
 
 /** Permanent invite to the Discord server shared with Kick Chat Translator, lands in #welcome. */
-export const DISCORD_URL = 'https://discord.gg/cbG7pwKAca';
+export const DISCORD_URL = 'https://discord.gg/qJYzrYHUdy';
 
 /** The sister extension, the same translator for Kick chat: named in the About tab. */
 export const KICK_EXTENSION_URLS = {

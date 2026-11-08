@@ -1,3 +1,1 @@
-Przycisk Discord w oknie rozszerzenia i obok kart Opcji: poproś o pomoc, zgłoś błędne tłumaczenie lub podziel się pomysłem.
-
-Kopia zainstalowana z Chrome Web Store jest teraz rozpoznawana jako taka i aktualizuje się sama, zamiast być kierowana do GitHuba przez powiadomienie o aktualizacji.
+Przycisk Discord znów otwiera serwer, z nowym zaproszeniem, które nigdy nie wygasa.

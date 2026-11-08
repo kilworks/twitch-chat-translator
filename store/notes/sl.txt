@@ -1,3 +1,1 @@
-Gumb Discord v oknu razširitve in ob zavihkih Možnosti: prosite za pomoč, prijavite napačen prevod ali delite idejo.
-
-Kopija, nameščena iz Chrome Web Store, je zdaj prepoznana kot taka in se posodablja sama, namesto da bi jo obvestilo o posodobitvi pošiljalo na GitHub.
+Gumb Discord znova odpre strežnik, z novim povabilom, ki nikoli ne poteče.

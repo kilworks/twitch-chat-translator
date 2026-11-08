@@ -1,3 +1,1 @@
-Eklenti penceresinde ve Seçenekler sekmelerinin yanında bir Discord düğmesi: yardım isteyin, yanlış bir çeviriyi bildirin veya bir fikir paylaşın.
-
-Chrome Web Store'dan yüklenen bir kopya artık böyle tanınıyor ve kendini güncelliyor, güncelleme bildirimi onu GitHub'a göndermiyor.
+Discord düğmesi sunucuyu yeniden açıyor, hiç sona ermeyen yeni bir davetle.

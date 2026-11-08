@@ -1,3 +1,1 @@
-Um botão do Discord na janela da extensão e ao lado das abas de Opções: peça ajuda, informe uma tradução errada ou compartilhe uma ideia.
-
-Uma cópia instalada pela Chrome Web Store agora é reconhecida como tal e se atualiza sozinha, em vez de ser enviada ao GitHub pelo aviso de atualização.
+O botão do Discord volta a abrir o servidor, com um novo convite que nunca expira.

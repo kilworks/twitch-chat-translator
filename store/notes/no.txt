@@ -1,3 +1,1 @@
-En Discord-knapp i utvidelsens vindu og ved siden av fanene i Alternativer: be om hjelp, meld fra om en feil oversettelse eller del en idé.
-
-En kopi installert fra Chrome Web Store blir nå gjenkjent som det og oppdaterer seg selv, i stedet for å bli sendt til GitHub av oppdateringsvarselet.
+Discord-knappen åpner serveren igjen, med en ny invitasjon som aldri utløper.

@@ -1,3 +1,1 @@
-En Discord-knapp i tilläggets fönster och bredvid flikarna i Alternativ: be om hjälp, rapportera en felaktig översättning eller dela en idé.
-
-En kopia installerad från Chrome Web Store känns nu igen som en sådan och uppdaterar sig själv, i stället för att skickas till GitHub av uppdateringsmeddelandet.
+Discord-knappen öppnar servern igen, med en ny inbjudan som aldrig går ut.

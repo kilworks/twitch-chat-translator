@@ -1,3 +1,1 @@
-Discord-painike laajennuksen ikkunassa ja Asetusten välilehtien vieressä: pyydä apua, ilmoita väärästä käännöksestä tai jaa idea.
-
-Chrome Web Storesta asennettu kopio tunnistetaan nyt sellaiseksi ja päivittyy itse, eikä päivitysilmoitus enää ohjaa sitä GitHubiin.
+Discord-painike avaa palvelimen taas, uudella kutsulla, joka ei vanhene koskaan.

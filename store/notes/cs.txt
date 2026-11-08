@@ -1,3 +1,1 @@
-Tlačítko Discord v okně rozšíření a vedle karet Možností: požádejte o pomoc, nahlaste špatný překlad nebo sdílejte nápad.
-
-Kopie nainstalovaná z Chrome Web Store je nyní rozpoznána jako taková a aktualizuje se sama, místo aby ji oznámení o aktualizaci posílalo na GitHub.
+Tlačítko Discord opět otevírá server, s novou pozvánkou, která nikdy nevyprší.

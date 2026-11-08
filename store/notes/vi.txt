@@ -1,3 +1,1 @@
-Nút Discord trong cửa sổ tiện ích và cạnh các thẻ Tùy chọn: nhờ trợ giúp, báo một bản dịch sai hoặc chia sẻ ý tưởng.
-
-Bản cài từ Chrome Web Store giờ được nhận ra đúng và tự cập nhật, thay vì bị thông báo cập nhật chuyển sang GitHub.
+Nút Discord lại mở được máy chủ, với một lời mời mới không bao giờ hết hạn.

@@ -1,3 +1,1 @@
-Un buton Discord în fereastra extensiei și lângă filele Opțiunilor: cere ajutor, semnalează o traducere greșită sau propune o idee.
-
-O copie instalată din Chrome Web Store este acum recunoscută ca atare și se actualizează singură, în loc să fie trimisă spre GitHub de anunțul de actualizare.
+Butonul Discord deschide din nou serverul, cu o invitație nouă care nu expiră niciodată.

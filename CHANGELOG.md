@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4]
+
+### Changed
+
+- The Discord button uses a new permanent invite. The one shipped in 1.0.3 was revoked, so
+  that button no longer opens the server.
+
 ## [1.0.3]
 
 ### Added

@@ -1,3 +1,1 @@
-Discord gomb a bővítmény ablakában és a Beállítások fülei mellett: kérj segítséget, jelents hibás fordítást vagy oszd meg egy ötleted.
-
-A Chrome Web Store-ból telepített példányt a bővítmény most felismeri, és az magától frissül, ahelyett hogy a frissítési értesítés a GitHubra küldené.
+A Discord gomb újra megnyitja a szervert, egy új, soha le nem járó meghívóval.
