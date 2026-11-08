@@ -1,5 +1,3 @@
-Repetición de clips: un clip se reproduce en bucle y Twitch redibuja su chat cada vez, y las líneas repetidas se tomaban por spam y quedaban sin traducir. Cada línea de una repetición vuelve a traducirse, desde la caché.
+Un botón de Discord en la ventana de la extensión y junto a las pestañas de Opciones: pide ayuda, informa de una traducción errónea o comparte una idea.
 
-Una línea que 7TV dibuja de nuevo recupera su traducción.
-
-La barra flotante ya no desaparece cuando Twitch Anti-Ban reemplaza el chat por el suyo.
+Una copia instalada desde Chrome Web Store ahora se reconoce como tal y se actualiza sola, en lugar de que el aviso de actualización la envíe a GitHub.

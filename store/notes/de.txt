@@ -1,5 +1,3 @@
-Clip-Wiedergabe: Ein Clip läuft in Schleife und Twitch zeichnet den Chat jedes Mal neu, die wiederholten Zeilen galten als Spam und blieben unübersetzt. Jede Zeile einer Wiedergabe wird wieder übersetzt, aus dem Cache.
+Ein Discord-Knopf im Erweiterungsfenster und neben den Tabs der Optionen: Hilfe holen, eine falsche Übersetzung melden oder eine Idee teilen.
 
-Eine Zeile, die 7TV neu zeichnet, bekommt ihre Übersetzung zurück.
-
-Die schwebende Leiste verschwindet nicht mehr, wenn Twitch Anti-Ban den Chat durch seinen eigenen ersetzt.
+Eine aus dem Chrome Web Store installierte Kopie wird jetzt als solche erkannt und aktualisiert sich selbst, statt über den Update-Hinweis zu GitHub geschickt zu werden.

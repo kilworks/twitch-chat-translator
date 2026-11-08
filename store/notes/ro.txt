@@ -1,5 +1,3 @@
-Reluarea clipurilor: un clip rulează în buclă și Twitch redesenează chatul de fiecare dată, iar liniile repetate erau luate drept spam și rămâneau netraduse. Fiecare linie a unei reluări este tradusă din nou, din cache.
+Un buton Discord în fereastra extensiei și lângă filele Opțiunilor: cere ajutor, semnalează o traducere greșită sau propune o idee.
 
-O linie pe care 7TV o redesenează își recapătă traducerea.
-
-Bara plutitoare nu mai dispare când Twitch Anti-Ban înlocuiește chatul cu al său.
+O copie instalată din Chrome Web Store este acum recunoscută ca atare și se actualizează singură, în loc să fie trimisă spre GitHub de anunțul de actualizare.

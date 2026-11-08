@@ -1,5 +1,3 @@
-Powtórki klipów: klip odtwarza się w pętli, a Twitch za każdym razem rysuje czat od nowa, więc powtórzone linie były brane za spam i zostawały bez tłumaczenia. Każda linia powtórki jest znów tłumaczona, z pamięci podręcznej.
+Przycisk Discord w oknie rozszerzenia i obok kart Opcji: poproś o pomoc, zgłoś błędne tłumaczenie lub podziel się pomysłem.
 
-Linia, którą 7TV rysuje ponownie, odzyskuje swoje tłumaczenie.
-
-Pływający pasek już nie znika, gdy Twitch Anti-Ban zastępuje czat własnym.
+Kopia zainstalowana z Chrome Web Store jest teraz rozpoznawana jako taka i aktualizuje się sama, zamiast być kierowana do GitHuba przez powiadomienie o aktualizacji.

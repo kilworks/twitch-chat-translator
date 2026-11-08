@@ -1,5 +1,3 @@
-Klippien toisto: klippi pyörii silmukassa ja Twitch piirtää chatin uudelleen joka kerta, ja toistuneet rivit tulkittiin roskapostiksi ja jäivät kääntämättä. Jokainen toiston rivi käännetään taas, välimuistista.
+Discord-painike laajennuksen ikkunassa ja Asetusten välilehtien vieressä: pyydä apua, ilmoita väärästä käännöksestä tai jaa idea.
 
-Rivi, jonka 7TV piirtää uudelleen, saa käännöksensä takaisin.
-
-Kelluva palkki ei enää katoa, kun Twitch Anti-Ban korvaa chatin omallaan.
+Chrome Web Storesta asennettu kopio tunnistetaan nyt sellaiseksi ja päivittyy itse, eikä päivitysilmoitus enää ohjaa sitä GitHubiin.

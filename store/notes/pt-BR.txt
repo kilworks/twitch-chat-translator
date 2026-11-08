@@ -1,5 +1,3 @@
-Replay de clipes: um clipe roda em loop e a Twitch redesenha o chat a cada vez, e as linhas repetidas eram tomadas por spam e ficavam sem tradução. Cada linha de um replay volta a ser traduzida, a partir do cache.
+Um botão do Discord na janela da extensão e ao lado das abas de Opções: peça ajuda, informe uma tradução errada ou compartilhe uma ideia.
 
-Uma linha que o 7TV redesenha recupera a sua tradução.
-
-A barra flutuante não some mais quando o Twitch Anti-Ban substitui o chat pelo dele.
+Uma cópia instalada pela Chrome Web Store agora é reconhecida como tal e se atualiza sozinha, em vez de ser enviada ao GitHub pelo aviso de atualização.

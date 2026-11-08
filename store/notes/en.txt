@@ -1,5 +1,3 @@
-Clip replay: a clip loops and Twitch redraws its chat each time, and the repeated lines were taken for spam and left untranslated. Every line of a replay is translated again, from the cache.
+A Discord button in the popup and next to the Options tabs: ask for help, report a wrong translation or share an idea.
 
-A line that 7TV draws a second time gets its translation back.
-
-The floating bar no longer disappears when Twitch Anti-Ban replaces the chat with its own.
+A copy installed from the Chrome Web Store is now recognized as such and updates itself, instead of being sent to GitHub by the update notice.

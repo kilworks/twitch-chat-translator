@@ -1,5 +1,3 @@
-Přehrávání klipů: klip běží ve smyčce a Twitch pokaždé znovu vykreslí chat, takže opakované řádky byly brány jako spam a zůstaly nepřeložené. Každý řádek přehrávání se znovu přeloží, z mezipaměti.
+Tlačítko Discord v okně rozšíření a vedle karet Možností: požádejte o pomoc, nahlaste špatný překlad nebo sdílejte nápad.
 
-Řádek, který 7TV vykreslí znovu, dostane zpět svůj překlad.
-
-Plovoucí lišta už nezmizí, když Twitch Anti-Ban nahradí chat svým vlastním.
+Kopie nainstalovaná z Chrome Web Store je nyní rozpoznána jako taková a aktualizuje se sama, místo aby ji oznámení o aktualizaci posílalo na GitHub.

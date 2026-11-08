@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3]
+
+### Added
+
+- A Discord link, the Discord mark alone, in the popup footer between Clear cache and Options,
+  and at the end of the Options tab row, outside the tablist so the arrow keys still move
+  between tabs only. Same server as Kick Chat Translator, with an invite of its own.
+- The READMEs and the GitHub issue chooser point to the Discord server too.
+
+### Fixed
+
+- The Chrome Web Store id was still empty, so a store copy took itself for a zip install and
+  its update notice pointed to the GitHub release instead of letting the store update it.
+
 ## [1.0.2]
 
 1.0.1 was numbered but never reached either store; its fixes ship here.

@@ -1,5 +1,3 @@
-Reprise av klipp: et klipp går i løkke og Twitch tegner chatten på nytt hver gang, og de gjentatte linjene ble tatt for spam og stod uoversatt. Hver linje i en reprise blir oversatt igjen, fra hurtigbufferen.
+En Discord-knapp i utvidelsens vindu og ved siden av fanene i Alternativer: be om hjelp, meld fra om en feil oversettelse eller del en idé.
 
-En linje som 7TV tegner på nytt, får oversettelsen sin tilbake.
-
-Den flytende linjen forsvinner ikke lenger når Twitch Anti-Ban erstatter chatten med sin egen.
+En kopi installert fra Chrome Web Store blir nå gjenkjent som det og oppdaterer seg selv, i stedet for å bli sendt til GitHub av oppdateringsvarselet.

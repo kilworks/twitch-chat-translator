@@ -1,5 +1,3 @@
-Clips terugkijken: een clip speelt in een lus en Twitch tekent de chat elke keer opnieuw, en de herhaalde regels werden als spam gezien en bleven onvertaald. Elke regel van een herhaling wordt weer vertaald, uit de cache, ook als hij er al één keer stond.
+Een Discord-knop in het extensievenster en naast de tabbladen van Opties: vraag om hulp, meld een verkeerde vertaling of deel een idee.
 
-Een regel die 7TV opnieuw tekent, krijgt zijn vertaling terug.
-
-De zwevende balk verdwijnt niet meer wanneer Twitch Anti-Ban de chat door zijn eigen chat vervangt.
+Een kopie uit de Chrome Web Store wordt nu als zodanig herkend en werkt zichzelf bij, in plaats van door de updatemelding naar GitHub te worden gestuurd.

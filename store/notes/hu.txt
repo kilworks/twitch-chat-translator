@@ -1,5 +1,3 @@
-Klipek visszajátszása: a klip körbeforog, és a Twitch minden alkalommal újrarajzolja a chatet, így az ismétlődő sorokat spamnek vették, és fordítás nélkül maradtak. A visszajátszás minden sora újra le van fordítva, a gyorsítótárból.
+Discord gomb a bővítmény ablakában és a Beállítások fülei mellett: kérj segítséget, jelents hibás fordítást vagy oszd meg egy ötleted.
 
-Az a sor, amelyet a 7TV újrarajzol, visszakapja a fordítását.
-
-A lebegő sáv már nem tűnik el, amikor a Twitch Anti-Ban a saját chatjére cseréli a chatet.
+A Chrome Web Store-ból telepített példányt a bővítmény most felismeri, és az magától frissül, ahelyett hogy a frissítési értesítés a GitHubra küldené.

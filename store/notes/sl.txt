@@ -1,5 +1,3 @@
-Predvajanje posnetkov: posnetek se vrti v zanki in Twitch vsakič znova izriše klepet, zato so bile ponovljene vrstice vzete za neželeno vsebino in so ostale neprevedene. Vsaka vrstica predvajanja je znova prevedena, iz predpomnilnika.
+Gumb Discord v oknu razširitve in ob zavihkih Možnosti: prosite za pomoč, prijavite napačen prevod ali delite idejo.
 
-Vrstica, ki jo 7TV znova izriše, dobi nazaj svoj prevod.
-
-Plavajoča vrstica ne izgine več, ko Twitch Anti-Ban zamenja klepet s svojim.
+Kopija, nameščena iz Chrome Web Store, je zdaj prepoznana kot taka in se posodablja sama, namesto da bi jo obvestilo o posodobitvi pošiljalo na GitHub.

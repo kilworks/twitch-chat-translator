@@ -1,5 +1,3 @@
-Riproduzione delle clip: una clip va in loop e Twitch ridisegna la chat ogni volta, e le righe ripetute venivano prese per spam e restavano senza traduzione. Ogni riga di una riproduzione è di nuovo tradotta, dalla cache.
+Un pulsante Discord è ora nella finestra dell'estensione e accanto alle schede delle Opzioni: chiedi aiuto, segnala una traduzione sbagliata o proponi un'idea.
 
-Una riga che 7TV ridisegna ritrova la sua traduzione.
-
-La barra mobile non scompare più quando Twitch Anti-Ban sostituisce la chat con la propria.
+Una copia installata dal Chrome Web Store ora è riconosciuta come tale e si aggiorna da sola, invece di essere mandata su GitHub dall'avviso di aggiornamento.

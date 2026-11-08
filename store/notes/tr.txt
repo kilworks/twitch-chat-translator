@@ -1,5 +1,3 @@
-Klip tekrarı: bir klip döngüde oynar ve Twitch sohbeti her seferinde yeniden çizer, tekrarlanan satırlar spam sanılıp çevrilmeden kalıyordu. Bir tekrarın her satırı önbellekten yeniden çevriliyor.
+Eklenti penceresinde ve Seçenekler sekmelerinin yanında bir Discord düğmesi: yardım isteyin, yanlış bir çeviriyi bildirin veya bir fikir paylaşın.
 
-7TV'nin yeniden çizdiği bir satır çevirisini geri alır.
-
-Twitch Anti-Ban sohbeti kendi sohbetiyle değiştirdiğinde yüzen çubuk artık kaybolmuyor.
+Chrome Web Store'dan yüklenen bir kopya artık böyle tanınıyor ve kendini güncelliyor, güncelleme bildirimi onu GitHub'a göndermiyor.

@@ -1,5 +1,3 @@
-Replay des clips : un clip tourne en boucle et Twitch redessine son chat à chaque passage, les lignes répétées étaient prises pour du spam et restaient sans traduction. Chaque ligne d'un replay est de nouveau traduite, depuis le cache.
+Un bouton Discord dans la fenêtre de l'extension et à côté des onglets des Options : demander de l'aide, signaler une mauvaise traduction ou proposer une idée.
 
-Une ligne que 7TV redessine retrouve sa traduction.
-
-La barre flottante ne disparaît plus quand Twitch Anti-Ban remplace le chat par le sien.
+Une copie installée depuis le Chrome Web Store est désormais reconnue comme telle et se met à jour seule, au lieu d'être envoyée vers GitHub par l'avis de mise à jour.

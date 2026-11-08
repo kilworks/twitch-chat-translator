@@ -1,5 +1,3 @@
-Klipprepris: ett klipp spelas i en slinga och Twitch ritar om chatten varje gång, och de upprepade raderna togs för spam och lämnades oöversatta. Varje rad i en repris översätts igen, från cachen.
+En Discord-knapp i tilläggets fönster och bredvid flikarna i Alternativ: be om hjälp, rapportera en felaktig översättning eller dela en idé.
 
-En rad som 7TV ritar om får tillbaka sin översättning.
-
-Den flytande raden försvinner inte längre när Twitch Anti-Ban ersätter chatten med sin egen.
+En kopia installerad från Chrome Web Store känns nu igen som en sådan och uppdaterar sig själv, i stället för att skickas till GitHub av uppdateringsmeddelandet.

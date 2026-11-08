@@ -108,10 +108,9 @@ export const GITHUB_REPO = 'kilworks/twitch-chat-translator';
  * `management` permission, which would send the listing back through a longer
  * review for a single boolean.
  *
- * Null until the first upload creates the listing (PLAN K04): no Chrome copy is a store copy
- * yet. It held the Kick listing's id, which would have sent the update notice to Kick's page.
+ * It held the Kick listing's id once, which would have sent the update notice to Kick's page.
  */
-export const CHROME_STORE_ID = null as string | null;
+export const CHROME_STORE_ID = 'cbfmiinjkceibkpdodaegnmpbeiempib' as string | null;
 
 /** The Firefox build's id, fixed in manifest.config.ts: every AMO install carries it. */
 export const FIREFOX_ADDON_ID = 'twitch-translator@pkkls.dev';
@@ -122,6 +121,9 @@ export const FIREFOX_ADDON_ID = 'twitch-translator@pkkls.dev';
 export const CHROME_STORE_URL = CHROME_STORE_ID
   ? `https://chromewebstore.google.com/detail/${CHROME_STORE_ID}`
   : `https://github.com/${GITHUB_REPO}/releases/latest`;
+
+/** Permanent invite to the Discord server shared with Kick Chat Translator, lands in #welcome. */
+export const DISCORD_URL = 'https://discord.gg/cbG7pwKAca';
 
 /** The sister extension, the same translator for Kick chat: named in the About tab. */
 export const KICK_EXTENSION_URLS = {

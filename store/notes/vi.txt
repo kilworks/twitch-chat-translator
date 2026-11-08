@@ -1,5 +1,3 @@
-Phát lại clip: một clip chạy lặp và Twitch vẽ lại khung chat mỗi lần, nên các dòng lặp lại bị coi là spam và không được dịch. Mọi dòng của bản phát lại giờ đều được dịch lại, từ bộ nhớ đệm.
+Nút Discord trong cửa sổ tiện ích và cạnh các thẻ Tùy chọn: nhờ trợ giúp, báo một bản dịch sai hoặc chia sẻ ý tưởng.
 
-Một dòng mà 7TV vẽ lại sẽ lấy lại bản dịch của nó.
-
-Thanh nổi không còn biến mất khi Twitch Anti-Ban thay khung chat bằng khung chat của nó.
+Bản cài từ Chrome Web Store giờ được nhận ra đúng và tự cập nhật, thay vì bị thông báo cập nhật chuyển sang GitHub.
