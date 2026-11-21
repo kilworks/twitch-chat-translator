@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const uk: Record<string, string> = {
+  barBlocked: 'Тут не перекладається',
+  barBlockedTipBlack: 'Цей канал у списку заблокованих (Налаштування, Фільтри)',
+  barBlockedTipWhite: 'Цього каналу немає в списку дозволених (Налаштування, Фільтри)',
+  barCount: 'Перекладено на цій сторінці: $N$',
   barLangDir: 'Чат інших глядачів, перекладений для вас',
+  barLangFilterTip: 'Дозволені мови оригіналу: з останніх 10 рядків не перекладено $N$ (Налаштування, Фільтри)',
   barOff: 'Переклад вимкнено',
   barOn: 'Триває переклад',
   barOnTip: 'Чат читається мовою $LANG$',

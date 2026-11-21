@@ -199,9 +199,9 @@ async function measure([name, st, locale]) {
       await new Promise((r) => setTimeout(r, 150));
       return globalThis.__ktSeen;
     });
-    // Every state on a channel URL must have been rendered as on site (T-1:
+    // Every state but the off-site first run must have been rendered on site (T-1:
     // a kick.com URL here measured the off-site popup from 1.0.0 to 1.0.4).
-    const needs = /twitch\.tv\//.test(st.url) ? [...st.needs, 'onsite'] : st.needs;
+    const needs = /^https:\/\/example\.com\//.test(st.url) ? st.needs : [...st.needs, 'onsite'];
     const missing = needs.filter((n) => !seen.includes(n));
     if (missing.length) muettes.push(`${name}/${locale} (${missing.join('+')})`);
     const banned = (st.bans ?? []).filter((n) => seen.includes(n));

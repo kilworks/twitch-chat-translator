@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const fa: Record<string, string> = {
+  barBlocked: 'اینجا ترجمه نمی‌شود',
+  barBlockedTipBlack: 'این کانال در فهرست مسدودشده‌های شماست (تنظیمات، فیلترها)',
+  barBlockedTipWhite: 'این کانال در فهرست مجاز شما نیست (تنظیمات، فیلترها)',
+  barCount: 'ترجمه‌شده در این صفحه: $N$',
   barLangDir: 'چت بقیه بیننده‌ها، ترجمه‌شده برای شما',
+  barLangFilterTip: 'فهرست مجاز زبان‌های مبدأ: $N$ خط از 10 خط آخر ترجمه نشد (تنظیمات، فیلترها)',
   barOff: 'ترجمه خاموش است',
   barOn: 'در حال ترجمه',
   barOnTip: 'خواندن چت به زبان $LANG$',

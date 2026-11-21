@@ -185,9 +185,10 @@ await popup.close();
  * counts 2: the real build shows 1 on a fresh profile, and Usage joins it once
  * there are stats, which this stub serves.
  */
-// Display: 3 cards, ungrouped until the comfort pass. About: 4, one more than
-// the sister build, for the Twitch-only section that points to it.
-const TABS = { providers: 4, display: 3, filters: 4, advanced: 4, activity: 2, about: 4 };
+// Display: 3 cards (h2) plus the Text, Colour and theme, In the chat groups (h3).
+// About: 4, one more than the sister build, for the Twitch-only section that
+// points to it.
+const TABS = { providers: 4, display: 6, filters: 4, advanced: 4, activity: 2, about: 4 };
 const OPTIONS = path.join(OUT, 'options');
 fs.mkdirSync(OPTIONS, { recursive: true });
 // rtl-surfaces audits every file here: a stale page from an old tab id would be

@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const th: Record<string, string> = {
+  barBlocked: 'ไม่แปลที่นี่',
+  barBlockedTipBlack: 'ช่องนี้อยู่ในรายการที่บล็อกไว้ (ตัวเลือก, ตัวกรอง)',
+  barBlockedTipWhite: 'ช่องนี้ไม่อยู่ในรายการที่อนุญาต (ตัวเลือก, ตัวกรอง)',
+  barCount: 'แปลในหน้านี้แล้ว: $N$',
   barLangDir: 'แชทจากผู้ชมคนอื่น แปลให้แล้ว',
+  barLangFilterTip: 'รายการภาษาต้นทางที่อนุญาต: ไม่ได้แปล $N$ จาก 10 บรรทัดล่าสุด (ตัวเลือก, ตัวกรอง)',
   barOff: 'ปิดการแปล',
   barOn: 'กำลังแปล',
   barOnTip: 'อ่านแชทเป็น $LANG$',

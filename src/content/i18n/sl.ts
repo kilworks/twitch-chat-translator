@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const sl: Record<string, string> = {
+  barBlocked: 'Tu se ne prevaja',
+  barBlockedTipBlack: 'Ta kanal je na vašem seznamu blokiranih (Nastavitve, Filtri)',
+  barBlockedTipWhite: 'Tega kanala ni na vašem seznamu dovoljenih (Nastavitve, Filtri)',
+  barCount: 'Prevedeno na tej strani: $N$',
   barLangDir: 'Klepet drugih gledalcev, preveden za vas',
+  barLangFilterTip: 'Dovoljeni izvorni jeziki: $N$ od zadnjih 10 vrstic ni prevedenih (Nastavitve, Filtri)',
   barOff: 'Prevajanje izklopljeno',
   barOn: 'Prevajanje',
   barOnTip: 'Branje klepeta v jeziku $LANG$',

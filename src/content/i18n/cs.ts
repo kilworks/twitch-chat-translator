@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const cs: Record<string, string> = {
+  barBlocked: 'Tady se nepřekládá',
+  barBlockedTipBlack: 'Tento kanál je na tvém seznamu blokovaných (Možnosti, Filtry)',
+  barBlockedTipWhite: 'Tento kanál není na tvém seznamu povolených (Možnosti, Filtry)',
+  barCount: 'Přeloženo na této stránce: $N$',
   barLangDir: 'Chat ostatních diváků přeložený pro tebe',
+  barLangFilterTip: 'Povolené zdrojové jazyky: $N$ z posledních 10 řádků nepřeloženo (Možnosti, Filtry)',
   barOff: 'Překlad vypnut',
   barOn: 'Překládá se',
   barOnTip: 'Chat se čte v jazyce $LANG$',

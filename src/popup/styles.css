@@ -52,7 +52,24 @@
     outline-offset: 1px;
   }
   .kt-label {
-    @apply text-[11px] uppercase tracking-wider text-kick-muted;
+    @apply text-xs uppercase tracking-wider text-kick-muted;
+  }
+  /* Capitals and wide tracking are a habit of cased scripts. Arabic, Persian
+     and Hebrew have no case, and letter spacing pulls Arabic's joined letters
+     apart; the other caseless scripts of the interface gain nothing from
+     either. Same rule on the options page. */
+  .kt-label:is(:lang(ar), :lang(fa), :lang(he), :lang(hi), :lang(bn), :lang(ta), :lang(th), :lang(ja), :lang(ko), :lang(zh), :lang(yue)) {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  /* A text action: the underline carries it. Not green, which belongs to the
+     one primary button of each state. */
+  .kt-link {
+    @apply rounded text-xs text-kick-text underline underline-offset-2 hover:no-underline;
+  }
+  .kt-link:focus-visible {
+    outline: 2px solid var(--kt-green);
+    outline-offset: 2px;
   }
   .kt-btn {
     @apply rounded-md bg-kick-primary px-3 py-1.5 text-sm font-semibold text-kick-dark hover:brightness-95 transition;
@@ -61,8 +78,11 @@
   .kt-btn-ghost {
     @apply rounded-md border border-kick-stroke bg-transparent px-3 py-1.5 text-sm font-medium text-kick-text hover:bg-kick-surface hover:border-kick-stroke-strong transition;
   }
+  /* 10px top and bottom, under the 12px between cards: the space between two
+     cards has to read wider than the space inside one, or the stack is one
+     flat size (App.tsx explains the scale). */
   .kt-card {
-    @apply rounded-lg bg-kick-surface p-3;
+    @apply rounded-lg bg-kick-surface px-3 py-2.5;
   }
 }
 

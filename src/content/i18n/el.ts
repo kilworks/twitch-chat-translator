@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const el: Record<string, string> = {
+  barBlocked: 'Δεν μεταφράζεται εδώ',
+  barBlockedTipBlack: 'Αυτό το κανάλι είναι στη λίστα αποκλεισμένων καναλιών σου (Επιλογές, Φίλτρα)',
+  barBlockedTipWhite: 'Αυτό το κανάλι δεν είναι στη λίστα επιτρεπόμενων καναλιών σου (Επιλογές, Φίλτρα)',
+  barCount: 'Μεταφρασμένα σε αυτή τη σελίδα: $N$',
   barLangDir: 'Η συνομιλία των άλλων θεατών, μεταφρασμένη για σένα',
+  barLangFilterTip: 'Λίστα επιτρεπόμενων γλωσσών πηγής: $N$ από τις τελευταίες 10 γραμμές δεν μεταφράστηκαν (Επιλογές, Φίλτρα)',
   barOff: 'Η μετάφραση είναι ανενεργή',
   barOn: 'Μετάφραση σε εξέλιξη',
   barOnTip: 'Η συνομιλία διαβάζεται στα $LANG$',

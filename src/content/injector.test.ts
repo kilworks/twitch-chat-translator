@@ -3,7 +3,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defaultSettings } from '~/shared/settings';
 import type { Settings } from '~/shared/settings';
 import type { TranslationResult } from '~/shared/types';
-import { HANDLED_SELECTOR, applyDisplayStyle, applyShowOriginal, armHoverTranslate, incrementFloatingCount, inject, markSkipped, mountFloatingBar, updateActiveProvider, removeAllArtifacts, showError, showLoading, unmountFloatingBar, updateFloatingBar } from './injector';
+import { HANDLED_SELECTOR, applyDisplayStyle, applyShowOriginal, armHoverTranslate, incrementFloatingCount, inject, markSkipped, mountFloatingBar, updateActiveProvider, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, unmountFloatingBar, updateFloatingBar } from './injector';
+import { nativeChat } from './twitchFixtures';
 // Read from disk: vitest runs with CSS processing off, so `?inline` imports
 // resolve to an empty string and would make these assertions pass on anything.
 const injectCss = readFileSync('src/content/inject.css', 'utf8');
@@ -350,6 +351,57 @@ describe('injector artifacts', () => {
       incrementFloatingCount();
       const live = document.querySelectorAll('#kt-floating-bar')[1]!;
       expect(live.querySelector('.kt-float-count')?.textContent).toBe('· 1');
+    });
+
+    // A forgotten allowlist left the bar reading "Translating" over a chat
+    // where no line was translated.
+    it('says when a channel list keeps this channel out, and where to change it', () => {
+      history.pushState(null, '', '/kt_test_channel');
+      try {
+        const host = twoPanels();
+        mountFloatingBar(host, { ...defaultSettings(), enabled: true, whitelistChannels: ['kt_other'] }, barHandlers());
+        const label = document.querySelectorAll('#kt-floating-bar')[1]!.querySelector<HTMLElement>('.kt-float-label')!;
+        expect(label.textContent).toBe('Not translated here');
+        expect(label.title).toContain('not on your allowed list');
+        // Control: the same bar on an allowed channel says it translates.
+        updateFloatingBar({ ...defaultSettings(), enabled: true, whitelistChannels: ['kt_test_channel'] });
+        expect(label.textContent).toBe('Translating');
+      } finally {
+        history.pushState(null, '', '/');
+      }
+    });
+
+    // T-6: Twitch serves the same chat under four routes; each resolves to the
+    // key the channel lists hold (a VOD's is videos/<id>).
+    it.each([
+      ['/kt_blocked', 'kt_blocked'],
+      ['/popout/kt_blocked/chat', 'kt_blocked'],
+      ['/moderator/kt_blocked', 'kt_blocked'],
+      ['/videos/123456789', 'videos/123456789'],
+    ])('says a blocked channel is not translated on %s', (route, key) => {
+      history.pushState(null, '', route);
+      try {
+        const host = twoPanels();
+        mountFloatingBar(host, { ...defaultSettings(), enabled: true, blacklistChannels: [key] }, barHandlers());
+        const label = document.querySelectorAll('#kt-floating-bar')[1]!.querySelector<HTMLElement>('.kt-float-label')!;
+        expect(label.textContent).toBe('Not translated here');
+        // Control: another channel's key on the list leaves this one translating.
+        updateFloatingBar({ ...defaultSettings(), enabled: true, blacklistChannels: ['kt_other'] });
+        expect(label.textContent).toBe('Translating');
+      } finally {
+        history.pushState(null, '', '/');
+      }
+    });
+
+    // `· 12` alone said nothing, to the eye or to a screen reader.
+    it('names what the counter counts', () => {
+      const host = twoPanels();
+      mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
+      incrementFloatingCount();
+      incrementFloatingCount();
+      const count = document.querySelectorAll('#kt-floating-bar')[1]!.querySelector<HTMLElement>('.kt-float-count')!;
+      expect(count.title).toBe('Translated on this page: 2');
+      expect(count.getAttribute('aria-label')).toBe('Translated on this page: 2');
     });
 
     // Teardown is the one place that stays document wide, so it cannot strand a
@@ -955,5 +1007,67 @@ describe('the on-device model button', () => {
     const rule = /\n\.kt-float-local \{[^}]*\}/.exec(injectCss)?.[0] ?? '';
     expect(rule, 'no .kt-float-local rule found').not.toBe('');
     expect(rule).toMatch(/min-height:\s*24px/);
+  });
+});
+
+// The language allowlist left lines untranslated with nothing on the bar. It
+// gets its own mark beside the language button; the state label keeps saying
+// "Translating", which is still true, in the bar's narrowest slot.
+describe('floating bar, language filter', () => {
+  afterEach(() => showLangBlocked(0));
+  const mark = (bar: HTMLElement) => bar.querySelector<HTMLElement>('.kt-float-langfilter');
+
+  it('shows a named filter mark before the language button, then clears', () => {
+    const bar = mountBarInto(document.body);
+    const label = bar.querySelector<HTMLElement>('.kt-float-label')!;
+    showLangBlocked(4);
+    expect(label.textContent).toBe('Translating');
+    const m = mark(bar)!;
+    expect(m.getAttribute('role')).toBe('img');
+    expect(m.getAttribute('aria-label')).toBe(
+      'Source languages allowlist: 4 of the last 10 lines not translated (Options, Filters)',
+    );
+    expect(m.title).toBe(m.getAttribute('aria-label'));
+    expect(m.querySelector('svg')!.getAttribute('aria-hidden')).toBe('true');
+    expect(m.nextElementSibling?.className).toBe('kt-float-lang-host');
+    showLangBlocked(0);
+    expect(mark(bar)).toBeNull();
+    expect(label.textContent).toBe('Translating');
+  });
+
+  // A bar Twitch remounts must come back saying the same thing.
+  it('carries the state onto a bar mounted later', () => {
+    showLangBlocked(3);
+    const bar = mountBarInto(document.body);
+    expect(mark(bar)?.getAttribute('aria-label')).toContain('3 of the last 10');
+  });
+
+  // Control: paused stays paused, the filter has nothing to say then.
+  it('leaves a paused bar saying it is off', () => {
+    showLangBlocked(5);
+    document.body.innerHTML = nativeChat('');
+    const panel = document.querySelector('.chat-room')!;
+    mountFloatingBar(panel, { ...defaultSettings(), enabled: false }, {
+      onToggle: () => {}, onTargetLang: () => {}, onOpenOptions: () => {}, onEnableLocal: () => {},
+    });
+    expect(panel.querySelector<HTMLElement>('.kt-float-label')!.textContent).toBe('Translation off');
+    expect(panel.querySelector('.kt-float-langfilter')).toBeNull();
+  });
+});
+
+// The rate-limit mark was the hourglass emoji; the UI carries none.
+describe('floating bar, rate limit', () => {
+  it('draws an icon with a name, not an emoji', () => {
+    const bar = mountBarInto(document.body);
+    showThrottleIndicator(true);
+    const ind = bar.querySelector<HTMLElement>('.kt-float-throttle')!;
+    expect(ind.querySelector('svg')).not.toBeNull();
+    expect(ind.querySelector('svg')!.getAttribute('aria-hidden')).toBe('true');
+    expect(ind.getAttribute('role')).toBe('img');
+    expect(ind.getAttribute('aria-label')).toBe('Rate-limited, some messages skipped');
+    expect(ind.textContent).toBe('');
+    expect(ind.outerHTML).not.toMatch(/\p{Extended_Pictographic}/u);
+    showThrottleIndicator(false);
+    expect(bar.querySelector('.kt-float-throttle')).toBeNull();
   });
 });

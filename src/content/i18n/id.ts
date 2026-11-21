@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const id: Record<string, string> = {
+  barBlocked: 'Tidak diterjemahkan di sini',
+  barBlockedTipBlack: 'Channel ini ada di daftar blokir Anda (Pengaturan, Filter)',
+  barBlockedTipWhite: 'Channel ini tidak ada di daftar izin Anda (Pengaturan, Filter)',
+  barCount: 'Diterjemahkan di halaman ini: $N$',
   barLangDir: 'Chat penonton lain, diterjemahkan untuk Anda',
+  barLangFilterTip: 'Daftar izin bahasa sumber: $N$ dari 10 baris terakhir tidak diterjemahkan (Pengaturan, Filter)',
   barOff: 'Terjemahan nonaktif',
   barOn: 'Menerjemahkan',
   barOnTip: 'Membaca chat dalam $LANG$',

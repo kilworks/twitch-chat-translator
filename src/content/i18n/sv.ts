@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const sv: Record<string, string> = {
+  barBlocked: 'Inte översatt här',
+  barBlockedTipBlack: 'Den här kanalen finns på din blockeringslista (Inställningar, Filter)',
+  barBlockedTipWhite: 'Den här kanalen finns inte på din lista över tillåtna (Inställningar, Filter)',
+  barCount: 'Översatt på den här sidan: $N$',
   barLangDir: 'Chatten från andra tittare, översatt åt dig',
+  barLangFilterTip: 'Tillåtna källspråk: $N$ av de senaste 10 raderna översattes inte (Inställningar, Filter)',
   barOff: 'Översättning avstängd',
   barOn: 'Översätter',
   barOnTip: 'Läser chatten på $LANG$',
