@@ -173,14 +173,7 @@ No. It is an independent open-source project, not affiliated with Twitch.
 
 ## What's new
 
-In 1.0.0, the first release for Twitch:
-
-- Reads Twitch chat in its three shapes: Twitch's own list (also with BTTV and FFZ), the 7TV list, and VOD and clip replay, in popout, embed, moderator view, the stream manager and mobile
-- Writes translations into the message box with emotes kept as words, and never translates the emote names of the channel's 7TV, BTTV and FFZ sets
-- The channel's language comes from Twitch, a deleted message loses its translation, and the look is purple and follows Twitch's dark or light chat
-- Alt+Shift+T turns translation on or off, Tab inserts the translation only when 7TV or BTTV did not just complete an emote, and the language button sits in the action bar under the message box
-
-Coming in the next update:
+In 1.1.0:
 
 - The settings open on Display, every on/off setting is a switch, and fonts, density, chat theme and accent colour show their choices as buttons and swatches
 - Each translation engine says whether it is ready or paused, and why, and cloud first falls back to the on-device model when the cloud fails
@@ -188,6 +181,13 @@ Coming in the next update:
 - The popup fits without a scrollbar in all 43 interface languages
 - A small filter mark in the chat bar says when your source language allowlist is holding lines back
 - Both language pickers in the chat show each language's own name (Deutsch, 日本語) and find it when you search
+
+In 1.0.0, the first release for Twitch:
+
+- Reads Twitch chat in its three shapes: Twitch's own list (also with BTTV and FFZ), the 7TV list, and VOD and clip replay, in popout, embed, moderator view, the stream manager and mobile
+- Writes translations into the message box with emotes kept as words, and never translates the emote names of the channel's 7TV, BTTV and FFZ sets
+- The channel's language comes from Twitch, a deleted message loses its translation, and the look is purple and follows Twitch's dark or light chat
+- Alt+Shift+T turns translation on or off, Tab inserts the translation only when 7TV or BTTV did not just complete an emote, and the language button sits in the action bar under the message box
 
 Every release, with what changed and the measurement behind it:
 [Releases](https://github.com/kilworks/twitch-chat-translator/releases) and [CHANGELOG.md](CHANGELOG.md).
