@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **The chat bar shows when your source language allowlist is holding lines back**: a small
+  filter mark appears once 3 of the last 10 lines were left untranslated by it, and the popup
+  says so under Today with a link straight to that list in Filters.
+- **Both language pickers in the chat show each language's own name** (Deutsch, 日本語) under
+  the name in your interface language, and their search finds either one or the ISO code.
+- **The compose preview names its insert key** (Tab, or Ctrl+Enter) for your first few
+  previews.
+
+### Changed
+
+- **The settings open on Display**, where the language and the look are. The popup's "order in
+  options" link still lands on Providers.
+- **Every on/off setting is a switch** that applies at once, in the settings and in the popup.
+- **Font, density, chat theme and accent colour show their choices** as buttons and named
+  colour swatches instead of drop-down lists, all usable from the keyboard. Display is grouped
+  into Text, Colour and theme, and In the chat.
+- **Two settings that were checkboxes with "(off = ...)" are now plain two-way choices**: what
+  clicking the compose preview does, and which key swaps in the translation. Saved choices are
+  kept.
+- **Each translation engine says its state in words**: Ready, or Paused with the reason and when
+  it comes back. The DeepL card appears once DeepL is in the order or a key is saved, and the key
+  is hidden until you press Show key.
+- **The source language allowlist is a set of tick chips**, so an empty list no longer reads as
+  "nothing is translated".
+- **Plainer words** on Providers, Advanced and Display, and no settings text smaller than 12px.
+  On-device first is still the recommended engine mode.
+- **The popup** shows one main button per state, puts the version in the footer, and fits
+  without a scrollbar in every state and all 43 interface languages (552px in its usual state in
+  English). Its update link is translated and Clear cache confirms it worked.
+- **The composer chip keeps a solid edge in every mode**, in the dark and light chat themes.
+- **The rate-limit sign in the chat bar is an hourglass icon** instead of an emoji.
+
+### Fixed
+
+- **Cloud first now falls back to the on-device model** when the cloud engines fail, as its
+  label always said. Before, a failed cloud showed an error whatever model was ready.
+- **A channel left out by your channel lists now says so**: the chat bar reads "Not translated
+  here" and the popup offers a way to Filters, on a channel page, in a popout chat, in the mod
+  view and on a VOD.
+- **The engine settings can no longer contradict each other**: on-device only keeps on-device
+  translation on, and a profile saved with both is repaired once.
+- **Glossary lines written with `->` or `=>` work**, and lines the glossary cannot read are
+  listed under it.
+- **Switches and the selected choice in segmented controls stay visible** in Windows high
+  contrast mode.
+- The About tab no longer claims there is no tracking; it says anonymous counts are sent only if
+  you opt in.
+- The settings tab bar wraps on narrow windows instead of overlapping the Discord link, and the
+  interface language button shows a flag or a globe next to "Auto".
+
 ## [1.0.4]
 
 ### Changed
