@@ -370,6 +370,31 @@ they test, L last.
       RECON/a11y/p19-measure.json: light 6.48:1; menu by keyboard (Enter, arrows, Enter, Escape,
       focus returns to the chip); translations inside the log, no `aria-hidden` ancestor.
 
+### [P20] Kick 3.6.1 comfort pass, ported
+
+Source: the sister build's `git diff v3.5.0 v3.6.1`, applied as two 3-way patches (phase 0:
+10 harnesses; phase 1: 144 files). Twitch identity kept, 3.6 logic added. Nothing from 3.4.0
+or 3.5.0 except the cloud-first fallback to the on-device model (T-2), which the 3.6 tests
+expect.
+
+Stale lines in PROMPT.md, noted rather than rewritten: section 4 says `test/e2e/` is
+gitignored (false, `.gitignore` tracks the `*.mjs` harnesses); section 5 hands the signed-in
+profile to the brave-devtools server (no longer allowed: the signed-in view is Claude in
+Chrome, read only).
+
+Defects measured on the base (master 5b4b3a6, v1.0.4) by the ported gates:
+- [ ] T-1 `measure-popup` never measured Twitch: it opened `https://kick.com/kt-pause`, which
+      the popup does not recognise, so every "on a channel" state measured the off-site popup.
+      Retargeted to `https://www.twitch.tv/kt_pause`, with an `onsite` proof (the popup asks
+      the tab's content script only once it has read a channel). On the base, over 600 px:
+      first run 649 to 880 px in all 43 languages, update 621 to 820 in 43, on-channel
+      581 to 780 (bg, de, el, hu, id, ms, sk, ta, th over). Tamil worst everywhere.
+- [ ] `chip-modes`: in the light chat theme, pinned and off share the auto edge and fill
+      (4 failures on the base).
+- [ ] T-7 `snapshot` tab counts: base UI measured at providers 4, display 3, filters 4,
+      advanced 4, activity 2 (with stats), about 4. Witness: `debug` in place of `activity`
+      fails with "no #tab-debug in the page".
+
 ---
 
 ## Waiting on kil
