@@ -115,7 +115,8 @@ export function Segmented({ label, value, options, onChange, swatch = false }: P
                 onClick={() => onChange(o.value)}
                 class={`kt-seg min-h-8 rounded px-3 py-1 text-sm ${stacked ? 'text-start' : ''} ${ring} ${
                   on
-                    ? 'bg-kick-primary/15 text-kick-primary'
+                    ? // 10, not 15: the Twitch purple on a 15% bed of itself measured 4.45:1.
+                      'bg-kick-primary/10 text-kick-primary'
                     : 'text-kick-muted hover:bg-kick-dark/40 hover:text-kick-text'
                 }`}
               >

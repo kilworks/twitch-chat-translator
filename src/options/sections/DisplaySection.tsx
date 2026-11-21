@@ -453,7 +453,7 @@ function StyleCard({
           </svg>
         )}
         {recommended && (
-          <span class="rounded bg-kick-primary/10 px-1.5 py-0.5 text-[12px] font-semibold text-kick-primary">
+          <span class="rounded px-1.5 py-0.5 text-[12px] font-semibold text-kick-primary">
             {t('recommended')}
           </span>
         )}
