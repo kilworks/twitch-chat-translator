@@ -370,6 +370,62 @@ they test, L last.
       RECON/a11y/p19-measure.json: light 6.48:1; menu by keyboard (Enter, arrows, Enter, Escape,
       focus returns to the chip); translations inside the log, no `aria-hidden` ancestor.
 
+### [P20] Kick 3.6.1 comfort pass, ported
+
+Source: the sister build's `git diff v3.5.0 v3.6.1`, applied as two 3-way patches (phase 0:
+10 harnesses; phase 1: 144 files). Twitch identity kept, 3.6 logic added. Nothing from 3.4.0
+or 3.5.0 except the cloud-first fallback to the on-device model (T-2), which the 3.6 tests
+expect.
+
+Stale lines in PROMPT.md, noted rather than rewritten: section 4 says `test/e2e/` is
+gitignored (false, `.gitignore` tracks the `*.mjs` harnesses); section 5 hands the signed-in
+profile to the brave-devtools server (no longer allowed: the signed-in view is Claude in
+Chrome, read only).
+
+Defects measured on the base (master 5b4b3a6, v1.0.4) by the ported gates:
+- [x] T-1 `measure-popup` never measured Twitch: it opened `https://kick.com/kt-pause`, which
+      the popup does not recognise, so every "on a channel" state measured the off-site popup.
+      Retargeted to `https://www.twitch.tv/kt_pause`, with an `onsite` proof (the popup asks
+      the tab's content script only once it has read a channel). On the base, over 600 px:
+      first run 649 to 880 px in all 43 languages, update 621 to 820 in 43, on-channel
+      581 to 780 (bg, de, el, hu, id, ms, sk, ta, th over). Tamil worst everywhere.
+      Done 452a510: 9 states x 43 languages at or under 600 (usual state, English: 552).
+      Witness: a kick.com URL turns all 8 on-site states red.
+- [x] `chip-modes`: in the light chat theme, pinned and off share the auto edge and fill
+      (4 failures on the base). Green after 452a510.
+- [x] T-7 `snapshot` tab counts: base UI measured at providers 4, display 3, filters 4,
+      advanced 4, activity 2 (with stats), about 4. Witness: `debug` in place of `activity`
+      fails with "no #tab-debug in the page". After 452a510: display 6, the rest unchanged.
+
+Port entries:
+- [x] T-2 cloud first falls back to the on-device model after a failed cloud (9251b44; test red
+      on the base, green after).
+- [x] T-3 engine mode labels: on-device first stays recommended, local-first stays the default.
+- [x] T-4 accent swatches: Twitch purple, cyan, green, amber, named.
+- [x] T-5 the composer reserve (`chatReserve`) is not ported: measured live in 8 configs, the
+      chat scroller ends 49 px above the preview, overlap 0 in 8/8.
+- [x] T-6 "Not translated here" on a channel page, popout, mod view and VOD (4 routes tested;
+      breaking `channelFromPath` turns 6 tests red).
+- [x] T-8 `screenshots/japanese-chat.jpg` and its note removed.
+- [x] T-9 README, CHANGELOG [Unreleased], captures regenerated; store notes 1.1.0 drafted outside
+      the repo, they enter `store/notes/` at the release.
+- [x] One review wave (code, design, a11y), one correction wave (d4ee407): chosen segment
+      edged, swatch colours kept in forced colours, endonyms tagged with `lang`.
+
+Left open, from the review wave:
+- [ ] Floating bar power and options buttons are named by their glyph; give them an
+      `aria-label` equal to their title (WCAG 4.1.2). Same in the sister build.
+- [ ] Floating bar label changes ("Translation off", "Not translated here") are not announced:
+      `role="status"` on the label (WCAG 4.1.3).
+- [ ] A settings file imported with `local-only` and on-device off is stored as is until the
+      next load repairs it.
+- [ ] On Firefox (no on-device API), `local-only` can still be picked and translates nothing.
+- [ ] Status words and stat hints in options share the link purple; muted text would read
+      as text, not links (design critique).
+- [ ] The Discord hover colour #5865F2 on the options tab bar predates this pass.
+- [ ] The 42 localised READMEs do not carry the new behaviour yet.
+- [k] Signed-in Brave view of the new UI: no Claude in Chrome check in this pass.
+
 ---
 
 ## Waiting on kil

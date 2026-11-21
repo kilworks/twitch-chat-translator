@@ -38,6 +38,3 @@ The same harness also writes `test/e2e/store-fixture/01..05.png` at the
 at that size the fabricated page is three quarters empty video area, which is
 fine in a listing where the image is clicked and enlarged, and useless in a
 README where it is squeezed into a column of text.
-
-`japanese-chat.jpg` is kept as the record of what the earlier capture looked
-like. It is no longer referenced by any README.

@@ -1,6 +1,6 @@
 {
- "date": "2026-10-23",
- "at": "2026-10-23T00:17:45.660Z",
+ "date": "2026-11-21",
+ "at": "2026-11-21T10:54:28.472Z",
  "target": "ja",
  "cells": [
   {
@@ -8,18 +8,30 @@
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 96
+     "ch": 5,
+     "adds": 0
+    },
+    {
+     "ch": 15,
+     "adds": 0
+    },
+    {
+     "ch": 17,
+     "adds": 0
+    },
+    {
+     "ch": 12,
+     "adds": 153
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch12",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
    "rows": 150,
-   "marked": 149,
-   "translations": 85,
+   "marked": 148,
+   "translations": 3,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -30,40 +42,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "リパザ⟳",
-    "リパザ⟳",
-    "100％じゃないのに、なぜ落書きをしたのですか？⟳"
+    "整理する⟳",
+    "大きな組織⟳",
+    "彼には責任がある⟳"
    ],
    "reasons": [
     [
-     "Not translated: the translation came back the same as the original",
-     44
-    ],
-    [
-     "Not translated: it is shorter than your 2 character minimum",
-     10
+     "Not translated: it is already in your language",
+     123
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
-     4
+     12
     ],
     [
-     "Not translated: the same user just sent this",
-     2
+     "Not translated: it is shorter than your 2 character minimum",
+     9
+    ],
+    [
+     "Not translated: the translation service found it was already in your l",
+     1
     ]
    ],
-   "stillAttached10s": 15,
+   "stillAttached10s": 3,
    "after10s": {
-    "onScreen": 16,
+    "onScreen": 3,
     "missing": 0,
-    "trimmed": 118,
+    "trimmed": 42,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 210,
-    "p50": 0,
-    "p90": 1745
+    "n": 4,
+    "p50": 491,
+    "p90": 624
    },
    "pass": true
   },
@@ -72,18 +84,30 @@
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 136
+     "ch": 5,
+     "adds": 0
+    },
+    {
+     "ch": 15,
+     "adds": 0
+    },
+    {
+     "ch": 17,
+     "adds": 0
+    },
+    {
+     "ch": 12,
+     "adds": 59
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch12",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 162,
-   "marked": 105,
-   "translations": 88,
+   "rows": 167,
+   "marked": 158,
+   "translations": 4,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -94,44 +118,44 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "サンアンドラスは、ありとあらゆる手段を使って、ぶらぶらして過ごさなければなりません。子供の頃、私はそうやって過ごしました",
-    "yyyy⟳",
-    "副操縦士がおかしくなっている⟳"
+    "とても⟳",
+    "とても⟳",
+    "kbps？⟳"
    ],
    "reasons": [
     [
-     "Not translated: it is shorter than your 2 character minimum",
+     "Not translated: it is already in your language",
+     136
+    ],
+    [
+     "Not translated: the translation service found it was already in your l",
      7
     ],
     [
-     "Not translated: it is only chat slang",
-     1
+     "Not translated: it is shorter than your 2 character minimum",
+     5
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
-     1
+     5
     ],
     [
      "Not translated: the translation came back the same as the original",
      1
-    ],
-    [
-     "Not translated: the same user just sent this",
-     1
     ]
    ],
-   "stillAttached10s": 48,
+   "stillAttached10s": 4,
    "after10s": {
-    "onScreen": 47,
+    "onScreen": 2,
     "missing": 0,
-    "trimmed": 0,
+    "trimmed": 38,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 167,
-    "p50": 1179,
-    "p90": 1851
+    "n": 8,
+    "p50": 0,
+    "p90": 97
    },
    "pass": true
   },
@@ -140,18 +164,30 @@
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 143
+     "ch": 5,
+     "adds": 0
+    },
+    {
+     "ch": 15,
+     "adds": 0
+    },
+    {
+     "ch": 17,
+     "adds": 0
+    },
+    {
+     "ch": 12,
+     "adds": 125
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch12",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
    "rows": 150,
-   "marked": 147,
-   "translations": 84,
+   "marked": 143,
+   "translations": 8,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -162,40 +198,40 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "AUアクダジカジカジャジャジャジャジャ⟳",
-    "ジャジャジャジャジャ⟳",
-    "最後までジャジャジャジャジャ⟳"
+    "（ - ʖ̯ -）⟳",
+    "大きな組織⟳",
+    "（ - ʖ̯ -）⟳"
    ],
    "reasons": [
     [
+     "Not translated: it is already in your language",
+     97
+    ],
+    [
      "Not translated: it is shorter than your 2 character minimum",
-     43
+     25
     ],
     [
      "Not translated: it is only emoji, symbols or laughter",
-     10
+     11
     ],
     [
-     "Not translated: the translation came back the same as the original",
-     3
-    ],
-    [
-     "Not translated: the sender looks like a bot",
-     1
+     "Not translated: the translation service found it was already in your l",
+     2
     ]
    ],
-   "stillAttached10s": 49,
+   "stillAttached10s": 7,
    "after10s": {
-    "onScreen": 46,
+    "onScreen": 5,
     "missing": 0,
-    "trimmed": 72,
+    "trimmed": 29,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 131,
-    "p50": 2009,
-    "p90": 3017
+    "n": 9,
+    "p50": 159,
+    "p90": 2010
    },
    "pass": true
   },
@@ -204,18 +240,22 @@
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 53
+     "ch": 0,
+     "adds": 3
+    },
+    {
+     "ch": 2,
+     "adds": 17
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch2",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 149,
-   "marked": 146,
-   "translations": 85,
+   "rows": 132,
+   "marked": 129,
+   "translations": 112,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -226,64 +266,79 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "すべてはザーメンへ⟳",
-    "すべては黒で⟳",
-    "ルーレットはすべて赤⟳"
+    "神の祝福⟳",
+    "SRいいえ、100%⟳",
+    "レイド用SP⟳"
    ],
    "reasons": [
     [
-     "Not translated: it is shorter than your 2 character minimum",
-     47
-    ],
-    [
-     "Not translated: the translation came back the same as the original",
+     "Not translated: it is only emoji, symbols or laughter",
      6
     ],
     [
-     "Not translated: it is only emoji, symbols or laughter",
-     3
-    ],
-    [
      "Not translated: the same user just sent this",
-     3
+     4
     ],
     [
-     "Not translated: it is only chat slang",
-     1
+     "Not translated: it is shorter than your 2 character minimum",
+     2
+    ],
+    [
+     "Not translated: the translation came back the same as the original",
+     2
     ]
    ],
-   "stillAttached10s": 35,
+   "stillAttached10s": 93,
    "after10s": {
-    "onScreen": 34,
+    "onScreen": 76,
     "missing": 0,
-    "trimmed": 85,
+    "trimmed": 21,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 105,
-    "p50": 1017,
-    "p90": 1771
+    "n": 116,
+    "p50": 99,
+    "p90": 1522
    },
-   "pass": true
+   "pass": true,
+   "firstTry": {
+    "channel": "ch12",
+    "why": "1 translations (< 3) on 147 marked lines",
+    "rows": 151,
+    "reasons": [
+     [
+      "Not translated: it is already in your language",
+      111
+     ],
+     [
+      "Not translated: it is shorter than your 2 character minimum",
+      23
+     ]
+    ]
+   }
   },
   {
    "config": "7tv+bttv",
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 152
+     "ch": 0,
+     "adds": 1
+    },
+    {
+     "ch": 2,
+     "adds": 36
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch2",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 177,
-   "marked": 103,
-   "translations": 63,
+   "rows": 99,
+   "marked": 85,
+   "translations": 78,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -294,64 +349,75 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "ピポピポ！乗り越えなければなりません！⟳",
-    "フォーチュンホイール⟳",
-    "HAおお⟳"
+    "気に入ったとか、それに執着したとか⟳",
+    "放っておいてください⟳",
+    "SRボレロ⟳"
    ],
    "reasons": [
     [
-     "Not translated: it is shorter than your 2 character minimum",
-     11
-    ],
-    [
      "Not translated: it is only emoji, symbols or laughter",
-     8
-    ],
-    [
-     "Not translated: the translation came back the same as the original",
      3
     ],
     [
-     "Not translated: it is only chat slang",
-     2
+     "Not translated: it is shorter than your 2 character minimum",
+     3
     ],
     [
      "Not translated: the same user just sent this",
      1
     ]
    ],
-   "stillAttached10s": 3,
+   "stillAttached10s": 78,
    "after10s": {
-    "onScreen": 4,
+    "onScreen": 69,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 199,
-    "p50": 2002,
-    "p90": 3005
+    "n": 69,
+    "p50": 869,
+    "p90": 1873
    },
-   "pass": true
+   "pass": true,
+   "firstTry": {
+    "channel": "ch12",
+    "why": "0 translations (< 3) on 120 marked lines",
+    "rows": 121,
+    "reasons": [
+     [
+      "Not translated: it is already in your language",
+      75
+     ],
+     [
+      "Not translated: it is shorter than your 2 character minimum",
+      24
+     ]
+    ]
+   }
   },
   {
    "config": "7tv+ffz",
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 105
+     "ch": 0,
+     "adds": 7
+    },
+    {
+     "ch": 2,
+     "adds": 27
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch2",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 177,
-   "marked": 79,
-   "translations": 35,
+   "rows": 107,
+   "marked": 88,
+   "translations": 72,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -362,64 +428,75 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "あなたは真剣なギャンブラーです⟳",
-    "まあ、もうだめですか？⟳",
-    "時間内に止まらなかったので、はははは⟳"
+    "再戦レースはあるのか？⟳",
+    "全ての本を読んだダダダは、ゲームを4回繰り返しました...⟳",
+    "うわぁぁぁぁぁぁぁぁぁぁ⟳"
    ],
    "reasons": [
     [
      "Not translated: it is only emoji, symbols or laughter",
-     13
+     7
+    ],
+    [
+     "Not translated: the sender looks like a bot",
+     2
     ],
     [
      "Not translated: it is shorter than your 2 character minimum",
-     9
-    ],
-    [
-     "Not translated: the translation came back the same as the original",
-     5
-    ],
-    [
-     "Not translated: the same user just sent this",
-     3
-    ],
-    [
-     "Not translated: it is only chat slang",
-     1
+     2
     ]
    ],
-   "stillAttached10s": 0,
+   "stillAttached10s": 72,
    "after10s": {
-    "onScreen": 0,
+    "onScreen": 69,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 99,
-    "p50": 1149,
-    "p90": 2028
+    "n": 87,
+    "p50": 498,
+    "p90": 1579
    },
-   "pass": true
+   "pass": true,
+   "firstTry": {
+    "channel": "ch12",
+    "why": "1 translations (< 3) on 185 marked lines",
+    "rows": 188,
+    "reasons": [
+     [
+      "Not translated: it is already in your language",
+      108
+     ],
+     [
+      "Not translated: it is only emoji, symbols or laughter",
+      37
+     ]
+    ]
+   }
   },
   {
    "config": "bttv+ffz",
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 171
+     "ch": 0,
+     "adds": 4
+    },
+    {
+     "ch": 2,
+     "adds": 59
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch2",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
    "rows": 148,
-   "marked": 145,
-   "translations": 31,
+   "marked": 146,
+   "translations": 108,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -430,64 +507,79 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "なんてことだ⟳",
-    "ZU洗ってください⟳",
-    "映画⟳"
+    "えー⟳",
+    "いやいや⟳",
+    "えー、͏⟳"
    ],
    "reasons": [
     [
-     "Not translated: it is shorter than your 2 character minimum",
-     92
-    ],
-    [
      "Not translated: it is only emoji, symbols or laughter",
-     8
+     28
     ],
     [
-     "Not translated: the translation came back the same as the original",
-     6
+     "Not translated: it is shorter than your 2 character minimum",
+     5
     ],
     [
      "Not translated: the same user just sent this",
-     2
+     4
     ],
     [
-     "Not translated: it is only chat slang",
+     "Not translated: the translation came back the same as the original",
      1
     ]
    ],
-   "stillAttached10s": 4,
+   "stillAttached10s": 99,
    "after10s": {
-    "onScreen": 6,
+    "onScreen": 91,
     "missing": 0,
-    "trimmed": 118,
+    "trimmed": 12,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 104,
-    "p50": 977,
-    "p90": 1752
+    "n": 44,
+    "p50": 1294,
+    "p90": 1916
    },
-   "pass": true
+   "pass": true,
+   "firstTry": {
+    "channel": "ch12",
+    "why": "1 translations (< 3) on 126 marked lines",
+    "rows": 150,
+    "reasons": [
+     [
+      "Not translated: it is already in your language",
+      102
+     ],
+     [
+      "Not translated: it is shorter than your 2 character minimum",
+      10
+     ]
+    ]
+   }
   },
   {
    "config": "all",
    "surface": "live",
    "tried": [
     {
-     "ch": 26,
-     "adds": 105
+     "ch": 0,
+     "adds": 0
+    },
+    {
+     "ch": 2,
+     "adds": 21
     }
    ],
    "targetSet": true,
-   "channel": "ch26",
+   "channel": "ch2",
    "mounted": true,
    "bar": true,
    "barInPanel": true,
-   "rows": 166,
-   "marked": 88,
-   "translations": 51,
+   "rows": 124,
+   "marked": 105,
+   "translations": 91,
    "outsideRows": 0,
    "rowsWithTwo": 0,
    "families": [
@@ -498,54 +590,57 @@
    "chatTheme": "chat-theme-dark",
    "minContrast": 11.06,
    "sample": [
-    "アンチプッシー⟳",
-    "6.7kショット⟳",
-    "🇮🇱🇮🇱🇮🇱 イスラエルはここにありました 🇮🇱🇮🇱🇮🇱⟳"
+    "SR並んで⟳",
+    "はい、はい⟳",
+    "SR(( =担当者⟳"
    ],
    "reasons": [
     [
-     "Not translated: it is shorter than your 2 character minimum",
-     12
-    ],
-    [
-     "Not translated: the same user just sent this",
-     10
-    ],
-    [
      "Not translated: it is only emoji, symbols or laughter",
-     9
+     8
     ],
     [
-     "Not translated: the translation came back the same as the original",
+     "Not translated: it is shorter than your 2 character minimum",
      3
     ],
     [
-     "Not translated: the translation service found it was already in your l",
-     1
+     "Not translated: the translation came back the same as the original",
+     2
     ],
     [
      "Not translated: the sender looks like a bot",
      1
-    ],
-    [
-     "Not translated: it is only chat slang",
-     1
     ]
    ],
-   "stillAttached10s": 42,
+   "stillAttached10s": 91,
    "after10s": {
-    "onScreen": 29,
+    "onScreen": 87,
     "missing": 0,
     "trimmed": 0,
     "repeatsAfterTrim": 0,
     "repeatReasons": []
    },
    "latencyMs": {
-    "n": 86,
-    "p50": 1002,
-    "p90": 2851
+    "n": 69,
+    "p50": 990,
+    "p90": 1891
    },
-   "pass": true
+   "pass": true,
+   "firstTry": {
+    "channel": "ch12",
+    "why": "1 translations (< 3) on 151 marked lines",
+    "rows": 154,
+    "reasons": [
+     [
+      "Not translated: it is already in your language",
+      102
+     ],
+     [
+      "Not translated: it is shorter than your 2 character minimum",
+      22
+     ]
+    ]
+   }
   }
  ],
  "summary": "8/8 cells green"

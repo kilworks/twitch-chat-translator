@@ -76,7 +76,7 @@ export function AboutSection({
           <h2 class="kt-section mb-1">{t('About')}</h2>
           <p class="text-sm leading-relaxed text-kick-muted">
             {t(
-              'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, no tracking, open source.',
+              'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, open source, and anonymous counts only if you opt in.',
             )}
           </p>
         </div>
@@ -186,7 +186,7 @@ export function AboutSection({
 function Fait({ terme, valeur }: { terme: string; valeur: string }) {
   return (
     <div>
-      <dt class="text-[11px] text-kick-muted">{terme}</dt>
+      <dt class="text-xs text-kick-muted">{terme}</dt>
       <dd class="mt-0.5 text-lg font-semibold tabular-nums leading-none text-kick-text">
         {valeur}
       </dd>

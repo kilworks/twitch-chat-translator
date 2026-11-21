@@ -1,29 +1,35 @@
 {
-  "genere": "2026-10-22T23:24:56.359Z",
+  "genere": "2026-11-21T11:25:24.917Z",
   "parQui": ".agent/state.mjs",
   "avertissement": "Genere. Ne pas editer a la main : la prochaine passe ecrase. La version commitee decrit l'etat d'AVANT le commit qui la porte, puisque la fin de passe genere puis commite : git.head y pointe le commit precedent et git.arbrePropre y est faux. Relancer `node .agent/state.mjs` avant de lire, ce que le prompt demande deja en premier.",
   "git": {
     "remotesEnDouble": [],
-    "branche": "master",
-    "head": "c75ac023e0f740d967c8fdd0165a69119cd4809b",
-    "sujet": "P13 P14: Twitch release workflow, store scripts and public texts",
+    "branche": "feat/ui-comfort",
+    "head": "5ec741918c689b9798c6e7ba57ab0aaeb4c7ab01",
+    "sujet": "Edge the chosen segment with an outline, not a ring",
     "arbrePropre": false,
-    "fichiersModifies": 59,
-    "dernierTag": null,
-    "decrit": null,
-    "remotes": {},
-    "ecarts": {}
+    "fichiersModifies": 12,
+    "dernierTag": "v1.0.4",
+    "decrit": "v1.0.4-6-g5ec7419",
+    "remotes": {
+      "origin": "https://github.com/kilworks/twitch-chat-translator.git"
+    },
+    "ecarts": {
+      "origin": {
+        "note": "pas de origin/feat/ui-comfort connu localement"
+      }
+    }
   },
   "versions": {
-    "packageJson": "1.0.0",
-    "distManifest": "1.0.0",
+    "packageJson": "1.0.4",
+    "distManifest": "1.0.4",
     "accordent": true,
     "note": null
   },
   "paquets": [
     {
       "fichier": "twitch-chat-translator-1.0.0-chromium.zip",
-      "octets": 450173,
+      "octets": 450302,
       "versionDuNom": "1.0.0",
       "versionDuManifest": "1.0.0",
       "accordent": true,
@@ -31,7 +37,7 @@
     },
     {
       "fichier": "twitch-chat-translator-1.0.0-firefox.zip",
-      "octets": 450126,
+      "octets": 450255,
       "versionDuNom": "1.0.0",
       "versionDuManifest": "1.0.0",
       "accordent": true,
@@ -39,8 +45,72 @@
     },
     {
       "fichier": "twitch-chat-translator-1.0.0-source.zip",
-      "octets": 12679529,
+      "octets": 3577041,
       "versionDuNom": "1.0.0",
+      "versionDuManifest": null,
+      "accordent": false,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.2-chromium.zip",
+      "octets": 450368,
+      "versionDuNom": "1.0.2",
+      "versionDuManifest": "1.0.2",
+      "accordent": true,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.2-firefox.zip",
+      "octets": 450319,
+      "versionDuNom": "1.0.2",
+      "versionDuManifest": "1.0.2",
+      "accordent": true,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.3-chromium.zip",
+      "octets": 451479,
+      "versionDuNom": "1.0.3",
+      "versionDuManifest": "1.0.3",
+      "accordent": true,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.3-firefox.zip",
+      "octets": 451431,
+      "versionDuNom": "1.0.3",
+      "versionDuManifest": "1.0.3",
+      "accordent": true,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.3-source.zip",
+      "octets": 5307328,
+      "versionDuNom": "1.0.3",
+      "versionDuManifest": null,
+      "accordent": false,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.4-chromium.zip",
+      "octets": 451458,
+      "versionDuNom": "1.0.4",
+      "versionDuManifest": "1.0.4",
+      "accordent": true,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.4-firefox.zip",
+      "octets": 451408,
+      "versionDuNom": "1.0.4",
+      "versionDuManifest": "1.0.4",
+      "accordent": true,
+      "erreur": null
+    },
+    {
+      "fichier": "twitch-chat-translator-1.0.4-source.zip",
+      "octets": 5303160,
+      "versionDuNom": "1.0.4",
       "versionDuManifest": null,
       "accordent": false,
       "erreur": null
@@ -93,7 +163,7 @@
       "poids-notes",
       "audit-fiche"
     ],
-    "harnaisSurDisque": 84,
+    "harnaisSurDisque": 85,
     "orphelins": [
       "a11y",
       "anglais-essai",
@@ -105,6 +175,7 @@
       "canto-bench",
       "canto-candidats",
       "charge-chat",
+      "chip-modes",
       "collision-clavier",
       "compose-kick-live",
       "compose-scenarios",
@@ -158,43 +229,65 @@
       "unanimite",
       "variante"
     ],
-    "nbOrphelins": 62,
+    "nbOrphelins": 63,
     "note": "Les portes live ouvrent un navigateur sur kick.com et ne sont dans aucun runner. Un orphelin n est pas forcement un defaut ; un orphelin qui couvre du code livre en est un."
   },
   "releaseGithub": {
-    "note": "aucun remote github reconnu"
+    "depot": "kilworks/twitch-chat-translator",
+    "http": 200,
+    "tag": "v1.0.4",
+    "publiee": "2026-11-08T21:02:43Z",
+    "assets": [
+      {
+        "nom": "twitch-chat-translator-1.0.4-chromium.zip",
+        "octets": 451458
+      },
+      {
+        "nom": "twitch-chat-translator-1.0.4-firefox.zip",
+        "octets": 451408
+      },
+      {
+        "nom": "twitch-chat-translator-1.0.4-source.zip",
+        "octets": 5303160
+      }
+    ]
   },
   "paquetsContreRelease": {
-    "note": "aucun remote github reconnu"
+    "compares": 3,
+    "ecarts": [],
+    "note": null
   },
   "boutiques": {
     "note": "Lu sur les pages, jamais recopie. Une version de boutique change sans commit : la valeur commitee ici decrit l'instant de la generation et rien d'autre.",
     "chrome": {
-      "id": "nkkjmbkmacbdkboijmnhjnblcaiclhni",
+      "id": "cbfmiinjkceibkpdodaegnmpbeiempib",
       "http": 200,
-      "version": "3.3.0",
-      "maj": "October 17, 2026",
-      "utilisateurs": 182
+      "version": "1.0.4",
+      "maj": "November 8, 2026",
+      "utilisateurs": 71
     },
     "amo": {
-      "slug": "kick-chat-translator",
+      "slug": "twitch-chat-translator-pkkls",
       "http": 200,
-      "version": "3.3.0",
-      "relue": "2026-10-16T19:21:41Z",
-      "utilisateurs": 7,
+      "version": "1.0.4",
+      "relue": "2026-11-08T21:06:09Z",
+      "utilisateurs": 4,
       "statut": "public"
     }
   },
   "boutiquesContreVersion": {
-    "versionLocale": "1.0.0",
-    "chrome": "3.3.0 contre 1.0.0 ici",
-    "amo": "3.3.0 contre 1.0.0 ici",
+    "versionLocale": "1.0.4",
+    "chrome": "a jour",
+    "amo": "a jour",
     "note": "Un retard n'est pas un defaut : soumettre est du ressort de kil. Ce champ existe pour qu'on cesse de citer un chiffre de tete."
   },
   "file": {
-    "bloques": [],
-    "nbBloques": 0,
-    "nbOuverts": 0,
-    "nbFaits": 56
+    "bloques": [
+      "Signed-in Brave view of the new UI: no Claude in Chrome check in this pass.",
+      "Five automated methods kept the page `visible` (second tab, CDP minimise headless, CDP"
+    ],
+    "nbBloques": 2,
+    "nbOuverts": 7,
+    "nbFaits": 66
   }
 }

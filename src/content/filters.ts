@@ -17,8 +17,20 @@ export function shouldDropByUserOrChannel(meta: MessageMeta, settings: Settings)
     return 'bot';
   }
   if (settings.blacklistUsers.some((u) => foldCase(u) === user)) return 'user_blacklisted';
-  if (settings.blacklistChannels.includes(meta.channel)) return 'channel_blacklisted';
-  if (settings.whitelistChannels.length > 0 && !settings.whitelistChannels.includes(meta.channel)) {
+  return channelBlockedBy(settings, meta.channel);
+}
+
+/**
+ * Whether a channel list keeps a whole channel from being translated. Shared by
+ * the line filter and by the bar and popup, which have to say so: a forgotten
+ * allowlist used to leave the bar reading "Translating" over an untouched chat.
+ */
+export function channelBlockedBy(
+  settings: Settings,
+  channel: string,
+): 'channel_blacklisted' | 'channel_not_whitelisted' | undefined {
+  if (settings.blacklistChannels.includes(channel)) return 'channel_blacklisted';
+  if (settings.whitelistChannels.length > 0 && !settings.whitelistChannels.includes(channel)) {
     return 'channel_not_whitelisted';
   }
   return undefined;
@@ -29,6 +41,12 @@ export function hasBlockedKeyword(text: string, settings: Settings): boolean {
   const t = foldCase(text);
   return settings.blockedKeywords.some((k) => k && t.includes(foldCase(k)));
 }
+
+/**
+ * What the popup sends the chat tab to ask how many recent lines the language
+ * allowlist left; the answer is `{ count: number }`, 0 when none.
+ */
+export const LANG_BLOCKED_ASK = 'filter.langBlocked';
 
 export function shouldDropBySourceLang(detected: string | undefined, settings: Settings): string | undefined {
   if (settings.sourceLangAllowlist.length === 0) return undefined;

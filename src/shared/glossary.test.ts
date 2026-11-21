@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyUserGlossary, isSlangOnly } from './glossary';
+import { applyUserGlossary, ignoredGlossaryLines, isSlangOnly } from './glossary';
 
 describe('isSlangOnly', () => {
   it('flags pure streaming slang', () => {
@@ -47,5 +47,25 @@ describe('applyUserGlossary', () => {
   it('treats regex metacharacters in the source as literals', () => {
     expect(applyUserGlossary('a+b', ['a+b→sum'])).toBe('sum');
     expect(applyUserGlossary('(o)', ['(o)→circle'])).toBe('circle');
+  });
+});
+
+describe('glossary separators', () => {
+  it('accepts the arrows a keyboard can type', () => {
+    expect(applyUserGlossary('kusa is here', ['kusa->lol'])).toBe('lol is here');
+    expect(applyUserGlossary('kusa is here', ['kusa=>lol'])).toBe('lol is here');
+    expect(applyUserGlossary('kusa is here', ['kusa -> lol'])).toBe('lol is here');
+  });
+
+  it('splits on the first separator only', () => {
+    expect(applyUserGlossary('gg', ['gg->good -> game'])).toBe('good -> game');
+  });
+
+  it('does not take a lone = as a separator', () => {
+    expect(applyUserGlossary('kusa', ['kusa=lol'])).toBe('kusa');
+  });
+
+  it('names the lines it ignores', () => {
+    expect(ignoredGlossaryLines(['kusa->lol', 'kusa=lol', '->lol', '草→lol'])).toEqual(['kusa=lol', '->lol']);
   });
 });

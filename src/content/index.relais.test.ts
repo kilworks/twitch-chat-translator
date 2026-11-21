@@ -41,6 +41,7 @@ vi.mock('./pipeline', () => ({
   TranslationPipeline: class {
     private readonly nom = copie;
     updateSettings(): void {}
+    resetLangBlocked(): void {}
     reapplyBlocked(): void {}
     recentDecisions(): unknown[] {
       return [];

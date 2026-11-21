@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const ca: Record<string, string> = {
+  barBlocked: 'No es tradueix aquí',
+  barBlockedTipBlack: 'Aquest canal és als teus canals bloquejats (Opcions, Filtres)',
+  barBlockedTipWhite: 'Aquest canal no és als teus canals permesos (Opcions, Filtres)',
+  barCount: 'Traduïts en aquesta pàgina: $N$',
   barLangDir: 'El xat dels altres espectadors, traduït per a tu',
+  barLangFilterTip: "Idiomes d'origen permesos: $N$ de les 10 últimes línies sense traduir (Opcions, Filtres)",
   barOff: 'Traducció desactivada',
   barOn: 'Traduint',
   barOnTip: 'Llegint el xat en $LANG$',

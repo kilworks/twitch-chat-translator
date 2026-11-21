@@ -1,6 +1,11 @@
 /** Chat and floating-bar strings. This file is the source, edit it by hand; msg.coverage.test.ts holds it to every msg() call. */
 export const lt: Record<string, string> = {
+  barBlocked: 'Čia neverčiama',
+  barBlockedTipBlack: 'Šis kanalas yra tavo blokuojamų kanalų sąraše (Nustatymai, Filtrai)',
+  barBlockedTipWhite: 'Šio kanalo nėra tavo leidžiamų kanalų sąraše (Nustatymai, Filtrai)',
+  barCount: 'Išversta šiame puslapyje: $N$',
   barLangDir: 'Kitų žiūrovų pokalbis, išverstas tau',
+  barLangFilterTip: 'Leidžiamos šaltinio kalbos: neišversta $N$ iš paskutinių 10 eilučių (Nustatymai, Filtrai)',
   barOff: 'Vertimas išjungtas',
   barOn: 'Vertimas įjungtas',
   barOnTip: 'Pokalbio skaitymo kalba: $LANG$',

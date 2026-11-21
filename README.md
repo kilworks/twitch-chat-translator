@@ -96,12 +96,14 @@ does not have it. Wherever it is missing, the cloud chain takes over and nothing
 
 ## Settings
 
-Click the gear on the chat bar, or right-click the extension icon and choose Options.
+Click the gear on the chat bar, or right-click the extension icon and choose Options. The settings open on Display;
+every on/off setting is a switch that applies at once.
 
 - **Providers**: engine order, your DeepL key, and the mode: on-device first, cloud first, or on-device only
 - **Display**: target language, display style, original text and language badge, text size, line spacing,
   typeface, accent colour, chat theme, the compose preview and what clicking it does
-- **Filters**: bots, users, channels, keywords, source languages, and a glossary of replacements
+- **Filters**: bots, users, channels, keywords, source languages (tick chips), and a glossary of replacements. A channel
+  your lists leave out says "Not translated here" in the chat bar
 - **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
@@ -135,6 +137,12 @@ each one was translated or left alone. Most skipped lines are skipped on purpose
 themselves, lines too short, only emoji or laughter, or already in your reading language. If the tab shows nothing
 at all, the extension is not seeing the chat: please open an issue.
 
+**The chat bar says "Not translated here".**
+Your channel lists leave this channel out. The popup has a button to Filters, where you can change them.
+
+**A small filter mark appeared in the chat bar.**
+Your source language allowlist left 3 of the last 10 lines untranslated. The popup links straight to that list.
+
 **The purple bar disappeared.**
 Refresh the page. If it happens again, open an [issue](https://github.com/kilworks/twitch-chat-translator/issues)
 with the channel and what you did before.
@@ -164,6 +172,15 @@ and it gets patched.
 No. It is an independent open-source project, not affiliated with Twitch.
 
 ## What's new
+
+In 1.1.0:
+
+- The settings open on Display, every on/off setting is a switch, and fonts, density, chat theme and accent colour show their choices as buttons and swatches
+- Each translation engine says whether it is ready or paused, and why, and cloud first falls back to the on-device model when the cloud fails
+- A channel your lists leave out says "Not translated here" instead of going quiet, in popout, mod view and VODs too
+- The popup fits without a scrollbar in all 43 interface languages
+- A small filter mark in the chat bar says when your source language allowlist is holding lines back
+- Both language pickers in the chat show each language's own name (Deutsch, 日本語) and find it when you search
 
 In 1.0.0, the first release for Twitch:
 

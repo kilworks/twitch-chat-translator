@@ -1,9 +1,11 @@
-import { useEffect, useRef, useMemo } from 'preact/hooks';
+import { useEffect, useRef, useMemo, useId } from 'preact/hooks';
+import type { ComponentChildren } from 'preact';
 import type { Settings } from '~/shared/settings';
 import { sortedLanguages } from '~/shared/languages';
 import { resolveUiLocale } from '~/shared/i18n';
 import { useT } from '~/shared/i18nContext';
 import { Check } from '../components/Check';
+import { Segmented } from '../components/Segmented';
 import {
   applyShowOriginal,
   applyTypography,
@@ -22,19 +24,24 @@ export function DisplaySection({ settings, onPatch }: Props) {
   // Localised and collated for the interface language the user chose,
   // not the one their browser happens to run in.
   const langs = useMemo(() => sortedLanguages(resolveUiLocale(settings.uiLang)), [settings.uiLang]);
+  const targetId = useId();
+  const composeId = useId();
   return (
     <>
       <section class="kt-card space-y-3">
         <h2 class="kt-section">{t('Translation target')}</h2>
         <div class="kt-row">
-          <label class="kt-label">{t('Translate everything to')}</label>
+          <label class="kt-label" for={targetId}>
+            {t('Translate everything to')}
+          </label>
           <select
+            id={targetId}
             aria-label={t('Translate everything to')}
             class="kt-select"
             value={settings.targetLang}
             onChange={(e) => onPatch({ targetLang: (e.target as HTMLSelectElement).value })}
           >
-            <option value="auto">{t('Auto (your browser language)')}</option>
+            <option value="auto">{t('Auto (your language)')}</option>
             {langs.map((l) => (
               <option key={l.code} value={l.code}>
                 {l.name}
@@ -42,17 +49,27 @@ export function DisplaySection({ settings, onPatch }: Props) {
             ))}
           </select>
         </div>
-        <p class="text-[11px] text-kick-muted">
+        <p class="text-[12px] text-kick-muted">
           {t('Auto reads incoming chat in your own language, detected from the browser.')}
         </p>
       </section>
 
-      <section class="kt-card space-y-3">
+      {/* The scroll margin keeps a control that takes focus from landing under
+          the pinned preview (WCAG 2.4.11). */}
+      <section class="kt-card space-y-3 [&_button]:scroll-mt-36 [&_input]:scroll-mt-36">
         <h2 class="kt-section">{t('Display style')}</h2>
+
+        {/* Pinned inside this card, so every setting below changes in view. */}
+        <StylePreview settings={settings} />
         {/* Two by two rather than a single row. A fourth column would put each
             card at 60px on the 280px window the page is checked against, and
             the descriptions are what make the cards worth having. */}
         <div class="grid grid-cols-2 gap-2">
+          <svg width="0" height="0" class="absolute" aria-hidden="true">
+            <symbol id="i-card-check" viewBox="0 0 24 24">
+              <path d="M20 6 9 17l-5-5" />
+            </symbol>
+          </svg>
           <StyleCard
             active={settings.displayStyle === 'below'}
             label={t('Below')}
@@ -84,122 +101,120 @@ export function DisplaySection({ settings, onPatch }: Props) {
           />
         </div>
 
-        <p class="text-[11px] text-kick-muted">{t('The recommended style is the most tested. The other three may still change.')}</p>
-
-        <RangeRow
-          label={t('Text size')}
-          value={settings.translatedFontScale}
-          min={0.8}
-          max={1.4}
-          step={0.05}
-          format={(v) => `${Math.round(v * 100)}%`}
-          onChange={(v) => onPatch({ translatedFontScale: v })}
-        />
-        <RangeRow
-          label={t('Line spacing')}
-          value={settings.translatedLineHeight}
-          min={1.2}
-          max={2}
-          step={0.05}
-          format={(v) => v.toFixed(2)}
-          onChange={(v) => onPatch({ translatedLineHeight: v })}
-        />
-        <div class="kt-row">
-          <label class="kt-label">{t('Font')}</label>
-          <select
-            aria-label={t('Font')}
-            class="kt-select"
+        {/* Three groups under small heads: 13 rows of one weight gave no sign
+            of where the text settings end and the in-chat switches begin. */}
+        <SettingGroup title={t('Text')}>
+          <RangeRow
+            label={t('Text size')}
+            value={settings.translatedFontScale}
+            min={0.8}
+            max={1.4}
+            step={0.05}
+            format={(v) => `${Math.round(v * 100)}%`}
+            onChange={(v) => onPatch({ translatedFontScale: v })}
+          />
+          <RangeRow
+            label={t('Line spacing')}
+            value={settings.translatedLineHeight}
+            min={1.2}
+            max={2}
+            step={0.05}
+            format={(v) => v.toFixed(2)}
+            onChange={(v) => onPatch({ translatedLineHeight: v })}
+          />
+          <Segmented
+            label={t('Font')}
             value={settings.translatedFont}
-            onChange={(e) =>
-              onPatch({
-                translatedFont: (e.target as HTMLSelectElement)
-                  .value as Settings['translatedFont'],
-              })
+            options={[
+              { value: 'inherit', label: t("Twitch's own") },
+              { value: 'system', label: t('System') },
+              { value: 'serif', label: t('Serif') },
+              { value: 'mono', label: t('Monospace') },
+              { value: 'readable', label: t('High legibility') },
+            ]}
+            onChange={(v) => onPatch({ translatedFont: v as Settings['translatedFont'] })}
+          />
+
+          <Segmented
+            label={t('Density')}
+            value={settings.translatedDensity}
+            options={[
+              { value: 'compact', label: t('Compact') },
+              { value: 'normal', label: t('Normal') },
+              { value: 'roomy', label: t('Roomy') },
+            ]}
+            onChange={(v) => onPatch({ translatedDensity: v as Settings['translatedDensity'] })}
+          />
+        </SettingGroup>
+
+        <SettingGroup title={t('Colour and theme')}>
+          {/* The dark-scheme accent values of src/shared/theme.css. */}
+          <Segmented
+            swatch
+            label={t('Accent colour')}
+            value={settings.accent}
+            options={[
+              { value: 'kick', label: t('Twitch'), color: 'rgb(169 112 255)' },
+              { value: 'cyan', label: t('Cyan'), color: 'rgb(5 179 214)' },
+              { value: 'green', label: t('Green'), color: 'rgb(83 252 24)' },
+              { value: 'amber', label: t('Amber'), color: 'rgb(229 147 6)' },
+            ]}
+            onChange={(v) => onPatch({ accent: v as Settings['accent'] })}
+          />
+          <Segmented
+            label={t('Chat theme')}
+            value={settings.chatScheme}
+            options={[
+              { value: 'auto', label: t('Follow Twitch') },
+              { value: 'dark', label: t('Always dark') },
+              { value: 'light', label: t('Always light') },
+            ]}
+            onChange={(v) => onPatch({ chatScheme: v as Settings['chatScheme'] })}
+          />
+        </SettingGroup>
+
+        <SettingGroup title={t('In the chat')}>
+          {/* Off by default: on, the language changes by itself from one channel
+              to the next, which is wanted when asked for and a surprise
+              otherwise. On an unknown channel nothing moves, or every new
+              channel would wipe the choice just made. */}
+          <ToggleRow
+            checked={settings.rememberChannelLang}
+            onChange={(v) => onPatch({ rememberChannelLang: v })}
+            label={t('Remember a reading language per channel')}
+          />
+          <ToggleRow
+            checked={settings.showFloatingBar}
+            onChange={(v) => onPatch({ showFloatingBar: v })}
+            label={t('Show the floating bar at the top of chat')}
+          />
+          <ToggleRow
+            checked={settings.showComposerChip}
+            onChange={(v) => onPatch({ showComposerChip: v })}
+            label={t('Show the quick language button in chat')}
+          />
+          <ToggleRow
+            checked={settings.showOriginal}
+            onChange={(v) => onPatch({ showOriginal: v })}
+            label={t('Keep original text visible')}
+            disabled={settings.displayStyle === 'replace'}
+            hint={
+              settings.displayStyle === 'replace'
+                ? t('The Replace style always hides it.')
+                : undefined
             }
-          >
-            <option value="inherit">{t("Twitch's own")}</option>
-            <option value="system">{t('System')}</option>
-            <option value="serif">{t('Serif')}</option>
-            <option value="mono">{t('Monospace')}</option>
-            <option value="readable">{t('High legibility')}</option>
-          </select>
-        </div>
-
-        <SelectRow
-          label={t('Density')}
-          value={settings.translatedDensity}
-          options={[
-            ['compact', t('Compact')],
-            ['normal', t('Normal')],
-            ['roomy', t('Roomy')],
-          ]}
-          onChange={(v) => onPatch({ translatedDensity: v as Settings['translatedDensity'] })}
-        />
-
-        <StylePreview settings={settings} />
-
-        <SelectRow
-          label={t('Accent colour')}
-          value={settings.accent}
-          options={[
-            ['kick', t('Twitch')],
-            ['cyan', t('Cyan')],
-            ['green', t('Green')],
-            ['amber', t('Amber')],
-          ]}
-          onChange={(v) => onPatch({ accent: v as Settings['accent'] })}
-        />
-        {/* Eteint par defaut : allume, la langue change toute seule en changeant
-            de chaine, ce qui est ce qu'on veut quand on l'a demande et une
-            surprise sinon. Sur une chaine inconnue rien ne bouge, sans quoi
-            chaque nouvelle chaine effacerait le choix qu'on vient de faire. */}
-        <ToggleRow
-          checked={settings.rememberChannelLang}
-          onChange={(v) => onPatch({ rememberChannelLang: v })}
-          label={t('Remember a reading language per channel')}
-        />
-        <SelectRow
-          label={t('Chat theme')}
-          value={settings.chatScheme}
-          options={[
-            ['auto', t('Follow Twitch')],
-            ['dark', t('Always dark')],
-            ['light', t('Always light')],
-          ]}
-          onChange={(v) => onPatch({ chatScheme: v as Settings['chatScheme'] })}
-        />
-
-        <ToggleRow
-          checked={settings.showFloatingBar}
-          onChange={(v) => onPatch({ showFloatingBar: v })}
-          label={t('Show floating bar at top of chat (toggle live)')}
-        />
-        <ToggleRow
-          checked={settings.showComposerChip}
-          onChange={(v) => onPatch({ showComposerChip: v })}
-          label={t('Show the quick language button in chat')}
-        />
-        <ToggleRow
-          checked={settings.showOriginal}
-          onChange={(v) => onPatch({ showOriginal: v })}
-          label={t('Keep original text visible')}
-          disabled={settings.displayStyle === 'replace'}
-          hint={
-            settings.displayStyle === 'replace'
-              ? t('The Replace style always hides it.')
-              : undefined
-          }
-        />
-        <ToggleRow
-          checked={settings.showSourceBadge}
-          onChange={(v) => onPatch({ showSourceBadge: v })}
-          label={t('Show source language badge')}
-        />
-        <ToggleRow
-          checked={settings.showProviderBadge}
-          onChange={(v) => onPatch({ showProviderBadge: v })}
-          label={t('Show which provider was used')}
-        />
+          />
+          <ToggleRow
+            checked={settings.showSourceBadge}
+            onChange={(v) => onPatch({ showSourceBadge: v })}
+            label={t('Show source language badge')}
+          />
+          <ToggleRow
+            checked={settings.showProviderBadge}
+            onChange={(v) => onPatch({ showProviderBadge: v })}
+            label={t('Show which provider was used')}
+          />
+        </SettingGroup>
       </section>
 
       <section class="kt-card space-y-3">
@@ -215,8 +230,11 @@ export function DisplaySection({ settings, onPatch }: Props) {
           label={t('Enable compose preview')}
         />
         <div class="kt-row">
-          <label class="kt-label">{t('Write my messages in')}</label>
+          <label class="kt-label" for={composeId}>
+            {t('Write my messages in')}
+          </label>
           <select
+            id={composeId}
             aria-label={t('Write my messages in')}
             class="kt-select"
             value={settings.composeTargetLang}
@@ -230,22 +248,30 @@ export function DisplaySection({ settings, onPatch }: Props) {
             ))}
           </select>
         </div>
-        <p class="text-[11px] text-kick-muted">
+        <p class="text-[12px] text-kick-muted">
           {t("Auto detects the channel's broadcast language from Twitch. No manual picking.")}
         </p>
-        <ToggleRow
-          checked={settings.composeInsertMode === 'insert'}
-          onChange={(v) => onPatch({ composeInsertMode: v ? 'insert' : 'copy' })}
-          label={t('Click inserts into the chat box (off = copy to clipboard instead)')}
+        <Segmented
+          label={t('Clicking the preview')}
+          value={settings.composeInsertMode}
+          options={[
+            { value: 'insert', label: t('Puts it in the chat box') },
+            { value: 'copy', label: t('Copies it') },
+          ]}
+          onChange={(v) => onPatch({ composeInsertMode: v as Settings['composeInsertMode'] })}
         />
         {/* Tab est pris uniquement tant que l'apercu est a l'ecran, jamais sur
             une boite vide, et Shift+Tab reste libre. Ce reglage existe pour qui
             navigue au clavier et veut Tab inchange en toute circonstance :
             Ctrl/Cmd+Entree marche dans les deux cas. */}
-        <ToggleRow
-          checked={settings.composeInsertKey === 'tab-and-enter'}
-          onChange={(v) => onPatch({ composeInsertKey: v ? 'tab-and-enter' : 'ctrl-enter' })}
-          label={t('Tab swaps my message for its translation (off = Ctrl/Cmd+Enter only)')}
+        <Segmented
+          label={t('Key that swaps in the translation')}
+          value={settings.composeInsertKey}
+          options={[
+            { value: 'tab-and-enter', label: t('Tab or Ctrl/Cmd+Enter') },
+            { value: 'ctrl-enter', label: t('Ctrl/Cmd+Enter only') },
+          ]}
+          onChange={(v) => onPatch({ composeInsertKey: v as Settings['composeInsertKey'] })}
         />
       </section>
     </>
@@ -315,8 +341,10 @@ function StylePreview({ settings }: { settings: Settings }) {
   }, [settings, t]);
 
   return (
-    <div>
-      <div class="text-[11px] text-kick-muted mb-1">{t('Preview')}</div>
+    // Sticky, not animated, so reduced motion has nothing to cut. The fill hides
+    // the rows scrolling beneath it.
+    <div data-kt-preview class="sticky top-0 z-10 border-b border-kick-stroke bg-kick-surface pb-2 [@media(max-height:500px)]:static">
+      <div class="text-[12px] text-kick-muted mb-1">{t('Preview')}</div>
       <div ref={host} class="kt-setting text-sm" />
     </div>
   );
@@ -332,33 +360,15 @@ function StylePreview({ settings }: { settings: Settings }) {
  * onInput et non onChange : le reglage doit se voir pendant qu'on tire le
  * curseur, sinon il faut le lacher pour savoir ou on en est.
  */
-/** Une ligne libelle plus liste, pour les reglages a trois ou quatre valeurs. */
-function SelectRow({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: string;
-  options: [string, string][];
-  onChange: (v: string) => void;
-}) {
+/** A run of settings under a small head, set apart from the next run by space. */
+function SettingGroup({ title, children }: { title: string; children: ComponentChildren }) {
+  const id = useId();
   return (
-    <div class="kt-row">
-      <label class="kt-label">{label}</label>
-      <select
-        aria-label={label}
-        class="kt-select"
-        value={value}
-        onChange={(e) => onChange((e.target as HTMLSelectElement).value)}
-      >
-        {options.map(([v, l]) => (
-          <option key={v} value={v}>
-            {l}
-          </option>
-        ))}
-      </select>
+    <div role="group" aria-labelledby={id} class="space-y-3 pt-3">
+      <h3 id={id} class="kt-label">
+        {title}
+      </h3>
+      {children}
     </div>
   );
 }
@@ -380,14 +390,18 @@ function RangeRow({
   format: (v: number) => string;
   onChange: (v: number) => void;
 }) {
+  const id = useId();
   return (
-    <div class="kt-row">
-      <label class="kt-label">{label}</label>
-      <div class="flex items-center gap-2">
+    <div class="kt-row-inline">
+      <label class="text-sm text-kick-text" for={id}>
+        {label}
+      </label>
+      <div class="ms-auto flex items-center gap-2">
         {/* Unstyled, a range is Chrome's blue, the only blue in the product,
             and 16 pixels tall where WCAG 2.5.8 asks for 24. */}
         <input
           type="range"
+          id={id}
           class="h-6 accent-kick-primary"
           aria-label={label}
           min={min}
@@ -396,7 +410,7 @@ function RangeRow({
           value={value}
           onInput={(e) => onChange(Number((e.target as HTMLInputElement).value))}
         />
-        <span class="text-[11px] text-kick-muted tabular-nums w-10 text-end">
+        <span class="text-[12px] text-kick-muted tabular-nums w-10 text-end">
           {format(value)}
         </span>
       </div>
@@ -421,6 +435,7 @@ function StyleCard({
   const t = useT();
   return (
     <button
+      aria-pressed={active}
       class={`text-start rounded-md border p-3 transition ${
         active
           ? 'border-kick-primary bg-kick-primary/10'
@@ -428,15 +443,22 @@ function StyleCard({
       }`}
       onClick={onClick}
     >
-      <div class="flex items-center gap-2">
+      {/* Wraps: at 320px the badge ran out of its card over the next one. */}
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
         <span class="text-sm font-semibold">{label}</span>
+        {/* Not colour alone: the chosen card carries a tick. */}
+        {active && (
+          <svg class="h-4 w-4 text-kick-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <use href="#i-card-check" />
+          </svg>
+        )}
         {recommended && (
-          <span class="rounded bg-kick-primary/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-kick-primary">
+          <span class="rounded px-1.5 py-0.5 text-[12px] font-semibold text-kick-primary">
             {t('recommended')}
           </span>
         )}
       </div>
-      <div class="text-[11px] text-kick-muted mt-0.5">{desc}</div>
+      <div class="text-[12px] text-kick-muted mt-0.5">{desc}</div>
     </button>
   );
 }

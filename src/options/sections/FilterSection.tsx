@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useId, useMemo, useRef, useState } from 'preact/hooks';
 import type { Settings } from '~/shared/settings';
 import type { UsageStats } from '~/shared/types';
 import { sortedLanguages } from '~/shared/languages';
@@ -7,6 +7,7 @@ import { useT } from '~/shared/i18nContext';
 import { Check } from '../components/Check';
 import { flagClass } from '~/shared/flags';
 import { TWITCH_BOTS } from '~/shared/bots';
+import { ignoredGlossaryLines } from '~/shared/glossary';
 
 interface Props {
   settings: Settings;
@@ -40,6 +41,7 @@ export function toLines(v: string): string[] {
 
 export function FilterSection({ settings, onPatch, stats }: Props) {
   const t = useT();
+  const namesNote = useId();
   const [langQuery, setLangQuery] = useState('');
   // Localised and collated for the interface language the user chose,
   // not the one their browser happens to run in.
@@ -75,25 +77,23 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
           onChange={(v) => onPatch({ ignoreBots: v })}
           label={t('Ignore chat bots')}
         />
+        {/* The built-in list is the field's helper line now: above the label it
+            sat 7.9px from it, and it reads as part of the field anyway. */}
         {settings.ignoreBots && (
-          <div class="kt-row">
-            <p class="kt-hint">
-              {t('Always ignored:')} {TWITCH_BOTS.join(', ')}
-            </p>
-            <ListField
-              id="kt-extra-bots"
-              label={t('Other bots to ignore')}
-              placeholder={t('one bot name per line')}
-              value={settings.extraBots}
-              parse={toNames}
-              onCommit={(v) => onPatch({ extraBots: v })}
-            />
-          </div>
+          <ListField
+            id="kt-extra-bots"
+            label={t('Other bots to ignore')}
+            placeholder={t('one bot name per line')}
+            help={`${t('Always ignored:')} ${TWITCH_BOTS.join(', ')}`}
+            value={settings.extraBots}
+            parse={toNames}
+            onCommit={(v) => onPatch({ extraBots: v })}
+          />
         )}
         <div class="grid grid-cols-[1fr,140px] gap-3 items-start">
           <div>
             <div class="text-sm">{t('Minimum message length')}</div>
-            <div class="text-[11px] text-kick-muted">
+            <div class="text-xs text-kick-muted">
               {t(
                 'Shorter messages are left alone. Raise it to spend less provider quota on busy chats.',
               )}
@@ -117,7 +117,10 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
       </section>
 
       <section class="kt-card space-y-3">
-        <h2 class="kt-section">{t('Source languages allowlist')}</h2>
+        {/* The popup's allowlist line links here (#filters-langs). */}
+        <h2 id="filters-langs" tabIndex={-1} class="kt-section scroll-mt-4 focus:outline-none">
+          {t('Source languages allowlist')}
+        </h2>
         <p class="text-xs text-kick-muted">
           {t(
             'Leave empty to translate every detected language. Pick specific ones to ONLY translate those (e.g. only JA + KO).',
@@ -142,7 +145,15 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
           value={langQuery}
           onInput={(e) => setLangQuery((e.target as HTMLInputElement).value)}
         />
-        <div class="grid grid-cols-3 gap-1.5 max-h-[260px] overflow-auto pe-1">
+        {/* lucide check, verbatim from the kit's icons.js. */}
+        <svg width="0" height="0" class="absolute" aria-hidden="true">
+          <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </symbol>
+        </svg>
+        {/* A set, not a list of settings: toggle chips read as "include this
+            one", where a row of OFF switches read as "not translated". */}
+        <div class="grid grid-cols-3 gap-2">
           {shown.length === 0 && (
             <p role="status" class="col-span-3 py-2 text-xs text-kick-muted">
               {t('No language matches')}
@@ -151,48 +162,38 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
           {shown.map((l) => {
             const checked = settings.sourceLangAllowlist.includes(l.code);
             return (
-              <div
+              <button
                 key={l.code}
-                class={`rounded-md border px-2 py-1 text-xs transition ${
+                type="button"
+                aria-pressed={checked}
+                class={`flex min-h-8 min-w-0 items-center gap-2 rounded border px-2 py-1 text-start text-xs transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kick-primary ${
                   checked
-                    ? 'border-kick-primary bg-kick-primary/10'
-                    : 'border-kick-stroke bg-kick-dark/30'
+                    ? 'border-kick-primary bg-kick-primary/15 text-kick-text'
+                    : 'border-kick-stroke text-kick-muted hover:bg-kick-dark/40'
                 }`}
+                onClick={() => {
+                  const next = new Set(settings.sourceLangAllowlist);
+                  if (next.has(l.code)) next.delete(l.code);
+                  else next.add(l.code);
+                  onPatch({ sourceLangAllowlist: [...next] });
+                }}
               >
-                <Check
-                  checked={checked}
-                  onChange={() => {
-                    const next = new Set(settings.sourceLangAllowlist);
-                    if (next.has(l.code)) next.delete(l.code);
-                    else next.add(l.code);
-                    onPatch({ sourceLangAllowlist: [...next] });
-                  }}
-                  label={
-                    <span class="flex min-w-0 items-center gap-2">
-                      {/* Le drapeau dessine, comme dans le chat. Les regles
-                          vivent maintenant dans src/shared/flags.css, que les
-                          deux feuilles importent. Les deux lettres restent le
-                          repli des langues sans drapeau : un drapeau nomme un
-                          pays et pas une langue, il en manque. */}
-                      {flagClass(l.code) ? (
-                        <span class={`${flagClass(l.code)!} shrink-0`} />
-                      ) : (
-                        <span class="shrink-0 font-mono text-[10px] tracking-wider text-kick-muted">
-                          {l.code.toUpperCase()}
-                        </span>
-                      )}
-                      <span class="truncate text-kick-muted">{l.name}</span>
-                      {/* Ce que cette langue a reellement represente. Sans ce
-                          nombre, cocher une case est un pari. */}
-                      {(vues[l.code] ?? 0) > 0 && (
-                        <span class="ms-auto shrink-0 tabular-nums text-[10px] text-kick-primary">
-                          {vues[l.code]}
-                        </span>
-                      )}
-                    </span>
-                  }
-                />
-              </div>
+                {flagClass(l.code) ? (
+                  <span class={`${flagClass(l.code)!} shrink-0`} aria-hidden="true" />
+                ) : (
+                  <span class="shrink-0 font-mono text-xs tracking-wider">{l.code.toUpperCase()}</span>
+                )}
+                <span class="truncate">{l.name}</span>
+                {/* What this language actually amounted to in the chat. */}
+                {(vues[l.code] ?? 0) > 0 && (
+                  <span class="ms-auto shrink-0 tabular-nums text-xs text-kick-primary">{vues[l.code]}</span>
+                )}
+                {checked && (
+                  <svg class={`h-4 w-4 shrink-0 text-kick-primary ${(vues[l.code] ?? 0) > 0 ? '' : 'ms-auto'}`} aria-hidden="true">
+                    <use href="#i-check" />
+                  </svg>
+                )}
+              </button>
             );
           })}
         </div>
@@ -200,43 +201,56 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
 
       <section class="kt-card space-y-3">
         <h2 class="kt-section">{t('Channels & users')}</h2>
-        <ListField
-          id="kt-whitelist-channels"
-          label={t('Channel allowlist (only translate on these)')}
-          placeholder={t('one channel name per line')}
-          value={settings.whitelistChannels}
-          parse={toNames}
-          onCommit={(v) => onPatch({ whitelistChannels: v })}
-        />
-        <ListField
-          id="kt-blacklist-channels"
-          label={t('Channel blocklist')}
-          placeholder={t('one channel name per line')}
-          value={settings.blacklistChannels}
-          parse={toNames}
-          onCommit={(v) => onPatch({ blacklistChannels: v })}
-        />
-        <ListField
-          id="kt-blacklist-users"
-          label={t('User blocklist')}
-          placeholder={t('one username per line')}
-          value={settings.blacklistUsers}
-          parse={toNames}
-          onCommit={(v) => onPatch({ blacklistUsers: v })}
-        />
-        <ListField
-          id="kt-blocked-keywords"
-          label={t('Hide messages containing')}
-          placeholder={t('one keyword per line, e.g. !fish')}
-          value={settings.blockedKeywords}
-          parse={toLines}
-          onCommit={(v) => onPatch({ blockedKeywords: v })}
-        />
+        {/* Said once for the three name lists, not three times word for word
+            under each, where it read as the caption of the next field. */}
+        <p id={namesNote} class="text-xs text-kick-muted">
+          {t('Spaces and commas also separate names.')}
+        </p>
+        {/* 24px between fields, 4px from a field to its own helper: the
+            helper belongs to the field above it, not the label below. */}
+        <div class="space-y-6">
+          <ListField
+            id="kt-whitelist-channels"
+            describedBy={namesNote}
+            label={t('Channel allowlist (only translate on these)')}
+            placeholder={t('one channel name per line')}
+            value={settings.whitelistChannels}
+            parse={toNames}
+            onCommit={(v) => onPatch({ whitelistChannels: v })}
+          />
+          <ListField
+            id="kt-blacklist-channels"
+            describedBy={namesNote}
+            label={t('Channel blocklist')}
+            placeholder={t('one channel name per line')}
+            value={settings.blacklistChannels}
+            parse={toNames}
+            onCommit={(v) => onPatch({ blacklistChannels: v })}
+          />
+          <ListField
+            id="kt-blacklist-users"
+            describedBy={namesNote}
+            label={t('User blocklist')}
+            placeholder={t('one username per line')}
+            value={settings.blacklistUsers}
+            parse={toNames}
+            onCommit={(v) => onPatch({ blacklistUsers: v })}
+          />
+          <ListField
+            id="kt-blocked-keywords"
+            label={t('Hide messages containing')}
+            placeholder={t('one keyword per line, e.g. !fish')}
+            help={t('Each line is one word or phrase.')}
+            value={settings.blockedKeywords}
+            parse={toLines}
+            onCommit={(v) => onPatch({ blockedKeywords: v })}
+          />
+        </div>
       </section>
 
       <section class="kt-card space-y-3">
         <h2 class="kt-section">{t('Glossary')}</h2>
-        <p class="text-[11px] text-kick-muted">
+        <p class="text-xs text-kick-muted">
           {t(
             'Words the engines keep getting wrong for your channels. Each line replaces the left side with the right side, after translating.',
           )}
@@ -245,11 +259,18 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
           id="kt-glossary"
           label={t('Glossary')}
           hideLabel
-          placeholder={`${t('one rule per line, in the form word→replacement')}\n草→lol\nkusa→lol`}
+          placeholder={`${t('one rule per line, in the form word→replacement')}\n草→lol\nkusa->lol`}
           value={settings.glossary}
           parse={toLines}
           onCommit={(v) => onPatch({ glossary: v })}
         />
+        {/* A line without an arrow used to be dropped without a word. */}
+        {ignoredGlossaryLines(settings.glossary).length > 0 && (
+          <p role="status" class="text-xs text-red-300">
+            {t('Ignored, write them as word -> replacement:')}{' '}
+            <span class="font-mono">{ignoredGlossaryLines(settings.glossary).join(', ')}</span>
+          </p>
+        )}
       </section>
     </>
   );
@@ -257,6 +278,11 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
 
 /**
  * A list typed one entry per line.
+ *
+ * Read as a list rather than a code box: proportional text, the entry count
+ * beside the label (what will actually be saved, so "a, b" counts two), and a
+ * plain helper line, both tied to the field with aria-describedby. The stored
+ * format is unchanged: the parsed array, one entry per line.
  *
  * The text areas used to be rebuilt from the saved list on every keystroke, so
  * the line break Enter makes was dropped at once (empty line filtered out) and
@@ -272,15 +298,24 @@ function ListField({
   parse,
   onCommit,
   hideLabel,
+  help,
+  describedBy,
 }: {
   id: string;
   label: string;
   placeholder: string;
+  /** Plain helper line under the field. */
+  help?: string;
+  /** A note outside the field that also describes it (a card's intro line). */
+  describedBy?: string;
   value: string[];
   parse: (v: string) => string[];
   onCommit: (v: string[]) => void;
   hideLabel?: boolean;
 }) {
+  const t = useT();
+  const countId = useId();
+  const helpId = useId();
   const saved = value.join('\n');
   const [draft, setDraft] = useState(saved);
   const focused = useRef(false);
@@ -294,14 +329,33 @@ function ListField({
     const next = parse(text);
     if (next.join('\n') !== saved) onCommit(next);
   };
+  // No count on an empty list (4 of 6 in a default install), and none on the
+  // glossary, whose label is hidden: the count sat alone on its own row there.
+  const entries = parse(draft).length;
+  const counted = entries > 0 && !hideLabel;
+  const describedIds = [counted && countId, help && helpId, describedBy].filter(Boolean).join(' ');
   return (
     <div class="kt-row">
-      <label class={hideLabel ? 'sr-only' : 'kt-label'} for={id}>
-        {label}
-      </label>
+      {hideLabel ? (
+        <label class="sr-only" for={id}>
+          {label}
+        </label>
+      ) : (
+        <div class="flex items-baseline justify-between gap-2">
+          <label class="kt-label" for={id}>
+            {label}
+          </label>
+          {counted && (
+            <span id={countId} data-kt-count class="ms-auto shrink-0 text-xs tabular-nums text-kick-muted">
+              {t('Entries:')} {entries}
+            </span>
+          )}
+        </div>
+      )}
       <textarea
         id={id}
         class="kt-textarea"
+        aria-describedby={describedIds || undefined}
         value={draft}
         placeholder={placeholder}
         onFocus={() => {
@@ -319,6 +373,11 @@ function ListField({
           commit((e.target as HTMLTextAreaElement).value);
         }}
       />
+      {help && (
+        <p id={helpId} class="kt-hint">
+          {help}
+        </p>
+      )}
     </div>
   );
 }
