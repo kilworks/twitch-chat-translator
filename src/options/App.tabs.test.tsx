@@ -20,6 +20,16 @@ const { App } = await import('./App');
 
 const src = readFileSync('src/options/App.tsx', 'utf8');
 
+// WCAG 3.1.2: the interface language picker shows each language in its own
+// name (Deutsch, 日本語); read in the page's language, a screen reader garbled
+// them. The chat pickers already set lang on theirs.
+describe('interface language picker', () => {
+  it('marks each endonym with its language, the button and the list alike', () => {
+    expect(src).toContain("<span lang={value === 'auto' ? undefined : value}>{label(value)}</span>");
+    expect(src).toContain("<span dir=\"auto\" lang={l === 'auto' ? undefined : l}>{label(l)}</span>");
+  });
+});
+
 describe('options tab bar', () => {
   it('declares the tablist and its tabs', () => {
     expect(src).toContain('role="tablist"');

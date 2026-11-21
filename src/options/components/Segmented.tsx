@@ -94,7 +94,7 @@ export function Segmented({ label, value, options, onChange, swatch = false }: P
                 title={o.label}
                 tabIndex={i === stop ? 0 : -1}
                 onClick={() => onChange(o.value)}
-                class={`grid h-8 w-8 place-items-center rounded-lg border-2 text-kick-dark ${ring} ${
+                class={`kt-swatch grid h-8 w-8 place-items-center rounded-lg border-2 text-kick-dark ${ring} ${
                   on ? 'border-kick-text' : 'border-transparent hover:border-kick-stroke-strong'
                 }`}
                 style={{ backgroundColor: o.color }}
@@ -116,7 +116,8 @@ export function Segmented({ label, value, options, onChange, swatch = false }: P
                 class={`kt-seg min-h-8 rounded px-3 py-1 text-sm ${stacked ? 'text-start' : ''} ${ring} ${
                   on
                     ? // 10, not 15: the Twitch purple on a 15% bed of itself measured 4.45:1.
-                      'bg-kick-primary/10 text-kick-primary'
+                      // The bed alone is 1.1:1 on the card, so a purple hairline marks it too.
+                      'bg-kick-primary/10 text-kick-primary ring-1 ring-inset ring-kick-primary'
                     : 'text-kick-muted hover:bg-kick-dark/40 hover:text-kick-text'
                 }`}
               >

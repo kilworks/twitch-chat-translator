@@ -160,10 +160,34 @@ describe('forced colors', () => {
     expect(el.querySelector('.kt-seg[aria-checked="true"]')!.textContent).toBe('Bravo');
   });
 
-  // Swatches carry a tick and the chosen name beside them, so they need no class.
+  // Swatches carry a tick and the chosen name beside them, so they need no .kt-seg.
   it('leaves swatches to their tick', () => {
     const { el } = mount('a', true);
     expect(el.querySelector('.kt-seg')).toBeNull();
+  });
+
+  // But a swatch is its colour: repainted with Canvas, the four read the same.
+  it('keeps the swatch colours, and edges the chosen one in a system colour', async () => {
+    const { readFileSync } = await import('node:fs');
+    const css = readFileSync('src/options/styles.css', 'utf8');
+    const block = css.slice(css.indexOf('@media (forced-colors: active)'));
+    expect(block).toMatch(/\.kt-swatch \{[^}]*forced-color-adjust: none;/);
+    expect(block).toMatch(/\.kt-swatch\[aria-checked='true'\] \{[^}]*border-color: CanvasText;/);
+    const { el } = mount('a', true);
+    expect(radios(el).every((r) => r.classList.contains('kt-swatch'))).toBe(true);
+  });
+});
+
+// The Twitch purple on its own 10% bed is 1.1:1 against the card: the chosen
+// segment also carries a purple hairline, which holds 3:1.
+describe('the chosen segment', () => {
+  it('has an inset edge besides its bed', async () => {
+    const { el } = mount('b');
+    const on = el.querySelector<HTMLElement>('.kt-seg[aria-checked="true"]')!;
+    expect(on.className).toMatch(/\bring-1\b/);
+    expect(on.className).toMatch(/\bring-kick-primary\b/);
+    // Control: the others have none.
+    expect(el.querySelector<HTMLElement>('.kt-seg[aria-checked="false"]')!.className).not.toMatch(/\bring-1\b/);
   });
 });
 

@@ -221,6 +221,13 @@
   .kt-seg[aria-checked='true']:focus-visible {
     outline-color: CanvasText;
   }
+  /* A swatch is its colour: repainted with Canvas, the four read the same. */
+  .kt-swatch {
+    forced-color-adjust: none;
+  }
+  .kt-swatch[aria-checked='true'] {
+    border-color: CanvasText;
+  }
 }
 
 /* This used to name `.kt-check-box` alone, which passed a harness holding

@@ -282,7 +282,7 @@ function UiLangPicker({ value, onPick }: { value: Settings['uiLang']; onPick: (v
         onClick={() => setOpen(!open)}
       >
         {flag(value)}
-        <span>{label(value)}</span>
+        <span lang={value === 'auto' ? undefined : value}>{label(value)}</span>
       </button>
       {open && (
         <ul
@@ -304,7 +304,7 @@ function UiLangPicker({ value, onPick }: { value: Settings['uiLang']; onPick: (v
               onClick={() => pick(l)}
             >
               {flag(l)}
-              <span dir="auto">{label(l)}</span>
+              <span dir="auto" lang={l === 'auto' ? undefined : l}>{label(l)}</span>
             </li>
           ))}
         </ul>
