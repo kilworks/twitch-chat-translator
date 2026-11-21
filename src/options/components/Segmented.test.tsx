@@ -184,10 +184,10 @@ describe('the chosen segment', () => {
   it('has an inset edge besides its bed', async () => {
     const { el } = mount('b');
     const on = el.querySelector<HTMLElement>('.kt-seg[aria-checked="true"]')!;
-    expect(on.className).toMatch(/\bring-1\b/);
-    expect(on.className).toMatch(/\bring-kick-primary\b/);
+    expect(on.className).toMatch(/\boutline-1\b/);
+    expect(on.className).toMatch(/\boutline-kick-primary\b/);
     // Control: the others have none.
-    expect(el.querySelector<HTMLElement>('.kt-seg[aria-checked="false"]')!.className).not.toMatch(/\bring-1\b/);
+    expect(el.querySelector<HTMLElement>('.kt-seg[aria-checked="false"]')!.className).not.toMatch(/\boutline-1\b/);
   });
 });
 

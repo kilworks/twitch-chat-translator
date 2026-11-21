@@ -116,8 +116,9 @@ export function Segmented({ label, value, options, onChange, swatch = false }: P
                 class={`kt-seg min-h-8 rounded px-3 py-1 text-sm ${stacked ? 'text-start' : ''} ${ring} ${
                   on
                     ? // 10, not 15: the Twitch purple on a 15% bed of itself measured 4.45:1.
-                      // The bed alone is 1.1:1 on the card, so a purple hairline marks it too.
-                      'bg-kick-primary/10 text-kick-primary ring-1 ring-inset ring-kick-primary'
+                      // The bed alone is 1.1:1 on the card, so a purple hairline marks it too
+                      // (an outline: a ring is a box-shadow, which the design rules forbid).
+                      'bg-kick-primary/10 text-kick-primary outline outline-1 -outline-offset-1 outline-kick-primary'
                     : 'text-kick-muted hover:bg-kick-dark/40 hover:text-kick-text'
                 }`}
               >
