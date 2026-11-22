@@ -137,6 +137,18 @@ describe('TranslationPipeline, waiting on the worker', () => {
     expect(showLoading).not.toHaveBeenCalled();
   });
 
+  // The delay opened a window the immediate "…" never had: a row whose text
+  // changed meanwhile (a deletion, a 7TV redraw) no longer holds the message the
+  // timer was set for, and no answer would come back to take "…" off it.
+  it('puts no placeholder on a row recycled for another message meanwhile', async () => {
+    sendMock.mockReturnValue(new Promise(() => undefined));
+    const m = line(203);
+    await reader().onDomMessage(m);
+    m.injectionTarget.textContent = 'otra persona escribe otra cosa';
+    await vi.advanceTimersByTimeAsync(300);
+    expect(showLoading).not.toHaveBeenCalled();
+  });
+
   it('shows the placeholder once an answer is slow to come', async () => {
     let answer: (v: unknown) => void = () => undefined;
     sendMock.mockReturnValue(new Promise((resolve) => (answer = resolve)));
