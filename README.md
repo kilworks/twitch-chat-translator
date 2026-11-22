@@ -173,6 +173,8 @@ No. It is an independent open-source project, not affiliated with Twitch.
 
 ## What's new
 
+In 1.1.1, lighter on fast chats: "…" only shows on a line still waiting after a quarter of a second, and an engine that stops answering hands its lines to the next one after 8 seconds.
+
 In 1.1.0:
 
 - The settings open on Display, every on/off setting is a switch, and fonts, density, chat theme and accent colour show their choices as buttons and swatches
