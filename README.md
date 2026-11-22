@@ -40,7 +40,7 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
   www.twitch.tv, m.twitch.tv and dashboard.twitch.tv, with or without 7TV, BTTV and FFZ
 - **The extension speaks them too**: settings, popup and chat bar in all 43, picked from a menu with flags
 - **Free out of the box** with Google Translate. Add your own free DeepL key for better European languages;
-  MyMemory and Lingva take over when an engine fails
+  MyMemory and Lingva take over when an engine fails or gives no answer within 8 seconds
 - **On-device translation** in Chrome and Edge where the browser offers it: no network, no quota, and
   the text never leaves your computer
 - **Filters**: skip bots, mute users or channels, hide lines containing a word, translate only the
@@ -172,6 +172,8 @@ and it gets patched.
 No. It is an independent open-source project, not affiliated with Twitch.
 
 ## What's new
+
+In 1.1.1, lighter on fast chats: "…" only shows on a line still waiting after a quarter of a second, and an engine that stops answering hands its lines to the next one after 8 seconds.
 
 In 1.1.0:
 

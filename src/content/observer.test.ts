@@ -216,3 +216,40 @@ describe('a deleted message', () => {
     expect(seen).toEqual([]);
   });
 });
+
+describe('waiting for the list', () => {
+  const LISTE = nativeChat(nativeRow('hola amigos', 'bob'));
+  const vivants = () => created.filter((o) => o.target && !o.disconnected);
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+    // A channel switch: the list is there, its rows are not yet (findChatContainer binds only a list with rows).
+    document.body.innerHTML = nativeChat('');
+  });
+  afterEach(() => vi.useRealTimers());
+
+  // The route poll and the container guard both call reset(). Each reset used
+  // to start its own poll without stopping the pending one, and every chain
+  // ended in attach(): the later attach overwrote the fields of the earlier one
+  // and left its two observers connected for the life of the page.
+  it('attaches once however many resets arrive meanwhile', () => {
+    const obs = new ChatObserver(() => undefined);
+    obs.start();
+    obs.reset();
+    obs.reset();
+    document.body.innerHTML = LISTE;
+    vi.advanceTimersByTime(2000);
+    expect(vivants()).toHaveLength(2);
+    obs.stop();
+  });
+
+  it('attaches nothing once stopped, even with an older poll pending', () => {
+    const obs = new ChatObserver(() => undefined);
+    obs.start();
+    obs.reset();
+    obs.stop();
+    document.body.innerHTML = LISTE;
+    vi.advanceTimersByTime(2000);
+    expect(vivants()).toHaveLength(0);
+  });
+});

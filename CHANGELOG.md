@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1]
+
+The fast-chat fixes of Kick Chat Translator 3.6.2, which shares this translation
+code. The figures were measured there, on a synthetic chat at 20 to 25 messages
+a second, against its previous version.
+
+### Changed
+
+- **"…" only shows on a line still waiting after a quarter of a second.** On a
+  chat over its translation budget most lines got it and lost it at once, two
+  layouts a line for nothing. Measured at 25 messages a second: about 145
+  placeholders a minute instead of 780, and the work the extension adds to the
+  page drops by 30 % (tasks) and 60 % (layouts).
+
+### Fixed
+
+- **A translation service that never answers no longer holds its lines.** After
+  8 seconds (12 for a batch) the next service is asked; the page itself stops
+  waiting after 20 seconds and offers the line's retry.
+- **Long sessions on fast chats**: the chat bar no longer leaves a language panel
+  and a click listener behind each time it is put back, a chat line translated
+  again no longer collects hover listeners, the rate-limit hourglass keeps one
+  timer instead of one per refused line, and the chat watcher no longer doubles
+  its search for the chat list on a channel switch.
+
 ## [1.1.0]
 
 ### Added
