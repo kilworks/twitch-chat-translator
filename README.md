@@ -40,7 +40,7 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
   www.twitch.tv, m.twitch.tv and dashboard.twitch.tv, with or without 7TV, BTTV and FFZ
 - **The extension speaks them too**: settings, popup and chat bar in all 43, picked from a menu with flags
 - **Free out of the box** with Google Translate. Add your own free DeepL key for better European languages;
-  MyMemory and Lingva take over when an engine fails
+  MyMemory and Lingva take over when an engine fails or gives no answer within 8 seconds
 - **On-device translation** in Chrome and Edge where the browser offers it: no network, no quota, and
   the text never leaves your computer
 - **Filters**: skip bots, mute users or channels, hide lines containing a word, translate only the
