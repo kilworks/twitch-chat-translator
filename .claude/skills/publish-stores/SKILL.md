@@ -318,3 +318,22 @@ the person's step):
 **Looking at the images is a step.** The README screenshots in the repository were still the Kick
 ones (green, "Kick Chat Translator v3.0.2"): the gate that checks the harness can make them does
 not check that the committed copies were replaced. Regenerate and copy them before any listing.
+
+## Journal: 1.1.1, 2026-11-22 (fast-chat fixes ported from Kick 3.6.2)
+
+Merged, tagged, sent to both stores and announced on Discord in about 20 minutes. What the
+procedure above does not say:
+
+- **The Release workflow publishes nothing here.** The repository has no store secrets, so the
+  run ends red on "Stores outcome". Its Chrome and AMO steps still show `success` in
+  `gh run view --json jobs` (that is `continue-on-error`): read their real result in the
+  "Stores outcome" log (`CHROME: failure`, `AMO: failure`), never from the step list.
+- **By hand, `payloads.mjs` reads the zips from `release/` in the repository**, not from the
+  directory it writes to. After `gh release download vX.Y.Z -p "*.zip" -D <dir>`, copy the
+  chromium and firefox zips into `release/` (ignored by git), or it stops with "absent,
+  construire les paquets avant". These are the tag's own zips, unlike a dev build left there.
+- **`gh run watch` can exit 1 on an HTTP 500 from the API** while the run is fine: run
+  `gh run watch <id>` again before reading the exit status as a red CI.
+- **Discord**: the bot posts on its own once both stores serve the tag. To announce at once, first
+  set `seen.twitch` to the tag and remove `pending.twitch` in `/root/ctd/state.json` on the Nano
+  (bot stopped, then restarted), or it posts a second time on approval. Never `publish_release.py`.
