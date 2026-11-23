@@ -104,7 +104,7 @@ every on/off setting is a switch that applies at once.
   typeface, accent colour, chat theme, the compose preview and what clicking it does
 - **Filters**: bots, users, channels, keywords, source languages (tick chips), and a glossary of replacements. A channel
   your lists leave out says "Not translated here" in the chat bar
-- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore
+- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore (the file never holds your DeepL key, and importing one keeps your own key and Lingva server)
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
 - **Keyboard**: Alt+Shift+T turns chat translation on or off (Alt+T is Twitch's theater mode), Alt+W the compose
