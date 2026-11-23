@@ -48,14 +48,6 @@ export interface IncomingDomMessage {
   isBot: boolean;
 }
 
-export interface IncomingWsMessage {
-  id: string;
-  text: string;
-  channel: string;
-  username: string;
-  isBot: boolean;
-}
-
 interface Prepared {
   /** What goes to the engine: the line's words, abbreviations spelled out when English. */
   real: string;
@@ -256,9 +248,7 @@ export class TranslationPipeline {
 
     // Per-user dedup: if this user just sent the exact same message, skip it.
     // Common in chat spam, saves a provider call + avoids duplicate translations.
-    // Only the DOM path takes part. It is the only path that displays, so letting
-    // the websocket warm pass claim the slot first would suppress the display of a
-    // message nobody has seen yet.
+    // Replays turn it off: a clip loops, and its lines come back as the same message.
     if (opts.dedup) {
       const dedupKey = meta.username.toLowerCase();
       // Keyed with the message id too: the same message drawn again is not a repeat.
@@ -345,30 +335,6 @@ export class TranslationPipeline {
       if (oldest !== undefined && oldest !== channel) this.recent.delete(oldest);
     }
     return ctx;
-  }
-
-  async onWebSocketMessage(msg: IncomingWsMessage): Promise<void> {
-    if (this.settings.engineMode === 'local-only') return;
-    const prepared = this.prepare(msg.text, msg, { dedup: false });
-    if (typeof prepared === 'string') return;
-    // Same source hint as the display path. The warm pass usually reaches the
-    // worker first, so the answer it caches is the one the reader sees, and a
-    // hint makes it cache an answer translated from a guess.
-    const { hint } = prepared;
-    try {
-      await send({
-        type: 'translate',
-        payload: {
-          messageId: `ws:${msg.id}`,
-          text: prepared.real,
-          targetLang: this.effTarget,
-          channel: msg.channel,
-          ...(hint ? { sourceLangHint: hint } : {}),
-        },
-      });
-    } catch (err: unknown) {
-      log.debug('ws warmup failed', err);
-    }
   }
 
   async onDomMessage(msg: IncomingDomMessage): Promise<void> {
