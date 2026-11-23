@@ -1,20 +1,34 @@
 <div align="center">
 
-<img src="public/icons/icon128.png" alt="" width="80" height="80">
+<img src="public/icons/icon128.png" alt="" width="96" height="96">
 
 # Twitch Chat Translator
 
-Read any Twitch chat in your own language, and reply in the channel's.<br>
+**Read any Twitch chat in your own language, and reply in the channel's.**<br>
 Free, no account, nothing to set up. 43 languages, in the chat and in the extension itself.
 
-**[Add to Chrome, Brave or Edge](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)** &nbsp;·&nbsp; **[Add to Firefox](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)** &nbsp;·&nbsp; [Discord](https://discord.gg/xM2C33PkmR)
+[![Add to Chrome, Brave or Edge](https://img.shields.io/badge/Add_to-Chrome%2C_Brave%2C_Edge-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)
+[![Add to Firefox](https://img.shields.io/badge/Add_to-Firefox-FF7139?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)
+[![Join the Discord](https://img.shields.io/badge/Join_the-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/xM2C33PkmR)
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cbfmiinjkceibkpdodaegnmpbeiempib?label=Chrome%20Web%20Store&color=9146ff)](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)
+[![Chrome users](https://img.shields.io/chrome-web-store/users/cbfmiinjkceibkpdodaegnmpbeiempib?label=users&color=9146ff)](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)
+[![Firefox Add-on](https://img.shields.io/amo/v/twitch-chat-translator-pkkls?label=Firefox%20Add-on&color=9146ff)](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/kilworks/twitch-chat-translator/badge)](https://scorecard.dev/viewer/?uri=github.com/kilworks/twitch-chat-translator)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+<img src="screenshots/demo.gif" alt="Spanish chat messages arrive one by one, each with its English translation underneath; then an English reply is typed, a Spanish preview appears above the chat box, and Tab swaps it in" width="360">
+
+Watching Kick too? [Kick Chat Translator](https://github.com/kilworks/kick-chat-translator) does the same there.
+
+<details>
+<summary>Read this page in another language</summary>
+<br>
 
 [Français](README.fr.md) · [Español](README.es.md) · [Português (Portugal)](README.pt-PT.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Svenska](README.sv.md) · [Čeština](README.cs.md) · [Slovenčina](README.sk.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Türkçe](README.tr.md) · [العربية](README.ar.md) · [עברית](README.he.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [ไทย](README.th.md) · [Tiếng Việt](README.vi.md) · [Bahasa Indonesia](README.id.md) · [हिन्दी](README.hi.md) · [Suomi](README.fi.md) · [Norsk](README.no.md) · [Dansk](README.da.md) · [Ελληνικά](README.el.md) · [Magyar](README.hu.md) · [Български](README.bg.md) · [Català](README.ca.md) · [Slovenščina](README.sl.md) · [Eesti](README.et.md) · [Lietuvių](README.lt.md) · [Latviešu](README.lv.md) · [فارسی](README.fa.md) · [বাংলা](README.bn.md) · [தமிழ்](README.ta.md) · [Bahasa Melayu](README.ms.md) · [Filipino](README.tl.md) · [粵語](README.yue.md)
 
-<img src="screenshots/demo.gif" alt="Spanish chat messages arrive one by one, each with its English translation underneath; then an English reply is typed, a Spanish preview appears above the chat box, and Tab swaps it in" width="360">
+</details>
 
 </div>
 
@@ -32,7 +46,7 @@ changed in the settings, and a reading language can be remembered per channel.
 If you also run 7TV or BTTV, they use Tab to finish an emote. Tab then finishes the emote first, and inserts the
 translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click always insert it.
 
-## What you get
+## Features
 
 - **43 languages**, right to left included (Arabic, Hebrew, Persian), with regional variants kept apart
   (Brazilian and European Portuguese, Simplified and Traditional Chinese, Cantonese)
@@ -53,7 +67,7 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
   extension keeps open tabs translating, no reload
 - **Moderation aware**: a message deleted by a moderator, a timeout or a ban loses its translation too
 - **Looks like Twitch**: purple, and it follows the chat's own dark or light theme unless you pick one
-- Chrome, Brave, Edge and Firefox
+- **Chrome, Brave, Edge and Firefox**
 
 | Chat, translated as it scrolls | The toolbar popup |
 |---|---|
@@ -66,11 +80,26 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
 <sub>Taken from the shipping build in a chat room this repository makes up: the usernames and messages are
 invented and the translations are answered locally, so no real person's handle ends up on this page.</sub>
 
+## Privacy
+
+No account, no server of mine, and no analytics unless you opt in to a daily anonymous count sent to Google
+Analytics (engines used, errors, speed, never your messages, names or channels). Chat messages, and your draft while
+the compose preview is on, go to the translation provider you picked and nowhere else, and in on-device mode not
+even there. To know the channel's language it asks Twitch for the channel's broadcast language and id, and to keep
+emote names out of translations it asks 7TV, BetterTTV and FrankerFaceZ for the channel's emote names, which tells
+them that channel's id and nothing else. A copy installed from a store makes no other request. A copy installed by
+hand asks GitHub for the latest release tag, at most every six hours, to know whether to show its update badge.
+[Details](PRIVACY.md)
+
 ## Install
 
-Add it from the [Chrome Web Store](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib) or [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/). Store copies update themselves.
+Use the buttons at the top. Store copies update themselves.
 
-To load a copy by hand, download the zip for your browser from [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) and unzip it.
+<details>
+<summary><b>Install by hand</b>, from a release zip</summary>
+<br>
+
+Download the zip for your browser from [Releases](https://github.com/kilworks/twitch-chat-translator/releases/latest) and unzip it.
 
 - Chrome, Brave, Edge (`…-chromium.zip`): open `chrome://extensions`, turn on Developer mode, click Load unpacked, pick the folder.
 - Firefox 121+ (`…-firefox.zip`): open `about:debugging#/runtime/this-firefox`, click Load Temporary Add-on, pick `manifest.json`.
@@ -79,9 +108,15 @@ To load a copy by hand, download the zip for your browser from [Releases](https:
 A copy installed this way does not update itself: its icon shows a badge when a newer version exists, and the
 popup links to the latest release.
 
-## Translation engines
+</details>
 
-Four providers, chained: when one fails, the next takes over. The order is yours to set.
+## Details
+
+<details>
+<summary><b>Translation engines</b>: four providers, chained, and the browser's own translator</summary>
+<br>
+
+When one provider fails, the next takes over. The order is yours to set.
 
 | Provider | Key | Note |
 |---|---|---|
@@ -94,7 +129,11 @@ Chromium's built-in translator needs no network and no quota. Chrome and Edge 13
 not every copy does, and each language pair needs its model downloaded once, with one click from the bar. Firefox
 does not have it. Wherever it is missing, the cloud chain takes over and nothing breaks.
 
-## Settings
+</details>
+
+<details>
+<summary><b>Settings</b>: what each tab of the options page holds</summary>
+<br>
 
 Click the gear on the chat bar, or right-click the extension icon and choose Options. The settings open on Display;
 every on/off setting is a switch that applies at once.
@@ -102,9 +141,10 @@ every on/off setting is a switch that applies at once.
 - **Providers**: engine order, your DeepL key, and the mode: on-device first, cloud first, or on-device only
 - **Display**: target language, display style, original text and language badge, text size, line spacing,
   typeface, accent colour, chat theme, the compose preview and what clicking it does
-- **Filters**: bots, users, channels, keywords (matched as whole words), source languages (tick chips), and a glossary of replacements. A channel
-  your lists leave out says "Not translated here" in the chat bar
-- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore (the file never holds your DeepL key, and importing one keeps your own key and Lingva server)
+- **Filters**: bots, users, channels, keywords (matched as whole words), source languages (tick chips), and a
+  glossary of replacements. A channel your lists leave out says "Not translated here" in the chat bar
+- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore (the
+  file never holds your DeepL key, and importing one keeps your own key and Lingva server)
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
 - **Keyboard**: Alt+Shift+T turns chat translation on or off (Alt+T is Twitch's theater mode), Alt+W the compose
@@ -112,70 +152,124 @@ every on/off setting is a switch that applies at once.
 - The language button in the chat's action bar, under the message box: one click opens the list of languages you
   write in, typing filters it. The one at the top of the chat sets the language you read in
 
-## Supported languages
+</details>
+
+<details>
+<summary><b>Supported languages</b>: all 43</summary>
+<br>
 
 English · French · Spanish · Portuguese · Portuguese (Brazil) · German · Italian · Dutch · Polish · Swedish · Czech · Slovak · Romanian · Russian · Ukrainian · Turkish · Arabic · Hebrew · Japanese · Korean · Chinese (Simplified) · Chinese (Traditional) · Thai · Vietnamese · Indonesian · Hindi · Finnish · Norwegian · Danish · Greek · Hungarian · Bulgarian · Catalan · Slovenian · Estonian · Lithuanian · Latvian · Persian · Bengali · Tamil · Malay · Filipino · Cantonese
 
 Chat is translated into any of them, and the extension's own interface is available in each one.
 
-## Privacy
-
-No account, no server of mine, and no analytics unless you opt in to a daily anonymous count sent to Google
-Analytics (engines used, errors, speed, never your messages, names or channels). Chat messages, and your draft while
-the compose preview is on, go to the translation provider you picked and
-nowhere else, and in on-device mode not even there. To know the channel's language it asks Twitch for the channel's
-broadcast language and id, and to keep emote names out of translations it asks 7TV, BetterTTV and FrankerFaceZ for
-the channel's emote names, which tells them that channel's id and nothing else. A copy installed from a store makes
-no other request. A copy installed by hand asks GitHub for the latest release tag, at most every six hours, to know
-whether to show its update badge. [Details](PRIVACY.md)
+</details>
 
 ## FAQ
 
-**Messages aren't being translated.**
+<details>
+<summary><b>Messages aren't being translated.</b></summary>
+<br>
+
 Open the Activity tab in the settings and press "Read decisions": it lists the last 50 lines and says why
 each one was translated or left alone. Most skipped lines are skipped on purpose: the same user repeating
 themselves, lines too short, only emoji or laughter, or already in your reading language. If the tab shows nothing
 at all, the extension is not seeing the chat: please open an issue.
 
-**The chat bar says "Not translated here".**
+</details>
+
+<details>
+<summary><b>The chat bar says "Not translated here".</b></summary>
+<br>
+
 Your channel lists leave this channel out. The popup has a button to Filters, where you can change them.
 
-**A small filter mark appeared in the chat bar.**
+</details>
+
+<details>
+<summary><b>A small filter mark appeared in the chat bar.</b></summary>
+<br>
+
 Your source language allowlist left 3 of the last 10 lines untranslated. The popup links straight to that list.
 
-**The purple bar disappeared.**
+</details>
+
+<details>
+<summary><b>The purple bar disappeared.</b></summary>
+<br>
+
 Refresh the page. If it happens again, open an [issue](https://github.com/kilworks/twitch-chat-translator/issues)
 with the channel and what you did before.
 
-**How do I get better translations?**
+</details>
+
+<details>
+<summary><b>How do I get better translations?</b></summary>
+<br>
+
 Add a free DeepL key in the settings. The free tier covers a million characters a month, and DeepL is only
 spent on the language pairs where it beats the free engines.
 
-**Which display style should I use?**
+</details>
+
+<details>
+<summary><b>Which display style should I use?</b></summary>
+<br>
+
 Below the message. The other three work, and are still being adjusted.
 
-**Can I use the extension in my language?**
+</details>
+
+<details>
+<summary><b>Can I use the extension in my language?</b></summary>
+<br>
+
 Yes. It follows your browser's language, and the menu at the top of the settings switches it to any of
 the 43.
 
-**Does it work with 7TV, BTTV and FFZ?**
+</details>
+
+<details>
+<summary><b>Does it work with 7TV, BTTV and FFZ?</b></summary>
+<br>
+
 Yes, with any of them or none. Their emote names are kept out of the translations.
 
-**Does it work on VODs and clips?**
+</details>
+
+<details>
+<summary><b>Does it work on VODs and clips?</b></summary>
+<br>
+
 Yes, the same way as on live streams.
 
-**It broke after a Twitch update.**
+</details>
+
+<details>
+<summary><b>It broke after a Twitch update.</b></summary>
+<br>
+
 Twitch sometimes changes how its chat is built. Open an [issue](https://github.com/kilworks/twitch-chat-translator/issues)
 and it gets patched.
 
-**Is this made by Twitch?**
+</details>
+
+<details>
+<summary><b>Is this made by Twitch?</b></summary>
+<br>
+
 No. It is an independent open-source project, not affiliated with Twitch.
+
+</details>
 
 ## What's new
 
 In 1.1.2, safer and lighter: your DeepL key stays on this device (never synced, never in a settings export), Twitch pages can no longer read it, blocked words match whole words, Tab never inserts the translation of an older text, and the popup loads 84 % less code.
 
 In 1.1.1, lighter on fast chats: "…" only shows on a line still waiting after a quarter of a second, and an engine that stops answering hands its lines to the next one after 8 seconds.
+
+<details>
+<summary><b>Earlier releases</b>: 1.1.0 and 1.0.0</summary>
+<br>
 
 In 1.1.0:
 
@@ -193,10 +287,16 @@ In 1.0.0, the first release for Twitch:
 - The channel's language comes from Twitch, a deleted message loses its translation, and the look is purple and follows Twitch's dark or light chat
 - Alt+Shift+T turns translation on or off, Tab inserts the translation only when 7TV or BTTV did not just complete an emote, and the language button sits in the action bar under the message box
 
+</details>
+
 Every release, with what changed and the measurement behind it:
 [Releases](https://github.com/kilworks/twitch-chat-translator/releases) and [CHANGELOG.md](CHANGELOG.md).
 
 ## Development
+
+<details>
+<summary><b>Build, test and release</b></summary>
+<br>
 
 ```bash
 git clone https://github.com/kilworks/twitch-chat-translator.git
@@ -224,13 +324,15 @@ node test/e2e/store-shots-fixture.mjs --gif             # English store screensh
 
 Interface strings live in `src/shared/i18n/` (popup and options, keyed by the English text) and
 `src/content/i18n/` (chat bar, keyed by id with the English text as the fallback), one file per language;
-tests hold every file to the full key set. Store
-texts live in [store/](store/), and a release is a version tag: CI builds and checks it, creates the GitHub release
-and signs build provenance for the zips (`gh attestation verify <zip> -R kilworks/twitch-chat-translator`). The zips
-go to both stores by hand: this repository holds no store key. Dependabot and OpenSSF Scorecard watch the dependencies
-and the workflows. To report a vulnerability, see [SECURITY.md](SECURITY.md).
+tests hold every file to the full key set. Store texts live in [store/](store/), and a release is a version tag:
+CI builds and checks it, creates the GitHub release and signs build provenance for the zips
+(`gh attestation verify <zip> -R kilworks/twitch-chat-translator`). The zips go to both stores by hand: this
+repository holds no store key. Dependabot and OpenSSF Scorecard watch the dependencies and the workflows. To
+report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
+
+</details>
 
 ## Related projects
 
