@@ -24,8 +24,8 @@ The zip is written by scripts/pack.ts; entry names are checked to hold no backsl
 No remote code. Every line of JavaScript is inside the package: no eval, no new
 Function on fetched text, no remote script tag, no hosted module. The only
 network calls are the translation engines the user selects (translate.googleapis.com,
-api-free.deepl.com, api.deepl.com, api.mymemory.translated.net, lingva.lunar.icu,
-lingva.ml), twitch.tv itself and gql.twitch.tv (the channel's broadcast language and
+api-free.deepl.com, api.deepl.com, api.mymemory.translated.net, lingva.lunar.icu),
+twitch.tv itself and gql.twitch.tv (the channel's broadcast language and
 id, with the Client-Id the page already uses, read from the page at runtime), the
 emote lists of 7tv.io, api.betterttv.net and api.frankerfacez.com (names only, so they
 are never translated), and one GET to the project's own GitHub releases endpoint

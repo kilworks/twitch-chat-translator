@@ -88,7 +88,7 @@ Four providers, chained: when one fails, the next takes over. The order is yours
 | Google | none | the default, works out of the box |
 | DeepL | free | best on European languages, [free key](https://www.deepl.com/pro-api) for 1 million characters a month |
 | MyMemory | none | fallback |
-| Lingva | none | fallback, on a public instance unless you point it at your own |
+| Lingva | none | fallback, on the public instance lingva.lunar.icu unless you point it at your own (https only) |
 
 Chromium's built-in translator needs no network and no quota. Chrome and Edge 138 and later can offer it, though
 not every copy does, and each language pair needs its model downloaded once, with one click from the bar. Firefox
@@ -102,9 +102,9 @@ every on/off setting is a switch that applies at once.
 - **Providers**: engine order, your DeepL key, and the mode: on-device first, cloud first, or on-device only
 - **Display**: target language, display style, original text and language badge, text size, line spacing,
   typeface, accent colour, chat theme, the compose preview and what clicking it does
-- **Filters**: bots, users, channels, keywords, source languages (tick chips), and a glossary of replacements. A channel
+- **Filters**: bots, users, channels, keywords (matched as whole words), source languages (tick chips), and a glossary of replacements. A channel
   your lists leave out says "Not translated here" in the chat bar
-- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore
+- **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore (the file never holds your DeepL key, and importing one keeps your own key and Lingva server)
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
 - **Keyboard**: Alt+Shift+T turns chat translation on or off (Alt+T is Twitch's theater mode), Alt+W the compose
@@ -173,6 +173,8 @@ No. It is an independent open-source project, not affiliated with Twitch.
 
 ## What's new
 
+In 1.1.2, safer and lighter: your DeepL key stays on this device (never synced, never in a settings export), Twitch pages can no longer read it, blocked words match whole words, Tab never inserts the translation of an older text, and the popup loads 84 % less code.
+
 In 1.1.1, lighter on fast chats: "…" only shows on a line still waiting after a quarter of a second, and an engine that stops answering hands its lines to the next one after 8 seconds.
 
 In 1.1.0:
@@ -223,8 +225,10 @@ node test/e2e/store-shots-fixture.mjs --gif             # English store screensh
 Interface strings live in `src/shared/i18n/` (popup and options, keyed by the English text) and
 `src/content/i18n/` (chat bar, keyed by id with the English text as the fallback), one file per language;
 tests hold every file to the full key set. Store
-texts live in [store/](store/), and a release is a version tag: CI builds, checks and publishes it to both
-stores.
+texts live in [store/](store/), and a release is a version tag: CI builds and checks it, creates the GitHub release
+and signs build provenance for the zips (`gh attestation verify <zip> -R kilworks/twitch-chat-translator`). The zips
+go to both stores by hand: this repository holds no store key. Dependabot and OpenSSF Scorecard watch the dependencies
+and the workflows. To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 

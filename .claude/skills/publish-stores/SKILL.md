@@ -7,7 +7,7 @@ description: Ship a release to the Chrome Web Store and addons.mozilla.org. A ta
 
 ## A release, since 3.0.0
 
-1. **On master**, merged through a pull request with CI green: bump `package.json`, move `## [Unreleased]` in CHANGELOG under the new version, write `store/notes/<lang>.txt` for it (what changed, every language), then check locally:
+1. **On master**, merged through a pull request with CI green: bump `package.json`, move `## [Unreleased]` in CHANGELOG under the new version, write `store/notes/en.txt` for it (what changed; English only since 1.1.2, AMO falls back to it in every locale), then check locally:
    ```bash
    npm run release:check && npm run package:all && npm run stores:payloads -- <scratchpad>/stores
    ```
@@ -16,11 +16,11 @@ description: Ship a release to the Chrome Web Store and addons.mozilla.org. A ta
    npm run stores:preflight -- --html release/preflight.html
    ```
    It compares HEAD with the last tag that is not this version's and lists what no API can do: the Privacy tab justification of each permission added since (from `store/chrome/dashboard/permission-justifications.txt`), and each Chrome description that changed (pasted per language on the "Fiche Store" page). The HTML page holds every text with a copy button: open it, send the user through it, wait for "done". It fails outright when a shipped permission has no justification or is missing from `PRIVACY.md`. "Nothing to do by hand" means the tag can go at once.
-3. **Tag and push**: `git tag -a vX.Y.Z -m "Release X.Y.Z" && git push origin vX.Y.Z`. The Release workflow (`.github/workflows/release.yml`) checks the tag equals package.json, runs release:check and the store clients' self-tests, builds and packs twice and compares the bytes, makes the source archive, builds the payloads and runs the listing audit, cancels a Chrome submission still in review, uploads and submits to Chrome, releases and lists on AMO, and creates the GitHub release with the notes and checksums. Chrome and AMO are independent steps (`continue-on-error`): one store refusing no longer skips the other or the GitHub release, and a final "Stores outcome" step turns the run red and says which store needs what. Started by hand (workflow_dispatch) it is a dry run that sends nothing.
-   **When a store step is red**: Chrome with `INVALID_ITEM_METADATA` means the package is uploaded but not submitted, because the dashboard wants something (see step 2); once the user fixed it, `node scripts/stores/cws.mjs publish`. AMO red: rerun `amo.mjs release` then `amo.mjs listing` by hand, from a clean checkout of the tag, with `git archive --format=zip --prefix=twitch-chat-translator-X.Y.Z/ -o release/twitch-chat-translator-X.Y.Z-source.zip HEAD` for the source and `stores:payloads` for the notes.
+3. **Tag and push**: `git tag -a vX.Y.Z -m "Release X.Y.Z" && git push origin vX.Y.Z`. The Release workflow (`.github/workflows/release.yml`) has two jobs. `build` (read-only token) checks the tag equals package.json, runs release:check and the store clients' self-tests, builds and packs twice and compares the bytes, makes the source archive, builds the payloads, runs the listing audit and uploads all of it as the `release` artifact. `github-release` signs build provenance for the zips (`gh attestation verify <zip> -R kilworks/twitch-chat-translator`) and creates the GitHub release with the notes, the checksums and the `.intoto.jsonl` bundle. It sends nothing to the stores: this repository holds no store key since 1.1.2, so Chrome and AMO go by hand from the release's zips (journal below). Started by hand (workflow_dispatch) only `build` runs: a dry run.
+   **By hand**: `gh release download vX.Y.Z -p "*.zip" -D release --clobber`, `node scripts/stores/payloads.mjs release/stores`, then `cws.mjs cancel` (a submission in review blocks a new package), `cws.mjs upload <chromium.zip> --publish`, `amo.mjs release <firefox.zip> <source.zip> release/stores/amo-notes.json` and `amo.mjs listing release/stores/amo-listing.json`. Chrome with `INVALID_ITEM_METADATA` means the package is uploaded but not submitted, because the dashboard wants something (see step 2); once the user fixed it, `node scripts/stores/cws.mjs publish`.
 4. **After approval**: `npm run stores:verify`, also run weekly by the Stores verify workflow, compares what both stores serve with the repository, language by language.
 
-Secrets, in the repository's Actions settings: `CWS_SERVICE_ACCOUNT_JSON`, `CWS_PUBLISHER_ID`, `AMO_JWT_ISSUER`, `AMO_JWT_SECRET`, and the repository variable `CWS_ITEM_ID` (this product's listing; the scripts have no default, so nothing can reach the Kick listing). The same credentials live in `~/.config/twitch-chat-translator/` for the scripts run by hand.
+No store secret in this repository: the scripts run by hand read the publisher's keys in `~/.config/kick-chat-translator/` (same account as Kick Chat Translator) and need `CWS_ITEM_ID` set to this product's listing (no default, so nothing can reach the Kick listing).
 
 ## Versioning
 
@@ -324,8 +324,8 @@ not check that the committed copies were replaced. Regenerate and copy them befo
 Merged, tagged, sent to both stores and announced on Discord in about 20 minutes. What the
 procedure above does not say:
 
-- **The Release workflow publishes nothing here.** The repository has no store secrets, so the
-  run ends red on "Stores outcome". Its Chrome and AMO steps still show `success` in
+- **The Release workflow published nothing here** (its store steps left in 1.1.2). The repository has no store secrets, so the
+  run ended red on "Stores outcome". Its Chrome and AMO steps still show `success` in
   `gh run view --json jobs` (that is `continue-on-error`): read their real result in the
   "Stores outcome" log (`CHROME: failure`, `AMO: failure`), never from the step list.
 - **By hand, `payloads.mjs` reads the zips from `release/` in the repository**, not from the
