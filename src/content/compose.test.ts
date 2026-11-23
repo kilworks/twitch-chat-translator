@@ -16,7 +16,7 @@ vi.mock('./composeUi', () => ({
   insertIntoComposer: (_el: HTMLElement, text: string) => void ui.inserted.push(text),
   isComposePreviewMounted: () => true,
   isComposePreviewVisible: () => ui.state === 'ready',
-  isKickSuggestionOpen: () => false,
+  isSuggestionOpen: () => false,
   mountComposePreview: (_el: HTMLElement, _lang: string, h: { onInsert: () => void }) => void (ui.onInsert = h.onInsert),
   readComposerText: (el: HTMLElement) => el.textContent ?? '',
   setComposeTargetLang: () => undefined,
@@ -31,7 +31,6 @@ vi.mock('./langChip', () => ({
   unmountLangChip: () => undefined,
   updateLangChip: () => undefined,
 }));
-vi.mock('./platform', () => ({ refresh7TV: () => false }));
 vi.mock('./usage', () => ({ countUsage: () => undefined }));
 vi.mock('./selectors', async (orig) => ({
   ...(await orig<typeof Selectors>()),

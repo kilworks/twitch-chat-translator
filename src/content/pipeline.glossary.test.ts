@@ -28,9 +28,10 @@ import { defaultSettings } from '~/shared/settings';
 let seq = 0;
 const domMsg = (text: string) => {
   const rowElement = document.createElement('div');
+  rowElement.className = 'chat-line__message';
   const injectionTarget = document.createElement('div');
   const span = document.createElement('span');
-  span.className = 'font-normal';
+  span.setAttribute('data-a-target', 'chat-message-text');
   span.textContent = text;
   injectionTarget.appendChild(span);
   rowElement.appendChild(injectionTarget);
