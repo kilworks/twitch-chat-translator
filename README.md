@@ -338,6 +338,12 @@ Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 
 - [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), the same translator for Kick chat, by the same author
 
+## Usage stats
+
+![Usage stats of Kick Chat Translator and Twitch Chat Translator](https://raw.githubusercontent.com/kilworks/twitch-chat-translator/stats/stats.png)
+
+Updated every day. Store totals count everyone who installed the extension; the shares come only from users who opted in to anonymous stats (off by default, see [PRIVACY.md](PRIVACY.md)). Groups of fewer than 3 users are shown as Other.
+
 ## License
 
 MIT. Not affiliated with Twitch.
