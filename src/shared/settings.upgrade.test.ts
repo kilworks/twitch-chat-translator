@@ -3,16 +3,13 @@ import { STORAGE_KEY_DEEPL_KEY, STORAGE_KEY_SETTINGS } from './constants';
 import { loadSettings } from './settings';
 
 /**
- * What a 3.6.2 reader has in storage when the update lands. Frozen on purpose:
- * this is the blob 3.6.2 wrote, and it must not follow later schema changes.
+ * What a 1.1.1 reader has in storage when the update lands. Frozen on purpose:
+ * this is the blob 1.1.1 wrote, and it must not follow later schema changes.
  * Every key holds a value that is not its default, so a reset of any one of
- * them shows. It still carries connectionMode, removed in 3.6.3, and a DeepL
- * key left in sync, as for a reader caught by the 3.6.2 auto-promote.
- *
- * engineModeMoved stays true: 3.6.2 always wrote it, and false would trigger
- * the one-time move off local-first, which is tested on its own.
+ * them shows. It still carries connectionMode, removed in 1.1.2, and a DeepL
+ * key left in sync, as for a reader caught by the 1.1.1 auto-promote.
  */
-const BLOB_362 = {
+const BLOB_111 = {
   enabled: false,
   pausedChannels: ['chan-a'],
   targetLang: 'ja',
@@ -25,12 +22,11 @@ const BLOB_362 = {
   translatedLineHeight: 1.6,
   translatedFont: 'serif',
   translatedDensity: 'roomy',
-  accent: 'violet',
+  accent: 'cyan',
   chatScheme: 'light',
   rememberChannelLang: true,
   channelLangs: { 'chan-b': 'de' },
-  engineMode: 'local-first',
-  engineModeMoved: true,
+  engineMode: 'cloud-first',
   localEnabled: false,
   providerOrder: ['deepl', 'lingva'],
   deeplApiKey: 'stuck-in-sync:fx',
@@ -83,16 +79,16 @@ const area = (m: Map<string, unknown>) => ({
 });
 
 beforeEach(() => {
-  sync = new Map([[STORAGE_KEY_SETTINGS, structuredClone(BLOB_362)]]);
+  sync = new Map([[STORAGE_KEY_SETTINGS, structuredClone(BLOB_111)]]);
   local = new Map();
   vi.stubGlobal('chrome', { storage: { sync: area(sync), local: area(local) } });
 });
 afterEach(() => vi.unstubAllGlobals());
 
-describe('updating from 3.6.2', () => {
+describe('updating from 1.1.1', () => {
   it('keeps every setting the reader had', async () => {
     const s = (await loadSettings()) as unknown as Record<string, unknown>;
-    const { connectionMode: _gone, ...kept } = BLOB_362;
+    const { connectionMode: _gone, ...kept } = BLOB_111;
     for (const [k, v] of Object.entries(kept)) expect(s[k], k).toEqual(v);
   });
 
