@@ -7,7 +7,7 @@ description: Ship a release to the Chrome Web Store and addons.mozilla.org. A ta
 
 ## A release, since 3.0.0
 
-1. **On master**, merged through a pull request with CI green: bump `package.json`, move `## [Unreleased]` in CHANGELOG under the new version, write `store/notes/<lang>.txt` for it (what changed, every language), then check locally:
+1. **On master**, merged through a pull request with CI green: bump `package.json`, move `## [Unreleased]` in CHANGELOG under the new version, write `store/notes/en.txt` for it (what changed; English only since 1.1.2, AMO falls back to it in every locale), then check locally:
    ```bash
    npm run release:check && npm run package:all && npm run stores:payloads -- <scratchpad>/stores
    ```
