@@ -116,3 +116,9 @@ metrics and 50 dimensions per property; this uses 16 and 5.
   (883,108); dimension name (1078,135), parameter (1060,235); metric name
   (1078,77), parameter (1060,178), unit menu (1280,178) then "Standard"
   (1240,213); save (1520,20). Read the table back after each batch.
+
+## Daily report (since 2026-11-23)
+
+Automatic for both extensions: Oracle cron 09:00 posts in Discord `#bot-ops`.
+Everything (service account, files, ids, how to read the numbers) is in the
+Kick Chat Translator copy of this skill, section 7. Do not rebuild it.
