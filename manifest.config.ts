@@ -87,7 +87,6 @@ export default defineManifest({
     'https://7tv.io/*',
     'https://api.betterttv.net/*',
     'https://api.frankerfacez.com/*',
-    'https://api.github.com/*',
     'https://translate.googleapis.com/*',
     'https://api-free.deepl.com/*',
     'https://api.deepl.com/*',
