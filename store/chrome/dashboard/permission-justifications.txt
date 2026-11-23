@@ -12,12 +12,13 @@ travelling to every Chrome signed into the same account. None of it is
 transmitted anywhere by the extension.
 
 alarms
-Three periodic alarms, none of which makes a request on its own account:
+Four periodic alarms, none of which makes a request on its own account:
 kt.keepalive touches chrome.storage.session so the MV3 service worker is not
 evicted between bursts of chat (without it the first messages after an idle gap
 wait for the worker to cold-start); kt.update wakes the update check of a copy
 installed by hand, every six hours; kt-usage closes the day of the opt-in
-anonymous statistics. They carry no data.
+anonymous statistics; kt-cache-prune runs once a day and deletes expired entries
+from the local translation cache. They carry no data.
 
 scripting
 Used in two places, always with the extension's own packaged code and on the
@@ -46,12 +47,8 @@ Host permissions: 7tv.io, api.betterttv.net, api.frankerfacez.com
 The channel's emote names, so they are never translated. Names only, in memory;
 the request carries the channel id and nothing else.
 
-Host permission: api.github.com
-One GET to this project's releases/latest every six hours, only in copies
-installed by hand, to announce a newer version.
-
 Host permissions: translate.googleapis.com, api.deepl.com, api-free.deepl.com,
-api.mymemory.translated.net, lingva.ml, lingva.lunar.icu
+api.mymemory.translated.net, lingva.lunar.icu
 The translation engines the user picks: only the text being translated goes to
 the engine selected at that moment.
 

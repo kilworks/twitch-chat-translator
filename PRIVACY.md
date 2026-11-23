@@ -52,7 +52,7 @@ your drafts go nowhere):
 | Google Translate | `translate.googleapis.com` | text only |
 | DeepL | `api-free.deepl.com` or `api.deepl.com` | text + the last few chat lines as context, each with its author's username + your DeepL API key |
 | MyMemory | `api.mymemory.translated.net` | text only |
-| Lingva (configurable) | `lingva.lunar.icu`, `lingva.ml` (or your instance) | text only |
+| Lingva (configurable) | `lingva.lunar.icu` (or your instance, https only) | text only |
 
 With on-device translation, chat text goes to none of them.
 
@@ -95,10 +95,11 @@ These pieces of data live in your browser's extension storage:
   channel). They sit in the browser's synced extension storage: if you turned
   on your browser's sync, the browser itself (Google or Mozilla) copies them to
   your other devices. We never see them.
-- Your DeepL API key, if you add one. It stays on this device and is never
-  synced.
+- Your DeepL API key, if you add one. It stays on this device, is never
+  synced, and a settings export never contains it.
 - A cache of recent translations (text + translation pair), keyed by text, on
-  this device.
+  this device. Entries are deleted after the age and count set in the options
+  (72 hours and 15,000 entries by default), checked once a day.
 - A daily counter of how many requests you made, broken down by provider,
   detected language and channel, and the last broadcast language seen on each
   channel. They stay on this device. The popup shows the counter and you can
@@ -126,7 +127,8 @@ them. Read theirs if you care:
 
 - `storage`: to save your preferences and cache.
 - `alarms`: to keep the service worker alive briefly during bursts of chat, and
-  to schedule the update check and the daily statistics count.
+  to schedule the update check, the daily statistics count and the daily cache
+  cleanup.
 - `scripting`: once, when the extension is installed or updated, to load its
   own content script into twitch.tv tabs already open, so they keep translating
   without a reload; and each time you insert a translation into the message
@@ -135,9 +137,9 @@ them. Read theirs if you care:
 - `host_permissions` for `www.twitch.tv`, `m.twitch.tv` and
   `dashboard.twitch.tv` (the stream manager): to read chat and write
   translations into it. For `gql.twitch.tv`, `7tv.io`, `api.betterttv.net` and
-  `api.frankerfacez.com`: the lookups described above. For `api.github.com`:
-  the update check. For the translation provider endpoints above: to call the
-  translators.
+  `api.frankerfacez.com`: the lookups described above. For the translation
+  provider endpoints above: to call the translators. The update check needs no
+  permission: GitHub's API answers requests from any origin.
 
 We do not request the `tabs` or `<all_urls>` permission.
 
