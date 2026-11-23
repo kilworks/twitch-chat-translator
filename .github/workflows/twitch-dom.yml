@@ -30,7 +30,11 @@ jobs:
           node-version: 20
       - run: npm ci
       # The probes load Playwright from UX_KIT, outside the project's dependencies.
-      - run: npm i --prefix "$UX_KIT" playwright@1.62.1 && "$UX_KIT/node_modules/.bin/playwright" install --with-deps chromium
+      - run: |
+          mkdir -p "$UX_KIT"
+          cp .github/uxkit/package.json .github/uxkit/package-lock.json "$UX_KIT/"
+          npm ci --prefix "$UX_KIT" --no-audit --no-fund
+          "$UX_KIT/node_modules/.bin/playwright" install --with-deps chromium
       - run: node scripts/fetch-chat-exts.mjs
       - run: node .agent/probes/pick.mjs 30
       - run: node .agent/probes/heat.mjs
