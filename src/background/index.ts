@@ -195,7 +195,8 @@ async function init(): Promise<void> {
 // Top level, before anything awaits: see listenKeepalive.
 listenKeepalive();
 chrome.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === CACHE_PRUNE_ALARM) void cache.prune();
+  // Pruning before init would apply the default size and lifetime, not the reader's.
+  if (alarm.name === CACHE_PRUNE_ALARM) void ready.then(() => cache.prune());
 });
 installUsage(
   () => settings,
@@ -207,7 +208,9 @@ if (__KT_DEV__) {
     if (m === 'kt-dev-reload') chrome.runtime.reload();
   });
 }
-void init();
+// An event can wake the worker and arrive before init() has read storage:
+// every handler waits for it, or it would act on the defaults.
+const ready = init().catch((e: unknown) => log.error('init failed', e));
 watchSettings(applySettings);
 
 /**
@@ -244,6 +247,7 @@ const pageMayWrite = (patch: Partial<Settings>): boolean =>
 const NOT_ALLOWED: RuntimeResponse = { type: 'error', payload: { message: 'not allowed' } };
 
 onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
+  await ready;
   // Chrome gives chrome-extension://<id>/, Firefox moz-extension://<uuid>/.
   const fromPage = !sender.url?.startsWith(chrome.runtime.getURL(''));
   if (fromPage && !PAGE_MESSAGES.has(msg.type)) return NOT_ALLOWED;
@@ -346,6 +350,7 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
  */
 chrome.commands?.onCommand.addListener((command) => {
   void (async () => {
+    await ready;
     const patch =
       command === 'toggle-translation'
         ? { enabled: !settings.enabled }
