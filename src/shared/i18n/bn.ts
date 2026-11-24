@@ -77,7 +77,6 @@ export const bn: Record<string, string> = {
   'Translate what I type': 'আমার লেখা অনুবাদ করুন',
   'Today': 'আজ',
   'Auto (your language)': 'অটো (আপনার ভাষা)',
-  'Below original': 'মূল লেখার নিচে',
   'Auto (channel language)': 'অটো (চ্যানেলের ভাষা)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'চ্যানেলের ভাষা নিজে থেকে শনাক্ত হয়। প্রিভিউ চ্যাট বক্সের উপরে দেখায়; বসাতে তাতে ক্লিক করুন।',
   'order in options': 'সেটিংসের ক্রম অনুযায়ী',

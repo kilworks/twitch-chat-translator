@@ -77,7 +77,6 @@ export const ko: Record<string, string> = {
   'Translate what I type': '입력 내용 번역',
   'Today': '오늘',
   'Auto (your language)': '자동(내 언어)',
-  'Below original': '원문 아래',
   'Auto (channel language)': '자동(채널 언어)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": '채널의 언어를 자동으로 감지합니다. 미리보기는 입력창 위에 나타나며, 클릭하면 삽입됩니다.',
   'order in options': '순서는 옵션에서 설정',

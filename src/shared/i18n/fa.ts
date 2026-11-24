@@ -77,7 +77,6 @@ export const fa: Record<string, string> = {
   'Translate what I type': 'ترجمه آنچه می‌نویسم',
   'Today': 'امروز',
   'Auto (your language)': 'خودکار (زبان شما)',
-  'Below original': 'زیر متن اصلی',
   'Auto (channel language)': 'خودکار (زبان کانال)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'زبان کانال را خودکار تشخیص می‌دهد. پیش‌نمایش بالای کادر چت نشان داده می‌شود؛ برای درج روی آن کلیک کنید.',
   'order in options': 'ترتیب در تنظیمات',

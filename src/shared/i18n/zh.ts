@@ -88,7 +88,6 @@ export const zh: Record<string, string> = {
   'Translate what I type': '翻译我输入的内容',
   'Today': '今天',
   'Auto (your language)': '自动（你的语言）',
-  'Below original': '原文下方',
   'Auto (channel language)': '自动（频道语言）',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     '自动检测频道语言。预览显示在聊天输入框上方，点击即可填入。',

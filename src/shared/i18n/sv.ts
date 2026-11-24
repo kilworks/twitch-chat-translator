@@ -154,7 +154,6 @@ export const sv: Record<string, string> = {
     'Idag',
   'Auto (your language)':
     'Auto (ditt språk)',
-  'Below original':
     'Under originalet',
   'Auto (channel language)':
     'Auto (kanalens språk)',

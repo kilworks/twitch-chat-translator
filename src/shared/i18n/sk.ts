@@ -90,7 +90,6 @@ export const sk: Record<string, string> = {
   'Translate what I type': 'Prekladať, čo píšem',
   'Today': 'Dnes',
   'Auto (your language)': 'Automaticky (tvoj jazyk)',
-  'Below original': 'Pod originálom',
   'Auto (channel language)': 'Automaticky (jazyk kanála)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     'Jazyk kanála sa zisťuje automaticky. Ukážka sa zobrazí nad poľom chatu. Kliknutím ju vložíš.',

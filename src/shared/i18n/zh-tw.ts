@@ -88,7 +88,6 @@ export const zh_tw: Record<string, string> = {
   'Translate what I type': '翻譯我輸入的內容',
   'Today': '今天',
   'Auto (your language)': '自動（你的語言）',
-  'Below original': '原文下方',
   'Auto (channel language)': '自動（頻道語言）',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     '自動偵測頻道語言。預覽會顯示在聊天輸入框上方，點一下就能填入。',

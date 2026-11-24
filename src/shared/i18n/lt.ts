@@ -77,7 +77,6 @@ export const lt: Record<string, string> = {
   'Translate what I type': 'Versti tai, ką rašau',
   'Today': 'Šiandien',
   'Auto (your language)': 'Automatinė (tavo kalba)',
-  'Below original': 'Po originalu',
   'Auto (channel language)': 'Automatinė (kanalo kalba)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'Automatiškai aptinka kanalo kalbą. Peržiūra rodoma virš pokalbio laukelio. Spustelėk, kad įterptum.',
   'order in options': 'eiliškumas nustatymuose',

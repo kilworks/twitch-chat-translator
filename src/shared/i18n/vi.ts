@@ -77,7 +77,6 @@ export const vi: Record<string, string> = {
   'Translate what I type': 'Dịch những gì tôi gõ',
   'Today': 'Hôm nay',
   'Auto (your language)': 'Tự động (ngôn ngữ của bạn)',
-  'Below original': 'Bên dưới bản gốc',
   'Auto (channel language)': 'Tự động (ngôn ngữ kênh)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Tự động nhận ngôn ngữ của kênh. Bản xem trước hiện phía trên ô chat. Nhấn vào để chèn.',
   'order in options': 'thứ tự trong cài đặt',

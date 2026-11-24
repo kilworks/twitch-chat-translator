@@ -77,7 +77,6 @@ export const el: Record<string, string> = {
   'Translate what I type': 'Μετάφραση όσων γράφω',
   'Today': 'Σήμερα',
   'Auto (your language)': 'Αυτόματα (η γλώσσα σου)',
-  'Below original': 'Κάτω από το πρωτότυπο',
   'Auto (channel language)': 'Αυτόματα (γλώσσα καναλιού)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Ανιχνεύει αυτόματα τη γλώσσα του καναλιού. Η προεπισκόπηση εμφανίζεται πάνω από το πλαίσιο μηνύματος· κάνε κλικ για εισαγωγή.',
   'order in options': 'σειρά στις επιλογές',

@@ -77,7 +77,6 @@ export const fi: Record<string, string> = {
   'Translate what I type': 'Käännä kirjoittamani',
   'Today': 'Tänään',
   'Auto (your language)': 'Automaattinen (oma kielesi)',
-  'Below original': 'Alkuperäisen alla',
   'Auto (channel language)': 'Automaattinen (kanavan kieli)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Tunnistaa kanavan kielen automaattisesti. Esikatselu näkyy chat-kentän yläpuolella. Lisää se napsauttamalla.',
   'order in options': 'järjestys asetuksissa',

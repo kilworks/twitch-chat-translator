@@ -77,7 +77,6 @@ export const de: Record<string, string> = {
   'Translate what I type': 'Meine Eingabe übersetzen',
   'Today': 'Heute',
   'Auto (your language)': 'Automatisch (deine Sprache)',
-  'Below original': 'Unter dem Original',
   'Auto (channel language)': 'Automatisch (Kanalsprache)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Erkennt die Sprache des Kanals automatisch. Die Vorschau erscheint über dem Chatfeld. Zum Einfügen darauf klicken.',
   'order in options': 'Reihenfolge in den Optionen',

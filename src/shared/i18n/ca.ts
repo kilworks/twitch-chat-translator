@@ -77,7 +77,6 @@ export const ca: Record<string, string> = {
   'Translate what I type': 'Tradueix el que escric',
   'Today': 'Avui',
   'Auto (your language)': 'Auto (el teu idioma)',
-  'Below original': "Sota l'original",
   'Auto (channel language)': 'Auto (idioma del canal)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": "Detecta l'idioma del canal. La vista prèvia apareix a sobre del quadre del xat; fes-hi clic per inserir-la.",
   'order in options': 'ordre a les opcions',

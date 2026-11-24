@@ -77,7 +77,6 @@ export const nl: Record<string, string> = {
   'Translate what I type': 'Mijn invoer vertalen',
   'Today': 'Vandaag',
   'Auto (your language)': 'Automatisch (jouw taal)',
-  'Below original': 'Onder het origineel',
   'Auto (channel language)': 'Automatisch (taal van het kanaal)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Herkent de taal van het kanaal automatisch. Het voorbeeld verschijnt boven het chatveld. Klik erop om in te voegen.',
   'order in options': 'volgorde in de opties',

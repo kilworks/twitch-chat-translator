@@ -77,7 +77,6 @@ export const ja: Record<string, string> = {
   'Translate what I type': '入力を翻訳',
   'Today': '今日',
   'Auto (your language)': '自動（お使いの言語）',
-  'Below original': '原文の下',
   'Auto (channel language)': '自動（チャンネルの言語）',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'チャンネルの言語を自動で判定します。プレビューは入力欄の上に表示され、クリックすると挿入されます。',
   'order in options': '順序はオプションで設定',

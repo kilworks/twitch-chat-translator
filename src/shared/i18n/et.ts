@@ -77,7 +77,6 @@ export const et: Record<string, string> = {
   'Translate what I type': 'Tõlgi kirjutatu',
   'Today': 'Täna',
   'Auto (your language)': 'Automaatne (sinu keel)',
-  'Below original': 'Originaali all',
   'Auto (channel language)': 'Automaatne (kanali keel)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'Tuvastab kanali keele automaatselt. Eelvaade ilmub vestlusekasti kohale. Sisestamiseks klõpsa sellel.',
   'order in options': 'järjekord seadetes',

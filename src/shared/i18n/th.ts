@@ -77,7 +77,6 @@ export const th: Record<string, string> = {
   'Translate what I type': 'แปลสิ่งที่ฉันพิมพ์',
   'Today': 'วันนี้',
   'Auto (your language)': 'อัตโนมัติ (ภาษาของคุณ)',
-  'Below original': 'ใต้ข้อความต้นฉบับ',
   'Auto (channel language)': 'อัตโนมัติ (ภาษาของช่อง)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'ตรวจภาษาของช่องโดยอัตโนมัติ ตัวอย่างจะขึ้นเหนือช่องแชท คลิกเพื่อใส่',
   'order in options': 'ตามลำดับในตัวเลือก',

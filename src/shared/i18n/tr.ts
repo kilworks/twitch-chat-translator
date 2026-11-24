@@ -77,7 +77,6 @@ export const tr: Record<string, string> = {
   'Translate what I type': 'Yazdıklarımı çevir',
   'Today': 'Bugün',
   'Auto (your language)': 'Otomatik (senin dilin)',
-  'Below original': 'Orijinalin altında',
   'Auto (channel language)': 'Otomatik (kanal dili)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Kanalın dilini otomatik algılar. Önizleme sohbet kutusunun üstünde görünür, eklemek için tıkla.',
   'order in options': 'seçeneklerdeki sıra',

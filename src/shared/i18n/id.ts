@@ -77,7 +77,6 @@ export const id: Record<string, string> = {
   'Translate what I type': 'Terjemahkan ketikan saya',
   'Today': 'Hari ini',
   'Auto (your language)': 'Otomatis (bahasa Anda)',
-  'Below original': 'Di bawah teks asli',
   'Auto (channel language)': 'Otomatis (bahasa channel)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Mendeteksi bahasa channel secara otomatis. Pratinjau tampil di atas kolom chat. Klik untuk menyisipkan.',
   'order in options': 'urutan di pengaturan',

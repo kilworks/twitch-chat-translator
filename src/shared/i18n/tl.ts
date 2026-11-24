@@ -77,7 +77,6 @@ export const tl: Record<string, string> = {
   'Translate what I type': 'Isalin ang sinusulat ko',
   'Today': 'Ngayon',
   'Auto (your language)': 'Auto (wika mo)',
-  'Below original': 'Sa ilalim ng orihinal',
   'Auto (channel language)': 'Auto (wika ng channel)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Kusang tinutukoy ang wika ng channel. Lalabas ang preview sa ibabaw ng chat box. I-click ito para ilagay.',
   'order in options': 'pagkakasunod sa mga setting',

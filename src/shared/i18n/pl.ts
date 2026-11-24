@@ -90,7 +90,6 @@ export const pl: Record<string, string> = {
   'Translate what I type': 'Tłumacz to, co piszę',
   'Today': 'Dziś',
   'Auto (your language)': 'Automatycznie (Twój język)',
-  'Below original': 'Pod oryginałem',
   'Auto (channel language)': 'Automatycznie (język kanału)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     'Język kanału jest wykrywany automatycznie. Podgląd pojawia się nad polem czatu. Kliknij go, by wstawić.',

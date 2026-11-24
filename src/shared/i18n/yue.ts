@@ -88,7 +88,6 @@ export const yue: Record<string, string> = {
   'Translate what I type': '翻譯我打嘅內容',
   'Today': '今日',
   'Auto (your language)': '自動（你嘅語言）',
-  'Below original': '原文下方',
   'Auto (channel language)': '自動（頻道語言）',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     '自動偵測頻道語言。預覽會顯示喺聊天輸入框上面，㩒一下就可以填入。',

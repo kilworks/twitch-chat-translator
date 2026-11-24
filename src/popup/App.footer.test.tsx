@@ -160,3 +160,12 @@ describe('popup selects and the header switch', () => {
     expect(name).toContain('Translate the chat');
   });
 });
+
+// UI-23: the popup said "Below original" where the options card says "Below".
+describe('display style wording', () => {
+  it('uses the options page word in the popup', async () => {
+    const root = await mount();
+    const opt = root.querySelector('option[value="below"]');
+    expect(opt?.textContent).toBe('Below');
+  });
+});

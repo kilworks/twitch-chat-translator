@@ -77,7 +77,6 @@ export const he: Record<string, string> = {
   'Translate what I type': 'תרגם את מה שאני כותב',
   'Today': 'היום',
   'Auto (your language)': 'אוטומטי (השפה שלך)',
-  'Below original': 'מתחת למקור',
   'Auto (channel language)': 'אוטומטי (שפת הערוץ)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": "מזהה אוטומטית את שפת הערוץ. התצוגה המקדימה מופיעה מעל תיבת הצ'אט, ולחיצה עליה מכניסה את התרגום.",
   'order in options': 'הסדר באפשרויות',

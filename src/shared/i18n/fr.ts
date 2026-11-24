@@ -77,7 +77,6 @@ export const fr: Record<string, string> = {
   'Translate what I type': "Traduire ce que j'écris",
   'Today': "Aujourd'hui",
   'Auto (your language)': 'Auto (ta langue)',
-  'Below original': "Sous l'original",
   'Auto (channel language)': 'Auto (langue de la chaîne)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": "Détecte la langue de la chaîne. L'aperçu s'affiche au-dessus de la zone de saisie ; clique dessus pour l'insérer.",
   'order in options': 'ordre dans les options',

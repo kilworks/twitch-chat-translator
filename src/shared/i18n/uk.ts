@@ -77,7 +77,6 @@ export const uk: Record<string, string> = {
   'Translate what I type': 'Перекладати те, що я пишу',
   'Today': 'Сьогодні',
   'Auto (your language)': 'Авто (ваша мова)',
-  'Below original': 'Під оригіналом',
   'Auto (channel language)': 'Авто (мова каналу)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": "Мову каналу визначено автоматично. Попередній перегляд з'являється над полем чату, натискання вставляє переклад.",
   'order in options': 'порядок у налаштуваннях',

@@ -77,7 +77,6 @@ export const ta: Record<string, string> = {
   'Translate what I type': 'நான் தட்டச்சு செய்வதை மொழிபெயர்க்கவும்',
   'Today': 'இன்று',
   'Auto (your language)': 'தானியங்கி (உங்கள் மொழி)',
-  'Below original': 'மூல உரைக்குக் கீழே',
   'Auto (channel language)': 'தானியங்கி (சேனலின் மொழி)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'சேனலின் மொழியைத் தானாகக் கண்டறியும். முன்னோட்டம் அரட்டைப் பெட்டிக்கு மேலே தோன்றும். செருக அதைக் கிளிக் செய்யவும்.',
   'order in options': 'விருப்பங்களில் உள்ள வரிசை',

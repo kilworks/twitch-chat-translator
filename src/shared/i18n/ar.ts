@@ -77,7 +77,6 @@ export const ar: Record<string, string> = {
   'Translate what I type': 'ترجمة ما أكتبه',
   'Today': 'اليوم',
   'Auto (your language)': 'تلقائي (لغتك)',
-  'Below original': 'أسفل الأصل',
   'Auto (channel language)': 'تلقائي (لغة القناة)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'يكتشف لغة القناة تلقائيًا. تظهر المعاينة فوق مربع الدردشة؛ انقر عليها لإدراجها.',
   'order in options': 'الترتيب في الإعدادات',

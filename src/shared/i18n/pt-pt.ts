@@ -77,7 +77,6 @@ export const pt_pt: Record<string, string> = {
   'Translate what I type': 'Traduzir o que escrevo',
   'Today': 'Hoje',
   'Auto (your language)': 'Automático (o teu idioma)',
-  'Below original': 'Por baixo do original',
   'Auto (channel language)': 'Automático (idioma do canal)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'Deteta automaticamente o idioma do canal. A pré-visualização aparece por cima da caixa de mensagem. Clica nela para inserir.',
   'order in options': 'ordem nas opções',

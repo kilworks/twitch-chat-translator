@@ -77,7 +77,6 @@ export const sl: Record<string, string> = {
   'Translate what I type': 'Prevedi, kar pišem',
   'Today': 'Danes',
   'Auto (your language)': 'Samodejno (vaš jezik)',
-  'Below original': 'Pod izvirnikom',
   'Auto (channel language)': 'Samodejno (jezik kanala)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Samodejno zazna jezik kanala. Predogled se prikaže nad poljem klepeta. Kliknite ga za vstavitev.',
   'order in options': 'vrstni red v nastavitvah',

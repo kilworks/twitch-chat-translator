@@ -77,7 +77,6 @@ export const lv: Record<string, string> = {
   'Translate what I type': 'Tulkot to, ko rakstu',
   'Today': 'Šodien',
   'Auto (your language)': 'Automātiski (tava valoda)',
-  'Below original': 'Zem oriģināla',
   'Auto (channel language)': 'Automātiski (kanāla valoda)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.': 'Automātiski nosaka kanāla valodu. Priekšskatījums parādās virs čata lodziņa. Noklikšķini uz tā, lai ievietotu.',
   'order in options': 'secība iestatījumos',

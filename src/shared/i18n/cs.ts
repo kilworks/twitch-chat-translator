@@ -90,7 +90,6 @@ export const cs: Record<string, string> = {
   'Translate what I type': 'Překládat, co píšu',
   'Today': 'Dnes',
   'Auto (your language)': 'Automaticky (tvůj jazyk)',
-  'Below original': 'Pod originálem',
   'Auto (channel language)': 'Automaticky (jazyk kanálu)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     'Jazyk kanálu se zjišťuje automaticky. Náhled se zobrazí nad polem chatu. Kliknutím ho vložíš.',

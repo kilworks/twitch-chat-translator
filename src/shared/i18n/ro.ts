@@ -77,7 +77,6 @@ export const ro: Record<string, string> = {
   'Translate what I type': 'Tradu ce scriu',
   'Today': 'Azi',
   'Auto (your language)': 'Automat (limba ta)',
-  'Below original': 'Sub original',
   'Auto (channel language)': 'Automat (limba canalului)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Detectează automat limba canalului. Previzualizarea apare deasupra casetei de chat. Dă clic pe ea pentru a o insera.',
   'order in options': 'ordinea din setări',

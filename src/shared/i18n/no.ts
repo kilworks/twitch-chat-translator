@@ -77,7 +77,6 @@ export const no: Record<string, string> = {
   'Translate what I type': 'Oversett det jeg skriver',
   'Today': 'I dag',
   'Auto (your language)': 'Auto (ditt språk)',
-  'Below original': 'Under originalen',
   'Auto (channel language)': 'Auto (kanalens språk)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Finner kanalens språk automatisk. Forhåndsvisningen vises over chattfeltet. Klikk på den for å sette inn.',
   'order in options': 'rekkefølge i innstillingene',

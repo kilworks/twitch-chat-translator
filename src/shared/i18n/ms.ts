@@ -77,7 +77,6 @@ export const ms: Record<string, string> = {
   'Translate what I type': 'Terjemah apa yang saya taip',
   'Today': 'Hari ini',
   'Auto (your language)': 'Automatik (bahasa anda)',
-  'Below original': 'Di bawah teks asal',
   'Auto (channel language)': 'Automatik (bahasa saluran)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Mengesan bahasa saluran secara automatik. Pratonton dipaparkan di atas kotak sembang. Klik untuk menyisipkan.',
   'order in options': 'urutan dalam tetapan',

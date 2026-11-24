@@ -77,7 +77,6 @@ export const bg: Record<string, string> = {
   'Translate what I type': 'Превод на написаното',
   'Today': 'Днес',
   'Auto (your language)': 'Автоматично (вашият език)',
-  'Below original': 'Под оригинала',
   'Auto (channel language)': 'Автоматично (езикът на канала)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Езикът на канала се открива автоматично. Прегледът се появява над полето на чата, щракването вмъква превода.',
   'order in options': 'редът е в настройките',

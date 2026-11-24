@@ -77,7 +77,6 @@ export const hu: Record<string, string> = {
   'Translate what I type': 'Írás közbeni fordítás',
   'Today': 'Ma',
   'Auto (your language)': 'Automatikus (a te nyelved)',
-  'Below original': 'Az eredeti alatt',
   'Auto (channel language)': 'Automatikus (a csatorna nyelve)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.": 'Automatikusan felismeri a csatorna nyelvét. Az előnézet a csevegőmező felett jelenik meg. Kattints rá a beszúráshoz.',
   'order in options': 'sorrend a beállításokban',
