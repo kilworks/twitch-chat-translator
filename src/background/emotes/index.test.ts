@@ -60,4 +60,23 @@ describe('emoteNamesFor', () => {
     expect(got).toContain('monkaS');
     expect(got).not.toContain('catJAM');
   });
+
+  it('never puts a room id that is not digits in a provider URL', async () => {
+    const got = await emoteNamesFor('../../x?y=');
+    expect(calls.every((u) => !u.includes('x?y='))).toBe(true);
+    expect(calls).toHaveLength(3);
+    expect(got.sort()).toEqual(['EZ', 'KEKW', 'LULW', 'ZrehplaR']);
+  });
+
+  it('does not parse a body announced as huge', async () => {
+    globalThis.fetch = vi.fn(async () => new Response('{"emotes":[{"name":"BIG"}]}', { status: 200, headers: { 'content-length': '9000000' } })) as unknown as typeof fetch;
+    expect(await emoteNamesFor(undefined)).toEqual([]);
+  });
+
+  it('keeps at most 63 sets in memory', async () => {
+    for (let id = 1; id <= 40; id++) await emoteNamesFor(String(id));
+    const before = calls.length;
+    await emoteNamesFor('1'); // 40 channels x 3 sets + globals overflowed: the oldest are gone
+    expect(calls.length).toBeGreaterThan(before);
+  });
 });

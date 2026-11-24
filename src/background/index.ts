@@ -13,7 +13,7 @@ import { getUpdateStatus, installUpdateCheck } from './updateChecker';
 import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO } from '~/shared/constants';
 import { getSemanticOverride } from '~/shared/transliterationGuard';
 import { ecrireDansSlate } from './slateWrite';
-import { emoteNamesFor } from './emotes';
+import { emoteNamesFor, isRoomId } from './emotes';
 import { CHAT_MESSAGES } from '~/content/i18n';
 import { addUsage, dropUsage, installUsage, recordProviderError, recordTranslation } from './usage';
 import type { ProviderId, TranslationOutcome, TranslationRequest } from '~/shared/types';
@@ -283,6 +283,7 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
     case 'i18n.chat':
       return { type: 'i18n.chat', payload: CHAT_MESSAGES[msg.locale] };
     case 'emotes.get':
+      if (msg.roomId !== undefined && !isRoomId(msg.roomId)) return NOT_ALLOWED;
       return { type: 'emotes', names: await emoteNamesFor(msg.roomId) };
     case 'settings.get':
       return { type: 'settings', payload: fromPage ? withoutKey(settings) : settings };

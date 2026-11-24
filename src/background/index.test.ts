@@ -184,6 +184,12 @@ describe('what a Twitch tab may ask the worker', () => {
     expect((await ask({ type: 'emotes.get', roomId: '1' }, TWITCH_TAB)).type).toBe('emotes');
   });
 
+  it('refuses an emote room id that is not digits', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    expect((await ask({ type: 'emotes.get', roomId: '../../x?y=' }, TWITCH_TAB)).type).toBe('error');
+  });
+
   it('can still write what the chat bar and the composer write', async () => {
     const { ask } = await loadWorker(stored, key);
     await settle();
