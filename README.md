@@ -138,7 +138,7 @@ does not have it. Wherever it is missing, the cloud chain takes over and nothing
 Click the gear on the chat bar, or right-click the extension icon and choose Options. The settings open on Display;
 every on/off setting is a switch that applies at once.
 
-- **Providers**: engine order, your DeepL key, and the mode: on-device first, cloud first, or on-device only
+- **Providers**: engine order, your DeepL key, and the mode: cloud first (the default), on-device first, or on-device only
 - **Display**: target language, display style, original text and language badge, text size, line spacing,
   typeface, accent colour, chat theme, the compose preview and what clicking it does
 - **Filters**: bots, users, channels, keywords (matched as whole words), source languages (tick chips), and a

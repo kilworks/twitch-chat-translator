@@ -96,7 +96,10 @@ These pieces of data live in your browser's extension storage:
   on your browser's sync, the browser itself (Google or Mozilla) copies them to
   your other devices. We never see them.
 - Your DeepL API key, if you add one. It stays on this device, is never
-  synced, and a settings export never contains it. Neither does an export hold
+  synced, and a settings export never contains it. In Chrome and Edge the
+  extension also closes its storage to the scripts it runs inside Twitch pages,
+  so a page cannot read it; Firefox has no such control, and there the key is
+  protected by the extension's own message checks only. Neither does an export hold
   your MyMemory e-mail, your Lingva server or the channels you watched; the
   lists you wrote yourself (blocked words, blocked users, glossary) are in it.
 - A cache of recent translations (text + translation pair), keyed by text, on
@@ -104,8 +107,8 @@ These pieces of data live in your browser's extension storage:
   (72 hours and 15,000 entries by default), checked once a day.
 - A daily counter of how many requests you made, broken down by provider,
   detected language and channel, and the last broadcast language seen on each
-  channel. They stay on this device. The popup shows the counter and you can
-  reset it.
+  channel (kept for the 200 most recent channels). They stay on this device.
+  The popup shows the counter and you can reset it.
 
 You can wipe everything from the extension's options page ("Clear translation
 cache", "Reset usage stats", "Reset all settings to defaults") or by removing
