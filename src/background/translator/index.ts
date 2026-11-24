@@ -105,7 +105,10 @@ function markSuccess(id: CloudProviderId): void {
   h.cooldownUntilMs = 0;
   h.lastError = undefined;
   h.lastUsedMs = Date.now();
-  stickyProvider = id;
+  if (stickyProvider !== id) {
+    stickyProvider = id;
+    stickySinceMs = Date.now();
+  }
 }
 
 function ok(req: TranslationRequest, id: CloudProviderId, translatedText: string, detectedLang: string): TranslationOutcome {
@@ -138,7 +141,10 @@ function isDeeplBudgetExhausted(ctx: ProviderContext): boolean {
 
 // Provider sticky: prefer the last provider that succeeded to avoid unnecessary
 // switching (and toast spam). Only overridden when that provider enters cooldown.
+// shortcut: 60 s is the longest network cooldown below, not a measured optimum.
+const STICKY_TTL_MS = 60_000;
 let stickyProvider: CloudProviderId | undefined;
+let stickySinceMs = 0;
 
 /** Configured + not budget-blocked (ignores transient cooldown). */
 function isConfiguredAndAllowed(id: CloudProviderId, ctx: ProviderContext): boolean {
@@ -169,6 +175,7 @@ function eligibleOrder(settings: Settings, ctx: ProviderContext, targetLang?: st
   // DeepL when budget routing has deliberately demoted it for this target.
   if (
     stickyProvider &&
+    Date.now() - stickySinceMs < STICKY_TTL_MS &&
     !(deeplDemoted && stickyProvider === 'deepl') &&
     live.includes(stickyProvider) &&
     live[0] !== stickyProvider
@@ -335,5 +342,8 @@ export function getProviderStatus(settings: Settings): ProviderStatus[] {
 
 export function anyProviderReady(settings: Settings): boolean {
   const ctx = buildContext(settings);
-  return eligibleOrder(settings, ctx).length > 0;
+  const now = Date.now();
+  // eligibleOrder falls back to the cooling providers when none is live (translate
+  // itself relies on that), so "ready" means one of them is out of cooldown.
+  return eligibleOrder(settings, ctx).some((id) => health[id].cooldownUntilMs <= now);
 }
