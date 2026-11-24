@@ -99,6 +99,21 @@ describe('TranslationPipeline, cloud first', () => {
     }
   });
 
+  // R-07: the six drop reasons were looked up for every line, dropped or not.
+  it('looks the drop reasons up only for a line that was dropped', async () => {
+    const { setChatTable } = await import('./msg');
+    let reads = 0;
+    setChatTable(new Proxy({}, { get: (_t, k) => (k === 'dropBot' ? (reads++, 'x') : undefined) }) as Record<string, string>);
+    try {
+      sendMock.mockResolvedValue(success);
+      await reader().onDomMessage(domMsg());
+      await flush();
+      expect(reads).toBe(0);
+    } finally {
+      setChatTable(undefined);
+    }
+  });
+
   // R-10: a line that met a full cooldown stayed red for good.
   it('leaves a line bare, not red, while every provider cools down, so it can be picked up later', async () => {
     const { localEngine } = await import('./localEngine');

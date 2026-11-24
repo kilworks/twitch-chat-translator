@@ -355,8 +355,9 @@ export class TranslationPipeline {
     // same message shown again, not spam. The cache makes the repeat free.
     const prepared = this.prepare(msg.text, msg, { dedup: !msg.rowElement.matches(REPLAY_ROW_SELECTOR) });
     // Both drops are the allowlist's doing: lang_unknown only fires when one is set.
-    const reasons = dropReasons();
-    const byLang = prepared === reasons.lang_not_allowed || prepared === reasons.lang_unknown;
+    // Looked up only for a line that was dropped: a translated line, the common one, builds nothing.
+    const reasons = typeof prepared === 'string' ? dropReasons() : undefined;
+    const byLang = reasons !== undefined && (prepared === reasons.lang_not_allowed || prepared === reasons.lang_unknown);
     if (byLang || (typeof prepared !== 'string' && this.settings.sourceLangAllowlist.length > 0)) {
       this.langMark(msg.channel, byLang);
     }
