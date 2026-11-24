@@ -711,7 +711,7 @@ describe('injector artifacts', () => {
         // The holder is matched by its child, never by a sibling of the text:
         // in a reply Kick nests the message a level deeper and a sibling rule
         // cannot reach it.
-        expect(rule).toContain(`div:has(> .${cls})`);
+        expect(rule).toMatch(new RegExp(String.raw`(div|\[data-kt-tr\]):has\(> \.${cls}\)`));
       }
       expect(rule).not.toContain('~ .kt-translation');
       // Both renderings of the original have to go: Twitch's own fragments
@@ -728,10 +728,10 @@ describe('injector artifacts', () => {
     it('hands the emote its own size back', () => {
       const exempt = injectCss
         .split('\n')
-        .filter((l) => l.includes('img') && l.includes('div:has('));
+        .filter((l) => l.includes('img') && l.includes(':has('));
       expect(exempt.length, 'nothing exempts the emote from the zeroed type').toBeGreaterThan(0);
       for (const cls of ['kt-translation', 'kt-translation-inline', 'kt-translation-replace']) {
-        expect(exempt.some((l) => l.includes(`div:has(> .${cls})`))).toBe(true);
+        expect(exempt.some((l) => new RegExp(String.raw`(div|\[data-kt-tr\]):has\(> \.${cls}\)`).test(l))).toBe(true);
       }
       const body = /:is\(img, svg, video\)\s*\{([^}]*)\}/.exec(injectCss)?.[1] ?? '';
       expect(body).toMatch(/font-size:\s*1rem/);
@@ -825,6 +825,22 @@ describe('7TV', () => {
   it('rejects a rule that names only Twitch own fragment', () => {
     const bad = '.kt-hide-original div:has(> .kt-translation) [data-a-target="chat-message-text"] {';
     expect(bad.includes('.text-token')).toBe(false);
+  });
+});
+
+// P05: with "keep original" off, `div:has()` was live on every div of the page.
+describe('the hide-original rules', () => {
+  it('are scoped to the stamp inject() writes, not to every div', () => {
+    expect(injectCss).not.toMatch(/\.kt-hide-original div:has\(/);
+    expect(injectCss).toContain('.kt-hide-original [data-kt-tr]:has(> .kt-translation)');
+    expect(injectCss).toContain('.kt-hide-original [data-kt-tr]:has(> .kt-translation-inline)');
+  });
+
+  it('are reachable: inject() stamps the node it writes into', () => {
+    const row = document.createElement('div');
+    document.body.appendChild(row);
+    inject(row, result('hola'), settingsWith('below'));
+    expect(row.hasAttribute('data-kt-tr')).toBe(true);
   });
 });
 

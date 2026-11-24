@@ -377,6 +377,9 @@ export function inject(
   // #8, Click-to-copy translation.
   attachCopyHandler(el as HTMLElement, result.translatedText);
   targetEl.appendChild(el);
+  // The stylesheet's hide-original rules look for this stamp, see inject.css. Written once: an
+  // attribute write is a mutation every observer sees.
+  if (!targetEl.hasAttribute('data-kt-tr')) targetEl.setAttribute('data-kt-tr', '');
 }
 
 /** Le badge de langue d'une ligne : le drapeau dessine, ou les deux lettres d'une langue qui n'en a pas. */

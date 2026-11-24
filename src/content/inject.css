@@ -222,17 +222,24 @@
    mutation anywhere in the chat: measured on the offline chat at 20 messages a
    second, the unscoped replace rule alone took style recalculation from 66 ms
    to 249 ms per 10 s, with no line in the replace style on screen. Scoped to
-   the attribute applyDisplayStyle sets, it costs nothing until it can match. */
-.kt-hide-original div:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
-.kt-hide-original div:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
+   the attribute applyDisplayStyle sets, it costs nothing until it can match.
+
+   The two hide-original variants (keep original off) were still on a bare `div`, so a reader who turned
+   "keep original" off paid that cost on every chat mutation: about +180 ms of style
+   recalculation per 10 s at 20 lines a second, by the figures above. They hang off
+   `[data-kt-tr]` now, a stamp inject() puts on the node it writes into, so `:has()` is tried
+   on the few nodes that carry a translation and on no other. The `:has` stays, so a stale
+   stamp (Twitch took the translation out of the node) hides nothing. */
+.kt-hide-original [data-kt-tr]:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
+.kt-hide-original [data-kt-tr]:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
 html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) {
   font-size: 0;
   line-height: 0;
   letter-spacing: 0;
   word-spacing: 0;
 }
-.kt-hide-original div:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
-.kt-hide-original div:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
+.kt-hide-original [data-kt-tr]:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
+.kt-hide-original [data-kt-tr]:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
 html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video) {
   font-size: 1rem;
   line-height: normal;
