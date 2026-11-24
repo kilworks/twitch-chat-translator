@@ -47,6 +47,10 @@ describe('usage helpers', () => {
   it('adds counts without inventing keys', () => {
     expect(addCounts({ skipped: 1 }, { skipped: 2, tr_local: 1 })).toEqual({ skipped: 3, tr_local: 1 });
     expect(addCounts({}, { nope: 3 } as never)).toEqual({});
+    // S-05: a page sends the counts, so a string, a negative or an infinite one is not a count.
+    expect(addCounts({ skipped: 1 }, { skipped: '5', tr_local: -2 } as never)).toEqual({ skipped: 1 });
+    expect(addCounts({}, { skipped: Infinity } as never)).toEqual({});
+    expect(addCounts({}, { skipped: 1e12 })).toEqual({ skipped: 1_000_000 });
   });
 
   it('takes a nearest-rank percentile', () => {

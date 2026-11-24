@@ -44,7 +44,8 @@ export function addCounts(into: UsageCounts, from: UsageCounts): UsageCounts {
   const out: UsageCounts = { ...into };
   for (const k of USAGE_COUNTERS) {
     const n = from[k];
-    if (n) out[k] = (out[k] ?? 0) + n;
+    // From a page: only a plain positive number is a count.
+    if (typeof n === 'number' && Number.isFinite(n) && n > 0) out[k] = (out[k] ?? 0) + Math.min(n, 1_000_000);
   }
   return out;
 }

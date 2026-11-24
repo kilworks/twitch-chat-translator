@@ -32,6 +32,8 @@ function bucketFor(channel: string): TokenBucket {
   let b = channelBuckets.get(channel);
   if (!b) {
     b = new TokenBucket(settings.perChannelBudgetPerMin, settings.perChannelBudgetPerMin);
+    // A page names its own channel: bound the map so varying the name cannot grow it.
+    if (channelBuckets.size >= 200) channelBuckets.delete(channelBuckets.keys().next().value!);
     channelBuckets.set(channel, b);
   }
   return b;
@@ -71,7 +73,15 @@ function applySettings(next: Settings, announce = true): void {
   if (announce) announceSettings();
 }
 
+/** The page that sent it is the least trusted context: check the shape before spending a provider call on it. */
+const wellFormed = (r: TranslationRequest | undefined): r is TranslationRequest =>
+  typeof r?.text === 'string' && r.text.length <= 2000 &&
+  typeof r.targetLang === 'string' && r.targetLang.length <= 20 &&
+  (r.channel === undefined || (typeof r.channel === 'string' && r.channel.length <= 80)) &&
+  (r.context === undefined || (typeof r.context === 'string' && r.context.length <= 4000));
+
 async function handleTranslate(req: TranslationRequest): Promise<TranslationOutcome> {
+  if (!wellFormed(req)) return { ok: false, error: { code: 'invalid', message: 'Invalid request' } };
   if (!settings.enabled) {
     return { ok: false, error: { code: 'disabled', message: 'Extension disabled' } };
   }
@@ -310,7 +320,7 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
       await addUsage(msg.counts, msg.env);
       return { type: 'ack' };
     case 'i18n.chat':
-      return { type: 'i18n.chat', payload: CHAT_MESSAGES[msg.locale] };
+      return { type: 'i18n.chat', payload: Object.hasOwn(CHAT_MESSAGES, msg.locale) ? CHAT_MESSAGES[msg.locale] : undefined };
     case 'lastlang.get':
       return { type: 'lastlang', lang: await getLastLang(msg.slug) };
     case 'lastlang.set':

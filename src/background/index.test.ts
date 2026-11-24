@@ -162,6 +162,19 @@ describe('storage is closed to content scripts', () => {
     expect(sent).toEqual([[7, { type: 'settings.changed' }]]);
   });
 
+  // S-05: a page names its own text, channel and locale.
+  it('refuses a request of the wrong shape and a locale that is not a catalogue', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const bad = (payload: object) => ask({ type: 'translate', payload } as RuntimeMessage, TWITCH_TAB);
+    const outcome = async (payload: object) => ((await bad(payload)) as { payload: { ok: boolean; error?: { code: string } } }).payload;
+    expect((await outcome({ messageId: 'a', text: 'x'.repeat(2001), targetLang: 'fr' })).error?.code).toBe('invalid');
+    expect((await outcome({ messageId: 'a', text: 5, targetLang: 'fr' })).error?.code).toBe('invalid');
+    expect((await outcome({ messageId: 'a', text: 'hi', targetLang: 'fr', channel: 'c'.repeat(81) })).error?.code).toBe('invalid');
+    expect(await ask({ type: 'i18n.chat', locale: 'constructor' }, TWITCH_TAB)).toEqual({ type: 'i18n.chat', payload: undefined });
+    expect(((await ask({ type: 'i18n.chat', locale: 'fr' }, TWITCH_TAB)) as { payload?: object }).payload).toBeTypeOf('object');
+  });
+
   it('keeps the channel language and the hint counter for a tab, validated', async () => {
     const { ask } = await loadWorker(stored, key);
     await settle();
