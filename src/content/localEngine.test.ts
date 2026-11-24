@@ -120,3 +120,43 @@ describe('localEngine', () => {
     expect(localEngine.downloadablePairs()).toContainEqual({ src: 'ko', tgt: 'zh-tw' });
   });
 });
+
+// P06: every line of a burst loaded the model, and a stalled model held its line for good.
+describe('localEngine under a burst and a stall', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
+
+  it('creates one translator for the lines that arrive while it loads', async () => {
+    let created = 0;
+    let finish: (v: { translate: (t: string) => Promise<string> }) => void = () => undefined;
+    vi.stubGlobal('Translator', {
+      availability: () => Promise.resolve('available'),
+      create: () => {
+        created += 1;
+        return new Promise((r) => (finish = r));
+      },
+    });
+    await localEngine.probe('it', 'en');
+    const lines = Array.from({ length: 12 }, (_, i) => localEngine.translate('it', 'en', `riga ${i}`));
+    finish({ translate: (t) => Promise.resolve(`[${t}]`) });
+    expect(await Promise.all(lines)).toHaveLength(12);
+    expect(created).toBe(1);
+  });
+
+  it('gives up on a model that never answers, so the line can fall back', async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal('Translator', {
+      availability: () => Promise.resolve('available'),
+      create: () => Promise.resolve({ translate: () => new Promise<string>(() => undefined) }),
+    });
+    await localEngine.probe('nl', 'en');
+    const out = localEngine.translate('nl', 'en', 'hallo daar').then(
+      () => 'answered',
+      (e: Error) => e.message,
+    );
+    await vi.advanceTimersByTimeAsync(25_000);
+    expect(await out).toBe('local_timeout');
+  });
+});
