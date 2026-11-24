@@ -64,6 +64,33 @@ describe('extractUsername, per DOM family', () => {
 });
 
 describe('extractMessageText, per DOM family', () => {
+  // P04: `closest` climbed the whole document twice per fragment, and 7TV makes every word one.
+  it('never climbs past the row to read a line', () => {
+    const row = mount(seventvChat(seventvRow('one two three four five six')));
+    const closest = vi.spyOn(Element.prototype, 'closest');
+    expect(extractMessageText(row)).toBe('one two three four five six');
+    expect(closest).not.toHaveBeenCalled();
+    closest.mockRestore();
+  });
+
+  it('skips our own artifacts and reads a nested fragment once, through its parent', () => {
+    const row = mount(nativeChat(nativeRow('hola amigos')));
+    const text = row.querySelector<HTMLElement>('[data-a-target="chat-message-text"]')!;
+    const ours = document.createElement('div');
+    ours.className = 'kt-translation';
+    const inner = document.createElement('span');
+    inner.setAttribute('data-a-target', 'chat-message-text');
+    inner.textContent = 'TRANSLATED';
+    ours.appendChild(inner);
+    row.appendChild(ours);
+    const nested = document.createElement('span');
+    nested.setAttribute('data-a-target', 'chat-message-text');
+    nested.textContent = 'nested';
+    text.appendChild(nested);
+    // The parent's text already holds the nested one, and the artifact is not read.
+    expect(extractMessageText(row)).toBe('hola amigosnested');
+  });
+
   it('takes the body without the badges, the name or the separator', () => {
     expect(extractMessageText(mount(nativeChat(nativeRow('hola amigos'))))).toBe('hola amigos');
     expect(extractMessageText(mount(nativeChat(ffzRow('hola amigos'))))).toBe('hola amigos');

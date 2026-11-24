@@ -121,10 +121,21 @@ export function matchesMessageRow(el: Element): boolean {
  * timestamp, separator or emote images. Nothing inside our own artifacts is read.
  */
 export function extractMessageText(row: Element): string {
-  const parts = Array.from(row.querySelectorAll<HTMLElement>(TEXT_SELECTOR)).filter(
-    // A class token starting with kt- is ours; Twitch's hashed classes never start so.
-    (el) => !el.closest('[class^="kt-"], [class*=" kt-"]') && !el.parentElement?.closest(TEXT_SELECTOR),
-  );
+  const all = Array.from(row.querySelectorAll<HTMLElement>(TEXT_SELECTOR));
+  const matched = new Set<Element>(all);
+  // Walks from each fragment up to the row, not to the document root: `closest` on a
+  // miss, the usual case, climbed Twitch's whole DOM twice per fragment, and 7TV makes
+  // every word a fragment. A class token starting with kt- is ours; Twitch's hashed
+  // classes never start so. A fragment inside another one is read through its parent.
+  const parts = all.filter((el) => {
+    for (let p: Element | null = el; p; p = p.parentElement) {
+      if (p !== el && matched.has(p)) return false;
+      const c = p.getAttribute('class');
+      if (c && (c.startsWith('kt-') || c.includes(' kt-'))) return false;
+      if (p === row) break;
+    }
+    return true;
+  });
   return parts
     .map((e) => e.textContent ?? '')
     .join(' ')
