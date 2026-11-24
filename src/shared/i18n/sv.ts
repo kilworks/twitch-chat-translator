@@ -154,7 +154,6 @@ export const sv: Record<string, string> = {
     'Idag',
   'Auto (your language)':
     'Auto (ditt språk)',
-    'Under originalet',
   'Auto (channel language)':
     'Auto (kanalens språk)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.':
