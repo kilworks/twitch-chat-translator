@@ -215,6 +215,7 @@ const CACHE_PRUNE_ALARM = 'kt-cache-prune';
 async function init(): Promise<void> {
   settings = await loadSettings();
   applySettings(settings, false);
+  settingsLoaded();
   await stats.load();
   await cache.warm(200, warmTargets(resolveTargetLang(settings.targetLang), stats.current().byLang));
   log.info('Service worker initialized');
@@ -253,7 +254,24 @@ if (__KT_DEV__) {
 }
 // An event can wake the worker and arrive before init() has read storage:
 // every handler waits for it, or it would act on the defaults.
-const ready = init().catch((e: unknown) => log.error('init failed', e));
+let settingsLoaded: () => void = () => undefined;
+/** Settled once the settings are read: enough for the messages that touch nothing else. */
+const settingsReady = new Promise<void>((resolve) => (settingsLoaded = resolve));
+const ready = init()
+  .catch((e: unknown) => log.error('init failed', e))
+  .finally(() => settingsLoaded());
+/** These wait for the settings only, not for the stats and the cache warm-up behind them. */
+const NEEDS_SETTINGS_ONLY = new Set<RuntimeMessage['type']>([
+  'settings.get',
+  'i18n.chat',
+  'emotes.get',
+  'lastlang.get',
+  'lastlang.set',
+  'hint.get',
+  'hint.set',
+  'open.options',
+  'ping',
+]);
 watchSettings(applySettings);
 
 /**
@@ -294,7 +312,7 @@ const pageMayWrite = (patch: Partial<Settings>): boolean =>
 const NOT_ALLOWED: RuntimeResponse = { type: 'error', payload: { message: 'not allowed' } };
 
 onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
-  await ready;
+  await (NEEDS_SETTINGS_ONLY.has(msg.type) ? settingsReady : ready);
   // Chrome gives chrome-extension://<id>/, Firefox moz-extension://<uuid>/.
   const fromPage = !sender.url?.startsWith(chrome.runtime.getURL(''));
   if (fromPage && !PAGE_MESSAGES.has(msg.type)) return NOT_ALLOWED;

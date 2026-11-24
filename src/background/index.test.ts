@@ -5,10 +5,13 @@ import type { Settings } from '~/shared/settings';
 
 // The worker module wires listeners at import time. Its heavy neighbours (IndexedDB
 // cache, alarms, usage counters) are not what these tests are about.
+const gate = vi.hoisted(() => ({ warm: Promise.resolve() as Promise<void> }));
 vi.mock('./cache', () => ({
   TranslationCache: class {
     setConfig(): void {}
-    async warm(): Promise<void> {}
+    warm(): Promise<void> {
+      return gate.warm;
+    }
     async clear(): Promise<void> {}
     async stats(): Promise<{ entries: number }> {
       return { entries: 0 };
@@ -189,6 +192,24 @@ describe('storage is closed to content scripts', () => {
     expect((await ask({ type: 'hint.set', value: 3 }, TWITCH_TAB)).type).toBe('ack');
     expect(await ask({ type: 'hint.get' }, TWITCH_TAB)).toEqual({ type: 'hint', value: 3 });
     expect((await ask({ type: 'hint.set', value: 'x' as unknown as number }, TWITCH_TAB)).type).toBe('error');
+  });
+});
+
+// P10: every message waited for the cache warm-up, the content script's first one included.
+describe('a slow cache warm-up', () => {
+  afterEach(() => {
+    gate.warm = Promise.resolve();
+  });
+
+  it('does not hold up the settings a page asks for at start', async () => {
+    gate.warm = new Promise(() => undefined);
+    const { ask } = await loadWorker({ [STORAGE_KEY_SETTINGS]: { targetLang: 'ja' } }, {});
+    const res = await Promise.race([
+      ask({ type: 'settings.get' }, TWITCH_TAB),
+      new Promise<'late'>((r) => setTimeout(() => r('late'), 300)),
+    ]);
+    expect(res).not.toBe('late');
+    expect((res as { payload: Settings }).payload.targetLang).toBe('ja');
   });
 });
 
