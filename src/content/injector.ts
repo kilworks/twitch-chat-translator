@@ -876,25 +876,38 @@ export function showThrottleIndicator(throttled: boolean): void {
 export function updateActiveProvider(provider: string): void {
   const bar = findBar();
   if (!bar) return;
+  const label = bar.querySelector<HTMLElement>('.kt-float-label');
+  // Same provider and the tooltip still says so (setBarEnabled rewrites it, and drops the "via"):
+  // nothing to write, and this is called for every translated line.
+  if (bar.dataset.provider === provider && label?.title.includes(' · ')) return;
   bar.querySelector('.kt-float-provider')?.remove();
   bar.dataset.provider = provider;
-  const label = bar.querySelector<HTMLElement>('.kt-float-label');
   if (!label) return;
   const base = label.title.split(' · ')[0] ?? label.title;
   label.title = msg('barVia', '$BASE$ · via $PROVIDER$', [base, provider]);
 }
 
 /** Bump the session translation counter shown in the floating bar. */
+let countFrame: number | undefined;
+
 export function incrementFloatingCount(): void {
   const count = findBar()?.querySelector<HTMLElement>('.kt-float-count') ?? null;
   if (!count) return;
-  const n = Number(count.dataset.n ?? '0') + 1;
-  count.dataset.n = String(n);
-  count.textContent = `· ${n}`;
-  const label = msg('barCount', 'Translated on this page: $N$', [String(n)]);
-  count.title = label;
-  count.setAttribute('aria-label', label);
-  count.style.display = '';
+  // The number is kept at once, the five DOM writes it costs once per frame: the bar carries a
+  // backdrop-filter, so each write restyles it, and a fast chat counted a line every few ms.
+  count.dataset.n = String(Number(count.dataset.n ?? '0') + 1);
+  if (countFrame !== undefined) return;
+  countFrame = requestAnimationFrame(() => {
+    countFrame = undefined;
+    const live = findBar()?.querySelector<HTMLElement>('.kt-float-count');
+    if (!live) return;
+    const n = live.dataset.n ?? '0';
+    live.textContent = `· ${n}`;
+    const label = msg('barCount', 'Translated on this page: $N$', [n]);
+    live.title = label;
+    live.setAttribute('aria-label', label);
+    live.style.display = '';
+  });
 }
 
 export function updateLocalChip(state: LocalChipState): void {

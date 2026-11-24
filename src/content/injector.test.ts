@@ -26,6 +26,9 @@ function artifacts(el: Element): Element[] {
   return [...el.children];
 }
 
+/** One animation frame, which is when the bar's counter paints. */
+const frame = (): Promise<void> => new Promise((r) => requestAnimationFrame(() => r()));
+
 afterEach(() => {
   document.body.innerHTML = '';
   document.documentElement.classList.remove('kt-hide-original');
@@ -323,7 +326,7 @@ describe('injector artifacts', () => {
     // The counter and the provider tooltip are updated on every translated
     // line. Finding the panel on screen means asking for boxes, which forces a
     // layout right after the line was written: one per message on a fast chat.
-    it('reaches the bar on every line without measuring the page', () => {
+    it('reaches the bar on every line without measuring the page', async () => {
       const host = twoPanels();
       mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
       const rects = vi.spyOn(Element.prototype, 'getClientRects');
@@ -337,18 +340,20 @@ describe('injector artifacts', () => {
       rects.mockRestore();
       boxes.mockRestore();
       // Control: the updates did land, on the live bar.
+      await frame();
       const live = document.querySelectorAll('#kt-floating-bar')[1]!;
       expect(live.querySelector('.kt-float-count')?.textContent).toBe('· 5');
       expect((live as HTMLElement).dataset.provider).toBe('google');
     });
 
     // A bar Kick's re-render threw away is not the live one any more.
-    it('finds the bar again once the one it knew is gone', () => {
+    it('finds the bar again once the one it knew is gone', async () => {
       const host = twoPanels();
       mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
       document.querySelectorAll('#kt-floating-bar')[1]!.remove();
       mountFloatingBar(host, { ...defaultSettings(), enabled: false, targetLang: 'fr' }, barHandlers());
       incrementFloatingCount();
+      await frame();
       const live = document.querySelectorAll('#kt-floating-bar')[1]!;
       expect(live.querySelector('.kt-float-count')?.textContent).toBe('· 1');
     });
@@ -394,11 +399,12 @@ describe('injector artifacts', () => {
     });
 
     // `· 12` alone said nothing, to the eye or to a screen reader.
-    it('names what the counter counts', () => {
+    it('names what the counter counts', async () => {
       const host = twoPanels();
       mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
       incrementFloatingCount();
       incrementFloatingCount();
+      await frame();
       const count = document.querySelectorAll('#kt-floating-bar')[1]!.querySelector<HTMLElement>('.kt-float-count')!;
       expect(count.title).toBe('Translated on this page: 2');
       expect(count.getAttribute('aria-label')).toBe('Translated on this page: 2');
@@ -805,6 +811,29 @@ describe('injector artifacts', () => {
  * silently stops working for everyone running 7TV: on Kick the original stayed
  * visible next to its translation while the native path hid it.
  */
+// P11: the bar was rewritten, five attributes and a text node, for every translated line.
+describe('the bar counter and the provider tooltip', () => {
+  it('paint once per frame however many lines arrived, and rewrite nothing for the same provider', async () => {
+    const bar = mountBarInto(document.body);
+    const count = bar.querySelector<HTMLElement>('.kt-float-count')!;
+    const writes = vi.spyOn(count, 'setAttribute');
+    for (let i = 0; i < 30; i++) incrementFloatingCount();
+    expect(count.textContent).toBe('');
+    await frame();
+    expect(count.textContent).toBe('· 30');
+    expect(writes.mock.calls.filter((c) => c[0] === 'aria-label')).toHaveLength(1);
+
+    updateActiveProvider('google');
+    const label = bar.querySelector<HTMLElement>('.kt-float-label')!;
+    const title = vi.spyOn(label, 'title', 'set');
+    updateActiveProvider('google');
+    updateActiveProvider('google');
+    expect(title).not.toHaveBeenCalled();
+    updateActiveProvider('deepl');
+    expect(title).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('7TV', () => {
   it('hides the original for 7TV as well as for native Twitch', () => {
     // Filtered on what the rule REACHES, not on the class that gates it. The
