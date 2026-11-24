@@ -17,6 +17,7 @@
  * script never types a credential and stops if Google asks for one.
  */
 import { spawn, spawnSync } from 'node:child_process';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -24,9 +25,20 @@ import { fileURLToPath } from 'node:url';
 import { LISTINGS, chromeCode } from './languages.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const PORT = Number(process.env.CWS_CDP_PORT ?? 9222);
 // CWS_PROFILE: an already signed-in dashboard profile (one publisher account serves both products).
 const PROFILE = process.env.CWS_PROFILE ?? path.join(os.homedir(), '.config', 'twitch-chat-translator', 'cws-browser');
+// The debugging port is a random one chosen by `launch` and kept beside the profile, not a
+// well-known 9222: anything on this machine that finds it can drive the signed-in dashboard.
+// CWS_CDP_PORT still wins, for a browser started by hand.
+const PORT_FILE = path.join(PROFILE, '.cdp-port');
+let PORT = Number(process.env.CWS_CDP_PORT) || readPort();
+function readPort() {
+  try {
+    return Number(fs.readFileSync(PORT_FILE, 'utf8')) || 0;
+  } catch {
+    return 0;
+  }
+}
 const PUBLISHER = 'ef2a9029-0a4d-4858-bb63-4ca619ffd657';
 const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
 // CWS_EDIT_URL points the script at a stand-in page for its own test.
@@ -42,6 +54,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 /** A minimal CDP session on one page target. */
 export class Cdp {
   static async open(urlPart = '/devconsole/') {
+    if (!PORT) throw new Error('no debug browser known: run `launch` first');
     const targets = await (await fetch(`http://127.0.0.1:${PORT}/json`)).json();
     let t = targets.find((x) => x.type === 'page' && x.url.includes(urlPart));
     if (!t) t = await (await fetch(`http://127.0.0.1:${PORT}/json/new?${encodeURIComponent(EDIT_URL)}`, { method: 'PUT' })).json();
@@ -85,10 +98,29 @@ export class Cdp {
   }
 }
 
+/** Shut the debug browser and forget its port: nothing keeps listening once the work is done. */
+async function closeBrowser() {
+  if (!PORT) throw new Error('no debug browser known: nothing to close');
+  try {
+    const v = await (await fetch(`http://127.0.0.1:${PORT}/json/version`)).json();
+    const cdp = new Cdp(v.webSocketDebuggerUrl);
+    await cdp.ready;
+    await cdp.send('Browser.close').catch(() => undefined);
+  } catch {
+    // Already gone.
+  }
+  fs.rmSync(PORT_FILE, { force: true });
+  console.log('debug browser closed');
+}
+
 async function launch() {
   const exe = BROWSERS.find((b) => fs.existsSync(b));
   if (!exe) throw new Error('no Brave or Chrome found; set CWS_BROWSER');
   fs.mkdirSync(PROFILE, { recursive: true });
+  if (!process.env.CWS_CDP_PORT) {
+    PORT = 20000 + crypto.randomInt(40000);
+    fs.writeFileSync(PORT_FILE, String(PORT));
+  }
   const child = spawn(exe, [`--remote-debugging-port=${PORT}`, `--user-data-dir=${PROFILE}`, '--no-first-run', EDIT_URL], {
     detached: true,
     stdio: 'ignore',
@@ -752,10 +784,11 @@ else if (cmd === 'status') await status();
 else if (cmd === 'justify') await justify(process.argv.includes('--dry'));
 else if (cmd === 'why') await why();
 else if (cmd === 'launch') await launch();
+else if (cmd === 'close') await closeBrowser();
 else if (cmd === 'inspect') await inspect(process.argv[3]);
 else if (cmd === 'paste') await paste(process.argv.includes('--dry'));
 else if (cmd === 'verify') await verify();
 else {
-  console.error('usage: cws-listing.mjs launch | status | inspect | paste [--dry] | verify | why | links');
+  console.error('usage: cws-listing.mjs launch | close | status | inspect | paste [--dry] | verify | why | links');
   process.exit(2);
 }

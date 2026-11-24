@@ -20,11 +20,12 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { endpoint } from './endpoint.mjs';
 
 // 'twitch-chat-translator' belongs to another developer on AMO (checked 2026-10-23).
 const SLUG = process.env.AMO_SLUG ?? 'twitch-chat-translator-pkkls';
 const KEY_FILE = process.env.AMO_API_KEY ?? path.join(os.homedir(), '.config', 'twitch-chat-translator', 'amo-api.json');
-const API = process.env.AMO_API ?? 'https://addons.mozilla.org/api/v5';
+const API = endpoint('AMO_API', 'https://addons.mozilla.org/api/v5');
 
 const die = (msg) => {
   console.error('amo: ' + msg);
