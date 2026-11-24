@@ -275,3 +275,23 @@ describe('style cards at 320px', () => {
     expect(head.className).toContain('flex-wrap');
   });
 });
+
+// UI-06 and UI-16.
+describe('the preview follows the accent, and the sliders speak their value', () => {
+  it('stamps the accent on the root while it is shown, and takes it off with it', () => {
+    const root = mount({ accent: 'cyan' });
+    expect(document.documentElement.getAttribute('data-kt-accent')).toBe('cyan');
+    expect(document.documentElement.getAttribute('data-kt-scheme')).toBe('dark');
+    void act(() => render(null, root));
+    expect(document.documentElement.getAttribute('data-kt-accent')).toBeNull();
+    expect(document.documentElement.getAttribute('data-kt-scheme')).toBeNull();
+  });
+
+  it('gives every slider its value as the screen writes it', () => {
+    const root = mount({ translatedFontScale: 0.85 });
+    const sliders = [...root.querySelectorAll<HTMLInputElement>('input[type="range"]')];
+    expect(sliders.length).toBeGreaterThan(0);
+    for (const s of sliders) expect(s.getAttribute('aria-valuetext')).not.toBeNull();
+    expect(sliders.some((s) => s.getAttribute('aria-valuetext')?.includes('85'))).toBe(true);
+  });
+});
