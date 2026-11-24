@@ -206,7 +206,7 @@ describe('provider health, readiness and the sticky provider', () => {
   function flaky(state: { googleDown: boolean }): string[] {
     const seen: string[] = [];
     globalThis.fetch = vi.fn(async (url: string) => {
-      if (url.includes('translate.googleapis.com')) {
+      if (new URL(url).hostname === 'translate.googleapis.com') {
         seen.push('google');
         return state.googleDown
           ? new Response('', { status: 429 })
