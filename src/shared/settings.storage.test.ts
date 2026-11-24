@@ -190,6 +190,16 @@ describe('the engine default moved to cloud first', () => {
     expect((await loadSettings()).engineMode).toBe('local-only');
   });
 
+  // R-11: a device on the previous version strips the flag when it saves, and the move ran again.
+  it('does not move a deliberate on-device first again when an older device strips the flag', async () => {
+    old('local-first');
+    await loadSettings();
+    await saveSettings({ engineMode: 'local-first' });
+    const { engineModeMoved: _gone, ...stripped } = syncedBlob() as Record<string, unknown>;
+    env.sync.set(STORAGE_KEY_SETTINGS, stripped);
+    expect((await loadSettings()).engineMode).toBe('local-first');
+  });
+
   it('holds on-device first once the reader picks it again', async () => {
     old('local-first');
     await loadSettings();

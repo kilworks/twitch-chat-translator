@@ -216,6 +216,8 @@ export function withoutKey(s: Settings): Settings {
   return { ...s, deeplApiKey: '' };
 }
 
+const ENGINE_MOVED_KEY = 'kt.engineMoved.v1';
+
 export async function loadSettings(): Promise<Settings> {
   const [synced, local] = await Promise.all([
     chrome.storage.sync.get(STORAGE_KEY_SETTINGS),
@@ -229,9 +231,15 @@ export async function loadSettings(): Promise<Settings> {
   // local-first was the default until this change and saving any setting wrote it
   // down, so a stored value says nothing about whether the reader picked it. Moved
   // once, so picking it afterwards holds. A failed write retries on the next load.
+  //
+  // A device still on the previous version saves the blob through its older schema, which drops
+  // the flag: this device would then move a deliberate local-first again. So it keeps its own
+  // marker in storage.local, and runs once per install whatever sync says.
   if (parsed?.success && (candidate as { engineModeMoved?: unknown }).engineModeMoved !== true) {
-    if (base.engineMode === 'local-first') base = { ...base, engineMode: 'cloud-first' };
+    const moved = (await chrome.storage.local.get(ENGINE_MOVED_KEY))[ENGINE_MOVED_KEY] === true;
+    if (!moved && base.engineMode === 'local-first') base = { ...base, engineMode: 'cloud-first' };
     await chrome.storage.sync.set({ [STORAGE_KEY_SETTINGS]: withoutKey(base) }).catch(() => undefined);
+    if (!moved) await chrome.storage.local.set({ [ENGINE_MOVED_KEY]: true }).catch(() => undefined);
   }
 
   // "On-device only" with on-device switched off skipped every line. The mode is

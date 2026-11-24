@@ -14,7 +14,7 @@ The audit fixes of 24 November, shared with Kick Chat Translator where the code 
 - **Cloud first is the default engine mode**, as in Kick Chat Translator: blind
   judges scored the on-device engine worse than Google on every language it
   served. A reader still on the old default moves once, on-device only is never
-  touched, and picking on-device first again holds.
+  touched, and picking on-device first again holds. The old default was written into every saved setting, so a reader who had deliberately chosen on-device first before this version cannot be told from one who never chose: they move too, once per browser, and can pick it again.
 - **A settings file no longer changes what is yours.** Importing one cannot
   switch on the usage statistics, set the MyMemory e-mail, replace the DeepL key
   or the watched channels, and an export leaves out the e-mail, the Lingva
