@@ -152,4 +152,14 @@ describe('update badge on the toolbar icon', () => {
     await Promise.resolve();
     expect(running.alarms.create).not.toHaveBeenCalled();
   });
+
+  // P14: a store copy never asks GitHub, so the six-hour alarm only woke the worker.
+  it('sets no alarm on a store copy, and clears one left by an earlier build', () => {
+    const store = iconStub({ id: FIREFOX_ADDON_ID, latest: 'v9.9.9' });
+    const clear = vi.fn(async () => true);
+    (store.alarms as unknown as { clear: unknown }).clear = clear;
+    installUpdateCheck();
+    expect(store.alarms.create).not.toHaveBeenCalled();
+    expect(clear).toHaveBeenCalledWith('kt.update');
+  });
 });

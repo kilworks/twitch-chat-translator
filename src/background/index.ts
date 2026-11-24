@@ -8,7 +8,7 @@ import { TokenBucket } from './queue';
 import { StatsTracker } from './stats';
 import { TranslationCoalescer } from './coalescer';
 import { anyProviderReady, getProviderStatus, setDeeplUsagePct } from './translator';
-import { armKeepalive, installKeepalive, listenKeepalive } from './keepalive';
+import { armKeepalive, installKeepalive, listenKeepalive, onLastTabGone } from './keepalive';
 import { getUpdateStatus, installUpdateCheck } from './updateChecker';
 import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO } from '~/shared/constants';
 import { getSemanticOverride } from '~/shared/transliterationGuard';
@@ -16,7 +16,7 @@ import { ecrireDansSlate } from './slateWrite';
 import { emoteNamesFor, isRoomId } from './emotes';
 import { getHint, getLastLang, setHint, setLastLang } from './memo';
 import { CHAT_MESSAGES } from '~/content/i18n';
-import { addUsage, dropUsage, installUsage, recordProviderError, recordTranslation } from './usage';
+import { addUsage, dropUsage, flushUsage, installUsage, recordProviderError, recordTranslation, syncUsageAlarm } from './usage';
 import type { ProviderId, TranslationOutcome, TranslationRequest } from '~/shared/types';
 
 const log = rootLogger.child('sw');
@@ -64,7 +64,9 @@ function announceSettings(): void {
 function applySettings(next: Settings, announce = true): void {
   // Consent withdrawn: the day counted so far goes with it.
   if (settings.usageStats && !next.usageStats) void dropUsage();
+  const consentChanged = settings.usageStats !== next.usageStats;
   settings = next;
+  if (consentChanged) void syncUsageAlarm().catch(() => undefined);
   cache.setConfig(next.cacheMaxEntries, next.cacheTtlHours * 3_600_000);
   for (const b of channelBuckets.values()) {
     b.setRate(next.perChannelBudgetPerMin, next.perChannelBudgetPerMin);
@@ -231,6 +233,10 @@ async function init(): Promise<void> {
 // Top level, before anything awaits: see listenKeepalive.
 restrictStorageAccess();
 listenKeepalive();
+onLastTabGone(() => {
+  void stats.flush();
+  void flushUsage();
+});
 chrome.alarms.onAlarm.addListener((alarm) => {
   // Pruning before init would apply the default size and lifetime, not the reader's.
   if (alarm.name === CACHE_PRUNE_ALARM) void ready.then(() => cache.prune());

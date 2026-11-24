@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defaultSettings } from '~/shared/settings';
 import { USAGE_COUNTERS, addCounts, percentile } from '~/shared/usage';
 import { buildEvent, type Day } from './usage';
@@ -57,5 +57,59 @@ describe('usage helpers', () => {
     expect(percentile([], 50)).toBe(0);
     expect(percentile([5], 95)).toBe(5);
     expect(percentile([1, 2, 3, 4, 100], 50)).toBe(3);
+  });
+});
+
+// P03 and P14: a storage write per counted line, a permissions call per line on Firefox,
+// and an hourly alarm for readers who never opted in.
+describe('the worker side of the counts', () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    vi.resetModules();
+  });
+
+  async function boot(opts: { firefox?: boolean; consent: boolean }) {
+    vi.resetModules();
+    vi.useFakeTimers();
+    const writes: unknown[] = [];
+    const alarms = new Map<string, unknown>();
+    const getAll = vi.fn(async () => ({ data_collection: opts.consent ? ['technicalAndInteraction'] : [] }));
+    vi.stubGlobal('chrome', {
+      runtime: { getURL: () => (opts.firefox ? 'moz-extension://x/' : 'chrome-extension://x/') },
+      storage: { local: { get: async () => ({}), set: async (o: unknown) => void writes.push(o), remove: async () => undefined } },
+      permissions: { getAll, onAdded: { addListener: () => undefined }, onRemoved: { addListener: () => undefined } },
+      alarms: {
+        get: async (n: string) => alarms.get(n),
+        create: async (n: string) => void alarms.set(n, {}),
+        clear: async (n: string) => void alarms.delete(n),
+        onAlarm: { addListener: () => undefined },
+      },
+    });
+    const settings = { ...defaultSettings(), usageStats: opts.consent };
+    const usage = await import('./usage');
+    usage.installUsage(() => settings, () => undefined);
+    await vi.advanceTimersByTimeAsync(10);
+    return { usage, writes, alarms, getAll };
+  }
+
+  it('writes a burst of counted lines once, and asks Firefox for consent once', async () => {
+    const { usage, writes, getAll } = await boot({ firefox: true, consent: true });
+    getAll.mockClear();
+    writes.length = 0;
+    for (let i = 0; i < 50; i++) await usage.recordTranslation('google', false, 40);
+    expect(getAll).not.toHaveBeenCalled();
+    expect(writes).toHaveLength(0);
+    await vi.advanceTimersByTimeAsync(2000);
+    expect(writes).toHaveLength(1);
+  });
+
+  it('has the hourly alarm only while consent is given', async () => {
+    const off = await boot({ consent: false });
+    expect(off.alarms.has('kt-usage')).toBe(false);
+    const on = await boot({ consent: true });
+    expect(on.alarms.has('kt-usage')).toBe(true);
+    await on.usage.syncUsageAlarm();
+    expect(on.alarms.has('kt-usage')).toBe(true);
   });
 });

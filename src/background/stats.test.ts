@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { UsageStats } from '~/shared/types';
 import { STORAGE_KEY_STATS } from '~/shared/constants';
-import { archiveDay, StatsTracker } from './stats';
+import { archiveDay, StatsTracker, STATS_FLUSH_MS } from './stats';
 
 function day(todayKey: string, totalRequests: number, totalCacheHits: number, history?: UsageStats['history']): UsageStats {
   return {
@@ -133,5 +133,36 @@ describe('throttle counter', () => {
     const s = new StatsTracker();
     s.recordRequest('google', 'fr', 10, false);
     expect(s.current().throttled).toBeUndefined();
+  });
+});
+
+// P15: stats were written every 1.5 s while chat ran, and every write is an onChanged event
+// in every extension context.
+describe('StatsTracker writes', () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
+
+  it('holds a burst of requests for STATS_FLUSH_MS, and flush() writes it at once', async () => {
+    vi.useFakeTimers();
+    const writes: unknown[] = [];
+    vi.stubGlobal('chrome', {
+      storage: { local: { get: async () => ({}), set: async (o: unknown) => void writes.push(o) } },
+    });
+    const t = new StatsTracker();
+    await t.load();
+    writes.length = 0;
+    t.recordRequest('google', 'es', 10, false);
+    await vi.advanceTimersByTimeAsync(STATS_FLUSH_MS - 1);
+    t.recordRequest('google', 'es', 10, false);
+    expect(writes).toHaveLength(0);
+    await vi.advanceTimersByTimeAsync(2);
+    expect(writes).toHaveLength(1);
+    t.recordError();
+    await t.flush();
+    expect(writes).toHaveLength(2);
+    await vi.advanceTimersByTimeAsync(STATS_FLUSH_MS * 2);
+    expect(writes).toHaveLength(2);
   });
 });

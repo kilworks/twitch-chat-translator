@@ -21,6 +21,7 @@ vi.mock('./keepalive', () => ({
   listenKeepalive: () => undefined,
   armKeepalive: () => undefined,
   installKeepalive: async () => undefined,
+  onLastTabGone: () => undefined,
 }));
 vi.mock('./updateChecker', () => ({
   installUpdateCheck: () => undefined,
@@ -32,6 +33,8 @@ vi.mock('./usage', () => ({
   dropUsage: async () => undefined,
   recordProviderError: async () => undefined,
   recordTranslation: async () => undefined,
+  flushUsage: async () => undefined,
+  syncUsageAlarm: async () => undefined,
 }));
 vi.mock('./stats', () => ({
   StatsTracker: class {
@@ -40,6 +43,7 @@ vi.mock('./stats', () => ({
       return { byLang: {} };
     }
     recordRequest(): void {}
+    async flush(): Promise<void> {}
     async reset(): Promise<object> {
       return {};
     }
