@@ -73,6 +73,16 @@ describe('first-use hint', () => {
     expect(hint()).toBeNull();
   });
 
+  // UI-09: the preview was never announced, and the keys were a title on a span.
+  it('announces the preview and names the insert keys to assistive tech', async () => {
+    await mounted();
+    expect(document.querySelector('.kt-compose-text')?.getAttribute('role')).toBe('status');
+    const cue = document.querySelector('.kt-compose-insert')!;
+    expect(cue.getAttribute('role')).toBe('img');
+    expect(cue.getAttribute('aria-label')).toBe(cue.getAttribute('title'));
+    expect(cue.getAttribute('aria-label')).toContain('Tab');
+  });
+
   it('names Ctrl/Cmd+Enter when that is the key', async () => {
     const { ui, hint } = await mounted();
     ui.setComposeInsertKey('ctrl-enter');

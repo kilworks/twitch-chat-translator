@@ -83,6 +83,9 @@ export function mountComposePreview(
   const textEl = document.createElement('span');
   textEl.className = 'kt-compose-text';
   textEl.dir = 'auto'; // render RTL languages (Arabic/Hebrew/Persian) correctly
+  // Announced when it changes. The panel is not focusable (it would take the composer's focus), so
+  // this is the only way a screen reader learns what Tab is about to insert.
+  textEl.setAttribute('role', 'status');
   panel.appendChild(textEl);
 
   // Subtle insert cue. The whole chip is clickable; this just signals the action.
@@ -328,6 +331,9 @@ function marquerInsertion(el: HTMLElement): void {
     el.append(hint);
   }
   el.title = tip;
+  // The keys are otherwise a title on a span: a name, so they are read with the preview.
+  el.setAttribute('role', 'img');
+  el.setAttribute('aria-label', tip);
 }
 
 /**
