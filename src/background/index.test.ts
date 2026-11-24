@@ -9,6 +9,13 @@ const gate = vi.hoisted(() => ({ warm: Promise.resolve() as Promise<void> }));
 vi.mock('./cache', () => ({
   TranslationCache: class {
     setConfig(): void {}
+    key(text: string, lang: string): string {
+      return `${lang}::${text}`;
+    }
+    async get(): Promise<undefined> {
+      return undefined;
+    }
+    async setMany(): Promise<void> {}
     warm(): Promise<void> {
       return gate.warm;
     }
@@ -46,6 +53,8 @@ vi.mock('./stats', () => ({
       return { byLang: {} };
     }
     recordRequest(): void {}
+    recordThrottled(): void {}
+    recordError(): void {}
     async flush(): Promise<void> {}
     async reset(): Promise<object> {
       return {};
@@ -192,6 +201,42 @@ describe('storage is closed to content scripts', () => {
     expect((await outcome({ messageId: 'a', text: 'hi', targetLang: 'fr', channel: 'c'.repeat(81) })).error?.code).toBe('invalid');
     expect(await ask({ type: 'i18n.chat', locale: 'constructor' }, TWITCH_TAB)).toEqual({ type: 'i18n.chat', payload: undefined });
     expect(((await ask({ type: 'i18n.chat', locale: 'fr' }, TWITCH_TAB)) as { payload?: object }).payload).toBeTypeOf('object');
+  });
+
+  // R-02: stats.local carried whatever a page put in it into the persisted counters.
+  it('refuses a stats.local that is not a known language and a plain number', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const send = (payload: unknown) => ask({ type: 'stats.local', payload } as RuntimeMessage, TWITCH_TAB);
+    expect((await send({ lang: 'ja', chars: 12 })).type).toBe('ack');
+    for (const bad of [{ lang: {}, chars: 1 }, { lang: 'ja', chars: 'abc' }, { lang: 'zz-nope', chars: 1 }, { lang: 'ja', chars: -1 }, { lang: 'ja', chars: 1e9 }, undefined]) {
+      expect((await send(bad)).type).toBe('error');
+    }
+  });
+
+  // R-03: a fresh channel name was a fresh budget.
+  it('holds a ceiling over all channels together, whatever names a page rotates', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const codes = await Promise.all(
+      Array.from({ length: 900 }, (_, i) =>
+        ask({ type: 'translate', payload: { messageId: `m${i}`, text: `hello ${i}`, targetLang: 'fr', channel: `chan${i}` } } as RuntimeMessage, TWITCH_TAB).then(
+          (r) => (r as { payload?: { error?: { code: string }; message?: string } }).payload?.error?.code ?? (r as { payload?: { message?: string } }).payload?.message,
+        ),
+      ),
+    );
+    expect([...new Set(codes)]).toContain('channel_budget');
+  }, 20_000);
+
+  // R-08: optional fields of a translate request reached the providers unchecked.
+  it('refuses a translate request whose optional fields are not what they should be', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const code = async (p: object) =>
+      ((await ask({ type: 'translate', payload: { messageId: 'a', text: 'hi', targetLang: 'fr', ...p } } as RuntimeMessage, TWITCH_TAB)) as { payload: { error?: { code: string } } }).payload.error?.code;
+    expect(await code({ sourceLangHint: { x: 1 } })).toBe('invalid');
+    expect(await code({ noCache: 'yes' })).toBe('invalid');
+    expect(await code({ messageId: 7 })).toBe('invalid');
   });
 
   it('keeps the channel language and the hint counter for a tab, validated', async () => {

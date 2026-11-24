@@ -31,6 +31,20 @@ describe('the channel language memory', () => {
     expect(await getLastLang('old')).toBe('de');
   });
 
+  it('writes nothing for the answer it already holds, and refuses a language the product lacks', async () => {
+    await setLastLang('chan', 'ja');
+    const set = vi.spyOn(chrome.storage.local, 'set');
+    expect(await setLastLang('chan', 'ja')).toBe(true);
+    expect(set).not.toHaveBeenCalled();
+    expect(await setLastLang('chan2', 'qq')).toBe(false);
+  });
+
+  it('keeps both entries of two writes made at once', async () => {
+    await Promise.all([setLastLang('a', 'fr'), setLastLang('b', 'de')]);
+    expect(await getLastLang('a')).toBe('fr');
+    expect(await getLastLang('b')).toBe('de');
+  });
+
   it('refuses a slug or a language that is not what it should be', async () => {
     expect(await setLastLang('__proto__/../x y', 'fr')).toBe(false);
     expect(await setLastLang('chan', 'not a lang')).toBe(false);

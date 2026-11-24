@@ -37,6 +37,9 @@ export function archiveDay(prev: UsageStats, keep: number = HISTORY_DAYS): DaySt
   return [...prior, entry].slice(-keep);
 }
 
+/** Most distinct languages or channels the day's counters keep. */
+const BY_KEY_MAX = 300;
+
 /** How long counted requests wait before they are written to storage. */
 export const STATS_FLUSH_MS = 15_000;
 
@@ -77,10 +80,11 @@ export class StatsTracker {
       this.state.byProvider[provider] = (this.state.byProvider[provider] ?? 0) + 1;
       this.state.charsSent += chars;
     }
-    if (sourceLang) {
+    // A new key is taken only below a cap: the maps are keyed by what a page sends.
+    if (sourceLang && (sourceLang in this.state.byLang || Object.keys(this.state.byLang).length < BY_KEY_MAX)) {
       this.state.byLang[sourceLang] = (this.state.byLang[sourceLang] ?? 0) + 1;
     }
-    if (channel) {
+    if (channel && (channel in this.state.byChannel || Object.keys(this.state.byChannel).length < BY_KEY_MAX)) {
       this.state.byChannel[channel] = (this.state.byChannel[channel] ?? 0) + 1;
     }
     this.scheduleFlush();

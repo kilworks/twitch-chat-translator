@@ -138,6 +138,18 @@ describe('throttle counter', () => {
 
 // P15: stats were written every 1.5 s while chat ran, and every write is an onChanged event
 // in every extension context.
+// R-02: the language and channel maps are keyed by what a page sends.
+describe('StatsTracker keys', () => {
+  it('takes no new language or channel past its cap, and keeps counting the known ones', () => {
+    const t = new StatsTracker();
+    for (let i = 0; i < 400; i++) t.recordRequest('google', `l${i}`, 1, false, `c${i}`);
+    expect(Object.keys(t.current().byLang)).toHaveLength(300);
+    expect(Object.keys(t.current().byChannel)).toHaveLength(300);
+    t.recordRequest('google', 'l0', 1, false, 'c0');
+    expect(t.current().byLang['l0']).toBe(2);
+  });
+});
+
 describe('StatsTracker writes', () => {
   afterEach(() => {
     vi.useRealTimers();

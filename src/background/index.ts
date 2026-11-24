@@ -3,14 +3,14 @@ import { onMessage, type RuntimeMessage, type RuntimeResponse } from '~/shared/m
 import { rootLogger } from '~/shared/logger';
 import { createMetrics } from '~/shared/metrics';
 import { TranslationCache, warmTargets } from './cache';
-import { resolveTargetLang } from '~/shared/languages';
+import { isSupportedLang, resolveTargetLang } from '~/shared/languages';
 import { TokenBucket } from './queue';
 import { StatsTracker } from './stats';
 import { TranslationCoalescer } from './coalescer';
 import { anyProviderReady, getProviderStatus, setDeeplUsagePct } from './translator';
 import { armKeepalive, installKeepalive, listenKeepalive, onLastTabGone } from './keepalive';
 import { getUpdateStatus, installUpdateCheck } from './updateChecker';
-import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO } from '~/shared/constants';
+import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO, MAX_TEXT_LENGTH } from '~/shared/constants';
 import { getSemanticOverride } from '~/shared/transliterationGuard';
 import { ecrireDansSlate } from './slateWrite';
 import { emoteNamesFor, isRoomId } from './emotes';
@@ -26,6 +26,9 @@ let settings: Settings = defaultSettings();
 const cache = new TranslationCache(settings.cacheMaxEntries, settings.cacheTtlHours * 3_600_000);
 const stats = new StatsTracker();
 const channelBuckets = new Map<string, TokenBucket>();
+/** All channels together, a multiple of one channel's budget: rotating channel names cannot get past it. */
+const GLOBAL_BUDGET_FACTOR = 4;
+const globalBucket = new TokenBucket(settings.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR, settings.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR);
 const coalescer = new TranslationCoalescer({ getSettings: () => settings, cache, stats });
 
 function bucketFor(channel: string): TokenBucket {
@@ -72,6 +75,7 @@ function applySettings(next: Settings, announce = true): void {
   for (const b of channelBuckets.values()) {
     b.setRate(next.perChannelBudgetPerMin, next.perChannelBudgetPerMin);
   }
+  globalBucket.setRate(next.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR, next.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR);
   rootLogger.setEnabled(next.debug);
   if (announce) announceSettings();
 }
@@ -81,7 +85,11 @@ const wellFormed = (r: TranslationRequest | undefined): r is TranslationRequest 
   typeof r?.text === 'string' && r.text.length <= 2000 &&
   typeof r.targetLang === 'string' && r.targetLang.length <= 20 &&
   (r.channel === undefined || (typeof r.channel === 'string' && r.channel.length <= 80)) &&
-  (r.context === undefined || (typeof r.context === 'string' && r.context.length <= 4000));
+  (r.context === undefined || (typeof r.context === 'string' && r.context.length <= 4000)) &&
+  typeof r.messageId === 'string' && r.messageId.length <= 80 &&
+  (r.sourceLangHint === undefined || (typeof r.sourceLangHint === 'string' && r.sourceLangHint.length <= 20)) &&
+  (r.noCache === undefined || typeof r.noCache === 'boolean') &&
+  (r.formal === undefined || typeof r.formal === 'boolean');
 
 async function handleTranslate(req: TranslationRequest): Promise<TranslationOutcome> {
   if (!wellFormed(req)) return { ok: false, error: { code: 'invalid', message: 'Invalid request' } };
@@ -152,7 +160,9 @@ async function handleTranslate(req: TranslationRequest): Promise<TranslationOutc
     }
   }
 
-  if (req.channel && !bucketFor(req.channel).tryTake()) {
+  // Taken first and for every request, a missing channel included: the per-channel bucket below is
+  // the fair share, this one is the ceiling a hostile page cannot rotate around.
+  if (!globalBucket.tryTake() || (req.channel && !bucketFor(req.channel).tryTake())) {
     // Compte le refus : sans lui, le reglage qui plafonne ce seau ne peut pas
     // dire s'il a deja servi a quelque chose, et le lecteur regle un nombre a
     // l'aveugle.
@@ -339,10 +349,14 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
       }
       return { type: 'translate.result', payload: outcome };
     }
-    case 'stats.local':
-      stats.recordRequest('local', msg.payload.lang, msg.payload.chars, false);
+    case 'stats.local': {
+      const { lang, chars } = (msg.payload ?? {}) as Partial<{ lang: unknown; chars: unknown }>;
+      // From a page: a number that adds up and a language the product knows, or nothing.
+      if (typeof lang !== 'string' || !isSupportedLang(lang) || typeof chars !== 'number' || !Number.isFinite(chars) || chars < 0 || chars > MAX_TEXT_LENGTH) return NOT_ALLOWED;
+      stats.recordRequest('local', lang, chars, false);
       void recordTranslation('local', false);
       return { type: 'ack' };
+    }
     case 'usage.add':
       await addUsage(msg.counts, msg.env);
       return { type: 'ack' };

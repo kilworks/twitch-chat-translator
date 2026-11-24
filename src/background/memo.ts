@@ -7,6 +7,8 @@
  * because the sender is the least trusted context the extension has.
  */
 
+import { isSupportedLang } from '~/shared/languages';
+
 const HINT_KEY = 'kt.composeInsertHintDone';
 const LANGS_KEY = 'kt.lastlang.v2';
 /** Channels remembered. The oldest write goes first, so the record cannot grow for ever. */
@@ -36,10 +38,23 @@ export async function getLastLang(slug: unknown): Promise<string | undefined> {
   return typeof v === 'string' && LANG.test(v) ? v : undefined;
 }
 
-export async function setLastLang(slug: unknown, lang: unknown): Promise<boolean> {
-  if (typeof slug !== 'string' || !SLUG.test(slug) || typeof lang !== 'string' || !LANG.test(lang)) return false;
+/** One write at a time: two tabs setting different channels used to lose one entry. */
+let lastLangQueue: Promise<unknown> = Promise.resolve();
+
+export function setLastLang(slug: unknown, lang: unknown): Promise<boolean> {
+  const run = lastLangQueue.then(() => writeLastLang(slug, lang));
+  lastLangQueue = run.catch(() => undefined);
+  return run;
+}
+
+async function writeLastLang(slug: unknown, lang: unknown): Promise<boolean> {
+  if (typeof slug !== 'string' || !SLUG.test(slug) || typeof lang !== 'string' || !LANG.test(lang) || !isSupportedLang(lang)) return false;
   const got = (await chrome.storage.local.get(LANGS_KEY))[LANGS_KEY] as Record<string, string> | undefined;
-  const map = new Map(Object.entries(got ?? {}));
+  const entries = Object.entries(got ?? {});
+  // Sent on every channel load: the same answer as the newest one held needs no write.
+  const last = entries.at(-1);
+  if (last?.[0] === slug && last[1] === lang) return true;
+  const map = new Map(entries);
   map.delete(slug);
   map.set(slug, lang);
   while (map.size > LASTLANG_MAX) map.delete(map.keys().next().value!);
