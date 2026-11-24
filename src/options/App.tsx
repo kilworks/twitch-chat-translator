@@ -69,12 +69,12 @@ export function App() {
   }, [locale]);
 
   async function refresh() {
-    const settingsRes = await send({ type: 'settings.get' });
-    if (settingsRes.type === 'settings') setSettings(settingsRes.payload);
-    const provRes = await send({ type: 'providers.status' });
-    if (provRes.type === 'providers') setProviders(provRes.payload);
-    const statsRes = await send({ type: 'stats.get' });
-    if (statsRes.type === 'stats') setStats(statsRes.payload);
+    // Together, not in series: three round trips to a worker that may have to wake up first.
+    await Promise.all([
+      send({ type: 'settings.get' }).then((res) => res.type === 'settings' && setSettings(res.payload)),
+      send({ type: 'providers.status' }).then((res) => res.type === 'providers' && setProviders(res.payload)),
+      send({ type: 'stats.get' }).then((res) => res.type === 'stats' && setStats(res.payload)),
+    ]);
   }
 
   /**
@@ -139,8 +139,9 @@ export function App() {
           </div>
         </header>
         {/* Always in the DOM, so a screen reader hears the message when it appears. */}
+        {/* "saved" goes through the same region (hidden: the header already shows it). */}
         <p role="status" class={saveError ? 'mb-4 text-xs text-red-400' : 'sr-only'}>
-          {saveError ?? ''}
+          {saveError ?? (savedAt ? t('saved') : '')}
         </p>
 
         {/* The APG tabs pattern, which this was missing entirely: without
@@ -284,7 +285,15 @@ function UiLangPicker({ value, onPick }: { value: Settings['uiLang']; onPick: (v
   };
 
   return (
-    <div ref={box} class="relative">
+    <div
+      ref={box}
+      class="relative"
+      // Tab out of the list closes it, it used to stay open on top of the page.
+      onFocusOut={(e) => {
+        const to = (e as FocusEvent).relatedTarget as Node | null;
+        if (open && to && !box.current?.contains(to)) setOpen(false);
+      }}
+    >
       <button
         type="button"
         class="flex items-center gap-1.5 rounded border border-kick-stroke bg-kick-surface px-1.5 py-1 text-xs text-kick-text"
@@ -311,7 +320,7 @@ function UiLangPicker({ value, onPick }: { value: Settings['uiLang']; onPick: (v
               role="option"
               aria-selected={l === value}
               tabIndex={-1}
-              class={`flex cursor-pointer items-center gap-2 px-2 py-1 outline-none hover:bg-kick-stroke/40 focus:bg-kick-stroke/60 ${
+              class={`flex cursor-pointer items-center gap-2 px-2 py-1 outline-none hover:bg-kick-stroke/40 focus:bg-kick-stroke/60 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-kick-primary ${
                 l === value ? 'font-semibold text-kick-primary' : ''
               }`}
               onClick={() => pick(l)}
