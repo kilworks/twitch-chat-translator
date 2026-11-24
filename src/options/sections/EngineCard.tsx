@@ -137,8 +137,8 @@ export function EngineCard({ settings, onPatch }: Props) {
             onPatch({ engineMode: (e.target as HTMLSelectElement).value as Settings['engineMode'] })
           }
         >
-          <option value="local-first">{t('On-device first, cloud if needed (recommended)')}</option>
-          <option value="cloud-first">{t('Cloud first, on-device if needed')}</option>
+          <option value="local-first">{t('On-device first, cloud if needed')}</option>
+          <option value="cloud-first">{t('Cloud first, on-device if needed (recommended)')}</option>
           <option value="local-only">{t('On-device only (nothing sent online)')}</option>
         </select>
         <p class="text-xs text-kick-muted">

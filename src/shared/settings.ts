@@ -84,9 +84,13 @@ export const SettingsSchema = z.object({
 
   // Engine strategy.
   // local-first : on-device Chromium Translator when the model is downloaded, else cloud.
-  // cloud-first : always cloud chain; on-device only if cloud fails.
+  // cloud-first : always cloud chain; on-device only if cloud fails. The default since
+  // 2026-11-05 in Kick Chat Translator, which shares this engine: blind judges scored the
+  // on-device engine worse than Google on all six languages it served.
   // local-only  : on-device only, never hit the network.
-  engineMode: z.enum(['local-first', 'cloud-first', 'local-only']).default('local-first'),
+  engineMode: z.enum(['local-first', 'cloud-first', 'local-only']).default('cloud-first'),
+  // Written once the old local-first default has been moved off, see loadSettings.
+  engineModeMoved: z.boolean().default(true),
   localEnabled: z.boolean().default(true),
 
   providerOrder: ProviderOrderSchema.default(['google', 'mymemory', 'lingva']),
@@ -221,6 +225,14 @@ export async function loadSettings(): Promise<Settings> {
   const parsed = candidate ? SettingsSchema.safeParse(candidate) : undefined;
   let base = parsed?.success ? parsed.data : defaultSettings();
   const held = (local[STORAGE_KEY_DEEPL_KEY] as string | undefined) ?? '';
+
+  // local-first was the default until this change and saving any setting wrote it
+  // down, so a stored value says nothing about whether the reader picked it. Moved
+  // once, so picking it afterwards holds. A failed write retries on the next load.
+  if (parsed?.success && (candidate as { engineModeMoved?: unknown }).engineModeMoved !== true) {
+    if (base.engineMode === 'local-first') base = { ...base, engineMode: 'cloud-first' };
+    await chrome.storage.sync.set({ [STORAGE_KEY_SETTINGS]: withoutKey(base) }).catch(() => undefined);
+  }
 
   // "On-device only" with on-device switched off skipped every line. The mode is
   // the stronger promise (no network), so the switch follows it; the options

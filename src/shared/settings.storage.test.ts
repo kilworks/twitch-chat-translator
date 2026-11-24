@@ -165,3 +165,34 @@ describe('the contradictory engine pair', () => {
     }
   });
 });
+
+// UI-08: cloud first is the default, as in Kick Chat Translator. A blob written while
+// on-device first was the default says nothing about a choice, so it moves once.
+describe('the engine default moved to cloud first', () => {
+  const old = (engineMode: string) => {
+    const { engineModeMoved: _flag, ...rest } = defaultSettings();
+    env.sync.set(STORAGE_KEY_SETTINGS, { ...rest, engineMode, targetLang: 'fr' });
+  };
+
+  it('starts a new reader on cloud first', async () => {
+    expect((await loadSettings()).engineMode).toBe('cloud-first');
+  });
+
+  it('moves a reader still on the old default, once, and keeps every other setting', async () => {
+    old('local-first');
+    expect(await loadSettings()).toMatchObject({ engineMode: 'cloud-first', targetLang: 'fr' });
+    expect(syncedBlob()).toMatchObject({ engineMode: 'cloud-first', engineModeMoved: true });
+  });
+
+  it('keeps on-device only for the reader who chose it', async () => {
+    old('local-only');
+    expect((await loadSettings()).engineMode).toBe('local-only');
+  });
+
+  it('holds on-device first once the reader picks it again', async () => {
+    old('local-first');
+    await loadSettings();
+    await saveSettings({ engineMode: 'local-first' });
+    expect((await loadSettings()).engineMode).toBe('local-first');
+  });
+});
