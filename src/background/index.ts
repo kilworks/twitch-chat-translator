@@ -51,9 +51,10 @@ function announceSettings(): void {
   clearTimeout(announceTimer);
   announceTimer = setTimeout(() => {
     void (async () => {
-      const [cs] = chrome.runtime.getManifest().content_scripts ?? [];
-      if (!cs?.matches?.length) return;
-      const tabs = await chrome.tabs.query({ url: cs.matches }).catch(() => []);
+      // Every tab, not the ones whose own URL matches: the content script also runs in Twitch
+      // chat iframes embedded in other sites (all_frames), and the tab URL filter never saw those.
+      // A tab without the script answers "no receiving end", swallowed here.
+      const tabs = await chrome.tabs.query({}).catch(() => []);
       for (const tab of tabs) {
         if (tab.id !== undefined) void chrome.tabs.sendMessage(tab.id, { type: 'settings.changed' }).catch(() => undefined);
       }

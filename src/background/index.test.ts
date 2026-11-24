@@ -68,12 +68,14 @@ async function loadWorker(
   alarms: string[];
   access: string[];
   sent: unknown[];
+  queries: unknown[];
   ask: (m: RuntimeMessage, s: chrome.runtime.MessageSender) => Promise<RuntimeResponse>;
 }> {
   const syncWrites: Record<string, unknown>[] = [];
   const alarms: string[] = [];
   const access: string[] = [];
   const sent: unknown[] = [];
+  const queries: unknown[] = [];
   let listener: Listener | undefined;
   const area = (store: Record<string, unknown>, writes?: Record<string, unknown>[], slow = false) => ({
     get: async (key: string | string[]) => {
@@ -109,7 +111,7 @@ async function loadWorker(
     },
     alarms: { create: (name: string) => void alarms.push(name), get: async () => undefined, onAlarm: { addListener: () => undefined } },
     commands: { onCommand: { addListener: () => undefined } },
-    tabs: { query: async () => [{ id: 7 }], sendMessage: async (id: number, m: unknown) => void sent.push([id, m]) },
+    tabs: { query: async (q: unknown) => (queries.push(q), [{ id: 7 }]), sendMessage: async (id: number, m: unknown) => void sent.push([id, m]) },
     scripting: { executeScript: async () => [] },
   });
   vi.resetModules();
@@ -118,7 +120,7 @@ async function loadWorker(
     new Promise((resolve) => {
       listener!(m, s, resolve);
     });
-  return { syncWrites, alarms, access, sent, ask };
+  return { syncWrites, alarms, access, sent, queries, ask };
 }
 
 const settle = async (): Promise<void> => {
@@ -167,6 +169,16 @@ describe('storage is closed to content scripts', () => {
     await ask({ type: 'settings.set', payload: { targetLang: 'de' } }, OPTIONS_PAGE);
     await new Promise((r) => setTimeout(r, 120));
     expect(sent).toEqual([[7, { type: 'settings.changed' }]]);
+  });
+
+  // R-01: a Twitch chat embedded in another site lives in a tab whose own URL is not twitch.tv.
+  it('asks every tab, not only those whose URL matches, so embedded chats hear it', async () => {
+    const { ask, queries } = await loadWorker(stored, key);
+    await settle();
+    queries.length = 0;
+    await ask({ type: 'settings.set', payload: { targetLang: 'fr' } }, OPTIONS_PAGE);
+    await new Promise((r) => setTimeout(r, 120));
+    expect(queries).toEqual([{}]);
   });
 
   // S-05: a page names its own text, channel and locale.
