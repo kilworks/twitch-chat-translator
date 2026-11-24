@@ -17,6 +17,7 @@ import { nativeChat, nativeRow } from './twitchFixtures';
  */
 
 const recues: string[] = [];
+const eliminees: string[] = [];
 let copie = '';
 // Les reglages se font attendre tant que `retenir` est vrai, pour rejouer deux
 // injections dont la seconde arrive avant que la premiere ait fini de monter.
@@ -41,6 +42,9 @@ vi.mock('./pipeline', () => ({
   TranslationPipeline: class {
     private readonly nom = copie;
     updateSettings(): void {}
+    dispose(): void {
+      eliminees.push(this.nom);
+    }
     resetLangBlocked(): void {}
     reapplyBlocked(): void {}
     recentDecisions(): unknown[] {
@@ -118,5 +122,43 @@ describe('deux copies vivantes du script dans un onglet', () => {
     expect(document.querySelectorAll('#kt-floating-bar').length).toBeLessThanOrEqual(1);
     expect(erreurs).not.toHaveBeenCalled();
     erreurs.mockRestore();
+  });
+});
+
+// P22: une copie coupee par une mise a jour gardait ses ecouteurs de document et le minuteur du pipeline.
+describe('une copie remplacee', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    recues.length = 0;
+    eliminees.length = 0;
+  });
+
+  it('lache ses ecouteurs de document et son minuteur quand elle se sait remplacee', async () => {
+    vi.stubGlobal('chrome', {
+      runtime: { id: 'kt', onMessage: { addListener: () => undefined }, getURL: (p: string) => p },
+    });
+    history.replaceState(null, '', '/kt_un');
+    document.body.innerHTML = nativeChat(rangee('hola amigo que tal', 0));
+    // Les signaux que la premiere copie a poses sur le document.
+    const signals: AbortSignal[] = [];
+    const add = document.addEventListener.bind(document);
+    vi.spyOn(document, 'addEventListener').mockImplementation(((t: string, l: EventListener, o?: AddEventListenerOptions) => {
+      if (copie === 'copie-a' && o && typeof o === 'object' && o.signal) signals.push(o.signal);
+      return add(t, l, o);
+    }) as typeof document.addEventListener);
+
+    await injecter('copie-a');
+    await injecter('copie-b');
+    expect(signals.length).toBeGreaterThan(0);
+    // La premiere copie s'en apercoit a la ligne suivante.
+    document
+      .querySelector('[role="log"]')!
+      .insertAdjacentHTML('beforeend', rangee('seguimos aqui despues de actualizar', 1));
+    await attendre(100);
+
+    expect(signals.every((sg) => sg.aborted)).toBe(true);
+    expect(eliminees).toContain('copie-a');
+    expect(eliminees).not.toContain('copie-b');
+    vi.restoreAllMocks();
   });
 });

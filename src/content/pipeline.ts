@@ -188,7 +188,14 @@ export class TranslationPipeline {
   constructor(settings: Settings) {
     this.settings = settings;
     // Bound dedup map size.
-    setInterval(() => { if (this.userDedup.size > 200) this.userDedup.clear(); }, 60_000);
+    this.dedupTimer = setInterval(() => { if (this.userDedup.size > 200) this.userDedup.clear(); }, 60_000);
+  }
+
+  private readonly dedupTimer: ReturnType<typeof setInterval>;
+
+  /** The script was cut off by an update: stop the timer the page would otherwise keep running. */
+  dispose(): void {
+    clearInterval(this.dedupTimer);
   }
 
   updateSettings(next: Settings): void {

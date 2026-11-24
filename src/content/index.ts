@@ -175,6 +175,9 @@ async function main(): Promise<void> {
    * pose son propre bandeau sous le meme id.
    */
   let orphelin = false;
+  // Every listener the script puts on the document, so a copy cut off by an update lets go of
+  // them: they, the pipeline's timer and its caches stayed in the page for as long as the tab did.
+  const life = new AbortController();
   // Declare ici et pose plus bas : `estOrphelin` peut tourner pendant le montage,
   // avant la ligne du sondage, et un `const` y leverait.
   const sondage: { route?: ReturnType<typeof setInterval> } = {};
@@ -185,6 +188,8 @@ async function main(): Promise<void> {
     orphelin = true;
     observer.stop();
     compose.stop();
+    life.abort();
+    pipeline.dispose();
     clearInterval(sondage.route);
     barWatcher?.disconnect();
     themeWatch.disconnect();
@@ -310,7 +315,9 @@ async function main(): Promise<void> {
         barGuardTimer = undefined;
         // Presence has to be asked of the panel on screen, not of the document:
         // the id survives inside the hidden copy Kick leaves behind.
-        if (settings.showFloatingBar && !findChatPanel()?.querySelector('#kt-floating-bar'))
+        // No channel, no chat panel: on the home, browse and search pages this restarted a
+        // 12 s search for a panel that is not there after every mutation of the page.
+        if (currentSlug && settings.showFloatingBar && !findChatPanel()?.querySelector('#kt-floating-bar'))
           mountBar();
       }, 500);
     });
@@ -434,11 +441,15 @@ async function main(): Promise<void> {
     dernierChemin = location.pathname;
     attachForRoute();
   }, ROUTE_POLL_MS);
-  window.addEventListener('popstate', () => {
-    if (estOrphelin()) return;
-    dernierChemin = location.pathname;
-    attachForRoute();
-  });
+  window.addEventListener(
+    'popstate',
+    () => {
+      if (estOrphelin()) return;
+      dernierChemin = location.pathname;
+      attachForRoute();
+    },
+    { signal: life.signal },
+  );
 
   /**
    * Hand back to the observer every line it marked but never translated.
@@ -473,11 +484,15 @@ async function main(): Promise<void> {
   }
 
   // Back on the tab: what arrived while it was hidden was skipped, not lost.
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden || !vueLocale().enabled || !settings.pauseWhenHidden || estOrphelin())
-      return;
-    retryUntranslated(document, 'tab visible again');
-  });
+  document.addEventListener(
+    'visibilitychange',
+    () => {
+      if (document.hidden || !vueLocale().enabled || !settings.pauseWhenHidden || estOrphelin())
+        return;
+      retryUntranslated(document, 'tab visible again');
+    },
+    { signal: life.signal },
+  );
 
   // Scroll-stop: rows the reader scrolls back to that were never translated.
   //
@@ -498,7 +513,7 @@ async function main(): Promise<void> {
         retryUntranslated(list, 'scroll-stop');
       }, 800);
     },
-    { capture: true, passive: true },
+    { capture: true, passive: true, signal: life.signal },
   );
 
   // Note: the "pause when hidden" quota guard lives in the pipeline, which reads
