@@ -224,4 +224,60 @@ describe('chipView', () => {
   ] as const)('%s busy=%s -> %s', (probe, busy, want) => {
     expect(chipView(probe, busy)).toBe(want);
   });
+
+  it('is "checking" for a chip the running probe has not reached', () => {
+    expect(chipView(undefined, false, true)).toBe('checking');
+    expect(chipView('available', false, true)).toBe('ready');
+  });
+});
+
+// UI-19: the previous target's ticks stayed until the tenth probe ended, and a download showed a spinner only.
+describe('download chips, while the probe runs and while a model downloads', () => {
+  const flush = async () => {
+    for (let i = 0; i < 5; i++) await new Promise((r) => setTimeout(r, 0));
+  };
+  const chip = (name: string) => host!.querySelector<HTMLButtonElement>(`[role=group] button[title*="${name}"]`);
+
+  afterEach(() => {
+    delete (self as unknown as { Translator?: unknown }).Translator;
+  });
+
+  it('shows a neutral chip until its answer lands, not "Download"', async () => {
+    let release: (v: string) => void = () => undefined;
+    (self as unknown as { Translator?: unknown }).Translator = {
+      availability: () => new Promise<string>((r) => (release = r)),
+      create: async () => ({ translate: async (s: string) => s }),
+    };
+    mount({ targetLang: 'en' });
+    await flush();
+    const ja = chip('Japanese')!;
+    expect(ja.getAttribute('aria-busy')).toBe('true');
+    expect(ja.getAttribute('aria-label')).toBe('Japanese');
+    release('available');
+    await flush();
+    expect(chip('Japanese')!.getAttribute('aria-label')).toBe('Japanese, downloaded');
+  });
+
+  it('reports the percentage of a download in flight', async () => {
+    let progress: (n: number) => void = () => undefined;
+    let finish: () => void = () => undefined;
+    (self as unknown as { Translator?: unknown }).Translator = {
+      availability: async () => 'downloadable',
+      create: (o: { monitor?: (m: EventTarget) => void }) => {
+        const m = new EventTarget();
+        o.monitor?.(m);
+        progress = (n) => m.dispatchEvent(Object.assign(new Event('downloadprogress'), { loaded: n }));
+        return new Promise((r) => (finish = () => r({ translate: async (s: string) => s })));
+      },
+    };
+    mount({ targetLang: 'en' });
+    await flush();
+    chip('Japanese')!.click();
+    await flush();
+    progress(0.42);
+    await flush();
+    expect(chip('Japanese')!.textContent).toContain('42%');
+    finish();
+    await flush();
+  });
 });
