@@ -54,7 +54,7 @@ your drafts go nowhere):
 | MyMemory | `api.mymemory.translated.net` | text only |
 | Lingva (configurable) | `lingva.lunar.icu` (or your instance, https only) | text only |
 
-With on-device translation, chat text goes to none of them.
+With on-device translation, chat text goes to none of them. The default engine mode is cloud first: chat text goes to the first provider of your list, and on-device translation steps in only if the cloud fails. Choose "On-device only" in the options and chat text goes nowhere.
 
 ### The channel, to Twitch and to three emote services
 
