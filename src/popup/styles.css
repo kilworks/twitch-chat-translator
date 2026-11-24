@@ -36,6 +36,18 @@
   .kt-select:hover:not(:disabled) {
     @apply border-kick-stroke-strong;
   }
+  /* appearance:none drew these as text fields. The chevron is the options page's own,
+     on the end side of the control. */
+  .kt-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%239fa6ad' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 15px;
+    padding-inline-end: 2rem;
+  }
+  html[dir='rtl'] .kt-select {
+    background-position: left 0.6rem center;
+  }
   .kt-input {
     @apply w-full rounded-md border border-kick-stroke bg-kick-surface px-2 py-1.5 text-sm text-kick-text outline-none placeholder:text-kick-muted;
     transition: border-color 0.15s ease;

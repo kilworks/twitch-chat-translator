@@ -117,3 +117,46 @@ describe('.kt-label in caseless scripts', () => {
     expect(rule![2]).toMatch(/letter-spacing:\s*normal/);
   });
 });
+
+// UI-12: a worker that does not answer, or a save it refuses, was silent.
+describe('failures in the footer', () => {
+  it('says so when the settings never arrive', async () => {
+    const { send } = await import('~/shared/messages');
+    vi.mocked(send).mockImplementation(async (m: { type: string }) => {
+      if (m.type === 'settings.get') throw new Error('No response');
+      return { type: 'none' } as never;
+    });
+    const root = await mount();
+    expect(root.querySelector('footer [role="status"]')?.textContent).toBe('unavailable');
+  });
+
+  it('says so when a save is refused', async () => {
+    const { send } = await import('~/shared/messages');
+    vi.mocked(send).mockImplementation(async (m: { type: string }) => {
+      if (m.type === 'settings.get') return { type: 'settings', payload: { ...defaultSettings(), usageStatsAsked: true } } as never;
+      if (m.type === 'settings.set') return { type: 'error', payload: { message: 'quota' } } as never;
+      return { type: 'none' } as never;
+    });
+    const root = await mount();
+    root.querySelector<HTMLInputElement>('header input[type="checkbox"]')!.click();
+    for (let i = 0; i < 5; i++) await new Promise((r) => setTimeout(r, 0));
+    expect(root.querySelector('footer [role="status"]')?.textContent).toBe('Not saved.');
+  });
+});
+
+// UI-04 and UI-11, read from the sources.
+describe('popup selects and the header switch', () => {
+  it('draws a chevron on its selects, as the options page does', () => {
+    const css = readFileSync('src/popup/styles.css', 'utf8');
+    expect(css).toMatch(/\.kt-select \{[^}]*background-image:[^}]*M4 6l4 4 4-4/);
+    expect(css).toMatch(/padding-inline-end:\s*2rem/);
+  });
+
+  it('names the header switch with its visible word first', async () => {
+    const root = await mount();
+    const sw = root.querySelector('header input[type="checkbox"]')!;
+    const name = sw.getAttribute('aria-label') ?? '';
+    expect(name.startsWith('Enable')).toBe(true);
+    expect(name).toContain('Translate the chat');
+  });
+});
