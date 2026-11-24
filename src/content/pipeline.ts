@@ -490,7 +490,15 @@ export class TranslationPipeline {
         removeAllArtifacts(msg.injectionTarget);
         return;
       }
-      if (code === 'saturated' || code === 'no_provider') {
+      if (code === 'saturated') {
+        this.maybeToast(localised('toastAllDown', 'Every translation provider is down. Retrying shortly.'));
+        // A cooldown ends by itself, so the line is left bare, not red: it carries no artifact and no
+        // reason, which is what retryUntranslated picks up at the next scroll stop or tab return.
+        // No timer here, so a long outage costs nothing and sends no request until a provider is out.
+        removeAllArtifacts(msg.injectionTarget);
+        return;
+      }
+      if (code === 'no_provider') {
         this.maybeToast(localised('toastAllDown', 'Every translation provider is down. Retrying shortly.'));
       } else if (code === 'quota' || outcome.error.message?.includes('quota')) {
         this.maybeToast(

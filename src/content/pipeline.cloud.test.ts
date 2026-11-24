@@ -23,7 +23,7 @@ vi.mock('./localEngine', () => ({
 vi.mock('./memcache', () => ({ memCache: { get: () => undefined, set: vi.fn() } }));
 
 import { TranslationPipeline } from './pipeline';
-import { inject, markSkipped, showError, showLoading, showThrottleIndicator } from './injector';
+import { inject, markSkipped, removeAllArtifacts, showError, showLoading, showThrottleIndicator } from './injector';
 import { defaultSettings } from '~/shared/settings';
 
 /** onDomMessage does not await the translate path, so let it settle before asserting. */
@@ -97,6 +97,17 @@ describe('TranslationPipeline, cloud first', () => {
     } finally {
       setChatTable(undefined);
     }
+  });
+
+  // R-10: a line that met a full cooldown stayed red for good.
+  it('leaves a line bare, not red, while every provider cools down, so it can be picked up later', async () => {
+    const { localEngine } = await import('./localEngine');
+    Object.assign(localEngine, { isReady: () => false });
+    sendMock.mockResolvedValue(failure('saturated'));
+    await reader().onDomMessage(domMsg());
+    await flush();
+    expect(showError).not.toHaveBeenCalled();
+    expect(vi.mocked(removeAllArtifacts)).toHaveBeenCalled();
   });
 
   it('leaves the channel budget alone, it is not a failure of the engine', async () => {
