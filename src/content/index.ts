@@ -213,7 +213,7 @@ async function main(): Promise<void> {
       username: msg.usernameGuess ?? '',
       isBot: false,
     });
-  });
+  }, () => !settings.pauseWhenHidden);
 
   // ── On-device chip state ───────────────────────────────────────────
   function computeLocalChip(): LocalChipState {

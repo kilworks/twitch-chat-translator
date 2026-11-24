@@ -310,4 +310,20 @@ describe('the wait for a chat with no rows', () => {
     expect(scan).not.toHaveBeenCalled();
     Reflect.deleteProperty(document, 'hidden');
   });
+
+  // R-05: a chat opened in a background tab never attached while pausing was off.
+  it('attaches in a hidden tab when "pause when hidden" is off, and waits when it is on', async () => {
+    vi.useFakeTimers();
+    document.body.innerHTML = nativeChat(nativeRow('hola amigos', 'bob'));
+    Object.defineProperty(document, 'hidden', { configurable: true, get: () => true });
+    const waiting = new ChatObserver(() => undefined, () => false);
+    waiting.start();
+    expect(created.filter((r) => !r.disconnected)).toHaveLength(0);
+    waiting.stop();
+    const live = new ChatObserver(() => undefined, () => true);
+    live.start();
+    expect(created.filter((r) => !r.disconnected).length).toBeGreaterThan(0);
+    live.stop();
+    Reflect.deleteProperty(document, 'hidden');
+  });
 });

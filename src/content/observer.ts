@@ -58,8 +58,12 @@ export class ChatObserver {
   private cb: Callback;
   private running = false;
 
-  constructor(cb: Callback) {
+  /** True while a hidden tab should still be translated: "pause when hidden" is off. */
+  private attachWhenHidden: () => boolean;
+
+  constructor(cb: Callback, attachWhenHidden: () => boolean = () => false) {
     this.cb = cb;
+    this.attachWhenHidden = attachWhenHidden;
   }
 
   start(): void {
@@ -97,7 +101,9 @@ export class ChatObserver {
   private tryAttach(): void {
     if (!this.running) return;
     // A tab nobody looks at does not scan the document for a chat that has no rows yet.
-    if (document.hidden) {
+    // Unless the reader turned "pause when hidden" off: a chat opened in a background tab then
+    // translates without waiting for the tab to be shown.
+    if (document.hidden && !this.attachWhenHidden()) {
       this.pollHandle = setTimeout(() => this.tryAttach(), POLL_HIDDEN_MS);
       return;
     }
