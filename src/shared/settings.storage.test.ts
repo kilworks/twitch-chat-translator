@@ -237,3 +237,23 @@ describe('what a settings file may change on this device', () => {
     expect(file).toMatchObject({ blockedKeywords: ['spoiler'], targetLang: 'fr' });
   });
 });
+
+// R-12: a refused lock was swallowed, and nobody would know the protection was absent.
+describe('restrictStorageAccess', () => {
+  it('asks for trusted contexts on both areas and says when the browser refuses', async () => {
+    const calls: string[] = [];
+    vi.stubGlobal('chrome', {
+      storage: {
+        local: { setAccessLevel: async (o: { accessLevel: string }) => void calls.push(o.accessLevel) },
+        sync: { setAccessLevel: async () => Promise.reject(new Error('refused')) },
+      },
+    });
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { restrictStorageAccess } = await import('./settings');
+    restrictStorageAccess();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(calls).toEqual(['TRUSTED_CONTEXTS']);
+    expect(warn).toHaveBeenCalledTimes(1);
+    warn.mockRestore();
+  });
+});

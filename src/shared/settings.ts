@@ -344,11 +344,17 @@ export async function importSettings(json: string): Promise<Settings> {
  * Firefox has no such control: there the content script keeps what it always had.
  */
 export function restrictStorageAccess(): void {
+  // Metrics builds only (a constant false in a release): the content-side metrics sink and its
+  // bridge write storage.local from the page's world, and the lock would drop that data.
+  if (__KT_METRICS__) return;
+  const refused = (err: unknown): void =>
+    // Without this line nobody would know the protection is absent.
+    console.warn('[TwitchTranslator] storage access level refused, content scripts keep storage access', err);
   for (const area of [chrome.storage.local, chrome.storage.sync]) {
     try {
-      void Promise.resolve(area.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' })).catch(() => undefined);
-    } catch {
-      // Older browsers: the call is absent or refused, the old behaviour stands.
+      void Promise.resolve(area.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' })).catch(refused);
+    } catch (err: unknown) {
+      refused(err);
     }
   }
 }
