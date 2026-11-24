@@ -23,7 +23,7 @@ vi.mock('./localEngine', () => ({
 vi.mock('./memcache', () => ({ memCache: { get: () => undefined, set: vi.fn() } }));
 
 import { TranslationPipeline } from './pipeline';
-import { inject, showError, showLoading, showThrottleIndicator } from './injector';
+import { inject, markSkipped, showError, showLoading, showThrottleIndicator } from './injector';
 import { defaultSettings } from '~/shared/settings';
 
 /** onDomMessage does not await the translate path, so let it settle before asserting. */
@@ -82,6 +82,21 @@ describe('TranslationPipeline, cloud first', () => {
     await flush();
     expect(inject).not.toHaveBeenCalled();
     expect(showError).toHaveBeenCalled();
+    // The marker is words, never the machine code (UI-01).
+    expect(vi.mocked(showError).mock.calls[0]?.[1]).toBe('Translation failed');
+  });
+
+  // The reasons were built at import, before the catalogue arrived (side note of the perf audit).
+  it('speaks the catalogue for a drop reason installed after the import', async () => {
+    const { setChatTable } = await import('./msg');
+    setChatTable({ dropUserBlocked: 'BLOCKED-JA' });
+    try {
+      await reader({ blacklistUsers: ['user'] }).onDomMessage(domMsg());
+      await flush();
+      expect(vi.mocked(markSkipped).mock.calls.at(-1)?.[1]).toBe('BLOCKED-JA');
+    } finally {
+      setChatTable(undefined);
+    }
   });
 
   it('leaves the channel budget alone, it is not a failure of the engine', async () => {
