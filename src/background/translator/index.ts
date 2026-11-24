@@ -261,8 +261,8 @@ export async function translateGroup(
       }
     }
 
-    // Per-item path with concurrency cap.
-    const pool = new ConcurrencyQueue(Math.max(1, concurrency));
+    // Per-item path with concurrency cap, shared by every group in flight.
+    const pool = sharedPool(concurrency);
     let anySuccess = false;
     let anyFail = false;
     await Promise.all(
@@ -302,6 +302,19 @@ export async function translateGroup(
   // A kept transliteration beats a failure: the reader sees something, and the
   // retry arrow on the row is still there.
   return reqs.map((req, i) => results[i] ?? translitFallback.get(i) ?? failOutcome(req, lastError));
+}
+
+// One pool for all groups: a flush every window, each with its own pool, put 30 to 60 groups of
+// calls side by side on a fast chat when a provider was slow. Rebuilt if the setting changes.
+let pool: ConcurrencyQueue | undefined;
+let poolSize = 0;
+function sharedPool(concurrency: number): ConcurrencyQueue {
+  const size = Math.max(1, concurrency);
+  if (!pool || poolSize !== size) {
+    pool = new ConcurrencyQueue(size);
+    poolSize = size;
+  }
+  return pool;
 }
 
 function asProviderError(id: CloudProviderId, err: unknown): ProviderError {

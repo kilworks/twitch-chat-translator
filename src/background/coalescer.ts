@@ -103,8 +103,8 @@ export class TranslationCoalescer {
     return chosen;
   }
 
-  submit(req: TranslationRequest): Promise<TranslationOutcome> {
-    const key = this.deps.cache.key(req.text, req.targetLang);
+  /** `key` is the cache key the caller already computed for this line (normalising it is not free). */
+  submit(req: TranslationRequest, key = this.deps.cache.key(req.text, req.targetLang)): Promise<TranslationOutcome> {
     const existing = this.byKey.get(key);
     if (existing) {
       return new Promise((resolve) => existing.resolvers.push(resolve));
@@ -139,7 +139,8 @@ export class TranslationCoalescer {
     // constant does not tell you what a reader waited through.
     const flushedAt = Date.now();
     if (__KT_METRICS__) for (const e of batch) metrics.timing('leg.coalesce.wait', flushedAt - e.at);
-    for (const e of batch) this.byKey.delete(e.key);
+    // The entries stay in byKey until their answer lands (finalize): a copy of the line
+    // arriving while the provider is slow joins the call in flight instead of paying another.
 
     const settings = this.deps.getSettings();
     const groups = new Map<string, Entry[]>();
@@ -162,21 +163,29 @@ export class TranslationCoalescer {
             error: { code: 'dispatch', message: 'dispatch failed' },
           }));
         }
+        const writes: Parameters<TranslationCache['setMany']>[0] = [];
         entries.forEach((entry, i) => {
-          this.finalize(entry, outcomes[i] ?? { ok: false, error: { code: 'no_result', message: 'no result' } });
+          this.finalize(entry, outcomes[i] ?? { ok: false, error: { code: 'no_result', message: 'no result' } }, writes);
         });
+        if (writes.length > 0) void this.deps.cache.setMany(writes);
       }),
     );
   }
 
-  private finalize(entry: Entry, outcome: TranslationOutcome): void {
-    const { cache, stats } = this.deps;
+  private finalize(entry: Entry, outcome: TranslationOutcome, writes: Parameters<TranslationCache['setMany']>[0]): void {
+    const { stats } = this.deps;
+    this.byKey.delete(entry.key);
     const dedupCount = entry.resolvers.length;
     if (outcome.ok) {
-      void cache.set(entry.req.text, entry.req.targetLang, {
-        translatedText: outcome.result.translatedText,
-        detectedLang: outcome.result.detectedLang,
-        provider: outcome.result.provider,
+      writes.push({
+        text: entry.req.text,
+        targetLang: entry.req.targetLang,
+        key: entry.key,
+        value: {
+          translatedText: outcome.result.translatedText,
+          detectedLang: outcome.result.detectedLang,
+          provider: outcome.result.provider,
+        },
       });
       stats.recordRequest(outcome.result.provider, outcome.result.detectedLang, entry.req.text.length, false, entry.req.channel);
       // Extra callers that shared this in-flight translation count as cache hits.
