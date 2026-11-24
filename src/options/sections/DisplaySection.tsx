@@ -301,6 +301,13 @@ function StylePreview({ settings }: { settings: Settings }) {
     // montre celle du lecteur, et un reglage de lisibilite qu'il faut aller
     // verifier ailleurs ne sera pas regle.
     applyTypography(settings);
+    // The accent is a root attribute on the chat; here it goes on the preview's own box (theme.css
+    // has a block for it), so the toggles, tabs and links of the options page keep their colour.
+    // The chat theme (light) is not previewed: its tokens hang off the root attribute, which would
+    // turn the whole options page light.
+    const box = el.closest('[data-kt-preview]');
+    if (settings.accent && settings.accent !== 'kick') box?.setAttribute('data-kt-accent', settings.accent);
+    else box?.removeAttribute('data-kt-accent');
 
     el.textContent = '';
     const row = document.createElement('div');
@@ -404,6 +411,8 @@ function RangeRow({
           id={id}
           class="h-6 accent-kick-primary"
           aria-label={label}
+          // "0.85" is what the slider holds, "85%" is what the screen says.
+          aria-valuetext={format(value)}
           min={min}
           max={max}
           step={step}

@@ -154,8 +154,6 @@ export const sv: Record<string, string> = {
     'Idag',
   'Auto (your language)':
     'Auto (ditt språk)',
-  'Below original':
-    'Under originalet',
   'Auto (channel language)':
     'Auto (kanalens språk)',
   'Auto-detects the channel\'s language. Preview shows above the chat box. Click it to insert.':
@@ -408,8 +406,8 @@ export const sv: Record<string, string> = {
   '"Reset all settings" puts every setting back to its default.': '"Återställ alla inställningar" sätter tillbaka alla inställningar till standardvärdena.',
   'On-device: ready': 'På enheten: klart',
   'On-device: not in this browser': 'På enheten: inte i den här webbläsaren',
-  'On-device first, cloud if needed (recommended)': 'Först på enheten, molnet vid behov (rekommenderas)',
-  'Cloud first, on-device if needed': 'Först molnet, enheten vid behov',
+  'On-device first, cloud if needed': 'Först på enheten, molnet vid behov',
+  'Cloud first, on-device if needed (recommended)': 'Först molnet, enheten vid behov (rekommenderas)',
   'On-device only (nothing sent online)': 'Bara på enheten (inget skickas online)',
   'This browser cannot translate on your computer, so the cloud engines translate everything.': 'Den här webbläsaren kan inte översätta på din dator, så molnmotorerna översätter allt.',
   'On-device translates on your computer: free, fast, private, no daily limit. Each language is a one-time download: pick it below, or "Local" in the chat.': 'Översättning på enheten sker på din dator: gratis, snabbt, privat och utan dagsgräns. Varje språk laddas ned en gång: välj det nedan eller "Lokal" i chatten.',

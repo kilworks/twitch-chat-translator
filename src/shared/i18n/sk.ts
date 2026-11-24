@@ -90,7 +90,6 @@ export const sk: Record<string, string> = {
   'Translate what I type': 'Prekladať, čo píšem',
   'Today': 'Dnes',
   'Auto (your language)': 'Automaticky (tvoj jazyk)',
-  'Below original': 'Pod originálom',
   'Auto (channel language)': 'Automaticky (jazyk kanála)',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     'Jazyk kanála sa zisťuje automaticky. Ukážka sa zobrazí nad poľom chatu. Kliknutím ju vložíš.',
@@ -256,8 +255,8 @@ export const sk: Record<string, string> = {
   '"Reset all settings" puts every setting back to its default.': '„Obnoviť všetky nastavenia na predvolené“ vráti každé nastavenie na predvolenú hodnotu.',
   'On-device: ready': 'V zariadení: pripravené',
   'On-device: not in this browser': 'V zariadení: v tomto prehliadači nie je',
-  'On-device first, cloud if needed (recommended)': 'Najprv v zariadení, v prípade potreby cloud (odporúčané)',
-  'Cloud first, on-device if needed': 'Najprv cloud, v prípade potreby v zariadení',
+  'On-device first, cloud if needed': 'Najprv v zariadení, v prípade potreby cloud',
+  'Cloud first, on-device if needed (recommended)': 'Najprv cloud, v prípade potreby v zariadení (odporúčané)',
   'On-device only (nothing sent online)': 'Iba v zariadení (nič sa neposiela online)',
   'This browser cannot translate on your computer, so the cloud engines translate everything.': 'Tento prehliadač nevie prekladať v počítači, takže všetko prekladajú cloudové prekladače.',
   'On-device translates on your computer: free, fast, private, no daily limit. Each language is a one-time download: pick it below, or "Local" in the chat.': 'Preklad v zariadení beží v tvojom počítači: zadarmo, rýchlo, súkromne a bez denného limitu. Každý jazyk sa sťahuje jednorazovo: vyber ho nižšie alebo štítok „Lokálny“ v chate.',

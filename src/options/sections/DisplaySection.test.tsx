@@ -275,3 +275,23 @@ describe('style cards at 320px', () => {
     expect(head.className).toContain('flex-wrap');
   });
 });
+
+// UI-06 and UI-16.
+describe('the preview follows the accent, and the sliders speak their value', () => {
+  // R-09: the accent went on the root, so the whole options page took the previewed colour.
+  it('stamps the accent on the preview box only, never on the page', () => {
+    const root = mount({ accent: 'cyan' });
+    expect(root.querySelector('[data-kt-preview]')?.getAttribute('data-kt-accent')).toBe('cyan');
+    expect(document.documentElement.getAttribute('data-kt-accent')).toBeNull();
+    expect(document.documentElement.getAttribute('data-kt-scheme')).toBeNull();
+    expect(readFileSync('src/shared/theme.css', 'utf8')).toContain("[data-kt-preview][data-kt-accent='cyan']");
+  });
+
+  it('gives every slider its value as the screen writes it', () => {
+    const root = mount({ translatedFontScale: 0.85 });
+    const sliders = [...root.querySelectorAll<HTMLInputElement>('input[type="range"]')];
+    expect(sliders.length).toBeGreaterThan(0);
+    for (const s of sliders) expect(s.getAttribute('aria-valuetext')).not.toBeNull();
+    expect(sliders.some((s) => s.getAttribute('aria-valuetext')?.includes('85'))).toBe(true);
+  });
+});

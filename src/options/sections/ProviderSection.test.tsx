@@ -9,10 +9,10 @@ const { ProviderSection } = await import('./ProviderSection');
 
 let host: HTMLDivElement | undefined;
 
-function mount(over: Partial<Settings>) {
+function mount(over: Partial<Settings>, onPatch: (p: Partial<Settings>) => void = () => {}) {
   host = document.createElement('div');
   document.body.appendChild(host);
-  render(<ProviderSection settings={{ ...defaultSettings(), ...over }} providers={[]} onPatch={() => {}} />, host);
+  render(<ProviderSection settings={{ ...defaultSettings(), ...over }} providers={[]} onPatch={onPatch} />, host);
   return host;
 }
 
@@ -217,5 +217,48 @@ describe('one column for switches', () => {
     const switches = [...el.querySelectorAll('.kt-switch')];
     expect(switches.some((s) => s.textContent?.includes('Save DeepL'))).toBe(true);
     for (const s of switches) expect(s.hasAttribute('data-reverse'), s.textContent ?? '').toBe(true);
+  });
+});
+
+// UI-20: the Lingva address was saved and judged on every keystroke, and neither field had its
+// hint tied to it.
+describe('the provider fields', () => {
+  it('saves the Lingva address when the field is left, not while it is typed', () => {
+    const patches: Partial<Settings>[] = [];
+    const el = mount({}, (p) => patches.push(p));
+    const input = el.querySelector<HTMLInputElement>('input[type="url"]')!;
+    input.value = 'h';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    expect(patches).toEqual([]);
+    input.value = 'https://lingva.example';
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    expect(patches).toEqual([{ lingvaInstance: 'https://lingva.example' }]);
+  });
+
+  it('ties each hint to its field and keeps the key out of password managers', () => {
+    const el = mount({ providerOrder: ['deepl', 'google'] });
+    const key = el.querySelector<HTMLInputElement>('input[autocomplete="off"][type="password"]')!;
+    const hint = key.getAttribute('aria-describedby')!;
+    expect(el.querySelector(`[id="${hint}"]`)?.textContent).toContain(':fx');
+    const url = el.querySelector<HTMLInputElement>('input[type="url"]')!;
+    for (const id of url.getAttribute('aria-describedby')!.split(' ')) expect(el.querySelector(`[id="${id}"]`)).not.toBeNull();
+  });
+
+  // R-04b: committing the address with Enter re-created the field and focus fell to the page.
+  it('keeps the field, and its focus, when the saved address changes under it', () => {
+    const el = mount({});
+    const input = el.querySelector<HTMLInputElement>('input[type="url"]')!;
+    input.focus();
+    input.value = 'https://lingva.example';
+    render(<ProviderSection settings={{ ...defaultSettings(), lingvaInstance: 'https://lingva.example' }} providers={[]} onPatch={() => {}} />, host!);
+    expect(el.querySelector('input[type="url"]')).toBe(input);
+    expect(document.activeElement).toBe(input);
+  });
+
+  it('shows a reset address in the field when it is not being typed in', () => {
+    const el = mount({ lingvaInstance: 'https://lingva.example' });
+    const input = el.querySelector<HTMLInputElement>('input[type="url"]')!;
+    render(<ProviderSection settings={{ ...defaultSettings(), lingvaInstance: '' }} providers={[]} onPatch={() => {}} />, host!);
+    expect(input.value).toBe('');
   });
 });

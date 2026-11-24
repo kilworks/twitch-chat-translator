@@ -192,3 +192,81 @@ describe('a provider that never answers', () => {
     expect(out.map((o) => o.ok)).toEqual([true, true]);
   });
 });
+
+describe('provider health, readiness and the sticky provider', () => {
+  const originalFetch = globalThis.fetch;
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+    vi.useRealTimers();
+  });
+
+  const order = ['google', 'mymemory'] as ('google' | 'mymemory')[];
+
+  /** Google answers 429 while `googleDown` holds, MyMemory always answers. */
+  function flaky(state: { googleDown: boolean }): string[] {
+    const seen: string[] = [];
+    globalThis.fetch = vi.fn(async (url: string) => {
+      if (new URL(url).hostname === 'translate.googleapis.com') {
+        seen.push('google');
+        return state.googleDown
+          ? new Response('', { status: 429 })
+          : new Response(googleBody('salut'), { status: 200 });
+      }
+      seen.push('mymemory');
+      return new Response(myMemoryBody('bonjour'), { status: 200 });
+    }) as unknown as typeof fetch;
+    return seen;
+  }
+
+  it('anyProviderReady is false while every configured provider cools down', async () => {
+    vi.resetModules();
+    const { translateGroup: fresh, anyProviderReady } = await import('./index');
+    vi.useFakeTimers();
+    globalThis.fetch = vi.fn(async () => new Response('', { status: 429 })) as unknown as typeof fetch;
+    expect(anyProviderReady(settings(order))).toBe(true);
+    await fresh([{ messageId: 'r1', text: 'hello there', targetLang: 'fr' }], settings(order), 1);
+    expect(anyProviderReady(settings(order))).toBe(false);
+    await vi.advanceTimersByTimeAsync(11_000);
+    expect(anyProviderReady(settings(order))).toBe(true);
+  });
+
+  it('drops the sticky provider after 60 s so the first choice is asked again', async () => {
+    vi.resetModules();
+    const { translateGroup: fresh } = await import('./index');
+    vi.useFakeTimers();
+    const state = { googleDown: true };
+    const seen = flaky(state);
+    await fresh([{ messageId: 's1', text: 'hello there', targetLang: 'fr' }], settings(order), 1);
+    expect(seen.at(-1)).toBe('mymemory');
+    state.googleDown = false;
+    await vi.advanceTimersByTimeAsync(61_000);
+    seen.length = 0;
+    await fresh([{ messageId: 's2', text: 'good game', targetLang: 'fr' }], settings(order), 1);
+    expect(seen[0]).toBe('google');
+  });
+});
+
+// P20: every flush had its own pool, so a slow provider let dozens of groups run side by side.
+describe('the concurrency cap', () => {
+  const originalFetch = globalThis.fetch;
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  it('holds across groups, not only inside one', async () => {
+    let inflight = 0;
+    let peak = 0;
+    globalThis.fetch = vi.fn(async () => {
+      inflight += 1;
+      peak = Math.max(peak, inflight);
+      await new Promise((r) => setTimeout(r, 15));
+      inflight -= 1;
+      return new Response(googleBody('salut'), { status: 200 });
+    }) as unknown as typeof fetch;
+    const one = { ...defaultSettings(), providerOrder: ['google' as const], concurrency: 1 };
+    await Promise.all(
+      ['g1', 'g2', 'g3'].map((id) => translateGroup([{ messageId: id, text: `hello ${id}`, targetLang: 'fr' }], one, 1)),
+    );
+    expect(peak).toBe(1);
+  });
+});

@@ -122,7 +122,7 @@ DeepL gives the nicest translations for European languages. The key is **free**;
 If your browser has it (Chrome and Edge 138 and later; **Brave disables it**), you can translate
 **locally, with no key, no quota and no network**:
 
-1. **Options, Providers, Engine**: keep **"On-device first"** and **"Enable on-device translation"** on.
+1. **Options, Providers, Engine**: pick **"On-device first"** (the default is cloud first) and keep **"Enable on-device translation"** on.
 2. The first time a language appears, click the **"Local"** chip on the chat bar (or the language
    button in Options) to download its model **once**.
 3. After that, that language translates on your computer.
@@ -149,7 +149,7 @@ In **Options**:
 
 Run down this list:
 
-1. **Does the bar say Translating?** If it says **"Translation off"**, click it to turn it on.
+1. **Does the bar say Translating?** If it says **"Translation off"**, press the play button on the bar to turn it on.
 2. **Is this channel paused?** The pause button on the bar is per channel.
 3. **Are you watching the tab?** Background tabs pause by design. Bring the tab to the front.
 4. **Filters**: if you set a channel allowlist or a source-language allowlist earlier, it may be

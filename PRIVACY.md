@@ -54,7 +54,7 @@ your drafts go nowhere):
 | MyMemory | `api.mymemory.translated.net` | text only |
 | Lingva (configurable) | `lingva.lunar.icu` (or your instance, https only) | text only |
 
-With on-device translation, chat text goes to none of them.
+With on-device translation, chat text goes to none of them. The default engine mode is cloud first: chat text goes to the first provider of your list, and on-device translation steps in only if the cloud fails. Choose "On-device only" in the options and chat text goes nowhere.
 
 ### The channel, to Twitch and to three emote services
 
@@ -96,14 +96,19 @@ These pieces of data live in your browser's extension storage:
   on your browser's sync, the browser itself (Google or Mozilla) copies them to
   your other devices. We never see them.
 - Your DeepL API key, if you add one. It stays on this device, is never
-  synced, and a settings export never contains it.
+  synced, and a settings export never contains it. In Chrome and Edge the
+  extension also closes its storage to the scripts it runs inside Twitch pages,
+  so a page cannot read it; Firefox has no such control, and there the key is
+  protected by the extension's own message checks only. Neither does an export hold
+  your MyMemory e-mail, your Lingva server or the channels you watched; the
+  lists you wrote yourself (blocked words, blocked users, glossary) are in it.
 - A cache of recent translations (text + translation pair), keyed by text, on
   this device. Entries are deleted after the age and count set in the options
   (72 hours and 15,000 entries by default), checked once a day.
 - A daily counter of how many requests you made, broken down by provider,
   detected language and channel, and the last broadcast language seen on each
-  channel. They stay on this device. The popup shows the counter and you can
-  reset it.
+  channel (kept for the 200 most recent channels). They stay on this device.
+  The popup shows the counter and you can reset it.
 
 You can wipe everything from the extension's options page ("Clear translation
 cache", "Reset usage stats", "Reset all settings to defaults") or by removing

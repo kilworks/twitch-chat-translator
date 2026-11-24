@@ -36,6 +36,22 @@ describe('keepalive', () => {
 
   const flush = () => new Promise((r) => setTimeout(r, 0));
 
+  // P15: held-back writes go out when the last chat tab is gone.
+  it('tells its hooks when the last tab is gone, not while one is open', async () => {
+    tabs = [{ id: 1 }];
+    const k = await import('./keepalive');
+    const hook = vi.fn();
+    k.onLastTabGone(hook);
+    await k.installKeepalive();
+    alarm?.({ name: 'kt.keepalive' });
+    await flush();
+    expect(hook).not.toHaveBeenCalled();
+    tabs = [];
+    alarm?.({ name: 'kt.keepalive' });
+    await flush();
+    expect(hook).toHaveBeenCalledTimes(1);
+  });
+
   it('does not arm at start when no Kick tab is open', async () => {
     const k = await import('./keepalive');
     await k.installKeepalive();

@@ -69,14 +69,15 @@ interface RawResult {
  * translation runtime of its own, and giving it one would put the whole UI
  * catalogue (about 67 KB) on every Kick page just to fill a tooltip.
  */
-const DROP_REASON: Record<string, string> = {
+// A function, not a constant: the catalogue lands after import, and a constant would freeze English.
+const dropReasons = (): Record<string, string> => ({
   bot: localised('dropBot', 'the sender looks like a bot'),
   user_blacklisted: localised('dropUserBlocked', 'this user is on your blocked list'),
   channel_blacklisted: localised('dropChannelBlocked', 'this channel is on your blocked list'),
   channel_not_whitelisted: localised('dropChannelNotAllowed', 'this channel is not on your allowed list'),
   lang_unknown: localised('dropLangUnknown', 'its language could not be identified'),
   lang_not_allowed: localised('dropLangNotAllowed', 'its language is not on your allowed list'),
-};
+});
 
 /** How many decisions the Debug tab can look back over. */
 const DECISION_LOG_MAX = 50;
@@ -187,7 +188,14 @@ export class TranslationPipeline {
   constructor(settings: Settings) {
     this.settings = settings;
     // Bound dedup map size.
-    setInterval(() => { if (this.userDedup.size > 200) this.userDedup.clear(); }, 60_000);
+    this.dedupTimer = setInterval(() => { if (this.userDedup.size > 200) this.userDedup.clear(); }, 60_000);
+  }
+
+  private readonly dedupTimer: ReturnType<typeof setInterval>;
+
+  /** The script was cut off by an update: stop the timer the page would otherwise keep running. */
+  dispose(): void {
+    clearInterval(this.dedupTimer);
   }
 
   updateSettings(next: Settings): void {
@@ -244,7 +252,7 @@ export class TranslationPipeline {
       return '';
     }
     const dropped = shouldDropByUserOrChannel(meta, this.settings);
-    if (dropped) return DROP_REASON[dropped] ?? dropped;
+    if (dropped) return dropReasons()[dropped] ?? dropped;
 
     // Per-user dedup: if this user just sent the exact same message, skip it.
     // Common in chat spam, saves a provider call + avoids duplicate translations.
@@ -309,7 +317,7 @@ export class TranslationPipeline {
       return localised('skipSameLang', 'it is already in your language');
     }
     const byLang = shouldDropBySourceLang(detected, this.settings);
-    if (byLang) return DROP_REASON[byLang] ?? byLang;
+    if (byLang) return dropReasons()[byLang] ?? byLang;
 
     // "ngl", "idc", "lmk" reach a reader in another language as they are, or as
     // something else. Spelled out, the engine translates what was said. Same
@@ -347,7 +355,9 @@ export class TranslationPipeline {
     // same message shown again, not spam. The cache makes the repeat free.
     const prepared = this.prepare(msg.text, msg, { dedup: !msg.rowElement.matches(REPLAY_ROW_SELECTOR) });
     // Both drops are the allowlist's doing: lang_unknown only fires when one is set.
-    const byLang = prepared === DROP_REASON.lang_not_allowed || prepared === DROP_REASON.lang_unknown;
+    // Looked up only for a line that was dropped: a translated line, the common one, builds nothing.
+    const reasons = typeof prepared === 'string' ? dropReasons() : undefined;
+    const byLang = reasons !== undefined && (prepared === reasons.lang_not_allowed || prepared === reasons.lang_unknown);
     if (byLang || (typeof prepared !== 'string' && this.settings.sourceLangAllowlist.length > 0)) {
       this.langMark(msg.channel, byLang);
     }
@@ -481,7 +491,15 @@ export class TranslationPipeline {
         removeAllArtifacts(msg.injectionTarget);
         return;
       }
-      if (code === 'saturated' || code === 'no_provider') {
+      if (code === 'saturated') {
+        this.maybeToast(localised('toastAllDown', 'Every translation provider is down. Retrying shortly.'));
+        // A cooldown ends by itself, so the line is left bare, not red: it carries no artifact and no
+        // reason, which is what retryUntranslated picks up at the next scroll stop or tab return.
+        // No timer here, so a long outage costs nothing and sends no request until a provider is out.
+        removeAllArtifacts(msg.injectionTarget);
+        return;
+      }
+      if (code === 'no_provider') {
         this.maybeToast(localised('toastAllDown', 'Every translation provider is down. Retrying shortly.'));
       } else if (code === 'quota' || outcome.error.message?.includes('quota')) {
         this.maybeToast(
@@ -490,7 +508,7 @@ export class TranslationPipeline {
           ]),
         );
       }
-      showError(msg.injectionTarget, code, () => void this.forceRetranslate(msg, real));
+      showError(msg.injectionTarget, localised('errTranslateFailed', 'Translation failed'), () => void this.forceRetranslate(msg, real));
       return;
     }
     this.applyTranslation(msg, real, outcome.result, { store: true });

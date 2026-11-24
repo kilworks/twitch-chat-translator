@@ -5,10 +5,20 @@ import type { Settings } from '~/shared/settings';
 
 // The worker module wires listeners at import time. Its heavy neighbours (IndexedDB
 // cache, alarms, usage counters) are not what these tests are about.
+const gate = vi.hoisted(() => ({ warm: Promise.resolve() as Promise<void> }));
 vi.mock('./cache', () => ({
   TranslationCache: class {
     setConfig(): void {}
-    async warm(): Promise<void> {}
+    key(text: string, lang: string): string {
+      return `${lang}::${text}`;
+    }
+    async get(): Promise<undefined> {
+      return undefined;
+    }
+    async setMany(): Promise<void> {}
+    warm(): Promise<void> {
+      return gate.warm;
+    }
     async clear(): Promise<void> {}
     async stats(): Promise<{ entries: number }> {
       return { entries: 0 };
@@ -21,6 +31,7 @@ vi.mock('./keepalive', () => ({
   listenKeepalive: () => undefined,
   armKeepalive: () => undefined,
   installKeepalive: async () => undefined,
+  onLastTabGone: () => undefined,
 }));
 vi.mock('./updateChecker', () => ({
   installUpdateCheck: () => undefined,
@@ -32,6 +43,8 @@ vi.mock('./usage', () => ({
   dropUsage: async () => undefined,
   recordProviderError: async () => undefined,
   recordTranslation: async () => undefined,
+  flushUsage: async () => undefined,
+  syncUsageAlarm: async () => undefined,
 }));
 vi.mock('./stats', () => ({
   StatsTracker: class {
@@ -40,6 +53,9 @@ vi.mock('./stats', () => ({
       return { byLang: {} };
     }
     recordRequest(): void {}
+    recordThrottled(): void {}
+    recordError(): void {}
+    async flush(): Promise<void> {}
     async reset(): Promise<object> {
       return {};
     }
@@ -59,15 +75,21 @@ async function loadWorker(
 ): Promise<{
   syncWrites: Record<string, unknown>[];
   alarms: string[];
+  access: string[];
+  sent: unknown[];
+  queries: unknown[];
   ask: (m: RuntimeMessage, s: chrome.runtime.MessageSender) => Promise<RuntimeResponse>;
 }> {
   const syncWrites: Record<string, unknown>[] = [];
   const alarms: string[] = [];
+  const access: string[] = [];
+  const sent: unknown[] = [];
+  const queries: unknown[] = [];
   let listener: Listener | undefined;
   const area = (store: Record<string, unknown>, writes?: Record<string, unknown>[], slow = false) => ({
-    get: async (key: string) => {
+    get: async (key: string | string[]) => {
       if (slow) await new Promise((r) => setTimeout(r, 5));
-      return key in store ? { [key]: structuredClone(store[key]) } : {};
+      return Object.fromEntries([key].flat().filter((k) => k in store).map((k) => [k, structuredClone(store[k])]));
     },
     set: async (obj: Record<string, unknown>) => {
       writes?.push(structuredClone(obj));
@@ -76,6 +98,7 @@ async function loadWorker(
     remove: async (key: string) => {
       delete store[key];
     },
+    setAccessLevel: async (o: { accessLevel: string }) => void access.push(o.accessLevel),
   });
   // init() asks DeepL for its usage when a key is set: nothing leaves the test.
   vi.stubGlobal('fetch', async () => ({ ok: false }));
@@ -91,13 +114,13 @@ async function loadWorker(
       lastError: undefined,
       onMessage: { addListener: (l: Listener) => (listener = l) },
       onInstalled: { addListener: () => undefined },
-      getManifest: () => ({ version: '3.6.2', content_scripts: [] }),
+      getManifest: () => ({ version: '3.6.2', content_scripts: [{ matches: ['https://www.twitch.tv/*'] }] }),
       getURL: (p = '') => EXT + p,
       openOptionsPage: async () => undefined,
     },
     alarms: { create: (name: string) => void alarms.push(name), get: async () => undefined, onAlarm: { addListener: () => undefined } },
     commands: { onCommand: { addListener: () => undefined } },
-    tabs: { query: async () => [] },
+    tabs: { query: async (q: unknown) => (queries.push(q), [{ id: 7 }]), sendMessage: async (id: number, m: unknown) => void sent.push([id, m]) },
     scripting: { executeScript: async () => [] },
   });
   vi.resetModules();
@@ -106,7 +129,7 @@ async function loadWorker(
     new Promise((resolve) => {
       listener!(m, s, resolve);
     });
-  return { syncWrites, alarms, ask };
+  return { syncWrites, alarms, access, sent, queries, ask };
 }
 
 const settle = async (): Promise<void> => {
@@ -131,6 +154,119 @@ describe('worker start with a DeepL key on the device', () => {
       expect(s.deeplApiKey ?? '').toBe('');
       expect(s.providerOrder).not.toContain('deepl');
     }
+  });
+});
+
+describe('storage is closed to content scripts', () => {
+  const stored = { [STORAGE_KEY_SETTINGS]: { providerOrder: ['deepl', 'google'] } };
+  const key = { [STORAGE_KEY_DEEPL_KEY]: 'secret-key:fx' };
+
+  // S-01: the DeepL key and the settings blob were readable and writable from a page's script.
+  it('asks for trusted contexts on both areas, and an update keeps the key and the settings', async () => {
+    const { access, ask } = await loadWorker(stored, key);
+    await settle();
+    expect(access).toEqual(['TRUSTED_CONTEXTS', 'TRUSTED_CONTEXTS']);
+    const res = await ask({ type: 'settings.get' }, OPTIONS_PAGE);
+    expect((res as { payload: Settings }).payload.deeplApiKey).toBe('secret-key:fx');
+    expect((res as { payload: Settings }).payload.providerOrder).toEqual(['deepl', 'google']);
+  });
+
+  it('tells the chat tabs when settings change, once, and without the key', async () => {
+    const { ask, sent } = await loadWorker(stored, key);
+    await settle();
+    sent.length = 0;
+    await ask({ type: 'settings.set', payload: { targetLang: 'de' } }, OPTIONS_PAGE);
+    await new Promise((r) => setTimeout(r, 120));
+    expect(sent).toEqual([[7, { type: 'settings.changed' }]]);
+  });
+
+  // R-01: a Twitch chat embedded in another site lives in a tab whose own URL is not twitch.tv.
+  it('asks every tab, not only those whose URL matches, so embedded chats hear it', async () => {
+    const { ask, queries } = await loadWorker(stored, key);
+    await settle();
+    queries.length = 0;
+    await ask({ type: 'settings.set', payload: { targetLang: 'fr' } }, OPTIONS_PAGE);
+    await new Promise((r) => setTimeout(r, 120));
+    expect(queries).toEqual([{}]);
+  });
+
+  // S-05: a page names its own text, channel and locale.
+  it('refuses a request of the wrong shape and a locale that is not a catalogue', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const bad = (payload: object) => ask({ type: 'translate', payload } as RuntimeMessage, TWITCH_TAB);
+    const outcome = async (payload: object) => ((await bad(payload)) as { payload: { ok: boolean; error?: { code: string } } }).payload;
+    expect((await outcome({ messageId: 'a', text: 'x'.repeat(2001), targetLang: 'fr' })).error?.code).toBe('invalid');
+    expect((await outcome({ messageId: 'a', text: 5, targetLang: 'fr' })).error?.code).toBe('invalid');
+    expect((await outcome({ messageId: 'a', text: 'hi', targetLang: 'fr', channel: 'c'.repeat(81) })).error?.code).toBe('invalid');
+    expect(await ask({ type: 'i18n.chat', locale: 'constructor' }, TWITCH_TAB)).toEqual({ type: 'i18n.chat', payload: undefined });
+    expect(((await ask({ type: 'i18n.chat', locale: 'fr' }, TWITCH_TAB)) as { payload?: object }).payload).toBeTypeOf('object');
+  });
+
+  // R-02: stats.local carried whatever a page put in it into the persisted counters.
+  it('refuses a stats.local that is not a known language and a plain number', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const send = (payload: unknown) => ask({ type: 'stats.local', payload } as RuntimeMessage, TWITCH_TAB);
+    expect((await send({ lang: 'ja', chars: 12 })).type).toBe('ack');
+    for (const bad of [{ lang: {}, chars: 1 }, { lang: 'ja', chars: 'abc' }, { lang: 'zz-nope', chars: 1 }, { lang: 'ja', chars: -1 }, { lang: 'ja', chars: 1e9 }, undefined]) {
+      expect((await send(bad)).type).toBe('error');
+    }
+  });
+
+  // R-03: a fresh channel name was a fresh budget.
+  it('holds a ceiling over all channels together, whatever names a page rotates', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const codes = await Promise.all(
+      Array.from({ length: 900 }, (_, i) =>
+        ask({ type: 'translate', payload: { messageId: `m${i}`, text: `hello ${i}`, targetLang: 'fr', channel: `chan${i}` } } as RuntimeMessage, TWITCH_TAB).then(
+          (r) => (r as { payload?: { error?: { code: string }; message?: string } }).payload?.error?.code ?? (r as { payload?: { message?: string } }).payload?.message,
+        ),
+      ),
+    );
+    expect([...new Set(codes)]).toContain('channel_budget');
+  }, 20_000);
+
+  // R-08: optional fields of a translate request reached the providers unchecked.
+  it('refuses a translate request whose optional fields are not what they should be', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    const code = async (p: object) =>
+      ((await ask({ type: 'translate', payload: { messageId: 'a', text: 'hi', targetLang: 'fr', ...p } } as RuntimeMessage, TWITCH_TAB)) as { payload: { error?: { code: string } } }).payload.error?.code;
+    expect(await code({ sourceLangHint: { x: 1 } })).toBe('invalid');
+    expect(await code({ noCache: 'yes' })).toBe('invalid');
+    expect(await code({ messageId: 7 })).toBe('invalid');
+  });
+
+  it('keeps the channel language and the hint counter for a tab, validated', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    expect((await ask({ type: 'lastlang.set', slug: 'chan', lang: 'ja' }, TWITCH_TAB)).type).toBe('ack');
+    expect(await ask({ type: 'lastlang.get', slug: 'chan' }, TWITCH_TAB)).toEqual({ type: 'lastlang', lang: 'ja' });
+    expect((await ask({ type: 'lastlang.set', slug: '../x', lang: 'ja' }, TWITCH_TAB)).type).toBe('error');
+    expect((await ask({ type: 'lastlang.set', slug: 'chan', lang: '<script>' }, TWITCH_TAB)).type).toBe('error');
+    expect((await ask({ type: 'hint.set', value: 3 }, TWITCH_TAB)).type).toBe('ack');
+    expect(await ask({ type: 'hint.get' }, TWITCH_TAB)).toEqual({ type: 'hint', value: 3 });
+    expect((await ask({ type: 'hint.set', value: 'x' as unknown as number }, TWITCH_TAB)).type).toBe('error');
+  });
+});
+
+// P10: every message waited for the cache warm-up, the content script's first one included.
+describe('a slow cache warm-up', () => {
+  afterEach(() => {
+    gate.warm = Promise.resolve();
+  });
+
+  it('does not hold up the settings a page asks for at start', async () => {
+    gate.warm = new Promise(() => undefined);
+    const { ask } = await loadWorker({ [STORAGE_KEY_SETTINGS]: { targetLang: 'ja' } }, {});
+    const res = await Promise.race([
+      ask({ type: 'settings.get' }, TWITCH_TAB),
+      new Promise<'late'>((r) => setTimeout(() => r('late'), 300)),
+    ]);
+    expect(res).not.toBe('late');
+    expect((res as { payload: Settings }).payload.targetLang).toBe('ja');
   });
 });
 
@@ -182,6 +318,12 @@ describe('what a Twitch tab may ask the worker', () => {
     const { ask } = await loadWorker(stored, key);
     await settle();
     expect((await ask({ type: 'emotes.get', roomId: '1' }, TWITCH_TAB)).type).toBe('emotes');
+  });
+
+  it('refuses an emote room id that is not digits', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    expect((await ask({ type: 'emotes.get', roomId: '../../x?y=' }, TWITCH_TAB)).type).toBe('error');
   });
 
   it('can still write what the chat bar and the composer write', async () => {

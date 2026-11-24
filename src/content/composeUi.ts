@@ -83,6 +83,9 @@ export function mountComposePreview(
   const textEl = document.createElement('span');
   textEl.className = 'kt-compose-text';
   textEl.dir = 'auto'; // render RTL languages (Arabic/Hebrew/Persian) correctly
+  // Announced when it changes. The panel is not focusable (it would take the composer's focus), so
+  // this is the only way a screen reader learns what Tab is about to insert.
+  textEl.setAttribute('role', 'status');
   panel.appendChild(textEl);
 
   // Subtle insert cue. The whole chip is clickable; this just signals the action.
@@ -253,7 +256,6 @@ let toucheInsertion: 'tab-and-enter' | 'ctrl-enter' = 'tab-and-enter';
  * every message. Kept in storage.local like the other per-browser memories of
  * this script, never in synced settings: true once done, else the count shown.
  */
-const INSERT_HINT_KEY = 'kt.composeInsertHintDone';
 const HINT_MAX_SHOWN = 5;
 /** Below this panel width the key name is hidden (see positionPanel). */
 const HINT_MIN_WIDTH = 300;
@@ -265,10 +267,9 @@ function loadInsertHint(): void {
   if (insertHintLoaded) return;
   insertHintLoaded = true;
   try {
-    void chrome.storage.local
-      .get(INSERT_HINT_KEY)
-      .then((got) => {
-        const v: unknown = got[INSERT_HINT_KEY];
+    void send({ type: 'hint.get' })
+      .then((res) => {
+        const v: unknown = res.type === 'hint' ? res.value : undefined;
         if (v === true || (typeof v === 'number' && v >= HINT_MAX_SHOWN)) markInsertHintDone(false);
         else if (typeof v === 'number') insertHintShown = Math.max(insertHintShown, v);
       })
@@ -287,7 +288,7 @@ function noteHintShown(): void {
   }
   insertHintShown++;
   try {
-    void chrome.storage.local.set({ [INSERT_HINT_KEY]: insertHintShown }).catch(() => undefined);
+    void send({ type: 'hint.set', value: insertHintShown }).catch(() => undefined);
   } catch {
     // Nothing to remember it in: the count starts over on the next page.
   }
@@ -300,7 +301,7 @@ function markInsertHintDone(persist: boolean): void {
   if (el) marquerInsertion(el);
   if (!persist) return;
   try {
-    void chrome.storage.local.set({ [INSERT_HINT_KEY]: true }).catch(() => undefined);
+    void send({ type: 'hint.set', value: true }).catch(() => undefined);
   } catch {
     // Same: nothing to remember it in, the hint comes back on the next page.
   }
@@ -330,6 +331,9 @@ function marquerInsertion(el: HTMLElement): void {
     el.append(hint);
   }
   el.title = tip;
+  // The keys are otherwise a title on a span: a name, so they are read with the preview.
+  el.setAttribute('role', 'img');
+  el.setAttribute('aria-label', tip);
 }
 
 /**

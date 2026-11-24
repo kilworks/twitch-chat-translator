@@ -1,4 +1,4 @@
-import { createStore, get, set, del, clear, promisifyRequest } from 'idb-keyval';
+import { createStore, get, setMany, del, delMany, clear, promisifyRequest } from 'idb-keyval';
 import { CACHE_DB, CACHE_STORE } from '~/shared/constants';
 import { rootLogger } from '~/shared/logger';
 import { cacheKey, normalizeForKey } from '~/shared/normalize';
@@ -48,8 +48,8 @@ export class TranslationCache {
     return cacheKey(text, targetLang);
   }
 
-  async get(text: string, targetLang: string): Promise<CacheEntry | undefined> {
-    const k = this.key(text, targetLang);
+  async get(text: string, targetLang: string, key?: string): Promise<CacheEntry | undefined> {
+    const k = key ?? this.key(text, targetLang);
     let entry = this.mem.get(k);
     if (!entry) {
       try {
@@ -68,20 +68,29 @@ export class TranslationCache {
     return entry;
   }
 
+  /**
+   * Several answers in one IndexedDB transaction: a batch used to be one readwrite
+   * transaction per line. `key` is the one the caller already computed for the line.
+   */
+  async setMany(items: { text: string; targetLang: string; key?: string; value: Omit<CacheEntry, 'storedAtMs'> }[]): Promise<void> {
+    const at = Date.now();
+    const rows: [string, CacheEntry][] = items.map((i) => [i.key ?? this.key(i.text, i.targetLang), { ...i.value, storedAtMs: at }]);
+    for (const [k, entry] of rows) this.mem.set(k, entry);
+    try {
+      await setMany(rows, store);
+    } catch (err: unknown) {
+      log.warn('idb set failed', err);
+    }
+    // Past the cap by a tenth: one transaction removes that tenth, instead of one per new line.
+    if (this.mem.size > this.maxEntries * 1.1) this.evict();
+  }
+
   async set(
     text: string,
     targetLang: string,
     value: Omit<CacheEntry, 'storedAtMs'>,
   ): Promise<void> {
-    const entry: CacheEntry = { ...value, storedAtMs: Date.now() };
-    const k = this.key(text, targetLang);
-    this.mem.set(k, entry);
-    try {
-      await set(k, entry, store);
-    } catch (err: unknown) {
-      log.warn('idb set failed', err);
-    }
-    if (this.mem.size > this.maxEntries) this.evict();
+    await this.setMany([{ text, targetLang, value }]);
   }
 
   async clear(): Promise<void> {
@@ -161,13 +170,13 @@ export class TranslationCache {
   private evict(): void {
     const toRemove = this.mem.size - this.maxEntries;
     if (toRemove <= 0) return;
-    let i = 0;
+    const gone: string[] = [];
     for (const k of this.mem.keys()) {
-      if (i >= toRemove) break;
-      this.mem.delete(k);
-      void del(k, store).catch(() => undefined);
-      i += 1;
+      if (gone.length >= toRemove) break;
+      gone.push(k);
     }
+    for (const k of gone) this.mem.delete(k);
+    void delMany(gone, store).catch(() => undefined);
   }
 
   /**

@@ -53,8 +53,15 @@ jobs:
       # The bot list of src/shared/bots.ts, re-measured (PLAN P06). Reported, not gating.
       - run: node .agent/probes/bots.mjs
         continue-on-error: true
+      # The verdict and the probe reports only: the raw captures hold live chat DOM, other
+      # viewers' messages, and a public repo's artifacts can be downloaded by any signed-in
+      # GitHub user. Short retention, too.
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: recon
-          path: .agent/RECON/
+          path: |
+            .agent/RECON/
+            !.agent/RECON/**/dom.html
+            !.agent/RECON/**/*.png
+          retention-days: 7

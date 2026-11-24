@@ -23,7 +23,7 @@ vi.mock('./localEngine', () => ({
 vi.mock('./memcache', () => ({ memCache: { get: () => undefined, set: vi.fn() } }));
 
 import { TranslationPipeline } from './pipeline';
-import { inject, showError, showLoading, showThrottleIndicator } from './injector';
+import { inject, markSkipped, removeAllArtifacts, showError, showLoading, showThrottleIndicator } from './injector';
 import { defaultSettings } from '~/shared/settings';
 
 /** onDomMessage does not await the translate path, so let it settle before asserting. */
@@ -82,6 +82,47 @@ describe('TranslationPipeline, cloud first', () => {
     await flush();
     expect(inject).not.toHaveBeenCalled();
     expect(showError).toHaveBeenCalled();
+    // The marker is words, never the machine code (UI-01).
+    expect(vi.mocked(showError).mock.calls[0]?.[1]).toBe('Translation failed');
+  });
+
+  // The reasons were built at import, before the catalogue arrived (side note of the perf audit).
+  it('speaks the catalogue for a drop reason installed after the import', async () => {
+    const { setChatTable } = await import('./msg');
+    setChatTable({ dropUserBlocked: 'BLOCKED-JA' });
+    try {
+      await reader({ blacklistUsers: ['user'] }).onDomMessage(domMsg());
+      await flush();
+      expect(vi.mocked(markSkipped).mock.calls.at(-1)?.[1]).toBe('BLOCKED-JA');
+    } finally {
+      setChatTable(undefined);
+    }
+  });
+
+  // R-07: the six drop reasons were looked up for every line, dropped or not.
+  it('looks the drop reasons up only for a line that was dropped', async () => {
+    const { setChatTable } = await import('./msg');
+    let reads = 0;
+    setChatTable(new Proxy({}, { get: (_t, k) => (k === 'dropBot' ? (reads++, 'x') : undefined) }) as Record<string, string>);
+    try {
+      sendMock.mockResolvedValue(success);
+      await reader().onDomMessage(domMsg());
+      await flush();
+      expect(reads).toBe(0);
+    } finally {
+      setChatTable(undefined);
+    }
+  });
+
+  // R-10: a line that met a full cooldown stayed red for good.
+  it('leaves a line bare, not red, while every provider cools down, so it can be picked up later', async () => {
+    const { localEngine } = await import('./localEngine');
+    Object.assign(localEngine, { isReady: () => false });
+    sendMock.mockResolvedValue(failure('saturated'));
+    await reader().onDomMessage(domMsg());
+    await flush();
+    expect(showError).not.toHaveBeenCalled();
+    expect(vi.mocked(removeAllArtifacts)).toHaveBeenCalled();
   });
 
   it('leaves the channel budget alone, it is not a failure of the engine', async () => {

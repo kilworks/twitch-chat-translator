@@ -84,9 +84,13 @@ export const SettingsSchema = z.object({
 
   // Engine strategy.
   // local-first : on-device Chromium Translator when the model is downloaded, else cloud.
-  // cloud-first : always cloud chain; on-device only if cloud fails.
+  // cloud-first : always cloud chain; on-device only if cloud fails. The default since
+  // 2026-11-05 in Kick Chat Translator, which shares this engine: blind judges scored the
+  // on-device engine worse than Google on all six languages it served.
   // local-only  : on-device only, never hit the network.
-  engineMode: z.enum(['local-first', 'cloud-first', 'local-only']).default('local-first'),
+  engineMode: z.enum(['local-first', 'cloud-first', 'local-only']).default('cloud-first'),
+  // Written once the old local-first default has been moved off, see loadSettings.
+  engineModeMoved: z.boolean().default(true),
   localEnabled: z.boolean().default(true),
 
   providerOrder: ProviderOrderSchema.default(['google', 'mymemory', 'lingva']),
@@ -212,6 +216,8 @@ export function withoutKey(s: Settings): Settings {
   return { ...s, deeplApiKey: '' };
 }
 
+const ENGINE_MOVED_KEY = 'kt.engineMoved.v1';
+
 export async function loadSettings(): Promise<Settings> {
   const [synced, local] = await Promise.all([
     chrome.storage.sync.get(STORAGE_KEY_SETTINGS),
@@ -221,6 +227,20 @@ export async function loadSettings(): Promise<Settings> {
   const parsed = candidate ? SettingsSchema.safeParse(candidate) : undefined;
   let base = parsed?.success ? parsed.data : defaultSettings();
   const held = (local[STORAGE_KEY_DEEPL_KEY] as string | undefined) ?? '';
+
+  // local-first was the default until this change and saving any setting wrote it
+  // down, so a stored value says nothing about whether the reader picked it. Moved
+  // once, so picking it afterwards holds. A failed write retries on the next load.
+  //
+  // A device still on the previous version saves the blob through its older schema, which drops
+  // the flag: this device would then move a deliberate local-first again. So it keeps its own
+  // marker in storage.local, and runs once per install whatever sync says.
+  if (parsed?.success && (candidate as { engineModeMoved?: unknown }).engineModeMoved !== true) {
+    const moved = (await chrome.storage.local.get(ENGINE_MOVED_KEY))[ENGINE_MOVED_KEY] === true;
+    if (!moved && base.engineMode === 'local-first') base = { ...base, engineMode: 'cloud-first' };
+    await chrome.storage.sync.set({ [STORAGE_KEY_SETTINGS]: withoutKey(base) }).catch(() => undefined);
+    if (!moved) await chrome.storage.local.set({ [ENGINE_MOVED_KEY]: true }).catch(() => undefined);
+  }
 
   // "On-device only" with on-device switched off skipped every line. The mode is
   // the stronger promise (no network), so the switch follows it; the options
@@ -263,12 +283,34 @@ export async function resetSettings(): Promise<Settings> {
 }
 
 /**
- * Export the settings as a JSON string (for backup / transfer). Without the
- * DeepL key: these files get shared, to ask for help or to pass settings on.
+ * What stays this device's own across an export and an import: the key, the
+ * server and the e-mail address that decide where text and identity go, the
+ * consent to usage statistics, and the record of which channels were watched.
+ */
+const DEVICE_KEYS = [
+  'deeplApiKey',
+  'lingvaInstance',
+  'myMemoryEmail',
+  'usageStats',
+  'usageStatsAsked',
+  'pausedChannels',
+  'channelLangs',
+] as const satisfies readonly (keyof Settings)[];
+
+/**
+ * Export the settings as a JSON string (for backup / transfer). These files get
+ * shared, to ask for help or to pass settings on, so the device's own values
+ * (see DEVICE_KEYS) are blanked. The lists the reader wrote on purpose (blocked
+ * words and users, allowed and blocked channels, glossary) stay: they are the
+ * settings someone transfers.
  */
 export async function exportSettings(): Promise<string> {
   const s = await loadSettings();
-  return JSON.stringify(withoutKey(s), null, 2);
+  return JSON.stringify(
+    { ...withoutKey(s), myMemoryEmail: '', lingvaInstance: '', pausedChannels: [], channelLangs: {} },
+    null,
+    2,
+  );
 }
 
 /**
@@ -286,20 +328,43 @@ export function parseSettingsJson(json: string): Settings {
 /**
  * Import settings from a JSON string. Returns the settings now in force.
  *
- * Two things stay this device's own. The DeepL key: a file without one (every
- * export since 3.6.3) leaves it in place. The Lingva server: a file someone
- * else wrote would otherwise send every chat line to their server, and nothing
- * on screen would say so.
+ * DEVICE_KEYS stay this device's own, whatever the file says. A file someone else
+ * wrote would otherwise send every chat line to their Lingva server, put their
+ * DeepL account behind every request, switch on the usage statistics without the
+ * question being asked, or set the e-mail MyMemory receives, and nothing on screen
+ * would say so. A key in an old backup is ignored for the same reason.
  */
 export async function importSettings(json: string): Promise<Settings> {
   const file = parseSettingsJson(json);
   const current = await loadSettings();
-  const next = { ...file, lingvaInstance: current.lingvaInstance, deeplApiKey: file.deeplApiKey || current.deeplApiKey };
-  // A backup written before 3.6.3 may still carry a key: it goes to local
-  // storage, never to sync.
-  if (file.deeplApiKey) await chrome.storage.local.set({ [STORAGE_KEY_DEEPL_KEY]: file.deeplApiKey });
+  const next = { ...file, ...Object.fromEntries(DEVICE_KEYS.map((k) => [k, current[k]])) } as Settings;
   await chrome.storage.sync.set({ [STORAGE_KEY_SETTINGS]: withoutKey(next) });
   return next;
+}
+
+/**
+ * Keep storage out of the content scripts' reach.
+ *
+ * They run in the least trusted context the extension has, and by default they read
+ * and write storage.local and storage.sync directly: the DeepL key, and the settings
+ * blob whose lingvaInstance decides where chat text is sent, bypassing every check the
+ * worker makes on a page's messages. Trusted contexts only, set at each worker start.
+ * Firefox has no such control: there the content script keeps what it always had.
+ */
+export function restrictStorageAccess(): void {
+  // Metrics builds only (a constant false in a release): the content-side metrics sink and its
+  // bridge write storage.local from the page's world, and the lock would drop that data.
+  if (__KT_METRICS__) return;
+  const refused = (err: unknown): void =>
+    // Without this line nobody would know the protection is absent.
+    console.warn('[TwitchTranslator] storage access level refused, content scripts keep storage access', err);
+  for (const area of [chrome.storage.local, chrome.storage.sync]) {
+    try {
+      void Promise.resolve(area.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' })).catch(refused);
+    } catch (err: unknown) {
+      refused(err);
+    }
+  }
 }
 
 export function watchSettings(cb: (next: Settings) => void): () => void {

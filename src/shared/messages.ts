@@ -40,6 +40,11 @@ export type RuntimeMessage =
   | { type: 'i18n.chat'; locale: string }
   /** Emote names of a channel (7TV, BTTV, FFZ, channel and global), see background/emotes. */
   | { type: 'emotes.get'; roomId?: string }
+  /** Content scripts cannot read storage (restrictStorageAccess): these two memories go through the worker. */
+  | { type: 'lastlang.get'; slug: string }
+  | { type: 'lastlang.set'; slug: string; lang: string }
+  | { type: 'hint.get' }
+  | { type: 'hint.set'; value: number | boolean }
   | { type: 'ping' };
 
 export type RuntimeResponse =
@@ -53,6 +58,8 @@ export type RuntimeResponse =
   | { type: 'update.info'; payload: UpdateStatus }
   | { type: 'debug.decisions'; payload: Decision[] }
   | { type: 'i18n.chat'; payload?: Record<string, string> }
+  | { type: 'lastlang'; lang?: string }
+  | { type: 'hint'; value?: number | boolean }
   | { type: 'ack' }
   | { type: 'error'; payload: { message: string } };
 

@@ -32,6 +32,7 @@ const vues: string[] = [];
 vi.mock('./pipeline', () => ({
   TranslationPipeline: class {
     setChannelLang(): void {}
+    dispose(): void {}
     updateSettings(s: Settings): void {
       vues.push(s.targetLang);
     }

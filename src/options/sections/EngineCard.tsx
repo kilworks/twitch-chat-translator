@@ -25,17 +25,23 @@ function ctor(): TranslatorCtor | undefined {
 
 const COMMON_SOURCES = ['ja', 'ko', 'zh', 'es', 'pt', 'fr', 'de', 'ru', 'ar', 'tr'];
 
-export type ChipView = 'download' | 'busy' | 'ready' | 'unavailable';
+export type ChipView = 'download' | 'busy' | 'checking' | 'ready' | 'unavailable';
 
-/** What a download chip shows, from the probe answer and the click in flight. */
-export function chipView(probe: string | undefined, busy: boolean): ChipView {
+/**
+ * What a download chip shows, from the probe answer and the click in flight.
+ * `probing` is the probe still running: a chip it has not reached yet is neither "Download"
+ * (it may be installed) nor stale from the previous target.
+ */
+export function chipView(probe: string | undefined, busy: boolean, probing = false): ChipView {
   if (probe === 'available') return 'ready';
   if (probe === 'unavailable') return 'unavailable';
-  return busy ? 'busy' : 'download';
+  if (busy) return 'busy';
+  return probing && probe === undefined ? 'checking' : 'download';
 }
 
 const CHIP_ICON: Record<ChipView, string> = {
   download: 'download',
+  checking: 'loader',
   busy: 'loader',
   ready: 'check',
   unavailable: 'ban',
@@ -45,6 +51,9 @@ export function EngineCard({ settings, onPatch }: Props) {
   const t = useT();
   const present = ctor() !== undefined;
   const [probe, setProbe] = useState<Record<string, string>>({});
+  const [probing, setProbing] = useState(true);
+  // How far the download in flight has got, 0 to 100, when the browser reports it.
+  const [pct, setPct] = useState<number | undefined>(undefined);
   const dlId = useId();
   const [busy, setBusy] = useState<string | undefined>(undefined);
   const [outcome, setOutcome] = useState<{ failed: boolean; text: string } | undefined>(undefined);
@@ -58,17 +67,22 @@ export function EngineCard({ settings, onPatch }: Props) {
     const c = ctor();
     if (!c) return;
     let cancelled = false;
+    // The ticks of the previous target do not describe this one.
+    setProbe({});
+    setProbing(true);
     void (async () => {
-      const out: Record<string, string> = {};
       for (const s of COMMON_SOURCES) {
         if (s === target) continue;
+        let answer: string;
         try {
-          out[s] = await c.availability({ sourceLanguage: s, targetLanguage: target });
+          answer = await c.availability({ sourceLanguage: s, targetLanguage: target });
         } catch {
-          out[s] = 'unavailable';
+          answer = 'unavailable';
         }
+        // Each chip lands as it is answered, not after the tenth.
+        if (!cancelled) setProbe((p) => ({ ...p, [s]: answer }));
       }
-      if (!cancelled) setProbe(out);
+      if (!cancelled) setProbing(false);
     })();
     return () => {
       cancelled = true;
@@ -79,10 +93,19 @@ export function EngineCard({ settings, onPatch }: Props) {
     const c = ctor();
     if (!c) return;
     setBusy(src);
+    setPct(undefined);
     setOutcome(undefined);
     try {
       // This click is a user gesture → model download is permitted.
-      const inst = await c.create({ sourceLanguage: src, targetLanguage: target });
+      const inst = await c.create({
+        sourceLanguage: src,
+        targetLanguage: target,
+        monitor: (m) =>
+          m.addEventListener('downloadprogress', (e) => {
+            const loaded = (e as Event & { loaded?: number }).loaded;
+            if (typeof loaded === 'number') setPct(Math.round(Math.min(1, Math.max(0, loaded)) * 100));
+          }),
+      });
       await inst.translate('test');
       setProbe((p) => ({ ...p, [src]: 'available' }));
       setOutcome({ failed: false, text: t('{lang}, downloaded').replace('{lang}', langName(src)) });
@@ -137,8 +160,8 @@ export function EngineCard({ settings, onPatch }: Props) {
             onPatch({ engineMode: (e.target as HTMLSelectElement).value as Settings['engineMode'] })
           }
         >
-          <option value="local-first">{t('On-device first, cloud if needed (recommended)')}</option>
-          <option value="cloud-first">{t('Cloud first, on-device if needed')}</option>
+          <option value="local-first">{t('On-device first, cloud if needed')}</option>
+          <option value="cloud-first">{t('Cloud first, on-device if needed (recommended)')}</option>
           <option value="local-only">{t('On-device only (nothing sent online)')}</option>
         </select>
         <p class="text-xs text-kick-muted">
@@ -177,11 +200,13 @@ export function EngineCard({ settings, onPatch }: Props) {
           </svg>
           <div role="group" aria-labelledby={dlId} class="flex flex-wrap gap-2">
             {COMMON_SOURCES.filter((s) => s !== target).map((s) => {
-              const v = chipView(probe[s], busy === s);
+              const v = chipView(probe[s], busy === s, probing);
               const name = langName(s);
               // Literal keys, so the i18n coverage test sees every one of them.
               const label = (
-                v === 'ready'
+                v === 'checking'
+                  ? '{lang}'
+                  : v === 'ready'
                   ? t('{lang}, downloaded')
                   : v === 'unavailable'
                     ? t('{lang}, not available')
@@ -201,7 +226,7 @@ export function EngineCard({ settings, onPatch }: Props) {
                   aria-label={label}
                   title={label}
                   aria-disabled={v !== 'download' || undefined}
-                  aria-busy={v === 'busy' || undefined}
+                  aria-busy={v === 'busy' || v === 'checking' || undefined}
                   // Solid edges in every state, and green only on the ready
                   // tick: a green fill read as "selected" in a multi-select,
                   // a dashed edge as "empty" (the composer chip lost it too).
@@ -210,7 +235,7 @@ export function EngineCard({ settings, onPatch }: Props) {
                       ? 'border-kick-stroke text-kick-text cursor-default'
                       : v === 'unavailable'
                         ? 'border-kick-stroke text-kick-muted cursor-not-allowed'
-                        : v === 'busy'
+                        : v === 'busy' || v === 'checking'
                           ? 'border-kick-stroke text-kick-text cursor-progress'
                           : 'border-kick-stroke text-kick-text hover:border-kick-primary'
                   }`}
@@ -218,6 +243,7 @@ export function EngineCard({ settings, onPatch }: Props) {
                 >
                   {flagClass(s) && <span class={flagClass(s)} aria-hidden="true" />}
                   <span>{name}</span>
+                  {v === 'busy' && pct !== undefined && <span class="tabular-nums text-kick-muted">{pct}%</span>}
                   <svg class={`h-4 w-4 shrink-0 ${v === 'busy' ? 'animate-spin' : ''} ${v === 'ready' ? 'text-kick-primary' : ''}`} aria-hidden="true">
                     <use href={`#i-eng-${CHIP_ICON[v]}`} />
                   </svg>

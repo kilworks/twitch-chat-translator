@@ -46,6 +46,8 @@ export function App() {
   // Recent lines of this tab's chat the language allowlist left untranslated,
   // as the chat's own bar counts them. 0 when none, or when the tab cannot say.
   const [langBlocked, setLangBlocked] = useState(0);
+  // What went wrong, said in the footer's status line: the worker did not answer, or refused a save.
+  const [problem, setProblem] = useState<'load' | 'save' | undefined>(undefined);
 
   const locale = useLoadedLocale(resolveUiLocale(settings.uiLang));
   // Named for the reader and sorted with their locale's collation. Keyed on the
@@ -55,7 +57,7 @@ export function App() {
   const t = useMemo(() => makeT(locale), [locale]);
 
   useEffect(() => {
-    void refresh().catch(() => undefined);
+    void refresh().catch(() => setProblem('load'));
     void chrome.tabs
       .query({ active: true, currentWindow: true })
       .then(([tab]) => {
@@ -80,16 +82,20 @@ export function App() {
   }, [locale]);
 
   async function refresh() {
-    const settingsRes = await send({ type: 'settings.get' });
-    if (settingsRes.type === 'settings') setSettings(settingsRes.payload);
-    const statsRes = await send({ type: 'stats.get' });
-    if (statsRes.type === 'stats') setStats(statsRes.payload);
-    const provRes = await send({ type: 'providers.status' });
-    if (provRes.type === 'providers') setProviders(provRes.payload);
-    const deeplRes = await send({ type: 'deepl.usage' });
-    if (deeplRes.type === 'deepl.usage') setDeepl(deeplRes.payload);
-    const upRes = await send({ type: 'update.status' });
-    if (upRes.type === 'update.info') setUpdate(upRes.payload);
+    // Together: deepl.usage and update.status can each wait on the network, and in series
+    // they made the card that depends on neither wait for both. Each lands as it answers.
+    const [settingsRes] = await Promise.all([
+      send({ type: 'settings.get' }).then((res) => {
+        if (res.type === 'settings') setSettings(res.payload);
+        return res;
+      }),
+      send({ type: 'stats.get' }).then((res) => res.type === 'stats' && setStats(res.payload)),
+      send({ type: 'providers.status' }).then((res) => res.type === 'providers' && setProviders(res.payload)),
+      send({ type: 'deepl.usage' }).then((res) => res.type === 'deepl.usage' && setDeepl(res.payload)),
+      send({ type: 'update.status' }).then((res) => res.type === 'update.info' && setUpdate(res.payload)),
+    ]);
+    // Without settings the toggles show defaults, not the reader's state: say so.
+    if (settingsRes.type !== 'settings') setProblem('load');
   }
 
   async function patch<K extends keyof Settings>(key: K, value: Settings[K]) {
@@ -97,11 +103,15 @@ export function App() {
   }
 
   async function patchMany(next: Partial<Settings>) {
-    const res = await send({ type: 'settings.set', payload: next });
-    if (res.type === 'settings') {
+    const res = await send({ type: 'settings.set', payload: next }).catch(() => undefined);
+    if (res?.type === 'settings') {
+      setProblem(undefined);
       setSettings(res.payload);
       setSavedAt(Date.now());
       setTimeout(() => setSavedAt(undefined), 1500);
+    } else {
+      // The control did not move and nothing said why.
+      setProblem('save');
     }
   }
 
@@ -133,6 +143,10 @@ export function App() {
   // there too and the question is the one thing in focus.
   const otherPrimary = firstRun || pausedHere || !!blockedHere;
 
+  // Off Twitch the popup is the same settings as on it, with nothing to say that this tab is not
+  // translated. No line of its own (the height is budgeted to the pixel): the version line says it.
+  const notHereHint = t('Open a Twitch channel: its chat is translated as it arrives.');
+
   function openOptions() {
     void chrome.runtime.openOptionsPage();
   }
@@ -159,7 +173,7 @@ export function App() {
               checked={settings.enabled}
               onChange={(v) => void patch('enabled', v)}
               label={t('Enable')}
-              srLabel={t('Translate the chat')}
+              srLabel={`${t('Enable')}: ${t('Translate the chat')}`}
             />
           </div>
         </header>
@@ -300,7 +314,7 @@ export function App() {
                   )
                 }
               >
-                <option value="below">{t('Below original')}</option>
+                <option value="below">{t('Below')}</option>
                 <option value="inline">{t('Inline')}</option>
                 <option value="replace">{t('Replace')}</option>
                 <option value="hover">{t('On hover')}</option>
@@ -466,16 +480,19 @@ export function App() {
               line it was cut in Greek and Tamil. Two lines rather than an
               ellipsis if a language still runs long, for the 2 s it is up. */}
           <span
-            class={`min-w-0 text-xs text-kick-muted ${cleared ? 'line-clamp-2' : 'truncate'}`}
+            class={`min-w-0 text-xs ${problem ? 'text-red-400' : 'text-kick-muted'} ${cleared ? 'line-clamp-2' : 'truncate'}`}
             role="status"
-            title={cleared ? t('Cache cleared') : undefined}
+            title={cleared ? t('Cache cleared') : !onTwitch && !firstRun && !problem ? notHereHint : undefined}
           >
             {cleared ? (
               t('Cache cleared')
+            ) : problem ? (
+              problem === 'save' ? t('Not saved.') : t('unavailable')
             ) : (
               <>
                 v{chrome.runtime.getManifest().version}
                 {savedAt ? ` · ${t('saved')}` : ''}
+                {!onTwitch && !firstRun && !savedAt ? ` · ${notHereHint}` : ''}
               </>
             )}
           </span>

@@ -1,21 +1,22 @@
-import { defaultSettings, loadSettings, resetSettings, saveSettings, watchSettings, withoutKey, type Settings } from '~/shared/settings';
+import { defaultSettings, loadSettings, resetSettings, restrictStorageAccess, saveSettings, watchSettings, withoutKey, type Settings } from '~/shared/settings';
 import { onMessage, type RuntimeMessage, type RuntimeResponse } from '~/shared/messages';
 import { rootLogger } from '~/shared/logger';
 import { createMetrics } from '~/shared/metrics';
 import { TranslationCache, warmTargets } from './cache';
-import { resolveTargetLang } from '~/shared/languages';
+import { isSupportedLang, resolveTargetLang } from '~/shared/languages';
 import { TokenBucket } from './queue';
 import { StatsTracker } from './stats';
 import { TranslationCoalescer } from './coalescer';
 import { anyProviderReady, getProviderStatus, setDeeplUsagePct } from './translator';
-import { armKeepalive, installKeepalive, listenKeepalive } from './keepalive';
+import { armKeepalive, installKeepalive, listenKeepalive, onLastTabGone } from './keepalive';
 import { getUpdateStatus, installUpdateCheck } from './updateChecker';
-import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO } from '~/shared/constants';
+import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO, MAX_TEXT_LENGTH } from '~/shared/constants';
 import { getSemanticOverride } from '~/shared/transliterationGuard';
 import { ecrireDansSlate } from './slateWrite';
-import { emoteNamesFor } from './emotes';
+import { emoteNamesFor, isRoomId } from './emotes';
+import { getHint, getLastLang, setHint, setLastLang } from './memo';
 import { CHAT_MESSAGES } from '~/content/i18n';
-import { addUsage, dropUsage, installUsage, recordProviderError, recordTranslation } from './usage';
+import { addUsage, dropUsage, flushUsage, installUsage, recordProviderError, recordTranslation, syncUsageAlarm } from './usage';
 import type { ProviderId, TranslationOutcome, TranslationRequest } from '~/shared/types';
 
 const log = rootLogger.child('sw');
@@ -25,29 +26,73 @@ let settings: Settings = defaultSettings();
 const cache = new TranslationCache(settings.cacheMaxEntries, settings.cacheTtlHours * 3_600_000);
 const stats = new StatsTracker();
 const channelBuckets = new Map<string, TokenBucket>();
+/** All channels together, a multiple of one channel's budget: rotating channel names cannot get past it. */
+const GLOBAL_BUDGET_FACTOR = 4;
+const globalBucket = new TokenBucket(settings.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR, settings.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR);
 const coalescer = new TranslationCoalescer({ getSettings: () => settings, cache, stats });
 
 function bucketFor(channel: string): TokenBucket {
   let b = channelBuckets.get(channel);
   if (!b) {
     b = new TokenBucket(settings.perChannelBudgetPerMin, settings.perChannelBudgetPerMin);
+    // A page names its own channel: bound the map so varying the name cannot grow it.
+    if (channelBuckets.size >= 200) channelBuckets.delete(channelBuckets.keys().next().value!);
     channelBuckets.set(channel, b);
   }
   return b;
 }
 
-function applySettings(next: Settings): void {
+let announceTimer: ReturnType<typeof setTimeout> | undefined;
+
+/**
+ * Tell every chat tab that the settings changed. Content scripts cannot read or watch
+ * storage (restrictStorageAccess), so this is how they hear of it: they ask for the
+ * settings again, through settings.get, which comes without the DeepL key. Debounced:
+ * one change reaches this twice, once from the handler and once from storage.onChanged.
+ */
+function announceSettings(): void {
+  clearTimeout(announceTimer);
+  announceTimer = setTimeout(() => {
+    void (async () => {
+      // Every tab, not the ones whose own URL matches: the content script also runs in Twitch
+      // chat iframes embedded in other sites (all_frames), and the tab URL filter never saw those.
+      // A tab without the script answers "no receiving end", swallowed here.
+      const tabs = await chrome.tabs.query({}).catch(() => []);
+      for (const tab of tabs) {
+        if (tab.id !== undefined) void chrome.tabs.sendMessage(tab.id, { type: 'settings.changed' }).catch(() => undefined);
+      }
+    })().catch(() => undefined);
+  }, 50);
+}
+
+function applySettings(next: Settings, announce = true): void {
   // Consent withdrawn: the day counted so far goes with it.
   if (settings.usageStats && !next.usageStats) void dropUsage();
+  const consentChanged = settings.usageStats !== next.usageStats;
   settings = next;
+  if (consentChanged) void syncUsageAlarm().catch(() => undefined);
   cache.setConfig(next.cacheMaxEntries, next.cacheTtlHours * 3_600_000);
   for (const b of channelBuckets.values()) {
     b.setRate(next.perChannelBudgetPerMin, next.perChannelBudgetPerMin);
   }
+  globalBucket.setRate(next.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR, next.perChannelBudgetPerMin * GLOBAL_BUDGET_FACTOR);
   rootLogger.setEnabled(next.debug);
+  if (announce) announceSettings();
 }
 
+/** The page that sent it is the least trusted context: check the shape before spending a provider call on it. */
+const wellFormed = (r: TranslationRequest | undefined): r is TranslationRequest =>
+  typeof r?.text === 'string' && r.text.length <= 2000 &&
+  typeof r.targetLang === 'string' && r.targetLang.length <= 20 &&
+  (r.channel === undefined || (typeof r.channel === 'string' && r.channel.length <= 80)) &&
+  (r.context === undefined || (typeof r.context === 'string' && r.context.length <= 4000)) &&
+  typeof r.messageId === 'string' && r.messageId.length <= 80 &&
+  (r.sourceLangHint === undefined || (typeof r.sourceLangHint === 'string' && r.sourceLangHint.length <= 20)) &&
+  (r.noCache === undefined || typeof r.noCache === 'boolean') &&
+  (r.formal === undefined || typeof r.formal === 'boolean');
+
 async function handleTranslate(req: TranslationRequest): Promise<TranslationOutcome> {
+  if (!wellFormed(req)) return { ok: false, error: { code: 'invalid', message: 'Invalid request' } };
   if (!settings.enabled) {
     return { ok: false, error: { code: 'disabled', message: 'Extension disabled' } };
   }
@@ -73,6 +118,8 @@ async function handleTranslate(req: TranslationRequest): Promise<TranslationOutc
   // table's own chat register, matches on 29, and answers all 90 without touching
   // the network. The saved calls are the larger half of what it buys, and the
   // file's header does not say so.
+  // Normalised once for the cache, the coalescer's dedup and the write behind them.
+  const key = cache.key(req.text, req.targetLang);
   const override = getSemanticOverride(req.text, req.targetLang);
   if (override) {
     const detected = req.sourceLangHint ?? 'auto';
@@ -95,7 +142,7 @@ async function handleTranslate(req: TranslationRequest): Promise<TranslationOutc
     // IndexedDB, on the path of every single line. A hit is the fastest possible
     // answer, but a miss still pays this before anything else starts, and the
     // measured hit rate is 10%.
-    const lookup = (): Promise<Awaited<ReturnType<typeof cache.get>>> => cache.get(req.text, req.targetLang);
+    const lookup = (): Promise<Awaited<ReturnType<typeof cache.get>>> => cache.get(req.text, req.targetLang, key);
     const cached = __KT_METRICS__ ? await metrics.measure('leg.cache.lookup', lookup) : await lookup();
     if (cached) {
       const provider = cached.provider as ProviderId;
@@ -113,7 +160,9 @@ async function handleTranslate(req: TranslationRequest): Promise<TranslationOutc
     }
   }
 
-  if (req.channel && !bucketFor(req.channel).tryTake()) {
+  // Taken first and for every request, a missing channel included: the per-channel bucket below is
+  // the fair share, this one is the ceiling a hostile page cannot rotate around.
+  if (!globalBucket.tryTake() || (req.channel && !bucketFor(req.channel).tryTake())) {
     // Compte le refus : sans lui, le reglage qui plafonne ce seau ne peut pas
     // dire s'il a deja servi a quelque chose, et le lecteur regle un nombre a
     // l'aveugle.
@@ -126,7 +175,7 @@ async function handleTranslate(req: TranslationRequest): Promise<TranslationOutc
     return { ok: false, error: { code: 'saturated', message: 'No provider available' } };
   }
 
-  return coalescer.submit(req);
+  return coalescer.submit(req, key);
 }
 
 interface DeeplUsage {
@@ -176,7 +225,8 @@ const CACHE_PRUNE_ALARM = 'kt-cache-prune';
 
 async function init(): Promise<void> {
   settings = await loadSettings();
-  applySettings(settings);
+  applySettings(settings, false);
+  settingsLoaded();
   await stats.load();
   await cache.warm(200, warmTargets(resolveTargetLang(settings.targetLang), stats.current().byLang));
   log.info('Service worker initialized');
@@ -193,7 +243,12 @@ async function init(): Promise<void> {
 }
 
 // Top level, before anything awaits: see listenKeepalive.
+restrictStorageAccess();
 listenKeepalive();
+onLastTabGone(() => {
+  void stats.flush();
+  void flushUsage();
+});
 chrome.alarms.onAlarm.addListener((alarm) => {
   // Pruning before init would apply the default size and lifetime, not the reader's.
   if (alarm.name === CACHE_PRUNE_ALARM) void ready.then(() => cache.prune());
@@ -210,7 +265,24 @@ if (__KT_DEV__) {
 }
 // An event can wake the worker and arrive before init() has read storage:
 // every handler waits for it, or it would act on the defaults.
-const ready = init().catch((e: unknown) => log.error('init failed', e));
+let settingsLoaded: () => void = () => undefined;
+/** Settled once the settings are read: enough for the messages that touch nothing else. */
+const settingsReady = new Promise<void>((resolve) => (settingsLoaded = resolve));
+const ready = init()
+  .catch((e: unknown) => log.error('init failed', e))
+  .finally(() => settingsLoaded());
+/** These wait for the settings only, not for the stats and the cache warm-up behind them. */
+const NEEDS_SETTINGS_ONLY = new Set<RuntimeMessage['type']>([
+  'settings.get',
+  'i18n.chat',
+  'emotes.get',
+  'lastlang.get',
+  'lastlang.set',
+  'hint.get',
+  'hint.set',
+  'open.options',
+  'ping',
+]);
 watchSettings(applySettings);
 
 /**
@@ -227,6 +299,10 @@ const PAGE_MESSAGES = new Set<RuntimeMessage['type']>([
   'stats.local',
   'usage.add',
   'i18n.chat',
+  'lastlang.get',
+  'lastlang.set',
+  'hint.get',
+  'hint.set',
   'emotes.get',
   'settings.get',
   'settings.set',
@@ -247,7 +323,7 @@ const pageMayWrite = (patch: Partial<Settings>): boolean =>
 const NOT_ALLOWED: RuntimeResponse = { type: 'error', payload: { message: 'not allowed' } };
 
 onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
-  await ready;
+  await (NEEDS_SETTINGS_ONLY.has(msg.type) ? settingsReady : ready);
   // Chrome gives chrome-extension://<id>/, Firefox moz-extension://<uuid>/.
   const fromPage = !sender.url?.startsWith(chrome.runtime.getURL(''));
   if (fromPage && !PAGE_MESSAGES.has(msg.type)) return NOT_ALLOWED;
@@ -273,16 +349,29 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
       }
       return { type: 'translate.result', payload: outcome };
     }
-    case 'stats.local':
-      stats.recordRequest('local', msg.payload.lang, msg.payload.chars, false);
+    case 'stats.local': {
+      const { lang, chars } = (msg.payload ?? {}) as Partial<{ lang: unknown; chars: unknown }>;
+      // From a page: a number that adds up and a language the product knows, or nothing.
+      if (typeof lang !== 'string' || !isSupportedLang(lang) || typeof chars !== 'number' || !Number.isFinite(chars) || chars < 0 || chars > MAX_TEXT_LENGTH) return NOT_ALLOWED;
+      stats.recordRequest('local', lang, chars, false);
       void recordTranslation('local', false);
       return { type: 'ack' };
+    }
     case 'usage.add':
       await addUsage(msg.counts, msg.env);
       return { type: 'ack' };
     case 'i18n.chat':
-      return { type: 'i18n.chat', payload: CHAT_MESSAGES[msg.locale] };
+      return { type: 'i18n.chat', payload: Object.hasOwn(CHAT_MESSAGES, msg.locale) ? CHAT_MESSAGES[msg.locale] : undefined };
+    case 'lastlang.get':
+      return { type: 'lastlang', lang: await getLastLang(msg.slug) };
+    case 'lastlang.set':
+      return (await setLastLang(msg.slug, msg.lang)) ? { type: 'ack' } : NOT_ALLOWED;
+    case 'hint.get':
+      return { type: 'hint', value: await getHint() };
+    case 'hint.set':
+      return (await setHint(msg.value)) ? { type: 'ack' } : NOT_ALLOWED;
     case 'emotes.get':
+      if (msg.roomId !== undefined && !isRoomId(msg.roomId)) return NOT_ALLOWED;
       return { type: 'emotes', names: await emoteNamesFor(msg.roomId) };
     case 'settings.get':
       return { type: 'settings', payload: fromPage ? withoutKey(settings) : settings };

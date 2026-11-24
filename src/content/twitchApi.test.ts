@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchChannelLangIso, fetchRoomId, readClientId } from './twitchApi';
+import { getLastLang, setLastLang } from '../background/memo';
 import { channelFromPath } from './platform';
 
 const CLIENT_ID = 'abcdefghijklmnopqrstuvwxyz0123';
@@ -136,23 +137,35 @@ describe('channel metadata requests', () => {
 
   it('falls back to the last language seen for the channel', async () => {
     const stored: Record<string, unknown> = {};
+    // The content script has no storage: the worker's memo keeps the language.
     vi.stubGlobal('chrome', {
       storage: {
         local: {
-          get: (k: string) => Promise.resolve({ [k]: stored[k] }),
+          get: (k: string | string[]) => Promise.resolve(Object.fromEntries([k].flat().map((key) => [key, stored[key]]))),
           set: (obj: Record<string, unknown>) => {
             Object.assign(stored, obj);
             return Promise.resolve();
           },
         },
       },
+      runtime: {
+        lastError: undefined,
+        sendMessage: (m: { type: string; slug: string; lang?: string }, cb: (r: unknown) => void) => {
+          void (async () => {
+            if (m.type === 'lastlang.get') cb({ type: 'lastlang', lang: await getLastLang(m.slug) });
+            else if (await setLastLang(m.slug, m.lang)) cb({ type: 'ack' });
+          })();
+        },
+      },
     });
     mockFetch(gqlUser('JA'));
     expect(await fetchChannelLangIso('kt-test-persist')).toBe('ja');
-    expect(stored['kt.lastlang.kt-test-persist']).toBe('ja');
+    await vi.waitFor(() => expect(stored['kt.lastlang.v2']).toBeDefined());
+    expect((stored['kt.lastlang.v2'] as Record<string, string>)['kt-test-persist']).toBe('ja');
 
     mockFetch('', 500);
     expect(await fetchChannelLangIso('kt-test-persist-later')).toBeUndefined();
+    // A key written by an earlier build is still read.
     stored['kt.lastlang.kt-test-persist-later'] = 'ja';
     expect(await fetchChannelLangIso('kt-test-persist-later')).toBe('ja');
   });

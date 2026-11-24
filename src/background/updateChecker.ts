@@ -39,6 +39,13 @@ function onAlarm(alarm: chrome.alarms.Alarm): void {
 
 /** Checks every six hours in the background, so the icon changes without the popup ever opening. */
 export function installUpdateCheck(): void {
+  // A store copy never asks GitHub (getUpdateStatus returns at once), so waking the worker every
+  // six hours for it is a start of the worker for nothing.
+  if (fromStore()) {
+    void chrome.alarms.clear(ALARM).catch(() => undefined);
+    void getUpdateStatus();
+    return;
+  }
   // Created only when missing: re-creating a named alarm resets its clock, and a
   // service worker woken more often than every six hours would never let it fire.
   void chrome.alarms.get(ALARM).then((existing) => {

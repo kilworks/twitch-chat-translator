@@ -31,6 +31,10 @@ export interface DomMessage {
 type Callback = (msg: DomMessage) => void;
 
 const PROCESSED_MARK = 'data-kt-id';
+const POLL_HIDDEN_MS = 2000;
+
+/** The nodes inside a row that take the deleted class: 7TV's message, Twitch's own line. */
+const DELETION_HOLDERS = '.seventv-user-message, .chat-line__message';
 
 /**
  * Signe la marque de CETTE instance du script.
@@ -49,12 +53,17 @@ export class ChatObserver {
   private containerWatcher: MutationObserver | undefined;
   private container: Element | undefined;
   private pollHandle: ReturnType<typeof setTimeout> | undefined;
+  private misses = 0;
   private seenIds = new Set<string>();
   private cb: Callback;
   private running = false;
 
-  constructor(cb: Callback) {
+  /** True while a hidden tab should still be translated: "pause when hidden" is off. */
+  private attachWhenHidden: () => boolean;
+
+  constructor(cb: Callback, attachWhenHidden: () => boolean = () => false) {
     this.cb = cb;
+    this.attachWhenHidden = attachWhenHidden;
   }
 
   start(): void {
@@ -80,6 +89,7 @@ export class ChatObserver {
     // list is missing, measured: three pairs left connected).
     clearTimeout(this.pollHandle);
     this.pollHandle = undefined;
+    this.misses = 0;
     this.listObserver?.disconnect();
     this.listObserver = undefined;
     this.containerWatcher?.disconnect();
@@ -90,6 +100,13 @@ export class ChatObserver {
 
   private tryAttach(): void {
     if (!this.running) return;
+    // A tab nobody looks at does not scan the document for a chat that has no rows yet.
+    // Unless the reader turned "pause when hidden" off: a chat opened in a background tab then
+    // translates without waiting for the tab to be shown.
+    if (document.hidden && !this.attachWhenHidden()) {
+      this.pollHandle = setTimeout(() => this.tryAttach(), POLL_HIDDEN_MS);
+      return;
+    }
     const container = findChatContainer(document);
     if (container) {
       if (__KT_METRICS__) metrics.count('dom.attach');
@@ -100,7 +117,11 @@ export class ChatObserver {
     // signal is a toast the user sees once the extension is already broken; this
     // is the same fact, an hour earlier, in a number that can be read on demand.
     if (__KT_METRICS__) metrics.count('dom.container.miss');
-    this.pollHandle = setTimeout(() => this.tryAttach(), 500);
+    // A chat that stays empty (offline, followers-only) was scanned twice a second for the life of
+    // the tab: slow down, 0.5 s for the first 10 s, then 1 s, 2 s and 5 s.
+    this.misses += 1;
+    const delay = this.misses <= 20 ? 500 : this.misses <= 40 ? 1000 : this.misses <= 60 ? 2000 : 5000;
+    this.pollHandle = setTimeout(() => this.tryAttach(), delay);
   }
 
   private attach(container: Element): void {
@@ -111,8 +132,9 @@ export class ChatObserver {
 
     // Virtual scrollers recycle DOM nodes: when a row is reused its inner content
     // is REPLACED (a childList mutation on the subtree), so childList+subtree is
-    // sufficient. We deliberately do NOT watch characterData/attributes, on a
-    // fast chat those fire constantly and would thrash the callback for no gain.
+    // sufficient. We deliberately do NOT watch characterData, nor attributes across the
+    // subtree: on a fast chat, with 7TV, FFZ or BTTV changing classes on hover, focus and
+    // animation, those fire constantly and would thrash the callback for no gain.
     this.listObserver = new MutationObserver((mutations) => {
       const candidates = new Set<Element>();
       for (const mut of mutations) {
@@ -138,7 +160,9 @@ export class ChatObserver {
       }
       for (const row of candidates) this.process(row);
     });
-    this.listObserver.observe(container, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    this.listObserver.observe(container, { childList: true, subtree: true });
+    // The rows scanned above ran before the observer existed.
+    for (const row of findAllRows(container)) this.watchDeletion(row);
 
     // Detect re-mount of the container (channel switch) at the document level.
     //
@@ -178,6 +202,7 @@ export class ChatObserver {
       row.setAttribute(PROCESSED_MARK, `${INSTANCE}:deleted`);
       return;
     }
+    this.watchDeletion(row);
     const text = extractMessageText(row);
     if (!text) {
       // A row the observer matched but whose text selector returned nothing. A
@@ -213,6 +238,20 @@ export class ChatObserver {
       text,
       usernameGuess: username || undefined,
     });
+  }
+
+  /**
+   * The deleted mark is a class, on the row or on the node inside it that carries the message
+   * (7TV, Twitch's own line). Those two nodes are watched for it, not the whole subtree.
+   * Observing a node again with the same options changes nothing, so every pass may call this.
+   */
+  private watchDeletion(row: Element): void {
+    const o = this.listObserver;
+    if (!o) return;
+    const opts = { attributes: true, attributeFilter: ['class'] };
+    o.observe(row, opts);
+    const holder = row.querySelector(DELETION_HOLDERS);
+    if (holder) o.observe(holder, opts);
   }
 
   cap(maxSeen = 5000): void {

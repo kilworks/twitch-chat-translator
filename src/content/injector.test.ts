@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defaultSettings } from '~/shared/settings';
 import type { Settings } from '~/shared/settings';
 import type { TranslationResult } from '~/shared/types';
-import { HANDLED_SELECTOR, applyDisplayStyle, applyShowOriginal, armHoverTranslate, incrementFloatingCount, inject, markSkipped, mountFloatingBar, updateActiveProvider, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, unmountFloatingBar, updateFloatingBar } from './injector';
+import { HANDLED_SELECTOR, applyDisplayStyle, applyShowOriginal, armHoverTranslate, incrementFloatingCount, inject, markSkipped, mountFloatingBar, updateActiveProvider, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, showToast, unmountFloatingBar, updateFloatingBar } from './injector';
 import { nativeChat } from './twitchFixtures';
 // Read from disk: vitest runs with CSS processing off, so `?inline` imports
 // resolve to an empty string and would make these assertions pass on anything.
@@ -25,6 +25,9 @@ function settingsWith(displayStyle: Settings['displayStyle']): Settings {
 function artifacts(el: Element): Element[] {
   return [...el.children];
 }
+
+/** One animation frame, which is when the bar's counter paints. */
+const frame = (): Promise<void> => new Promise((r) => requestAnimationFrame(() => r()));
 
 afterEach(() => {
   document.body.innerHTML = '';
@@ -323,7 +326,7 @@ describe('injector artifacts', () => {
     // The counter and the provider tooltip are updated on every translated
     // line. Finding the panel on screen means asking for boxes, which forces a
     // layout right after the line was written: one per message on a fast chat.
-    it('reaches the bar on every line without measuring the page', () => {
+    it('reaches the bar on every line without measuring the page', async () => {
       const host = twoPanels();
       mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
       const rects = vi.spyOn(Element.prototype, 'getClientRects');
@@ -337,18 +340,20 @@ describe('injector artifacts', () => {
       rects.mockRestore();
       boxes.mockRestore();
       // Control: the updates did land, on the live bar.
+      await frame();
       const live = document.querySelectorAll('#kt-floating-bar')[1]!;
       expect(live.querySelector('.kt-float-count')?.textContent).toBe('· 5');
       expect((live as HTMLElement).dataset.provider).toBe('google');
     });
 
     // A bar Kick's re-render threw away is not the live one any more.
-    it('finds the bar again once the one it knew is gone', () => {
+    it('finds the bar again once the one it knew is gone', async () => {
       const host = twoPanels();
       mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
       document.querySelectorAll('#kt-floating-bar')[1]!.remove();
       mountFloatingBar(host, { ...defaultSettings(), enabled: false, targetLang: 'fr' }, barHandlers());
       incrementFloatingCount();
+      await frame();
       const live = document.querySelectorAll('#kt-floating-bar')[1]!;
       expect(live.querySelector('.kt-float-count')?.textContent).toBe('· 1');
     });
@@ -394,11 +399,12 @@ describe('injector artifacts', () => {
     });
 
     // `· 12` alone said nothing, to the eye or to a screen reader.
-    it('names what the counter counts', () => {
+    it('names what the counter counts', async () => {
       const host = twoPanels();
       mountFloatingBar(host, { ...defaultSettings(), enabled: true, targetLang: 'fr' }, barHandlers());
       incrementFloatingCount();
       incrementFloatingCount();
+      await frame();
       const count = document.querySelectorAll('#kt-floating-bar')[1]!.querySelector<HTMLElement>('.kt-float-count')!;
       expect(count.title).toBe('Translated on this page: 2');
       expect(count.getAttribute('aria-label')).toBe('Translated on this page: 2');
@@ -608,6 +614,34 @@ describe('injector artifacts', () => {
       expect(h.onTargetLang).toHaveBeenCalledWith('ja');
     });
 
+    // Only the power button pauses: a mis-click on the bar's padding used to (UI-24).
+    it('does not pause when the bar itself is clicked', () => {
+      const h = handlers();
+      const bar = mount(h);
+      bar.querySelector<HTMLElement>('.kt-float-label')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      bar.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      expect(h.onToggle).not.toHaveBeenCalled();
+    });
+
+    it('names its glyph buttons and announces the state label', () => {
+      const bar = mount(handlers());
+      const power = bar.querySelector<HTMLElement>('.kt-float-power')!;
+      const opts = bar.querySelector<HTMLElement>('.kt-float-opts')!;
+      expect(power.getAttribute('aria-label')).toBe(power.title);
+      expect(opts.getAttribute('aria-label')).toBe(opts.title);
+      expect(power.textContent).toContain('︎');
+      expect(bar.querySelector('.kt-float-label')?.getAttribute('role')).toBe('status');
+      power.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      expect(power.getAttribute('aria-label')).toBe(power.title);
+    });
+
+    it('announces a toast and leaves it visible under reduced motion', () => {
+      showToast('quota');
+      expect(document.querySelector('.kt-toast')?.getAttribute('role')).toBe('status');
+      const block = injectCss.slice(injectCss.lastIndexOf('@media (prefers-reduced-motion: reduce) {', injectCss.indexOf('Light theme. Kick publishes')));
+      expect(block).toMatch(/\.kt-toast\s*\{\s*animation:\s*none;/);
+    });
+
     // The bar toggles when clicked, so touching the picker must not also pause it.
     it('does not pause when the language picker is used', () => {
       const h = handlers();
@@ -683,7 +717,7 @@ describe('injector artifacts', () => {
         // The holder is matched by its child, never by a sibling of the text:
         // in a reply Kick nests the message a level deeper and a sibling rule
         // cannot reach it.
-        expect(rule).toContain(`div:has(> .${cls})`);
+        expect(rule).toMatch(new RegExp(String.raw`(div|\[data-kt-tr\]):has\(> \.${cls}\)`));
       }
       expect(rule).not.toContain('~ .kt-translation');
       // Both renderings of the original have to go: Twitch's own fragments
@@ -700,10 +734,10 @@ describe('injector artifacts', () => {
     it('hands the emote its own size back', () => {
       const exempt = injectCss
         .split('\n')
-        .filter((l) => l.includes('img') && l.includes('div:has('));
+        .filter((l) => l.includes('img') && l.includes(':has('));
       expect(exempt.length, 'nothing exempts the emote from the zeroed type').toBeGreaterThan(0);
       for (const cls of ['kt-translation', 'kt-translation-inline', 'kt-translation-replace']) {
-        expect(exempt.some((l) => l.includes(`div:has(> .${cls})`))).toBe(true);
+        expect(exempt.some((l) => new RegExp(String.raw`(div|\[data-kt-tr\]):has\(> \.${cls}\)`).test(l))).toBe(true);
       }
       const body = /:is\(img, svg, video\)\s*\{([^}]*)\}/.exec(injectCss)?.[1] ?? '';
       expect(body).toMatch(/font-size:\s*1rem/);
@@ -777,6 +811,29 @@ describe('injector artifacts', () => {
  * silently stops working for everyone running 7TV: on Kick the original stayed
  * visible next to its translation while the native path hid it.
  */
+// P11: the bar was rewritten, five attributes and a text node, for every translated line.
+describe('the bar counter and the provider tooltip', () => {
+  it('paint once per frame however many lines arrived, and rewrite nothing for the same provider', async () => {
+    const bar = mountBarInto(document.body);
+    const count = bar.querySelector<HTMLElement>('.kt-float-count')!;
+    const writes = vi.spyOn(count, 'setAttribute');
+    for (let i = 0; i < 30; i++) incrementFloatingCount();
+    expect(count.textContent).toBe('');
+    await frame();
+    expect(count.textContent).toBe('· 30');
+    expect(writes.mock.calls.filter((c) => c[0] === 'aria-label')).toHaveLength(1);
+
+    updateActiveProvider('google');
+    const label = bar.querySelector<HTMLElement>('.kt-float-label')!;
+    const title = vi.spyOn(label, 'title', 'set');
+    updateActiveProvider('google');
+    updateActiveProvider('google');
+    expect(title).not.toHaveBeenCalled();
+    updateActiveProvider('deepl');
+    expect(title).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('7TV', () => {
   it('hides the original for 7TV as well as for native Twitch', () => {
     // Filtered on what the rule REACHES, not on the class that gates it. The
@@ -797,6 +854,22 @@ describe('7TV', () => {
   it('rejects a rule that names only Twitch own fragment', () => {
     const bad = '.kt-hide-original div:has(> .kt-translation) [data-a-target="chat-message-text"] {';
     expect(bad.includes('.text-token')).toBe(false);
+  });
+});
+
+// P05: with "keep original" off, `div:has()` was live on every div of the page.
+describe('the hide-original rules', () => {
+  it('are scoped to the stamp inject() writes, not to every div', () => {
+    expect(injectCss).not.toMatch(/\.kt-hide-original div:has\(/);
+    expect(injectCss).toContain('.kt-hide-original [data-kt-tr]:has(> .kt-translation)');
+    expect(injectCss).toContain('.kt-hide-original [data-kt-tr]:has(> .kt-translation-inline)');
+  });
+
+  it('are reachable: inject() stamps the node it writes into', () => {
+    const row = document.createElement('div');
+    document.body.appendChild(row);
+    inject(row, result('hola'), settingsWith('below'));
+    expect(row.hasAttribute('data-kt-tr')).toBe(true);
   });
 });
 

@@ -19,14 +19,15 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { endpoint } from './endpoint.mjs';
 
 // No default: this product has no Chrome listing yet (PLAN K04), and the id this script was
 // copied with is the Kick extension's. An upload sent there would replace another product.
 const ITEM_ID = process.env.CWS_ITEM_ID;
 const CONF = path.join(os.homedir(), '.config', 'twitch-chat-translator');
 const KEY_FILE = process.env.CWS_SA_KEY ?? path.join(CONF, 'cws-service-account.json');
-const TOKEN_URL = process.env.CWS_TOKEN_URL ?? 'https://oauth2.googleapis.com/token';
-const API = process.env.CWS_API ?? 'https://chromewebstore.googleapis.com';
+const TOKEN_URL = endpoint('CWS_TOKEN_URL', 'https://oauth2.googleapis.com/token');
+const API = endpoint('CWS_API', 'https://chromewebstore.googleapis.com');
 const SCOPE = 'https://www.googleapis.com/auth/chromewebstore';
 
 const die = (msg) => {

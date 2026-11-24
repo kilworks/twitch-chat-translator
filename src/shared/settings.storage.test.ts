@@ -100,11 +100,12 @@ describe('reset and import', () => {
     expect((await loadSettings()).deeplApiKey).toBe('');
   });
 
-  it('import routes an older backup key to local, not to sync', async () => {
+  it('import ignores a key in the file: it is another account, or an old copy of the reader own', async () => {
+    await saveSettings({ deeplApiKey: 'mine' });
     const backup = JSON.stringify({ ...defaultSettings(), deeplApiKey: 'from-backup', targetLang: 'ja' });
     const s = await importSettings(backup);
-    expect(s.deeplApiKey).toBe('from-backup');
-    expect(heldKey()).toBe('from-backup');
+    expect(s.deeplApiKey).toBe('mine');
+    expect(heldKey()).toBe('mine');
     expect(syncedBlob()?.deeplApiKey).toBe('');
     expect(syncedBlob()?.targetLang).toBe('ja');
   });
@@ -163,5 +164,106 @@ describe('the contradictory engine pair', () => {
         expect(await loadSettings()).toMatchObject({ engineMode, localEnabled });
       }
     }
+  });
+});
+
+// UI-08: cloud first is the default, as in Kick Chat Translator. A blob written while
+// on-device first was the default says nothing about a choice, so it moves once.
+describe('the engine default moved to cloud first', () => {
+  const old = (engineMode: string) => {
+    const { engineModeMoved: _flag, ...rest } = defaultSettings();
+    env.sync.set(STORAGE_KEY_SETTINGS, { ...rest, engineMode, targetLang: 'fr' });
+  };
+
+  it('starts a new reader on cloud first', async () => {
+    expect((await loadSettings()).engineMode).toBe('cloud-first');
+  });
+
+  it('moves a reader still on the old default, once, and keeps every other setting', async () => {
+    old('local-first');
+    expect(await loadSettings()).toMatchObject({ engineMode: 'cloud-first', targetLang: 'fr' });
+    expect(syncedBlob()).toMatchObject({ engineMode: 'cloud-first', engineModeMoved: true });
+  });
+
+  it('keeps on-device only for the reader who chose it', async () => {
+    old('local-only');
+    expect((await loadSettings()).engineMode).toBe('local-only');
+  });
+
+  // R-11: a device on the previous version strips the flag when it saves, and the move ran again.
+  it('does not move a deliberate on-device first again when an older device strips the flag', async () => {
+    old('local-first');
+    await loadSettings();
+    await saveSettings({ engineMode: 'local-first' });
+    const { engineModeMoved: _gone, ...stripped } = syncedBlob() as Record<string, unknown>;
+    env.sync.set(STORAGE_KEY_SETTINGS, stripped);
+    expect((await loadSettings()).engineMode).toBe('local-first');
+  });
+
+  it('holds on-device first once the reader picks it again', async () => {
+    old('local-first');
+    await loadSettings();
+    await saveSettings({ engineMode: 'local-first' });
+    expect((await loadSettings()).engineMode).toBe('local-first');
+  });
+});
+
+// S-03 and S-04: what a shared file may carry in, and what it carries out.
+describe('what a settings file may change on this device', () => {
+  it('cannot switch on usage statistics, set the e-mail, or touch the watched channels', async () => {
+    await saveSettings({ usageStats: false, usageStatsAsked: false, myMemoryEmail: 'me@example.com', pausedChannels: ['mine'], channelLangs: { mine: 'fr' } });
+    const s = await importSettings(
+      JSON.stringify({
+        ...defaultSettings(),
+        usageStats: true,
+        usageStatsAsked: true,
+        myMemoryEmail: 'attacker@example.com',
+        pausedChannels: ['theirs'],
+        channelLangs: { theirs: 'de' },
+        targetLang: 'ja',
+      }),
+    );
+    expect(s).toMatchObject({
+      usageStats: false,
+      usageStatsAsked: false,
+      myMemoryEmail: 'me@example.com',
+      pausedChannels: ['mine'],
+      channelLangs: { mine: 'fr' },
+      targetLang: 'ja',
+    });
+  });
+
+  it('does not export the e-mail, the Lingva server or the channels watched', async () => {
+    await saveSettings({
+      myMemoryEmail: 'me@example.com',
+      lingvaInstance: 'https://lingva.example/secret-token',
+      pausedChannels: ['mine'],
+      channelLangs: { mine: 'fr' },
+      blockedKeywords: ['spoiler'],
+      targetLang: 'fr',
+    });
+    const file = JSON.parse(await exportSettings()) as Record<string, unknown>;
+    expect(file).toMatchObject({ myMemoryEmail: '', lingvaInstance: '', pausedChannels: [], channelLangs: {} });
+    expect(file).toMatchObject({ blockedKeywords: ['spoiler'], targetLang: 'fr' });
+  });
+});
+
+// R-12: a refused lock was swallowed, and nobody would know the protection was absent.
+describe('restrictStorageAccess', () => {
+  it('asks for trusted contexts on both areas and says when the browser refuses', async () => {
+    const calls: string[] = [];
+    vi.stubGlobal('chrome', {
+      storage: {
+        local: { setAccessLevel: async (o: { accessLevel: string }) => void calls.push(o.accessLevel) },
+        sync: { setAccessLevel: async () => Promise.reject(new Error('refused')) },
+      },
+    });
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { restrictStorageAccess } = await import('./settings');
+    restrictStorageAccess();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(calls).toEqual(['TRUSTED_CONTEXTS']);
+    expect(warn).toHaveBeenCalledTimes(1);
+    warn.mockRestore();
   });
 });

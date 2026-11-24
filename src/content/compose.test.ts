@@ -4,6 +4,7 @@ import { COMPOSE_DEBOUNCE_MS } from './composeLogic';
 import type * as Selectors from './selectors';
 
 const ui = vi.hoisted(() => ({
+  reads: 0,
   state: 'hidden',
   inserted: [] as string[],
   onInsert: undefined as (() => void) | undefined,
@@ -18,7 +19,7 @@ vi.mock('./composeUi', () => ({
   isComposePreviewVisible: () => ui.state === 'ready',
   isSuggestionOpen: () => false,
   mountComposePreview: (_el: HTMLElement, _lang: string, h: { onInsert: () => void }) => void (ui.onInsert = h.onInsert),
-  readComposerText: (el: HTMLElement) => el.textContent ?? '',
+  readComposerText: (el: HTMLElement) => (ui.reads++, el.textContent ?? ''),
   setComposeTargetLang: () => undefined,
   setComposeThrottle: () => undefined,
   unmountComposePreview: () => undefined,
@@ -115,5 +116,23 @@ describe('accepting the compose preview', () => {
     pressTab(el);
     expect(ui.inserted).toHaveLength(1);
     expect(ui.inserted[0]).toContain('que tal la partida de hoy');
+  });
+});
+
+// P24: every click in the window read the composer with innerText, a forced layout.
+describe('clicks in the window', () => {
+  it('read the composer only when what it holds has changed', async () => {
+    const el = document.querySelector<HTMLElement>('#composer')!;
+    await previewFor(el, 'hola amigos');
+    ui.reads = 0;
+    document.body.click();
+    document.body.click();
+    await vi.advanceTimersByTimeAsync(COMPOSE_DEBOUNCE_MS + 10);
+    expect(ui.reads).toBe(0);
+    // The emote picker puts something in the box without a key: that click still reads.
+    el.textContent = 'hola amigos Kappa';
+    document.body.click();
+    await vi.advanceTimersByTimeAsync(COMPOSE_DEBOUNCE_MS + 10);
+    expect(ui.reads).toBeGreaterThan(0);
   });
 });

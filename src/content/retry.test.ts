@@ -73,8 +73,14 @@ describe('retry control', () => {
     expect(reveal.slice(0, reveal.indexOf('}'))).toContain('.kt-retry:focus-visible');
   });
 
+  // UI-14: at 0.7 over a 0.9 colour the revealed glyph measured 2.9:1, under 3:1 for a UI component.
+  it('is fully opaque once revealed', () => {
+    const reveal = css.slice(css.indexOf('.kt-translation:hover .kt-retry'));
+    expect(reveal.slice(0, reveal.indexOf('}'))).toMatch(/opacity:\s*1;/);
+  });
+
   it('is revealed at rest where hovering is impossible', () => {
-    expect(css).toMatch(/@media \(hover: none\)\s*\{\s*\.kt-retry\s*\{[^}]*opacity:\s*0\.7/);
+    expect(css).toMatch(/@media \(hover: none\)\s*\{\s*\.kt-retry\s*\{[^}]*opacity:\s*1/);
   });
 
   /**

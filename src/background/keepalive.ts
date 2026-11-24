@@ -18,6 +18,12 @@ const ALARM = 'kt.keepalive';
  */
 let armed = false;
 let listening = false;
+const idleHooks: (() => void)[] = [];
+
+/** Run `fn` when the last chat tab is gone: the moment to write what was held back. */
+export function onLastTabGone(fn: () => void): void {
+  idleHooks.push(fn);
+}
 
 /**
  * Register the alarm handler.
@@ -52,6 +58,7 @@ export async function installKeepalive(): Promise<void> {
 
 async function tick(): Promise<void> {
   if (!(await kickTabOpen())) {
+    for (const fn of idleHooks) fn();
     await disarm();
     return;
   }

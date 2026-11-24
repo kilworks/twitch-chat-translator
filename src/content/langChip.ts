@@ -633,7 +633,8 @@ export function updateLangChip(state: ChipState): void {
   chip.dataset.mode = state.mode;
   switch (state.mode) {
     case 'off':
-      tag.textContent = 'OFF';
+      // A pause sign, not the English word: this chip is read in every language (text presentation, not emoji).
+      tag.textContent = '⏸︎';
       chip.title = msg('chipPaused', 'Translation paused');
       break;
     case 'loading':

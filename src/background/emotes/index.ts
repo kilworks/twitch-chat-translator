@@ -12,6 +12,14 @@
 /** How long a set is trusted when the provider does not say (BTTV sends max-age 300). */
 const DEFAULT_TTL_MS = 5 * 60_000;
 
+/** Sets kept: about 20 channels of three sets, and the globals. The worker lives as long as a Twitch tab does. */
+const MAX_SETS = 63;
+/** A hostile or broken provider must not cost the worker its memory: the biggest real set is 2.3 MB. */
+const MAX_BODY_BYTES = 8_000_000;
+
+/** Twitch room ids are digits. Anything else would bend the provider URLs it is put in. */
+export const isRoomId = (v: unknown): v is string => typeof v === 'string' && /^\d+$/.test(v);
+
 interface Entry {
   names: string[];
   until: number;
@@ -67,8 +75,12 @@ async function fetchSet(url: string, pick: Pick, now: () => number): Promise<str
       const res = await fetch(url);
       // 404 is "this channel has no set here": remembered like an answer, so it is not re-asked
       // on every line.
-      const got = res.ok ? pick(await res.json()) : [];
+      const tooBig = Number(res.headers.get('content-length')) > MAX_BODY_BYTES;
+      const got = res.ok && !tooBig ? pick(await res.json()) : [];
+      // Re-inserted last, so the map's oldest entry is the least recently set one.
+      cache.delete(url);
       cache.set(url, { names: got, until: now() + ttlOf(res) });
+      while (cache.size > MAX_SETS) cache.delete(cache.keys().next().value!);
       return got;
     } catch {
       return hit?.names ?? [];
@@ -82,7 +94,7 @@ async function fetchSet(url: string, pick: Pick, now: () => number): Promise<str
 
 /** Every emote name the channel's viewers may see as a word: channel and global sets. */
 export async function emoteNamesFor(roomId: string | undefined, now: () => number = Date.now): Promise<string[]> {
-  const sources = [...(roomId ? SOURCES.channel(roomId) : []), ...SOURCES.global];
+  const sources = [...(isRoomId(roomId) ? SOURCES.channel(roomId) : []), ...SOURCES.global];
   const sets = await Promise.all(sources.map(([url, pick]) => fetchSet(url, pick, now)));
   return [...new Set(sets.flat())];
 }

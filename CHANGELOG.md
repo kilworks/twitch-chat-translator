@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+The audit fixes of 24 November, shared with Kick Chat Translator where the code is.
+
+### Changed
+
+- **Cloud first is the default engine mode**, as in Kick Chat Translator: blind
+  judges scored the on-device engine worse than Google on every language it
+  served. Readers who were on "On-device first", by default or by choice, are
+  moved once to cloud first, so their messages now go to an online translation
+  service first. They can switch back in the options and the choice then holds.
+  "On-device only" is unchanged.
+- **A settings file no longer changes what is yours.** Importing one cannot
+  switch on the usage statistics, set the MyMemory e-mail, replace the DeepL key
+  or the watched channels, and an export leaves out the e-mail, the Lingva
+  server and the watched channels.
+- **Only the pause button pauses the bar.** A click on its padding no longer
+  does, and the pause, options and play buttons have names a screen reader reads.
+- The popup says in its footer when the extension does not answer, when a save
+  is refused, and that a non-Twitch tab is not translated.
+
+### Fixed
+
+- **Storage is closed to the scripts that run in Twitch pages** (Chrome and
+  Edge): the DeepL key and the settings can no longer be read or written from
+  there. The channel language and the compose hint are kept by the worker.
+- **A session the translation services have banned stops hammering them.** The
+  "every provider is cooling down" check never fired, and the provider that
+  answered last stayed first for ever.
+- The chat line says "Translation failed", not a machine code, and the reasons
+  a line was left alone follow the interface language.
+- Toasts show under reduced motion, and are announced with the bar's state, the
+  saved confirmation and the compose preview.
+- The emote providers only receive a numeric room id.
+- Settings, the DeepL usage and the update check load together in the popup and
+  the options page, and number fields save when you leave them.
+- Lighter on fast chats: cache answers are written in one transaction per
+  batch, the hide-original rules are scoped, the class-change observer watches
+  only the nodes that carry the deleted mark, a line is read without climbing
+  the whole page, and the worker writes its counters less often.
+
 ## [1.1.2] - 2026-11-23
 
 The audit fixes of Kick Chat Translator 3.6.3, which shares this code.

@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { nativeChat } from './twitchFixtures';
+import { getHint, setHint } from '../background/memo';
 
 // P3-2: the glyph alone did not say Tab inserts the translation. The key's name
 // sits beside it (the verb is in the tooltip) until the reader has inserted
@@ -18,7 +19,20 @@ beforeEach(() => {
   for (const k of Object.keys(stored)) delete stored[k];
   local.get.mockClear();
   local.set.mockClear();
-  vi.stubGlobal('chrome', { storage: { local } });
+  // The content script has no storage of its own: its hint counter goes to the worker's memo.
+  vi.stubGlobal('chrome', {
+    storage: { local },
+    runtime: {
+      lastError: undefined,
+      sendMessage: (m: { type: string; value?: number | boolean }, cb: (r: unknown) => void) => {
+        void (async () => {
+          if (typeof chrome === 'undefined') return; // the test ended while the message was in flight
+          if (m.type === 'hint.get') cb({ type: 'hint', value: await getHint() });
+          else if (m.type === 'hint.set') cb((await setHint(m.value)) ? { type: 'ack' } : { type: 'error', payload: { message: 'no' } });
+        })();
+      },
+    },
+  });
 });
 
 afterEach(() => {
@@ -47,6 +61,7 @@ describe('first-use hint', () => {
     expect(document.querySelector<HTMLElement>('.kt-compose-insert')?.title).toContain('Insert');
     ui.noteComposeInserted();
     expect(hint()).toBeNull();
+    await flush();
     expect(stored['kt.composeInsertHintDone']).toBe(true);
     // The glyph stays: only the words go.
     expect(document.querySelector('.kt-compose-insert')?.textContent).toBe('⇥');
@@ -56,6 +71,16 @@ describe('first-use hint', () => {
     stored['kt.composeInsertHintDone'] = true;
     const { hint } = await mounted();
     expect(hint()).toBeNull();
+  });
+
+  // UI-09: the preview was never announced, and the keys were a title on a span.
+  it('announces the preview and names the insert keys to assistive tech', async () => {
+    await mounted();
+    expect(document.querySelector('.kt-compose-text')?.getAttribute('role')).toBe('status');
+    const cue = document.querySelector('.kt-compose-insert')!;
+    expect(cue.getAttribute('role')).toBe('img');
+    expect(cue.getAttribute('aria-label')).toBe(cue.getAttribute('title'));
+    expect(cue.getAttribute('aria-label')).toContain('Tab');
   });
 
   it('names Ctrl/Cmd+Enter when that is the key', async () => {
@@ -82,10 +107,12 @@ describe('first-use hint', () => {
       ui.updateComposePreview({ kind: 'ready', text: `m${i}`, provider: 'google' });
       expect(hint()).not.toBeNull();
     }
+    await flush();
     expect(stored['kt.composeInsertHintDone']).toBe(5);
     ui.updateComposePreview({ kind: 'hidden' });
     ui.updateComposePreview({ kind: 'ready', text: 'm6', provider: 'google' });
     expect(hint()).toBeNull();
+    await flush();
     expect(stored['kt.composeInsertHintDone']).toBe(true);
   });
 
@@ -93,6 +120,7 @@ describe('first-use hint', () => {
   it('does not count a preview refreshed while typing', async () => {
     const { ui } = await mounted();
     for (let i = 0; i < 8; i++) ui.updateComposePreview({ kind: 'ready', text: `t${i}`, provider: 'google' });
+    await flush();
     expect(stored['kt.composeInsertHintDone']).toBe(1);
   });
 

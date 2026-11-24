@@ -1,4 +1,5 @@
 import { normalizeLang } from '~/shared/languages';
+import { send } from '~/shared/messages';
 
 /**
  * The channel's broadcast language and room id, from Twitch's GQL endpoint.
@@ -46,8 +47,8 @@ const metaCache = new Map<string, CachedMeta>();
 // Rapid route changes ask for the same channel twice; one request answers both.
 const inflight = new Map<string, Promise<ChannelMeta>>();
 
-// Last language seen per channel, so an answer that fails later still has one.
-const LASTLANG_KEY = (slug: string): string => `kt.lastlang.${slug}`;
+// Last language seen per channel, so an answer that fails later still has one. Kept by the
+// worker: a content script has no storage of its own to keep it in.
 
 function queryFor(slug: string): { query: string; variables: Record<string, string> } {
   const fields = 'id broadcastSettings{language}';
@@ -83,9 +84,9 @@ async function fetchChannelMeta(slug: string): Promise<ChannelMeta> {
       metaCache.set(slug, meta);
       if (meta.langIso) {
         try {
-          void chrome.storage.local.set({ [LASTLANG_KEY(slug)]: meta.langIso });
+          void send({ type: 'lastlang.set', slug, lang: meta.langIso }).catch(() => undefined);
         } catch {
-          /* storage unavailable (e.g. unit tests): non-fatal */
+          /* no extension context (e.g. unit tests): non-fatal */
         }
       }
       return meta;
@@ -111,9 +112,8 @@ export async function fetchChannelLangIso(slug: string): Promise<string | undefi
   const live = (await fetchChannelMeta(slug)).langIso;
   if (live) return live;
   try {
-    const stored = await chrome.storage.local.get(LASTLANG_KEY(slug));
-    const last = stored[LASTLANG_KEY(slug)];
-    return typeof last === 'string' ? last : undefined;
+    const res = await send({ type: 'lastlang.get', slug });
+    return res.type === 'lastlang' ? res.lang : undefined;
   } catch {
     return undefined;
   }

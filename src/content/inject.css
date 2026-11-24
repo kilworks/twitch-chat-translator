@@ -132,8 +132,10 @@
 .kt-translation-replace:hover .kt-retry,
 .kt-error:hover .kt-retry,
 /* Focus reveals it too, or tabbing to it lands on nothing visible. */
+/* Fully opaque once shown: at 0.7 over the 0.9 colour it measured 2.9:1 on the dark surface,
+   under the 3:1 a UI component needs (WCAG 1.4.11). */
 .kt-retry:focus-visible {
-  opacity: 0.7;
+  opacity: 1;
 }
 .kt-retry:focus-visible {
   outline: 2px solid var(--kt-green);
@@ -146,7 +148,7 @@
    at zero opacity with no way to reach it. */
 @media (hover: none) {
   .kt-retry {
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 .kt-retry:hover {
@@ -220,17 +222,24 @@
    mutation anywhere in the chat: measured on the offline chat at 20 messages a
    second, the unscoped replace rule alone took style recalculation from 66 ms
    to 249 ms per 10 s, with no line in the replace style on screen. Scoped to
-   the attribute applyDisplayStyle sets, it costs nothing until it can match. */
-.kt-hide-original div:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
-.kt-hide-original div:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
+   the attribute applyDisplayStyle sets, it costs nothing until it can match.
+
+   The two hide-original variants (keep original off) were still on a bare `div`, so a reader who turned
+   "keep original" off paid that cost on every chat mutation: about +180 ms of style
+   recalculation per 10 s at 20 lines a second, by the figures above. They hang off
+   `[data-kt-tr]` now, a stamp inject() puts on the node it writes into, so `:has()` is tried
+   on the few nodes that carry a translation and on no other. The `:has` stays, so a stale
+   stamp (Twitch took the translation out of the node) hides nothing. */
+.kt-hide-original [data-kt-tr]:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
+.kt-hide-original [data-kt-tr]:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token),
 html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) {
   font-size: 0;
   line-height: 0;
   letter-spacing: 0;
   word-spacing: 0;
 }
-.kt-hide-original div:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
-.kt-hide-original div:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
+.kt-hide-original [data-kt-tr]:has(> .kt-translation) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
+.kt-hide-original [data-kt-tr]:has(> .kt-translation-inline) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video),
 html[data-kt-display='replace'] div:has(> .kt-translation-replace) :is([data-a-target="chat-message-text"], [data-a-target="chat-message-mention"], .link-fragment, .text-token, .mention-token) :is(img, svg, video) {
   font-size: 1rem;
   line-height: normal;
@@ -1025,6 +1034,11 @@ html[data-kt-scheme='light'] .kt-compose-insert {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+  /* The toast is its own fade: cutting it to 0.01 ms held it at opacity 0
+     (animation-fill-mode: forwards) for the whole 3 s it is meant to be read. */
+  .kt-toast {
+    animation: none;
+  }
 }
 
 /* Light theme. Kick publishes no light palette, so this mirrors the dark one
@@ -1481,6 +1495,14 @@ html[data-kt-scheme='light'] .kt-chip[data-mode='error'] {
    stays at 12px), set back by colour only. */
 .kt-lang-native {
   color: var(--kt-lp-muted);
+}
+/* On the hovered or focused row the muted endonym dropped to 3.81:1 (dark): read against the
+   hover background, 12px text needs 4.5:1. */
+.kt-lang-row:hover .kt-lang-native,
+.kt-lang-row:focus-visible .kt-lang-native,
+.kt-chip-row:hover .kt-lang-native,
+.kt-chip-row:focus-visible .kt-lang-native {
+  color: var(--kt-text-2);
 }
 
 /* Le liseré des drapeaux vient de flags.css, calibre pour une surface sombre :

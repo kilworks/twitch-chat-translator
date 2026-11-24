@@ -3,6 +3,7 @@ import { exportSettings, importSettings, type Settings } from '~/shared/settings
 import { send } from '~/shared/messages';
 import { useT } from '~/shared/i18nContext';
 import { Check } from '../components/Check';
+import { numberField } from '../numberField';
 
 import type { CacheStats, UsageStats } from '~/shared/types';
 
@@ -110,9 +111,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
               max={20000}
               step={100}
               value={settings.cacheMaxEntries}
-              onInput={(e) =>
-                onPatch({ cacheMaxEntries: Number((e.target as HTMLInputElement).value) })
-              }
+              {...numberField(100, 20000, settings.cacheMaxEntries, (n) => onPatch({ cacheMaxEntries: n }))}
             />
           }
         />
@@ -128,9 +127,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
               min={1}
               max={720}
               value={settings.cacheTtlHours}
-              onInput={(e) =>
-                onPatch({ cacheTtlHours: Number((e.target as HTMLInputElement).value) })
-              }
+              {...numberField(1, 720, settings.cacheTtlHours, (n) => onPatch({ cacheTtlHours: n }))}
             />
           }
         />
@@ -150,9 +147,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
               min={1}
               max={16}
               value={settings.concurrency}
-              onInput={(e) =>
-                onPatch({ concurrency: Number((e.target as HTMLInputElement).value) })
-              }
+              {...numberField(1, 16, settings.concurrency, (n) => onPatch({ concurrency: n }))}
             />
           }
         />
@@ -176,9 +171,7 @@ export function AdvancedSection({ settings, onPatch, stats }: Props) {
               min={10}
               max={2000}
               value={settings.perChannelBudgetPerMin}
-              onInput={(e) =>
-                onPatch({ perChannelBudgetPerMin: Number((e.target as HTMLInputElement).value) })
-              }
+              {...numberField(10, 2000, settings.perChannelBudgetPerMin, (n) => onPatch({ perChannelBudgetPerMin: n }))}
             />
           }
         />

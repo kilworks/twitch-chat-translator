@@ -49,9 +49,13 @@ function norm(code: string): string {
 
 type StateListener = () => void;
 
+/** How long a line waits for the model before it is given up on and falls back. */
+const LOCAL_DEADLINE_MS = 20_000;
+
 class LocalEngine {
   private state = new Map<string, PairState>();
   private instances = new Map<string, TranslatorInstance>();
+  private creating = new Map<string, Promise<TranslatorInstance>>();
   private progress = new Map<string, number>();
   // Keyed by the API's tags, valued with the codes the caller used, so a pair
   // offered for download carries `zh-tw` back to a caller that compares it with
@@ -175,8 +179,21 @@ class LocalEngine {
     }
   }
 
-  /** Translate locally. Throws if the pair isn't ready (caller falls back to cloud). */
+  /**
+   * Translate locally. Throws if the pair isn't ready (caller falls back to cloud), or if the
+   * model does not answer in LOCAL_DEADLINE_MS: a stalled model left one pending promise per
+   * line, each holding its row, for the life of the page. The cloud path has had this bound
+   * from the start.
+   */
   async translate(src: string, tgt: string, text: string): Promise<string> {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const late = new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error('local_timeout')), LOCAL_DEADLINE_MS);
+    });
+    return Promise.race([this.run(src, tgt, text), late]).finally(() => clearTimeout(timer));
+  }
+
+  private async run(src: string, tgt: string, text: string): Promise<string> {
     const c = ctor();
     if (!c) throw new Error('local_absent');
     const s = norm(src);
@@ -185,8 +202,14 @@ class LocalEngine {
     let inst = this.instances.get(key);
     if (!inst) {
       if (this.state.get(key) !== 'available') throw new Error('not_ready');
-      // 'available' means create() works without a gesture.
-      inst = await c.create({ sourceLanguage: s, targetLanguage: t });
+      // 'available' means create() works without a gesture. One create per pair: the lines of
+      // a burst that arrive while it is pending wait for it instead of each loading the model.
+      let creating = this.creating.get(key);
+      if (!creating) {
+        creating = c.create({ sourceLanguage: s, targetLanguage: t }).finally(() => this.creating.delete(key));
+        this.creating.set(key, creating);
+      }
+      inst = await creating;
       this.instances.set(key, inst);
     }
     const out = await inst.translate(text);

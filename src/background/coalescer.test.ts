@@ -30,7 +30,7 @@ function makeCoalescer() {
   const recordError = vi.fn();
   const cache = {
     key: (text: string, target: string) => `${target}:${text}`,
-    set: vi.fn(async () => undefined),
+    setMany: vi.fn(async () => undefined),
   } as unknown as TranslationCache;
   const stats = { recordRequest, recordError } as unknown as StatsTracker;
   const coalescer = new TranslationCoalescer({
@@ -38,7 +38,7 @@ function makeCoalescer() {
     cache,
     stats,
   });
-  return { coalescer, recordRequest, recordError };
+  return { coalescer, recordRequest, recordError, cache };
 }
 
 function req(text: string, targetLang = 'en', messageId = text): TranslationRequest {
@@ -80,6 +80,40 @@ describe('TranslationCoalescer', () => {
     expect(b.ok && b.result.translatedText).toBe('t:same');
     // The extra caller is booked as a cache hit, not a second provider call.
     expect(recordRequest.mock.calls.filter((c) => c[3] === true)).toHaveLength(1);
+  });
+
+  // P02: a batch of answers was one IndexedDB transaction per line.
+  it('hands the whole batch of answers to the cache in one write', async () => {
+    const { coalescer, cache } = makeCoalescer();
+    await Promise.all([coalescer.submit(req('uno')), coalescer.submit(req('dos')), coalescer.submit(req('tres'))]);
+    const setMany = (cache as unknown as { setMany: Mock }).setMany;
+    expect(setMany).toHaveBeenCalledTimes(1);
+    expect((setMany.mock.calls[0]![0] as unknown[]).length).toBe(3);
+  });
+
+  // P18: the key is normalised once by the caller, not again by every layer below it.
+  it('uses the key it is given', async () => {
+    const { coalescer, cache } = makeCoalescer();
+    const key = vi.spyOn(cache, 'key');
+    await coalescer.submit(req('uno'), 'given-key');
+    expect(key).not.toHaveBeenCalled();
+    expect((cache as unknown as { setMany: Mock }).setMany.mock.calls[0]![0][0].key).toBe('given-key');
+  });
+
+  // P19: a copy arriving while the provider is still answering paid its own request.
+  it('lets a line that arrives mid-flight join the call already made', async () => {
+    const { coalescer } = makeCoalescer();
+    let release: () => void = () => undefined;
+    mockTranslateGroup.mockImplementation(
+      (reqs: TranslationRequest[]) => new Promise((resolve) => (release = () => resolve(reqs.map(okOutcome)))),
+    );
+    const first = coalescer.submit(req('same'));
+    await vi.waitFor(() => expect(mockTranslateGroup).toHaveBeenCalledTimes(1));
+    const second = coalescer.submit(req('same', 'en', '2'));
+    release();
+    const [a, b] = await Promise.all([first, second]);
+    expect(mockTranslateGroup).toHaveBeenCalledTimes(1);
+    expect(a.ok && b.ok).toBe(true);
   });
 
   it('keeps different target languages in separate dispatches', async () => {

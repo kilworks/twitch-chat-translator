@@ -88,7 +88,6 @@ export const zh: Record<string, string> = {
   'Translate what I type': '翻译我输入的内容',
   'Today': '今天',
   'Auto (your language)': '自动（你的语言）',
-  'Below original': '原文下方',
   'Auto (channel language)': '自动（频道语言）',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     '自动检测频道语言。预览显示在聊天输入框上方，点击即可填入。',
@@ -250,8 +249,8 @@ export const zh: Record<string, string> = {
   '"Reset all settings" puts every setting back to its default.': '“恢复所有默认设置”会把所有设置还原为默认值。',
   'On-device: ready': '本地翻译：可用',
   'On-device: not in this browser': '本地翻译：此浏览器不支持',
-  'On-device first, cloud if needed (recommended)': '优先本地，必要时用云端（推荐）',
-  'Cloud first, on-device if needed': '优先云端，必要时用本地',
+  'On-device first, cloud if needed': '优先本地，必要时用云端',
+  'Cloud first, on-device if needed (recommended)': '优先云端，必要时用本地（推荐）',
   'On-device only (nothing sent online)': '仅本地（不向网络发送任何内容）',
   'This browser cannot translate on your computer, so the cloud engines translate everything.': '此浏览器无法在你的电脑上翻译，所以全部由云端引擎翻译。',
   'On-device translates on your computer: free, fast, private, no daily limit. Each language is a one-time download: pick it below, or "Local" in the chat.': '本地翻译在你的电脑上完成：免费、快速、私密，没有每日限额。每种语言只需下载一次：在下方选择，或点击聊天中的“本地”。',

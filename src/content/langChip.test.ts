@@ -140,6 +140,14 @@ describe('states', () => {
     }
   });
 
+  // UI-15: the English word OFF stood in every language. A sign says it without one.
+  it('draws a paused chip with a sign, not an English word, and keeps the localised name', () => {
+    const { composer } = makeComposerRow();
+    mountLangChip(composer, state({ mode: 'off', code: 'fr' }), noop);
+    expect(read().querySelector('.kt-chip-tag')!.textContent).not.toMatch(/[A-Za-z]/);
+    expect(read().getAttribute('aria-label')).toBe('Translation paused');
+  });
+
   it('always carries an accessible name', () => {
     const { composer } = makeComposerRow();
     mountLangChip(composer, state({ mode: 'pinned', code: 'fr' }), noop);

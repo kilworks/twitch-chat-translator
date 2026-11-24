@@ -5,13 +5,15 @@ import { nativeChat, nativeRow, seventvChat, seventvRow } from './twitchFixtures
 interface Recorded {
   disconnected: boolean;
   target: unknown;
+  targets: unknown[];
+  options: unknown[];
   cb?: MutationCallback;
 }
 
 const created: Recorded[] = [];
 
 class RecordingObserver {
-  private rec: Recorded = { disconnected: false, target: undefined };
+  private rec: Recorded = { disconnected: false, target: undefined, targets: [], options: [] };
   // The callback used to be dropped on the floor, which meant no test could
   // deliver a mutation and the whole mutation-handling branch was unreachable
   // from here. A recycled row bug lived in it.
@@ -19,8 +21,11 @@ class RecordingObserver {
     this.rec.cb = cb;
     created.push(this.rec);
   }
-  observe(target: unknown): void {
-    this.rec.target = target;
+  observe(target: unknown, options?: unknown): void {
+    // The first node observed stays the target: a list observer also watches rows.
+    if (this.rec.target === undefined) this.rec.target = target;
+    this.rec.targets.push(target);
+    this.rec.options.push(options);
   }
   disconnect(): void {
     this.rec.disconnected = true;
@@ -251,5 +256,74 @@ describe('waiting for the list', () => {
     document.body.innerHTML = LISTE;
     vi.advanceTimersByTime(2000);
     expect(vivants()).toHaveLength(0);
+  });
+});
+
+// P07: the list observer took every class change in the subtree, and 7TV, FFZ and BTTV
+// change classes on hover, focus and animation all the time.
+describe('class changes', () => {
+  it('are watched on the row and the node holding the deleted mark, not across the list', () => {
+    document.body.innerHTML = seventvChat(seventvRow('palabras', 'bob'));
+    const obs = new ChatObserver(() => undefined);
+    obs.start();
+    const liste = document.querySelector('main.seventv-chat-list')!;
+    const rec = created.find((r) => r.target === liste)!;
+    expect(rec.options[0]).toEqual({ childList: true, subtree: true });
+    const row = liste.querySelector('.seventv-message')!;
+    const msg = liste.querySelector('.seventv-user-message')!;
+    expect(rec.targets).toEqual([liste, row, msg]);
+    expect(rec.options.slice(1).every((o) => (o as { subtree?: boolean }).subtree !== true)).toBe(true);
+    obs.stop();
+  });
+});
+
+// P13: with no rows the attach poll scanned the document twice a second for the life of the tab.
+describe('the wait for a chat with no rows', () => {
+  afterEach(() => vi.useRealTimers());
+
+  it('backs off, and does not scan at all while the tab is hidden', async () => {
+    vi.useFakeTimers();
+    document.body.innerHTML = '';
+    const delays: number[] = [];
+    const real = globalThis.setTimeout;
+    vi.spyOn(globalThis, 'setTimeout').mockImplementation(((fn: () => void, ms?: number) => {
+      delays.push(ms ?? 0);
+      return real(fn, ms);
+    }) as typeof setTimeout);
+    const obs = new ChatObserver(() => undefined);
+    obs.start();
+    await vi.advanceTimersByTimeAsync(5 * 60_000);
+    obs.stop();
+    expect(delays[0]).toBe(500);
+    expect(delays).toContain(1000);
+    expect(delays).toContain(5000);
+    // Two minutes of 500 ms polls would have been 600 scans in five minutes.
+    expect(delays.length).toBeLessThan(120);
+
+    delays.length = 0;
+    Object.defineProperty(document, 'hidden', { configurable: true, get: () => true });
+    const scan = vi.spyOn(document, 'querySelectorAll');
+    const hiddenObs = new ChatObserver(() => undefined);
+    hiddenObs.start();
+    await vi.advanceTimersByTimeAsync(10_000);
+    hiddenObs.stop();
+    expect(scan).not.toHaveBeenCalled();
+    Reflect.deleteProperty(document, 'hidden');
+  });
+
+  // R-05: a chat opened in a background tab never attached while pausing was off.
+  it('attaches in a hidden tab when "pause when hidden" is off, and waits when it is on', async () => {
+    vi.useFakeTimers();
+    document.body.innerHTML = nativeChat(nativeRow('hola amigos', 'bob'));
+    Object.defineProperty(document, 'hidden', { configurable: true, get: () => true });
+    const waiting = new ChatObserver(() => undefined, () => false);
+    waiting.start();
+    expect(created.filter((r) => !r.disconnected)).toHaveLength(0);
+    waiting.stop();
+    const live = new ChatObserver(() => undefined, () => true);
+    live.start();
+    expect(created.filter((r) => !r.disconnected).length).toBeGreaterThan(0);
+    live.stop();
+    Reflect.deleteProperty(document, 'hidden');
   });
 });

@@ -201,3 +201,21 @@ describe('channel and user lists', () => {
     expect(css.slice(at, css.indexOf('}', at))).not.toContain('font-mono');
   });
 });
+
+// UI-22: names cut by the 3 column grid had no tooltip, and the count after a name was read as part of it.
+describe('allowlist chips', () => {
+  it('carry their full name as a tooltip', () => {
+    const chips = [...rows(mount())];
+    expect(chips.length).toBeGreaterThan(0);
+    for (const c of chips) expect(c.getAttribute('title')).toBeTruthy();
+  });
+
+  it('keep the seen-count out of the accessible name', () => {
+    host = document.createElement('div');
+    document.body.appendChild(host);
+    const stats = { byLang: { ja: 12 } } as never;
+    render(<FilterSection settings={defaultSettings()} onPatch={() => {}} stats={stats} />, host);
+    const count = [...host.querySelectorAll('button[aria-pressed] span')].find((s) => s.textContent === '12');
+    expect(count?.getAttribute('aria-hidden')).toBe('true');
+  });
+});

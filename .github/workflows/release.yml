@@ -29,7 +29,9 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      # No install scripts in the job that builds the published zips: esbuild and vite run from their
+      # platform binary packages without the postinstall (checked), and nothing else needs one.
+      - run: npm ci --ignore-scripts
 
       - name: The tag is the version in package.json
         if: github.event_name == 'push'

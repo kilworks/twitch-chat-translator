@@ -33,6 +33,11 @@ const empty = (): Day => ({ day: today(), counts: {}, lat: [], seen: 0 });
 let state: Day | undefined;
 let getSettings: () => Settings;
 let writing: Promise<void> = Promise.resolve();
+let saveTimer: ReturnType<typeof setTimeout> | undefined;
+/** Firefox's answer, kept until the browser says the permission changed. */
+let firefoxConsent: boolean | undefined;
+/** Counted lines wait this long before one write; a line is one counter, not one write. */
+const SAVE_DELAY_MS = 1500;
 
 async function load(): Promise<Day> {
   if (state) return state;
@@ -42,8 +47,18 @@ async function load(): Promise<Day> {
 }
 
 function save(): void {
+  if (saveTimer) return;
+  saveTimer = setTimeout(() => void flushUsage(), SAVE_DELAY_MS);
+}
+
+/** Write the day now (the last chat tab closed). */
+export function flushUsage(): Promise<void> {
+  clearTimeout(saveTimer);
+  saveTimer = undefined;
+  if (!state) return writing;
   const snapshot = state;
   writing = writing.then(() => chrome.storage.local.set({ [STORAGE_KEY_USAGE]: snapshot })).catch(() => undefined);
+  return writing;
 }
 
 const isFirefox = (): boolean => chrome.runtime.getURL('').startsWith('moz-extension:');
@@ -56,12 +71,15 @@ const isFirefox = (): boolean => chrome.runtime.getURL('').startsWith('moz-exten
  */
 export async function usageAllowed(settings: Settings): Promise<boolean> {
   if (!isFirefox()) return settings.usageStats;
+  // Asked once per change, not once per translated line.
+  if (firefoxConsent !== undefined) return firefoxConsent;
   try {
     const perms = (await chrome.permissions.getAll()) as { data_collection?: string[] };
-    return perms.data_collection?.includes('technicalAndInteraction') ?? false;
+    firefoxConsent = perms.data_collection?.includes('technicalAndInteraction') ?? false;
   } catch {
     return false;
   }
+  return firefoxConsent;
 }
 
 /** Counts and environment flushed by a content script. */
@@ -69,7 +87,7 @@ export async function addUsage(counts: UsageCounts, env?: UsageEnv): Promise<voi
   if (!(await usageAllowed(getSettings()))) return;
   const d = await rollover();
   d.counts = addCounts(d.counts, counts);
-  if (env) d.env = env;
+  if (env) d.env = { has7tv: env.has7tv === true, hasBttv: env.hasBttv === true, hasFfz: env.hasFfz === true, localApi: env.localApi === true };
   save();
 }
 
@@ -183,10 +201,12 @@ async function send(d: Day): Promise<void> {
 export function installUsage(settings: () => Settings, setConsent: (on: boolean) => void): void {
   getSettings = settings;
   if (isFirefox()) {
-    const sync = (): void =>
+    const sync = (): void => {
+      firefoxConsent = undefined;
       void usageAllowed(getSettings()).then((on) => {
         if (on !== getSettings().usageStats || !getSettings().usageStatsAsked) setConsent(on);
       });
+    };
     sync();
     chrome.permissions.onAdded.addListener(sync);
     chrome.permissions.onRemoved.addListener(sync);
@@ -194,13 +214,24 @@ export function installUsage(settings: () => Settings, setConsent: (on: boolean)
   chrome.alarms.onAlarm.addListener((a) => {
     if (a.name === ALARM) void rollover();
   });
-  void chrome.alarms.get(ALARM).then((existing) => {
-    if (!existing) void chrome.alarms.create(ALARM, { periodInMinutes: 60 });
-  });
+  void syncUsageAlarm();
+}
+
+/**
+ * The hourly alarm exists only while consent is given: it woke the worker 24 times a day
+ * to do nothing for everyone who never opted in. Called at start and when consent changes.
+ */
+export async function syncUsageAlarm(): Promise<void> {
+  const on = await usageAllowed(getSettings());
+  const existing = await chrome.alarms.get(ALARM);
+  if (on && !existing) await chrome.alarms.create(ALARM, { periodInMinutes: 60 });
+  else if (!on && existing) await chrome.alarms.clear(ALARM);
 }
 
 /** Consent withdrawn: forget the day being counted. */
 export async function dropUsage(): Promise<void> {
+  clearTimeout(saveTimer);
+  saveTimer = undefined;
   state = empty();
   await chrome.storage.local.remove(STORAGE_KEY_USAGE);
 }

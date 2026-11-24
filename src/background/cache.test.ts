@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { cacheKey } from '~/shared/normalize';
 
 const { idb } = vi.hoisted(() => ({
-  idb: { entries: new Map<string, unknown>(), gets: [] as string[], keyLists: 0 },
+  idb: { entries: new Map<string, unknown>(), gets: [] as string[], keyLists: 0, writes: 0, deletes: 0 },
 }));
 // A key range is a pair of bounds here; the store below filters on it the way
 // IndexedDB does, in key order, so warm() runs against the same contract.
@@ -69,6 +69,17 @@ vi.mock('idb-keyval', () => {
     },
     set: (k: string, v: unknown) => {
       idb.entries.set(k, v);
+      return Promise.resolve();
+    },
+    // One call is one transaction: the counters are what the batching tests read.
+    setMany: (rows: [string, unknown][]) => {
+      idb.writes++;
+      for (const [k, v] of rows) idb.entries.set(k, v);
+      return Promise.resolve();
+    },
+    delMany: (keys: string[]) => {
+      idb.deletes++;
+      for (const k of keys) idb.entries.delete(k);
       return Promise.resolve();
     },
     del: (k: string) => {
@@ -288,5 +299,33 @@ describe('TranslationCache.prune', () => {
     await c.prune();
     expect([...idb.entries.keys()].sort()).toEqual(['en::fresh0', 'en::fresh1', 'en::fresh2']);
     expect((await c.stats()).entries).toBe(3);
+  });
+});
+
+// P02: one IndexedDB readwrite transaction per translated line, and one more per line once full.
+describe('TranslationCache writes', () => {
+  const value = { translatedText: 'x', detectedLang: 'fr', provider: 'google' };
+
+  it('writes a batch in one transaction', async () => {
+    idb.entries.clear();
+    idb.writes = 0;
+    const c = new TranslationCache(100, 3600_000);
+    await c.setMany(Array.from({ length: 40 }, (_, i) => ({ text: `line ${i}`, targetLang: 'en', value })));
+    expect(idb.writes).toBe(1);
+    expect(idb.entries.size).toBe(40);
+  });
+
+  it('trims the oldest tenth in one transaction once it is past the cap by a tenth', async () => {
+    idb.entries.clear();
+    idb.writes = 0;
+    idb.deletes = 0;
+    const c = new TranslationCache(100, 3600_000);
+    for (let i = 0; i < 110; i++) await c.set(`line ${i}`, 'en', value);
+    expect(idb.deletes).toBe(0);
+    await c.set('line 110', 'en', value);
+    expect(idb.deletes).toBe(1);
+    expect(idb.entries.size).toBe(100);
+    expect(idb.entries.has(c.key('line 0', 'en'))).toBe(false);
+    expect(idb.entries.has(c.key('line 110', 'en'))).toBe(true);
   });
 });

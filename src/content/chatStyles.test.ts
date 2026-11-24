@@ -67,3 +67,13 @@ describe('inline translation pill', () => {
     expect(rule('.kt-translation')).toMatch(/display:\s*block/);
   });
 });
+
+// UI-07: the endonym on a hovered row measured 3.81:1 in the dark theme.
+describe('language rows', () => {
+  it('lift the muted endonym to the secondary text colour while hovered or focused', () => {
+    const body = rule(
+      '.kt-lang-row:hover .kt-lang-native,\n.kt-lang-row:focus-visible .kt-lang-native,\n.kt-chip-row:hover .kt-lang-native,\n.kt-chip-row:focus-visible .kt-lang-native',
+    );
+    expect(body).toContain('var(--kt-text-2)');
+  });
+});

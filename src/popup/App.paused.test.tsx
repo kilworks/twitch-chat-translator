@@ -115,11 +115,20 @@ describe('popup for someone who has translated nothing yet', () => {
     expect(root.textContent).not.toContain(FIRST);
   });
 
-  it('says nothing to a regular on a quiet day', async () => {
+  // UI-21: no card for a regular, but the footer line says this tab is not a chat.
+  it('gives a regular on a quiet day no card, only the footer line', async () => {
     stats = { ...fresh, history: [{ day: 'yesterday', requests: 40 }] };
     stubTab('https://example.com/');
     const root = await mount();
-    expect(root.textContent).not.toContain(FIRST);
+    expect(root.querySelector('footer')?.textContent).toContain(FIRST);
+    expect([...root.querySelectorAll('section')].some((s) => s.textContent?.includes(FIRST))).toBe(false);
     expect(root.textContent).toContain('Today');
+  });
+
+  it('keeps the footer to the version on a Twitch tab', async () => {
+    stats = { ...fresh, history: [{ day: 'yesterday', requests: 40 }] };
+    stubTab('https://www.twitch.tv/some_channel');
+    const root = await mount();
+    expect(root.querySelector('footer')?.textContent).not.toContain(FIRST);
   });
 });

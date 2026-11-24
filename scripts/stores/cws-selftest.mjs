@@ -60,10 +60,10 @@ await new Promise((r) => srv.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${srv.address().port}`;
 
 // Async on purpose: a synchronous child would block the loop the fake server answers on.
-const run = (args, keyFile = 'key.json') =>
+const run = (args, keyFile = 'key.json', over = {}) =>
   new Promise((resolve) => {
     const p = spawn(process.execPath, [CWS, ...args], {
-      env: { ...process.env, CWS_SA_KEY: path.join(dir, keyFile), CWS_PUBLISHER_ID: 'pub-1', CWS_ITEM_ID: 'selftestitem', CWS_TOKEN_URL: `${base}/token`, CWS_API: base },
+      env: { ...process.env, CWS_SA_KEY: path.join(dir, keyFile), CWS_PUBLISHER_ID: 'pub-1', CWS_ITEM_ID: 'selftestitem', CWS_TOKEN_URL: `${base}/token`, CWS_API: base, ...over },
     });
     let out = '';
     p.stdout.on('data', (d) => (out += d));
@@ -86,10 +86,15 @@ expect(r.code === 1 && /invalid_grant/.test(r.out) && !seen.includes('status'), 
 r = await run(['upload', path.join(dir, 'absent.zip')]);
 expect(r.code === 1 && /zip introuvable/.test(r.out), 'zip absent : arret avant tout appel');
 
+// S-13: an override that is not the loopback must not be followed with the service-account key.
+seen.length = 0;
+r = await run(['status'], 'key.json', { CWS_TOKEN_URL: 'https://evil.example/token' });
+expect(r.code !== 0 && /may only point at http:\/\/127\.0\.0\.1/.test(r.out) && seen.length === 0, 'URL hors boucle locale : refusee avant tout appel');
+
 srv.close();
 fs.rmSync(dir, { recursive: true, force: true });
 if (fails.length) {
   for (const f of fails) console.error('  x   ' + f);
   process.exit(1);
 }
-console.log('cws-selftest : 5/5');
+console.log('cws-selftest : 6/6');

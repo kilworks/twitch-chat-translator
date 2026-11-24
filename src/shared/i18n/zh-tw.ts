@@ -88,7 +88,6 @@ export const zh_tw: Record<string, string> = {
   'Translate what I type': '翻譯我輸入的內容',
   'Today': '今天',
   'Auto (your language)': '自動（你的語言）',
-  'Below original': '原文下方',
   'Auto (channel language)': '自動（頻道語言）',
   "Auto-detects the channel's language. Preview shows above the chat box. Click it to insert.":
     '自動偵測頻道語言。預覽會顯示在聊天輸入框上方，點一下就能填入。',
@@ -250,8 +249,8 @@ export const zh_tw: Record<string, string> = {
   '"Reset all settings" puts every setting back to its default.': '「還原所有預設設定」會把所有設定恢復成預設值。',
   'On-device: ready': '裝置端翻譯：可用',
   'On-device: not in this browser': '裝置端翻譯：此瀏覽器不支援',
-  'On-device first, cloud if needed (recommended)': '優先使用裝置端，必要時用雲端（建議）',
-  'Cloud first, on-device if needed': '優先使用雲端，必要時用裝置端',
+  'On-device first, cloud if needed': '優先使用裝置端，必要時用雲端',
+  'Cloud first, on-device if needed (recommended)': '優先使用雲端，必要時用裝置端（建議）',
   'On-device only (nothing sent online)': '僅使用裝置端（不會向網路傳送任何內容）',
   'This browser cannot translate on your computer, so the cloud engines translate everything.': '此瀏覽器無法在你的電腦上翻譯，所以全部由雲端引擎翻譯。',
   'On-device translates on your computer: free, fast, private, no daily limit. Each language is a one-time download: pick it below, or "Local" in the chat.': '裝置端翻譯在你的電腦上完成：免費、快速、私密，沒有每日限額。每種語言只需下載一次：在下方選擇，或點一下聊天室中的「本機」。',
