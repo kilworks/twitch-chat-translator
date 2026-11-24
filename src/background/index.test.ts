@@ -59,15 +59,19 @@ async function loadWorker(
 ): Promise<{
   syncWrites: Record<string, unknown>[];
   alarms: string[];
+  access: string[];
+  sent: unknown[];
   ask: (m: RuntimeMessage, s: chrome.runtime.MessageSender) => Promise<RuntimeResponse>;
 }> {
   const syncWrites: Record<string, unknown>[] = [];
   const alarms: string[] = [];
+  const access: string[] = [];
+  const sent: unknown[] = [];
   let listener: Listener | undefined;
   const area = (store: Record<string, unknown>, writes?: Record<string, unknown>[], slow = false) => ({
-    get: async (key: string) => {
+    get: async (key: string | string[]) => {
       if (slow) await new Promise((r) => setTimeout(r, 5));
-      return key in store ? { [key]: structuredClone(store[key]) } : {};
+      return Object.fromEntries([key].flat().filter((k) => k in store).map((k) => [k, structuredClone(store[k])]));
     },
     set: async (obj: Record<string, unknown>) => {
       writes?.push(structuredClone(obj));
@@ -76,6 +80,7 @@ async function loadWorker(
     remove: async (key: string) => {
       delete store[key];
     },
+    setAccessLevel: async (o: { accessLevel: string }) => void access.push(o.accessLevel),
   });
   // init() asks DeepL for its usage when a key is set: nothing leaves the test.
   vi.stubGlobal('fetch', async () => ({ ok: false }));
@@ -91,13 +96,13 @@ async function loadWorker(
       lastError: undefined,
       onMessage: { addListener: (l: Listener) => (listener = l) },
       onInstalled: { addListener: () => undefined },
-      getManifest: () => ({ version: '3.6.2', content_scripts: [] }),
+      getManifest: () => ({ version: '3.6.2', content_scripts: [{ matches: ['https://www.twitch.tv/*'] }] }),
       getURL: (p = '') => EXT + p,
       openOptionsPage: async () => undefined,
     },
     alarms: { create: (name: string) => void alarms.push(name), get: async () => undefined, onAlarm: { addListener: () => undefined } },
     commands: { onCommand: { addListener: () => undefined } },
-    tabs: { query: async () => [] },
+    tabs: { query: async () => [{ id: 7 }], sendMessage: async (id: number, m: unknown) => void sent.push([id, m]) },
     scripting: { executeScript: async () => [] },
   });
   vi.resetModules();
@@ -106,7 +111,7 @@ async function loadWorker(
     new Promise((resolve) => {
       listener!(m, s, resolve);
     });
-  return { syncWrites, alarms, ask };
+  return { syncWrites, alarms, access, sent, ask };
 }
 
 const settle = async (): Promise<void> => {
@@ -131,6 +136,42 @@ describe('worker start with a DeepL key on the device', () => {
       expect(s.deeplApiKey ?? '').toBe('');
       expect(s.providerOrder).not.toContain('deepl');
     }
+  });
+});
+
+describe('storage is closed to content scripts', () => {
+  const stored = { [STORAGE_KEY_SETTINGS]: { providerOrder: ['deepl', 'google'] } };
+  const key = { [STORAGE_KEY_DEEPL_KEY]: 'secret-key:fx' };
+
+  // S-01: the DeepL key and the settings blob were readable and writable from a page's script.
+  it('asks for trusted contexts on both areas, and an update keeps the key and the settings', async () => {
+    const { access, ask } = await loadWorker(stored, key);
+    await settle();
+    expect(access).toEqual(['TRUSTED_CONTEXTS', 'TRUSTED_CONTEXTS']);
+    const res = await ask({ type: 'settings.get' }, OPTIONS_PAGE);
+    expect((res as { payload: Settings }).payload.deeplApiKey).toBe('secret-key:fx');
+    expect((res as { payload: Settings }).payload.providerOrder).toEqual(['deepl', 'google']);
+  });
+
+  it('tells the chat tabs when settings change, once, and without the key', async () => {
+    const { ask, sent } = await loadWorker(stored, key);
+    await settle();
+    sent.length = 0;
+    await ask({ type: 'settings.set', payload: { targetLang: 'de' } }, OPTIONS_PAGE);
+    await new Promise((r) => setTimeout(r, 120));
+    expect(sent).toEqual([[7, { type: 'settings.changed' }]]);
+  });
+
+  it('keeps the channel language and the hint counter for a tab, validated', async () => {
+    const { ask } = await loadWorker(stored, key);
+    await settle();
+    expect((await ask({ type: 'lastlang.set', slug: 'chan', lang: 'ja' }, TWITCH_TAB)).type).toBe('ack');
+    expect(await ask({ type: 'lastlang.get', slug: 'chan' }, TWITCH_TAB)).toEqual({ type: 'lastlang', lang: 'ja' });
+    expect((await ask({ type: 'lastlang.set', slug: '../x', lang: 'ja' }, TWITCH_TAB)).type).toBe('error');
+    expect((await ask({ type: 'lastlang.set', slug: 'chan', lang: '<script>' }, TWITCH_TAB)).type).toBe('error');
+    expect((await ask({ type: 'hint.set', value: 3 }, TWITCH_TAB)).type).toBe('ack');
+    expect(await ask({ type: 'hint.get' }, TWITCH_TAB)).toEqual({ type: 'hint', value: 3 });
+    expect((await ask({ type: 'hint.set', value: 'x' as unknown as number }, TWITCH_TAB)).type).toBe('error');
   });
 });
 

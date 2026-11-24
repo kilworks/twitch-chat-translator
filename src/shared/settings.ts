@@ -302,6 +302,25 @@ export async function importSettings(json: string): Promise<Settings> {
   return next;
 }
 
+/**
+ * Keep storage out of the content scripts' reach.
+ *
+ * They run in the least trusted context the extension has, and by default they read
+ * and write storage.local and storage.sync directly: the DeepL key, and the settings
+ * blob whose lingvaInstance decides where chat text is sent, bypassing every check the
+ * worker makes on a page's messages. Trusted contexts only, set at each worker start.
+ * Firefox has no such control: there the content script keeps what it always had.
+ */
+export function restrictStorageAccess(): void {
+  for (const area of [chrome.storage.local, chrome.storage.sync]) {
+    try {
+      void Promise.resolve(area.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' })).catch(() => undefined);
+    } catch {
+      // Older browsers: the call is absent or refused, the old behaviour stands.
+    }
+  }
+}
+
 export function watchSettings(cb: (next: Settings) => void): () => void {
   /**
    * Settings now live in two areas, so the callback re-reads instead of parsing

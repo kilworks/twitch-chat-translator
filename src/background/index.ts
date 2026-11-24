@@ -1,4 +1,4 @@
-import { defaultSettings, loadSettings, resetSettings, saveSettings, watchSettings, withoutKey, type Settings } from '~/shared/settings';
+import { defaultSettings, loadSettings, resetSettings, restrictStorageAccess, saveSettings, watchSettings, withoutKey, type Settings } from '~/shared/settings';
 import { onMessage, type RuntimeMessage, type RuntimeResponse } from '~/shared/messages';
 import { rootLogger } from '~/shared/logger';
 import { createMetrics } from '~/shared/metrics';
@@ -14,6 +14,7 @@ import { DEEPL_USAGE_FREE, DEEPL_USAGE_PRO } from '~/shared/constants';
 import { getSemanticOverride } from '~/shared/transliterationGuard';
 import { ecrireDansSlate } from './slateWrite';
 import { emoteNamesFor, isRoomId } from './emotes';
+import { getHint, getLastLang, setHint, setLastLang } from './memo';
 import { CHAT_MESSAGES } from '~/content/i18n';
 import { addUsage, dropUsage, installUsage, recordProviderError, recordTranslation } from './usage';
 import type { ProviderId, TranslationOutcome, TranslationRequest } from '~/shared/types';
@@ -36,7 +37,29 @@ function bucketFor(channel: string): TokenBucket {
   return b;
 }
 
-function applySettings(next: Settings): void {
+let announceTimer: ReturnType<typeof setTimeout> | undefined;
+
+/**
+ * Tell every chat tab that the settings changed. Content scripts cannot read or watch
+ * storage (restrictStorageAccess), so this is how they hear of it: they ask for the
+ * settings again, through settings.get, which comes without the DeepL key. Debounced:
+ * one change reaches this twice, once from the handler and once from storage.onChanged.
+ */
+function announceSettings(): void {
+  clearTimeout(announceTimer);
+  announceTimer = setTimeout(() => {
+    void (async () => {
+      const [cs] = chrome.runtime.getManifest().content_scripts ?? [];
+      if (!cs?.matches?.length) return;
+      const tabs = await chrome.tabs.query({ url: cs.matches }).catch(() => []);
+      for (const tab of tabs) {
+        if (tab.id !== undefined) void chrome.tabs.sendMessage(tab.id, { type: 'settings.changed' }).catch(() => undefined);
+      }
+    })().catch(() => undefined);
+  }, 50);
+}
+
+function applySettings(next: Settings, announce = true): void {
   // Consent withdrawn: the day counted so far goes with it.
   if (settings.usageStats && !next.usageStats) void dropUsage();
   settings = next;
@@ -45,6 +68,7 @@ function applySettings(next: Settings): void {
     b.setRate(next.perChannelBudgetPerMin, next.perChannelBudgetPerMin);
   }
   rootLogger.setEnabled(next.debug);
+  if (announce) announceSettings();
 }
 
 async function handleTranslate(req: TranslationRequest): Promise<TranslationOutcome> {
@@ -176,7 +200,7 @@ const CACHE_PRUNE_ALARM = 'kt-cache-prune';
 
 async function init(): Promise<void> {
   settings = await loadSettings();
-  applySettings(settings);
+  applySettings(settings, false);
   await stats.load();
   await cache.warm(200, warmTargets(resolveTargetLang(settings.targetLang), stats.current().byLang));
   log.info('Service worker initialized');
@@ -193,6 +217,7 @@ async function init(): Promise<void> {
 }
 
 // Top level, before anything awaits: see listenKeepalive.
+restrictStorageAccess();
 listenKeepalive();
 chrome.alarms.onAlarm.addListener((alarm) => {
   // Pruning before init would apply the default size and lifetime, not the reader's.
@@ -227,6 +252,10 @@ const PAGE_MESSAGES = new Set<RuntimeMessage['type']>([
   'stats.local',
   'usage.add',
   'i18n.chat',
+  'lastlang.get',
+  'lastlang.set',
+  'hint.get',
+  'hint.set',
   'emotes.get',
   'settings.get',
   'settings.set',
@@ -282,6 +311,14 @@ onMessage(async (msg, sender): Promise<RuntimeResponse | void> => {
       return { type: 'ack' };
     case 'i18n.chat':
       return { type: 'i18n.chat', payload: CHAT_MESSAGES[msg.locale] };
+    case 'lastlang.get':
+      return { type: 'lastlang', lang: await getLastLang(msg.slug) };
+    case 'lastlang.set':
+      return (await setLastLang(msg.slug, msg.lang)) ? { type: 'ack' } : NOT_ALLOWED;
+    case 'hint.get':
+      return { type: 'hint', value: await getHint() };
+    case 'hint.set':
+      return (await setHint(msg.value)) ? { type: 'ack' } : NOT_ALLOWED;
     case 'emotes.get':
       if (msg.roomId !== undefined && !isRoomId(msg.roomId)) return NOT_ALLOWED;
       return { type: 'emotes', names: await emoteNamesFor(msg.roomId) };

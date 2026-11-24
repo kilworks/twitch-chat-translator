@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { defaultSettings } from './settings';
-import { fetchSettings } from './settingsClient';
+import { fetchSettings, watchSettings } from './settingsClient';
 
 /**
  * The content script's first act on a page is to ask the worker for settings, and
@@ -72,5 +72,30 @@ describe('fetchSettings on a cold worker', () => {
     await vi.runAllTimersAsync();
     expect(await settled).toBeInstanceOf(Error);
     expect(calls).toBe(3);
+  });
+});
+
+describe('watchSettings in a content script', () => {
+  // S-01: storage is closed to content scripts, so the worker says a change happened and
+  // the page asks again. Nothing about the DeepL key can reach it through a storage event.
+  it('re-asks the worker when told, and ignores storage events', async () => {
+    vi.useRealTimers();
+    const listeners: ((m: unknown) => boolean)[] = [];
+    const onChanged = vi.fn();
+    vi.stubGlobal('chrome', {
+      storage: { onChanged: { addListener: onChanged } },
+      runtime: {
+        lastError: undefined,
+        onMessage: { addListener: (l: (m: unknown) => boolean) => listeners.push(l), removeListener: vi.fn() },
+        sendMessage: (_m: unknown, cb: (r: unknown) => void) => cb({ type: 'settings', payload: defaultSettings() }),
+      },
+    });
+    const seen = vi.fn();
+    watchSettings(seen);
+    expect(onChanged).not.toHaveBeenCalled();
+    listeners[0]!({ type: 'something.else' });
+    listeners[0]!({ type: 'settings.changed' });
+    await vi.waitFor(() => expect(seen).toHaveBeenCalledTimes(1));
+    expect(seen.mock.calls[0]![0]).toMatchObject({ deeplApiKey: '' });
   });
 });
