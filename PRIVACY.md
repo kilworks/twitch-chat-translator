@@ -96,7 +96,9 @@ These pieces of data live in your browser's extension storage:
   on your browser's sync, the browser itself (Google or Mozilla) copies them to
   your other devices. We never see them.
 - Your DeepL API key, if you add one. It stays on this device, is never
-  synced, and a settings export never contains it.
+  synced, and a settings export never contains it. Neither does an export hold
+  your MyMemory e-mail, your Lingva server or the channels you watched; the
+  lists you wrote yourself (blocked words, blocked users, glossary) are in it.
 - A cache of recent translations (text + translation pair), keyed by text, on
   this device. Entries are deleted after the age and count set in the options
   (72 hours and 15,000 entries by default), checked once a day.

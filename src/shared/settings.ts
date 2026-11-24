@@ -275,12 +275,34 @@ export async function resetSettings(): Promise<Settings> {
 }
 
 /**
- * Export the settings as a JSON string (for backup / transfer). Without the
- * DeepL key: these files get shared, to ask for help or to pass settings on.
+ * What stays this device's own across an export and an import: the key, the
+ * server and the e-mail address that decide where text and identity go, the
+ * consent to usage statistics, and the record of which channels were watched.
+ */
+const DEVICE_KEYS = [
+  'deeplApiKey',
+  'lingvaInstance',
+  'myMemoryEmail',
+  'usageStats',
+  'usageStatsAsked',
+  'pausedChannels',
+  'channelLangs',
+] as const satisfies readonly (keyof Settings)[];
+
+/**
+ * Export the settings as a JSON string (for backup / transfer). These files get
+ * shared, to ask for help or to pass settings on, so the device's own values
+ * (see DEVICE_KEYS) are blanked. The lists the reader wrote on purpose (blocked
+ * words and users, allowed and blocked channels, glossary) stay: they are the
+ * settings someone transfers.
  */
 export async function exportSettings(): Promise<string> {
   const s = await loadSettings();
-  return JSON.stringify(withoutKey(s), null, 2);
+  return JSON.stringify(
+    { ...withoutKey(s), myMemoryEmail: '', lingvaInstance: '', pausedChannels: [], channelLangs: {} },
+    null,
+    2,
+  );
 }
 
 /**
@@ -298,18 +320,16 @@ export function parseSettingsJson(json: string): Settings {
 /**
  * Import settings from a JSON string. Returns the settings now in force.
  *
- * Two things stay this device's own. The DeepL key: a file without one (every
- * export since 3.6.3) leaves it in place. The Lingva server: a file someone
- * else wrote would otherwise send every chat line to their server, and nothing
- * on screen would say so.
+ * DEVICE_KEYS stay this device's own, whatever the file says. A file someone else
+ * wrote would otherwise send every chat line to their Lingva server, put their
+ * DeepL account behind every request, switch on the usage statistics without the
+ * question being asked, or set the e-mail MyMemory receives, and nothing on screen
+ * would say so. A key in an old backup is ignored for the same reason.
  */
 export async function importSettings(json: string): Promise<Settings> {
   const file = parseSettingsJson(json);
   const current = await loadSettings();
-  const next = { ...file, lingvaInstance: current.lingvaInstance, deeplApiKey: file.deeplApiKey || current.deeplApiKey };
-  // A backup written before 3.6.3 may still carry a key: it goes to local
-  // storage, never to sync.
-  if (file.deeplApiKey) await chrome.storage.local.set({ [STORAGE_KEY_DEEPL_KEY]: file.deeplApiKey });
+  const next = { ...file, ...Object.fromEntries(DEVICE_KEYS.map((k) => [k, current[k]])) } as Settings;
   await chrome.storage.sync.set({ [STORAGE_KEY_SETTINGS]: withoutKey(next) });
   return next;
 }

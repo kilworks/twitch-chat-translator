@@ -144,7 +144,8 @@ every on/off setting is a switch that applies at once.
 - **Filters**: bots, users, channels, keywords (matched as whole words), source languages (tick chips), and a
   glossary of replacements. A channel your lists leave out says "Not translated here" in the chat bar
 - **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore (the
-  file never holds your DeepL key, and importing one keeps your own key and Lingva server)
+  file never holds your DeepL key, your MyMemory e-mail, your Lingva server or the channels you watched, and importing
+  one never changes them, nor the usage statistics choice)
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
 - **Keyboard**: Alt+Shift+T turns chat translation on or off (Alt+T is Twitch's theater mode), Alt+W the compose
