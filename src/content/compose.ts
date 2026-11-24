@@ -76,6 +76,21 @@ export class ComposeController {
   private settings: Settings;
   private composer: HTMLElement | undefined;
   private readonly onInput = (): void => this.scheduleEvaluate();
+  /**
+   * A click anywhere in the window can mean the emote picker put an emote in the box, so it has
+   * to look. Looking reads the text with `innerText`, a forced layout, and most clicks change
+   * nothing: compare what a read without layout sees, and evaluate only if it moved.
+   */
+  private readonly onWindowClick = (): void => {
+    if (this.snapshot() !== this.seen) this.scheduleEvaluate();
+  };
+  private seen = '';
+  private snapshot(): string {
+    const c = this.composer;
+    if (!c) return '';
+    const value = c instanceof HTMLTextAreaElement || c instanceof HTMLInputElement ? c.value : (c.textContent ?? '');
+    return `${value}${Array.from(c.querySelectorAll<HTMLImageElement>('img[alt]'), (i) => i.alt).join(',')}`;
+  }
   private readonly onKeydown = (e: KeyboardEvent): void => this.handleKeydown(e);
   private debounceTimer: ReturnType<typeof setTimeout> | undefined;
   private pollTimer: ReturnType<typeof setTimeout> | undefined;
@@ -250,7 +265,7 @@ export class ComposeController {
     // one, and blurred the box on Escape before we could stop it (measured).
     window.addEventListener('keydown', this.onKeydown, true);
     // Kick's emote picker opens on a click, with no key to wake evaluate().
-    window.addEventListener('click', this.onInput, true);
+    window.addEventListener('click', this.onWindowClick, true);
     mountComposePreview(composer, this.resolveTarget(), {
       onInsert: () => this.handleInsert(),
     });
@@ -272,7 +287,7 @@ export class ComposeController {
     this.composer?.removeEventListener('keyup', this.onInput);
     this.composer?.removeEventListener('beforeinput', this.onInput);
     window.removeEventListener('keydown', this.onKeydown, true);
-    window.removeEventListener('click', this.onInput, true);
+    window.removeEventListener('click', this.onWindowClick, true);
     this.composer = undefined;
   }
 
@@ -306,6 +321,7 @@ export class ComposeController {
     const composer = this.composer;
     if (!composer) return;
 
+    this.seen = this.snapshot();
     const raw = readComposerText(composer);
     // Half-typed emote/mention name: don't translate it, and don't cover the list.
     // A list can animate shut after a typed space with no key following: look
