@@ -10,6 +10,7 @@
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { verifyCrx3 } from './crx.mjs';
 
 const OUT = process.argv[2] ?? '.recon-ext';
 const IDS = {
@@ -25,9 +26,8 @@ for (const [name, id] of Object.entries(IDS)) {
     const res = await fetch(url, { redirect: 'follow' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
-    if (buf.toString('ascii', 0, 4) !== 'Cr24') throw new Error('not a CRX');
-    // CRX3: magic, version, header length, header, then the zip.
-    const zip = buf.subarray(12 + buf.readUInt32LE(8));
+    // Signed by the key behind the id asked for, or it is not unpacked (see crx.mjs).
+    const zip = verifyCrx3(buf, id);
     const dir = path.join(OUT, name);
     rmSync(dir, { recursive: true, force: true });
     mkdirSync(dir, { recursive: true });
