@@ -132,8 +132,10 @@
 .kt-translation-replace:hover .kt-retry,
 .kt-error:hover .kt-retry,
 /* Focus reveals it too, or tabbing to it lands on nothing visible. */
+/* Fully opaque once shown: at 0.7 over the 0.9 colour it measured 2.9:1 on the dark surface,
+   under the 3:1 a UI component needs (WCAG 1.4.11). */
 .kt-retry:focus-visible {
-  opacity: 0.7;
+  opacity: 1;
 }
 .kt-retry:focus-visible {
   outline: 2px solid var(--kt-green);
@@ -146,7 +148,7 @@
    at zero opacity with no way to reach it. */
 @media (hover: none) {
   .kt-retry {
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 .kt-retry:hover {
@@ -1486,6 +1488,14 @@ html[data-kt-scheme='light'] .kt-chip[data-mode='error'] {
    stays at 12px), set back by colour only. */
 .kt-lang-native {
   color: var(--kt-lp-muted);
+}
+/* On the hovered or focused row the muted endonym dropped to 3.81:1 (dark): read against the
+   hover background, 12px text needs 4.5:1. */
+.kt-lang-row:hover .kt-lang-native,
+.kt-lang-row:focus-visible .kt-lang-native,
+.kt-chip-row:hover .kt-lang-native,
+.kt-chip-row:focus-visible .kt-lang-native {
+  color: var(--kt-text-2);
 }
 
 /* Le liseré des drapeaux vient de flags.css, calibre pour une surface sombre :
