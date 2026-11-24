@@ -79,6 +79,13 @@ export function ProviderSection({ settings, providers, onPatch }: Props) {
   const planId = useId();
   const keyHint = useId();
   const lingvaId = useId();
+  // The field is not controlled (it saves on change), so a reset or an import reaches it here, and
+  // only while it is not being typed in: re-creating it on commit threw focus away on Enter.
+  const lingvaRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const el = lingvaRef.current;
+    if (el && el.value !== settings.lingvaInstance && document.activeElement !== el) el.value = settings.lingvaInstance;
+  }, [settings.lingvaInstance]);
   const list = useRef<HTMLUListElement>(null);
   const refocus = useRef<string | undefined>(undefined);
   // Show the DeepL card once, then keep it: clearing the key must not unmount
@@ -308,8 +315,7 @@ export function ProviderSection({ settings, providers, onPatch }: Props) {
               it, and the warning below showed from the first letter. */}
           <input
             id={lingvaId}
-            // Re-created when the saved address changes (a reset), since it is not controlled.
-            key={settings.lingvaInstance}
+            ref={lingvaRef}
             class="kt-input font-mono"
             type="url"
             autoComplete="off"

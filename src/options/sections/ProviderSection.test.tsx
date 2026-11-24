@@ -243,4 +243,22 @@ describe('the provider fields', () => {
     const url = el.querySelector<HTMLInputElement>('input[type="url"]')!;
     for (const id of url.getAttribute('aria-describedby')!.split(' ')) expect(el.querySelector(`[id="${id}"]`)).not.toBeNull();
   });
+
+  // R-04b: committing the address with Enter re-created the field and focus fell to the page.
+  it('keeps the field, and its focus, when the saved address changes under it', () => {
+    const el = mount({});
+    const input = el.querySelector<HTMLInputElement>('input[type="url"]')!;
+    input.focus();
+    input.value = 'https://lingva.example';
+    render(<ProviderSection settings={{ ...defaultSettings(), lingvaInstance: 'https://lingva.example' }} providers={[]} onPatch={() => {}} />, host!);
+    expect(el.querySelector('input[type="url"]')).toBe(input);
+    expect(document.activeElement).toBe(input);
+  });
+
+  it('shows a reset address in the field when it is not being typed in', () => {
+    const el = mount({ lingvaInstance: 'https://lingva.example' });
+    const input = el.querySelector<HTMLInputElement>('input[type="url"]')!;
+    render(<ProviderSection settings={{ ...defaultSettings(), lingvaInstance: '' }} providers={[]} onPatch={() => {}} />, host!);
+    expect(input.value).toBe('');
+  });
 });
