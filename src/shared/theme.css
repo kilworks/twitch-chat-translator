@@ -252,7 +252,9 @@ html[data-kt-scheme='light'] {
  * n'importe ou sans qu'un deplacement les casse.
  */
 
-html[data-kt-scheme='dark'][data-kt-accent='cyan'] {
+html[data-kt-scheme='dark'][data-kt-accent='cyan'],
+/* The options page's style preview carries the accent on its own box, so it does not recolour the page. */
+[data-kt-preview][data-kt-accent='cyan'] {
   /* 7.02:1 sur la surface */
   --kt-green-rgb: 5 179 214;
   --kt-green-ink-rgb: var(--kt-green-rgb);
@@ -271,7 +273,9 @@ html[data-kt-scheme='light'][data-kt-accent='cyan'] {
 
 /* The Kick build's own green, kept as a choice: on Twitch the default is purple,
    so a violet accent would repeat it. Re-measured on Twitch's surfaces. */
-html[data-kt-scheme='dark'][data-kt-accent='green'] {
+html[data-kt-scheme='dark'][data-kt-accent='green'],
+/* The options page's style preview carries the accent on its own box, so it does not recolour the page. */
+[data-kt-preview][data-kt-accent='green'] {
   /* 12.91:1 on the surface */
   --kt-green-rgb: 83 252 24;
   --kt-green-ink-rgb: var(--kt-green-rgb);
@@ -287,7 +291,9 @@ html[data-kt-scheme='light'][data-kt-accent='green'] {
   --kt-green-bed-rgb: 215 245 205;
 }
 
-html[data-kt-scheme='dark'][data-kt-accent='amber'] {
+html[data-kt-scheme='dark'][data-kt-accent='amber'],
+/* The options page's style preview carries the accent on its own box, so it does not recolour the page. */
+[data-kt-preview][data-kt-accent='amber'] {
   /* 7.08:1 sur la surface */
   --kt-green-rgb: 229 147 6;
   --kt-green-ink-rgb: var(--kt-green-rgb);

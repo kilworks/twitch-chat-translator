@@ -7,7 +7,6 @@ import { useT } from '~/shared/i18nContext';
 import { Check } from '../components/Check';
 import { Segmented } from '../components/Segmented';
 import {
-  applyAccent,
   applyShowOriginal,
   applyTypography,
   ensureStyles,
@@ -289,11 +288,6 @@ const SAMPLE_TEXT = '¿alguien más está viendo esto?';
  * imitation would start lying the next time inject.css is touched, and the whole
  * point of this preview is to answer "what does this style actually look like".
  */
-function clearAccent(): void {
-  document.documentElement.removeAttribute('data-kt-accent');
-  document.documentElement.removeAttribute('data-kt-scheme');
-}
-
 function StylePreview({ settings }: { settings: Settings }) {
   const t = useT();
   const host = useRef<HTMLDivElement>(null);
@@ -307,13 +301,13 @@ function StylePreview({ settings }: { settings: Settings }) {
     // montre celle du lecteur, et un reglage de lisibilite qu'il faut aller
     // verifier ailleurs ne sera pas regle.
     applyTypography(settings);
-    // The accent is a root attribute on the chat, and its colour blocks need the scheme beside it:
-    // the options page has neither, so picking Cyan changed nothing in the preview. Taken off
-    // again when the preview goes, so the page does not keep a colour the Display tab chose.
-    // The chat theme (light) is not previewed: its tokens hang off the same root attribute, which
-    // would turn the whole options page light.
-    document.documentElement.setAttribute('data-kt-scheme', 'dark');
-    applyAccent(settings.accent);
+    // The accent is a root attribute on the chat; here it goes on the preview's own box (theme.css
+    // has a block for it), so the toggles, tabs and links of the options page keep their colour.
+    // The chat theme (light) is not previewed: its tokens hang off the root attribute, which would
+    // turn the whole options page light.
+    const box = el.closest('[data-kt-preview]');
+    if (settings.accent && settings.accent !== 'kick') box?.setAttribute('data-kt-accent', settings.accent);
+    else box?.removeAttribute('data-kt-accent');
 
     el.textContent = '';
     const row = document.createElement('div');
@@ -336,7 +330,7 @@ function StylePreview({ settings }: { settings: Settings }) {
     // rather than left bare, so the preview is the real code path.
     if (settings.displayStyle === 'hover') {
       armHoverTranslate(row, () => undefined);
-      return clearAccent;
+      return;
     }
 
     inject(
@@ -351,7 +345,6 @@ function StylePreview({ settings }: { settings: Settings }) {
       settings,
       () => undefined, // the retry button is part of the look; it has nothing to retry here
     );
-    return clearAccent;
   }, [settings, t]);
 
   return (
