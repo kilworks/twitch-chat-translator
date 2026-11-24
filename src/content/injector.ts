@@ -51,6 +51,7 @@ export function showToast(message: string): void {
   if (existing) existing.remove();
   const el = document.createElement('div');
   el.className = 'kt-toast';
+  el.setAttribute('role', 'status');
   el.textContent = message;
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 3200);
@@ -526,6 +527,8 @@ export function mountFloatingBar(container: Element, settings: Settings, h: Floa
 
   const label = document.createElement('span');
   label.className = 'kt-float-label';
+  // Pause and resume change this text in place: say so to a screen reader.
+  label.setAttribute('role', 'status');
   bar.appendChild(label);
 
   // The reading language, on the bar. Changing it used to mean opening a page.
@@ -682,7 +685,9 @@ export function mountFloatingBar(container: Element, settings: Settings, h: Floa
   opts.type = 'button';
   opts.className = 'kt-float-opts';
   opts.title = msg('barOptionsTip', 'Options');
-  opts.textContent = '⚙';
+  // A name for assistive tech, else it reads the glyph; U+FE0E keeps the glyph out of emoji presentation.
+  opts.setAttribute('aria-label', opts.title);
+  opts.textContent = '⚙︎';
   opts.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -691,22 +696,6 @@ export function mountFloatingBar(container: Element, settings: Settings, h: Floa
   bar.appendChild(opts);
 
   setBarEnabled(bar, label, settings.enabled, settings.targetLang, blockedHere(settings));
-
-  bar.addEventListener('click', (e) => {
-    const t = e.target as Node;
-    if (
-      t === opts || t === localChip || t === langHost || t === power ||
-      count.contains(t) || opts.contains(t) || localChip.contains(t) ||
-      langHost.contains(t) || power.contains(t)
-    ) {
-      return;
-    }
-    e.preventDefault();
-    e.stopPropagation();
-    const enabled = bar.dataset.enabled !== 'true';
-    setBarEnabled(bar, label, enabled, bar.dataset.lang ?? settings.targetLang);
-    h.onToggle(enabled);
-  });
 
   // Appended, shown on top by `order: -1`: Twitch Anti-Ban swaps `.chat-room__content`'s first child for its proxy chat.
   host.appendChild(bar);
@@ -820,10 +809,11 @@ function setBarEnabled(
   if (picker && picker.value !== lang) picker.value = lang;
   const power = bar.querySelector<HTMLElement>('.kt-float-power');
   if (power) {
-    power.textContent = enabled ? '⏸' : '▶';
+    power.textContent = enabled ? '⏸︎' : '▶︎';
     power.title = enabled
       ? msg('barPause', 'Pause on this channel')
       : msg('barResume', 'Resume on this channel');
+    power.setAttribute('aria-label', power.title);
   }
 }
 

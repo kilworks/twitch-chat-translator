@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defaultSettings } from '~/shared/settings';
 import type { Settings } from '~/shared/settings';
 import type { TranslationResult } from '~/shared/types';
-import { HANDLED_SELECTOR, applyDisplayStyle, applyShowOriginal, armHoverTranslate, incrementFloatingCount, inject, markSkipped, mountFloatingBar, updateActiveProvider, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, unmountFloatingBar, updateFloatingBar } from './injector';
+import { HANDLED_SELECTOR, applyDisplayStyle, applyShowOriginal, armHoverTranslate, incrementFloatingCount, inject, markSkipped, mountFloatingBar, updateActiveProvider, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, showToast, unmountFloatingBar, updateFloatingBar } from './injector';
 import { nativeChat } from './twitchFixtures';
 // Read from disk: vitest runs with CSS processing off, so `?inline` imports
 // resolve to an empty string and would make these assertions pass on anything.
@@ -606,6 +606,34 @@ describe('injector artifacts', () => {
       expect(tiles.map((t) => t.getAttribute('aria-label'))).not.toContain(null);
       tiles[0]!.click();
       expect(h.onTargetLang).toHaveBeenCalledWith('ja');
+    });
+
+    // Only the power button pauses: a mis-click on the bar's padding used to (UI-24).
+    it('does not pause when the bar itself is clicked', () => {
+      const h = handlers();
+      const bar = mount(h);
+      bar.querySelector<HTMLElement>('.kt-float-label')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      bar.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      expect(h.onToggle).not.toHaveBeenCalled();
+    });
+
+    it('names its glyph buttons and announces the state label', () => {
+      const bar = mount(handlers());
+      const power = bar.querySelector<HTMLElement>('.kt-float-power')!;
+      const opts = bar.querySelector<HTMLElement>('.kt-float-opts')!;
+      expect(power.getAttribute('aria-label')).toBe(power.title);
+      expect(opts.getAttribute('aria-label')).toBe(opts.title);
+      expect(power.textContent).toContain('︎');
+      expect(bar.querySelector('.kt-float-label')?.getAttribute('role')).toBe('status');
+      power.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      expect(power.getAttribute('aria-label')).toBe(power.title);
+    });
+
+    it('announces a toast and leaves it visible under reduced motion', () => {
+      showToast('quota');
+      expect(document.querySelector('.kt-toast')?.getAttribute('role')).toBe('status');
+      const block = injectCss.slice(injectCss.lastIndexOf('@media (prefers-reduced-motion: reduce) {', injectCss.indexOf('Light theme. Kick publishes')));
+      expect(block).toMatch(/\.kt-toast\s*\{\s*animation:\s*none;/);
     });
 
     // The bar toggles when clicked, so touching the picker must not also pause it.

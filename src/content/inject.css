@@ -1025,6 +1025,11 @@ html[data-kt-scheme='light'] .kt-compose-insert {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+  /* The toast is its own fade: cutting it to 0.01 ms held it at opacity 0
+     (animation-fill-mode: forwards) for the whole 3 s it is meant to be read. */
+  .kt-toast {
+    animation: none;
+  }
 }
 
 /* Light theme. Kick publishes no light palette, so this mirrors the dark one
