@@ -77,6 +77,8 @@ export function ProviderSection({ settings, providers, onPatch }: Props) {
   const last = settings.providerOrder.length - 1;
   const keyId = useId();
   const planId = useId();
+  const keyHint = useId();
+  const lingvaId = useId();
   const list = useRef<HTMLUListElement>(null);
   const refocus = useRef<string | undefined>(undefined);
   // Show the DeepL card once, then keep it: clearing the key must not unmount
@@ -232,6 +234,9 @@ export function ProviderSection({ settings, providers, onPatch }: Props) {
               aria-label={t('API key')}
               class="kt-input font-mono"
               type={showKey ? 'text' : 'password'}
+              // A password manager offered to save the DeepL key as a login.
+              autoComplete="off"
+              aria-describedby={keyHint}
               value={settings.deeplApiKey}
             placeholder="••••••••-••••-••••-••••-••••••••••••:fx"
               onInput={(e) => onPatch({ deeplApiKey: (e.target as HTMLInputElement).value.trim() })}
@@ -248,7 +253,7 @@ export function ProviderSection({ settings, providers, onPatch }: Props) {
               {showKey ? t('Hide key') : t('Show key')}
             </button>
           </div>
-          <p class="text-xs text-kick-muted">
+          <p id={keyHint} class="text-xs text-kick-muted">
             {t('Free keys end with :fx.')} {t('Get a key:')}{' '}
             <a
               class="text-kick-primary underline"
@@ -296,24 +301,30 @@ export function ProviderSection({ settings, providers, onPatch }: Props) {
       <section class="kt-card space-y-3">
         <h2 class="kt-section">{t('Lingva instance')}</h2>
         <div class="kt-row">
-          <label class="kt-label" for="kt-lingva-url">
+          <label class="kt-label" for={lingvaId}>
             {t('Custom URL (optional)')}
           </label>
+          {/* Saved when the field is left, not per keystroke: "h" is not a URL, the schema refused
+              it, and the warning below showed from the first letter. */}
           <input
-            id="kt-lingva-url"
+            id={lingvaId}
+            // Re-created when the saved address changes (a reset), since it is not controlled.
+            key={settings.lingvaInstance}
             class="kt-input font-mono"
             type="url"
-            value={settings.lingvaInstance}
+            autoComplete="off"
+            aria-describedby={`${lingvaId}-hint ${lingvaId}-note`}
+            defaultValue={settings.lingvaInstance}
             placeholder="https://lingva.lunar.icu"
-            onInput={(e) =>
+            onChange={(e) =>
               onPatch({ lingvaInstance: (e.target as HTMLInputElement).value.trim() })
             }
           />
-          <p class="text-xs text-kick-muted">
+          <p id={`${lingvaId}-hint`} class="text-xs text-kick-muted">
             {t('Leave blank to use the default public instance.')}
           </p>
           {/* Always in the DOM, so a screen reader hears the sentence when it appears. */}
-          <p class="text-xs text-red-400" role="status">
+          <p id={`${lingvaId}-note`} class="text-xs text-red-400" role="status">
             {settings.lingvaInstance && !settings.lingvaInstance.startsWith('https://')
               ? t('Not used: only an https:// address is accepted, so chat text never travels unencrypted.')
               : ''}

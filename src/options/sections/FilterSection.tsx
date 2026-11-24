@@ -8,6 +8,7 @@ import { Check } from '../components/Check';
 import { flagClass } from '~/shared/flags';
 import { TWITCH_BOTS } from '~/shared/bots';
 import { ignoredGlossaryLines } from '~/shared/glossary';
+import { numberField } from '../numberField';
 
 interface Props {
   settings: Settings;
@@ -108,10 +109,7 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
             min={1}
             max={50}
             value={settings.minTextLength}
-            onInput={(e) => {
-              const v = Number((e.target as HTMLInputElement).value);
-              if (Number.isInteger(v) && v >= 1 && v <= 50) onPatch({ minTextLength: v });
-            }}
+            {...numberField(1, 50, settings.minTextLength, (n) => onPatch({ minTextLength: n }))}
           />
         </div>
       </section>
@@ -166,6 +164,7 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
                 key={l.code}
                 type="button"
                 aria-pressed={checked}
+                title={l.name}
                 class={`flex min-h-8 min-w-0 items-center gap-2 rounded border px-2 py-1 text-start text-xs transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kick-primary ${
                   checked
                     ? 'border-kick-primary bg-kick-primary/15 text-kick-text'
@@ -186,7 +185,9 @@ export function FilterSection({ settings, onPatch, stats }: Props) {
                 <span class="truncate">{l.name}</span>
                 {/* What this language actually amounted to in the chat. */}
                 {(vues[l.code] ?? 0) > 0 && (
-                  <span class="ms-auto shrink-0 tabular-nums text-xs text-kick-primary">{vues[l.code]}</span>
+                  // A bare number after the name read as part of it ("Japanese 12"): sighted readers
+                  // get it, the name stays the name. The same counts are on the Activity tab.
+                  <span aria-hidden="true" class="ms-auto shrink-0 tabular-nums text-xs text-kick-primary">{vues[l.code]}</span>
                 )}
                 {checked && (
                   <svg class={`h-4 w-4 shrink-0 text-kick-primary ${(vues[l.code] ?? 0) > 0 ? '' : 'ms-auto'}`} aria-hidden="true">
