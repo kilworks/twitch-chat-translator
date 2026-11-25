@@ -15,7 +15,7 @@ import { ROW_SELECTOR } from './platform';
 import { confidentLanguage, detectLanguage } from './langDetect';
 import { resolveBrowserLang } from '~/shared/languages';
 import { isContextCritical } from '~/shared/langTiers';
-import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHint, skipOnVerdict } from './filters';
+import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHint, skipOnVerdict, trustedVerdict } from './filters';
 import { HANDLED_SELECTOR, inject, incrementFloatingCount, armHoverTranslate, markSkipped, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, showToast, updateActiveProvider } from './injector';
 import { localEngine } from './localEngine';
 import { memCache } from './memcache';
@@ -638,6 +638,9 @@ export class TranslationPipeline {
       }
       msg = { ...msg, rowElement: rescued.row, injectionTarget: rescued.target };
     }
+    // Every caller reaches here, the tab cache and the service worker cache included, so a
+    // bad `en` verdict that was stored earlier is dropped on the way back in.
+    result = { ...result, detectedLang: trustedVerdict(result.detectedLang, real) ?? 'auto' };
     const tt = applyUserGlossary(result.translatedText, this.settings.glossary);
     if (!tt) {
       this.skip(msg, localised('skipGlossary', 'your glossary emptied the translation'));
