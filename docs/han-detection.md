@@ -59,3 +59,16 @@ or fewer than 200 lines, or fewer than 10 units carrying lines the criterion con
 The `frais` reading happens once, after the code freeze: each prefix of the second change set against the code after the
 first one. The second change set is the longest prefix with no FAIL; later steps are removed by removal commits, never by a
 second reading. Any change after the reading invalidates it for that change.
+
+## First change: results on `design`
+
+Reference: the extraction commit (same behaviour as the published build). Candidate: the engine-verdict guard and the mention and mark fixes. The adapter sends the text TCT sends; the stored verdicts are keyed by the text the other extension sent. 63 of the 3,581 scored lines (27 more are dropped before the gates, text under 2 characters) differ between the two texts; those 63 are scored without verdict (26 of them had one). List: kct-data/han/tct-differing-texts.json. Engine verdicts exist for 1,091 scored lines; the table below is over all 3,581, and the answered-only run gives the same `en` drop (12 to 0 on Japanese, 306 to 0 on Chinese).
+
+- `W`, `en` reader: 318 to 0 (Japanese 12 to 0, Chinese 306 to 0). `ja` reader on Chinese 9 to 6. Every other reader cell unchanged. Lists: `ja,ko` on Korean 46 to 47 (the only rise), `zh,zh-tw,yue` 164 to 162, `zh` 760 to 756.
+- `S`: Chinese 7 to 4, Japanese 20 to 20, Korean 12 to 12. Silence on han-only Chinese 0.576 to 0.578; leak of han-only Japanese read as Chinese 0.033 to 0.033.
+- Cost, paired bootstrap by unit (202 units): `en` -15.81, 95 percent interval [-22.10, -9.82]; `ja` -0.218, [-0.515, -0.003]; `zh` and `zh-tw` -0.059, [-0.173, 0.025]; `ko` -0.059, [-0.158, 0.012].
+- `K`, `en` reader, Latin lines: 34 to 34 (Japanese), 20 to 20 (Chinese), 34 to 34 (Korean).
+- Speed (three alternated runs, per-line microseconds): median 12.3 to 12.6 (1.02 times), p95 35.1 to 36.6 (1.04 times). Weight: content.js gzip 97,254 to 97,467 bytes.
+- Control: the reference against itself gives difference 0 in every cell and every cost.
+- Criteria: 1 pass, 2 pass, 3 pass, 4 pass, 5 pass, 6 pass.
+- Not proven: Kick chat, Cantonese, the held-out set, and the verdict gate on the lines without a stored verdict.
