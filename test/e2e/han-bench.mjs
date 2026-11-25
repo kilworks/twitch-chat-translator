@@ -45,7 +45,8 @@ for (const row of rows) {
   const r = { ...row, text: realText };
   const detected = lang.detectLanguage(r.text);
   const hint = lang.confidentLanguage(r.text);
-  const g = verdicts[r.sent];
+  // The verdict file is keyed by the text the engine was sent; a line TCT sends differently has no verdict.
+  const g = r.text === row.sent ? verdicts[row.sent] : undefined;
   const hasVerdict = g !== undefined;
   const raw = hint ?? (g?.detected ? languages.normalizeLang(g.detected) : undefined);
   const verdict = raw === undefined ? undefined : trusted(raw, r.text);
