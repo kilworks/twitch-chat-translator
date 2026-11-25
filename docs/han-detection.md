@@ -72,3 +72,15 @@ Reference: the extraction commit (same behaviour as the published build). Candid
 - Control: the reference against itself gives difference 0 in every cell and every cost.
 - Criteria: 1 pass, 2 pass, 3 pass, 4 pass, 5 pass, 6 pass.
 - Not proven: Kick chat, Cantonese, the held-out set, and the verdict gate on the lines without a stored verdict.
+
+## Second change: tables, bopomofo and function characters, on `design`
+
+Reference: the code after the first change (origin master). Candidate: the traditional-character table swap, bopomofo and the 18 Chinese function characters, ported from the Kick extension with the same han-script region (only the escape form of the fullwidth punctuation in the mention pattern differs, same code points). Engine verdicts exist for 1,091 of the 3,581 scored lines; the figures below are over all 3,581, the answered-only run is given where it differs.
+
+- `W`: the `zh` and `zh-tw` readers on Japanese 36 to 32; the `ja` reader on Chinese 6 to 7 (within the 2-line limit); the `zh,zh-tw,yue` list 162 to 134; the `zh` list 756 to 766 (reported without a criterion, more lines are now read as Chinese). Every other cell unchanged. Answered only: same direction (36 to 32, 4 to 5, 87 to 68, 452 to 454).
+- `S`: Japanese 20 to 16, Chinese 4 to 4, Korean 12 to 12. Silence on han-only Chinese 0.578 to 0.392; leak of han-only Japanese read as Chinese 0.033 to 0.011.
+- `K`: `en` reader unchanged (34, 20, 34). `zh` and `zh-tw` readers on Chinese 718 to 487, `ja` reader on Japanese 115 to 113. `Z`: Chinese 874 to 591, Japanese 223 to 227.
+- Cost, paired bootstrap by unit (202 units): `en` -0.790 [-1.084, -0.532]; `ja` -0.750 [-1.069, -0.473]; `zh` and `zh-tw` -2.131 [-2.906, -1.441]; `ko` -0.790 [-1.084, -0.532]. Answered only (131 units): `en` -0.809 [-1.157, -0.508], `ja` -0.748 [-1.107, -0.424], `zh` -2.061 [-2.989, -1.275].
+- Speed (three alternated runs, per-line microseconds): median 12.3 to 12.1 (0.98 times), p95 31.2 to 29.8 (0.96 times). Weight: content.js gzip 97,467 to 97,427 bytes.
+- Known price: on the Tatoeba bench 13 traditional lines and 1 Cantonese line now read as `zh`, so `sl=zh-CN` can be sent for a traditional line (same translation measured), and a Cantonese line made of shared characters plus a function character reads as `zh`.
+- Not proven: Twitch chat beyond the sets, Cantonese (no data), the held-out set, and the verdict gate on the lines without a stored verdict.

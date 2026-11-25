@@ -28,6 +28,13 @@ The audit fixes of 24 November, shared with Kick Chat Translator where the code 
 
 ### Fixed
 
+- **Fewer Chinese lines are sent with the wrong language or left unread.** The
+  traditional-character table is replaced by the most frequent traditional
+  characters, two characters shared with Japanese are no longer read as
+  Chinese-only, one character common in standard Chinese is no longer read as
+  Cantonese, bopomofo reads as traditional Chinese, and a short list of Chinese
+  function characters reads as Chinese. Counts and limits:
+  `docs/han-detection.md`.
 - **Storage is closed to the scripts that run in Twitch pages** (Chrome and
   Edge): the DeepL key and the settings can no longer be read or written from
   there. The channel language and the compose hint are kept by the worker.
