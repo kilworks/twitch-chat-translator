@@ -7,6 +7,7 @@ import {
   isSameLanguageAsTarget,
   shouldDropBySourceLang,
   shouldDropByUserOrChannel,
+  trustedVerdict,
 } from './filters';
 
 describe('shouldDropByUserOrChannel', () => {
@@ -241,5 +242,23 @@ describe('hasBlockedKeyword', () => {
 
   it('folds case the way the rest of the filters do', () => {
     expect(hasBlockedKeyword('İstanbul bugün', s(['istanbul']))).toBe(true);
+  });
+});
+
+describe('trustedVerdict', () => {
+  // The engine answers `en` for a good share of short traditional Chinese lines.
+  it('drops an English verdict that the line itself contradicts', () => {
+    expect(trustedVerdict('en', '這個問題很難')).toBeUndefined();
+    expect(trustedVerdict('en-US', 'これはテスト')).toBeUndefined();
+    expect(trustedVerdict('en', 'café time')).toBeUndefined();
+  });
+  it('keeps an English verdict on a line written in plain English letters', () => {
+    expect(trustedVerdict('en', 'this is a test')).toBe('en');
+    expect(trustedVerdict('en', 'gg wp 123')).toBe('en');
+  });
+  it('keeps every other verdict as it is', () => {
+    expect(trustedVerdict('ja', '感謝')).toBe('ja');
+    expect(trustedVerdict('zh-TW', 'hello')).toBe('zh-TW');
+    expect(trustedVerdict(undefined, '感謝')).toBeUndefined();
   });
 });

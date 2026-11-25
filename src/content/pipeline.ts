@@ -15,7 +15,7 @@ import { ROW_SELECTOR } from './platform';
 import { confidentLanguage, detectLanguage } from './langDetect';
 import { resolveBrowserLang } from '~/shared/languages';
 import { isContextCritical } from '~/shared/langTiers';
-import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, isSameLanguageAsTarget, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel } from './filters';
+import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHint, skipOnVerdict, trustedVerdict } from './filters';
 import { HANDLED_SELECTOR, inject, incrementFloatingCount, armHoverTranslate, markSkipped, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, showToast, updateActiveProvider } from './injector';
 import { localEngine } from './localEngine';
 import { memCache } from './memcache';
@@ -313,7 +313,7 @@ export class TranslationPipeline {
     //   a quieter detector makes it delete MORE for anyone who set an allowlist.
     //   That one needs its semantics rethought, not its input swapped.
     const hint = confidentLanguage(realText);
-    if (isSameLanguageAsTarget(hint, this.effTarget)) {
+    if (skipOnHint(hint, this.effTarget)) {
       return localised('skipSameLang', 'it is already in your language');
     }
     const byLang = shouldDropBySourceLang(detected, this.settings);
@@ -638,6 +638,9 @@ export class TranslationPipeline {
       }
       msg = { ...msg, rowElement: rescued.row, injectionTarget: rescued.target };
     }
+    // Every caller reaches here, the tab cache and the service worker cache included, so a
+    // bad `en` verdict that was stored earlier is dropped on the way back in.
+    result = { ...result, detectedLang: trustedVerdict(result.detectedLang, real) ?? 'auto' };
     const tt = applyUserGlossary(result.translatedText, this.settings.glossary);
     if (!tt) {
       this.skip(msg, localised('skipGlossary', 'your glossary emptied the translation'));
@@ -645,7 +648,7 @@ export class TranslationPipeline {
       return;
     }
     if (!opts.force) {
-      if (isSameLanguageAsTarget(result.detectedLang, this.effTarget) && this.settings.ignoreEnglish) {
+      if (skipOnVerdict(result.detectedLang, this.effTarget, this.settings.ignoreEnglish)) {
         this.skip(msg, localised('skipDetected', 'the translation service found it was already in your language'));
         removeAllArtifacts(msg.injectionTarget);
         return;

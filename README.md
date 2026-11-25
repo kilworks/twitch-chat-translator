@@ -338,6 +338,8 @@ Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 ## Related projects
 
 - [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), the same translator for Kick chat, by the same author
+- [Twitch Chat Translator requests](https://github.com/kilworks/twitch-chat-translator-request), the user requests received and the research done for each; the first case, lines written with Han characters, is the source of the detection changes in this release line
+- [Translating live chat](https://github.com/kilworks/kick-translator-research), the measurement-driven study behind the language detection
 
 ## Usage stats
 
