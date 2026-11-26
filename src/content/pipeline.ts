@@ -324,7 +324,7 @@ export class TranslationPipeline {
     }
     const hint = confidentLanguage(realText);
     this.prior.observe(hint);
-    if (skipOnHintForStream(hint, this.effTarget, realText, this.prior.family())) {
+    if (skipOnHintForStream(hint, this.effTarget, realText, this.prior.family(), this.prior.cantonese())) {
       return localised('skipSameLang', 'it is already in your language');
     }
     const byLang = shouldDropBySourceLang(detected, this.settings);
@@ -337,7 +337,7 @@ export class TranslationPipeline {
       this.effTarget !== 'en' && detected === 'en' && !hasNonEnglishLetter(realText)
         ? spellOutAbbreviations(realText)
         : realText;
-    return { real, detected, hint: sourceHintForStream(hint, realText, this.prior.family()) };
+    return { real, detected, hint: sourceHintForStream(hint, realText, this.prior.family(), this.prior.cantonese()) };
   }
 
   /** Rolling per-channel context (previous lines) for DeepL disambiguation.
@@ -659,7 +659,7 @@ export class TranslationPipeline {
       return;
     }
     if (!opts.force) {
-      if (skipOnVerdictForStream(result.detectedLang, this.effTarget, this.settings.ignoreEnglish, real, confidentLanguage(real), this.prior.family())) {
+      if (skipOnVerdictForStream(result.detectedLang, this.effTarget, this.settings.ignoreEnglish, real, confidentLanguage(real), this.prior.family(), this.prior.cantonese())) {
         this.skip(msg, localised('skipDetected', 'the translation service found it was already in your language'));
         removeAllArtifacts(msg.injectionTarget);
         return;
