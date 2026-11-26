@@ -15,7 +15,7 @@ import { ROW_SELECTOR } from './platform';
 import { confidentLanguage, detectLanguage } from './langDetect';
 import { resolveBrowserLang } from '~/shared/languages';
 import { isContextCritical } from '~/shared/langTiers';
-import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHintForStream, skipOnVerdictForStream, trustedVerdict } from './filters';
+import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHintForStream, skipOnVerdictForStream, sourceHintForStream, trustedVerdict } from './filters';
 import { StreamPrior } from './streamPrior';
 import { HANDLED_SELECTOR, inject, incrementFloatingCount, armHoverTranslate, markSkipped, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, showToast, updateActiveProvider } from './injector';
 import { localEngine } from './localEngine';
@@ -337,7 +337,7 @@ export class TranslationPipeline {
       this.effTarget !== 'en' && detected === 'en' && !hasNonEnglishLetter(realText)
         ? spellOutAbbreviations(realText)
         : realText;
-    return { real, detected, hint };
+    return { real, detected, hint: sourceHintForStream(hint, realText, this.prior.family()) };
   }
 
   /** Rolling per-channel context (previous lines) for DeepL disambiguation.
