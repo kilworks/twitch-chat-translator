@@ -188,7 +188,7 @@ await popup.close();
 // Display: 3 cards (h2) plus the Text, Colour and theme, In the chat groups (h3).
 // About: 4, one more than the sister build, for the Twitch-only section that
 // points to it.
-const TABS = { providers: 4, display: 6, filters: 4, advanced: 4, activity: 2, about: 4 };
+const TABS = { providers: 4, display: 6, filters: 4, advanced: 4, activity: 2, about: 5 };
 const OPTIONS = path.join(OUT, 'options');
 fs.mkdirSync(OPTIONS, { recursive: true });
 // rtl-surfaces audits every file here: a stale page from an old tab id would be
