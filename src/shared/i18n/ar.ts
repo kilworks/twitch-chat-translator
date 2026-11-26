@@ -154,6 +154,7 @@ export const ar: Record<string, string> = {
   'Always dark': 'داكنة دائمًا',
   'Always light': 'فاتحة دائمًا',
   'Remember a reading language per channel': 'تذكّر لغة القراءة لكل قناة',
+  'Translate a channel only after I switch it on in the bar': 'ترجمة القناة فقط بعد أن أشغّلها من الشريط',
   'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, open source, and anonymous counts only if you opt in.': 'يقرأ Twitch Chat Translator الدردشة فور وصولها ويضع تحت كل رسالة ترجمتها بلغتك. ويترجم أيضًا ما تكتبه قبل إرساله. بلا حساب، ومفتوح المصدر، ولا إحصاءات مجهولة إلا إذا وافقت.',
   'Version': 'الإصدار',
   'Languages': 'اللغات',

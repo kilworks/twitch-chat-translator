@@ -65,6 +65,8 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
 - **Four display styles**: under the message, on the same line, in place of it, or only on hover
 - **Pause one channel** from the chat bar without stopping the others. Switching channels or updating the
   extension keeps open tabs translating, no reload
+- **Start on demand**: an option leaves every new channel untranslated until you switch it on from the chat bar;
+  the choice lasts for that tab and nothing is added to a list
 - **Moderation aware**: a message deleted by a moderator, a timeout or a ban loses its translation too
 - **Looks like Twitch**: purple, and it follows the chat's own dark or light theme unless you pick one
 - **Chrome, Brave, Edge and Firefox**

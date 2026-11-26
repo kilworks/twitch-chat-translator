@@ -154,6 +154,7 @@ export const hu: Record<string, string> = {
   'Always dark': 'Mindig sötét',
   'Always light': 'Mindig világos',
   'Remember a reading language per channel': 'Olvasási nyelv megjegyzése csatornánként',
+  'Translate a channel only after I switch it on in the bar': 'Csak akkor fordítsa a csatornát, ha bekapcsolom a sávon',
   'Twitch Chat Translator reads chat as it arrives and puts a translation under each message in the language you read. It also translates what you type before you send it. No account, open source, and anonymous counts only if you opt in.': 'A Twitch Chat Translator a csevegést érkezés közben olvassa, és minden üzenet alá odateszi a fordítást azon a nyelven, amelyen olvasol. Az elküldés előtt azt is lefordítja, amit írsz. Nincs fiók, nyílt forráskódú, és névtelen számlálók csak akkor, ha engedélyezed.',
   'Version': 'Verzió',
   'Languages': 'Nyelvek',
