@@ -77,7 +77,7 @@ The API does not touch the listing. When a file in `store/chrome/description/` c
 No API sets the listing and no extension may act on the dashboard. `scripts/stores/cws-listing.mjs` speaks the Chrome DevTools Protocol itself, over the WebSocket built into Node, to a browser the user started with debugging on a dedicated profile:
 
 ```powershell
-& "C:\Program Files\BraveSoftware\Brave-Browser\Applicationrave.exe" --remote-debugging-port=9222 --user-data-dir="$env:USERPROFILE\.config\kick-chat-translator\cws-browser" --no-first-run <listing URL>
+& "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe" --remote-debugging-port=9222 --user-data-dir="$env:USERPROFILE\.config\kick-chat-translator\cws-browser" --no-first-run <listing URL>
 ```
 
 **Start it yourself, whenever needed: `node scripts/stores/cws-listing.mjs launch`.** kil authorized it on 2026-10-12 and set it to allow: do not ask first, do not hand them a command. Run it whenever the debug browser does not answer (`launch` picks a random port and keeps it in `.cdp-port` beside the profile, so nothing well known listens; `node scripts/stores/cws-listing.mjs close` shuts the browser when the work is done). Signing in stays the user's step: the profile is signed in and stays so; if Google asks for a sign-in, stop and ask. The user added the allow rule `Bash(node scripts/stores/cws-listing.mjs:*)`; run the script exactly as `node scripts/stores/cws-listing.mjs <cmd>` from the repository root, never prefixed with `cd`, or the rule does not match and the call is refused.
