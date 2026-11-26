@@ -72,3 +72,8 @@ Reference: the extraction commit (same behaviour as the published build). Candid
 - Control: the reference against itself gives difference 0 in every cell and every cost.
 - Criteria: 1 pass, 2 pass, 3 pass, 4 pass, 5 pass, 6 pass.
 - Not proven: Kick chat, Cantonese, the held-out set, and the verdict gate on the lines without a stored verdict.
+
+## Data-driven lists and Japanese-only characters (port of the Kick extension)
+
+The Kick extension replaced the two hand-picked lists of 45 characters with lists of 506 and 592 chosen from about 340,000 lines of known origin, and added 151 characters only Japanese writes (decision rules, fresh sets, failed candidates and counts in its `docs/han-detection.md`). The table region of `langDetect.ts` here was byte-identical before the port. On the dev split of the labelled set this tree reads exactly like the Kick tree (Taiwan 76.87 percent Traditional, mainland 82.32 percent Simplified, Japan read as Chinese 0.77 percent). Totals pinned by this tree's tests were re-pinned with its own confusion diff, not copied: sure Tatoeba 3,731 to 3,770 right, Traditional lines answered Simplified 15 to 4.
+

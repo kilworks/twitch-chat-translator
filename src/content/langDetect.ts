@@ -1,4 +1,5 @@
 import { franc } from 'franc-min';
+import { hasJaOnlyForm } from './hanJaForms';
 import { francToIso2 } from '~/shared/languages';
 import { laughterLanguage } from '~/shared/laughter';
 import { isArabizi } from '~/shared/arabizi';
@@ -2387,7 +2388,8 @@ function detectByScript(input: string): string | undefined {
   // franc so Chinese isn't mislabelled as Japanese.
   if (kana > 0) return 'ja';
   if (pct(hangul)) return 'ko';
-  if (pct(han)) return cantonaisOuChinois(text);
+  // Han only: the Chinese lists decide first; a character only Japanese writes names the line Japanese when they say nothing.
+  if (pct(han)) return cantonaisOuChinois(text) ?? (hasJaOnlyForm(text) ? 'ja' : undefined);
   if (pct(arabic)) return arabeOuPersan(text);
   if (pct(hebrew)) return 'he';
   if (pct(greek)) return 'el';
