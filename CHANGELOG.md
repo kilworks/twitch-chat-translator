@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-26
+
 The audit fixes of 24 November, shared with Kick Chat Translator where the code is.
 
 ### Changed
 
-- **Start on demand.** Port of the Kick extension option "Translate a channel only after I switch it on in the bar": every channel stays untranslated until the reader switches it on from the floating bar. The choice is kept for that tab, never written to the settings or sent. Off by default; the allowlist and the pause button work as before.
+- **Start on demand.** Port of the Kick extension option "Translate a channel only after I switch it on in the bar": every channel stays untranslated until the reader switches it on from the floating bar. The choice is kept for that tab, never written to the settings or sent. Off by default; the allowlist and the pause button work as before. While a channel waits, the bar reads "Translation paused" and the popup shows the pause card with Resume, which starts the channel in that tab.
 - **Han-only lines are translated from the language of the channel instead of the service's guess.** Port of the Kick extension change: on a line written only with Han characters that no rule names, the channel's language (Japanese or Chinese, from the private in-memory count) is sent as the source. Checked on the real service: the translation changes in 75 percent of the Japanese lines the service reads as something else and in 54.5 percent of the Chinese lines it reads as Japanese, to the right reading. The channel's language is right for 93 to 100 percent of the lines checked by hand, against 17 and 87 percent for the service.
 - **A Han-only line is no longer hidden because the translation service mixes Japanese and Chinese up, and a Han-only Chinese line is no longer skipped in a Japanese channel.** Port of the Kick extension change: a private in-memory count of the open channel's sure answers gives a Japanese or Chinese prior, and on a Han-only line no character rule names the service verdict skips only when it agrees with it. Replayed on 83 collected channels: the prior is present for 99.7 and 95.6 percent of those lines and right for 100 percent; Han-only Chinese lines hidden for a Japanese reader 0.8 to 0 percent, Han-only Japanese lines hidden for a Chinese reader 18.6 to 0 percent. `content.js` gzip +351 bytes. Nothing is stored or sent.
 - **Traditional and Simplified Chinese are told apart far more often, fewer Japanese lines read as Chinese, and Japanese-only characters name Japanese lines.** Port of the Kick extension changes. The two lists of 45 characters become lists of 506 and 592 chosen from lines of known origin, and 151 characters only Japanese writes name a Han-only line `ja` when the lists say nothing. On the held-out split of the shared study: Taiwanese lines named Traditional 59.3 to 77.8 percent, mainland lines named Simplified 37.8 to 82.4, Han-only Japanese lines read as Chinese 1.13 to 0.73. Price: written Cantonese without a marker is named Traditional more often (25.1 to 36.6 percent).
@@ -29,6 +31,9 @@ The audit fixes of 24 November, shared with Kick Chat Translator where the code 
   does, and the pause, options and play buttons have names a screen reader reads.
 - The popup says in its footer when the extension does not answer, when a save
   is refused, and that a non-Twitch tab is not translated.
+- **A mostly Cantonese chat is recognised.** Port of the Kick extension change. The extension also keeps, in memory only, the share of the open channel's Chinese lines it names Cantonese. Above a quarter (after 30 Chinese answers), a Han-only line named Traditional is no longer skipped for a Chinese reader and is sent with Cantonese as its source. On labelled lines of known origin: Cantonese and Hong Kong chats are recognised every time, Taiwanese, mainland and Japanese chats never, and the lines skipped for a Traditional reader in a Cantonese chat go from 36.7 to 0.1 percent. In a chat that is half Taiwanese and half Cantonese the Taiwanese half is translated too (more requests, no line lost). Not yet seen on a real Cantonese stream.
+- **The About tab explains the research.** A new card says why the language of a short line is the hard part of a chat translator and what was measured, with links to the public repositories (`docs/han-detection.md`, `kct-detection-langue`, `twitch-chat-translator-request`, `kick-translator-research`). Bulleted lists in the About tab keep to the line length of the paragraphs. Machine-drafted translations reviewed language by language in the 42 interface languages.
+- **Dependencies updated**: vite 8.4.0, vitest 5, preact 10.29.8 and the other in-range updates.
 
 ### Fixed
 
