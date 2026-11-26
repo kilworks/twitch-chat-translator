@@ -15,7 +15,8 @@ import { ROW_SELECTOR } from './platform';
 import { confidentLanguage, detectLanguage } from './langDetect';
 import { resolveBrowserLang } from '~/shared/languages';
 import { isContextCritical } from '~/shared/langTiers';
-import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHint, skipOnVerdict, trustedVerdict } from './filters';
+import { hasBlockedKeyword, hasNonEnglishLetter, isNoise, normalizeElongation, shouldDropBySourceLang, shouldDropByUserOrChannel, skipOnHintForStream, skipOnVerdictForStream, trustedVerdict } from './filters';
+import { StreamPrior } from './streamPrior';
 import { HANDLED_SELECTOR, inject, incrementFloatingCount, armHoverTranslate, markSkipped, removeAllArtifacts, showError, showLangBlocked, showLoading, showThrottleIndicator, showToast, updateActiveProvider } from './injector';
 import { localEngine } from './localEngine';
 import { memCache } from './memcache';
@@ -185,6 +186,10 @@ export class TranslationPipeline {
     }
   }
 
+  /** Language family of the open channel, from the sure answers seen so far; settles Han-only lines. */
+  private readonly prior = new StreamPrior();
+  private priorChannel: string | undefined;
+
   constructor(settings: Settings) {
     this.settings = settings;
     // Bound dedup map size.
@@ -312,8 +317,14 @@ export class TranslationPipeline {
     //   shouldDropBySourceLang, because it drops on `lang_unknown`, so feeding it
     //   a quieter detector makes it delete MORE for anyone who set an allowlist.
     //   That one needs its semantics rethought, not its input swapped.
+    // The prior belongs to one channel: a new channel starts it over.
+    if (meta.channel !== this.priorChannel) {
+      this.prior.reset();
+      this.priorChannel = meta.channel;
+    }
     const hint = confidentLanguage(realText);
-    if (skipOnHint(hint, this.effTarget)) {
+    this.prior.observe(hint);
+    if (skipOnHintForStream(hint, this.effTarget, realText, this.prior.family())) {
       return localised('skipSameLang', 'it is already in your language');
     }
     const byLang = shouldDropBySourceLang(detected, this.settings);
@@ -648,7 +659,7 @@ export class TranslationPipeline {
       return;
     }
     if (!opts.force) {
-      if (skipOnVerdict(result.detectedLang, this.effTarget, this.settings.ignoreEnglish)) {
+      if (skipOnVerdictForStream(result.detectedLang, this.effTarget, this.settings.ignoreEnglish, real, confidentLanguage(real), this.prior.family())) {
         this.skip(msg, localised('skipDetected', 'the translation service found it was already in your language'));
         removeAllArtifacts(msg.injectionTarget);
         return;
