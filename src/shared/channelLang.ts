@@ -32,10 +32,12 @@ export function memoriserLangueChaine(
  * onglets, et l'y ecrire en arrivant sur une chaine retraduisait les autres
  * onglets dans la langue de celle-ci.
  */
-export function vueDeChaine(s: Settings, slug: string | undefined): Settings {
+export function vueDeChaine(s: Settings, slug: string | undefined, started?: ReadonlySet<string>): Settings {
   if (!slug) return s;
   let vue = s;
   if (s.pausedChannels.includes(slug)) vue = { ...vue, enabled: false };
+  // Manual start: a channel nobody switched on in this tab stays off, like a paused one.
+  if (s.startMode === 'manual' && !started?.has(slug)) vue = { ...vue, enabled: false };
   const retenue = s.rememberChannelLang ? s.channelLangs[slug] : undefined;
   if (retenue && retenue !== s.targetLang) vue = { ...vue, targetLang: retenue };
   return vue;
