@@ -65,8 +65,11 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
 - **Four display styles**: under the message, on the same line, in place of it, or only on hover
 - **Pause one channel** from the chat bar without stopping the others. Switching channels or updating the
   extension keeps open tabs translating, no reload
-- **Start on demand**: an option leaves every new channel untranslated until you switch it on from the chat bar or the toolbar popup;
-  the choice lasts for that tab and nothing is added to a list
+- **Start on demand**: an option leaves every new channel untranslated until you switch it on from the chat bar
+  or the toolbar popup; the choice lasts for that tab and nothing is added to a list
+- **Chinese, Japanese and Cantonese chat**: a line written only with Han characters is settled by the
+  language the channel speaks, Traditional and Simplified Chinese are told apart, and a mostly Cantonese chat
+  is recognised. The measurements are public: [docs/han-detection.md](docs/han-detection.md)
 - **Moderation aware**: a message deleted by a moderator, a timeout or a ban loses its translation too
 - **Looks like Twitch**: purple, and it follows the chat's own dark or light theme unless you pick one
 - **Chrome, Brave, Edge and Firefox**
@@ -84,7 +87,7 @@ invented and the translations are answered locally, so no real person's handle e
 
 ## Privacy
 
-No account, no server of mine, and no analytics unless you opt in to a daily anonymous count sent to Google
+No account, no server of its own, and no analytics unless you opt in to a daily anonymous count sent to Google
 Analytics (engines used, errors, speed, never your messages, names or channels). Chat messages, and your draft while
 the compose preview is on, go to the translation provider you picked and nowhere else, and in on-device mode not
 even there. To know the channel's language it asks Twitch for the channel's broadcast language and id, and to keep
@@ -150,7 +153,8 @@ every on/off setting is a switch that applies at once.
   one never changes them, nor the usage statistics choice)
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
-- **About**: this copy's version, how a message becomes a translation, and the research behind it with links to the public repositories
+- **About**: this copy's version, how a message becomes a translation, and the research behind it, with links to
+  the public repositories
 - **Keyboard**: Alt+Shift+T turns chat translation on or off (Alt+T is Twitch's theater mode), Alt+W the compose
   preview. Both can be rebound in your browser's extension shortcuts
 - The language button in the chat's action bar, under the message box: one click opens the list of languages you
