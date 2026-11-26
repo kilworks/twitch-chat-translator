@@ -81,3 +81,7 @@ The Kick extension replaced the two hand-picked lists of 45 characters with list
 
 The Kick extension settles Han-only lines by the language of the channel (decision rules, replay of 83 collected channels, counts and the table of hidden lines by reader and channel language are in its `docs/han-detection.md`). Ported here with one difference: Twitch Chat Translator has no channel-switch hook in the pipeline, so the prior is reset when the `channel` of a message differs from the last one. Gates, tests and pipeline tests are the same; three of the pipeline tests were seen red with the gates neutralised. `content.js` gzip 101,288 to 101,639 bytes.
 
+## Stream prior as the source language (port of the Kick extension)
+
+Same change and tests as the Kick extension (rule, the real-service comparison and the gold-label check are in its `docs/han-detection.md`). The pipeline returns the stream family as the source hint of a Han-only line no rule names. Three pipeline tests, two seen red with the change neutralised.
+
