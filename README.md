@@ -65,7 +65,7 @@ translation only when it had nothing to finish. Ctrl/Cmd+Enter and a click alway
 - **Four display styles**: under the message, on the same line, in place of it, or only on hover
 - **Pause one channel** from the chat bar without stopping the others. Switching channels or updating the
   extension keeps open tabs translating, no reload
-- **Start on demand**: an option leaves every new channel untranslated until you switch it on from the chat bar;
+- **Start on demand**: an option leaves every new channel untranslated until you switch it on from the chat bar or the toolbar popup;
   the choice lasts for that tab and nothing is added to a list
 - **Moderation aware**: a message deleted by a moderator, a timeout or a ban loses its translation too
 - **Looks like Twitch**: purple, and it follows the chat's own dark or light theme unless you pick one
@@ -142,7 +142,7 @@ every on/off setting is a switch that applies at once.
 
 - **Providers**: engine order, your DeepL key, and the mode: cloud first (the default), on-device first, or on-device only
 - **Display**: target language, display style, original text and language badge, text size, line spacing,
-  typeface, accent colour, chat theme, the compose preview and what clicking it does
+  typeface, accent colour, chat theme, the compose preview, what clicking it does, and whether channels start on their own or on demand
 - **Filters**: bots, users, channels, keywords (matched as whole words), source languages (tick chips), and a
   glossary of replacements. A channel your lists leave out says "Not translated here" in the chat bar
 - **Advanced**: cache size and lifetime, concurrent requests, a per-channel rate limit, backup and restore (the
@@ -150,6 +150,7 @@ every on/off setting is a switch that applies at once.
   one never changes them, nor the usage statistics choice)
 - **Activity**: messages translated, cache hits, every language seen in chat, and why each of the last 50
   lines was translated or left alone
+- **About**: this copy's version, how a message becomes a translation, and the research behind it with links to the public repositories
 - **Keyboard**: Alt+Shift+T turns chat translation on or off (Alt+T is Twitch's theater mode), Alt+W the compose
   preview. Both can be rebound in your browser's extension shortcuts
 - The language button in the chat's action bar, under the message box: one click opens the list of languages you
@@ -266,6 +267,8 @@ No. It is an independent open-source project, not affiliated with Twitch.
 
 ## What's new
 
+In 1.2.0: start on demand (an option that keeps every channel untranslated until you switch it on from the chat bar or the popup), Chinese and Japanese lines written only with Han characters no longer hidden or mistaken for the other language (the channel's language settles them, Traditional and Simplified are told apart far more often, a mostly Cantonese chat is recognised), cloud first as the default engine mode, settings and DeepL key closed to the scripts that run inside Twitch pages on Chrome, and an About tab that explains the research behind the translator.
+
 In 1.1.2, safer and lighter: your DeepL key stays on this device (never synced, never in a settings export), Twitch pages can no longer read it, blocked words match whole words, Tab never inserts the translation of an older text, and the popup loads 84 % less code.
 
 In 1.1.1, lighter on fast chats: "…" only shows on a line still waiting after a quarter of a second, and an engine that stops answering hands its lines to the next one after 8 seconds.
@@ -342,6 +345,8 @@ Stack: Manifest V3, Vite, TypeScript, Preact, Tailwind.
 - [Kick Chat Translator](https://chromewebstore.google.com/detail/kick-chat-translator/nkkjmbkmacbdkboijmnhjnblcaiclhni) ([Firefox](https://addons.mozilla.org/firefox/addon/kick-chat-translator/)), the same translator for Kick chat, by the same author
 - [Twitch Chat Translator requests](https://github.com/kilworks/twitch-chat-translator-request), the user requests received and the research done for each; the first case, lines written with Han characters, is the source of the detection changes in this release line
 - [Translating live chat](https://github.com/kilworks/kick-translator-research), the measurement-driven study behind the language detection
+- [kct-detection-langue](https://github.com/kilworks/kct-detection-langue), language identification research, with a live demo
+- [docs/han-detection.md](docs/han-detection.md), the measurements behind the Chinese, Japanese and Cantonese changes
 
 ## Usage stats
 

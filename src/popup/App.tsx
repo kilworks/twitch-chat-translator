@@ -140,15 +140,17 @@ export function App() {
 
   const waitingHere = settings.enabled && !!channel && settings.startMode === 'manual' && waiting;
   const pausedHere = settings.enabled && !!channel && settings.pausedChannels.includes(channel);
+  // Paused, or waiting for the reader's start: one card, and the stats card steps aside to keep the popup under 600px.
+  const heldHere = pausedHere || waitingHere;
   // A channel list that keeps this channel out, said here with the way to it:
   // the Advanced tab's own advice was "reset everything" when this happened.
-  const blockedHere = settings.enabled && !!channel && !pausedHere ? channelBlockedBy(settings, channel) : undefined;
+  const blockedHere = settings.enabled && !!channel && !heldHere ? channelBlockedBy(settings, channel) : undefined;
   // The language half of the same question. Only on a channel and while an
   // allowlist is set, so clearing it in Options and reopening the popup clears
   // the line too. A line, not a card: the allowlist is doing what was asked of
   // it, where a blocked channel translates nothing.
   const langBlockedHere =
-    settings.enabled && !!channel && !pausedHere && !blockedHere && settings.sourceLangAllowlist.length > 0 && langBlocked > 0;
+    settings.enabled && !!channel && !heldHere && !blockedHere && settings.sourceLangAllowlist.length > 0 && langBlocked > 0;
   // Someone who has translated nothing yet and opens the popup away from
   // Twitch: settings do not tell them what to do. An empty history tells a
   // new install from a regular on a quiet day.
@@ -160,12 +162,12 @@ export function App() {
   // Added on top, it put the popup at 612 to 642px (Tamil, measure-popup).
   const updating = !!update?.updateAvailable;
   const asking =
-    !settings.usageStatsAsked && !pausedHere && !waitingHere && !firstRun && !blockedHere && !updating;
+    !settings.usageStatsAsked && !heldHere && !firstRun && !blockedHere && !updating;
   // One green button per state: the action this state is about takes it, and
   // Options steps down to a ghost while that action is on screen. The stats
   // question has no green of its own (equal answers), so Options steps down
   // there too and the question is the one thing in focus.
-  const otherPrimary = firstRun || pausedHere || waitingHere || !!blockedHere;
+  const otherPrimary = firstRun || heldHere || !!blockedHere;
 
   // Off Twitch the popup is the same settings as on it, with nothing to say that this tab is not
   // translated. No line of its own (the height is budgeted to the pixel): the version line says it.
@@ -202,7 +204,7 @@ export function App() {
           </div>
         </header>
 
-        {(pausedHere || waitingHere) && (
+        {heldHere && (
           <section class="kt-card flex items-center justify-between gap-2" role="status">
             <span class="text-xs text-kick-text">{t('Paused on this channel')}</span>
             <button class="kt-btn" onClick={() => void resumeHere()}>
@@ -448,7 +450,7 @@ export function App() {
             asked: added on top it pushed the popup past its 600px budget in
             every language (measure-popup, 685 to 752px). */}
         {/* The update link takes it too (see `updating`), until installed. */}
-        {settings.popupShowsStats && stats && !pausedHere && !blockedHere && !firstRun && settings.usageStatsAsked && !updating && (
+        {settings.popupShowsStats && stats && !heldHere && !blockedHere && !firstRun && settings.usageStatsAsked && !updating && (
           <section class="kt-card">
             <span class="kt-label">{t('Today')}</span>
             <StatsBar stats={stats} />
