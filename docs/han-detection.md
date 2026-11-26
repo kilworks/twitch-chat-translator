@@ -77,3 +77,7 @@ Reference: the extraction commit (same behaviour as the published build). Candid
 
 The Kick extension replaced the two hand-picked lists of 45 characters with lists of 506 and 592 chosen from about 340,000 lines of known origin, and added 151 characters only Japanese writes (decision rules, fresh sets, failed candidates and counts in its `docs/han-detection.md`). The table region of `langDetect.ts` here was byte-identical before the port. On the dev split of the labelled set this tree reads exactly like the Kick tree (Taiwan 76.87 percent Traditional, mainland 82.32 percent Simplified, Japan read as Chinese 0.77 percent). Totals pinned by this tree's tests were re-pinned with its own confusion diff, not copied: sure Tatoeba 3,731 to 3,770 right, Traditional lines answered Simplified 15 to 4.
 
+## Stream prior (port of the Kick extension)
+
+The Kick extension settles Han-only lines by the language of the channel (decision rules, replay of 83 collected channels, counts and the table of hidden lines by reader and channel language are in its `docs/han-detection.md`). Ported here with one difference: Twitch Chat Translator has no channel-switch hook in the pipeline, so the prior is reset when the `channel` of a message differs from the last one. Gates, tests and pipeline tests are the same; three of the pipeline tests were seen red with the gates neutralised. `content.js` gzip 101,288 to 101,639 bytes.
+
