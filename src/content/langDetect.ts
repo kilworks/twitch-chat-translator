@@ -3,8 +3,6 @@ import { francToIso2 } from '~/shared/languages';
 import { laughterLanguage } from '~/shared/laughter';
 import { isArabizi } from '~/shared/arabizi';
 import { romanisedLanguage } from '~/shared/romanised';
-import { extraHan } from './hanScript';
-import { ZH_FUNCTION } from './hanTables';
 
 const COMMON_SHORT_TOKENS = new Set([
   'lol',
@@ -2275,9 +2273,6 @@ const CARACTERES_TRADITIONNELS =
 const CARACTERES_SIMPLIFIES =
   /[这们么说对样实发应经觉读乐卖轻转边团图广压两验岁总济开关听权气吗]/u;
 
-// Built once from the generated table (hanTables.ts); hanScript.ts only sees the regex.
-const EXTRA_HAN = { zh: new RegExp(`[${ZH_FUNCTION}]`, 'u') };
-
 function cantonaisOuChinois(text: string): string | undefined {
   if (CARACTERES_CANTONAIS.test(text) || MOTS_CANTONAIS.test(text)) return 'yue';
   const traditionnel = CARACTERES_TRADITIONNELS.test(text);
@@ -2289,7 +2284,6 @@ function cantonaisOuChinois(text: string): string | undefined {
   // refusera sa reponse, ce qui est le comportement d'avant.
   if (traditionnel && !simplifie) return 'zh-tw';
   if (simplifie && !traditionnel) return 'zh';
-  if (!traditionnel && !simplifie) return extraHan(text, EXTRA_HAN);
   return undefined;
 }
 
