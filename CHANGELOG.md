@@ -11,6 +11,7 @@ The audit fixes of 24 November, shared with Kick Chat Translator where the code 
 
 ### Changed
 
+- **Traditional and Simplified Chinese are told apart far more often, fewer Japanese lines read as Chinese, and Japanese-only characters name Japanese lines.** Port of the Kick extension changes. The two lists of 45 characters become lists of 506 and 592 chosen from lines of known origin, and 151 characters only Japanese writes name a Han-only line `ja` when the lists say nothing. On the held-out split of the shared study: Taiwanese lines named Traditional 59.3 to 77.8 percent, mainland lines named Simplified 37.8 to 82.4, Han-only Japanese lines read as Chinese 1.13 to 0.73. Price: written Cantonese without a marker is named Traditional more often (25.1 to 36.6 percent).
 - **Cloud first is the default engine mode**, as in Kick Chat Translator: blind
   judges scored the on-device engine worse than Google on every language it
   served. Readers who were on "On-device first", by default or by choice, are
