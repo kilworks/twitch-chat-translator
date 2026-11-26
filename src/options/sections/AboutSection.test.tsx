@@ -44,8 +44,16 @@ describe('About tab, the Kick extension', () => {
 describe('About tab, links', () => {
   it('points changelog, repository, privacy policy and issues at this repository', () => {
     const hrefs = [...mount('chrome-extension://abc/').querySelectorAll<HTMLAnchorElement>('a')].map((a) => a.href);
-    const github = hrefs.filter((h) => h.startsWith('https://github.com/'));
-    expect(github).toHaveLength(4);
+    // The research card links other public repositories on purpose; only the Links card is held to this repository.
+    const research = ['kct-detection-langue', 'twitch-chat-translator-request', 'kick-translator-research'];
+    const github = hrefs.filter((h) => h.startsWith('https://github.com/') && !research.some((r) => h.includes(`/${r}`)));
+    expect(github.filter((h) => !h.includes('/docs/'))).toHaveLength(4);
     for (const h of github) expect(h.startsWith(`https://github.com/${GITHUB_REPO}`)).toBe(true);
+  });
+
+  it('links the research repositories from the research card', () => {
+    const hrefs = [...mount('chrome-extension://abc/').querySelectorAll<HTMLAnchorElement>('a')].map((a) => a.href);
+    for (const r of ['kct-detection-langue', 'twitch-chat-translator-request', 'kick-translator-research'])
+      expect(hrefs).toContain(`https://github.com/kilworks/${r}`);
   });
 });
