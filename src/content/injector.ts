@@ -510,7 +510,7 @@ export type LocalChipState =
   | { kind: 'downloading'; pct: number }
   | { kind: 'ready' };
 
-export function mountFloatingBar(container: Element, settings: Settings, h: FloatingBarHandlers): void {
+export function mountFloatingBar(container: Element, settings: Settings, h: FloatingBarHandlers, waiting = false): void {
   const host = container.closest(CHAT_PANEL_SELECTOR) ?? container;
   if (host.querySelector(`#${FLOAT_ID}`)) return;
   // The panel and the outside-click listener of the bar this one replaces live
@@ -698,6 +698,7 @@ export function mountFloatingBar(container: Element, settings: Settings, h: Floa
   });
   bar.appendChild(opts);
 
+  bar.dataset.waiting = String(waiting);
   setBarEnabled(bar, label, settings.enabled, settings.targetLang, blockedHere(settings));
 
   // Appended, shown on top by `order: -1`: Twitch Anti-Ban swaps `.chat-room__content`'s first child for its proxy chat.
@@ -792,7 +793,9 @@ function setBarEnabled(
   const shown = lang === 'auto' ? resolveBrowserLang() : lang;
   label.textContent = enabled
     ? msg('barOn', 'Translating')
-    : msg('barOff', 'Translation off');
+    : bar.dataset.waiting === 'true'
+      ? msg('chipPaused', 'Translation paused') // manual start: the channel waits for the reader's click
+      : msg('barOff', 'Translation off');
   // A channel list that keeps this channel out is said where the reader looks,
   // with the place to change it, instead of "Translating" over a plain chat.
   if (enabled && blocked) {
@@ -820,9 +823,10 @@ function setBarEnabled(
   }
 }
 
-export function updateFloatingBar(settings: Settings): void {
+export function updateFloatingBar(settings: Settings, waiting = false): void {
   const bar = findBar();
   const label = bar?.querySelector<HTMLElement>('.kt-float-label');
+  if (bar) bar.dataset.waiting = String(waiting);
   if (bar && label) setBarEnabled(bar, label, settings.enabled, settings.targetLang, blockedHere(settings));
   // The language button carries the code and its flag, so a change made
   // anywhere else (the options page, the chip) has to reach it too.
