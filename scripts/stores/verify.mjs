@@ -19,6 +19,11 @@ import { LISTINGS, apiLocale, chromeCode } from './languages.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const VERSION = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
 const ITEM = process.env.CWS_ITEM_ID; // no listing yet (PLAN K04); never the Kick one
+if (!ITEM) {
+  // 2026-11-28: the workflow never set it, every Chrome URL ended in "undefined" and 168 false differences failed the run for five weeks
+  console.error('CWS_ITEM_ID is not set: the Chrome pages cannot be fetched, nothing was compared');
+  process.exit(2);
+}
 const SLUG = 'twitch-chat-translator-pkkls'; // AMO slug; the Chrome URL only needs the item id
 const store = (rel) => fs.readFileSync(path.join(ROOT, 'store', rel), 'utf8').trim();
 const catalog = (dir) => JSON.parse(fs.readFileSync(path.join(ROOT, 'public/_locales', dir, 'messages.json'), 'utf8'));
