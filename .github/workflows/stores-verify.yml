@@ -24,3 +24,6 @@ jobs:
           node-version: 20
       - run: node scripts/stores/rank.mjs
       - run: node scripts/stores/verify.mjs
+        env:
+          # the public id of the Chrome listing (same as the README badge); without it every Chrome URL ends in "undefined"
+          CWS_ITEM_ID: cbfmiinjkceibkpdodaegnmpbeiempib
