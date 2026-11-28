@@ -12,7 +12,7 @@ Free, no account, nothing to set up. 43 languages, in the chat and in the extens
 [![Join the Discord](https://img.shields.io/badge/Join_the-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/xM2C33PkmR)
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cbfmiinjkceibkpdodaegnmpbeiempib?label=Chrome%20Web%20Store&color=9146ff)](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)
-[![Chrome users](https://img.shields.io/chrome-web-store/users/cbfmiinjkceibkpdodaegnmpbeiempib?label=users&color=9146ff)](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)
+[![Chrome users](https://img.shields.io/chrome-web-store/users/cbfmiinjkceibkpdodaegnmpbeiempib?label=users&color=9146ff&cacheSeconds=3600)](https://chromewebstore.google.com/detail/twitch-chat-translator/cbfmiinjkceibkpdodaegnmpbeiempib)
 [![Firefox Add-on](https://img.shields.io/amo/v/twitch-chat-translator-pkkls?label=Firefox%20Add-on&color=9146ff)](https://addons.mozilla.org/firefox/addon/twitch-chat-translator-pkkls/)
 [![CI](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml/badge.svg)](https://github.com/kilworks/twitch-chat-translator/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/kilworks/twitch-chat-translator/badge)](https://scorecard.dev/viewer/?uri=github.com/kilworks/twitch-chat-translator)
