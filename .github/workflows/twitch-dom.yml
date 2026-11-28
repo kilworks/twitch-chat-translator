@@ -3,9 +3,9 @@ name: Twitch DOM drift
 # Weekly: draws live channels at random, snapshots Twitch's chat in the configs
 # and surfaces the platform layer reads (native, 7TV, BTTV, FFZ; live, popout,
 # embed, VOD, clip), then asks the real selectors of src/content/selectors.ts to
-# find each family's list, rows, text and author (scripts/dom-drift.ts). Red
-# means a Twitch or 7TV update moved something the extension reads, before a
-# reader reports it. Like stores-verify.yml, nothing is published.
+# find each family's list, rows, text and author (scripts/dom-drift.ts). A red
+# cell is measured again on a new draw first. Red after that means a Twitch or
+# 7TV update moved something the extension reads, before a reader reports it. Like stores-verify.yml, nothing is published.
 on:
   workflow_dispatch:
   schedule:
@@ -44,6 +44,20 @@ jobs:
           CONFIGS=native,7tv SURFACES=popout,embed JOBS=4 node .agent/probes/matrix.mjs || true
           CONFIGS=native,bttv,7tv,all SURFACES=vod JOBS=4 node .agent/probes/matrix.mjs || true
           CONFIGS=native SURFACES=clip JOBS=1 node .agent/probes/matrix.mjs || true
+      # First reading, not gating: it lists the red cells. The probes draw their channels and VODs at
+      # random, so a cell can be red for the draw and not for Twitch (2026-11-28: two runs, two
+      # different sets of red cells). A cell stays red only if it fails twice, on two draws.
+      - run: node scripts/dom-drift-selftest.mjs
+      - run: npx tsx scripts/dom-drift.ts --fresh --failing="$RUNNER_TEMP/red.txt" || true
+      - name: Measure the red cells again on a new draw
+        run: |
+          [ -s "$RUNNER_TEMP/red.txt" ] || { echo "no red cell, nothing to measure again"; exit 0; }
+          echo "red on the first reading:"; cat "$RUNNER_TEMP/red.txt"
+          node .agent/probes/pick.mjs 30
+          node .agent/probes/heat.mjs
+          while read -r cell; do
+            CONFIGS="${cell%/*}" SURFACES="${cell#*/}" JOBS=1 OUT=matrix-again.json node .agent/probes/matrix.mjs || true
+          done < "$RUNNER_TEMP/red.txt"
       # The verdict: a cell without a fresh snapshot fails here too.
       - run: npx tsx scripts/dom-drift.ts --fresh
       # Shared chat and hype chat, never seen yet: listen to the top of the directory and
