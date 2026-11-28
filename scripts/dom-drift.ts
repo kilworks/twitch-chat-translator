@@ -2,10 +2,13 @@
  * DOM drift gate: does every selector of the platform layer still find what it is for, in
  * the latest Twitch snapshots?
  *
- *   npx tsx scripts/dom-drift.ts [RECON dir, default .agent/RECON] [--fresh]
+ *   npx tsx scripts/dom-drift.ts [RECON dir, default .agent/RECON] [--fresh] [--failing=<file>]
  *
  * `--fresh` (the weekly job) also fails a cell whose snapshot was not taken today, so a
  * probe that failed silently cannot let last week's file answer for it.
+ * `--failing=<file>` writes the red cells, one `config/surface` per line (an empty file when
+ * none is red): the probes draw channels and VODs at random, so the weekly job measures
+ * those cells again on a new draw before the verdict, and a cell stays red only if it fails twice.
  *
  * Reads `<config>/<surface>/dom.html` written by `.agent/probes/surface.mjs` (run weekly by
  * .github/workflows/twitch-dom.yml) and, per DOM family, asks the real functions of
@@ -13,13 +16,14 @@
  * target. A family with no snapshot at all fails too: a gate that read nothing must not pass.
  * Exit 1 on any failure.
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { Window } from 'happy-dom';
 
 const args = process.argv.slice(2);
 const RECON = args.find((a) => !a.startsWith('--')) ?? '.agent/RECON';
 const FRESH = args.includes('--fresh');
+const FAILING = args.find((a) => a.startsWith('--failing='))?.slice('--failing='.length);
 const TODAY = new Date().toISOString().slice(0, 10);
 const win = new Window();
 Object.assign(globalThis, { document: win.document, Node: win.Node, Element: win.Element, HTMLElement: win.HTMLElement });
@@ -34,12 +38,14 @@ const FAMILIES: Record<string, string[]> = {
 };
 
 let failures = 0;
+const red: string[] = [];
 for (const [family, cells] of Object.entries(FAMILIES)) {
   for (const cell of cells) {
     const file = path.join(RECON, cell, 'dom.html');
     if (!existsSync(file)) {
       console.info(`FAIL ${family} ${cell}: no snapshot`);
       failures++;
+      red.push(cell);
       continue;
     }
     const measured = path.join(RECON, cell, 'measure.json');
@@ -47,6 +53,7 @@ for (const [family, cells] of Object.entries(FAMILIES)) {
     if (FRESH && date !== TODAY) {
       console.info(`FAIL ${family} ${cell}: snapshot dated ${date ?? 'never'}, not ${TODAY}`);
       failures++;
+      red.push(cell);
       continue;
     }
     win.document.body.innerHTML = readFileSync(file, 'utf8');
@@ -63,10 +70,14 @@ for (const [family, cells] of Object.entries(FAMILIES)) {
     if (withText < Math.min(3, rows.length)) miss.push(`${withText} rows with text`);
     if (withUser < withText * 0.9) miss.push(`author on ${withUser}/${withText}`);
     if (inside < rows.length * 0.9) miss.push(`injection target on ${inside}/${rows.length}`);
-    if (miss.length) failures++;
+    if (miss.length) {
+      failures++;
+      red.push(cell);
+    }
     console.info(`${miss.length ? 'FAIL' : 'ok  '} ${family.padEnd(10)} ${cell.padEnd(16)} rows ${rows.length}, text ${withText}, author ${withUser}${miss.length ? ` : ${miss.join(', ')}` : ''}`);
   }
 }
 console.info(`${Object.values(FAMILIES).flat().length - failures}/${Object.values(FAMILIES).flat().length} cells green`);
+if (FAILING) writeFileSync(FAILING, red.map((c) => `${c}\n`).join(''));
 await win.happyDOM.close();
 process.exit(failures ? 1 : 0);
